@@ -10,6 +10,7 @@ import com.eight.collection.ui.BaseActivity
 
 class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var navHostFragment: NavHostFragment
+    // branch test
 
 
     override fun initAfterBinding() {
