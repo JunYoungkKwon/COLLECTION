@@ -19,6 +19,15 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/menu/navi_menu.xml" value="0.12" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.11651469098277609" />
+        <entry key="app/src/main/res/layout/fragment_match.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/fragment_month.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_week.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/navi_menu.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18981481481481483" />
       </map>
     </option>
   </component>

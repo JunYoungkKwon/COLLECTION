@@ -12,7 +12,10 @@
     <color name="primary">#F84D17</color>
     <color name="transparent">#00ff0000</color>
     <color name="form_error">#F44336</color>
-    <color name="bottom_navi">#DAD9D6</color>
+    <color name="bottom_navi">#f4f2f0</color>
+
+    <!-- Main Color -->
+    <color name="main_brown">#c77a4a</color>
 
     <!-- 로그인 -->
     <color name="login_button">#FFC107</color>
