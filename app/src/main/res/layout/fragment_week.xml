@@ -5,5 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+   <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+       android:id="@+id/week_calendar_cv"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:mcv_showOtherDates="defaults"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:mcv_calendarMode="week"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
