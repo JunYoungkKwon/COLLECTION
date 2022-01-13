@@ -175,15 +175,12 @@
             style="@style/VlanLlaRegular4Pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="300dp"
-            android:text="PHOTO."
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="296dp"
+            android:rotation="0"
+            android:text="PHOTO.dd"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toTopOf="parent"
-            android:rotation="180"
-            />
-
-
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
