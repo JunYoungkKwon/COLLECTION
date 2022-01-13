@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/writefirst_background_iv"
+            android:layout_width="328dp"
+            android:layout_height="1168dp"
+            android:background="@drawable/bg_writefirst"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/writefirst_background_Perpendicularline_first_v"
+            android:layout_width="1dp"
+            android:layout_height="88dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            android:layout_marginStart="48dp">
+        </View>
+
+        <View
+            android:id="@+id/writefirst_background_Perpendicularline_second_v"
+            android:layout_width="1dp"
+            android:layout_height="88dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            android:layout_marginEnd="48dp"
+            >
+        </View>
+
+        <View
+            android:id="@+id/writefirst_background_Perpendicularline_third_v"
+            android:layout_width="1dp"
+            android:layout_height="48dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_background_horizontalline_first_v"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            android:layout_marginStart="179dp"
+            >
+        </View>
+
+        <View
+            android:id="@+id/writefirst_background_Perpendicularline_fourth_v"
+            android:layout_width="1dp"
+            android:layout_height="240dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_background_horizontalline_second_v"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            android:layout_marginStart="48dp"
+            >
+        </View>
+
+        <View
+            android:id="@+id/writefirst_background_horizontalline_first_v"
+            android:layout_width="328dp"
+            android:layout_height="1dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            android:layout_marginTop="87.5dp">
+        </View>
+
+        <View
+            android:id="@+id/writefirst_background_horizontalline_second_v"
+            android:layout_width="328dp"
+            android:layout_height="1dp"
+            android:background="@color/terracota"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            android:layout_marginTop="135.5dp">
+        </View>
+
+        <View
+            android:id="@+id/writefirst_background_horizontalline_third_v"
+            android:layout_width="328dp"
+            android:layout_height="1dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            android:layout_marginTop="375.5dp">
+        </View>
+
+        <View
+            android:id="@+id/writefirst_background_horizontalline_fourth_v"
+            android:layout_width="328dp"
+            android:layout_height="1dp"
+            android:background="@color/terracota"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            android:layout_marginTop="432.5dp">
+        </View>
+
+        <View
+            android:id="@+id/writefirst_zigzagline_v"
+            android:layout_width="328dp"
+            android:layout_height="8dp"
+            android:layout_marginBottom="136dp"
+            android:background="@drawable/zigzagline_writefirst"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/writefirst_header_iv"
+            android:layout_width="178dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="56dp"
+            android:src="@drawable/today_s_ootd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/writefirst_datetext_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DATE."
+            style="@style/VlanLlaRegular4Pt"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="109dp"
+            />
+
+        <TextView
+            android:id="@+id/writefirst_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2021/12/31"
+            style="@style/VlanLlaRegular4Pt"
+            app:layout_constraintStart_toEndOf="@id/writefirst_datetext_tv"
+            app:layout_constraintTop_toTopOf="@id/writefirst_datetext_tv"
+            android:layout_marginStart="8dp"
+            />
+
+        <ImageView
+            android:id="@+id/writefirst_date_selector_iv"
+            android:layout_width="8dp"
+            android:layout_height="4dp"
+            android:src="@drawable/ic_date_selector"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="112dp"
+            />
+
+        <TextView
+            android:id="@+id/writefirst_lookstyle_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="히피룩,etc"
+            style="@style/NotoSansKr14Pt10"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toTopOf="@id/writefirst_datetext_tv"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_datetext_tv"
+            android:layout_marginStart="193dp"
+            />
+
+        <com.eight.collection.utils.CustomTextView
+            android:id="@+id/writefirst_phototext_tv"
+            style="@style/VlanLlaRegular4Pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="300dp"
+            android:text="PHOTO."
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            android:rotation="180"
+            />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

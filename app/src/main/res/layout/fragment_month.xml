@@ -6,10 +6,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/week_calendar_cv"
+        android:id="@+id/month_calendar_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/img_bg"
         app:mcv_showOtherDates="defaults"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:mcv_selectionColor="@color/main_brown"
+        app:mcv_tileWidth="48dp"
+        />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
