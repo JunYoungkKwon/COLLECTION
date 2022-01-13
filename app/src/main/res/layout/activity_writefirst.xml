@@ -177,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="21dp"
             android:layout_marginTop="300dp"
-            android:text="PHOTO.dd"
+            android:text="PHOTO."
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toTopOf="parent"
             android:rotation="180"
