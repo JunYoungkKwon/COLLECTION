@@ -13,6 +13,12 @@
     <color name="transparent">#00ff0000</color>
     <color name="form_error">#F44336</color>
     <color name="bottom_navi">#f4f2f0</color>
+    <color name="background">#f9f8f6</color>
+
+    <color name="terracota">#c77a4a</color>
+    <color name="dark_taupe">#7c6350</color>
+    <color name="pinkish_grey">#c3b5ac</color>
+    <color name="light_peach">#e8dcd5</color>
 
     <!-- Main Color -->
     <color name="main_brown">#c77a4a</color>
