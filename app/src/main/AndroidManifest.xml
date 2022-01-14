@@ -36,6 +36,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.writing.WritefirstActivity"/>
+
     </application>
 
 </manifest>
