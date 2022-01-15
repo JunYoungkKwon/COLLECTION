@@ -23,7 +23,11 @@
         <entry key="app/src/main/res/drawable/bg_writefirst.xml" value="0.225" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24114583333333334" />
         <entry key="app/src/main/res/layout/activity_writefirst.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_bottom.xml" value="0.23052536231884058" />
+        <entry key="app/src/main/res/layout/fragment_etc.xml" value="0.23052536231884058" />
         <entry key="app/src/main/res/layout/fragment_month.xml" value="0.24114583333333334" />
+        <entry key="app/src/main/res/layout/fragment_shoes.xml" value="0.23052536231884058" />
+        <entry key="app/src/main/res/layout/fragment_top.xml" value="0.23052536231884058" />
         <entry key="app/src/main/res/layout/item_writefirst_photo.xml" value="0.23854166666666668" />
       </map>
     </option>
