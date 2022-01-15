@@ -25,4 +25,9 @@
 
     <!-- 로그인 -->
     <color name="login_button">#FFC107</color>
+    <!-- 달력 -->
+    <color name="calendar_header">#c77a4a</color>
+    <color name="calendar_not_this_month">#c77a4a</color>
+    <color name="calendar_year_highlight">#e8dcd5</color>
+
 </resources>

@@ -73,5 +73,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
     //calendar
-    implementation "com.github.prolificinteractive:material-calendarview:$calendar_version"
+    implementation 'com.github.kizitonwose:CalendarView:1.0.4'
 }
