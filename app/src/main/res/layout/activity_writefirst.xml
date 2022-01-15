@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/writefirst_background_iv"
@@ -15,6 +15,7 @@
             android:layout_height="1168dp"
             android:background="@drawable/bg_writefirst"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,6 +113,18 @@
             app:layout_constraintStart_toStartOf="parent"
             />
 
+        <View
+            android:id="@+id/writefirst_header_background_iv"
+            android:layout_width="178dp"
+            android:layout_height="10dp"
+            android:background="@color/light_peach"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="64dp"
+            >
+        </View>
+
         <ImageView
             android:id="@+id/writefirst_header_iv"
             android:layout_width="178dp"
@@ -124,6 +137,16 @@
 
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_reset"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="280dp" />
+
         <TextView
             android:id="@+id/writefirst_datetext_tv"
             android:layout_width="wrap_content"
@@ -131,9 +154,9 @@
             android:text="DATE."
             style="@style/VlanLlaRegular4Pt"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_first_v"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_background_horizontalline_second_v"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="109dp"
             />
 
         <TextView
@@ -149,13 +172,13 @@
 
         <ImageView
             android:id="@+id/writefirst_date_selector_iv"
-            android:layout_width="8dp"
-            android:layout_height="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_date_selector"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/writefirst_date_tv"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_date_tv"
             android:layout_marginStart="156dp"
-            android:layout_marginTop="112dp"
             />
 
         <TextView
@@ -175,13 +198,75 @@
             style="@style/VlanLlaRegular4Pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="296dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="300dp"
             android:rotation="180"
-            android:text="PHOTO.sdasd"
+            android:text="PHOTO."
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/writefirst_photo_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            tools:listitem="@layout/item_writefirst_photo"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
+            android:layout_marginStart="90dp"
+            />
+
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/wrtiefirst_color_tb"
+            android:layout_width="326dp"
+            android:layout_height="48dp"
+            app:tabSelectedTextColor="@color/dark_taupe"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorColor="@color/pinkish_grey"
+            app:tabRippleColor="#00ff0000"
+            android:background="@color/background"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_fourth_v"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            android:layout_marginTop="384dp"
+            android:layout_marginStart="1dp"
+            />
+
+        <View
+            android:id="@+id/writefirst_color_shadow_v"
+            android:layout_width="326dp"
+            android:layout_height="9dp"
+            android:background="#f4f2f0"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_third_v"
+            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_third_v"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            >
+        </View>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/writefirst_color_vp"
+            android:layout_width="326dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="1dp"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_background_horizontalline_fourth_v" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </ScrollView>
+
+
+
+
+
+
