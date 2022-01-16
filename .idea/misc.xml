@@ -44,10 +44,11 @@
         <entry key="app/src/main/res/drawable/selector_navi_week.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/drawable/square_background_border_pinkishgrey.xml" value="0.2212962962962963" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11828774062816616" />
-        <entry key="app/src/main/res/layout/activity_writefirst.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_writefirst.xml" value="0.25" />
         <entry key="app/src/main/res/layout/caledaer_day.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/fragment_bottom.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/fragment_etc.xml" value="0.11828774062816616" />
+        <entry key="app/src/main/res/layout/fragment_match.xml" value="0.11727456940222898" />
         <entry key="app/src/main/res/layout/fragment_month.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/fragment_shoes.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/fragment_top.xml" value="0.25" />

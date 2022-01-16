@@ -22,9 +22,20 @@
             android:layout_width="216dp"
             android:layout_height="216dp"
             android:background="@drawable/square_background_border_pinkishgrey"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             />
 
         <ImageView
+            android:id="@+id/item_writefirst_photo_img_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/example1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <!--<ImageView
             android:id="@+id/item_writefirst_photo_camera_iv"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -32,7 +43,7 @@
             android:src="@drawable/ic_camera"
             android:layout_marginLeft="78dp"
             android:layout_marginTop="78dp"
-            />
+            />-->
 
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
