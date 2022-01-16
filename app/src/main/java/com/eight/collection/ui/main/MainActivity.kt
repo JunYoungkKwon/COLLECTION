@@ -33,8 +33,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
 
-
-
     }
 
 

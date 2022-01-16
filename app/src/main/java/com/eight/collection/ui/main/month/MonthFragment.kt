@@ -99,7 +99,6 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         binding.calendarView.scrollToMonth(currentMonth)
 
 
-
     }
 
 }
