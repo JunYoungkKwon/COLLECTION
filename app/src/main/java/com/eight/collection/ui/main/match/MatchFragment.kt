@@ -6,11 +6,7 @@ import com.eight.collection.databinding.FragmentMatchBinding
 import com.eight.collection.ui.BaseFragment
 
 class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::inflate) {
-
-
-
     override fun initAfterBinding() {
-
 
     }
 }

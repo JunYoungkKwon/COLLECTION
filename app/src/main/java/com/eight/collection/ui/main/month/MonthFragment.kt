@@ -25,15 +25,20 @@ import java.time.YearMonth
 
 class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate) {
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
+
+
+        binding.monthBtnWriteIv.setOnClickListener{
+            startActivity(Intent(activity, WritefirstActivity::class.java))
+        }
 
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
             val rankPoint = CalendarDateBinding.bind(view).calendarRankIv
         }
+
 
         val dm = DisplayMetrics()
         val wm = requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -92,6 +97,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         )
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
         binding.calendarView.scrollToMonth(currentMonth)
+
 
 
     }
