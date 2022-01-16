@@ -38,9 +38,11 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2212962962962963" />
         <entry key="app/src/main/res/drawable-v24/selector_navi_month.xml" value="0.15989583333333332" />
         <entry key="app/src/main/res/drawable/bg_writefirst.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/drawable/roundshape_button.xml" value="0.2212962962962963" />
         <entry key="app/src/main/res/drawable/selector_navi_match.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/drawable/selector_navi_month.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/drawable/selector_navi_week.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/drawable/square_background_border_pinkishgrey.xml" value="0.2212962962962963" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/activity_writefirst.xml" value="0.165" />
         <entry key="app/src/main/res/layout/caledaer_day.xml" value="0.11828774062816616" />
@@ -48,9 +50,9 @@
         <entry key="app/src/main/res/layout/fragment_etc.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/fragment_month.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/fragment_shoes.xml" value="0.11828774062816616" />
-        <entry key="app/src/main/res/layout/fragment_top.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_top.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_week.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/item_writefirst_photo.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_writefirst_photo.xml" value="0.25" />
         <entry key="app/src/main/res/menu/navi_menu.xml" value="0.1203125" />
       </map>
     </option>

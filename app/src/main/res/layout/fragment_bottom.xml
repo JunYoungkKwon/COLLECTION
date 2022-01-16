@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

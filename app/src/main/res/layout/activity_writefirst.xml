@@ -7,17 +7,19 @@
     android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/img_bg_writepage"
+        >
 
         <ImageView
             android:id="@+id/writefirst_background_iv"
             android:layout_width="328dp"
-            android:layout_height="1168dp"
-            android:background="@drawable/bg_writefirst"
+            android:layout_height="433dp"
+            android:background="@drawable/square_background_border_pinkishgrey"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <View
             android:id="@+id/writefirst_background_Perpendicularline_first_v"
@@ -92,26 +94,6 @@
             android:layout_marginTop="375.5dp">
         </View>
 
-        <View
-            android:id="@+id/writefirst_background_horizontalline_fourth_v"
-            android:layout_width="328dp"
-            android:layout_height="1dp"
-            android:background="@color/terracota"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            android:layout_marginTop="432.5dp">
-        </View>
-
-        <View
-            android:id="@+id/writefirst_zigzagline_v"
-            android:layout_width="328dp"
-            android:layout_height="8dp"
-            android:layout_marginBottom="136dp"
-            android:background="@drawable/zigzagline_writefirst"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
 
         <View
             android:id="@+id/writefirst_header_background_iv"
@@ -132,7 +114,6 @@
             android:layout_marginTop="56dp"
             android:src="@drawable/today_s_ootd"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toTopOf="parent" />
@@ -216,7 +197,7 @@
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
             tools:listitem="@layout/item_writefirst_photo" />
 
-        <View
+        <!--<View
             android:id="@+id/writefirst_color_shadow_v"
             android:layout_width="326dp"
             android:layout_height="9dp"
@@ -225,7 +206,7 @@
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_third_v"
             android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
-            />
+            />-->
 
 
         <com.google.android.material.tabs.TabLayout
@@ -236,13 +217,12 @@
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorGravity="top"
             app:tabIndicatorColor="@color/dark_taupe"
-            app:tabIndicator="@drawable/ic_indicator_writefirst"
             app:tabSelectedTextColor="@color/dark_taupe"
             app:tabTextAppearance="@style/Tab_text"
             app:tabTextColor="#ccbbbb"
             app:tabRippleColor="#00ff0000"
-            android:background="@color/background"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_fourth_v"
+            android:background="@drawable/img_bg_writepage"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_first_v"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             android:layout_marginTop="384dp"
@@ -251,15 +231,12 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/writefirst_color_vp"
-            android:layout_width="326dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginStart="1dp"
-            app:layout_constraintVertical_bias="1.0"
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_background_horizontalline_fourth_v" />
+            app:layout_constraintTop_toBottomOf="@id/wrtiefirst_color_tb" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,8 +25,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         binding.mainBottomNavigation.setupWithNavController(navController)
         binding.mainBottomNavigation.itemIconTintList = null
 
-
-
     }
 
     override fun onCreate(savedInstanceState : Bundle?){

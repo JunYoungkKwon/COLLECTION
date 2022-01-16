@@ -3,7 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/square_background_border_pinkishgrey"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/writefirst_background_horizontalline_fourth_v"
+        android:layout_width="328dp"
+        android:layout_height="1dp"
+        android:background="@color/terracota"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+       >
+    </View>
 
     <com.eight.collection.utils.SquareButton
         android:id="@+id/writefirst_color_top_add_bt"
@@ -11,7 +22,7 @@
         android:layout_height="40dp"
         android:text="+"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="24dp"
@@ -24,7 +35,7 @@
         android:layout_height="40dp"
         android:text="맨투맨"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_add_bt"
         app:layout_constraintTop_toTopOf="@id/writefirst_color_top_add_bt"
         android:layout_marginStart="10dp"
@@ -36,7 +47,7 @@
         android:layout_height="40dp"
         android:text="티셔츠"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_mantoman_bt"
         app:layout_constraintTop_toTopOf="@id/writefirst_color_top_mantoman_bt"
         android:layout_marginStart="10dp"
@@ -48,7 +59,7 @@
         android:layout_height="40dp"
         android:text="블라우스"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toStartOf="@id/writefirst_color_top_add_bt"
         app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_add_bt"
         android:layout_marginTop="10dp"
@@ -60,7 +71,7 @@
         android:layout_height="40dp"
         android:text="목폴라"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_blouse_bt"
         app:layout_constraintTop_toTopOf="@id/writefirst_color_top_blouse_bt"
         android:layout_marginStart="10dp"
@@ -72,7 +83,7 @@
         android:layout_height="40dp"
         android:text="후드티"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_neckpole_bt"
         app:layout_constraintTop_toTopOf="@id/writefirst_color_top_neckpole_bt"
         android:layout_marginStart="10dp"
@@ -84,7 +95,7 @@
         android:layout_height="40dp"
         android:text="니트"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toStartOf="@id/writefirst_color_top_add_bt"
         app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_blouse_bt"
         android:layout_marginTop="10dp"
@@ -96,7 +107,7 @@
         android:layout_height="40dp"
         android:text="와이셔츠"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_knit_bt"
         app:layout_constraintTop_toTopOf="@id/writefirst_color_top_knit_bt"
         android:layout_marginStart="10dp"
@@ -108,7 +119,7 @@
         android:layout_height="40dp"
         android:text="나시"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_shirt_bt"
         app:layout_constraintTop_toTopOf="@id/writefirst_color_top_shirt_bt"
         android:layout_marginStart="10dp"
@@ -120,7 +131,7 @@
         android:layout_height="40dp"
         android:text="패딩"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toStartOf="@id/writefirst_color_top_knit_bt"
         app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_knit_bt"
         android:layout_marginTop="10dp"
@@ -132,7 +143,7 @@
         android:layout_height="40dp"
         android:text="무스탕"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_padding_bt"
         app:layout_constraintTop_toTopOf="@id/writefirst_color_top_padding_bt"
         android:layout_marginStart="10dp"
@@ -144,7 +155,7 @@
         android:layout_height="40dp"
         android:text="후드집업"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_mustang_bt"
         app:layout_constraintTop_toTopOf="@id/writefirst_color_top_mustang_bt"
         android:layout_marginStart="10dp"
@@ -156,7 +167,7 @@
         android:layout_height="40dp"
         android:text="코트"
         android:textColor="@color/pinkish_grey"
-        android:background="@drawable/bg_writefirst"
+        android:background="@drawable/square_background_border_pinkishgrey"
         app:layout_constraintStart_toStartOf="@id/writefirst_color_top_padding_bt"
         app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_padding_bt"
         android:layout_marginTop="10dp"
@@ -240,21 +251,21 @@
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/writefirst_color_top_selector_brown"
+        android:id="@+id/writefirst_color_top_selector_orange"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@drawable/ic_color_selector_brown"
+        android:background="@drawable/ic_color_selector_orange"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
         android:layout_marginStart="20dp"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/writefirst_color_top_selector_orange"
+        android:id="@+id/writefirst_color_top_selector_navy"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@drawable/ic_color_selector_orange"
-        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_brown"
+        android:background="@drawable/ic_color_selector_navy"
+        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_orange"
         app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
         />
 
@@ -263,7 +274,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@drawable/ic_color_selector_blue"
-        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_orange"
+        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_navy"
         app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
         />
 
@@ -299,8 +310,8 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@drawable/ic_color_selector_white"
-        app:layout_constraintStart_toStartOf="@id/writefirst_color_top_selector_brown"
-        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
+        app:layout_constraintStart_toStartOf="@id/writefirst_color_top_selector_orange"
+        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -309,7 +320,7 @@
         android:layout_height="48dp"
         android:background="@drawable/ic_color_selector_grey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_white"
-        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
+        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -318,7 +329,7 @@
         android:layout_height="48dp"
         android:background="@drawable/ic_color_selector_black"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_grey"
-        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
+        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -327,7 +338,7 @@
         android:layout_height="48dp"
         android:background="@drawable/ic_color_selector_lightpeach"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_black"
-        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
+        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -336,7 +347,7 @@
         android:layout_height="48dp"
         android:background="@drawable/ic_color_selector_pinkishgrey"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightpeach"
-        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
+        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -345,8 +356,47 @@
         android:layout_height="48dp"
         android:background="@drawable/ic_color_selector_darktaupe"
         app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_pinkishgrey"
-        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
+        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
         />
+    
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/writefirst_next_button"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:background="@drawable/roundshape_button"
+        android:text="다음"
+        android:textColor="@color/pinkish_grey"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_white"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="94dp"
+        />
+
+    <View
+        android:id="@+id/writefirst_zigzagline_v"
+        android:layout_width="328dp"
+        android:layout_height="8dp"
+        android:layout_marginBottom="136dp"
+        android:background="@drawable/zigzagline_writefirst"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/writefirst_next_button"
+        android:layout_marginTop="40dp"
+        />
+
+    <ImageView
+        android:id="@+id/writefirst_space_iv"
+        android:layout_width="328dp"
+        android:layout_height="136dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/writefirst_zigzagline_v"
+        />
+
+
+
+
+
+
 
 
 
