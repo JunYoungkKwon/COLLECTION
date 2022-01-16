@@ -209,31 +209,12 @@
             android:id="@+id/writefirst_photo_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            tools:listitem="@layout/item_writefirst_photo"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
             android:layout_marginStart="90dp"
-            />
-
-
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/wrtiefirst_color_tb"
-            android:layout_width="326dp"
-            android:layout_height="48dp"
-            app:tabSelectedTextColor="@color/dark_taupe"
-            app:tabIndicatorFullWidth="false"
-            app:tabIndicatorColor="@color/pinkish_grey"
-            app:tabRippleColor="#00ff0000"
-            android:background="@color/background"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_fourth_v"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            android:layout_marginTop="384dp"
-            android:layout_marginStart="1dp"
-            />
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
+            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
+            tools:listitem="@layout/item_writefirst_photo" />
 
         <View
             android:id="@+id/writefirst_color_shadow_v"
@@ -244,8 +225,29 @@
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_third_v"
             android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
-            >
-        </View>
+            />
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/wrtiefirst_color_tb"
+            style="@style/VlanLlaOutline4Pt"
+            android:layout_width="326dp"
+            android:layout_height="48dp"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorGravity="top"
+            app:tabIndicatorColor="@color/dark_taupe"
+            app:tabIndicator="@drawable/ic_indicator_writefirst"
+            app:tabSelectedTextColor="@color/dark_taupe"
+            app:tabTextAppearance="@style/Tab_text"
+            app:tabTextColor="#ccbbbb"
+            app:tabRippleColor="#00ff0000"
+            android:background="@color/background"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_fourth_v"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            android:layout_marginTop="384dp"
+            android:layout_marginStart="1dp"
+            />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/writefirst_color_vp"

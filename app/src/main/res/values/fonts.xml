@@ -108,4 +108,12 @@
         <item name="android:letterSpacing">-0.1</item>
         <item name="android:textColor">@color/dark_taupe</item>
     </style>
+
+    <style name="Tab_text" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/vlan_llaregular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">3sp</item>
+        <item name="android:letterSpacing">-0.1</item>
+        <item name="android:textColor">@color/dark_taupe</item>
+    </style>
 </resources>
