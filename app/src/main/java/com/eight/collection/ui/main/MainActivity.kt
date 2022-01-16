@@ -17,6 +17,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
     private lateinit var navHostFragment: NavHostFragment
 
 
+    //test
 
     override fun initAfterBinding() {
         navHostFragment =
