@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="12dp"
+    >
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/writefirst_color_top_text_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="+"
+        android:textColor="@color/pinkish_grey"
+        android:background="@drawable/square_background_border_pinkishgery"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

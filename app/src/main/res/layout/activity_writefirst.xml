@@ -15,12 +15,11 @@
             android:id="@+id/writefirst_background_iv"
             android:layout_width="328dp"
             android:layout_height="1300dp"
-            android:background="@drawable/square_background_border_pinkishgrey"
+            android:background="@drawable/square_background_border_pinkishgery"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_zigzagline_v"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/writefirst_zigzagline_v"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/writefirst_background_Perpendicularline_first_v"

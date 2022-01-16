@@ -6,20 +6,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <com.eight.collection.utils.SquareButton
-        android:id="@+id/writefirst_color_top_add_bt"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="+"
-        android:textColor="@color/pinkish_grey"
-        android:background="@drawable/square_background_border_pinkishgrey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/writefirst_top_recyclerview"
+        android:layout_width="328dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_writefirst_top"
+        tools:ignore="MissingConstraints"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
+
+
+    <!--<androidx.appcompat.widget.AppCompatButton
         android:id="@+id/writefirst_color_top_mantoman_bt"
         android:layout_width="80dp"
         android:layout_height="40dp"
@@ -161,7 +161,7 @@
         app:layout_constraintStart_toStartOf="@id/writefirst_color_top_padding_bt"
         app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_padding_bt"
         android:layout_marginTop="10dp"
-        />
+        />-->
 
 
 

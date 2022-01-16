@@ -42,6 +42,7 @@
         <entry key="app/src/main/res/drawable/selector_navi_match.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/drawable/selector_navi_month.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/drawable/selector_navi_week.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/drawable/square_background_border_pinkishgery.xml" value="0.16354166666666667" />
         <entry key="app/src/main/res/drawable/square_background_border_pinkishgrey.xml" value="0.2212962962962963" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/activity_writefirst.xml" value="0.25" />
@@ -54,6 +55,7 @@
         <entry key="app/src/main/res/layout/fragment_top.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_week.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_writefirst_photo.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_writefirst_top.xml" value="0.19927536231884058" />
         <entry key="app/src/main/res/menu/navi_menu.xml" value="0.1203125" />
       </map>
     </option>
