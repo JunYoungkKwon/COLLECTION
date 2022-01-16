@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="13sp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:fontFamily="@font/roboto_light"
         android:textColor="@color/black"
         tools:text="22" />
@@ -20,7 +20,7 @@
         android:id="@+id/calendar_rank_iv"
         android:layout_width="30dp"
         android:layout_height="25dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:scaleType="center"
         android:gravity="center"
         android:layout_gravity="center"/>

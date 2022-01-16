@@ -31,8 +31,11 @@
         android:id="@+id/week_btn_write_iv"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_write"
+        android:paddingTop="30dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="-20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -66,7 +69,7 @@
         android:id="@+id/week_bottom_line_view"
         android:layout_width="0dp"
         android:layout_height="1px"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="27dp"
         android:background="@color/black"
         app:layout_constraintTop_toBottomOf="@id/week_top_line_view"
         app:layout_constraintEnd_toEndOf="parent"

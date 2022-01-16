@@ -7,12 +7,5 @@ import com.eight.collection.databinding.ActivityWritefirstBinding
 class WritefirstActivity : AppCompatActivity(){
     lateinit var binding : ActivityWritefirstBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityWritefirstBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        val writefirstAdapter = WritefirstVPA(this)
-        binding.writefirstColorVp.adapter = writefirstAdapter
-    }
 }

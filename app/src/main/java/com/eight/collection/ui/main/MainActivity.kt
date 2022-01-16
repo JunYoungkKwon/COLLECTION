@@ -16,6 +16,8 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
     private lateinit var navHostFragment: NavHostFragment
 
+
+
     override fun initAfterBinding() {
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
@@ -23,14 +25,15 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
         binding.mainBottomNavigation.setupWithNavController(navController)
         binding.mainBottomNavigation.itemIconTintList = null
+
+
+
     }
 
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
 
-        binding.mainBtnWriteIv.setOnClickListener{
-            startActivity(Intent(this,WritefirstActivity::class.java))
-        }
+
 
     }
 
