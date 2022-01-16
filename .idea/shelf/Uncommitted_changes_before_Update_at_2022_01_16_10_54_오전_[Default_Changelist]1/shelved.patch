@@ -1,0 +1,735 @@
+Index: app/src/main/java/com/eight/collection/ui/writing/WritefirstActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.eight.collection.ui.writing\n\nimport android.os.Bundle\nimport androidx.appcompat.app.AppCompatActivity\nimport com.eight.collection.databinding.ActivityWritefirstBinding\n\nclass WritefirstActivity : AppCompatActivity(){\n    lateinit var binding : ActivityWritefirstBinding\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        binding = ActivityWritefirstBinding.inflate(layoutInflater)\n        setContentView(binding.root)\n\n        val writefirstAdapter = WritefirstVPA(this)\n        binding.writefirstColorVp.adapter = writefirstAdapter\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/eight/collection/ui/writing/WritefirstActivity.kt b/app/src/main/java/com/eight/collection/ui/writing/WritefirstActivity.kt
+--- a/app/src/main/java/com/eight/collection/ui/writing/WritefirstActivity.kt	
++++ b/app/src/main/java/com/eight/collection/ui/writing/WritefirstActivity.kt	
+@@ -3,10 +3,12 @@
+ import android.os.Bundle
+ import androidx.appcompat.app.AppCompatActivity
+ import com.eight.collection.databinding.ActivityWritefirstBinding
++import com.google.android.material.tabs.TabLayoutMediator
+ 
+ class WritefirstActivity : AppCompatActivity(){
+     lateinit var binding : ActivityWritefirstBinding
+ 
++    val information = arrayListOf("TOP","BOTTOM","SHOES","ETC")
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         binding = ActivityWritefirstBinding.inflate(layoutInflater)
+@@ -14,5 +16,9 @@
+ 
+         val writefirstAdapter = WritefirstVPA(this)
+         binding.writefirstColorVp.adapter = writefirstAdapter
++        TabLayoutMediator(binding.wrtiefirstColorTb,binding.writefirstColorVp){
++            tab, position ->
++            tab.text = information[position]
++        }.attach()
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_writefirst.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ScrollView\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\">\n    <androidx.constraintlayout.widget.ConstraintLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\">\n\n        <ImageView\n            android:id=\"@+id/writefirst_background_iv\"\n            android:layout_width=\"328dp\"\n            android:layout_height=\"1168dp\"\n            android:background=\"@drawable/bg_writefirst\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintHorizontal_bias=\"0.504\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\" />\n\n        <View\n            android:id=\"@+id/writefirst_background_Perpendicularline_first_v\"\n            android:layout_width=\"1dp\"\n            android:layout_height=\"88dp\"\n            android:background=\"@color/pinkish_grey\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            android:layout_marginStart=\"48dp\">\n        </View>\n\n        <View\n            android:id=\"@+id/writefirst_background_Perpendicularline_second_v\"\n            android:layout_width=\"1dp\"\n            android:layout_height=\"88dp\"\n            android:background=\"@color/pinkish_grey\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"@id/writefirst_background_iv\"\n            android:layout_marginEnd=\"48dp\"\n            >\n        </View>\n\n        <View\n            android:id=\"@+id/writefirst_background_Perpendicularline_third_v\"\n            android:layout_width=\"1dp\"\n            android:layout_height=\"48dp\"\n            android:background=\"@color/pinkish_grey\"\n            app:layout_constraintTop_toBottomOf=\"@id/writefirst_background_horizontalline_first_v\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            android:layout_marginStart=\"179dp\"\n            >\n        </View>\n\n        <View\n            android:id=\"@+id/writefirst_background_Perpendicularline_fourth_v\"\n            android:layout_width=\"1dp\"\n            android:layout_height=\"240dp\"\n            android:background=\"@color/pinkish_grey\"\n            app:layout_constraintTop_toBottomOf=\"@id/writefirst_background_horizontalline_second_v\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            android:layout_marginStart=\"48dp\"\n            >\n        </View>\n\n        <View\n            android:id=\"@+id/writefirst_background_horizontalline_first_v\"\n            android:layout_width=\"328dp\"\n            android:layout_height=\"1dp\"\n            android:background=\"@color/pinkish_grey\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            android:layout_marginTop=\"87.5dp\">\n        </View>\n\n        <View\n            android:id=\"@+id/writefirst_background_horizontalline_second_v\"\n            android:layout_width=\"328dp\"\n            android:layout_height=\"1dp\"\n            android:background=\"@color/terracota\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            android:layout_marginTop=\"135.5dp\">\n        </View>\n\n        <View\n            android:id=\"@+id/writefirst_background_horizontalline_third_v\"\n            android:layout_width=\"328dp\"\n            android:layout_height=\"1dp\"\n            android:background=\"@color/pinkish_grey\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            android:layout_marginTop=\"375.5dp\">\n        </View>\n\n        <View\n            android:id=\"@+id/writefirst_background_horizontalline_fourth_v\"\n            android:layout_width=\"328dp\"\n            android:layout_height=\"1dp\"\n            android:background=\"@color/terracota\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            android:layout_marginTop=\"432.5dp\">\n        </View>\n\n        <View\n            android:id=\"@+id/writefirst_zigzagline_v\"\n            android:layout_width=\"328dp\"\n            android:layout_height=\"8dp\"\n            android:layout_marginBottom=\"136dp\"\n            android:background=\"@drawable/zigzagline_writefirst\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            />\n\n        <View\n            android:id=\"@+id/writefirst_header_background_iv\"\n            android:layout_width=\"178dp\"\n            android:layout_height=\"10dp\"\n            android:background=\"@color/light_peach\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            android:layout_marginStart=\"75dp\"\n            android:layout_marginTop=\"64dp\"\n            >\n        </View>\n\n        <ImageView\n            android:id=\"@+id/writefirst_header_iv\"\n            android:layout_width=\"178dp\"\n            android:layout_height=\"18dp\"\n            android:layout_marginTop=\"56dp\"\n            android:src=\"@drawable/today_s_ootd\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintHorizontal_bias=\"0.497\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n\n            app:layout_constraintTop_toTopOf=\"parent\" />\n\n\n        <ImageView\n            android:layout_width=\"48dp\"\n            android:layout_height=\"48dp\"\n            android:src=\"@drawable/ic_reset\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            android:layout_marginTop=\"40dp\"\n            android:layout_marginStart=\"280dp\" />\n\n        <TextView\n            android:id=\"@+id/writefirst_datetext_tv\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"DATE.\"\n            style=\"@style/VlanLlaRegular4Pt\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            app:layout_constraintTop_toTopOf=\"@id/writefirst_background_horizontalline_first_v\"\n            app:layout_constraintBottom_toBottomOf=\"@id/writefirst_background_horizontalline_second_v\"\n            android:layout_marginStart=\"15dp\"\n            />\n\n        <TextView\n            android:id=\"@+id/writefirst_date_tv\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"2021/12/31\"\n            style=\"@style/VlanLlaRegular4Pt\"\n            app:layout_constraintStart_toEndOf=\"@id/writefirst_datetext_tv\"\n            app:layout_constraintTop_toTopOf=\"@id/writefirst_datetext_tv\"\n            android:layout_marginStart=\"8dp\"\n            />\n\n        <ImageView\n            android:id=\"@+id/writefirst_date_selector_iv\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:src=\"@drawable/ic_date_selector\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            app:layout_constraintTop_toTopOf=\"@id/writefirst_date_tv\"\n            app:layout_constraintBottom_toBottomOf=\"@id/writefirst_date_tv\"\n            android:layout_marginStart=\"156dp\"\n            />\n\n        <TextView\n            android:id=\"@+id/writefirst_lookstyle_tv\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"히피룩,etc\"\n            style=\"@style/NotoSansKr14Pt10\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            app:layout_constraintTop_toTopOf=\"@id/writefirst_datetext_tv\"\n            app:layout_constraintBottom_toBottomOf=\"@id/writefirst_datetext_tv\"\n            android:layout_marginStart=\"193dp\"\n            />\n\n        <com.eight.collection.utils.CustomTextView\n            android:id=\"@+id/writefirst_phototext_tv\"\n            style=\"@style/VlanLlaRegular4Pt\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginStart=\"21dp\"\n            android:layout_marginTop=\"300dp\"\n            android:rotation=\"180\"\n            android:text=\"PHOTO.\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_iv\"\n            app:layout_constraintTop_toTopOf=\"parent\" />\n\n        <androidx.recyclerview.widget.RecyclerView\n            android:id=\"@+id/writefirst_photo_recyclerview\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"240dp\"\n            tools:listitem=\"@layout/item_writefirst_photo\"\n            app:layoutManager=\"androidx.recyclerview.widget.LinearLayoutManager\"\n            android:orientation=\"horizontal\"\n            app:layout_constraintTop_toTopOf=\"@id/writefirst_background_horizontalline_second_v\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_Perpendicularline_fourth_v\"\n            android:layout_marginStart=\"90dp\"\n            />\n\n\n\n        <com.google.android.material.tabs.TabLayout\n            android:id=\"@+id/wrtiefirst_color_tb\"\n            android:layout_width=\"326dp\"\n            android:layout_height=\"48dp\"\n            app:tabSelectedTextColor=\"@color/dark_taupe\"\n            app:tabIndicatorFullWidth=\"false\"\n            app:tabIndicatorColor=\"@color/pinkish_grey\"\n            app:tabRippleColor=\"#00ff0000\"\n            android:background=\"@color/background\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_horizontalline_fourth_v\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            tools:ignore=\"MissingConstraints\"\n            android:layout_marginTop=\"384dp\"\n            android:layout_marginStart=\"1dp\"\n            />\n\n        <View\n            android:id=\"@+id/writefirst_color_shadow_v\"\n            android:layout_width=\"326dp\"\n            android:layout_height=\"9dp\"\n            android:background=\"#f4f2f0\"\n            app:layout_constraintStart_toStartOf=\"@id/writefirst_background_horizontalline_third_v\"\n            app:layout_constraintTop_toTopOf=\"@id/writefirst_background_horizontalline_third_v\"\n            android:layout_marginStart=\"1dp\"\n            android:layout_marginTop=\"1dp\"\n            >\n        </View>\n\n        <androidx.viewpager2.widget.ViewPager2\n            android:id=\"@+id/writefirst_color_vp\"\n            android:layout_width=\"326dp\"\n            android:layout_height=\"0dp\"\n            android:layout_marginTop=\"1dp\"\n            android:layout_marginStart=\"1dp\"\n            app:layout_constraintVertical_bias=\"1.0\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@id/writefirst_background_horizontalline_fourth_v\" />\n\n\n    </androidx.constraintlayout.widget.ConstraintLayout>\n\n\n</ScrollView>\n\n\n\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_writefirst.xml b/app/src/main/res/layout/activity_writefirst.xml
+--- a/app/src/main/res/layout/activity_writefirst.xml	
++++ b/app/src/main/res/layout/activity_writefirst.xml	
+@@ -209,23 +209,37 @@
+             android:id="@+id/writefirst_photo_recyclerview"
+             android:layout_width="match_parent"
+             android:layout_height="240dp"
+-            tools:listitem="@layout/item_writefirst_photo"
+-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
++            android:layout_marginStart="90dp"
+             android:orientation="horizontal"
+-            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
++            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+             app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
+-            android:layout_marginStart="90dp"
+-            />
++            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
++            tools:listitem="@layout/item_writefirst_photo" />
+ 
++        <View
++            android:id="@+id/writefirst_color_shadow_v"
++            android:layout_width="326dp"
++            android:layout_height="9dp"
++            android:background="#f4f2f0"
++            app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_third_v"
++            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_third_v"
++            android:layout_marginStart="1dp"
++            android:layout_marginTop="1dp"
++            />
+ 
+ 
+         <com.google.android.material.tabs.TabLayout
+             android:id="@+id/wrtiefirst_color_tb"
++            style="@style/VlanLlaOutline4Pt"
+             android:layout_width="326dp"
+             android:layout_height="48dp"
++            app:tabIndicatorFullWidth="true"
++            app:tabIndicatorGravity="top"
++            app:tabIndicatorColor="@color/dark_taupe"
++            app:tabIndicator="@drawable/ic_indicator_writefirst"
+             app:tabSelectedTextColor="@color/dark_taupe"
+-            app:tabIndicatorFullWidth="false"
+-            app:tabIndicatorColor="@color/pinkish_grey"
++            app:tabTextAppearance="@style/Tab_text"
++            app:tabTextColor="#ccbbbb"
+             app:tabRippleColor="#00ff0000"
+             android:background="@color/background"
+             app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_fourth_v"
+@@ -234,18 +248,6 @@
+             android:layout_marginTop="384dp"
+             android:layout_marginStart="1dp"
+             />
+-
+-        <View
+-            android:id="@+id/writefirst_color_shadow_v"
+-            android:layout_width="326dp"
+-            android:layout_height="9dp"
+-            android:background="#f4f2f0"
+-            app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_third_v"
+-            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_third_v"
+-            android:layout_marginStart="1dp"
+-            android:layout_marginTop="1dp"
+-            >
+-        </View>
+ 
+         <androidx.viewpager2.widget.ViewPager2
+             android:id="@+id/writefirst_color_vp"
+Index: app/src/main/res/layout/fragment_top.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\">\n\n    <TextView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"탑 프래그먼트\"\n        android:textSize=\"30sp\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        />\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_top.xml b/app/src/main/res/layout/fragment_top.xml
+--- a/app/src/main/res/layout/fragment_top.xml	
++++ b/app/src/main/res/layout/fragment_top.xml	
+@@ -2,17 +2,372 @@
+ <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    xmlns:app="http://schemas.android.com/apk/res-auto">
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools">
++
++    <com.eight.collection.utils.SquareButton
++        android:id="@+id/writefirst_color_top_add_bt"
++        android:layout_width="40dp"
++        android:layout_height="40dp"
++        android:text="+"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        android:layout_marginStart="24dp"
++        android:layout_marginTop="24dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_mantoman_bt"
++        android:layout_width="80dp"
++        android:layout_height="40dp"
++        android:text="맨투맨"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_add_bt"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_add_bt"
++        android:layout_marginStart="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_tshirt_bt"
++        android:layout_width="80dp"
++        android:layout_height="40dp"
++        android:text="티셔츠"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_mantoman_bt"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_mantoman_bt"
++        android:layout_marginStart="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_blouse_bt"
++        android:layout_width="92dp"
++        android:layout_height="40dp"
++        android:text="블라우스"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toStartOf="@id/writefirst_color_top_add_bt"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_add_bt"
++        android:layout_marginTop="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_neckpole_bt"
++        android:layout_width="80dp"
++        android:layout_height="40dp"
++        android:text="목폴라"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_blouse_bt"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_blouse_bt"
++        android:layout_marginStart="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_hoodie_bt"
++        android:layout_width="80dp"
++        android:layout_height="40dp"
++        android:text="후드티"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_neckpole_bt"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_neckpole_bt"
++        android:layout_marginStart="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_knit_bt"
++        android:layout_width="66dp"
++        android:layout_height="40dp"
++        android:text="니트"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toStartOf="@id/writefirst_color_top_add_bt"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_blouse_bt"
++        android:layout_marginTop="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_shirt_bt"
++        android:layout_width="92dp"
++        android:layout_height="40dp"
++        android:text="와이셔츠"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_knit_bt"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_knit_bt"
++        android:layout_marginStart="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_sleeveless_bt"
++        android:layout_width="80dp"
++        android:layout_height="40dp"
++        android:text="나시"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_shirt_bt"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_shirt_bt"
++        android:layout_marginStart="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_padding_bt"
++        android:layout_width="66dp"
++        android:layout_height="40dp"
++        android:text="패딩"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toStartOf="@id/writefirst_color_top_knit_bt"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_knit_bt"
++        android:layout_marginTop="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_mustang_bt"
++        android:layout_width="80dp"
++        android:layout_height="40dp"
++        android:text="무스탕"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_padding_bt"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_padding_bt"
++        android:layout_marginStart="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_hoodzipup_bt"
++        android:layout_width="92dp"
++        android:layout_height="40dp"
++        android:text="후드집업"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_mustang_bt"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_mustang_bt"
++        android:layout_marginStart="10dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatButton
++        android:id="@+id/writefirst_color_top_coat_bt"
++        android:layout_width="66dp"
++        android:layout_height="40dp"
++        android:text="코트"
++        android:textColor="@color/pinkish_grey"
++        android:background="@drawable/bg_writefirst"
++        app:layout_constraintStart_toStartOf="@id/writefirst_color_top_padding_bt"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_padding_bt"
++        android:layout_marginTop="10dp"
++        />
++
++    <ImageView
++        android:id="@+id/writefirst_color_top_color_icon_iv"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:src="@drawable/ic_indicator_writefirst"
++        app:layout_constraintStart_toStartOf="@id/writefirst_color_top_coat_bt"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_coat_bt"
++        android:layout_marginTop="24dp"
++        />
+ 
+     <TextView
++        android:id="@+id/writefirst_color_top_colortext_tv"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="탑 프래그먼트"
+-        android:textSize="30sp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
++        android:text="COLOR."
++        style="@style/VlanLlaRegular4Pt"
++        app:layout_constraintStart_toStartOf="@id/writefirst_color_top_color_icon_iv"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_color_icon_iv"
++        android:layout_marginTop="8dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_red"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_red"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_colortext_tv"
++        android:layout_marginTop="8dp"
++        android:layout_marginStart="20dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_pink"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_pink"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_red"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_red"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_yellow"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_yellow"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_pink"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_pink"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_lightyellow"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_lightyellow"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_yellow"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_yellow"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_green"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_green"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightyellow"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_lightyellow"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_lightgreen"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_lightgreen"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_green"
++        app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_green"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_brown"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_brown"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
++        android:layout_marginStart="20dp"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_orange"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_orange"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_brown"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_blue"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_blue"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_orange"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_lightblue"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_lightblue"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_blue"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_purple"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_purple"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightblue"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
+         />
+ 
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_lightpurple"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_lightpurple"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_purple"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_white"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_white"
++        app:layout_constraintStart_toStartOf="@id/writefirst_color_top_selector_brown"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_grey"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_grey"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_white"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_black"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_black"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_grey"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_lightpeach"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_lightpeach"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_black"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_pinkishgrey"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_pinkishgrey"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightpeach"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
++        />
++
++    <androidx.appcompat.widget.AppCompatImageButton
++        android:id="@+id/writefirst_color_top_selector_darktaupe"
++        android:layout_width="48dp"
++        android:layout_height="48dp"
++        android:background="@drawable/ic_color_selector_darktaupe"
++        app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_pinkishgrey"
++        app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_brown"
++        />
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/fonts.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!-- values/fonts.xml -->\n<resources>\n    <style name=\"NotoSansKr16Pt10\">\n        <item name=\"android:fontFamily\">@font/noto_sans_kr</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">16sp</item>\n        <item name=\"android:letterSpacing\">-0.01</item>\n        <item name=\"android:textColor\">@color/black</item>\n    </style>\n\n    <style name=\"NotoSansKr14Pt10\">\n        <item name=\"android:fontFamily\">@font/noto_sans_kr</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">14sp</item>\n        <item name=\"android:letterSpacing\">-0.01</item>\n        <item name=\"android:textColor\">#c1b5ad</item>\n    </style>\n\n    <style name=\"Roboto13Pt2\">\n        <item name=\"android:fontFamily\">sans-serif-light</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">13sp</item>\n        <item name=\"android:textColor\">@color/light_peach</item>\n    </style>\n\n    <style name=\"Roboto13Pt\">\n        <item name=\"android:fontFamily\">sans-serif-light</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">13sp</item>\n        <item name=\"android:textColor\">@color/black</item>\n    </style>\n\n    <style name=\"NotoSansKr12Pt50\">\n        <item name=\"android:fontFamily\">@font/noto_sans_kr</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">12sp</item>\n        <item name=\"android:letterSpacing\">-0.05</item>\n        <item name=\"android:lineSpacingExtra\">5sp</item>\n        <item name=\"android:textColor\">#000000</item>\n    </style>\n\n    <style name=\"NotoSansKr11Pt50\">\n        <item name=\"android:fontFamily\">@font/noto_sans_kr</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">11sp</item>\n        <item name=\"android:letterSpacing\">-0.05</item>\n        <item name=\"android:textColor\">@color/black</item>\n    </style>\n\n    <style name=\"VlanLlaRegular10Pt\">\n        <item name=\"android:fontFamily\">@font/vlan_llaoutline</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">10sp</item>\n        <item name=\"android:letterSpacing\">-0.1</item>\n        <item name=\"android:lineSpacingExtra\">18sp</item>\n        <item name=\"android:textColor\">@color/terracota</item>\n    </style>\n\n    <style name=\"VlanLlaRegular10Pt2\">\n        <item name=\"android:fontFamily\">@font/vlan_llaregular</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">10sp</item>\n        <item name=\"android:letterSpacing\">-0.1</item>\n        <item name=\"android:lineSpacingExtra\">18sp</item>\n        <item name=\"android:textColor\">@color/terracota</item>\n    </style>\n\n    <style name=\"TextStyle\">\n        <item name=\"android:gravity\">center_horizontal</item>\n        <item name=\"android:fontFamily\">@font/vlan_llaoutline</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">6sp</item>\n        <item name=\"android:letterSpacing\">-0.1</item>\n        <item name=\"android:lineSpacingExtra\">13sp</item>\n        <item name=\"android:textColor\">@color/terracota</item>\n    </style>\n\n    <style name=\"VlanLlaRegular6Pt\">\n        <item name=\"android:fontFamily\">@font/vlan_llaregular</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">6sp</item>\n        <item name=\"android:letterSpacing\">-0.1</item>\n        <item name=\"android:lineSpacingExtra\">13sp</item>\n        <item name=\"android:textColor\">@color/terracota</item>\n    </style>\n\n    <style name=\"VlanLlaRegular5Pt\">\n        <item name=\"android:fontFamily\">@font/vlan_llaregular</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">5sp</item>\n        <item name=\"android:letterSpacing\">-0.1</item>\n        <item name=\"android:textColor\">@color/dark_taupe</item>\n    </style>\n\n    <style name=\"VlanLlaOutline4Pt\">\n        <item name=\"android:fontFamily\">@font/vlan_llaoutline</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">4sp</item>\n        <item name=\"android:letterSpacing\">-0.2</item>\n        <item name=\"android:textColor\">#ccbbbb</item>\n    </style>\n\n    <style name=\"VlanLlaRegular4Pt\">\n        <item name=\"android:fontFamily\">@font/vlan_llaregular</item>\n        <item name=\"android:textStyle\">normal</item>\n        <item name=\"android:textSize\">4sp</item>\n        <item name=\"android:letterSpacing\">-0.1</item>\n        <item name=\"android:textColor\">@color/dark_taupe</item>\n    </style>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/fonts.xml b/app/src/main/res/values/fonts.xml
+--- a/app/src/main/res/values/fonts.xml	
++++ b/app/src/main/res/values/fonts.xml	
+@@ -108,4 +108,14 @@
+         <item name="android:letterSpacing">-0.1</item>
+         <item name="android:textColor">@color/dark_taupe</item>
+     </style>
++
++    <style name="Tab_text" parent="TextAppearance.Design.Tab">
++        <item name="android:fontFamily">@font/vlan_llaregular</item>
++        <item name="android:textStyle">normal</item>
++        <item name="android:textSize">3sp</item>
++        <item name="android:letterSpacing">-0.1</item>
++        <item name="android:textColor">@color/dark_taupe</item>
++    </style>
++
++
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/eight/collection/ui/writing/WritefirstVPA.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.eight.collection.ui.writing\n\nimport androidx.fragment.app.Fragment\nimport androidx.viewpager2.adapter.FragmentStateAdapter\n\nclass WritefirstVPA (fragment : Fragment) : FragmentStateAdapter(fragment){\n    override fun getItemCount(): Int = 4\n\n    override fun createFragment(position: Int): Fragment {\n        return when(position){\n            0 -> TopFragment()\n            1 -> BottomFragment()\n            2 -> ShoesFragment()\n            else -> EtcFragment()\n        }\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/eight/collection/ui/writing/WritefirstVPA.kt b/app/src/main/java/com/eight/collection/ui/writing/WritefirstVPA.kt
+--- a/app/src/main/java/com/eight/collection/ui/writing/WritefirstVPA.kt	
++++ b/app/src/main/java/com/eight/collection/ui/writing/WritefirstVPA.kt	
+@@ -3,7 +3,7 @@
+ import androidx.fragment.app.Fragment
+ import androidx.viewpager2.adapter.FragmentStateAdapter
+ 
+-class WritefirstVPA (fragment : Fragment) : FragmentStateAdapter(fragment){
++class WritefirstVPA(fragment: WritefirstActivity) : FragmentStateAdapter(fragment){
+     override fun getItemCount(): Int = 4
+ 
+     override fun createFragment(position: Int): Fragment {
+Index: app/src/main/res/layout/fragment_bottom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\">\n\n    <TextView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"바텀 프래그먼트\"\n        android:textSize=\"30sp\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        />\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_bottom.xml b/app/src/main/res/layout/fragment_bottom.xml
+--- a/app/src/main/res/layout/fragment_bottom.xml	
++++ b/app/src/main/res/layout/fragment_bottom.xml	
+@@ -4,15 +4,17 @@
+     android:layout_height="match_parent"
+     xmlns:app="http://schemas.android.com/apk/res-auto">
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="바텀 프래그먼트"
+-        android:textSize="30sp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
++    <com.eight.collection.utils.SquareButton
++        android:id="@+id/writefirst_color_top_add_bt"
++        android:layout_width="40dp"
++        android:layout_height="40dp"
++        android:text="+"
++        android:textColor="@color/pinkish_grey"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        android:layout_marginStart="24dp"
++        android:layout_marginTop="24dp"
++        android:background="@drawable/bg_writefirst"
+         />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_shoes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\">\n\n    <TextView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"슈즈 프래그먼트\"\n        android:textSize=\"30sp\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        />\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_shoes.xml b/app/src/main/res/layout/fragment_shoes.xml
+--- a/app/src/main/res/layout/fragment_shoes.xml	
++++ b/app/src/main/res/layout/fragment_shoes.xml	
+@@ -4,15 +4,17 @@
+     android:layout_height="match_parent"
+     xmlns:app="http://schemas.android.com/apk/res-auto">
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="슈즈 프래그먼트"
+-        android:textSize="30sp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
++    <com.eight.collection.utils.SquareButton
++        android:id="@+id/writefirst_color_top_add_bt"
++        android:layout_width="40dp"
++        android:layout_height="40dp"
++        android:text="+"
++        android:textColor="@color/pinkish_grey"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        android:layout_marginStart="24dp"
++        android:layout_marginTop="24dp"
++        android:background="@drawable/bg_writefirst"
+         />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_etc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\">\n\n    <TextView\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"기타 프래그먼트\"\n        android:textSize=\"30sp\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        />\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_etc.xml b/app/src/main/res/layout/fragment_etc.xml
+--- a/app/src/main/res/layout/fragment_etc.xml	
++++ b/app/src/main/res/layout/fragment_etc.xml	
+@@ -4,15 +4,17 @@
+     android:layout_height="match_parent"
+     xmlns:app="http://schemas.android.com/apk/res-auto">
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="기타 프래그먼트"
+-        android:textSize="30sp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
++    <com.eight.collection.utils.SquareButton
++        android:id="@+id/writefirst_color_top_add_bt"
++        android:layout_width="40dp"
++        android:layout_height="40dp"
++        android:text="+"
++        android:textColor="@color/pinkish_grey"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        android:layout_marginStart="24dp"
++        android:layout_marginTop="24dp"
++        android:background="@drawable/bg_writefirst"
+         />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/drawable/roundbutton_shape.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/roundbutton_shape.xml b/app/src/main/res/drawable/roundbutton_shape.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/drawable/roundbutton_shape.xml	
+@@ -0,0 +1,28 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >
++    <corners
++        android:radius="100dp"
++        />
++    <gradient
++        android:angle="45"
++        android:centerX="35%"
++        android:centerColor="#47A891"
++        android:startColor="#E8E8E8"
++        android:endColor="#000000"
++        android:type="linear"
++        />
++    <padding
++        android:left="0dp"
++        android:top="0dp"
++        android:right="0dp"
++        android:bottom="0dp"
++        />
++    <size
++        android:width="60dp"
++        android:height="60dp"
++        />
++    <stroke
++        android:width="3dp"
++        android:color="#878787"
++        />
++</shape>
+Index: app/src/main/java/com/eight/collection/utils/SquareButton.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/eight/collection/utils/SquareButton.java b/app/src/main/java/com/eight/collection/utils/SquareButton.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/eight/collection/utils/SquareButton.java	
+@@ -0,0 +1,32 @@
++package com.eight.collection.utils;
++
++import android.content.Context;
++import android.util.AttributeSet;
++import android.widget.Button;
++
++public class SquareButton extends androidx.appcompat.widget.AppCompatButton {
++
++    public SquareButton(Context context) {
++        super(context);
++    }
++
++    public SquareButton(Context context, AttributeSet attrs) {
++        super(context, attrs);
++    }
++
++    public SquareButton(Context context, AttributeSet attrs, int defStyle) {
++        super(context, attrs, defStyle);
++    }
++
++    @Override
++    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
++
++        int width = MeasureSpec.getSize(widthMeasureSpec);
++        int height = MeasureSpec.getSize(heightMeasureSpec);
++
++        width = Math.min(width, height);
++        height = width;
++
++        setMeasuredDimension(width, height);
++    }
++}
+\ No newline at end of file

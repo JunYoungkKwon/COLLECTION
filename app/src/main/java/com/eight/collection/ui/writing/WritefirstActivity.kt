@@ -15,12 +15,5 @@ class WritefirstActivity : AppCompatActivity(){
         binding = ActivityWritefirstBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-
-        val writefirstAdapter = WritefirstVPA(this)
-        binding.writefirstColorVp.adapter = writefirstAdapter
-        TabLayoutMediator(binding.wrtiefirstColorTb,binding.writefirstColorVp){
-                tab, position ->
-            tab.text = information[position]
-        }.attach()
     }
 }

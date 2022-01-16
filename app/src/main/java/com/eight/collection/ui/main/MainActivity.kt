@@ -17,8 +17,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
     private lateinit var navHostFragment: NavHostFragment
 
 
-    //test
-
     override fun initAfterBinding() {
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
