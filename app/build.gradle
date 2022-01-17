@@ -74,4 +74,7 @@ dependencies {
 
     //calendar
     implementation 'com.github.kizitonwose:CalendarView:1.0.4'
+
+    //RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 }
