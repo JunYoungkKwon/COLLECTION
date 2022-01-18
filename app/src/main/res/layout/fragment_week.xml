@@ -27,17 +27,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <ImageView
-        android:id="@+id/week_btn_write_iv"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_write"
-        android:paddingTop="30dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="-20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
 
     <View
         android:id="@+id/week_top_line_view"
@@ -98,5 +87,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:cv_monthHeaderResource="@layout/calendar_year_month_header"
         app:cv_dayViewResource="@layout/calendar_date" />
+
+
+    <RelativeLayout
+        android:id="@+id/item_diary_img_line_rL"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/week_diary_img_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendarView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/week_diary_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_week_diary"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/week_btn_write_iv"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_write"
+        android:paddingTop="30dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="-20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

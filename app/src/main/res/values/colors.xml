@@ -29,5 +29,6 @@
     <color name="calendar_header">#c77a4a</color>
     <color name="calendar_not_this_month">#c77a4a</color>
     <color name="calendar_year_highlight">#e8dcd5</color>
+    <color name="item_top_line">#f4f2f0</color>
 
 </resources>

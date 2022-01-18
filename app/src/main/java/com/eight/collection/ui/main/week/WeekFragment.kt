@@ -22,9 +22,15 @@ import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import java.time.DayOfWeek
 import java.time.YearMonth
+import java.util.ArrayList
 
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate) {
+
+    private  var diaryDatas = ArrayList<Diary>()
+    private  var MoodDatas = ArrayList<Mood>()
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
@@ -92,6 +98,30 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         )
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
         binding.calendarView.scrollToMonth(currentMonth)
+
+        //더미 데이터
+        diaryDatas.apply {
+            add(Diary( R.drawable.example1,1))
+            add(Diary( R.drawable.example1,2))
+            add(Diary( R.drawable.example1,333))
+            add(Diary( R.drawable.example1,444))
+            add(Diary( 0,55555))
+        }
+        //더미데이터와 어댑터 연결
+        val diaryRVAdapter = DiaryRVAdapter(diaryDatas)
+
+        val moodRVAdapter = MoodRVAdapter(MoodDatas)
+
+        MoodDatas.apply {
+            add(Mood( "화창"))
+            add(Mood( "화창ㅂㅈㄷ"))
+            add(Mood( "화창ㅂㅈㄷ"))
+            add(Mood( "화창ㅂㅂ"))
+            add(Mood( "화창ㅂㅂ"))
+        }
+        //리사이클러뷰와 어댑터 연결
+        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+        //binding.weekDiaryRecyclerView.adapter = moodRVAdapter
 
     }
 }
