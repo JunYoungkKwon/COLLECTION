@@ -41,6 +41,7 @@
         android:gravity="center"
         android:text="2022"
         android:textColor="@color/calendar_header"
+        android:layout_marginTop="-7dp"
         android:textSize="6sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
