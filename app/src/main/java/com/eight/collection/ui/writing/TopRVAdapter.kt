@@ -13,7 +13,7 @@ class TopRVAdapter(private val topList: ArrayList<Top>) : RecyclerView.Adapter<T
 
     init {
         for(i in topList){
-            if(i.title == "+"){
+            if(i.title == "-"){
                 selectCheck.add(1)
             }
             else{

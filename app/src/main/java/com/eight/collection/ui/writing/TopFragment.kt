@@ -25,19 +25,19 @@ class TopFragment : Fragment(){
 
         // 데이터 리스트 생성
         topDatas.apply {
-            add(Top("+"))
-            add(Top("맨투맨"))
-            add(Top("티셔츠"))
-            add(Top("블라우스"))
-            add(Top("목폴라"))
-            add(Top("후드티"))
-            add(Top("니트"))
-            add(Top("와이셔츠"))
-            add(Top("나시"))
-            add(Top("패딩"))
-            add(Top("무스탕"))
-            add(Top("후드집업"))
-            add(Top("코트"))
+            add(Top("+", 0))
+            add(Top("맨투맨", 1))
+            add(Top("티셔츠", 2))
+            add(Top("블라우스", 3))
+            add(Top("목폴라", 4))
+            add(Top("후드티", 5))
+            add(Top("니트", 6))
+            add(Top("와이셔츠", 7))
+            add(Top("나시", 8))
+            add(Top("패딩", 9))
+            add(Top("무스탕", 10))
+            add(Top("후드집업", 11))
+            add(Top("코트", 12))
         }
 
 
