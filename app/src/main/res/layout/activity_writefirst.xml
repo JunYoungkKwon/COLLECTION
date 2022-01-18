@@ -234,7 +234,7 @@
             android:layout_width="328dp"
             android:layout_height="1dp"
             android:background="@color/terracota"
-            app:layout_constraintTop_toTopOf="@id/wrtiefirst_color_tb"
+            app:layout_constraintTop_toBottomOf="@id/wrtiefirst_color_tb"
             app:layout_constraintStart_toStartOf="@id/wrtiefirst_color_tb"
             >
         </View>
