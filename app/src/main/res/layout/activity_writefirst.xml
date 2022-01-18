@@ -200,9 +200,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/writefirst_photo_recyclerview"
-            android:layout_width="match_parent"
+            android:layout_width="279dp"
             android:layout_height="240dp"
-            android:layout_marginStart="90dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"

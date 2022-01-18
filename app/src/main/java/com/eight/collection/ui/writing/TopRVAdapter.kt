@@ -23,13 +23,13 @@ class TopRVAdapter(private val topList: ArrayList<Top>) : RecyclerView.Adapter<T
     }
 
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): TopRVAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding : ItemWritefirstTopBinding = ItemWritefirstTopBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TopRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(topList[position])
     }
 
