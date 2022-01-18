@@ -29,6 +29,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private  var diaryDatas = ArrayList<Diary>()
     private  var MoodDatas = ArrayList<Mood>()
+    private  var ClothColorDatas = ArrayList<ClothColor>()
 
 
 
@@ -107,21 +108,38 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             add(Diary( R.drawable.example1,444))
             add(Diary( 0,55555))
         }
-        //더미데이터와 어댑터 연결
-        val diaryRVAdapter = DiaryRVAdapter(diaryDatas)
-
-        val moodRVAdapter = MoodRVAdapter(MoodDatas)
-
         MoodDatas.apply {
+            add(Mood( "눈"))
+            add(Mood( "매우추움"))
+            add(Mood( "회사"))
             add(Mood( "화창"))
-            add(Mood( "화창ㅂㅈㄷ"))
-            add(Mood( "화창ㅂㅈㄷ"))
-            add(Mood( "화창ㅂㅂ"))
-            add(Mood( "화창ㅂㅂ"))
+            add(Mood( "구름"))
+            add(Mood( "구름1"))
+            add(Mood( "구름2"))
+            add(Mood( "매우추움"))
+            add(Mood( "회사"))
+            add(Mood( "화창"))
+            add(Mood( "구름"))
+            add(Mood( "구름1"))
+            add(Mood( "구름2"))
         }
+
+        ClothColorDatas.apply {
+            add(ClothColor( "티셔츠", R.drawable.item_color_orange))
+            add(ClothColor( "티셔츠1", R.drawable.item_color_orange))
+            add(ClothColor( "티셔츠2", R.drawable.item_color_orange))
+            add(ClothColor( "티셔츠3", R.drawable.item_color_orange))
+            add(ClothColor( "티셔츠4", R.drawable.item_color_orange))
+            add(ClothColor( "티셔츠", R.drawable.item_color_orange))
+            add(ClothColor( "티셔츠1", R.drawable.item_color_orange))
+            add(ClothColor( "티셔츠2", R.drawable.item_color_orange))
+            add(ClothColor( "티셔츠3", R.drawable.item_color_orange))
+            add(ClothColor( "티셔츠4", R.drawable.item_color_orange))
+        }
+        //더미데이터와 어댑터 연결
+        val diaryRVAdapter = DiaryRVAdapter(diaryDatas, MoodDatas, ClothColorDatas)
+
         //리사이클러뷰와 어댑터 연결
         binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
-        //binding.weekDiaryRecyclerView.adapter = moodRVAdapter
-
     }
 }
