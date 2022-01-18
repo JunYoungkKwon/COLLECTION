@@ -29,7 +29,7 @@ class DiaryRVAdapter(private  val Diarylist: ArrayList<Diary>) : RecyclerView.Ad
             binding.itemDiaryImgCountTv.text= diary.imgCount.toString()
             binding.itemDiaryImgIv.setImageResource(diary.coverImg!!)
 
-            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(diary.Dia)
+            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(MoodList = ArrayList())
         }
     }
 
