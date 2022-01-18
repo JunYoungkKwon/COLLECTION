@@ -6,16 +6,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/writefirst_top_recyclerview"
-        android:layout_width="328dp"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_writefirst_top"
-        tools:ignore="MissingConstraints"
-        />
+            android:id="@+id/writefirst_top_recyclerview"
+            android:layout_width="328dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_writefirst_top"
+            tools:ignore="MissingConstraints">
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 
