@@ -1,7 +1,6 @@
 package com.eight.collection.ui.main.week
 
-data class ClothColor(
-    //test
+data class Top(
     var cloth : String? = "",
     var color : Int? = null
 )
