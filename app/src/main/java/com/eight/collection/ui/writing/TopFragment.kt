@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.eight.collection.databinding.FragmentTopBinding
 
 class TopFragment : Fragment(){
@@ -44,9 +45,9 @@ class TopFragment : Fragment(){
         /*binding.writefirstTopRecyclerview.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)*/
 
         val topRVAdapter = TopRVAdapter(topDatas)
-        val gridLayoutManager = GridLayoutManager(context, 3)
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(3,LinearLayoutManager.VERTICAL)
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
-        binding.writefirstTopRecyclerview.layoutManager = gridLayoutManager
+        binding.writefirstTopRecyclerview.layoutManager = staggeredGridLayoutManager
 
         return binding.root
     }
