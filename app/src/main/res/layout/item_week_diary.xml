@@ -88,7 +88,7 @@
         android:id="@+id/item_diary_line_view"
         android:layout_width="38dp"
         android:layout_height="1dp"
-        android:background="@color/light_peach"
+        android:background="@color/pinkish_grey"
         android:layout_marginTop="9.5dp"
         android:layout_marginStart="43dp"
         app:layout_constraintTop_toBottomOf="@id/item_diary_img_cardView"
@@ -146,37 +146,48 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintTop_toBottomOf="@id/item_top_line_view" />
 
-    <LinearLayout
-        android:id="@+id/week_diary_mood_recyclerView1"
-        android:layout_width="wrap_content"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/week_diary_mood_recyclerView"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         app:layout_constraintTop_toBottomOf="@id/item_diary_half_horizon_line_view"
-        app:layout_constraintStart_toEndOf="@id/item_diary_half_vertical_line_view">
+        app:layout_constraintStart_toEndOf="@id/item_diary_half_vertical_line_view"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_week_diary_mood" />
+<!--    <LinearLayout-->
+<!--        android:id="@+id/week_diary_mood_recyclerView1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/item_diary_half_horizon_line_view"-->
+<!--        app:layout_constraintStart_toEndOf="@id/item_diary_half_vertical_line_view">-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/week_diary_mood_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_week_diary_mood" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/week_diary_mood_recyclerView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            tools:listitem="@layout/item_week_diary_mood" />-->
 
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <TextView
         android:id="@+id/week_top_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/roboto_light"
         android:textStyle="normal"
         android:textSize="12sp"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="10dp"
         android:textColor="@color/dark_taupe"
-        app:layout_constraintTop_toTopOf="@id/week_diary_mood_recyclerView1"
+        app:layout_constraintTop_toTopOf="@id/week_diary_top_recyclerView"
         app:layout_constraintStart_toStartOf="@id/item_diary_half_vertical_line_view"
         android:text="Top."/>
 
@@ -184,7 +195,7 @@
         android:id="@+id/week_bottom_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/roboto_light"
         android:textStyle="normal"
         android:textSize="12sp"
         android:layout_marginStart="10dp"
@@ -197,7 +208,7 @@
         android:id="@+id/week_shoes_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/roboto_light"
         android:textStyle="normal"
         android:textSize="12sp"
         android:layout_marginStart="10dp"
@@ -210,7 +221,7 @@
         android:id="@+id/week_etc_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="@font/roboto_light"
         android:textStyle="normal"
         android:textSize="12sp"
         android:layout_marginStart="10dp"
@@ -224,8 +235,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
+        android:layout_marginTop="10dp"
         tools:listitem="@layout/item_week_diary_cloth_color"
-        app:layout_constraintTop_toTopOf="@id/week_top_tv"
+        app:layout_constraintTop_toBottomOf="@id/week_diary_mood_recyclerView"
         app:layout_constraintStart_toEndOf="@id/week_top_tv"
         app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical"
@@ -234,7 +246,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/week_diary_bottom_recyclerView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
@@ -247,10 +259,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/week_diary_shoes_recyclerView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="21.5dp"
+        android:layout_marginVertical="8dp"
         app:spanCount="4"
         android:orientation="vertical"
         tools:listitem="@layout/item_week_diary_cloth_color"
@@ -260,7 +272,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/week_diary_etc_recyclerView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
         android:layout_marginTop="8dp"
