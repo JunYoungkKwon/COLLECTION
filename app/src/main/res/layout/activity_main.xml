@@ -22,7 +22,9 @@
         app:layout_constraintVertical_weight="1"
         app:navGraph="@navigation/navigation">
 
+
     </androidx.fragment.app.FragmentContainerView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottom_navigation"
