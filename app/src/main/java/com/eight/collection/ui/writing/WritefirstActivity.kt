@@ -5,18 +5,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityWritefirstBinding
+import com.eight.collection.databinding.FragmentTopBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class WritefirstActivity : AppCompatActivity(){
     lateinit var binding : ActivityWritefirstBinding
+
     private var photoDatas = ArrayList<Photo>();
 
+
     val information = arrayListOf("TOP","BOTTOM","SHOES","ETC")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWritefirstBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+
 
         val writefirstAdapter = WritefirstVPA(this)
         binding.writefirstColorVp.adapter = writefirstAdapter
@@ -36,10 +42,12 @@ class WritefirstActivity : AppCompatActivity(){
         }
 
         val photoRVAdapter = PhotoRVAdapter(photoDatas)
-
         binding.writefirstPhotoRecyclerview.adapter = photoRVAdapter
-
         binding.writefirstPhotoRecyclerview.layoutManager = LinearLayoutManager(baseContext,LinearLayoutManager.HORIZONTAL,false)
+
+
+
+
     }
 
 

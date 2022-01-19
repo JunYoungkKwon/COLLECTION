@@ -1,7 +1,10 @@
 package com.eight.collection.ui.writing
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstPhotoBinding
 import com.eight.collection.databinding.ItemWritefirstTopBinding
@@ -22,6 +25,18 @@ class TopRVAdapter(private val topList: ArrayList<Top>) : RecyclerView.Adapter<T
         }
     }
 
+    // 데이터 추가 메소드 (데이터 및 삭제아이콘 추가)
+    fun addItem(top: Top){
+        topList.add(top)
+        notifyDataSetChanged()
+    }
+
+    // 데이터 삭제 메소드
+    fun removeItem(position: Int){
+        topList.removeAt(position)
+        notifyDataSetChanged()
+    }
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding : ItemWritefirstTopBinding = ItemWritefirstTopBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -40,6 +55,8 @@ class TopRVAdapter(private val topList: ArrayList<Top>) : RecyclerView.Adapter<T
         fun bind(top:Top){
             binding.writefirstColorTopTextButton.apply {
                 text = top.title
+
+                // select 여부 확인 및 상태 변경
                 isChecked = selectCheck[bindingAdapterPosition] == 1
                 setOnClickListener{
                     for (k in selectCheck.indices) {

@@ -116,4 +116,9 @@
         <item name="android:letterSpacing">-0.1</item>
         <item name="android:textColor">@color/dark_taupe</item>
     </style>
+
+    <style name="CustomRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/dark_taupe</item>
+        <item name="colorControlNormal">@color/pinkish_grey</item>
+    </style>
 </resources>

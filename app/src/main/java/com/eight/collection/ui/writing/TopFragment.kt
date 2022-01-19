@@ -41,13 +41,13 @@ class TopFragment : Fragment(){
         }
 
 
-
         /*binding.writefirstTopRecyclerview.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)*/
 
         val topRVAdapter = TopRVAdapter(topDatas)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(3,LinearLayoutManager.VERTICAL)
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
         binding.writefirstTopRecyclerview.layoutManager = staggeredGridLayoutManager
+
 
         return binding.root
     }

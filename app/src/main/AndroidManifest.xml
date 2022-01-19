@@ -37,6 +37,7 @@
         </activity>
 
         <activity android:name=".ui.writing.WritefirstActivity"/>
+        <activity android:name=".ui.writing.ChangeButtonColor"/>
 
     </application>
 
