@@ -10,10 +10,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityMainBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.main.lookpoint.LookPointFragment
 import com.eight.collection.ui.writing.WritefirstActivity
 
 class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
+    lateinit var fragment: LookPointFragment
     private lateinit var navHostFragment: NavHostFragment
 
 
@@ -27,13 +29,15 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         binding.mainBottomNavigation.itemIconTintList = null
 
     }
-
-    override fun onCreate(savedInstanceState : Bundle?){
-        super.onCreate(savedInstanceState)
-
+    fun changeFragment(index: Int){
+        when(index){
+            1 -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.nav_host_fragment_container, LookPointFragment())
+                    .commit()
+            }
+        }
     }
-
-
-
 
 }

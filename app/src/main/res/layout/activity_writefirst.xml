@@ -18,8 +18,10 @@
             android:background="@drawable/square_background_border_pinkishgery"
             app:layout_constraintBottom_toBottomOf="@id/writefirst_zigzagline_v"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.15" />
 
         <View
             android:id="@+id/writefirst_background_Perpendicularline_first_v"
