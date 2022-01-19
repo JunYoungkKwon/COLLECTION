@@ -1,6 +1,7 @@
 package com.eight.collection.ui.main.week
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.util.DisplayMetrics
@@ -12,6 +13,7 @@ import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
+import com.eight.collection.ui.writing.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -36,6 +38,10 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
+
+        binding.weekBtnWriteIv.setOnClickListener{
+            startActivity(Intent(activity, WritefirstActivity::class.java))
+        }
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
