@@ -1,11 +1,12 @@
 package com.eight.collection.ui.writing
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityWritefirstBinding
-import com.eight.collection.databinding.FragmentTopBinding
+import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class WritefirstActivity : AppCompatActivity(){
@@ -22,11 +23,15 @@ class WritefirstActivity : AppCompatActivity(){
 
         setContentView(binding.root)
 
+        binding.writefirstNextButton.setOnClickListener{
+            startActivity(Intent(this, WritesecondActivity::class.java))
+        }
+
 
 
         val writefirstAdapter = WritefirstVPA(this)
         binding.writefirstColorVp.adapter = writefirstAdapter
-        TabLayoutMediator(binding.wrtiefirstColorTb,binding.writefirstColorVp){
+        TabLayoutMediator(binding.writefirstColorTb,binding.writefirstColorVp){
                 tab, position ->
             tab.text = information[position]
         }.attach()

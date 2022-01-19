@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.eight.collection.databinding.FragmentBottomBinding
+import com.eight.collection.databinding.FragmentWritefirstShoesBinding
 
-class BottomFragment : Fragment(){
-    lateinit var binding : FragmentBottomBinding
+class WritefirstShoesFragment : Fragment(){
+    lateinit var binding : FragmentWritefirstShoesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBottomBinding.inflate(inflater,container,false)
+        binding = FragmentWritefirstShoesBinding.inflate(inflater,container,false)
 
         return binding.root
     }

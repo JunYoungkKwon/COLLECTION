@@ -211,7 +211,7 @@
             tools:listitem="@layout/item_writefirst_photo" />
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/wrtiefirst_color_tb"
+            android:id="@+id/writefirst_color_tb"
             android:layout_width="326dp"
             android:layout_height="48dp"
             app:tabIndicatorFullWidth="true"
@@ -237,8 +237,8 @@
             android:layout_width="328dp"
             android:layout_height="1dp"
             android:background="@color/terracota"
-            app:layout_constraintTop_toBottomOf="@id/wrtiefirst_color_tb"
-            app:layout_constraintStart_toStartOf="@id/wrtiefirst_color_tb"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb"
+            app:layout_constraintStart_toStartOf="@id/writefirst_color_tb"
             >
         </View>
 
@@ -248,7 +248,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/wrtiefirst_color_tb" />
+            app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb" />
 
         <ImageView
             android:id="@+id/writefirst_color_top_color_icon_iv"

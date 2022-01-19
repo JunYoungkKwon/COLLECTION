@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.eight.collection.databinding.FragmentEtcBinding
+import com.eight.collection.databinding.FragmentWritesecondWeatherBinding
 
-class EtcFragment : Fragment(){
-    lateinit var binding : FragmentEtcBinding
+class WritesecondWeatherFragment : Fragment(){
+    lateinit var binding : FragmentWritesecondWeatherBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentEtcBinding.inflate(inflater,container,false)
+        binding = FragmentWritesecondWeatherBinding.inflate(inflater,container,false)
 
         return binding.root
     }

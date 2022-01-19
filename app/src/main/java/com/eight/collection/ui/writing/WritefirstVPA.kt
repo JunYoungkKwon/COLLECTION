@@ -8,10 +8,10 @@ class WritefirstVPA(fragment: WritefirstActivity) : FragmentStateAdapter(fragmen
 
     override fun createFragment(position: Int): Fragment {
         return when(position){
-            0 -> TopFragment()
-            1 -> BottomFragment()
-            2 -> ShoesFragment()
-            else -> EtcFragment()
+            0 -> WritefirstTopFragment()
+            1 -> WritefirstBottomFragment()
+            2 -> WritefirstShoesFragment()
+            else -> WritefirstEtcFragment()
         }
     }
 

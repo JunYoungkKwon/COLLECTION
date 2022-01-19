@@ -38,7 +38,8 @@
         </activity>
 
         <activity android:name=".ui.writing.WritefirstActivity"/>
-        <activity android:name=".ui.writing.ChangeButtonColor"/>
+
+        <activity android:name=".ui.writing.WritesecondActivity"/>
 
         <activity
             android:name=".ui.writing.FinishActivity"
