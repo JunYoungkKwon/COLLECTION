@@ -8,6 +8,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
+import androidx.navigation.Navigation
 import com.eight.collection.R
 import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
@@ -27,7 +28,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
-
+        startLookPoint()
 
         binding.monthBtnWriteIv.setOnClickListener{
             startActivity(Intent(activity, WritefirstActivity::class.java))
@@ -98,6 +99,13 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
         binding.calendarView.scrollToMonth(currentMonth)
 
+
+    }
+
+    private fun startLookPoint() {
+        binding.monthBtnRankIv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.lookPointFragment)
+        }
 
     }
 
