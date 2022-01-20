@@ -20,8 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.15" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/writesecond_background_Perpendicularline_first_v"
@@ -98,7 +97,7 @@
             app:tabIndicator="@drawable/ic_padding_indicator2"
             app:tabIndicatorHeight="20dp"
             app:tabSelectedTextColor="@color/dark_taupe"
-            app:tabTextAppearance="@style/Tab_text"
+            app:tabTextAppearance="@style/Tab_text2"
             app:tabTextColor="#ccbbbb"
             app:tabRippleColor="#00ff0000"
             android:textAlignment="center"
@@ -131,6 +130,102 @@
 
 
         <View
+            android:id="@+id/writesecond_background_horizontalline_third_v"
+            android:layout_width="280dp"
+            android:layout_height="1dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toBottomOf="@id/writesecond_vp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="63dp">
+        </View>
+
+        <View
+            android:id="@+id/writesecond_background_horizontalline_fourth_v"
+            android:layout_width="280dp"
+            android:layout_height="1dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toBottomOf="@id/writesecond_background_horizontalline_third_v"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp">
+        </View>
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/writesecond_lookpoint_text_ic1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_writepage_indicater"
+            app:layout_constraintEnd_toStartOf="@id/writesecond_lookpoint_text_tv"
+            app:layout_constraintTop_toTopOf="@id/writesecond_background_horizontalline_third_v"
+            app:layout_constraintBottom_toBottomOf="@id/writesecond_background_horizontalline_fourth_v"
+            />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/writesecond_lookpoint_text_ic2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_writepage_indicater"
+            app:layout_constraintStart_toEndOf="@id/writesecond_lookpoint_text_tv"
+            app:layout_constraintTop_toTopOf="@id/writesecond_background_horizontalline_third_v"
+            app:layout_constraintBottom_toBottomOf="@id/writesecond_background_horizontalline_fourth_v"
+            />
+
+        <TextView
+            android:id="@+id/writesecond_lookpoint_text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOOK POINT."
+            style="@style/VlanLlaRegular5Pt"
+            app:layout_constraintTop_toTopOf="@id/writesecond_background_horizontalline_third_v"
+            app:layout_constraintBottom_toBottomOf="@id/writesecond_background_horizontalline_fourth_v"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <RatingBar
+            android:id="@+id/writesecond_lookpoint_ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:isIndicator="false"
+            android:max="5"
+            android:numStars="5"
+            android:rating="3"
+            android:stepSize="0.5"
+            app:layout_constraintStart_toStartOf="@id/writesecond_lookpoint_text_tv"
+            app:layout_constraintEnd_toEndOf="@id/writesecond_lookpoint_text_tv"
+            app:layout_constraintTop_toBottomOf="@id/writesecond_background_horizontalline_fourth_v"
+            android:layout_marginTop="16dp"
+            />
+
+        <View
+            android:id="@+id/writesecond_background_horizontalline_fifth_v"
+            android:layout_width="280dp"
+            android:layout_height="1dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toBottomOf="@id/writesecond_lookpoint_ratingbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp">
+        </View>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/writesecond_finish_button2"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:background="@drawable/roundshape_button"
+            android:text="완료"
+            android:textColor="@color/pinkish_grey"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/writesecond_background_horizontalline_fifth_v"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="148dp"
+            />
+
+
+
+        <View
             android:id="@+id/writesecond_zigzagline_v"
             android:layout_width="328dp"
             android:layout_height="8dp"
@@ -138,8 +233,8 @@
             android:background="@drawable/zigzagline_writefirst"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="500dp"
+            app:layout_constraintTop_toBottomOf="@id/writesecond_finish_button2"
+            android:layout_marginTop="40dp"
             />
 
         <ImageView
