@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,5 +7,124 @@
     android:background="@drawable/img_bg_monthly"
     android:orientation="vertical">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/myLook_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/myLook_lookBook_highlight_view"
+            android:layout_width="228dp"
+            android:layout_height="16dp"
+            android:background="@color/light_peach"
+            app:layout_constraintStart_toStartOf="@id/myLook_lookBook_tv"
+            app:layout_constraintEnd_toEndOf="@id/myLook_lookBook_tv"
+            app:layout_constraintBottom_toBottomOf="@id/myLook_lookBook_tv"/>
+
+        <TextView
+            android:id="@+id/myLook_myBest_tv"
+            style="@style/VlanLlaRegular10Pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="55dp"
+            android:text="my best" />
+
+        <TextView
+            android:id="@+id/myLook_lookBook_tv"
+            style="@style/VlanLlaRegular10Pt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/myLook_myBest_tv"
+            app:layout_constraintTop_toBottomOf="@id/myLook_myBest_tv"
+            android:layout_marginTop="2dp"
+            android:text="look book"/>
+
+
+        <TextView
+            android:id="@+id/myLook_01_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/vlan_llaoutline"
+            android:layout_marginTop="31dp"
+            android:textStyle="normal"
+            app:layout_constraintTop_toBottomOf="@id/myLook_lookBook_tv"
+            app:layout_constraintStart_toStartOf="@id/myLook_lookBook_tv"
+            android:textSize="6sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.1"
+            android:text="01"/>
+
+        <ImageView
+            android:id="@+id/myLook_point_5_iv"
+            android:layout_width="65dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="14dp"
+            android:src="@drawable/mylook_point_5"
+            app:layout_constraintTop_toTopOf="@id/myLook_01_tv"
+            app:layout_constraintBottom_toBottomOf="@id/myLook_01_tv"
+            app:layout_constraintStart_toEndOf="@id/myLook_01_tv" />
+
+        <View
+            android:id="@+id/myLook_horizon_top_view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myLook_01_tv"
+            android:background="@color/pinkish_grey"/>
+
+        <com.eight.collection.utils.CustomTextView
+            android:id="@+id/myLook_photo_tv"
+            style="@style/VlanLlaRegular4Pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:text="PHOTO."
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="92dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myLook_horizon_top_view" />
+
+        <View
+            android:id="@+id/myLook_horizon_bottom_view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myLook_photo_tv"
+            android:background="@color/pinkish_grey"/>
+
+        <View
+            android:id="@+id/myLook_vertical_view"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@id/myLook_photo_tv"
+            app:layout_constraintBottom_toBottomOf="@id/myLook_horizon_bottom_view"
+            app:layout_constraintTop_toTopOf="@id/myLook_horizon_top_view"
+            android:background="@color/pinkish_grey"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myLook_point_5_recyclerview"
+            android:layout_width="0dp"
+            android:layout_height="136dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toEndOf="@id/myLook_vertical_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myLook_horizon_top_view"
+            app:layout_constraintBottom_toTopOf="@id/myLook_horizon_bottom_view"
+            tools:listitem="@layout/item_writefirst_photo" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
+import androidx.navigation.Navigation
 import com.eight.collection.R
 import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
@@ -41,14 +42,10 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
 
-//        binding.weekBtnRankIv.setOnClickListener{
-//            (activity as MainActivity).changeFragment(1)
-//        }
 
-        binding.weekBtnWriteIv.setOnClickListener{
-            //startActivity(Intent(activity, WritefirstActivity::class.java))
-            (activity as MainActivity).changeFragment(1)
-        }
+        startLookPoint()
+
+        startWriteFirst()
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
@@ -174,5 +171,18 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
         //리사이클러뷰와 어댑터 연결
         binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+    }
+
+    private fun startWriteFirst() {
+        binding.weekBtnWriteIv.setOnClickListener {
+            startActivity(Intent(activity, WritefirstActivity::class.java))
+        }
+    }
+
+    private fun startLookPoint() {
+        binding.weekBtnRankIv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.lookPointFragment)
+        }
+
     }
 }

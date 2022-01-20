@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -27,17 +28,5 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
         binding.mainBottomNavigation.setupWithNavController(navController)
         binding.mainBottomNavigation.itemIconTintList = null
-
     }
-    fun changeFragment(index: Int){
-        when(index){
-            1 -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.nav_host_fragment_container, LookPointFragment())
-                    .commit()
-            }
-        }
-    }
-
 }

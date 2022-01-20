@@ -7,16 +7,30 @@
     <fragment
         android:id="@+id/monthFragment"
         android:name="com.eight.collection.ui.main.month.MonthFragment"
-        android:label="monthFragment"/>
+        android:label="monthFragment">
+        <action
+            android:id="@+id/action_monthFragment_to_lookPointFragment"
+            app:destination="@id/lookPointFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/weekFragment"
         android:name="com.eight.collection.ui.main.week.WeekFragment"
-        android:label="weekFragment"/>
+        android:label="weekFragment">
+        <action
+            android:id="@+id/action_weekFragment_to_lookPointFragment"
+            app:destination="@id/lookPointFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/matchFragment"
         android:name="com.eight.collection.ui.main.match.MatchFragment"
         android:label="matchFragment"/>
+
+    <fragment
+        android:id="@+id/lookPointFragment"
+        android:name="com.eight.collection.ui.main.lookpoint.LookPointFragment"
+        android:label="LookPointFragment" />
+
 
 </navigation>
