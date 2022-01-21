@@ -151,24 +151,26 @@
             android:layout_marginTop="32dp">
         </View>
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
+        <ImageView
             android:id="@+id/writesecond_lookpoint_text_ic1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_writepage_indicater"
+            app:layout_constraintBottom_toBottomOf="@id/writesecond_background_horizontalline_fourth_v"
             app:layout_constraintEnd_toStartOf="@id/writesecond_lookpoint_text_tv"
             app:layout_constraintTop_toTopOf="@id/writesecond_background_horizontalline_third_v"
-            app:layout_constraintBottom_toBottomOf="@id/writesecond_background_horizontalline_fourth_v"
+            android:layout_marginEnd="4dp"
             />
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
+        <ImageView
             android:id="@+id/writesecond_lookpoint_text_ic2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_writepage_indicater"
+            app:layout_constraintBottom_toBottomOf="@id/writesecond_background_horizontalline_fourth_v"
             app:layout_constraintStart_toEndOf="@id/writesecond_lookpoint_text_tv"
             app:layout_constraintTop_toTopOf="@id/writesecond_background_horizontalline_third_v"
-            app:layout_constraintBottom_toBottomOf="@id/writesecond_background_horizontalline_fourth_v"
+            android:layout_marginStart="5dp"
             />
 
         <TextView
