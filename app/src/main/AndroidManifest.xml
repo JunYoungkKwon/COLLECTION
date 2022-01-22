@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hedgehog="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.eight.collection">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,9 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.COLLECTION" > <activity
+        android:theme="@style/Theme.COLLECTION"
+        tools:replace="android:theme"
+        > <activity
         android:name=".ui.splash.SplashActivity"
-        android:exported="true">
+        android:exported="true"
+        >
 
     </activity>
 
