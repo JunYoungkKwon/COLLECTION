@@ -118,7 +118,6 @@
             android:src="@drawable/today_s_ootd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -187,7 +186,8 @@
             android:rotation="180"
             android:text="PHOTO."
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingClass" />
 
         <!--<View
             android:id="@+id/writefirst_color_shadow_v"
@@ -253,8 +253,8 @@
 
         <ImageView
             android:id="@+id/writefirst_color_top_color_icon_iv"
-            android:layout_width="11dp"
-            android:layout_height="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:src="@drawable/ic_indicator_writefirst"
             app:layout_constraintStart_toStartOf="@id/writefirst_phototext_tv"
