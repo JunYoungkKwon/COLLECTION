@@ -1,8 +1,10 @@
 package com.eight.collection.ui.writing
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.eight.collection.databinding.ActivityWritesecondBinding
+import com.eight.collection.ui.finish.FinishActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 class WritesecondActivity : AppCompatActivity(){
@@ -27,6 +29,10 @@ class WritesecondActivity : AppCompatActivity(){
                 tab, position ->
             tab.text = information[position]
         }.attach()
+
+        binding.writesecondFinishButton2.setOnClickListener {
+            startActivity(Intent(this, FinishActivity::class.java))
+        }
 
 
     }
