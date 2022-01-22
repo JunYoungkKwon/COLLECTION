@@ -1,12 +1,13 @@
 package com.eight.collection.ui.main.week
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWeekDiaryClothColorBinding
 
 
-class ShoesRVAdapter(private  val Shoeslist: ArrayList<Shoes>) : RecyclerView.Adapter<ShoesRVAdapter.ViewHolder>() {
+class ShoesRVAdapter(private  val Shoeslist: MutableList<Shoes>) : RecyclerView.Adapter<ShoesRVAdapter.ViewHolder>() {
 
     //test
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ShoesRVAdapter.ViewHolder {
@@ -27,7 +28,7 @@ class ShoesRVAdapter(private  val Shoeslist: ArrayList<Shoes>) : RecyclerView.Ad
 
         fun bind(shoes: Shoes){
             binding.itemDiaryClothTv.text= shoes.cloth
-            binding.itemDiaryColorIv.setImageResource(shoes.color!!)
+            binding.itemDiaryColorView.setBackgroundColor(Color.parseColor(shoes.color!!))
 
         }
     }

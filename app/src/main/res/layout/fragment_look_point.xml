@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/img_bg_monthly"
+    android:background="@drawable/img_bg_matchpage"
     android:orientation="vertical">
 
 
     <View
         android:id="@+id/myLook_lookBook_highlight_view"
-        android:layout_width="228dp"
-        android:layout_height="16dp"
+        android:layout_width="260dp"
+        android:layout_height="17dp"
         android:background="@color/light_peach"
         app:layout_constraintStart_toStartOf="@id/myLook_lookBook_tv"
         app:layout_constraintEnd_toEndOf="@id/myLook_lookBook_tv"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/myLook_myBest_tv"
         app:layout_constraintTop_toBottomOf="@id/myLook_myBest_tv"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="-12dp"
         android:text="look book"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -50,12 +50,5 @@
         app:layout_constraintTop_toBottomOf="@id/myLook_lookBook_tv"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_look_point" />
-
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

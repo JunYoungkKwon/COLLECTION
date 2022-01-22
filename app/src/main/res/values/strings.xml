@@ -28,4 +28,17 @@
     <string name="signup_name_hint">이름</string>
     <string name="signup_password_hint">비밀번호</string>
     <string name="signup_password_confirm_hint">비밀번호 확인</string>
+
+    <!-- 분위기 -->
+    <string name="weather">Weather.</string>
+    <string name="plcae">Place.</string>
+    <string name="who">Who.</string>
+    <string name="top">Top.</string>
+    <string name="bottom">Bottom.</string>
+    <string name="shoes">Shoes.</string>
+    <string name="etc">Etc.</string>
+
+    <!-- Finsh page -->
+    <string name="title">학교갈때 입는 데일리룩</string>
+    <string name="comment">오늘 룩에 대한 코멘트를 적어보세요!</string>
 </resources>

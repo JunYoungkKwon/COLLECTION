@@ -16,6 +16,9 @@ import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.main.MainActivity
+import com.eight.collection.ui.main.lookpoint.MyLook
+import com.eight.collection.ui.main.lookpoint.MyLookRVAdapter
+import com.eight.collection.ui.main.lookpoint.Photo
 import com.eight.collection.ui.writing.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -30,21 +33,10 @@ import java.util.ArrayList
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate) {
 
-    private  var diaryDatas = ArrayList<Diary>()
-    private  var MoodDatas = ArrayList<Mood>()
-    private  var BottomDatas = ArrayList<Bottom>()
-    private  var TopDatas = ArrayList<Top>()
-    private  var ShoesDatas = ArrayList<Shoes>()
-    private  var EtcDatas = ArrayList<Etc>()
-
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
-
-
+        setUpRecyclerView()
         startLookPoint()
-
         startWriteFirst()
 
         class DayViewContainer(view: View) : ViewContainer(view) {
@@ -111,66 +103,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
         binding.calendarView.scrollToMonth(currentMonth)
 
-        //더미 데이터
-        diaryDatas.apply {
-            add(Diary( R.drawable.example1,1))
-            add(Diary( R.drawable.example1,2))
-            add(Diary( R.drawable.example1,333))
-            add(Diary( R.drawable.example1,444))
-            add(Diary( 0,55555))
-        }
-        MoodDatas.apply {
-            add(Mood( "눈"))
-            add(Mood( "매우추움"))
-            add(Mood( "회사"))
-            add(Mood( "화창"))
-            add(Mood( "구름"))
-            add(Mood( "구름1"))
-            add(Mood( "구름2"))
-            add(Mood( "매우추움"))
-            add(Mood( "회사"))
-            add(Mood( "화창"))
-            add(Mood( "구름"))
-            add(Mood( "구름1"))
-            add(Mood( "구름2"))
-        }
-
-        TopDatas.apply {
-            add(Top( "티셔츠", R.drawable.item_color_orange))
-            add(Top( "와이셔츠", R.drawable.item_color_orange))
-        }
-
-        BottomDatas.apply {
-            add(Bottom( "티셔츠", R.drawable.item_color_orange))
-            add(Bottom( "와이셔츠", R.drawable.item_color_orange))
-            add(Bottom( "티샤스", R.drawable.item_color_orange))
-            add(Bottom( "티셔스2", R.drawable.item_color_orange))
-        }
-
-        ShoesDatas.apply {
-            add(Shoes( "티셔츠", R.drawable.item_color_orange))
-            add(Shoes( "와이셔츠", R.drawable.item_color_orange))
-            add(Shoes( "티샤스", R.drawable.item_color_orange))
-            add(Shoes( "티셔스2", R.drawable.item_color_orange))
-            add(Shoes( "티샤스", R.drawable.item_color_orange))
-            add(Shoes( "티셔스2", R.drawable.item_color_orange))
-        }
-
-        EtcDatas.apply {
-            add(Etc( "티셔츠", R.drawable.item_color_orange))
-            add(Etc( "와이셔츠", R.drawable.item_color_orange))
-            add(Etc( "티샤스", R.drawable.item_color_orange))
-            add(Etc( "티셔스2", R.drawable.item_color_orange))
-            add(Etc( "티셔츠", R.drawable.item_color_orange))
-            add(Etc( "와이셔츠", R.drawable.item_color_orange))
-            add(Etc( "티샤스", R.drawable.item_color_orange))
-            add(Etc( "티셔스2", R.drawable.item_color_orange))
-        }
-        //더미데이터와 어댑터 연결
-        val diaryRVAdapter = DiaryRVAdapter(diaryDatas, MoodDatas,TopDatas, BottomDatas, ShoesDatas, EtcDatas)
-
-        //리사이클러뷰와 어댑터 연결
-        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
     }
 
     private fun startWriteFirst() {
@@ -184,5 +116,75 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             Navigation.findNavController(it).navigate(R.id.lookPointFragment)
         }
 
+    }
+
+    private fun setUpRecyclerView() {
+        var diaryList = mutableListOf(
+            Diary(R.drawable.example1,1, mutableListOf(
+                Mood( "눈"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창")
+            ), mutableListOf(
+                Top( "티셔츠", "#FFFFFF"), Top( "티셔츠", "#FFFFFF"), Top( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Bottom( "티셔츠", "#FFFFFF"), Bottom( "티셔츠2", "#FFFF00"), Bottom( "티셔츠3", "#FFFFFF"), Bottom( "티셔츠4", "#FFFFFF")
+            ), mutableListOf(
+                Shoes( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Etc( "티셔츠", "#FFFFFF")
+            )
+            ),
+
+            Diary(R.drawable.example2,2, mutableListOf(
+                Mood( "눈"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창")
+            ), mutableListOf(
+                Top( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Bottom( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Shoes( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Etc( "티셔츠", "#FFFFFF")
+            )
+            ),
+
+            Diary(R.drawable.example3,3, mutableListOf(
+                Mood( "눈"), Mood( "화창")
+            ), mutableListOf(
+                Top( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Bottom( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Shoes( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Etc( "티셔츠", "#FFFFFF")
+            )
+            ),
+
+            Diary(R.drawable.example4,4, mutableListOf(
+                Mood( "눈"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창")
+            ), mutableListOf(
+                Top( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Bottom( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Shoes( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Etc( "티셔츠", "#FFFFFF")
+            )
+            ),
+
+            Diary(0,5, mutableListOf(
+                Mood( "눈"), Mood( "화창"), Mood( "화창"), Mood( "화창")
+            ), mutableListOf(
+                Top( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Bottom( "티셔츠", "#FFFFFF"),Bottom( "티셔츠", "#FFFFFF"),Bottom( "티셔츠", "#FFFFFF"),Bottom( "티셔츠", "#FFFFFF"),Bottom( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Shoes( "티셔츠", "#FFFFFF")
+            ), mutableListOf(
+                Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF")
+            )
+            ),
+        )
+        binding.weekDiaryRecyclerView.adapter = DiaryRVAdapter(diaryList)
     }
 }

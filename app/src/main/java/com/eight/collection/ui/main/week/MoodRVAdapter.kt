@@ -8,7 +8,7 @@ import com.eight.collection.databinding.ItemWeekDiaryBinding
 import com.eight.collection.databinding.ItemWeekDiaryMoodBinding
 
 
-class MoodRVAdapter(val MoodList: ArrayList<Mood>) : RecyclerView.Adapter<MoodRVAdapter.ViewHolder>() {
+class MoodRVAdapter(val MoodList: MutableList<Mood>) : RecyclerView.Adapter<MoodRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MoodRVAdapter.ViewHolder {
         val binding: ItemWeekDiaryMoodBinding = ItemWeekDiaryMoodBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)

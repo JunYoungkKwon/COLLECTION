@@ -8,7 +8,7 @@ import com.eight.collection.databinding.ItemLookPointBinding
 import com.eight.collection.databinding.ItemWeekDiaryBinding
 
 
-class MyLookRVAdapter(val itemList: MutableList<MyLook>) : RecyclerView.Adapter<MyLookRVAdapter.ViewHolder>() {
+class MyLookRVAdapter(val myLookList: MutableList<MyLook>) : RecyclerView.Adapter<MyLookRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MyLookRVAdapter.ViewHolder {
         val binding: ItemLookPointBinding = ItemLookPointBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -17,11 +17,11 @@ class MyLookRVAdapter(val itemList: MutableList<MyLook>) : RecyclerView.Adapter<
 
 
     override fun onBindViewHolder(holder: MyLookRVAdapter.ViewHolder, position: Int) {
-        holder.bind(itemList[position])
+        holder.bind(myLookList[position])
     }
 
 
-    override fun getItemCount(): Int = itemList.size
+    override fun getItemCount(): Int = myLookList.size
 
 
     inner class ViewHolder(val binding: ItemLookPointBinding): RecyclerView.ViewHolder(binding.root){

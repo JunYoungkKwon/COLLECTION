@@ -31,6 +31,13 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Roboto13Pt3">
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/dark_taupe</item>
+    </style>
+
     <style name="NotoSansKr12Pt50">
         <item name="android:fontFamily">@font/noto_sans_kr</item>
         <item name="android:textStyle">normal</item>

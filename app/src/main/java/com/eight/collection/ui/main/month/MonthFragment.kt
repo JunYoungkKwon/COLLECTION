@@ -30,6 +30,8 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
     override fun initAfterBinding() {
         startLookPoint()
 
+        binding.monthBtnWriteIv.bringToFront()
+
         binding.monthBtnWriteIv.setOnClickListener{
             startActivity(Intent(activity, WritefirstActivity::class.java))
         }

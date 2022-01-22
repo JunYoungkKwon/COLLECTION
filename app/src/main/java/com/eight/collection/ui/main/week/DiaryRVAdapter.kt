@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWeekDiaryBinding
+import com.eight.collection.ui.main.lookpoint.PhotoRVAdapter
 
 
-class DiaryRVAdapter(private  val Diarylist: ArrayList<Diary>, private val Moodlist: ArrayList<Mood>, private  val Toplist: ArrayList<Top>, private  val Bottomlist: ArrayList<Bottom>, private  val Shoeslist: ArrayList<Shoes>, private  val Etclist: ArrayList<Etc>) : RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
+class DiaryRVAdapter(private  val Diarylist: MutableList<Diary>) : RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): DiaryRVAdapter.ViewHolder {
         val binding: ItemWeekDiaryBinding = ItemWeekDiaryBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -28,11 +29,11 @@ class DiaryRVAdapter(private  val Diarylist: ArrayList<Diary>, private val Moodl
             binding.itemDiaryImgCountTv.text= diary.imgCount.toString()
             binding.itemDiaryImgIv.setImageResource(diary.coverImg!!)
 
-            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(Moodlist)
-            binding.weekDiaryTopRecyclerView.adapter = ToprRVAdapter(Toplist)
-            binding.weekDiaryBottomRecyclerView.adapter = BottomRVAdapter(Bottomlist)
-            binding.weekDiaryShoesRecyclerView.adapter = ShoesRVAdapter(Shoeslist)
-            binding.weekDiaryEtcRecyclerView.adapter = EtcRVAdapter(Etclist)
+            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(diary.moodList)
+            binding.weekDiaryTopRecyclerView.adapter = ToprRVAdapter(diary.topList)
+            binding.weekDiaryBottomRecyclerView.adapter = BottomRVAdapter(diary.bottomList)
+            binding.weekDiaryShoesRecyclerView.adapter = ShoesRVAdapter(diary.shoesList)
+            binding.weekDiaryEtcRecyclerView.adapter = EtcRVAdapter(diary.etcList)
         }
     }
 

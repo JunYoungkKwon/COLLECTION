@@ -10,7 +10,7 @@
     <View
         android:id="@+id/item_top_line_view"
         android:layout_width="match_parent"
-        android:layout_height="9dp"
+        android:layout_height="7dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,12 +18,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/item_diary_img_cardView"
-        android:layout_width="92dp"
-        android:layout_height="148dp"
-        app:cardCornerRadius="45dp"
+        android:layout_width="112dp"
+        android:layout_height="172dp"
+        app:cardCornerRadius="120dp"
         app:cardElevation="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="19dp"
+        app:layout_constraintEnd_toStartOf="@id/item_diary_half_vertical_line_view"
         app:layout_constraintTop_toTopOf="@id/item_top_line_view"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -37,20 +38,21 @@
 
     <RelativeLayout
         android:id="@+id/item_diary_img_line_rL"
-        android:layout_width="92dp"
-        android:layout_height="148dp"
+        android:layout_width="112dp"
+        android:layout_height="172dp"
         android:background="@drawable/week_diary_img_bg"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
-        app:layout_constraintTop_toTopOf="@id/item_top_line_view"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="@id/item_diary_img_cardView"
+        app:layout_constraintTop_toTopOf="@id/item_diary_img_cardView"
+        app:layout_constraintBottom_toBottomOf="@id/item_diary_img_cardView"
+        app:layout_constraintStart_toStartOf="@id/item_diary_img_cardView">
 
     </RelativeLayout>
 
     <View
         android:id="@+id/item_diary_count_bg_view"
-        android:layout_width="20dp"
-        android:layout_height="15dp"
+        android:layout_width="24dp"
+        android:layout_height="17dp"
+        android:layout_marginEnd="3dp"
         android:background="@drawable/week_diary_round_text"
         app:layout_constraintBottom_toBottomOf="@id/item_diary_img_line_rL"
         app:layout_constraintEnd_toEndOf="@id/item_diary_img_line_rL" />
@@ -72,8 +74,6 @@
         android:textStyle="normal"
         tools:text="+54" />
 
-
-
     <ImageView
         android:id="@+id/item_diary_default_img_iv"
         android:layout_width="18dp"
@@ -90,9 +90,9 @@
         android:layout_height="1dp"
         android:background="@color/pinkish_grey"
         android:layout_marginTop="9.5dp"
-        android:layout_marginStart="43dp"
+        app:layout_constraintEnd_toEndOf="@+id/item_diary_img_line_rL"
         app:layout_constraintTop_toBottomOf="@id/item_diary_img_cardView"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="@id/item_diary_img_line_rL"/>
 
     <ImageView
         android:id="@+id/item_diary_point_iv"
@@ -100,10 +100,10 @@
         android:layout_height="14dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_diary_point"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/item_diary_img_line_rL"
+        app:layout_constraintStart_toStartOf="@id/item_diary_img_line_rL"
         app:layout_constraintTop_toBottomOf="@id/item_diary_line_view"
-        android:layout_marginTop="13dp"
-        android:layout_marginStart="30dp"/>
+        android:layout_marginTop="13dp" />
 
     <View
         android:id="@+id/item_diary_half_vertical_line_view"
@@ -158,25 +158,6 @@
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_week_diary_mood" />
-<!--    <LinearLayout-->
-<!--        android:id="@+id/week_diary_mood_recyclerView1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="20dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/item_diary_half_horizon_line_view"-->
-<!--        app:layout_constraintStart_toEndOf="@id/item_diary_half_vertical_line_view">-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/week_diary_mood_recyclerView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="20dp"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            tools:listitem="@layout/item_week_diary_mood" />-->
-
-
-<!--    </LinearLayout>-->
 
     <TextView
         android:id="@+id/week_top_tv"
@@ -189,7 +170,7 @@
         android:textColor="@color/dark_taupe"
         app:layout_constraintTop_toTopOf="@id/week_diary_top_recyclerView"
         app:layout_constraintStart_toStartOf="@id/item_diary_half_vertical_line_view"
-        android:text="Top."/>
+        android:text="@string/top"/>
 
     <TextView
         android:id="@+id/week_bottom_tv"
@@ -202,7 +183,7 @@
         android:textColor="@color/dark_taupe"
         app:layout_constraintTop_toTopOf="@id/week_diary_bottom_recyclerView"
         app:layout_constraintStart_toStartOf="@id/item_diary_half_vertical_line_view"
-        android:text="Bottom."/>
+        android:text="@string/bottom"/>
 
     <TextView
         android:id="@+id/week_shoes_tv"
@@ -215,7 +196,7 @@
         android:textColor="@color/dark_taupe"
         app:layout_constraintTop_toTopOf="@id/week_diary_shoes_recyclerView"
         app:layout_constraintStart_toStartOf="@id/item_diary_half_vertical_line_view"
-        android:text="Shoes." />
+        android:text="@string/shoes" />
 
     <TextView
         android:id="@+id/week_etc_tv"
@@ -228,7 +209,7 @@
         android:textColor="@color/dark_taupe"
         app:layout_constraintTop_toTopOf="@id/week_diary_etc_recyclerView"
         app:layout_constraintStart_toStartOf="@id/item_diary_half_vertical_line_view"
-        android:text="Etc." />
+        android:text="@string/etc" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/week_diary_top_recyclerView"
@@ -241,52 +222,55 @@
         app:layout_constraintStart_toEndOf="@id/week_top_tv"
         app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical"
-        app:spanCount="5"
+        app:spanCount="3"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/week_diary_bottom_recyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         tools:listitem="@layout/item_week_diary_cloth_color"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="5"
+        app:spanCount="3"
         app:layout_constraintTop_toBottomOf="@id/week_diary_top_recyclerView"
-        app:layout_constraintStart_toEndOf="@id/week_bottom_tv" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/week_diary_top_recyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/week_diary_shoes_recyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21.5dp"
-        android:layout_marginVertical="8dp"
-        app:spanCount="4"
+        android:layout_marginTop="8dp"
+        app:spanCount="3"
         android:orientation="vertical"
         tools:listitem="@layout/item_week_diary_cloth_color"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/week_diary_bottom_recyclerView"
-        app:layout_constraintStart_toEndOf="@id/week_shoes_tv" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/week_diary_top_recyclerView"  />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/week_diary_etc_recyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
-        app:spanCount="4"
+        app:spanCount="3"
         tools:listitem="@layout/item_week_diary_cloth_color"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/item_bottom_line_view"
         app:layout_constraintTop_toBottomOf="@id/week_diary_shoes_recyclerView"
-        app:layout_constraintStart_toEndOf="@id/week_etc_tv" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/week_diary_top_recyclerView"  />
 
     <View
         android:id="@+id/item_bottom_line_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/week_diary_etc_recyclerView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
