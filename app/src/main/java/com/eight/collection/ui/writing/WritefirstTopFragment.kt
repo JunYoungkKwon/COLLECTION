@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
+import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(){
     lateinit var binding : FragmentWritefirstTopBinding
@@ -41,9 +42,9 @@ class WritefirstTopFragment : Fragment(){
         /*binding.writefirstTopRecyclerview.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)*/
 
         val topRVAdapter = WritefirstTopRVAdapter(topDatas)
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(3,LinearLayoutManager.VERTICAL)
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
-        binding.writefirstTopRecyclerview.layoutManager = staggeredGridLayoutManager
+        binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
 
 
         return binding.root
