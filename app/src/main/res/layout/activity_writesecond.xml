@@ -177,7 +177,7 @@
             android:id="@+id/writesecond_lookpoint_text_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LOOK POINT."
+            android:text="LOOK POINT.dd"
             style="@style/VlanLlaRegular5Pt"
             app:layout_constraintTop_toTopOf="@id/writesecond_background_horizontalline_third_v"
             app:layout_constraintBottom_toBottomOf="@id/writesecond_background_horizontalline_fourth_v"
