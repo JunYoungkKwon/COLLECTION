@@ -1,12 +1,12 @@
 package com.eight.collection.ui.writing
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.eight.collection.databinding.ActivityAddToptagBinding
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.google.android.flexbox.FlexboxLayoutManager
 
@@ -49,7 +49,6 @@ class WritefirstTopFragment : Fragment(){
 
         return binding.root
     }
-
 
 
 }
