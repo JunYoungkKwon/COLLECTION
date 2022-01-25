@@ -1,22 +1,17 @@
 package com.eight.collection.ui.main
 
-import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityMainBinding
 import com.eight.collection.ui.BaseActivity
-import com.eight.collection.ui.main.lookpoint.LookPointFragment
-import com.eight.collection.ui.writing.WritefirstActivity
+import com.eight.collection.ui.main.lookpoint.MyLookFragment
 
 class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
-    lateinit var fragment: LookPointFragment
+    lateinit var fragment: MyLookFragment
     private lateinit var navHostFragment: NavHostFragment
 
 

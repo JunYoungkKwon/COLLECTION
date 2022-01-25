@@ -28,7 +28,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
-        startLookPoint()
+        startMyLook()
 
         binding.monthBtnWriteIv.bringToFront()
 
@@ -104,9 +104,9 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
     }
 
-    private fun startLookPoint() {
+    private fun startMyLook() {
         binding.monthBtnRankIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.lookPointFragment)
+            Navigation.findNavController(it).navigate(R.id.MyLookFragment)
         }
 
     }

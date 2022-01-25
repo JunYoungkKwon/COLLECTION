@@ -36,7 +36,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         setUpRecyclerView()
-        startLookPoint()
+        startMyLook()
         startWriteFirst()
 
         class DayViewContainer(view: View) : ViewContainer(view) {
@@ -111,9 +111,9 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         }
     }
 
-    private fun startLookPoint() {
+    private fun startMyLook() {
         binding.weekBtnRankIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.lookPointFragment)
+            Navigation.findNavController(it).navigate(R.id.MyLookFragment)
         }
 
     }

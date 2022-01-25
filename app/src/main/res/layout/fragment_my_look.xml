@@ -49,6 +49,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/myLook_lookBook_tv"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_look_point" />
+        tools:listitem="@layout/item_my_look" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

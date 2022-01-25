@@ -2,7 +2,10 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
 }
+
 
 android {
     compileSdk 31
@@ -78,4 +81,5 @@ dependencies {
 
     //RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
 }

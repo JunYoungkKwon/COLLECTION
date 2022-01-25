@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemFinishPhotoBinding
-import com.eight.collection.databinding.ItemLookPointBinding
-import com.eight.collection.databinding.ItemLookPointPhotoBinding
+import com.eight.collection.databinding.ItemMyLookBinding
+import com.eight.collection.databinding.ItemMyLookPhotoBinding
 import com.eight.collection.databinding.ItemWeekDiaryBinding
 
 
