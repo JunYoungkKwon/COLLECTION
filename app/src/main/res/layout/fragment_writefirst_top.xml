@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    app:flexWrap="wrap"
+    app:alignItems="stretch"
+    app:alignContent="stretch"
+    >
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -11,9 +15,13 @@
             android:layout_width="328dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
             tools:listitem="@layout/item_writefirst_top"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingConstraints"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+
+        >
     </androidx.recyclerview.widget.RecyclerView>
 
 
@@ -165,4 +173,4 @@
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.flexbox.FlexboxLayout>

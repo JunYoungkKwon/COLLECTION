@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.eight.collection.databinding.FragmentWritesecondPlaceBinding
+import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritesecondPlaceFragment : Fragment(){
     lateinit var binding : FragmentWritesecondPlaceBinding
@@ -36,10 +37,10 @@ class WritesecondPlaceFragment : Fragment(){
 
         /*binding.writefirstTopRecyclerview.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)*/
 
-        val topRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(3,LinearLayoutManager.VERTICAL)
-        binding.writesecondPlaceRecyclerview.adapter = topRVAdapter
-        binding.writesecondPlaceRecyclerview.layoutManager = staggeredGridLayoutManager
+        val placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
+        binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
 
 
         return binding.root
