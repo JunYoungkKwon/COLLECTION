@@ -1,7 +1,7 @@
 package com.eight.collection.ui.writing
 
-import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +44,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface, WritefirstTopRV
 
         val topRVAdapter = WritefirstTopRVAdapter(topDatas)
         topRVAdapter.setTopClickListener(this)
+
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
         binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
@@ -61,8 +62,13 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface, WritefirstTopRV
         Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
     }
 
-    override fun plusClick() {
-        customDialog.show()
+    override fun plusClick(position : Int) {
+
+       /* if(isPlus == 1000) {
+            customDialog.show()
+        }
+*/      customDialog.show()
+
     }
 
 

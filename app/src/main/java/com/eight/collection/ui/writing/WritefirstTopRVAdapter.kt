@@ -1,19 +1,21 @@
 package com.eight.collection.ui.writing
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstTopBinding
 
 class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
 
     private var selectCheck : ArrayList<Int> = arrayListOf()
+    private var clickListener: TopClickListener? = null
+
 
     interface TopClickListener {
-         fun plusClick()
+         fun plusClick(position: Int)
     }
-
-    private var clickListener: TopClickListener? = null
 
     fun setTopClickListener(topClickListener: TopClickListener) {
         this.clickListener = topClickListener
@@ -51,21 +53,20 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(topList[position])
+        holder.bind(topList[position], position)
     }
 
     override fun getItemCount(): Int = topList.size
 
 
     inner class ViewHolder(val binding: ItemWritefirstTopBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(top:WritefirstTop){
-            if (top.id == 0) {
-                clickListener?.plusClick()
-            }
+        fun bind(top:WritefirstTop, position: Int){
+
+            clickListener?.plusClick(position)
+
 
             binding.writefirstColorTopTextButton.apply {
                 text = top.title
-
                 // select 여부 확인 및 상태 변경
                 isChecked = selectCheck[bindingAdapterPosition] == 1
                 setOnClickListener{
@@ -80,8 +81,6 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
                     notifyDataSetChanged()
                 }
             }
-
-
         }
     }
 }

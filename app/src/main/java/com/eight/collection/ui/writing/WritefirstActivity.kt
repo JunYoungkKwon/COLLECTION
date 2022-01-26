@@ -21,12 +21,9 @@ class WritefirstActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        binding.writefirstNextButton.setOnClickListener{
-            startActivity(Intent(this, WritesecondActivity::class.java))
-        }
 
+        //Write First PAGE - 뷰페이저 연결
         val writefirstAdapter = WritefirstVPA(this)
-
         binding.writefirstColorVp.adapter = writefirstAdapter
         TabLayoutMediator(binding.writefirstColorTb,binding.writefirstColorVp){
                 tab, position ->
@@ -34,7 +31,7 @@ class WritefirstActivity : AppCompatActivity() {
         }.attach()
 
 
-        //더미 데이터 리스트 생성
+        //Photo 더미 데이터 생성
         photoDatas.apply {
             add(Photo(R.drawable.example1))
             add(Photo(R.drawable.example2))
@@ -43,10 +40,16 @@ class WritefirstActivity : AppCompatActivity() {
             add(Photo(R.drawable.example1))
         }
 
+        //Photo 부분 Adapter 연결
         val photoRVAdapter = PhotoRVAdapter(photoDatas)
         binding.writefirstPhotoRecyclerview.adapter = photoRVAdapter
         binding.writefirstPhotoRecyclerview.layoutManager = LinearLayoutManager(baseContext,LinearLayoutManager.HORIZONTAL,false)
 
+
+        // 다음버튼 클릭시 Writing Second Page Start
+        binding.writefirstNextButton.setOnClickListener{
+            startActivity(Intent(this, WritesecondActivity::class.java))
+        }
 
     }
 
