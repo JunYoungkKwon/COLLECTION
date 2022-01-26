@@ -20,9 +20,10 @@
             tools:ignore="MissingConstraints"
         android:layout_marginTop="12dp"
         android:layout_marginStart="12dp"
-
         >
+
     </androidx.recyclerview.widget.RecyclerView>
+
 
 
 

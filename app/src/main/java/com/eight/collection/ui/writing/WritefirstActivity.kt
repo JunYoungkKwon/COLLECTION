@@ -7,16 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityWritefirstBinding
-import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class WritefirstActivity : AppCompatActivity(), CustomDialogInterface{
+class WritefirstActivity : AppCompatActivity() {
     lateinit var binding : ActivityWritefirstBinding
-
     private var photoDatas = ArrayList<Photo>();
-
-
     val information = arrayListOf("TOP","BOTTOM","SHOES","ETC")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +21,12 @@ class WritefirstActivity : AppCompatActivity(), CustomDialogInterface{
 
         setContentView(binding.root)
 
-        binding.writefirstNextButton.setOnClickListener {
+        binding.writefirstNextButton.setOnClickListener{
             startActivity(Intent(this, WritesecondActivity::class.java))
         }
 
-
-
         val writefirstAdapter = WritefirstVPA(this)
+
         binding.writefirstColorVp.adapter = writefirstAdapter
         TabLayoutMediator(binding.writefirstColorTb,binding.writefirstColorVp){
                 tab, position ->
@@ -52,19 +48,6 @@ class WritefirstActivity : AppCompatActivity(), CustomDialogInterface{
         binding.writefirstPhotoRecyclerview.layoutManager = LinearLayoutManager(baseContext,LinearLayoutManager.HORIZONTAL,false)
 
 
-        val customDialog = CustomDialog(this,this)
-        binding.writefirstColorTopSelectorRed.setOnClickListener{
-            customDialog.show()
-        }
-
-    }
-
-    override fun onAddButtonClicked() {
-        Toast.makeText(this, "추가", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onCancelButtonClicked() {
-        Toast.makeText(this, "취소", Toast.LENGTH_SHORT).show()
     }
 
 

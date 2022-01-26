@@ -9,6 +9,15 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
 
     private var selectCheck : ArrayList<Int> = arrayListOf()
 
+    interface TopClickListener {
+         fun plusClick()
+    }
+
+    private var clickListener: TopClickListener? = null
+
+    fun setTopClickListener(topClickListener: TopClickListener) {
+        this.clickListener = topClickListener
+    }
 
     init {
         for(i in topList){
@@ -20,6 +29,7 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
             }
         }
     }
+
 
     // 데이터 추가 메소드 (데이터 및 삭제아이콘 추가)
     fun addItem(top: WritefirstTop){
@@ -49,6 +59,10 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
 
     inner class ViewHolder(val binding: ItemWritefirstTopBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(top:WritefirstTop){
+            if (top.id == 0) {
+                clickListener?.plusClick()
+            }
+
             binding.writefirstColorTopTextButton.apply {
                 text = top.title
 
@@ -66,6 +80,8 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
                     notifyDataSetChanged()
                 }
             }
+
+
         }
     }
 }

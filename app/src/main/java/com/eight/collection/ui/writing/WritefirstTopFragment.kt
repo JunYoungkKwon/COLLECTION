@@ -5,14 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.eight.collection.databinding.ActivityAddToptagBinding
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.google.android.flexbox.FlexboxLayoutManager
 
-class WritefirstTopFragment : Fragment(){
+class WritefirstTopFragment : Fragment(), CustomDialogInterface, WritefirstTopRVAdapter.TopClickListener{
     lateinit var binding : FragmentWritefirstTopBinding
     private var topDatas = ArrayList<WritefirstTop>();
+    lateinit var customDialog: CustomDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,12 +43,26 @@ class WritefirstTopFragment : Fragment(){
         /*binding.writefirstTopRecyclerview.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)*/
 
         val topRVAdapter = WritefirstTopRVAdapter(topDatas)
+        topRVAdapter.setTopClickListener(this)
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
         binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
 
+        customDialog = CustomDialog(requireContext(),this)
 
         return binding.root
+    }
+
+    override fun onAddButtonClicked() {
+        Toast.makeText(requireContext(), "추가", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onCancelButtonClicked() {
+        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun plusClick() {
+        customDialog.show()
     }
 
 

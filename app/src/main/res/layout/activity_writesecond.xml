@@ -220,7 +220,7 @@
             android:layout_height="80dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:background="#f4f2f0"
+            android:background="#E5DDD8"
             android:gravity="top"
             android:hint="오늘 룩에 대한 코멘트를 달아보세요!!"
             android:privateImeOptions="defaultInputmode=korean"
