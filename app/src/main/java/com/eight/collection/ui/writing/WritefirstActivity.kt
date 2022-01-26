@@ -24,7 +24,7 @@ class WritefirstActivity : AppCompatActivity(), CustomDialogInterface{
 
         setContentView(binding.root)
 
-        binding.writefirstNextButton.setOnClickListener{
+        binding.writefirstNextButton.setOnClickListener {
             startActivity(Intent(this, WritesecondActivity::class.java))
         }
 
