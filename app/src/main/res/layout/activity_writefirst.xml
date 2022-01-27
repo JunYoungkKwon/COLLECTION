@@ -211,6 +211,7 @@
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
             tools:listitem="@layout/item_writefirst_photo" />
 
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/writefirst_color_tb"
             android:layout_width="326dp"
@@ -234,6 +235,18 @@
             />
 
         <View
+            android:id="@+id/writefirst_line_view"
+            android:layout_width="326dp"
+            android:layout_height="7dp"
+            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_third_v"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/item_top_line" />
+
+
+        <View
             android:id="@+id/writefirst_background_horizontalline_fourth_v"
             android:layout_width="328dp"
             android:layout_height="1dp"
@@ -250,6 +263,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb" />
+
 
         <ImageView
             android:id="@+id/writefirst_color_top_color_icon_iv"
@@ -440,7 +454,7 @@
             android:layout_height="40dp"
             android:background="@drawable/roundshape_button"
             android:text="다음"
-            android:textColor="@color/pinkish_grey"
+            android:textColor="#7C6350"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_white"
             app:layout_constraintStart_toStartOf="parent"
