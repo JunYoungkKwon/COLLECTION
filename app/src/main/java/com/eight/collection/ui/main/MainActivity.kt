@@ -15,7 +15,6 @@ import com.eight.collection.ui.main.week.WeekFragment
 class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
     lateinit var fragment: MyLookFragment
-
     private lateinit var navHostFragment: NavHostFragment
 
 
