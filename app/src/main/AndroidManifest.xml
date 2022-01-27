@@ -28,7 +28,7 @@
             android:exported="true"/>
 
         <activity
-            android:name=".ui.signup.SignUpActivity"
+            android:name=".ui.signup.SignupFirstActivity"
             android:exported="true"/>
 
         <activity

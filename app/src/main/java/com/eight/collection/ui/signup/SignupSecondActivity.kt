@@ -4,35 +4,35 @@ import android.view.View
 import android.widget.Toast
 import com.eight.collection.data.entities.User
 import com.eight.collection.data.remote.auth.AuthService
-import com.eight.collection.databinding.ActivitySignupBinding
+import com.eight.collection.databinding.ActivitySignupFirstBinding
 import com.eight.collection.ui.BaseActivity
 
-class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate), SignUpView, View.OnClickListener {
+class SignupSecondActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySignupFirstBinding::inflate), View.OnClickListener {
 
     override fun initAfterBinding() {
-        binding.signUpBackIv.setOnClickListener(this)
-        binding.signUpSignUpBtn.setOnClickListener(this)
+        binding.signUpFirstIcBack.setOnClickListener(this)
+        binding.signUpFirstNextButton.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         if(v == null) return
 
         when(v) {
-            binding.signUpBackIv -> finish()
-            binding.signUpSignUpBtn -> signUp()
+            binding.signUpFirstIcBack -> finish()
+            /*binding.signUpSignUpBtn -> signUp()*/
         }
     }
 
-    private fun getUser(): User {
-        val email: String =
-            binding.signUpIdEt.text.toString() + "@" + binding.signUpDirectInputEt.text.toString()
-        val pwd: String = binding.signUpPasswordEt.text.toString()
-        val name: String = binding.signUpNameEt.text.toString()
+    /* private fun getUser(): User {
+         val email: String =
+             binding.signUpIdEt.text.toString() + "@" + binding.signUpDirectInputEt.text.toString()
+         val pwd: String = binding.signUpPasswordEt.text.toString()
+         val name: String = binding.signUpNameEt.text.toString()
 
-        return User(email, pwd, name)
-    }
+         return User(email, pwd, name)
+     }*/
 
-    private fun signUp() {
+    /*private fun signUp() {
         if (binding.signUpIdEt.text.toString()
                 .isEmpty() || binding.signUpDirectInputEt.text.toString().isEmpty()
         ) {
@@ -51,9 +51,9 @@ class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding:
         }
 
         AuthService.signUp(this, getUser())
-    }
+    }*/
 
-    override fun onSignUpLoading() {
+    /*override fun onSignUpLoading() {
         binding.signUpLoadingPb.visibility = View.VISIBLE
     }
 
@@ -72,5 +72,6 @@ class SignUpActivity: BaseActivity<ActivitySignupBinding>(ActivitySignupBinding:
                 binding.signUpEmailErrorTv.text = message
             }
         }
-    }
+    }*/
+    /*SignUpView*/
 }
