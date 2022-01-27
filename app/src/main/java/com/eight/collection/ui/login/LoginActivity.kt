@@ -8,7 +8,7 @@ import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivityLoginBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.MainActivity
-import com.eight.collection.ui.signup.SignUpActivity
+import com.eight.collection.ui.signup.SignupFirstActivity
 import com.eight.collection.utils.saveJwt
 
 class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView, View.OnClickListener {
@@ -22,7 +22,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::in
         if(v == null) return
 
         when(v) {
-            binding.loginSignUpTv -> startNextActivity(SignUpActivity::class.java)
+            binding.loginSignUpTv -> startNextActivity(SignupFirstActivity::class.java)
             binding.loginSignInBtn -> login()
         }
     }
