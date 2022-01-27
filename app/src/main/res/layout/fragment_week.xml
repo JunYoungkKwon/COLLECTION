@@ -30,7 +30,7 @@
     <com.kizitonwose.calendarview.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         app:cv_dayViewResource="@layout/calendar_date"
         app:cv_hasBoundaries="true"
         app:cv_maxRowCount="1"
@@ -40,8 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/week_calendar1_line_view"
-        />
+        app:layout_constraintBottom_toTopOf="@id/week_calendar1_line_view" />
 
     <ImageView
         android:id="@+id/week_btn_rank_iv"

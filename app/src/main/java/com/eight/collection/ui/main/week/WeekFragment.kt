@@ -4,11 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
+import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
-import android.view.MenuItem
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -37,10 +36,31 @@ import java.util.ArrayList
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate) {
 
+    lateinit var id1: CalendarYearMonthHeaderBinding
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        id1 = CalendarYearMonthHeaderBinding.inflate(layoutInflater)
+
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         startMyLook()
         startWriteFirst()
+
+        binding.calendarView.bringToFront()
+
+        binding.calendarView.setOnClickListener{
+            Toast.makeText(activity, "message", Toast.LENGTH_SHORT).show()
+            Log.d("test", "test")
+
+        }
+
+        id1.calendarYearTv.setOnClickListener{
+            Toast.makeText(activity, "message", Toast.LENGTH_SHORT).show()
+            Log.d("test", "test")
+        }
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv

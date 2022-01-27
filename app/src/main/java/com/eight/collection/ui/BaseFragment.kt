@@ -25,7 +25,6 @@ abstract class BaseFragment<VB : ViewBinding>(
 
         return binding.root
     }
-
     override fun onStart() {
         super.onStart()
         initAfterBinding()
