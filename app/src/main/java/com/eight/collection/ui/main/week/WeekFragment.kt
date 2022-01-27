@@ -6,9 +6,13 @@ import android.graphics.Color
 import android.os.Build
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.view.get
 import androidx.navigation.Navigation
 import com.eight.collection.R
 import com.eight.collection.databinding.CalendarDateBinding
@@ -35,7 +39,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
-        setUpRecyclerView()
         startMyLook()
         startWriteFirst()
 
@@ -103,6 +106,139 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
         binding.calendarView.scrollToMonth(currentMonth)
 
+        var diaryList = mutableList()
+        val diaryRVAdapter = DiaryRVAdapter(diaryList)
+        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+
+        diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
+
+            override fun onRemoveAlbum(position: Int) {
+                clickOption(position)
+            }
+
+            private fun clickOption(position: Int) {
+                val popupMenu = PopupMenu(activity, binding.weekDiaryRecyclerView[position].findViewById(R.id.item_diary_edit_iv))
+                popupMenu.inflate(R.menu.menu_week_option)
+                popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
+                    override fun onMenuItemClick(item: MenuItem?): Boolean {
+                        when (item?.itemId) {
+                            R.id.menu_item_edit -> {
+                                startActivity(Intent(activity, WritefirstActivity::class.java))
+                                return true
+                            }
+                            R.id.menu_item_delete -> {
+                                diaryRVAdapter.removeItem(position)
+                                return true
+                            }
+                        }
+                        return false
+                    }
+                })
+                popupMenu.show()
+            }
+        })
+    }
+
+    private fun mutableList(): MutableList<Diary> {
+        var diaryList = mutableListOf(
+            Diary(
+                R.drawable.example1, 1, mutableListOf(
+                    Mood("눈"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창")
+                ), mutableListOf(
+                    Top("티셔츠", "#FFFFFF"), Top("티셔츠", "#FFFFFF"), Top("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Bottom("티셔츠", "#FFFFFF"),
+                    Bottom("티셔츠2", "#FFFF00"),
+                    Bottom("티셔츠3", "#FFFFFF"),
+                    Bottom("티셔츠4", "#FFFFFF")
+                ), mutableListOf(
+                    Shoes("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Etc("티셔츠", "#FFFFFF")
+                )
+            ),
+
+            Diary(
+                R.drawable.example2, 2, mutableListOf(
+                    Mood("눈"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창"),
+                    Mood("화창")
+                ), mutableListOf(
+                    Top("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Bottom("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Shoes("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Etc("티셔츠", "#FFFFFF")
+                )
+            ),
+
+            Diary(
+                R.drawable.example3, 3, mutableListOf(
+                    Mood("눈"), Mood("화창")
+                ), mutableListOf(
+                    Top("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Bottom("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Shoes("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Etc("티셔츠", "#FFFFFF")
+                )
+            ),
+
+            Diary(
+                R.drawable.example4, 4, mutableListOf(
+                    Mood("눈"), Mood("화창"), Mood("화창"), Mood("화창"), Mood("화창")
+                ), mutableListOf(
+                    Top("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Bottom("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Shoes("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Etc("티셔츠", "#FFFFFF")
+                )
+            ),
+
+            Diary(
+                0, 5, mutableListOf(
+                    Mood("눈"), Mood("화창"), Mood("화창"), Mood("화창")
+                ), mutableListOf(
+                    Top("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Bottom("티셔츠", "#FFFFFF"),
+                    Bottom("티셔츠", "#FFFFFF"),
+                    Bottom("티셔츠", "#FFFFFF"),
+                    Bottom("티셔츠", "#FFFFFF"),
+                    Bottom("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Shoes("티셔츠", "#FFFFFF")
+                ), mutableListOf(
+                    Etc("티셔츠", "#FFFFFF"),
+                    Etc("티셔츠", "#FFFFFF"),
+                    Etc("티셔츠", "#FFFFFF"),
+                    Etc("티셔츠", "#FFFFFF"),
+                    Etc("티셔츠", "#FFFFFF"),
+                    Etc("티셔츠", "#FFFFFF"),
+                    Etc("티셔츠", "#FFFFFF")
+                )
+            ),
+        )
+        return diaryList
     }
 
     private fun startWriteFirst() {
@@ -116,75 +252,5 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             Navigation.findNavController(it).navigate(R.id.MyLookFragment)
         }
 
-    }
-
-    private fun setUpRecyclerView() {
-        var diaryList = mutableListOf(
-            Diary(R.drawable.example1,1, mutableListOf(
-                Mood( "눈"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창")
-            ), mutableListOf(
-                Top( "티셔츠", "#FFFFFF"), Top( "티셔츠", "#FFFFFF"), Top( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Bottom( "티셔츠", "#FFFFFF"), Bottom( "티셔츠2", "#FFFF00"), Bottom( "티셔츠3", "#FFFFFF"), Bottom( "티셔츠4", "#FFFFFF")
-            ), mutableListOf(
-                Shoes( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Etc( "티셔츠", "#FFFFFF")
-            )
-            ),
-
-            Diary(R.drawable.example2,2, mutableListOf(
-                Mood( "눈"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창")
-            ), mutableListOf(
-                Top( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Bottom( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Shoes( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Etc( "티셔츠", "#FFFFFF")
-            )
-            ),
-
-            Diary(R.drawable.example3,3, mutableListOf(
-                Mood( "눈"), Mood( "화창")
-            ), mutableListOf(
-                Top( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Bottom( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Shoes( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Etc( "티셔츠", "#FFFFFF")
-            )
-            ),
-
-            Diary(R.drawable.example4,4, mutableListOf(
-                Mood( "눈"), Mood( "화창"), Mood( "화창"), Mood( "화창"), Mood( "화창")
-            ), mutableListOf(
-                Top( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Bottom( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Shoes( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Etc( "티셔츠", "#FFFFFF")
-            )
-            ),
-
-            Diary(0,5, mutableListOf(
-                Mood( "눈"), Mood( "화창"), Mood( "화창"), Mood( "화창")
-            ), mutableListOf(
-                Top( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Bottom( "티셔츠", "#FFFFFF"),Bottom( "티셔츠", "#FFFFFF"),Bottom( "티셔츠", "#FFFFFF"),Bottom( "티셔츠", "#FFFFFF"),Bottom( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Shoes( "티셔츠", "#FFFFFF")
-            ), mutableListOf(
-                Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF"),Etc( "티셔츠", "#FFFFFF")
-            )
-            ),
-        )
-        binding.weekDiaryRecyclerView.adapter = DiaryRVAdapter(diaryList)
     }
 }

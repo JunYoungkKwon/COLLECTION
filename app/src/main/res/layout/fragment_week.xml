@@ -52,26 +52,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <RelativeLayout
-        android:id="@+id/item_diary_img_line_rL"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/week_diary_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/week_diary_img_bg"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/week_calendar1_line_view">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/week_diary_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            tools:listitem="@layout/item_week_diary" />
-
-    </RelativeLayout>
+        app:layout_constraintTop_toBottomOf="@id/week_calendar1_line_view"
+        tools:listitem="@layout/item_week_diary"/>
 
     <ImageView
         android:id="@+id/week_btn_write_iv"

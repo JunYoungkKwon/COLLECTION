@@ -23,12 +23,12 @@ class MyLookSecondFragment(): BaseFragment<FragmentMyLookSecondBinding>(Fragment
 
         photoDatas.apply {
             add(Photo(R.drawable.example1))
-            add(Photo(R.drawable.example2))
+            add(Photo(0))
             add(Photo(R.drawable.example3))
-            add(Photo(R.drawable.example4))
+            add(Photo(0))
             add(Photo(R.drawable.example1))
             add(Photo(R.drawable.example2))
-            add(Photo(R.drawable.example3))
+            add(Photo(0))
             add(Photo(R.drawable.example4))
         }
         //더미데이터와 어댑터 연결

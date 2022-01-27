@@ -16,4 +16,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <RelativeLayout
+        android:id="@+id/item_my_look_second_img_line_rL"
+        android:layout_width="114dp"
+        android:layout_height="114dp"
+        android:background="@drawable/mylook_second_img_bg"
+        app:layout_constraintEnd_toEndOf="@id/item_my_look_second_photo_iv"
+        app:layout_constraintTop_toTopOf="@id/item_my_look_second_photo_iv"
+        app:layout_constraintBottom_toBottomOf="@id/item_my_look_second_photo_iv"
+        app:layout_constraintStart_toStartOf="@id/item_my_look_second_photo_iv">
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/item_my_look_second_default_img_iv"
+        android:layout_width="18dp"
+        android:layout_height="26dp"
+        android:visibility="visible"
+        android:src="@drawable/ic_hang_small"
+        app:layout_constraintStart_toStartOf="@id/item_my_look_second_photo_iv"
+        app:layout_constraintTop_toTopOf="@id/item_my_look_second_photo_iv"
+        app:layout_constraintBottom_toBottomOf="@id/item_my_look_second_photo_iv"
+        app:layout_constraintEnd_toEndOf="@id/item_my_look_second_photo_iv"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
