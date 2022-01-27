@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_bg_matchpage"
+    >
+
+    <ImageView
+        android:id="@+id/sign_up_first_ic_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        />
+
+    <TextView
+        android:id="@+id/sign_up_first_signup_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:textStyle="normal"
+        android:textColor="@color/dark_taupe"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/sign_up_first_ic_back"
+        app:layout_constraintTop_toTopOf="@id/sign_up_first_ic_back"
+        app:layout_constraintBottom_toBottomOf="@id/sign_up_first_ic_back"
+        android:letterSpacing="-0.01"
+        android:layout_marginStart="8dp"
+        />
+
+    <TextView
+        android:id="@+id/sign_up_first_nickname_count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나만의 닉네임을 2~6글자 입력해주세요 :)"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textStyle="normal"
+        android:textColor="@color/dark_taupe"
+        android:textSize="12sp"
+        android:letterSpacing="-0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_first_signup_tv"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        />
+
+    <EditText
+        android:id="@+id/sign_up_first_nickname_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="최대 6글자"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textColor="@color/pinkish_grey"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="@id/sign_up_first_nickname_deco_tv"
+        app:layout_constraintBottom_toBottomOf="@id/sign_up_first_nickname_deco_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sign_up_first_nickname_deco_tv"
+        android:layout_marginStart="32dp"
+        />
+
+    <View
+        android:id="@+id/sign_up_first_nickname_line_v"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="@color/pinkish_grey"
+        app:layout_constraintEnd_toEndOf="@id/sign_up_first_nickname_et"
+        app:layout_constraintStart_toStartOf="@id/sign_up_first_nickname_et"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_first_nickname_count_tv"
+        android:layout_marginTop="55.5dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/sign_up_first_nickname_deco_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="님의"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="123dp"
+        android:layout_marginStart="180dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ootd"
+        app:layout_constraintStart_toStartOf="@id/sign_up_first_nickname_et"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_first_nickname_line_v"
+        android:layout_marginTop="23.5dp"
+        />
+
+    <ImageView
+        android:id="@+id/sign_up_first_ic_hang_large_iv"
+        android:layout_width="109dp"
+        android:layout_height="158dp"
+        android:src="@drawable/ic_hang_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="344dp"
+        android:layout_marginStart="264dp"
+        />
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sign_up_first_next_button"
+        android:layout_width="296dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundshape_button_sign_up_first"
+        android:text="디음"
+        android:textColor="@color/terracota"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_first_ic_hang_large_iv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="74dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sign_up_first_progress"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_first_next_button"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -239,7 +239,7 @@
             android:layout_height="40dp"
             android:background="@drawable/roundshape_button"
             android:text="완료"
-            android:textColor="@color/pinkish_grey"
+            android:textColor="#7C6350"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/writesecond_comment_et"
             app:layout_constraintStart_toStartOf="parent"
