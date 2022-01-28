@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.get
 import androidx.navigation.Navigation
+import com.applandeo.materialcalendarview.CalendarView
+import com.applandeo.materialcalendarview.DatePicker
 import com.eight.collection.R
 import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
@@ -31,36 +33,50 @@ import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import java.time.DayOfWeek
 import java.time.YearMonth
-import java.util.ArrayList
+import com.applandeo.materialcalendarview.builders.DatePickerBuilder
+import com.applandeo.materialcalendarview.listeners.OnSelectDateListener
+import java.util.*
 
 
-class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate) {
 
-    lateinit var id1: CalendarYearMonthHeaderBinding
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        id1 = CalendarYearMonthHeaderBinding.inflate(layoutInflater)
 
-    }
+class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate){
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         startMyLook()
         startWriteFirst()
 
-        binding.calendarView.bringToFront()
+        val  listener: OnSelectDateListener = object : OnSelectDateListener {
+            override fun onSelect(calendar: List<Calendar>) {
 
-        binding.calendarView.setOnClickListener{
-            Toast.makeText(activity, "message", Toast.LENGTH_SHORT).show()
-            Log.d("test", "test")
-
+            }
         }
 
-        id1.calendarYearTv.setOnClickListener{
-            Toast.makeText(activity, "message", Toast.LENGTH_SHORT).show()
-            Log.d("test", "test")
-        }
+        val oneDayBuilder = DatePickerBuilder(this.requireContext(), listener)
+            .pickerType(CalendarView.ONE_DAY_PICKER)
+            .headerLabelColor(R.color.terracota)
+            .selectionColor(R.color.daysLabelColor)
+            .dialogButtonsColor(android.R.color.holo_green_dark)
+            .disabledDaysLabelsColor(android.R.color.holo_purple)
+            .headerVisibility(View.VISIBLE)
+            .abbreviationsBarVisibility(View.GONE)
+            .abbreviationsLabelsColor(R.color.terracota)
+            .headerColor(R.color.bottom_navi)
+            .daysLabelsColor(R.color.black)
+            .pagesColor(R.color.bottom_navi)
+            //.typefaceSrc(R.font.roboto_light)
+            .previousButtonSrc(R.drawable.ic_datepicker_previous)
+            .forwardButtonSrc(R.drawable.ic_datepicker_next)
+
+
+
+
+        val oneDayPicker = oneDayBuilder.build()
+        oneDayPicker.show()
+
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
@@ -107,6 +123,9 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             override fun bind(container: MonthViewContainer, month: CalendarMonth) {
                 container.calendarYear.text = "${month.year}"
                 container.calendarMonth.text = "${month.yearMonth.month.name.toLowerCase().capitalize()}"
+                container.calendarYear.setOnClickListener{
+
+                }
 
             }
         }
@@ -157,6 +176,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                 popupMenu.show()
             }
         })
+
     }
 
     private fun mutableList(): MutableList<Diary> {
@@ -259,6 +279,8 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             ),
         )
         return diaryList
+
+
     }
 
     private fun startWriteFirst() {
@@ -273,4 +295,5 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         }
 
     }
+
 }
