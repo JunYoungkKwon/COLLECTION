@@ -120,7 +120,7 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:background="@drawable/roundshape_button_sign_up_first"
-        android:text="음"다
+        android:text="다음"
         android:textColor="@color/terracota"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/sign_up_second_ic_hang_large_iv"
