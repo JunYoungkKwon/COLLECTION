@@ -3,6 +3,7 @@ package com.eight.collection.ui.signup
 import android.view.View
 import com.eight.collection.databinding.ActivitySignupFirstBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.login.LoginFirstActivity
 import com.eight.collection.ui.login.LoginSecondActivity
 
 class SignupFirstActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySignupFirstBinding::inflate), View.OnClickListener {
@@ -15,7 +16,7 @@ class SignupFirstActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySign
         if(v == null) return
 
         when(v) {
-            binding.signUpFirstIcBack -> startNextActivity(LoginSecondActivity::class.java)
+            binding.signUpFirstIcBack -> startNextActivity(LoginFirstActivity::class.java)
             binding.signUpFirstNextButton -> startNextActivity(SignupSecondActivity::class.java)
         }
     }
