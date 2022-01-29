@@ -6,21 +6,23 @@ import com.eight.collection.data.entities.User
 import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivitySignupFirstBinding
 import com.eight.collection.databinding.ActivitySignupSecondBinding
+import com.eight.collection.databinding.ActivitySignupThirdBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.main.MainActivity
 
-class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySignupSecondBinding::inflate), View.OnClickListener {
+class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySignupThirdBinding::inflate), View.OnClickListener {
 
     override fun initAfterBinding() {
-        binding.signUpSecondIcBack.setOnClickListener(this)
-        binding.signUpSecondNextButton.setOnClickListener(this)
+        binding.signUpThirdIcBack.setOnClickListener(this)
+        binding.signUpThirdFinishButton.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         if(v == null) return
 
         when(v) {
-            binding.signUpSecondNextButton -> startNextActivity(SignupThirdActivity::class.java)
-            binding.signUpSecondIcBack -> finish()
+            binding.signUpThirdFinishButton -> startNextActivity(MainActivity::class.java)
+            binding.signUpThirdIcBack -> finish()
         }
     }
 

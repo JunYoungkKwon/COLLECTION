@@ -6,33 +6,6 @@
     android:background="@drawable/img_bg_matchpage"
     >
 
-    <!--<TextView
-        android:id="@+id/sign_up_sign_up_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/signup"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/sign_up_back_iv"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:contentDescription="@string/ic_back"
-        android:paddingStart="0dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="10dp"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
-
     <ImageView
         android:id="@+id/sign_up_second_ic_back"
         android:layout_width="wrap_content"
@@ -61,249 +34,85 @@
         />
 
     <TextView
-        android:id="@+id/sign_up_second_name_tv"
+        android:id="@+id/sign_up_second_nickname_count_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이름"
-        android:textColor="@color/dark_taupe"
-        android:fontFamily="@font/noto_sans_kr"
+        android:text="나만의 닉네임을 2~6글자 입력해주세요 :)"
+        android:fontFamily="@font/noto_sans_kr_regular"
         android:textStyle="normal"
+        android:textColor="@color/dark_taupe"
         android:textSize="12sp"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_name_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_second_signup_tv"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"
+        android:layout_marginTop="48dp"
         />
 
     <EditText
-        android:id="@+id/sign_up_second_name_et"
+        android:id="@+id/sign_up_second_nickname_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:hint="실명을 입력하세요"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
+        android:hint="최대 6글자"
         android:fontFamily="@font/noto_sans_kr"
         android:textColor="@color/pinkish_grey"
-        android:letterSpacing="-0.01"
+        android:inputType="text"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="@id/sign_up_second_nickname_deco_tv"
+        app:layout_constraintBottom_toBottomOf="@id/sign_up_second_nickname_deco_tv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_name_underscore_view"
+        app:layout_constraintEnd_toStartOf="@id/sign_up_second_nickname_deco_tv"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="2dp"
         />
 
     <View
-        android:id="@+id/sign_up_second_name_underscore_view"
+        android:id="@+id/sign_up_second_nickname_line_v"
         android:layout_width="0dp"
         android:layout_height="1px"
         android:background="@color/pinkish_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="154.5dp"
+        app:layout_constraintEnd_toEndOf="@id/sign_up_second_nickname_et"
+        app:layout_constraintStart_toStartOf="@id/sign_up_second_nickname_et"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_second_nickname_count_tv"
+        android:layout_marginTop="56.5dp"
         />
+
+
 
     <TextView
-        android:id="@+id/sign_up_second_id_tv"
+        android:id="@+id/sign_up_second_nickname_deco_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="아이디"
-        android:textColor="@color/dark_taupe"
+        android:text="님의"
         android:fontFamily="@font/noto_sans_kr"
-        android:textStyle="normal"
-        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:textColor="@color/terracota"
         android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_id_underscore_view"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"/>
-
-    <EditText
-        android:id="@+id/sign_up_second_id_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="6~15자리를 입력해주세요"
-        android:inputType="text"
-        android:textSize="14sp"
-        android:fontFamily="@font/noto_sans_kr"
-        android:textColor="@color/pinkish_grey"
-        android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_id_underscore_view"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="2dp"
-        />
-
-    <View
-        android:id="@+id/sign_up_second_id_underscore_view"
-        android:layout_width="0dp"
-        android:layout_height="1px"
-        android:background="@color/pinkish_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="221.5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="123dp"
+        android:layout_marginStart="180dp"
         />
 
     <ImageView
-        android:id="@+id/sign_up_second_double_check_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/button_sign_up_second_double_check"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/sign_up_second_id_et"
-        app:layout_constraintBottom_toBottomOf="@id/sign_up_second_id_et"
-        android:layout_marginEnd="32dp"/>
-
-    <TextView
-        android:id="@+id/sign_up_second_password_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="비밀번호"
-        android:textColor="@color/dark_taupe"
-        android:fontFamily="@font/noto_sans_kr"
-        android:textStyle="normal"
-        android:textSize="12sp"
-        android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_password_underscore_view"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"/>
-
-    <EditText
-        android:id="@+id/sign_up_second_password_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="6~15자리를 입력해주세요"
-        android:inputType="textPassword"
-        android:textSize="14sp"
-        android:fontFamily="@font/noto_sans_kr"
-        android:textColor="@color/pinkish_grey"
-        android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_password_underscore_view"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="2dp"
+        android:src="@drawable/ootd"
+        app:layout_constraintStart_toStartOf="@id/sign_up_second_nickname_et"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_second_nickname_line_v"
+        android:layout_marginTop="23.5dp"
         />
 
-    <View
-        android:id="@+id/sign_up_second_password_underscore_view"
-        android:layout_width="0dp"
-        android:layout_height="1px"
-        android:background="@color/pinkish_grey"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/sign_up_second_ic_hang_large_iv"
+        android:layout_width="109dp"
+        android:layout_height="158dp"
+        android:src="@drawable/ic_hang_large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="291.5dp"
-        />
-
-    <TextView
-        android:id="@+id/sign_up_second_password_check_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="비밀번호 확인"
-        android:textColor="@color/dark_taupe"
-        android:fontFamily="@font/noto_sans_kr"
-        android:textStyle="normal"
-        android:textSize="12sp"
-        android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_password_check_underscore_view"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"/>
-
-    <EditText
-        android:id="@+id/sign_up_second_password_check_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="6~15자리를 입력해주세요"
-        android:inputType="textPassword"
-        android:textSize="14sp"
-        android:fontFamily="@font/noto_sans_kr"
-        android:textColor="@color/pinkish_grey"
-        android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_password_check_underscore_view"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="2dp"
-        />
-
-    <View
-        android:id="@+id/sign_up_second_password_check_underscore_view"
-        android:layout_width="0dp"
-        android:layout_height="1px"
-        android:background="@color/pinkish_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="361.5dp"
-        />
-
-    <TextView
-        android:id="@+id/sign_up_second_phone_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="휴대폰"
-        android:textColor="@color/dark_taupe"
-        android:fontFamily="@font/noto_sans_kr"
-        android:textStyle="normal"
-        android:textSize="12sp"
-        android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_phone_underscore_view"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"/>
-
-    <EditText
-        android:id="@+id/sign_up_second_phone_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="'-'를 제외하고 입력해주세요"
-        android:inputType="text"
-        android:textSize="14sp"
-        android:fontFamily="@font/noto_sans_kr"
-        android:textColor="@color/pinkish_grey"
-        android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_second_phone_underscore_view"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="1dp"
-        />
-
-    <View
-        android:id="@+id/sign_up_second_phone_underscore_view"
-        android:layout_width="0dp"
-        android:layout_height="1px"
-        android:background="@color/pinkish_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="428.5dp"
+        android:layout_marginTop="344dp"
+        android:layout_marginStart="264dp"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -311,13 +120,13 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:background="@drawable/roundshape_button_sign_up_first"
-        android:text="디음"
+        android:text="음"다
         android:textColor="@color/terracota"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_second_phone_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_second_ic_hang_large_iv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="122.5dp"
+        android:layout_marginTop="74dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         />
@@ -330,10 +139,6 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-
-
-
 
 
 
