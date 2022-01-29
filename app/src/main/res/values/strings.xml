@@ -3,6 +3,9 @@
     <!--공통-->
     <string name="img_app_logo">logo image</string>
     <string name="ic_back">back icon</string>
+    <string name="splash_ootd_diary">ootd diary</string>
+    <string name="splash_collection">collection</string>
+
 
     <!--메뉴-->
     <string name="menu_month">월별</string>
@@ -14,8 +17,13 @@
 
     <!-- 로그인 -->
     <string name="login">로그인</string>
-    <string name="login_id_hint">아이디(이메일)</string>
-    <string name="login_email_hint">직접입력</string>
+    <string name="login_first_title">나만을 위한</string>
+    <string name="login_second_title">OOTD 다이어리</string>
+    <string name="login_third_title">콜렉션은 나만의 OOTD를 작성기록 앱입니다.</string>
+    <string name="login_welcome_first_title">언제나</string>
+    <string name="login_welcome_second_title">반가워요 8:-)</string>
+    <string name="login_id_hint">아이디를 입력해주세요.</string>
+    <string name="login_pw_hint">비밀번호를 입력해주세요.</string>
     <string name="login_email_delimiter">\@</string>
     <string name="login_name_hint">이름</string>
     <string name="login_signup">회원가입</string>

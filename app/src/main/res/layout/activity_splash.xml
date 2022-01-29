@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/splash_logo_iv"
-        android:text="ootd diary"/>
+        android:text="@string/splash_ootd_diary"/>
 
     <TextView
         android:id="@+id/splash_collection_tv"
@@ -40,5 +40,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/splash_ootdDiary_tv"
-        android:text="collection" />
+        android:text="@string/splash_collection" />
 </androidx.constraintlayout.widget.ConstraintLayout>

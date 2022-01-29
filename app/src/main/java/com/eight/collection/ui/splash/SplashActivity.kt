@@ -7,7 +7,8 @@ import com.eight.collection.data.remote.auth.Auth
 import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivitySplashBinding
 import com.eight.collection.ui.BaseActivity
-import com.eight.collection.ui.login.LoginActivity
+import com.eight.collection.ui.login.LoginFirstActivity
+import com.eight.collection.ui.login.LoginSecondActivity
 import com.eight.collection.ui.main.MainActivity
 import com.eight.collection.utils.saveJwt
 
@@ -15,7 +16,7 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(ActivitySplashBinding:
 
     override fun initAfterBinding() {
         Handler(Looper.getMainLooper()).postDelayed({
-            val  intent= Intent(this, LoginActivity::class.java)
+            val  intent= Intent(this, LoginFirstActivity::class.java)
             startActivity(intent)
             finish()
             //autoLogin()
