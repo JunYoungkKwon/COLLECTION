@@ -85,7 +85,7 @@
         android:inputType="textPersonName"
         android:textSize="14sp"
         android:fontFamily="@font/noto_sans_kr"
-        android:textColor="@color/pinkish_grey"
+        android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,7 @@
     <View
         android:id="@+id/sign_up_third_name_underscore_view"
         android:layout_width="0dp"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +132,7 @@
         android:inputType="text"
         android:textSize="14sp"
         android:fontFamily="@font/noto_sans_kr"
-        android:textColor="@color/pinkish_grey"
+        android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,14 +145,14 @@
     <View
         android:id="@+id/sign_up_third_id_underscore_view"
         android:layout_width="0dp"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="221.5dp"
+        android:layout_marginTop="234.5dp"
         />
 
     <ImageView
@@ -189,7 +189,7 @@
         android:inputType="textPassword"
         android:textSize="14sp"
         android:fontFamily="@font/noto_sans_kr"
-        android:textColor="@color/pinkish_grey"
+        android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -202,14 +202,14 @@
     <View
         android:id="@+id/sign_up_third_password_underscore_view"
         android:layout_width="0dp"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="291.5dp"
+        android:layout_marginTop="314.5dp"
         />
 
     <TextView
@@ -236,7 +236,7 @@
         android:inputType="textPassword"
         android:textSize="14sp"
         android:fontFamily="@font/noto_sans_kr"
-        android:textColor="@color/pinkish_grey"
+        android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -249,14 +249,14 @@
     <View
         android:id="@+id/sign_up_third_password_check_underscore_view"
         android:layout_width="0dp"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="361.5dp"
+        android:layout_marginTop="400.5dp"
         />
 
     <TextView
@@ -283,7 +283,7 @@
         android:inputType="text"
         android:textSize="14sp"
         android:fontFamily="@font/noto_sans_kr"
-        android:textColor="@color/pinkish_grey"
+        android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -296,28 +296,27 @@
     <View
         android:id="@+id/sign_up_third_phone_underscore_view"
         android:layout_width="0dp"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="428.5dp"
+        android:layout_marginTop="480.5dp"
         />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sign_up_third_finish_button"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:background="@drawable/roundshape_button_sign_up_first"
-        android:text="완료"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signup_btn_event_third"
         android:textColor="@color/terracota"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_third_phone_underscore_view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="122.5dp"
+        android:layout_marginBottom="88dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         />
