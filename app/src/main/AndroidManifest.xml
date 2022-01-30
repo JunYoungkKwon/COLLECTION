@@ -40,10 +40,16 @@
             android:exported="true"/>
 
         <activity
+            android:name=".ui.signup.SignupSecondActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".ui.signup.SignupThirdActivity"
+            android:exported="true"/>
+
+        <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
-
-
 
         </activity>
 
