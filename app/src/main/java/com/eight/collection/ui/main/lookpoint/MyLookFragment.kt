@@ -6,6 +6,7 @@ import android.view.View
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.eight.collection.R
 import com.eight.collection.databinding.FragmentMyLookBinding
 import com.eight.collection.databinding.FragmentMonthBinding
@@ -22,6 +23,7 @@ class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBindin
 
     override fun initAfterBinding() {
 
+        var itemList = ArrayList<String>()
         var myLookDatas = mutableList()
 
         val myLookRVAdapter = MyLookRVAdapter(myLookDatas)
@@ -33,6 +35,15 @@ class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBindin
             }
 
         })
+
+        itemList.apply {
+            add("작성한 OOTD를 룩포인트 별로 확인해보세요!")
+            add("PHOTO를 탭하여 전체 페이지를 확인해보세요!")
+        }
+
+        val adapter = MyLookVPA(itemList, true)
+        binding.myLookBannerVp.setAdapter(adapter)
+
     }
 
     private fun mutableList(): MutableList<MyLook> {
@@ -82,6 +93,15 @@ class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBindin
             putString("myLook", myLookJson)
         }
         findNavController().navigate(R.id.MyLookSecondFragment, arguments)
+    }
+    override fun onResume() {
+        super.onResume()
+        binding.myLookBannerVp.resumeAutoScroll()
+    }
+
+    override fun onPause() {
+        binding.myLookBannerVp.pauseAutoScroll()
+        super.onPause()
     }
 
 }

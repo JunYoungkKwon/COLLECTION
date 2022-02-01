@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginTop="55dp"
-        android:text="my best" />
+        android:text="@string/mybest" />
 
     <TextView
         android:id="@+id/myLook_lookBook_tv"
@@ -36,18 +36,49 @@
         app:layout_constraintStart_toStartOf="@id/myLook_myBest_tv"
         app:layout_constraintTop_toBottomOf="@id/myLook_myBest_tv"
         android:layout_marginTop="-12dp"
-        android:text="look book"/>
+        android:text="@string/lookbook"/>
+
+    <com.asksira.loopingviewpager.LoopingViewPager
+        android:id="@+id/myLook_banner_vp"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        app:isInfinite="true"
+        app:autoScroll="true"
+        android:orientation="vertical"
+        app:scrollInterval="4000"
+        app:layout_constraintStart_toStartOf="@id/myLook_lookBook_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myLook_lookBook_tv" />
+
+<!--    <androidx.viewpager2.widget.ViewPager2-->
+<!--        android:id="@+id/myLook_banner_vp"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="35dp"-->
+<!--        app:layout_constraintStart_toStartOf="@id/myLook_lookBook_tv"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/myLook_lookBook_tv" />-->
+
+    <ImageView
+        android:id="@+id/myLook_btn_rank_iv"
+        android:layout_width="40dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/ic_mylook_rank"
+        app:layout_constraintTop_toTopOf="@id/myLook_myBest_tv"
+        app:layout_constraintBottom_toBottomOf="@id/myLook_lookBook_tv"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myLook_scroll_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="15dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myLook_lookBook_tv"
+        app:layout_constraintTop_toBottomOf="@id/myLook_banner_vp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_my_look" />
 

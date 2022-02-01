@@ -53,6 +53,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view" />
 
+    <ImageView
+        android:id="@+id/item_myLook_move_btn_iv"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginBottom="-10dp"
+        android:layout_marginStart="6dp"
+        android:src="@drawable/ic_daydrop"
+        app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo_tv"
+        app:layout_constraintStart_toEndOf="@id/item_myLook_photo_tv" />
+
+
+
     <View
         android:id="@+id/item_myLook_horizon_bottom_view"
         android:layout_width="0dp"
