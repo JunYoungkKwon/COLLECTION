@@ -46,6 +46,10 @@
     <string name="shoes">Shoes.</string>
     <string name="etc">Etc.</string>
 
+    <!-- myLook page -->
+    <string name="mybest">MY BEST</string>
+    <string name="lookbook">LOOK BOOK</string>
+
     <!-- Finsh page -->
     <string name="title">학교갈때 입는 데일리룩</string>
     <string name="comment">오늘 룩에 대한 코멘트를 적어보세요!</string>

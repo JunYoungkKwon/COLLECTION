@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/item_top_line" />
+        android:background="@color/pinkish_grey" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/item_diary_img_cardView"

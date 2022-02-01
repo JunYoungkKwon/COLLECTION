@@ -89,4 +89,7 @@ dependencies {
     //datepicker
     implementation 'com.applandeo:material-calendar-view:1.9.0-rc03'
 
+    //infinitiViewPager
+    implementation 'com.asksira.android:loopingviewpager:1.4.1'
+
 }
