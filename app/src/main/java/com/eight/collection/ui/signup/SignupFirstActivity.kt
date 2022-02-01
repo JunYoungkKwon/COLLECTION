@@ -1,6 +1,8 @@
 package com.eight.collection.ui.signup
 
+import android.os.Bundle
 import android.view.View
+import com.eight.collection.R
 import com.eight.collection.databinding.ActivitySignupFirstBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.login.LoginFirstActivity
@@ -20,4 +22,5 @@ class SignupFirstActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySign
             binding.signUpFirstNextButton -> startNextActivity(SignupSecondActivity::class.java)
         }
     }
+
 }
