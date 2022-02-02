@@ -11,8 +11,8 @@
         android:id="@+id/month_btn_setting_iv"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
         android:src="@drawable/ic_setting_off"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
@@ -46,8 +46,8 @@
         android:id="@+id/month_btn_rank_iv"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:src="@drawable/ic_rank"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

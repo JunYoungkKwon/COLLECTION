@@ -46,6 +46,8 @@ class DiaryRVAdapter(private  val Diarylist: MutableList<Diary>) : RecyclerView.
         fun bind(diary: Diary){
             binding.itemDiaryImgCountTv.text= diary.imgCount.toString()
             binding.itemDiaryImgIv.setImageResource(diary.coverImg!!)
+            binding.itemDiaryDateTv.text= diary.date.toString()
+            binding.itemDiaryPointIv.setImageResource(diary.point!!)
 
             binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(diary.moodList)
             binding.weekDiaryTopRecyclerView.adapter = ToprRVAdapter(diary.topList)

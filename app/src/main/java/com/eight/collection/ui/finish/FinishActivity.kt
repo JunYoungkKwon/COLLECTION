@@ -14,8 +14,15 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     private  var bottomDatas = ArrayList<Bottom>()
     private  var shoesDatas = ArrayList<Shoes>()
     private  var etcDatas = ArrayList<Etc>()
+    private  var ootdDatas = ArrayList<Ootd>()
 
     override fun initAfterBinding() {
+
+
+        //Ootd 데이터 삽입
+       val ootd = Ootd("2022/02/02",R.drawable.ic_diary_point,"운동할 때 입는 옷", "날씨가 너무 좋았다")
+        setInit(ootd)
+
 
         //더미 데이터
         weatherDatas.apply {
@@ -29,7 +36,6 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
             add(Place("맑음2"))
             add(Place("화창2"))
             add(Place("맑음2"))
-            add(Place("구름2"))
             add(Place("추움2"))
         }
         whoDatas.apply {
@@ -49,14 +55,10 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
             add(Top("티셔츠", "#FFFFFF"))
             add(Top("티셔츠", "#FFBB86FC"))
             add(Top("티셔츠", "#FF03DAC5"))
-            add(Top("티셔츠", "#FF018786"))
+
         }
         bottomDatas.apply {
             add(Bottom("티셔츠", "#FFFFFF"))
-            add(Bottom("와이셔츠", "#FFBB86FC"))
-            add(Bottom("갃낛닭띿", "#FF03DAC5"))
-            add(Bottom("티셔츠테", "#FF018786"))
-            add(Bottom("티셔츨테길이", "#FF018786"))
         }
         shoesDatas.apply {
             add(Shoes("와이셔츠", "#FFBB86FC"))
@@ -86,6 +88,12 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         binding.finishShoesRecyclerView.adapter = shoesRVAdapter
         binding.finishEtcRecyclerView.adapter = etcRVAdapter
 
+    }
+    private fun setInit(ootd: Ootd) {
+        binding.finishRankPointIv.setImageResource(ootd.point!!)
+        binding.finishOotdTitileTv.text =ootd.title.toString()
+        binding.finishDateTv.text = ootd.date.toString()
+        binding.finishCommentTv.text = ootd.comment.toString()
     }
 
 }

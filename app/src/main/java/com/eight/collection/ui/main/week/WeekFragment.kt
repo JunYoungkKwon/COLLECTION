@@ -181,8 +181,8 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private fun mutableList(): MutableList<Diary> {
         var diaryList = mutableListOf(
-            Diary(
-                R.drawable.example1, 1, mutableListOf(
+            Diary(R.drawable.ic_diary_point,"2022/01/02", R.drawable.example1, 1,
+                mutableListOf(
                     Mood("눈"),
                     Mood("화창"),
                     Mood("화창"),
@@ -192,7 +192,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                     Mood("화창"),
                     Mood("화창")
                 ), mutableListOf(
-                    Top("티셔츠", "#FFFFFF"), Top("티셔츠", "#FFFFFF"), Top("티셔츠", "#FFFFFF")
+                    Top("티셔츠", "#FFFFFF"),
                 ), mutableListOf(
                     Bottom("티셔츠", "#FFFFFF"),
                     Bottom("티셔츠2", "#FFFF00"),
@@ -206,7 +206,8 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             ),
 
             Diary(
-                R.drawable.example2, 2, mutableListOf(
+                R.drawable.ic_diary_point,"2022/01/03", R.drawable.example1, 1,
+                mutableListOf(
                     Mood("눈"),
                     Mood("화창"),
                     Mood("화창"),
@@ -227,7 +228,8 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             ),
 
             Diary(
-                R.drawable.example3, 3, mutableListOf(
+                R.drawable.ic_diary_point,"2022/01/04", R.drawable.example1, 8,
+                mutableListOf(
                     Mood("눈"), Mood("화창")
                 ), mutableListOf(
                     Top("티셔츠", "#FFFFFF")
@@ -241,7 +243,8 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             ),
 
             Diary(
-                R.drawable.example4, 4, mutableListOf(
+                R.drawable.ic_diary_point,"2022/01/06", R.drawable.example1, 12,
+                mutableListOf(
                     Mood("눈"), Mood("화창"), Mood("화창"), Mood("화창"), Mood("화창")
                 ), mutableListOf(
                     Top("티셔츠", "#FFFFFF")
@@ -255,7 +258,8 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             ),
 
             Diary(
-                0, 5, mutableListOf(
+                R.drawable.ic_diary_point,"2022/01/06", R.drawable.example1, 33,
+                mutableListOf(
                     Mood("눈"), Mood("화창"), Mood("화창"), Mood("화창")
                 ), mutableListOf(
                     Top("티셔츠", "#FFFFFF")
