@@ -6,8 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:flexWrap="wrap"
     app:alignItems="stretch"
-    app:alignContent="stretch"
-    >
+    app:alignContent="stretch">
 
 
     <androidx.recyclerview.widget.RecyclerView

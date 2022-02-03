@@ -19,6 +19,7 @@
     <color name="dark_taupe">#7c6350</color>
     <color name="pinkish_grey">#c3b5ac</color>
     <color name="light_peach">#e8dcd5</color>
+    <color name="text_hint">#c1b5ad</color>
 
     <!-- Main Color -->
     <color name="main_brown">#c77a4a</color>

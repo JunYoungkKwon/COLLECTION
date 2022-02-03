@@ -13,11 +13,12 @@
         android:id="@+id/finish_cl"
         android:layout_width="match_parent"
         android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/finish_background_iv"
-            android:layout_width="328dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/img_bg_donepage"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,16 +50,16 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_edit"
-            android:layout_marginStart="32dp"
+            android:layout_marginEnd="-10dp"
             app:layout_constraintEnd_toEndOf="@id/finish_hori_first_view"
-            app:layout_constraintStart_toEndOf="@id/finish_header_iv"
             app:layout_constraintTop_toTopOf="@id/finish_header_iv"
             app:layout_constraintBottom_toBottomOf="@id/finish_header_iv"/>
 
         <View
             android:id="@+id/finish_hori_first_view"
-            android:layout_width="296dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
             android:background="@color/pinkish_grey"
             app:layout_constraintTop_toBottomOf="@id/finish_header_iv"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,8 +87,9 @@
 
         <View
             android:id="@+id/finish_hori_second_view"
-            android:layout_width="296dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
             android:background="@color/pinkish_grey"
             app:layout_constraintTop_toBottomOf="@id/finish_date_tv"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,8 +109,9 @@
 
         <View
             android:id="@+id/finish_horizon_third_view"
-            android:layout_width="296dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
             android:background="@color/pinkish_grey"
             app:layout_constraintTop_toBottomOf="@id/finish_photo_tv"
             app:layout_constraintStart_toStartOf="parent"
@@ -132,16 +135,18 @@
             android:fontFamily="@font/noto_sans_kr"
             android:textStyle="normal"
             android:textSize="13sp"
-            android:textColor="#c1b5ad"
+            android:textColorHint="@color/text_hint"
+            android:textColor="@color/dark_taupe"
             android:letterSpacing="-0.01"
-            android:text="@string/title"
+            android:hint="@string/title"
             app:layout_constraintStart_toStartOf="@id/finish_horizon_third_view"
             app:layout_constraintTop_toBottomOf="@id/finish_horizon_third_view"/>
 
         <View
             android:id="@+id/finish_horizon_fourth_view"
-            android:layout_width="296dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
             android:background="@color/pinkish_grey"
             app:layout_constraintTop_toBottomOf="@id/finish_ootd_titile_tv"
             app:layout_constraintStart_toStartOf="parent"
@@ -193,7 +198,7 @@
             android:layout_height="wrap_content"
             style="@style/Roboto13Pt3"
             android:text="@string/bottom"
-            app:layout_constraintTop_toTopOf="@id/finish_bottom_recyclerView"
+            app:layout_constraintTop_toTopOf="@id/finish_bottom_fl"
             app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
         <TextView
@@ -202,7 +207,7 @@
             android:layout_height="wrap_content"
             style="@style/Roboto13Pt3"
             android:text="@string/shoes"
-            app:layout_constraintTop_toTopOf="@id/finish_shoes_recyclerView"
+            app:layout_constraintTop_toTopOf="@id/finish_shoes_fl"
             app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
         <TextView
@@ -211,16 +216,17 @@
             android:layout_height="wrap_content"
             style="@style/Roboto13Pt3"
             android:text="@string/etc"
-            app:layout_constraintTop_toTopOf="@id/finish_etc_recyclerView"
+            app:layout_constraintTop_toTopOf="@id/finish_etc_fl"
             app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
         <View
             android:id="@+id/finish_horizon_fifth_view"
-            android:layout_width="296dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="12dp"
             android:background="@color/pinkish_grey"
-            app:layout_constraintTop_toBottomOf="@id/finish_etc_recyclerView"
+            app:layout_constraintTop_toBottomOf="@id/finish_etc_fl"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -245,7 +251,7 @@
             android:layout_height="216dp"
             android:orientation="horizontal"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="1dp"
+            android:layout_marginEnd="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toEndOf="@id/finish_vertical_view"
             app:layout_constraintTop_toBottomOf="@id/finish_hori_second_view"
@@ -290,60 +296,84 @@
             tools:listitem="@layout/item_week_diary_mood"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/finish_top_recyclerView"
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/finish_top_fl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:spanCount="4"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/item_week_diary_cloth_color"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
             app:layout_constraintTop_toTopOf="@id/finish_top_tv"
-            app:layout_constraintStart_toStartOf="@id/finish_who_recyclerView" />
+            app:layout_constraintStart_toStartOf="@id/finish_who_recyclerView"
+            app:flexWrap="wrap">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/finish_bottom_recyclerView"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/finish_top_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_week_diary_cloth_color"
+                android:orientation="horizontal"
+                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/finish_bottom_fl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="5dp"
-            app:spanCount="4"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/item_week_diary_cloth_color"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            app:layout_constraintTop_toBottomOf="@id/finish_top_recyclerView"
-            app:layout_constraintStart_toStartOf="@id/finish_top_recyclerView" />
+            app:layout_constraintTop_toBottomOf="@id/finish_top_fl"
+            app:layout_constraintStart_toStartOf="@id/finish_top_fl"
+            app:flexWrap="wrap">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/finish_shoes_recyclerView"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/finish_bottom_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_week_diary_cloth_color"
+                android:orientation="horizontal"
+                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/finish_shoes_fl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="5dp"
-            android:nestedScrollingEnabled="false"
-            app:spanCount="4"
-            tools:listitem="@layout/item_week_diary_cloth_color"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            app:layout_constraintTop_toBottomOf="@id/finish_bottom_recyclerView"
-            app:layout_constraintStart_toStartOf="@id/finish_bottom_recyclerView" />
+            app:layout_constraintTop_toBottomOf="@id/finish_bottom_fl"
+            app:layout_constraintStart_toStartOf="@id/finish_bottom_fl"
+            app:flexWrap="wrap">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/finish_etc_recyclerView"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/finish_shoes_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_week_diary_cloth_color"
+                android:orientation="horizontal"
+                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/finish_etc_fl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="5dp"
-            android:nestedScrollingEnabled="false"
-            app:spanCount="4"
-            tools:listitem="@layout/item_week_diary_cloth_color"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            app:layout_constraintTop_toBottomOf="@id/finish_shoes_recyclerView"
-            app:layout_constraintStart_toStartOf="@id/finish_shoes_recyclerView" />
+            app:layout_constraintTop_toBottomOf="@id/finish_shoes_fl"
+            app:layout_constraintStart_toStartOf="@id/finish_shoes_fl"
+            app:flexWrap="wrap">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/finish_etc_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_week_diary_cloth_color"
+                android:orientation="horizontal"
+                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
