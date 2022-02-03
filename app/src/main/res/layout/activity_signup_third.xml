@@ -280,7 +280,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="'-'를 제외하고 입력해주세요"
-        android:inputType="text"
+        android:inputType="phone"
         android:textSize="14sp"
         android:fontFamily="@font/noto_sans_kr"
         android:textColor="@color/dark_taupe"
