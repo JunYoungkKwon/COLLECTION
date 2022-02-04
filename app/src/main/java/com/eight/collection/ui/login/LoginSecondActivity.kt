@@ -1,5 +1,6 @@
 package com.eight.collection.ui.login
 
+import android.graphics.Color
 import android.view.View
 import android.widget.Toast
 import com.eight.collection.data.entities.User
@@ -16,55 +17,65 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
     override fun initAfterBinding() {
         binding.loginLoginBtnOffIv.setOnClickListener(this)
         binding.loginBackBtnIv.setOnClickListener(this)
-        //login()
     }
 
     override fun onClick(v: View?) {
         if(v == null) return
 
         when(v) {
-            binding.loginLoginBtnOffIv -> startNextActivity(SignupFirstActivity::class.java)
+            binding.loginLoginBtnOffIv -> login()
             binding.loginBackBtnIv -> finish()
         }
     }
 
     private fun login() {
-        if (binding.loginIdEt.text.toString().isEmpty()) {
-            Toast.makeText(this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }
+        val id = binding.loginIdEt.text.toString()
+        val password = binding.loginPwEt.text.toString()
+        val user = User(id, password)
 
-        if (binding.loginPwEt.text.toString().isEmpty()) {
-            Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-//        val email = binding.loginIdEt.text.toString() + "@" + binding.loginDirectInputEt.text.toString()
-//        val password = binding.loginPasswordEt.text.toString()
-//        val user = User(email, password, "")
-
-        //AuthService.login(this, user)
+        AuthService.login(this, user)
     }
 
-//    override fun onLoginLoading() {
-//        binding.loginLoadingPb.visibility = View.VISIBLE
-//    }
-//
-//    override fun onLoginSuccess(auth: Auth) {
-//        binding.loginLoadingPb.visibility = View.GONE
-//
-//        saveJwt(auth.jwt)
-//        startActivityWithClear(MainActivity::class.java)
-//    }
-//
-//    override fun onLoginFailure(code: Int, message: String) {
-//        binding.loginLoadingPb.visibility = View.GONE
-//
-//        when(code) {
-//            2015, 2019, 3014 -> {
-//                binding.loginErrorTv.visibility = View.VISIBLE
-//                binding.loginErrorTv.text= message
-//            }
-//        }
-//    }
+    override fun onLoginLoading() {
+        showToast("loading")
+    }
+
+    override fun onLoginSuccess(auth: Auth) {
+        saveJwt(auth.jwt)
+        startActivityWithClear(MainActivity::class.java)
+    }
+
+    override fun onLoginFailure(code: Int, message: String) {
+
+        when(code) {
+            //ID 에러
+            3000, 3011, 4002 -> {
+                //ID 보이게
+                binding.loginIdHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.loginIdFailIv.visibility = View.VISIBLE
+                binding.loginIdFailTv.visibility = View.VISIBLE
+                binding.loginIdFailTv.text= message
+                //PW 안보이게
+                binding.loginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.loginPwFailIv.visibility = View.INVISIBLE
+                binding.loginPwFailTv.visibility = View.INVISIBLE
+            }
+            //PW 에러
+            3003, 3012 -> {
+                //PW 보이게
+                binding.loginPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.loginPwFailIv.visibility = View.VISIBLE
+                binding.loginPwFailTv.visibility = View.VISIBLE
+                binding.loginPwFailTv.text= message
+                //ID 부분 안보이게
+                binding.loginIdHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.loginIdFailIv.visibility = View.INVISIBLE
+                binding.loginIdFailTv.visibility = View.INVISIBLE
+            }
+
+            else -> {
+                showToast("SEVER ERROR ")
+            }
+        }
+    }
 }
