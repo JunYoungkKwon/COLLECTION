@@ -66,14 +66,13 @@
         android:layout_height="wrap_content"
         android:text="이름"
         android:textColor="@color/dark_taupe"
-        android:fontFamily="@font/noto_sans_kr"
         android:textStyle="normal"
         android:textSize="12sp"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_name_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_signup_tv"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"
+        android:layout_marginTop="48dp"
         />
 
     <EditText
@@ -84,15 +83,14 @@
         android:hint="실명을 입력하세요"
         android:inputType="textPersonName"
         android:textSize="14sp"
-        android:fontFamily="@font/noto_sans_kr"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_name_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_name_tv"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="120dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="10dp"
         />
 
     <View
@@ -102,10 +100,26 @@
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_name_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="154.5dp"
+        android:layout_marginTop="9.5dp"
+        />
+
+    <TextView
+        android:id="@+id/sign_up_third_name_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/terracota"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_name_underscore_view"
+        android:layout_marginTop="3.5dp"
         />
 
     <TextView
@@ -114,14 +128,14 @@
         android:layout_height="wrap_content"
         android:text="아이디"
         android:textColor="@color/dark_taupe"
-        android:fontFamily="@font/noto_sans_kr"
         android:textStyle="normal"
         android:textSize="12sp"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_id_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_name_error_tv"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"/>
+        android:layout_marginTop="12dp"
+        />
 
     <EditText
         android:id="@+id/sign_up_third_id_et"
@@ -131,15 +145,14 @@
         android:hint="6~15자리를 입력해주세요"
         android:inputType="text"
         android:textSize="14sp"
-        android:fontFamily="@font/noto_sans_kr"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_id_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_id_tv"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="120dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="10dp"
         />
 
     <View
@@ -149,10 +162,10 @@
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_id_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="234.5dp"
+        android:layout_marginTop="9.5dp"
         />
 
     <ImageView
@@ -166,19 +179,35 @@
         android:layout_marginEnd="32dp"/>
 
     <TextView
+        android:id="@+id/sign_up_third_id_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/terracota"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_id_underscore_view"
+        android:layout_marginTop="3.5dp"
+        />
+
+    <TextView
         android:id="@+id/sign_up_third_password_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="비밀번호"
         android:textColor="@color/dark_taupe"
-        android:fontFamily="@font/noto_sans_kr"
         android:textStyle="normal"
         android:textSize="12sp"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_password_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_id_error_tv"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"/>
+        android:layout_marginTop="12dp"
+        />
 
     <EditText
         android:id="@+id/sign_up_third_password_et"
@@ -188,15 +217,14 @@
         android:hint="6~15자리를 입력해주세요"
         android:inputType="textPassword"
         android:textSize="14sp"
-        android:fontFamily="@font/noto_sans_kr"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_password_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_tv"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="120dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="10dp"
         />
 
     <View
@@ -206,11 +234,28 @@
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="314.5dp"
+        android:layout_marginTop="9.5dp"
         />
+
+    <TextView
+        android:id="@+id/sign_up_third_password_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/terracota"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_underscore_view"
+        android:layout_marginTop="3.5dp"
+        />
+
 
     <TextView
         android:id="@+id/sign_up_third_password_check_tv"
@@ -218,14 +263,14 @@
         android:layout_height="wrap_content"
         android:text="비밀번호 확인"
         android:textColor="@color/dark_taupe"
-        android:fontFamily="@font/noto_sans_kr"
         android:textStyle="normal"
         android:textSize="12sp"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_password_check_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_error_tv"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"/>
+        android:layout_marginTop="12dp"
+        />
 
     <EditText
         android:id="@+id/sign_up_third_password_check_et"
@@ -235,15 +280,14 @@
         android:hint="6~15자리를 입력해주세요"
         android:inputType="textPassword"
         android:textSize="14sp"
-        android:fontFamily="@font/noto_sans_kr"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_password_check_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_check_tv"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="120dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="10dp"
         />
 
     <View
@@ -253,10 +297,26 @@
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_check_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="400.5dp"
+        android:layout_marginTop="9.5dp"
+        />
+
+    <TextView
+        android:id="@+id/sign_up_third_password_check_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/terracota"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_check_underscore_view"
+        android:layout_marginTop="3.5dp"
         />
 
     <TextView
@@ -265,14 +325,14 @@
         android:layout_height="wrap_content"
         android:text="휴대폰"
         android:textColor="@color/dark_taupe"
-        android:fontFamily="@font/noto_sans_kr"
         android:textStyle="normal"
         android:textSize="12sp"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_phone_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_check_error_tv"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="32.5dp"/>
+        android:layout_marginTop="12dp"
+        />
 
     <EditText
         android:id="@+id/sign_up_third_phone_et"
@@ -282,15 +342,14 @@
         android:hint="'-'를 제외하고 입력해주세요"
         android:inputType="phone"
         android:textSize="14sp"
-        android:fontFamily="@font/noto_sans_kr"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sign_up_third_phone_underscore_view"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_phone_tv"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="120dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="10dp"
         />
 
     <View
@@ -300,10 +359,26 @@
         android:background="@color/pinkish_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_phone_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="480.5dp"
+        android:layout_marginTop="9.5dp"
+        />
+
+    <TextView
+        android:id="@+id/sign_up_third_phone_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/terracota"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_phone_underscore_view"
+        android:layout_marginTop="3.5dp"
         />
 
     <androidx.appcompat.widget.AppCompatButton
