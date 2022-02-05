@@ -46,7 +46,6 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
     }
 
     override fun onLoginFailure(code: Int, message: String) {
-
         when(code) {
             //ID 에러
             3000, 3011, 4002 -> {

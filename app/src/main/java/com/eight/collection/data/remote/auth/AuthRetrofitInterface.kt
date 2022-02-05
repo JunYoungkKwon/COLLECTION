@@ -14,7 +14,7 @@ interface AuthRetrofitInterface {
     fun login(@Body user: User): Call<AuthResponse>
 
     @GET("app/user/duplicate-nickname")
-    fun checkNickname()
+    fun checkNickname(user: User): Call<AuthResponse>
 
 //    @GET("/users/auto-login")
 //    fun autoLogin(): Call<AuthResponse>

@@ -5,14 +5,15 @@ import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.ApplicationClass.Companion.retrofit
 import com.eight.collection.data.entities.User
 import com.eight.collection.ui.login.LoginView
+import com.eight.collection.ui.signup.CheckNicknameView
 import com.eight.collection.ui.signup.SignUpView
-import com.eight.collection.ui.splash.SplashView
+import com.eight.collection.ui.signup.SignupThirdActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 object AuthService {
-    fun signUp(signUpView: SignUpView ,user: User) {
+    fun signUp(signUpView: SignUpView, user: User) {
         val authService = retrofit.create(AuthRetrofitInterface::class.java)
 
         signUpView.onSignUpLoading()
@@ -35,6 +36,31 @@ object AuthService {
             }
         })
     }
+
+    fun checkNickname(checkNicknameView: CheckNicknameView, user: User) {
+        val authService = retrofit.create(AuthRetrofitInterface::class.java)
+
+        checkNicknameView.onCheckNicknameLoading()
+
+        authService.checkNickname(user).enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                val resp = response.body()!!
+
+                when(resp.code){
+                    1022 -> checkNicknameView.onCheckNicknameSuccess()
+                    else -> checkNicknameView.onCheckNicknameFailure(resp.code, resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                Log.d("$TAG/API-ERROR", t.message.toString())
+
+                checkNicknameView.onCheckNicknameFailure(400, "네트워크 오류가 발생했습니다.")
+            }
+        })
+    }
+
+
 
     fun login(loginView: LoginView, user: User) {
         val authService = retrofit.create(AuthRetrofitInterface::class.java)
