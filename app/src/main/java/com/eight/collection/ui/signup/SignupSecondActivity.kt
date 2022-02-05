@@ -1,5 +1,6 @@
 package com.eight.collection.ui.signup
 
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.eight.collection.data.entities.User
@@ -20,10 +21,15 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
 
         when(v) {
             /*binding.signUpSecondNextButton -> checkNickname()*/
-                binding.signUpSecondNextButton -> startNextActivity(SignupThirdActivity::class.java)
+                binding.signUpSecondNextButton -> {
+                    val intent = Intent(this,SignupThirdActivity::class.java)
+                    intent.putExtra("nickname","야호")
+                    startNextActivity(SignupThirdActivity::class.java)
+                }
                 binding.signUpSecondIcBack -> finish()
         }
     }
+
 
      /*private fun getUser(): User {
          val nickname: String = binding.signUpSecondNicknameEt.text.toString()

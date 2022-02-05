@@ -1,6 +1,7 @@
 package com.eight.collection.ui.signup
 
 import android.graphics.Color
+import android.text.Editable
 import android.view.View
 import android.widget.Toast
 import com.eight.collection.data.entities.User
@@ -15,6 +16,8 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     override fun initAfterBinding() {
         binding.signUpThirdIcBack.setOnClickListener(this)
         binding.signUpThirdFinishButton.setOnClickListener(this)
+        val value : String? = intent.getStringExtra("nickname")
+        binding.signUpThirdNicknameEt.setText(value)
     }
 
     override fun onClick(v: View?) {
