@@ -1,8 +1,11 @@
 package com.eight.collection.ui.signup
 
 import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.eight.collection.R
 import com.eight.collection.data.entities.User
 import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivitySignupSecondBinding
@@ -22,13 +25,19 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
         when(v) {
             /*binding.signUpSecondNextButton -> checkNickname()*/
                 binding.signUpSecondNextButton -> {
-                    val intent = Intent(this,SignupThirdActivity::class.java)
-                    intent.putExtra("nickname","야호")
-                    startNextActivity(SignupThirdActivity::class.java)
+                    Log.d("Log","SignupSecondActivity")
+                    val intent = Intent(this, SignupThirdActivity::class.java)
+                    intent.putExtra("nickname",binding.signUpSecondNicknameEt.text.toString())
+                    startActivity(intent)
                 }
                 binding.signUpSecondIcBack -> finish()
         }
     }
+/*
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_signup_second)
+    }*/
 
 
      /*private fun getUser(): User {

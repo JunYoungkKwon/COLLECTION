@@ -1,9 +1,13 @@
 package com.eight.collection.ui.signup
 
 import android.graphics.Color
+import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.eight.collection.ApplicationClass.Companion.TAG
+import com.eight.collection.R
 import com.eight.collection.data.entities.User
 import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivitySignupThirdBinding
@@ -16,7 +20,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     override fun initAfterBinding() {
         binding.signUpThirdIcBack.setOnClickListener(this)
         binding.signUpThirdFinishButton.setOnClickListener(this)
-        val value : String? = intent.getStringExtra("nickname")
+        val value = intent.getStringExtra("nickname")
         binding.signUpThirdNicknameEt.setText(value)
     }
 
@@ -159,6 +163,17 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
             }
         }
     }
+
+    /*override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_signup_third)
+        Log.d("Log","SignupThirdActivity")
+
+        var data:String?
+        data = intent.getStringExtra("key")
+
+        Log.d("Log","value:" + data)
+    }*/
 
     /*override fun onSignUpLoading() {
         binding.signUpLoadingPb.visibility = View.VISIBLE
