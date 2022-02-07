@@ -2,10 +2,16 @@ package com.eight.collection.ui.signup
 
 import android.content.Intent
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import com.eight.collection.R
 import com.eight.collection.data.remote.auth.AuthService
+import com.eight.collection.databinding.ActivityAddToptagBinding.inflate
 import com.eight.collection.databinding.ActivitySignupSecondBinding
+import com.eight.collection.databinding.ActivityWritesecondBinding.inflate
 import com.eight.collection.ui.BaseActivity
 
 class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySignupSecondBinding::inflate),CheckNicknameView, View.OnClickListener {
@@ -27,7 +33,13 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
 
     private fun checkNickname() {
         if (binding.signUpSecondNicknameEt.text.toString().isEmpty()) {
-            Toast.makeText(this, "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
+            var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+            text.text = "닉네임을 입력해주세요."
+            var toast = Toast(this)
+            toast.view = layoutInflater
+            toast.setGravity(Gravity.BOTTOM, 0, 270)
+            toast.show()
             return
         }
         val nickname : String = binding.signUpSecondNicknameEt.text.toString()
@@ -35,7 +47,6 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
     }
 
     override fun onCheckNicknameLoading() {
-        showToast("LOADING")
     }
 
     override fun onCheckNicknameSuccess() {
@@ -48,10 +59,22 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
     override fun onCheckNicknameFailure(code: Int, message: String) {
         when(code) {
             3005, 3006, 3007, 3050, 3051 -> {
-                showToast(message)
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                text.text = message
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
             }
             else -> {
-                showToast("SERVER ERROR")
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                text.text = "SERVER ERROR"
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
             }
         }
     }

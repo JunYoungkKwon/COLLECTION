@@ -69,7 +69,6 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     }
 
     override fun onSignUpLoading() {
-        showToast("회원가입 중")
     }
 
     override fun onSignUpSuccess() {
