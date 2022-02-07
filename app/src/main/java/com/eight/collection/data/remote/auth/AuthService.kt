@@ -7,7 +7,6 @@ import com.eight.collection.data.entities.User
 import com.eight.collection.ui.login.LoginView
 import com.eight.collection.ui.signup.CheckNicknameView
 import com.eight.collection.ui.signup.SignUpView
-import com.eight.collection.ui.signup.SignupThirdActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,12 +36,12 @@ object AuthService {
         })
     }
 
-    fun checkNickname(checkNicknameView: CheckNicknameView, user: User) {
+    fun checkNickname(checkNicknameView: CheckNicknameView, nickname: String) {
         val authService = retrofit.create(AuthRetrofitInterface::class.java)
 
         checkNicknameView.onCheckNicknameLoading()
 
-        authService.checkNickname(user).enqueue(object : Callback<AuthResponse> {
+        authService.checkNickname(nickname).enqueue(object : Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 val resp = response.body()!!
 

@@ -1,18 +1,14 @@
 package com.eight.collection.ui.signup
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.eight.collection.R
-import com.eight.collection.data.entities.User
 import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivitySignupSecondBinding
 import com.eight.collection.ui.BaseActivity
-import com.eight.collection.ui.main.MainActivity
 
-class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySignupSecondBinding::inflate), View.OnClickListener {
+class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySignupSecondBinding::inflate),CheckNicknameView, View.OnClickListener {
 
     override fun initAfterBinding() {
         binding.signUpSecondIcBack.setOnClickListener(this)
@@ -24,54 +20,41 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
 
         when(v) {
             /*binding.signUpSecondNextButton -> checkNickname()*/
-                binding.signUpSecondNextButton -> {
-                    Log.d("Log","SignupSecondActivity")
-                    val intent = Intent(this, SignupThirdActivity::class.java)
-                    intent.putExtra("nickname",binding.signUpSecondNicknameEt.text.toString())
-                    startActivity(intent)
-                }
+                binding.signUpSecondNextButton -> checkNickname()
                 binding.signUpSecondIcBack -> finish()
         }
     }
-/*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup_second)
-    }*/
 
-
-     /*private fun getUser(): User {
-         val nickname: String = binding.signUpSecondNicknameEt.text.toString()
-         return User("","","","nickname","")
-     }*/
-
-    /*private fun checkNickname() {
+    private fun checkNickname() {
         if (binding.signUpSecondNicknameEt.text.toString().isEmpty()) {
             Toast.makeText(this, "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show()
             return
         }
+        val nickname : String = binding.signUpSecondNicknameEt.text.toString()
+        AuthService.checkNickname(this, nickname)
+    }
 
-        AuthService.checkNickname(this, getUser())
-    }*/
-
-    /*override fun onCheckNicknameLoading() {
+    override fun onCheckNicknameLoading() {
         showToast("LOADING")
     }
 
     override fun onCheckNicknameSuccess() {
-        startNextActivity(SignupThirdActivity::class.java)
+        Log.d("Log","SignupSecondActivity")
+        val intent = Intent(this, SignupThirdActivity::class.java)
+        intent.putExtra("postnickname",binding.signUpSecondNicknameEt.text.toString())
+        startActivity(intent)
     }
 
     override fun onCheckNicknameFailure(code: Int, message: String) {
         when(code) {
-            3005,3007 -> {
+            3005, 3006, 3007, 3050, 3051 -> {
                 showToast(message)
             }
             else -> {
                 showToast("SERVER ERROR")
             }
         }
-    }*/
+    }
 
     /*override fun onSignUpLoading() {
         binding.signUpLoadingPb.visibility = View.VISIBLE

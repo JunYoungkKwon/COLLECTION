@@ -20,7 +20,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     override fun initAfterBinding() {
         binding.signUpThirdIcBack.setOnClickListener(this)
         binding.signUpThirdFinishButton.setOnClickListener(this)
-        val value = intent.getStringExtra("nickname")
+        val value = intent.getStringExtra("postnickname")
         binding.signUpThirdNicknameEt.setText(value)
     }
 
@@ -69,17 +69,18 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     }
 
     override fun onSignUpLoading() {
-        showToast("Loading")
+        showToast("회원가입 중")
     }
 
     override fun onSignUpSuccess() {
         startActivityWithClear(LoginSecondActivity::class.java)
+        showToast("회원가입에 성공하였습니다.")
     }
 
     override fun onSignUpFailure(code: Int, message: String) {
         when(code) {
             //Name 에러
-            3041 -> {
+            3041, 3050, 3051 -> {
                 binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdNameErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdNameErrorTv.text= message
@@ -100,7 +101,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
             }
             //ID 에러
-            3000, 3001, 3002 -> {
+            3000, 3001, 3002, 3050, 3051 -> {
                 binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdIdErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdIdErrorTv.text= message
@@ -120,7 +121,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
             }
             //Password 에러
-            3003, 3004 -> {
+            3003, 3004, 3050, 3051 -> {
                 binding.signUpThirdPasswordUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdPasswordErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdPasswordErrorTv.text= message
@@ -139,7 +140,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
                 binding.signUpThirdPhoneErrorTv.visibility = View.GONE
             }
             //Phone 에러
-            3008, 3009, 3010 -> {
+            3008, 3009, 3010, 3050, 3051 -> {
                 binding.signUpThirdPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdPhoneErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdPhoneErrorTv.text= message
