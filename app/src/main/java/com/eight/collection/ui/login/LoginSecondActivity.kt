@@ -35,7 +35,7 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
     private fun login() {
         val id = binding.loginIdEt.text.toString()
         val password = binding.loginPwEt.text.toString()
-        val user = User(id, password)
+        val user = User(id, password, "", "", "")
 
         AuthService.login(this, user)
     }
