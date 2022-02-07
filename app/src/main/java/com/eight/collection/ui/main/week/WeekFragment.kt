@@ -1,5 +1,6 @@
 package com.eight.collection.ui.main.week
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -48,34 +49,57 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     override fun initAfterBinding() {
         startMyLook()
         startWriteFirst()
+        view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
+        //startDatePicker()
 
-        val  listener: OnSelectDateListener = object : OnSelectDateListener {
-            override fun onSelect(calendar: List<Calendar>) {
+//        val mcurrentTime = Calendar.getInstance()
+//        val year = mcurrentTime.get(Calendar.YEAR)
+//        val month = mcurrentTime.get(Calendar.MONTH)
+//        val day = mcurrentTime.get(Calendar.DAY_OF_MONTH)
+//
+//        val datePicker = activity?.let {
+//            DatePickerDialog(it, R.style.MyDatePickerStyle, object : DatePickerDialog.OnDateSetListener {
+//                override fun onDateSet(
+//                    view: android.widget.DatePicker?,
+//                    year: Int,
+//                    month: Int,
+//                    dayOfMonth: Int
+//                ) {
+//                    //selectedDate.setText(String.format("%d / %d / %d", dayOfMonth, month + 1, year))
+//                }
+//            }, year, month, day)
+//        }
+//        if (datePicker != null) {
+//            datePicker.show()
+//        }
 
-            }
-        }
-
-        val oneDayBuilder = DatePickerBuilder(this.requireContext(), listener)
-            .pickerType(CalendarView.ONE_DAY_PICKER)
-            .headerLabelColor(R.color.terracota)
-            .selectionColor(R.color.daysLabelColor)
-            .dialogButtonsColor(android.R.color.holo_green_dark)
-            .disabledDaysLabelsColor(android.R.color.holo_purple)
-            .headerVisibility(View.VISIBLE)
-            .abbreviationsBarVisibility(View.GONE)
-            .abbreviationsLabelsColor(R.color.terracota)
-            .headerColor(R.color.bottom_navi)
-            .daysLabelsColor(R.color.black)
-            .pagesColor(R.color.bottom_navi)
-            //.typefaceSrc(R.font.roboto_light)
-            .previousButtonSrc(R.drawable.ic_datepicker_previous)
-            .forwardButtonSrc(R.drawable.ic_datepicker_next)
-
-
-
-
-        val oneDayPicker = oneDayBuilder.build()
-        oneDayPicker.show()
+//        val  listener: OnSelectDateListener = object : OnSelectDateListener {
+//            override fun onSelect(calendar: List<Calendar>) {
+//
+//            }
+//        }
+//
+//        val oneDayBuilder = DatePickerBuilder(this.requireContext(), listener)
+//            .pickerType(CalendarView.ONE_DAY_PICKER)
+//            .headerLabelColor(R.color.terracota)
+//            .selectionColor(R.color.daysLabelColor)
+//            .dialogButtonsColor(android.R.color.holo_green_dark)
+//            .disabledDaysLabelsColor(android.R.color.holo_purple)
+//            .headerVisibility(View.VISIBLE)
+//            .abbreviationsBarVisibility(View.GONE)
+//            .abbreviationsLabelsColor(R.color.terracota)
+//            .headerColor(R.color.bottom_navi)
+//            .daysLabelsColor(R.color.black)
+//            .pagesColor(R.color.bottom_navi
+//            //.typefaceSrc(R.font.roboto_light)
+//            .previousButtonSrc(R.drawable.ic_datepicker_previous)
+//            .forwardButtonSrc(R.drawable.ic_datepicker_next)
+//
+//
+//
+//
+//        val oneDayPicker = oneDayBuilder.build()
+//        oneDayPicker.show()
 
 
         class DayViewContainer(view: View) : ViewContainer(view) {
@@ -285,6 +309,12 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         return diaryList
 
 
+    }
+    private fun startDatePicker() {
+        startActivity(Intent(activity, DatePickerActivity::class.java))
+//        binding.weekBtnWriteIv.setOnClickListener {
+//            startActivity(Intent(activity, DatePickerActivity::class.java))
+//        }
     }
 
     private fun startWriteFirst() {
