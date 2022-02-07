@@ -132,7 +132,7 @@
         android:background="@null"
         android:hint="@string/login_pw_hint"
         android:textColorHint="@color/pinkish_grey"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:fontFamily="@font/noto_sans_kr"
         android:textStyle="normal"
         android:textSize="14sp"
