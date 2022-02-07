@@ -29,13 +29,9 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         startMyLook()
+        startWrite()
 
         binding.monthBtnWriteIv.bringToFront()
-
-        binding.monthBtnWriteIv.setOnClickListener{
-            startActivity(Intent(activity, WritefirstActivity::class.java))
-        }
-
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
@@ -43,6 +39,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         }
 
 
+        //day cell 크기 조정
         val dm = DisplayMetrics()
         val wm = requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
         wm.defaultDisplay.getMetrics(dm)
@@ -102,6 +99,12 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         binding.calendarView.scrollToMonth(currentMonth)
 
 
+    }
+
+    private fun startWrite() {
+        binding.monthBtnWriteIv.setOnClickListener {
+            startActivity(Intent(activity, WritefirstActivity::class.java))
+        }
     }
 
     private fun startMyLook() {

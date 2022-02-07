@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.eight.collection"
-        minSdk 23
+        minSdk 26
 
         targetSdk 31
         versionCode 1
@@ -91,5 +91,7 @@ dependencies {
 
     //infinitiViewPager
     implementation 'com.asksira.android:loopingviewpager:1.4.1'
+
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
 
 }

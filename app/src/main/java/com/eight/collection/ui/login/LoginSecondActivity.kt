@@ -1,8 +1,12 @@
 package com.eight.collection.ui.login
 
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
+import com.eight.collection.R
 import com.eight.collection.data.entities.User
 import com.eight.collection.data.remote.auth.Auth
 import com.eight.collection.data.remote.auth.AuthService
@@ -31,21 +35,38 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
     private fun login() {
         val id = binding.loginIdEt.text.toString()
         val password = binding.loginPwEt.text.toString()
-        val user = User(id, password,"","","")
+        val user = User(id, password, "", "", "")
 
         AuthService.login(this, user)
     }
 
     override fun onLoginLoading() {
-        showToast("loading")
+        binding.loginLoadingInIv.visibility = View.VISIBLE
+        binding.loginLoadingCircleIv.visibility = View.VISIBLE
+        binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+        //로딩이미지 애니메이션
+        val animation = AnimationUtils.loadAnimation(this, R.anim.rotate)
+        binding.loginLoadingCircleIv.startAnimation(animation)
+        binding.loginDimBackground.visibility = View.VISIBLE
+
     }
 
     override fun onLoginSuccess(auth: Auth) {
-        saveJwt(auth.jwt)
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+
         startActivityWithClear(MainActivity::class.java)
     }
 
     override fun onLoginFailure(code: Int, message: String) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
         when(code) {
             //ID 에러
             3000, 3011, 4002 -> {

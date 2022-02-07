@@ -6,6 +6,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/img_bg_matchpage">
 
+    <LinearLayout
+        android:id="@+id/login_dim_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#30000000"
+        android:visibility="gone"
+        android:orientation="vertical">
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/login_back_btn_iv"
         android:layout_width="wrap_content"
@@ -93,7 +102,7 @@
         android:id="@+id/login_id_fail_iv"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:src="@drawable/ic_login_fail"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/login_id_highlight_view"
@@ -104,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_kr"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:textStyle="normal"
         android:textSize="14sp"
         android:textColor="@color/terracota"
@@ -177,5 +186,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_pw_fail_tv" />
+
+    <ImageView
+        android:id="@+id/login_loading_background_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/ic_loading_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/login_loading_in_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/ic_loading_in"
+        app:layout_constraintTop_toTopOf="@+id/login_loading_circle_iv"
+        app:layout_constraintStart_toStartOf="@+id/login_loading_circle_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/login_loading_circle_iv"
+        app:layout_constraintEnd_toEndOf="@+id/login_loading_circle_iv"/>
+
+    <ImageView
+        android:id="@+id/login_loading_circle_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/ic_loading_circle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

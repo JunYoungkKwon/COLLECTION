@@ -19,7 +19,15 @@
 
         <!-- Dialog Corner. -->
         <item name="dialogCornerRadius">10dp</item>
-        <item name="android:yearListItemTextAppearance">@style/VlanLlaRegular6Pt</item>
+        <item name="android:calendarViewStyle">@style/MyDatePickerStyle</item>
+    </style>
+    <style name="MyDatePickerStyle" parent="android:Widget.CalendarView">
+        <item name="android:textColorPrimary">#FFAACF</item>
+        <item name="android:textColorSecondary">#DA0303</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+<!--        <item name="android:weekDayTextAppearance">@style/CustomCalendarWeek</item>-->
+        <item name="android:dateTextAppearance">@style/CustomCalendarDay</item>
+        <item name="selectableItemBackgroundBorderless">@color/purple_200</item>
     </style>
 
 </resources>
