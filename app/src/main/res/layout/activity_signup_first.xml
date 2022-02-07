@@ -72,7 +72,7 @@
         android:textSize="14sp"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
-        android:text="개인정보 수집제공 동의(필수)"
+        android:text="(필수)개인정보 수집제공 동의"
         app:layout_constraintStart_toEndOf="@id/sign_up_first_check_first_iv"
         app:layout_constraintTop_toTopOf="@id/sign_up_first_check_first_iv"
         app:layout_constraintBottom_toBottomOf="@id/sign_up_first_check_first_iv"
@@ -88,126 +88,7 @@
         app:layout_constraintBottom_toBottomOf="@id/sign_up_first_agree_first_tv"
         android:layout_marginEnd="33dp"/>
 
-    <CheckBox
-        android:id="@+id/sign_up_first_check_second_iv"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:button="@null"
-        android:background="@drawable/custom_checkbox"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_first_ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="176dp"
-        android:layout_marginStart="34dp"
-        />
 
-
-    <TextView
-        android:id="@+id/sign_up_first_agree_second_tv"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_kr"
-        android:gravity="top"
-        android:textStyle="normal"
-        android:textSize="14sp"
-        android:textColor="@color/dark_taupe"
-        android:letterSpacing="-0.01"
-        android:text="약관동의(필수)"
-        app:layout_constraintStart_toEndOf="@id/sign_up_first_check_second_iv"
-        app:layout_constraintTop_toTopOf="@id/sign_up_first_check_second_iv"
-        app:layout_constraintBottom_toBottomOf="@id/sign_up_first_check_second_iv"
-        android:layout_marginStart="10dp"
-        />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_back2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/sign_up_first_agree_second_tv"
-        app:layout_constraintBottom_toBottomOf="@id/sign_up_first_agree_second_tv"
-        android:layout_marginEnd="33dp"/>
-
-    <CheckBox
-        android:id="@+id/sign_up_first_check_third_iv"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:button="@null"
-        android:background="@drawable/custom_checkbox"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_first_ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="212dp"
-        android:layout_marginStart="34dp"
-        />
-
-    <TextView
-        android:id="@+id/sign_up_first_agree_third_tv"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_kr"
-        android:gravity="top"
-        android:textStyle="normal"
-        android:textSize="14sp"
-        android:textColor="@color/dark_taupe"
-        android:letterSpacing="-0.01"
-        android:text="SMS 광고성 정보 수신동의(선택)"
-        app:layout_constraintStart_toEndOf="@id/sign_up_first_check_third_iv"
-        app:layout_constraintTop_toTopOf="@id/sign_up_first_check_third_iv"
-        app:layout_constraintBottom_toBottomOf="@id/sign_up_first_check_third_iv"
-        android:layout_marginStart="10dp"
-        />
-
-    <ImageView
-        android:id="@+id/sign_up_first_agree_more_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_back2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/sign_up_first_agree_third_tv"
-        app:layout_constraintBottom_toBottomOf="@id/sign_up_first_agree_third_tv"
-        android:layout_marginEnd="33dp"/>
-
-    <View
-        android:id="@+id/writefirst_background_horizontalline_first_v"
-        android:layout_width="348dp"
-        android:layout_height="1dp"
-        android:background="@color/light_peach"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_first_check_third_iv"
-        app:layout_constraintStart_toStartOf="@id/sign_up_first_check_third_iv"
-        app:layout_constraintEnd_toEndOf="@id/sign_up_first_agree_more_iv"
-        android:layout_marginTop="15.5dp"
-        />
-
-    <CheckBox
-        android:id="@+id/sign_up_first_check_fourth_iv"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:button="@null"
-        android:background="@drawable/custom_checkbox"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_first_ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="265dp"
-        android:layout_marginStart="34dp"
-        />
-
-    <TextView
-        android:id="@+id/sign_up_first_agree_fourth_tv"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_kr"
-        android:gravity="top"
-        android:textStyle="normal"
-        android:textSize="14sp"
-        android:textColor="@color/dark_taupe"
-        android:letterSpacing="-0.01"
-        android:text="전체 동의"
-        app:layout_constraintStart_toEndOf="@id/sign_up_first_check_fourth_iv"
-        app:layout_constraintTop_toTopOf="@id/sign_up_first_check_fourth_iv"
-        app:layout_constraintBottom_toBottomOf="@id/sign_up_first_check_fourth_iv"
-        android:layout_marginStart="10dp"
-        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sign_up_first_next_button"

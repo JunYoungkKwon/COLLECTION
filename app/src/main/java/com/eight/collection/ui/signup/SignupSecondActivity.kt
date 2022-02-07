@@ -50,7 +50,6 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
     }
 
     override fun onCheckNicknameSuccess() {
-        Log.d("Log","SignupSecondActivity")
         val intent = Intent(this, SignupThirdActivity::class.java)
         intent.putExtra("postnickname",binding.signUpSecondNicknameEt.text.toString())
         startActivity(intent)

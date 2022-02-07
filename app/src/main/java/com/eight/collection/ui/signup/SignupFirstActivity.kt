@@ -15,12 +15,14 @@ class SignupFirstActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySign
     }
 
     override fun onClick(v: View?) {
-        if(v == null) return
-
-        when(v) {
+        if (v == null) return
+        when (v) {
             binding.signUpFirstIcBack -> startNextActivity(LoginFirstActivity::class.java)
-            binding.signUpFirstNextButton -> startNextActivity(SignupSecondActivity::class.java)
+        }
+        if (binding.signUpFirstCheckFirstIv.isChecked) {
+            when (v) {
+                binding.signUpFirstNextButton -> startNextActivity(SignupSecondActivity::class.java)
+            }
         }
     }
-
 }

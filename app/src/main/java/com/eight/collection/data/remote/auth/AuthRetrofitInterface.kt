@@ -17,6 +17,9 @@ interface AuthRetrofitInterface {
     @GET("app/user/check-nickname")
     fun checkNickname(@Query("nickname") nickname : String): Call<AuthResponse>
 
+    @GET("app/user/duplicate-id")
+    fun checkId(@Query("ID") id : String): Call<AuthResponse>
+
 //    @GET("/users/auto-login")
 //    fun autoLogin(): Call<AuthResponse>
 }
