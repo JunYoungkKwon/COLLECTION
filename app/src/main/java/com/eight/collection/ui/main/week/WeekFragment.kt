@@ -53,7 +53,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         startSetting()
         binding.weekBtnSettingIv.bringToFront()
         view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
-        //startDatePicker()
+        ////startDatePicker()
 
 //        val mcurrentTime = Calendar.getInstance()
 //        val year = mcurrentTime.get(Calendar.YEAR)
