@@ -23,7 +23,6 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
        val ootd = Ootd("2022/02/02",R.drawable.ic_diary_point,"ABCDEFGHIJKLMNOPQRSTUVWXYZABC", "날씨가 너무 좋았다")
         setInit(ootd)
 
-
         //더미 데이터
         weatherDatas.apply {
             add(Weather("맑음"))
