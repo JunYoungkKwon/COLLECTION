@@ -25,7 +25,6 @@ import com.eight.collection.ui.main.MainActivity
 import com.eight.collection.ui.main.lookpoint.MyLook
 import com.eight.collection.ui.main.lookpoint.MyLookRVAdapter
 import com.eight.collection.ui.main.lookpoint.Photo
-import com.eight.collection.ui.writing.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -37,10 +36,10 @@ import java.time.YearMonth
 import com.applandeo.materialcalendarview.builders.DatePickerBuilder
 import com.applandeo.materialcalendarview.listeners.OnSelectDateListener
 import com.eight.collection.ui.main.setting.SettingActivity
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import java.util.*
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate){
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
@@ -49,57 +48,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         startSetting()
         binding.weekBtnSettingIv.bringToFront()
         view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
-        ////startDatePicker()
-
-//        val mcurrentTime = Calendar.getInstance()
-//        val year = mcurrentTime.get(Calendar.YEAR)
-//        val month = mcurrentTime.get(Calendar.MONTH)
-//        val day = mcurrentTime.get(Calendar.DAY_OF_MONTH)
-//
-//        val datePicker = activity?.let {
-//            DatePickerDialog(it, R.style.MyDatePickerStyle, object : DatePickerDialog.OnDateSetListener {
-//                override fun onDateSet(
-//                    view: android.widget.DatePicker?,
-//                    year: Int,
-//                    month: Int,
-//                    dayOfMonth: Int
-//                ) {
-//                    //selectedDate.setText(String.format("%d / %d / %d", dayOfMonth, month + 1, year))
-//                }
-//            }, year, month, day)
-//        }
-//        if (datePicker != null) {
-//            datePicker.show()
-//        }
-
-//        val  listener: OnSelectDateListener = object : OnSelectDateListener {
-//            override fun onSelect(calendar: List<Calendar>) {
-//
-//            }
-//        }
-//
-//        val oneDayBuilder = DatePickerBuilder(this.requireContext(), listener)
-//            .pickerType(CalendarView.ONE_DAY_PICKER)
-//            .headerLabelColor(R.color.terracota)
-//            .selectionColor(R.color.daysLabelColor)
-//            .dialogButtonsColor(android.R.color.holo_green_dark)
-//            .disabledDaysLabelsColor(android.R.color.holo_purple)
-//            .headerVisibility(View.VISIBLE)
-//            .abbreviationsBarVisibility(View.GONE)
-//            .abbreviationsLabelsColor(R.color.terracota)
-//            .headerColor(R.color.bottom_navi)
-//            .daysLabelsColor(R.color.black)
-//            .pagesColor(R.color.bottom_navi
-//            //.typefaceSrc(R.font.roboto_light)
-//            .previousButtonSrc(R.drawable.ic_datepicker_previous)
-//            .forwardButtonSrc(R.drawable.ic_datepicker_next)
-//
-//
-//
-//
-//        val oneDayPicker = oneDayBuilder.build()
-//        oneDayPicker.show()
-
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
