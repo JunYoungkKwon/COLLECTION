@@ -136,4 +136,8 @@
         <item name="colorAccent">@color/dark_taupe</item>
         <item name="colorControlNormal">@color/pinkish_grey</item>
     </style>
+
+
+
+
 </resources>
