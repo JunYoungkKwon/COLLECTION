@@ -26,7 +26,7 @@
         android:background="@color/light_peach"
         app:layout_constraintStart_toStartOf="@id/match_main_ic"
         app:layout_constraintTop_toBottomOf="@id/match_main_ic"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="113dp"
         >
     </View>
 
@@ -37,7 +37,7 @@
         android:src="@drawable/ic_match_color_text"
         app:layout_constraintStart_toStartOf="@id/match_main_ic"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="357dp"
+        android:layout_marginBottom="307dp"
 
         />
 
@@ -60,7 +60,7 @@
         android:background="@color/light_peach"
         app:layout_constraintStart_toStartOf="@id/match_main_ic"
         app:layout_constraintTop_toBottomOf="@id/match_main_ic"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="182dp"
         >
     </View>
 
@@ -93,7 +93,7 @@
         android:background="@color/light_peach"
         app:layout_constraintStart_toStartOf="@id/match_main_ic"
         app:layout_constraintTop_toBottomOf="@id/match_main_ic"
-        android:layout_marginTop="201dp"
+        android:layout_marginTop="251dp"
         >
     </View>
 
@@ -126,7 +126,7 @@
         android:background="@color/light_peach"
         app:layout_constraintStart_toStartOf="@id/match_main_ic"
         app:layout_constraintTop_toBottomOf="@id/match_main_ic"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="320dp"
         >
     </View>
 

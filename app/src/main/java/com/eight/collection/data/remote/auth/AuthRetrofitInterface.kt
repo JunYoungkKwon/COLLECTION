@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface AuthRetrofitInterface {
     @POST("app/user/register")
@@ -13,8 +14,11 @@ interface AuthRetrofitInterface {
     @POST("app/user/login")
     fun login(@Body user: User): Call<AuthResponse>
 
-    @GET("app/user/duplicate-nickname")
-    fun checkNickname(user: User): Call<AuthResponse>
+    @GET("app/user/check-nickname")
+    fun checkNickname(@Query("nickname") nickname : String): Call<AuthResponse>
+
+    @GET("app/user/duplicate-id")
+    fun checkId(@Query("ID") id : String): Call<AuthResponse>
 
 //    @GET("/users/auto-login")
 //    fun autoLogin(): Call<AuthResponse>

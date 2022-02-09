@@ -4,7 +4,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.R
@@ -15,12 +18,13 @@ import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.login.LoginSecondActivity
 import com.eight.collection.ui.main.MainActivity
 
-class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySignupThirdBinding::inflate), SignUpView, View.OnClickListener {
+class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySignupThirdBinding::inflate), SignUpView, CheckIdView, View.OnClickListener {
 
     override fun initAfterBinding() {
         binding.signUpThirdIcBack.setOnClickListener(this)
         binding.signUpThirdFinishButton.setOnClickListener(this)
-        val value = intent.getStringExtra("nickname")
+        binding.signUpThirdDoubleCheckIv.setOnClickListener(this)
+        val value = intent.getStringExtra("postnickname")
         binding.signUpThirdNicknameEt.setText(value)
     }
 
@@ -29,7 +33,8 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
         when(v) {
             binding.signUpThirdFinishButton -> signUp()
-            binding.signUpThirdIcBack -> finishActivity()
+            binding.signUpThirdDoubleCheckIv -> checkId()
+            binding.signUpThirdIcBack -> finish()
         }
     }
 
@@ -69,18 +74,17 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     }
 
     override fun onSignUpLoading() {
-        showToast("Loading")
     }
 
     override fun onSignUpSuccess() {
         startActivityWithClear(LoginSecondActivity::class.java)
-        slideRight()
+        showToast("회원가입에 성공하였습니다.")
     }
 
     override fun onSignUpFailure(code: Int, message: String) {
         when(code) {
             //Name 에러
-            3041 -> {
+            3041, 3050, 3051 -> {
                 binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdNameErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdNameErrorTv.text= message
@@ -101,10 +105,11 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
             }
             //ID 에러
-            3000, 3001, 3002 -> {
+            3000, 3001, 3002, 3050, 3051 -> {
                 binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdIdErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdIdErrorTv.text= message
+                binding.signUpThirdIdErrorTv.setTextColor(Color.parseColor("#c77a4a"))
 
                 //나머지 원래대로
                 binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
@@ -121,7 +126,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
             }
             //Password 에러
-            3003, 3004 -> {
+            3003, 3004, 3050, 3051 -> {
                 binding.signUpThirdPasswordUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdPasswordErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdPasswordErrorTv.text= message
@@ -140,7 +145,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
                 binding.signUpThirdPhoneErrorTv.visibility = View.GONE
             }
             //Phone 에러
-            3008, 3009, 3010 -> {
+            3008, 3009, 3010, 3050, 3051 -> {
                 binding.signUpThirdPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdPhoneErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdPhoneErrorTv.text= message
@@ -157,6 +162,51 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
                 binding.signUpThirdPasswordCheckUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                 binding.signUpThirdPasswordCheckErrorTv.visibility = View.GONE
+
+            }
+            else -> {
+                showToast("SEVER ERROR")
+            }
+        }
+    }
+
+    private fun checkId() {
+        val id : String = binding.signUpThirdIdEt.text.toString()
+        AuthService.checkId(this, id)
+    }
+
+
+    override fun onCheckIdLoading() {
+    }
+
+    override fun onCheckIdSuccess() {
+        binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.signUpThirdIdErrorTv.visibility = View.VISIBLE
+        binding.signUpThirdIdErrorTv.text= "사용가능한 아이디입니다."
+        binding.signUpThirdIdErrorTv.setTextColor(Color.parseColor("#71a238"))
+    }
+
+    override fun onCheckIdFailure(code: Int, message: String) {
+        when(code) {
+            //ID 에러
+            3000, 3002, 3050, 3051 -> {
+                binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.signUpThirdIdErrorTv.visibility = View.VISIBLE
+                binding.signUpThirdIdErrorTv.text = message
+                binding.signUpThirdIdErrorTv.setTextColor(Color.parseColor("#c77a4a"))
+
+                //나머지 원래대로
+                binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdNameErrorTv.visibility = View.GONE
+
+                binding.signUpThirdPasswordUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdPasswordErrorTv.visibility = View.GONE
+
+                binding.signUpThirdPasswordCheckUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdPasswordCheckErrorTv.visibility = View.GONE
+
+                binding.signUpThirdPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdPhoneErrorTv.visibility = View.GONE
 
             }
             else -> {
