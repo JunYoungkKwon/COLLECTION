@@ -12,7 +12,6 @@ import com.eight.collection.R
 import com.eight.collection.databinding.ActivitySettingBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.setting.infoedit.InfoEditActivity
-import com.eight.collection.ui.main.setting.logout.DialogLogout
 import com.eight.collection.ui.main.setting.privacy.PrivacyRule
 
 class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBinding::inflate), View.OnClickListener {

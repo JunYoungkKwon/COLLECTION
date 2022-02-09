@@ -47,7 +47,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         startWriteFirst()
         startSetting()
         binding.weekBtnSettingIv.bringToFront()
-        view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
+        //view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
