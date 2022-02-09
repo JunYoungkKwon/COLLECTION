@@ -146,8 +146,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:id="@+id/writefirst_refresh_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_reset"
             app:layout_constraintTop_toTopOf="@id/writefirst_header_iv"
             app:layout_constraintBottom_toBottomOf="@id/writefirst_header_iv"
