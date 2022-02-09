@@ -51,11 +51,28 @@
             android:name=".ui.main.MainActivity"
             android:exported="true">
 
+
         </activity>
 
         <activity android:name=".ui.writing.WritefirstActivity"/>
 
         <activity android:name=".ui.writing.WritesecondActivity"/>
+
+        <activity android:name=".ui.main.setting.SettingActivity"/>
+
+        <activity android:name=".ui.main.setting.infoedit.nickname.NickNameEditActivity"/>
+
+        <activity android:name=".ui.main.setting.infoedit.phonenumber.PhoneNumberEditActivity"/>
+
+        <activity android:name=".ui.main.setting.infoedit.password.PwEditActivity"/>
+
+        <activity android:name=".ui.main.setting.infoedit.account.AccountDeleteActivity"/>
+
+        <activity android:name=".ui.main.setting.infoedit.account.AccountDeleteSecondActivity"/>
+
+        <activity android:name=".ui.main.setting.privacy.PrivacyRule"/>
+
+        <activity android:name=".ui.main.setting.infoedit.InfoEditActivity"/>
 
         <activity
             android:name=".ui.finish.FinishActivity"

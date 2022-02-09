@@ -36,6 +36,7 @@ import java.time.DayOfWeek
 import java.time.YearMonth
 import com.applandeo.materialcalendarview.builders.DatePickerBuilder
 import com.applandeo.materialcalendarview.listeners.OnSelectDateListener
+import com.eight.collection.ui.main.setting.SettingActivity
 import java.util.*
 
 
@@ -49,6 +50,8 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     override fun initAfterBinding() {
         startMyLook()
         startWriteFirst()
+        startSetting()
+        binding.weekBtnSettingIv.bringToFront()
         view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
         //startDatePicker()
 
@@ -315,6 +318,12 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 //        binding.weekBtnWriteIv.setOnClickListener {
 //            startActivity(Intent(activity, DatePickerActivity::class.java))
 //        }
+    }
+
+    private fun startSetting() {
+        binding.weekBtnSettingIv.setOnClickListener {
+            startActivity(Intent(activity, SettingActivity::class.java))
+        }
     }
 
     private fun startWriteFirst() {

@@ -1,13 +1,17 @@
 package com.eight.collection.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.eight.collection.R
 
 abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater) -> T): AppCompatActivity(){
     protected lateinit var binding: T
@@ -31,6 +35,26 @@ abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    fun Toast.showCustomToast(message: String, activity: Activity)
+    {
+        val layout = activity.layoutInflater.inflate (
+            R.layout.toast_custom,
+            activity.findViewById(R.id.toast_container)
+        )
+
+        // set the text of the TextView of the message
+        val textView = layout.findViewById<TextView>(R.id.toast_text_tv)
+        textView.text = message
+
+        // use the application extension function
+        this.apply {
+            setGravity(Gravity.BOTTOM, 0, 250)
+            duration = Toast.LENGTH_LONG
+            view = layout
+            show()
+        }
+    }
+
     fun startNextActivity(activity: Class<*>?) {
         val intent = Intent(this, activity)
         startActivity(intent)
@@ -45,5 +69,29 @@ abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater
     // 키보드 숨기기
     fun hideKeyboard(v: View){
         imm?.hideSoftInputFromWindow(v.windowToken, 0)
+    }
+
+    fun Activity.slideLeft() {
+        overridePendingTransition(R.anim.none, R.anim.slide_left_enter)
+    }
+
+    fun Activity.slideRight() {
+        overridePendingTransition(R.anim.slide_right_enter, R.anim.none)
+    }
+
+    fun Activity.fadeIn() {
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    }
+
+    fun finishActivity() {
+        finish()
+        overridePendingTransition(R.anim.none, R.anim.slide_left_exit)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (isFinishing) {
+            overridePendingTransition(R.anim.none, R.anim.slide_left_exit)
+        }
     }
 }

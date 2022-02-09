@@ -26,8 +26,14 @@ class LoginFirstActivity: BaseActivity<ActivityLoginFirstBinding>(ActivityLoginF
         if(v == null) return
 
         when(v) {
-            binding.loginLoginBtnOffIv -> startNextActivity(LoginSecondActivity::class.java)
-            binding.loginSignupBtnIv -> startNextActivity(SignupFirstActivity::class.java)
+            binding.loginLoginBtnOffIv -> {
+                startNextActivity(LoginSecondActivity::class.java)
+                slideRight()
+            }
+            binding.loginSignupBtnIv -> {
+                startNextActivity(SignupFirstActivity::class.java)
+                slideRight()
+            }
         }
     }
 }

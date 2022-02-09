@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/img_bg_matchpage">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/privacy_cl"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/privacy_back_btn_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp" />
+
+        <TextView
+            android:id="@+id/privacy_delete_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy_rule"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textColor="@color/dark_taupe"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/privacy_back_btn_iv"
+            app:layout_constraintTop_toTopOf="@id/privacy_back_btn_iv"
+            app:layout_constraintBottom_toBottomOf="@id/privacy_back_btn_iv"
+            android:letterSpacing="-0.01"
+            android:layout_marginStart="8dp" />
+
+        <TextView
+            android:id="@+id/privacy_first_title_tv"
+            android:text="@string/privacy_first_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/privacy_delete_tv" />
+
+        <TextView
+            android:id="@+id/privacy_first_tv"
+            android:layout_marginEnd="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_first_title_tv"
+            android:text="@string/privacy_first_text"/>
+
+        <TextView
+            android:id="@+id/privacy_first_1_tv"
+            android:text="@string/privacy_first_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_first_tv" />
+
+        <TextView
+            android:id="@+id/privacy_first_2_tv"
+            android:text="@string/privacy_first_2_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_1_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_first_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_second_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_first_2_tv"
+            android:text="@string/privacy_second_text"/>
+
+        <TextView
+            android:id="@+id/privacy_second_1_tv"
+            android:text="@string/privacy_second_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_second_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_second_tv" />
+
+        <TextView
+            android:id="@+id/privacy_second_2_tv"
+            android:text="@string/privacy_second_2_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_second_1_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_second_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_third_tv"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/privacy_third_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_second_2_tv" />
+
+        <TextView
+            android:id="@+id/privacy_third_1_tv"
+            android:text="@string/privacy_third_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_third_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_third_tv" />
+
+        <TextView
+            android:id="@+id/privacy_fourth_tv"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/privacy_fourth_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_third_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_fourth_1_tv"
+            android:text="@string/privacy_fourth_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_fourth_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_fourth_tv" />
+
+        <TextView
+            android:id="@+id/privacy_fourth_2_tv"
+            android:text="@string/privacy_fourth_2_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_fourth_1_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_fourth_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_five_tv"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/privacy_five_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_fourth_2_tv" />
+
+        <TextView
+            android:id="@+id/privacy_five_1_tv"
+            android:text="@string/privacy_five_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_five_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_five_tv" />
+
+        <TextView
+            android:id="@+id/privacy_five_2_tv"
+            android:text="@string/privacy_five_2_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_five_1_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_five_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_six_tv"
+            android:text="@string/privacy_six_text"
+            android:layout_marginHorizontal="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_five_2_tv" />
+
+        <TextView
+            android:id="@+id/privacy_six_1_tv"
+            android:text="@string/privacy_six_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_six_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_six_tv" />
+
+        <TextView
+            android:id="@+id/privacy_six_2_tv"
+            android:text="@string/privacy_six_2_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_six_1_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_six_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_seven_tv"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/privacy_seven_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_six_2_tv" />
+
+        <TextView
+            android:id="@+id/privacy_seven_1_tv"
+            android:text="@string/privacy_six_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_seven_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_seven_tv" />
+
+        <TextView
+            android:id="@+id/privacy_eight_tv"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/privacy_eight_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_seven_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_eight_1_tv"
+            android:text="@string/privacy_eight_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_eight_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_eight_tv" />
+
+        <TextView
+            android:id="@+id/privacy_eight_2_tv"
+            android:text="@string/privacy_eight_2_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_eight_1_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_eight_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_eight_3_tv"
+            android:text="@string/privacy_eight_3_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_eight_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_eight_2_tv" />
+
+        <TextView
+            android:id="@+id/privacy_nine_tv"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/privacy_nine_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_eight_3_tv" />
+
+        <TextView
+            android:id="@+id/privacy_nine_1_tv"
+            android:text="@string/privacy_nine_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_nine_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_nine_tv" />
+
+        <TextView
+            android:id="@+id/privacy_nine_2_tv"
+            android:text="@string/privacy_nine_2_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_nine_1_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_nine_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_ten_tv"
+            android:layout_marginHorizontal="32dp"
+            android:text="@string/privacy_ten_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/terracota"
+            android:letterSpacing="-0.03"
+            app:layout_constraintStart_toStartOf="@+id/privacy_first_title_tv"
+            app:layout_constraintTop_toBottomOf="@+id/privacy_nine_2_tv" />
+
+        <TextView
+            android:id="@+id/privacy_ten_1_tv"
+            android:text="@string/privacy_ten_1_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_ten_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_ten_tv" />
+
+        <TextView
+            android:id="@+id/privacy_ten_2_tv"
+            android:text="@string/privacy_ten_2_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_ten_1_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_ten_1_tv" />
+
+        <TextView
+            android:id="@+id/privacy_ten_3_tv"
+            android:text="@string/privacy_ten_3_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="4sp"
+            app:layout_constraintStart_toStartOf="@+id/privacy_ten_tv"
+            app:layout_constraintTop_toBottomOf="@id/privacy_ten_2_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

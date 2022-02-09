@@ -29,7 +29,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
         when(v) {
             binding.signUpThirdFinishButton -> signUp()
-            binding.signUpThirdIcBack -> finish()
+            binding.signUpThirdIcBack -> finishActivity()
         }
     }
 
@@ -74,6 +74,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
     override fun onSignUpSuccess() {
         startActivityWithClear(LoginSecondActivity::class.java)
+        slideRight()
     }
 
     override fun onSignUpFailure(code: Int, message: String) {

@@ -18,8 +18,10 @@ class SignupFirstActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySign
         if(v == null) return
 
         when(v) {
-            binding.signUpFirstIcBack -> startNextActivity(LoginFirstActivity::class.java)
-            binding.signUpFirstNextButton -> startNextActivity(SignupSecondActivity::class.java)
+            binding.signUpFirstIcBack -> finishActivity()
+            binding.signUpFirstNextButton -> {
+                startNextActivity(SignupSecondActivity::class.java)
+                slideRight()}
         }
     }
 

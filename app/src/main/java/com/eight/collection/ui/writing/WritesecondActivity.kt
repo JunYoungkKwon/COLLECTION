@@ -32,6 +32,7 @@ class WritesecondActivity : AppCompatActivity(){
 
         binding.writesecondFinishButton2.setOnClickListener {
             startActivity(Intent(this, FinishActivity::class.java))
+
         }
 
 

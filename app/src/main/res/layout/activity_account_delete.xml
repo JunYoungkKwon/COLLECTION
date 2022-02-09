@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/img_bg_matchpage">
+
+    <LinearLayout
+        android:id="@+id/account_dim_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#30000000"
+        android:visibility="gone"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/account_back_btn_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/account_delete_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/account_delete"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:textStyle="normal"
+        android:textColor="@color/dark_taupe"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/account_back_btn_iv"
+        app:layout_constraintTop_toTopOf="@id/account_back_btn_iv"
+        app:layout_constraintBottom_toBottomOf="@id/account_back_btn_iv"
+        android:letterSpacing="-0.01"
+        android:layout_marginStart="8dp" />
+
+    <TextView
+        android:id="@+id/account_first_title_tv"
+        android:text="@string/account_title_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="32sp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toEndOf="@id/account_back_btn_iv"
+        app:layout_constraintTop_toBottomOf="@id/account_back_btn_iv"/>
+
+    <TextView
+        android:id="@+id/acount_second_title_tv"
+        android:text="@string/account_title_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-30dp"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="14sp"
+        app:layout_constraintStart_toStartOf="@id/account_first_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/account_first_title_tv" />
+
+    <TextView
+        android:id="@+id/acount_third_title_tv"
+        android:text="@string/account_title_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="normal"
+        android:textSize="32sp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="14sp"
+        app:layout_constraintStart_toStartOf="@id/acount_second_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/acount_second_title_tv" />
+
+    <TextView
+        android:id="@+id/acount_fourth_title_tv"
+        android:text="@string/account_title_fourth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-30dp"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:textColor="@color/dark_taupe"
+        android:letterSpacing="-0.01"
+        app:layout_constraintStart_toStartOf="@id/acount_third_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/acount_third_title_tv" />
+
+    <ImageButton
+        android:id="@+id/account_btn_ib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/secssion_btn_event"
+        android:background="@color/transparent"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="88dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageView
+        android:id="@+id/account_loading_background_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/ic_loading_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/account_loading_in_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/ic_loading_in"
+        app:layout_constraintTop_toTopOf="@+id/account_loading_circle_iv"
+        app:layout_constraintStart_toStartOf="@+id/account_loading_circle_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/account_loading_circle_iv"
+        app:layout_constraintEnd_toEndOf="@+id/account_loading_circle_iv"/>
+
+    <ImageView
+        android:id="@+id/account_loading_circle_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/ic_loading_circle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

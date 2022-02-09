@@ -20,7 +20,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
 
 
         //Ootd 데이터 삽입
-       val ootd = Ootd("2022/02/02",R.drawable.ic_diary_point,"운동할 때 입는 옷", "날씨가 너무 좋았다")
+       val ootd = Ootd("2022/02/02",R.drawable.ic_diary_point,"ABCDEFGHIJKLMNOPQRSTUVWXYZABC", "날씨가 너무 좋았다")
         setInit(ootd)
 
 

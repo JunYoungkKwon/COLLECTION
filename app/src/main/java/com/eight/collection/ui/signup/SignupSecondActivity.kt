@@ -29,8 +29,9 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
                     val intent = Intent(this, SignupThirdActivity::class.java)
                     intent.putExtra("nickname",binding.signUpSecondNicknameEt.text.toString())
                     startActivity(intent)
+                    slideRight()
                 }
-                binding.signUpSecondIcBack -> finish()
+                binding.signUpSecondIcBack -> finishActivity()
         }
     }
 /*

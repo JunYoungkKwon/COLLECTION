@@ -10,7 +10,8 @@
         android:label="monthFragment">
         <action
             android:id="@+id/action_monthFragment_to_lookPointFragment"
-            app:destination="@id/MyLookFragment" />
+            app:destination="@id/MyLookFragment"
+            app:enterAnim="@anim/slide_right_enter" />
     </fragment>
 
     <fragment
@@ -36,7 +37,9 @@
         android:label="LookPointFragment" >
         <action
             android:id="@+id/action_MyLookFragment_to_myLookSecond"
-            app:destination="@id/MyLookSecondFragment" />
+            app:destination="@id/MyLookSecondFragment"
+            app:popEnterAnim="@anim/slide_right_enter"
+            app:popExitAnim="@anim/slide_right_exit" />
     </fragment>
     <fragment
         android:id="@+id/MyLookSecondFragment"

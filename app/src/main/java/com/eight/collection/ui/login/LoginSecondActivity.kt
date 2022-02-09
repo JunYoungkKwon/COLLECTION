@@ -23,12 +23,13 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
         binding.loginBackBtnIv.setOnClickListener(this)
     }
 
+
     override fun onClick(v: View?) {
         if(v == null) return
 
         when(v) {
             binding.loginLoginBtnOffIv -> login()
-            binding.loginBackBtnIv -> finish()
+            binding.loginBackBtnIv -> finishActivity()
         }
     }
 
@@ -59,6 +60,7 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
         binding.loginDimBackground.visibility = View.INVISIBLE
 
         startActivityWithClear(MainActivity::class.java)
+        fadeIn()
     }
 
     override fun onLoginFailure(code: Int, message: String) {

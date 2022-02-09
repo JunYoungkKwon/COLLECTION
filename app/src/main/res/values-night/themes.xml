@@ -7,8 +7,8 @@
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/transparent</item>
+        <item name="colorSecondaryVariant">@color/transparent</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Remove the title bar -->
         <item name="windowNoTitle">true</item>
@@ -19,6 +19,7 @@
         <!-- Customize your theme here. -->
         <item name="android:datePickerStyle">@style/CalendarPreviousBtn</item>
         <item name="android:calendarViewStyle">@style/MyDatePickerStyle</item>
+        <item name="colorControlHighlight">@color/pinkish_grey</item>
 
     </style>
     <style name="MyDatePickerStyle" parent="android:Widget.CalendarView">
