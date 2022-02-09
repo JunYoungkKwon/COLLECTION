@@ -1,31 +1,21 @@
 package com.eight.collection.ui.main.week
 
-import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
-import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.get
 import androidx.navigation.Navigation
-import com.applandeo.materialcalendarview.CalendarView
-import com.applandeo.materialcalendarview.DatePicker
 import com.eight.collection.R
 import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
-import com.eight.collection.ui.main.MainActivity
-import com.eight.collection.ui.main.lookpoint.MyLook
-import com.eight.collection.ui.main.lookpoint.MyLookRVAdapter
-import com.eight.collection.ui.main.lookpoint.Photo
-import com.eight.collection.ui.writing.WritefirstActivity
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -34,13 +24,7 @@ import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import java.time.DayOfWeek
 import java.time.YearMonth
-import com.applandeo.materialcalendarview.builders.DatePickerBuilder
-import com.applandeo.materialcalendarview.listeners.OnSelectDateListener
 import com.eight.collection.ui.main.setting.SettingActivity
-import java.util.*
-
-
-
 
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate){

@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.second
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

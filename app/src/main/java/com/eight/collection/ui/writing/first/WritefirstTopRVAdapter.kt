@@ -1,6 +1,5 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.first
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -52,7 +51,7 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
 
 
     inner class ViewHolder(val binding: ItemWritefirstTopBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(top:WritefirstTop, position: Int){
+        fun bind(top: WritefirstTop, position: Int){
             /*if(position == 0) {
                 clickListener?.plusButtonClick(position)
             }*/
@@ -80,7 +79,6 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
             }
         }
     }
-
 
 
 

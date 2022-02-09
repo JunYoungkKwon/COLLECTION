@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
@@ -15,10 +14,8 @@ import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentMonthBinding
 import com.eight.collection.ui.BaseFragment
-import com.eight.collection.ui.finish.Ootd
-import com.eight.collection.ui.finish.Weather
 import com.eight.collection.ui.main.setting.SettingActivity
-import com.eight.collection.ui.writing.WritefirstActivity
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner

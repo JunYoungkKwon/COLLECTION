@@ -1,10 +1,11 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.second
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.eight.collection.databinding.ActivityWritesecondBinding
 import com.eight.collection.ui.finish.FinishActivity
+import com.eight.collection.ui.writing.first.Photo
 import com.google.android.material.tabs.TabLayoutMediator
 
 class WritesecondActivity : AppCompatActivity(){

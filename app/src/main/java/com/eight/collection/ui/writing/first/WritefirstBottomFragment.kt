@@ -1,21 +1,21 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.first
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.eight.collection.databinding.FragmentWritesecondWeatherBinding
+import com.eight.collection.databinding.FragmentWritefirstBottomBinding
 
-class WritesecondWeatherFragment : Fragment(){
-    lateinit var binding : FragmentWritesecondWeatherBinding
+class WritefirstBottomFragment : Fragment(){
+    lateinit var binding : FragmentWritefirstBottomBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentWritesecondWeatherBinding.inflate(inflater,container,false)
+        binding = FragmentWritefirstBottomBinding.inflate(inflater,container,false)
 
         return binding.root
     }

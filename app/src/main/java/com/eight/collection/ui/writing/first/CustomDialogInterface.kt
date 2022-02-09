@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.first
 
 interface CustomDialogInterface {
     fun onAddButtonClicked()

@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.first
 
 import android.os.Bundle
 import android.view.LayoutInflater
