@@ -10,10 +10,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class WritesecondActivity : AppCompatActivity(){
     lateinit var binding : ActivityWritesecondBinding
-
-    private var photoDatas = ArrayList<Photo>();
-
-
     val information = arrayListOf("PLACE","WEATHER","WHO")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +29,6 @@ class WritesecondActivity : AppCompatActivity(){
 
         binding.writesecondFinishButton2.setOnClickListener {
             startActivity(Intent(this, FinishActivity::class.java))
-
         }
 
 

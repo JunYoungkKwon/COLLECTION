@@ -52,9 +52,6 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
 
     inner class ViewHolder(val binding: ItemWritefirstTopBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(top: WritefirstTop, position: Int){
-            /*if(position == 0) {
-                clickListener?.plusButtonClick(position)
-            }*/
             binding.writefirstColorTopTextButton.apply {
                 text = top.title
                 // select 여부 확인 및 상태 변경
@@ -79,9 +76,6 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
             }
         }
     }
-
-
-
 
 
 

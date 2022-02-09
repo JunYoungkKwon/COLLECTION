@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.eight.collection.databinding.FragmentWritesecondPlaceBinding
+import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.first.WritefirstTopCustomDialog
 import com.google.android.flexbox.FlexboxLayoutManager
 
-class WritesecondPlaceFragment : Fragment(){
+class WritesecondPlaceFragment : Fragment(), CustomDialogInterface, WritesecondPlaceRVAdapter.PlaceClickListener{
     lateinit var binding : FragmentWritesecondPlaceBinding
-    private var placeDatas = ArrayList<WritesecondPlace>();
+    private var placeDatas = ArrayList<WritesecondPlace>()
+    lateinit var customDialog: WritesecondPlaceCustomDialog
+    private var idcount : Int = 9
+    private var addtext : String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,9 +39,9 @@ class WritesecondPlaceFragment : Fragment(){
         }
 
 
-        /*binding.writefirstTopRecyclerview.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)*/
-
         val placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
+        placeRVAdapter.setPlaceClickListener(this)
+
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
         binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
@@ -46,6 +50,28 @@ class WritesecondPlaceFragment : Fragment(){
         return binding.root
     }
 
+    override fun onAddButtonClicked(addText: String) {
+        placeDatas.apply {
+            add(WritesecondPlace(addText,idcount))
+            idcount += 1
+        }
+
+        val placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
+        placeRVAdapter.setPlaceClickListener(this)
+
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
+        binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
+    }
+
+    override fun onCancelButtonClicked() {
+        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun plusButtonClick() {
+        customDialog = WritesecondPlaceCustomDialog(requireContext(), this)
+        customDialog.show()
+    }
 
 
 }
