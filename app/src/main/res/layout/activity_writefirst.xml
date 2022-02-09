@@ -187,15 +187,20 @@
             android:layout_marginStart="8dp"
             />
 
-        <TextView
+        <EditText
             android:id="@+id/writefirst_lookstyle_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="히피룩,etc"
+            android:hint="EX) 히피룩,etc"
+            android:textColorHint="#C3B5AC"
+            android:background="@null"
             style="@style/NotoSansKr14Pt10"
+            android:textColor="@color/dark_taupe"
+            android:letterSpacing="-0.01"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_third_v"
             app:layout_constraintTop_toTopOf="@id/writefirst_datetext_tv"
             app:layout_constraintBottom_toBottomOf="@id/writefirst_datetext_tv"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_refresh_iv"
             android:layout_marginStart="20dp"
             />
 

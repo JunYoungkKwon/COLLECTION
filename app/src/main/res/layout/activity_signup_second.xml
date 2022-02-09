@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="최대 6글자"
+        android:textColorHint="#C3B5AC"
         android:fontFamily="@font/noto_sans_kr"
         android:textColor="@color/dark_taupe"
         android:inputType="text"
