@@ -8,21 +8,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/img_bg_writepage"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
         >
 
         <ImageView
             android:id="@+id/writefirst_background_iv"
-            android:layout_width="328dp"
-            android:layout_height="1300dp"
-            android:background="@drawable/square_background_border_pinkishgery"
-            app:layout_constraintBottom_toBottomOf="@id/writefirst_zigzagline_v"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/img_bg_writepage"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.07" />
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            />
 
         <View
             android:id="@+id/writefirst_background_Perpendicularline_first_v"
@@ -52,7 +53,7 @@
             android:background="@color/pinkish_grey"
             app:layout_constraintTop_toBottomOf="@id/writefirst_background_horizontalline_first_v"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            android:layout_marginStart="179dp"
+            android:layout_marginStart="200dp"
             >
         </View>
 
@@ -68,33 +69,58 @@
         </View>
 
         <View
+            android:id="@+id/writefirst_background_Perpendicularline_fifth_v"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toTopOf="@id/writefirst_background_iv"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_background_iv"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            >
+        </View>
+
+        <View
+            android:id="@+id/writefirst_background_Perpendicularline_sixth_v"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/pinkish_grey"
+            app:layout_constraintTop_toTopOf="@id/writefirst_background_iv"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_background_iv"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            >
+        </View>
+
+        <View
             android:id="@+id/writefirst_background_horizontalline_first_v"
-            android:layout_width="328dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="@color/pinkish_grey"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_background_Perpendicularline_first_v"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            android:layout_marginTop="87.5dp">
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            >
         </View>
 
         <View
             android:id="@+id/writefirst_background_horizontalline_second_v"
-            android:layout_width="328dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="@color/terracota"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_background_Perpendicularline_third_v"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            android:layout_marginTop="135.5dp">
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            >
         </View>
 
         <View
             android:id="@+id/writefirst_background_horizontalline_third_v"
-            android:layout_width="328dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="@color/pinkish_grey"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_background_Perpendicularline_fourth_v"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            android:layout_marginTop="375.5dp">
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            >
         </View>
 
 
@@ -103,32 +129,29 @@
             android:layout_width="178dp"
             android:layout_height="10dp"
             android:background="@color/light_peach"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="75dp"
-            android:layout_marginTop="64dp"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_header_iv"
+            app:layout_constraintStart_toStartOf="@id/writefirst_header_iv"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_header_iv"
             >
         </View>
 
         <ImageView
             android:id="@+id/writefirst_header_iv"
-            android:layout_width="178dp"
-            android:layout_height="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
             android:src="@drawable/today_s_ootd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/ic_reset"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="280dp" />
+            app:layout_constraintTop_toTopOf="@id/writefirst_header_iv"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_header_iv"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"/>
 
         <TextView
             android:id="@+id/writefirst_datetext_tv"
@@ -136,10 +159,9 @@
             android:layout_height="wrap_content"
             android:text="DATE."
             style="@style/VlanLlaRegular4Pt"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintStart_toStartOf="@id/writefirst_phototext_tv"
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_first_v"
             app:layout_constraintBottom_toBottomOf="@id/writefirst_background_horizontalline_second_v"
-            android:layout_marginStart="15dp"
             />
 
         <TextView
@@ -150,7 +172,7 @@
             style="@style/VlanLlaRegular4Pt"
             app:layout_constraintStart_toEndOf="@id/writefirst_datetext_tv"
             app:layout_constraintTop_toTopOf="@id/writefirst_datetext_tv"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="20dp"
             />
 
         <ImageView
@@ -158,10 +180,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_date_selector"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintStart_toEndOf="@id/writefirst_date_tv"
             app:layout_constraintTop_toTopOf="@id/writefirst_date_tv"
             app:layout_constraintBottom_toBottomOf="@id/writefirst_date_tv"
-            android:layout_marginStart="156dp"
+            android:layout_marginStart="8dp"
             />
 
         <TextView
@@ -170,10 +192,10 @@
             android:layout_height="wrap_content"
             android:text="히피룩,etc"
             style="@style/NotoSansKr14Pt10"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_third_v"
             app:layout_constraintTop_toTopOf="@id/writefirst_datetext_tv"
             app:layout_constraintBottom_toBottomOf="@id/writefirst_datetext_tv"
-            android:layout_marginStart="193dp"
+            android:layout_marginStart="20dp"
             />
 
         <com.eight.collection.utils.CustomTextView
@@ -181,11 +203,11 @@
             style="@style/VlanLlaRegular4Pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
             android:layout_marginTop="300dp"
             android:rotation="180"
             android:text="PHOTO."
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_Perpendicularline_fourth_v"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingClass" />
 
@@ -203,65 +225,69 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/writefirst_photo_recyclerview"
-            android:layout_width="279dp"
+            android:layout_width="0dp"
             android:layout_height="240dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
             tools:listitem="@layout/item_writefirst_photo" />
 
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/writefirst_color_tb"
-            android:layout_width="326dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorGravity="top"
             app:tabIndicatorColor="@color/dark_taupe"
             app:tabIndicator="@drawable/ic_padding_indicator2"
-            app:tabIndicatorHeight="20dp"
             app:tabSelectedTextColor="@color/dark_taupe"
             app:tabTextAppearance="@style/Tab_text"
             app:tabTextColor="#ccbbbb"
             app:tabRippleColor="#00ff0000"
-            android:textAlignment="center"
+            app:tabPaddingTop="18dp"
             android:background="@drawable/img_bg_writepage"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_horizontalline_first_v"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             android:layout_marginTop="384dp"
             android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
             />
 
         <View
             android:id="@+id/writefirst_line_view"
-            android:layout_width="326dp"
+            android:layout_width="0dp"
             android:layout_height="7dp"
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_third_v"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="2dp"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_marginTop="1dp"
             android:background="@color/item_top_line" />
 
 
         <View
             android:id="@+id/writefirst_background_horizontalline_fourth_v"
-            android:layout_width="328dp"
+            android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="@color/terracota"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb"
-            app:layout_constraintStart_toStartOf="@id/writefirst_color_tb"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             >
         </View>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/writefirst_color_vp"
-            android:layout_width="328dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb" />
 
 
@@ -271,7 +297,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:src="@drawable/ic_indicator_writefirst"
-            app:layout_constraintStart_toStartOf="@id/writefirst_phototext_tv"
+            app:layout_constraintEnd_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_vp" />
 
         <TextView
@@ -450,26 +476,28 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/writefirst_next_button"
-            android:layout_width="140dp"
+            android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/roundshape_button"
             android:text="다음"
             android:textColor="#7C6350"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            android:layout_marginStart="94dp"
+            android:layout_marginEnd="94dp"
             android:layout_marginTop="40dp"
             />
 
         <View
             android:id="@+id/writefirst_zigzagline_v"
-            android:layout_width="328dp"
+            android:layout_width="0dp"
             android:layout_height="8dp"
             android:layout_marginBottom="136dp"
             android:background="@drawable/zigzagline_writefirst"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_next_button"
             android:layout_marginTop="40dp"
             />
