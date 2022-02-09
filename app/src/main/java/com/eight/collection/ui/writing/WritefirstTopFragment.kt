@@ -1,7 +1,6 @@
 package com.eight.collection.ui.writing
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 class WritefirstTopFragment : Fragment(), CustomDialogInterface, WritefirstTopRVAdapter.TopClickListener{
     lateinit var binding : FragmentWritefirstTopBinding
     private var topDatas = ArrayList<WritefirstTop>();
-    lateinit var customDialog: CustomDialog
+    lateinit var customDialog: WritefirstTopCustomDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,16 +39,13 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface, WritefirstTopRV
         }
 
 
-        /*binding.writefirstTopRecyclerview.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)*/
-
+        // Top RVA
         val topRVAdapter = WritefirstTopRVAdapter(topDatas)
         topRVAdapter.setTopClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
         binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
-
-        customDialog = CustomDialog(requireContext(),this)
 
         return binding.root
     }
@@ -62,14 +58,9 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface, WritefirstTopRV
         Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
     }
 
-    override fun plusClick(position : Int) {
-
-       /* if(isPlus == 1000) {
-            customDialog.show()
-        }
-*/      customDialog.show()
-
+    // RVAdapter에서 plus 버튼 클릭시 이벤트 생성
+    override fun plusButtonClick() {
+        customDialog = WritefirstTopCustomDialog(requireContext(), this)
+        customDialog.show()
     }
-
-
 }

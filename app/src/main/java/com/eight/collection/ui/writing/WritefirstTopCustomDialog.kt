@@ -8,9 +8,9 @@ import android.os.Bundle
 import android.widget.Button
 import com.eight.collection.R
 
-class CustomDialog(context: Context, Interface: CustomDialogInterface) : Dialog(context) {
+class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInterface) : Dialog(context) {
 
-    private var customDialogInterface : CustomDialogInterface = Interface
+    private var customDialogInterface : CustomDialogInterface = anInterface
 
     private lateinit var addButton : Button
     private lateinit var cancelButton : Button
