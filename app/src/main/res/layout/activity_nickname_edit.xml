@@ -47,9 +47,10 @@
 
     <EditText
         android:id="@+id/nickname_text_et"
-        android:layout_width="296dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:layout_marginHorizontal="32dp"
         android:paddingStart="15dp"
         android:background="@drawable/nickname_btn_event"
         android:fontFamily="@font/noto_sans_kr"

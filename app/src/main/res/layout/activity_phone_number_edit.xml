@@ -47,12 +47,12 @@
 
     <EditText
         android:id="@+id/phone_number_text_et"
-        android:layout_width="296dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
         android:inputType="number"
         android:paddingStart="15dp"
         android:background="@drawable/nickname_btn_event"
-        android:layout_marginStart="8dp"
         android:fontFamily="@font/noto_sans_kr"
         android:textStyle="normal"
         android:textSize="16sp"
