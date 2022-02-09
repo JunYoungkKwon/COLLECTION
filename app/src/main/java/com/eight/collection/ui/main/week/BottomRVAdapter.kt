@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWeekDiaryClothColorBinding
 
-
 class BottomRVAdapter(private  val Bottomlist: MutableList<Bottom>) : RecyclerView.Adapter<BottomRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): BottomRVAdapter.ViewHolder {

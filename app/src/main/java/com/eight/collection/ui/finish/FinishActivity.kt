@@ -17,8 +17,6 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     private  var ootdDatas = ArrayList<Ootd>()
 
     override fun initAfterBinding() {
-
-
         //Ootd 데이터 삽입
        val ootd = Ootd("2022/02/02",R.drawable.ic_diary_point,"ABCDEFGHIJKLMNOPQRSTUVWXYZABC", "날씨가 너무 좋았다")
         setInit(ootd)

@@ -13,7 +13,6 @@ class DiaryRVAdapter(private  val Diarylist: MutableList<Diary>) : RecyclerView.
         fun onRemoveAlbum(position: Int)
     }
 
-    //리스너 객체를 저장할 변수
     private  lateinit var mItemClickListener: MyitemClickListener
 
     //리스너 객체를 전달받는 함수

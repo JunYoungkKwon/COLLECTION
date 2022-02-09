@@ -19,7 +19,6 @@ class ToprRVAdapter(private  val Toplist: MutableList<Top>) : RecyclerView.Adapt
         holder.bind(Toplist[position])
     }
 
-
     override fun getItemCount(): Int = Toplist.size
 
 

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWeekDiaryBinding
 import com.eight.collection.databinding.ItemWeekDiaryMoodBinding
 
-
 class MoodRVAdapter(val MoodList: MutableList<Mood>) : RecyclerView.Adapter<MoodRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MoodRVAdapter.ViewHolder {

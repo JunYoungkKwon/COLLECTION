@@ -9,7 +9,6 @@ import com.eight.collection.databinding.ItemWeekDiaryClothColorBinding
 
 class EtcRVAdapter(private  val Etclist: MutableList<Etc>) : RecyclerView.Adapter<EtcRVAdapter.ViewHolder>() {
 
-    //test
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): EtcRVAdapter.ViewHolder {
         val binding: ItemWeekDiaryClothColorBinding = ItemWeekDiaryClothColorBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return  ViewHolder(binding)

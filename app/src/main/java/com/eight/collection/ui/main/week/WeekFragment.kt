@@ -39,10 +39,6 @@ import com.applandeo.materialcalendarview.listeners.OnSelectDateListener
 import com.eight.collection.ui.main.setting.SettingActivity
 import java.util.*
 
-
-
-
-
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate){
 
 
