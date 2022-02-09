@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.first
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.google.android.flexbox.FlexboxLayoutManager
 
-class WritefirstTopFragment : Fragment(), CustomDialogInterface, WritefirstTopRVAdapter.TopClickListener{
+class WritefirstTopFragment : Fragment(), CustomDialogInterface,
+    WritefirstTopRVAdapter.TopClickListener {
     lateinit var binding : FragmentWritefirstTopBinding
     private var topDatas = ArrayList<WritefirstTop>();
     lateinit var customDialog: WritefirstTopCustomDialog

@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.first
 
 import android.app.Dialog
 import android.content.Context

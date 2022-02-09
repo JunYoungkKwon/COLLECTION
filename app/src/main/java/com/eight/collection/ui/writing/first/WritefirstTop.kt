@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.first
 
 data class WritefirstTop(
     var title: String? = "",

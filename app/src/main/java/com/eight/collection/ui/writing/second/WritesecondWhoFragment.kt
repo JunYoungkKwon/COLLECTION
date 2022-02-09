@@ -1,21 +1,21 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.second
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.eight.collection.databinding.FragmentWritefirstBottomBinding
+import com.eight.collection.databinding.FragmentWritesecondWhoBinding
 
-class WritefirstBottomFragment : Fragment(){
-    lateinit var binding : FragmentWritefirstBottomBinding
+class WritesecondWhoFragment : Fragment(){
+    lateinit var binding : FragmentWritesecondWhoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentWritefirstBottomBinding.inflate(inflater,container,false)
+        binding = FragmentWritesecondWhoBinding.inflate(inflater,container,false)
 
         return binding.root
     }

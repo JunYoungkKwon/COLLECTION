@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.second
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

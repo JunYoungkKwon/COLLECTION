@@ -1,12 +1,12 @@
-package com.eight.collection.ui.writing
+package com.eight.collection.ui.writing.first
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityWritefirstBinding
+import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 class WritefirstActivity : AppCompatActivity() {
