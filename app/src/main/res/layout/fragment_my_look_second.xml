@@ -10,7 +10,7 @@
 
     <View
         android:id="@+id/myLook_second_lookBook_highlight_view"
-        android:layout_width="260dp"
+        android:layout_width="240dp"
         android:layout_height="17dp"
         android:background="@color/light_peach"
         app:layout_constraintStart_toStartOf="@id/myLook_second_lookBook_tv"
