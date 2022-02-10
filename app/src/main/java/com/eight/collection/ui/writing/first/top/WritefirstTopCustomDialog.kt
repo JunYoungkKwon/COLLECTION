@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing.first
+package com.eight.collection.ui.writing.first.top
 
 import android.app.Dialog
 import android.content.Context
