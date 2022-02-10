@@ -1,18 +1,17 @@
-package com.eight.collection.ui.writing.second
+package com.eight.collection.ui.writing.second.weather
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.databinding.ItemWritesecondPlaceBinding
-import com.eight.collection.ui.writing.first.WritefirstTopRVAdapter
+import com.eight.collection.databinding.ItemWritesecondWeatherBinding
 
-class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlace>) : RecyclerView.Adapter<WritesecondPlaceRVAdapter.ViewHolder>(){
+class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<WritesecondWeather>) : RecyclerView.Adapter<WritesecondWeatherRVAdapter.ViewHolder>(){
     private var selectCheck : ArrayList<Int> = arrayListOf()
-    private var clickListener: PlaceClickListener? = null
+    private var clickListener: WeatherClickListener? = null
 
     init {
-        for(i in placeList){
+        for(i in weatherList){
             if(i.title == "-"){
                 selectCheck.add(1)
             }
@@ -22,35 +21,35 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
         }
     }
 
-    interface PlaceClickListener {
+    interface WeatherClickListener {
         fun plusButtonClick()
     }
 
-    fun setPlaceClickListener(placeClickListener:PlaceClickListener) {
-        this.clickListener = placeClickListener
+    fun setWeatherClickListener(weatherClickListener: WeatherClickListener) {
+        this.clickListener = weatherClickListener
     }
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val binding : ItemWritesecondPlaceBinding = ItemWritesecondPlaceBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        val binding : ItemWritesecondWeatherBinding = ItemWritesecondWeatherBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(placeList[position],position)
+        holder.bind(weatherList[position],position)
     }
 
-    override fun getItemCount(): Int = placeList.size
+    override fun getItemCount(): Int = weatherList.size
 
 
-    inner class ViewHolder(val binding: ItemWritesecondPlaceBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(place:WritesecondPlace, position: Int){
-            binding.writesecondPlaceTextButton.apply {
-                text = place.title
+    inner class ViewHolder(val binding: ItemWritesecondWeatherBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind(weather: WritesecondWeather, position: Int){
+            binding.writesecondWeatherTextButton.apply {
+                text = weather.title
                 // select 여부 확인 및 상태 변경
                 isChecked = selectCheck[bindingAdapterPosition] == 1
                 setOnClickListener{
-                    when(placeList[position].id){
+                    when(weatherList[position].id){
                         0 -> clickListener?.plusButtonClick()
                         else -> {
                             for (k in selectCheck.indices) {
@@ -70,14 +69,14 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
     }
 
     // 데이터 추가 메소드 (데이터 및 삭제아이콘 추가)
-    fun addItem(place: WritesecondPlace){
-        placeList.add(place)
+    fun addItem(place: WritesecondWeather){
+        weatherList.add(place)
         notifyDataSetChanged()
     }
 
     // 데이터 삭제 메소드
     fun removeItem(position: Int){
-        placeList.removeAt(position)
+        weatherList.removeAt(position)
         notifyDataSetChanged()
     }
 }
