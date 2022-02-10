@@ -12,7 +12,7 @@ import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
-class WritefirstActivity : AppCompatActivity(){
+class WritefirstActivity : AppCompatActivity(), WritefirstTopRVAdapter.ColorClickListner{
     lateinit var binding : ActivityWritefirstBinding
     private var photoDatas = ArrayList<Photo>()
     val information = arrayListOf("TOP","BOTTOM","SHOES","ETC")
@@ -53,6 +53,7 @@ class WritefirstActivity : AppCompatActivity(){
 
         binding.writefirstColorTopSelectorRed.setOnClickListener{
             colortext = "red"
+            colorTextPost()
         }
 
 
@@ -64,6 +65,9 @@ class WritefirstActivity : AppCompatActivity(){
 
 
 
+    }
+
+    override fun colorTextPost() {
     }
 
 
