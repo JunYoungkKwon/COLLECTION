@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing.second
+package com.eight.collection.ui.writing.second.place
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritesecondPlaceBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
-import com.eight.collection.ui.writing.first.WritefirstTopCustomDialog
 import com.google.android.flexbox.FlexboxLayoutManager
 
-class WritesecondPlaceFragment : Fragment(), CustomDialogInterface, WritesecondPlaceRVAdapter.PlaceClickListener{
+class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
+    WritesecondPlaceRVAdapter.PlaceClickListener {
     lateinit var binding : FragmentWritesecondPlaceBinding
     private var placeDatas = ArrayList<WritesecondPlace>()
     lateinit var customDialog: WritesecondPlaceCustomDialog

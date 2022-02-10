@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing.second
+package com.eight.collection.ui.writing.second.place
 
 data class WritesecondPlace(
     var title: String? = "",
