@@ -20,15 +20,18 @@
         <activity
         android:name=".ui.splash.SplashActivity"
         android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
             android:name=".ui.login.LoginFirstActivity"
+            android:exported="true">
+        </activity>
+
+
+        <activity
+            android:name=".ui.login.LoginSecondActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,11 +39,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity
-            android:name=".ui.login.LoginSecondActivity"
-            android:exported="true"/>
 
         <activity
             android:name=".ui.signup.SignupFirstActivity"
@@ -57,13 +55,17 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
+
         </activity>
 
         <activity android:name=".ui.writing.first.WritefirstActivity"/>
 
         <activity android:name=".ui.writing.second.WritesecondActivity"/>
 
-        <activity android:name=".ui.main.setting.SettingActivity"/>
+        <activity android:name=".ui.main.setting.SettingActivity"
+            android:exported="true">
+
+        </activity>
 
         <activity android:name=".ui.main.setting.infoedit.nickname.NickNameEditActivity"/>
 

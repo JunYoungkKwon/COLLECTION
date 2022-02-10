@@ -13,6 +13,8 @@ import com.eight.collection.databinding.ActivitySettingBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.setting.infoedit.InfoEditActivity
 import com.eight.collection.ui.main.setting.privacy.PrivacyRule
+import com.eight.collection.utils.getNickName
+import com.eight.collection.utils.getUserId
 
 class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBinding::inflate), View.OnClickListener {
 
@@ -22,6 +24,8 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         //binding.settingDeveloperInfoIb.setOnClickListener(this)
         binding.settingPrivacyRuleIb.setOnClickListener(this)
         binding.settingLogoutTv.setOnClickListener(this)
+        //닉네임변경
+        binding.settingNicknameTv.text = getNickName()
 
     }
 

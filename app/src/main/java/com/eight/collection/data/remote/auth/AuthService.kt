@@ -5,6 +5,7 @@ import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.ApplicationClass.Companion.retrofit
 import com.eight.collection.data.entities.User
 import com.eight.collection.ui.login.LoginView
+import com.eight.collection.ui.main.setting.infoedit.nickname.ChangeNickNameView
 import com.eight.collection.ui.signup.CheckIdView
 import com.eight.collection.ui.signup.CheckNicknameView
 import com.eight.collection.ui.signup.SignUpView
@@ -103,6 +104,29 @@ object AuthService {
                 Log.d("$TAG/API-ERROR", t.message.toString())
 
                 loginView.onLoginFailure(400, "네트워크 오류가 발생했습니다.")
+            }
+        })
+    }
+
+    fun changeNickName(changeNickNameView: ChangeNickNameView, userIdx: Int, user: User) {
+        val authService = retrofit.create(AuthRetrofitInterface::class.java)
+
+        changeNickNameView.onChangeNickNameLoading()
+
+        authService.changeNickName(userIdx, user).enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                val resp = response.body()!!
+
+                when(resp.code){
+                    1002 -> changeNickNameView.onChangeNickNameSuccess(resp.result!!)
+                    else -> changeNickNameView.onChangeNickNameFailure(resp.code, resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                Log.d("$TAG/API-ERROR", t.message.toString())
+
+                changeNickNameView.onChangeNickNameFailure(400, "네트워크 오류가 발생했습니다.")
             }
         })
     }

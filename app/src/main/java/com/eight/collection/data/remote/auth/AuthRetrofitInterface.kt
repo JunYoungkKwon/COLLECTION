@@ -2,10 +2,7 @@ package com.eight.collection.data.remote.auth
 
 import com.eight.collection.data.entities.User
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface AuthRetrofitInterface {
     @POST("app/user/register")
@@ -19,6 +16,9 @@ interface AuthRetrofitInterface {
 
     @GET("app/user/duplicate-id")
     fun checkId(@Query("ID") id : String): Call<AuthResponse>
+
+    @PATCH("app/user/modi-nickname/:userIdx")
+    fun changeNickName(@Path("userIdx") userIdx:Int, @Body user: User): Call<AuthResponse>
 
 //    @GET("/users/auto-login")
 //    fun autoLogin(): Call<AuthResponse>
