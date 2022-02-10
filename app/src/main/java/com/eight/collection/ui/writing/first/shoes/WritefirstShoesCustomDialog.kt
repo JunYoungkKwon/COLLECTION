@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing.first
+package com.eight.collection.ui.writing.first.shoes
 
 import android.app.Dialog
 import android.content.Context
@@ -16,7 +16,7 @@ import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.signup.SignupThirdActivity
 import com.eight.collection.ui.writing.CustomDialogInterface
 
-class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInterface) : Dialog(context) {
+class WritefirstShoesCustomDialog(context: Context, anInterface: CustomDialogInterface) : Dialog(context) {
 
     private var customDialogInterface : CustomDialogInterface = anInterface
     private lateinit var addButton : Button
@@ -27,7 +27,7 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_toptag)
+        setContentView(R.layout.activity_add_shoestag)
 
         addButton = findViewById(R.id.add_toptag_confirm_button)
         cancelButton = findViewById(R.id.add_toptag_cancel_button)

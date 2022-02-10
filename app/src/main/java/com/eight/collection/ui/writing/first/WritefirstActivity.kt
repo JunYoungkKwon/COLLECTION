@@ -1,18 +1,23 @@
 package com.eight.collection.ui.writing.first
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityWritefirstBinding
+import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
-class WritefirstActivity : AppCompatActivity() {
+class WritefirstActivity : AppCompatActivity(), WritefirstTopRVAdapter.ColorClickListner{
     lateinit var binding : ActivityWritefirstBinding
-    private var photoDatas = ArrayList<Photo>();
+    private var photoDatas = ArrayList<Photo>()
     val information = arrayListOf("TOP","BOTTOM","SHOES","ETC")
+    private var colortext : String? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +51,11 @@ class WritefirstActivity : AppCompatActivity() {
         }.attach()
 
 
+        binding.writefirstColorTopSelectorRed.setOnClickListener{
+            colortext = "red"
+            colorTextPost()
+        }
+
 
 
         // 다음버튼 클릭시 Writing Second Page Start
@@ -55,6 +65,9 @@ class WritefirstActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun colorTextPost() {
     }
 
 

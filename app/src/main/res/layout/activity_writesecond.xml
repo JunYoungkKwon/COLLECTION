@@ -122,7 +122,7 @@
             app:tabIndicator="@drawable/ic_padding_indicator2"
             app:tabSelectedTextColor="@color/dark_taupe"
             app:tabTextAppearance="@style/Tab_text2"
-            app:tabTextColor="#ccbbbb"
+            app:tabTextColor="#C3B5AC"
             app:tabRippleColor="#00ff0000"
             app:tabPaddingTop="18dp"
             android:background="@drawable/img_bg_writepage"
@@ -270,10 +270,9 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/writesecond_finish_button2"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:background="@drawable/roundshape_button"
-            android:text="완료"
+            android:background="@drawable/writesecond_finish_btn_event"
             android:textColor="#7C6350"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/writesecond_comment_et"

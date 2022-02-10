@@ -1,6 +1,6 @@
-package com.eight.collection.ui.writing.first
+package com.eight.collection.ui.writing.first.shoes
 
-data class WritefirstTop(
+data class WritefirstShoes(
     var title: String? = "",
     var id : Int = 0,
     var color : String? = ""

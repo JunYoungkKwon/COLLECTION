@@ -1,15 +1,11 @@
-package com.eight.collection.ui.writing.first
+package com.eight.collection.ui.writing.first.top
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.eight.collection.R
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
 import com.google.android.flexbox.FlexboxLayoutManager

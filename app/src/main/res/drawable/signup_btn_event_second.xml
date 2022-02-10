@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/btn_next_login_ac"/>
-    <item android:drawable="@drawable/btn_next_login"/>
+        android:drawable="@drawable/btn_next_signup_ac"/>
+    <item android:drawable="@drawable/btn_next_signup"/>
 </selector>

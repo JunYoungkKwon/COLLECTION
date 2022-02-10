@@ -1,10 +1,10 @@
-package com.eight.collection.ui.writing.first
+package com.eight.collection.ui.writing.first.top
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstTopBinding
+import com.eight.collection.ui.writing.first.WritefirstActivity
 
 class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
     private var selectCheck : ArrayList<Int> = arrayListOf()
@@ -22,9 +22,6 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
     }
 
 
-
-
-
     interface TopClickListener {
         fun plusButtonClick()
     }
@@ -34,7 +31,9 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
         this.clickListener = topClickListener
     }
 
-
+    interface ColorClickListner {
+        fun colorTextPost()
+    }
 
 
 
@@ -76,7 +75,6 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
             }
         }
     }
-
 
 
     // 데이터 추가 메소드 (데이터 및 삭제아이콘 추가)

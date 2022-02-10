@@ -16,7 +16,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     lateinit var binding : FragmentWritesecondWhoBinding
     private var whoDatas = ArrayList<WritesecondWho>()
     lateinit var customDialog: WritesecondWhoCustomDialog
-    private var idcount : Int = 9
+    private var idcount : Int = 7
     private var addtext : String? = null
 
     override fun onCreateView(
@@ -29,14 +29,12 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
         // 데이터 리스트 생성
         whoDatas.apply {
             add(WritesecondWho("+", 0))
-            add(WritesecondWho("매우추움", 1))
-            add(WritesecondWho("매우더움", 2))
-            add(WritesecondWho("추움", 3))
-            add(WritesecondWho("더움", 4))
-            add(WritesecondWho("적당함", 5))
-            add(WritesecondWho("눈", 6))
-            add(WritesecondWho("비", 7))
-            add(WritesecondWho("우박", 8))
+            add(WritesecondWho("친구", 1))
+            add(WritesecondWho("가족", 2))
+            add(WritesecondWho("동료", 3))
+            add(WritesecondWho("선생님", 4))
+            add(WritesecondWho("애인", 5))
+            add(WritesecondWho("혼자", 6))
         }
 
 
