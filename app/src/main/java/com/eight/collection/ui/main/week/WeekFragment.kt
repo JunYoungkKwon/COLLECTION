@@ -47,7 +47,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         startWriteFirst()
         startSetting()
         binding.weekBtnSettingIv.bringToFront()
-        //view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
@@ -95,7 +94,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                 container.calendarYear.text = "${month.year}"
                 container.calendarMonth.text = "${month.yearMonth.month.name.toLowerCase().capitalize()}"
                 container.calendarYear.setOnClickListener{
-
+                    view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
                 }
 
             }

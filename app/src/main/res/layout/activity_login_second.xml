@@ -63,10 +63,9 @@
         android:fontFamily="@font/noto_sans_kr_medium"
         android:textStyle="bold"
         android:textSize="32sp"
-        android:layout_marginStart="-8dp"
         android:textColor="@color/terracota"
         android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="@id/login_id_highlight_view"
+        app:layout_constraintStart_toStartOf="@id/login_id_et"
         app:layout_constraintTop_toBottomOf="@id/login_first_title_tv"
         android:text="@string/login_welcome_second_title" />
 

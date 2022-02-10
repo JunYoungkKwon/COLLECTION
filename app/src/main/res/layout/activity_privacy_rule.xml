@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/img_bg_matchpage">
 
@@ -75,6 +74,7 @@
             android:text="@string/privacy_first_1_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-18dp"
             android:layout_marginStart="36dp"
             android:layout_marginEnd="32dp"
             android:fontFamily="@font/noto_sans_kr_medium"
@@ -83,6 +83,7 @@
             android:textColor="@color/dark_taupe"
             android:letterSpacing="-0.03"
             android:lineSpacingExtra="4sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/privacy_first_tv"
             app:layout_constraintTop_toBottomOf="@id/privacy_first_tv" />
 
@@ -91,15 +92,14 @@
             android:text="@string/privacy_first_2_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="46dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="-4dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:textStyle="normal"
             android:textSize="12sp"
             android:textColor="@color/dark_taupe"
-            android:letterSpacing="-0.03"
-            android:lineSpacingExtra="4sp"
-            app:layout_constraintStart_toStartOf="@+id/privacy_first_1_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/privacy_first_1_tv" />
 
         <TextView

@@ -33,7 +33,7 @@
         android:layout_width="18dp"
         android:layout_height="26dp"
         android:visibility="visible"
-        android:src="@drawable/ic_hang_small"
+        android:src="@drawable/ic_hang_large"
         app:layout_constraintStart_toStartOf="@id/item_my_look_second_photo_iv"
         app:layout_constraintTop_toTopOf="@id/item_my_look_second_photo_iv"
         app:layout_constraintBottom_toBottomOf="@id/item_my_look_second_photo_iv"
