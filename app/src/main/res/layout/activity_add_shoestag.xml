@@ -29,7 +29,7 @@
         android:id="@+id/add_toptag_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="나만의 TOP 태그추가하기"
+        android:text="나만의 SHOES 태그추가하기"
         android:fontFamily="@font/noto_sans_kr"
         android:textStyle="bold"
         android:textSize="16sp"

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <View
-        android:id="@+id/add_toptag_background_v"
+        android:id="@+id/add_weathertag_background_v"
         android:layout_width="296dp"
         android:layout_height="230dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,33 +16,33 @@
         />
 
     <ImageView
-        android:id="@+id/add_toptag_mark_iv"
+        android:id="@+id/add_weathertag_mark_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_writepage_indicater"
-        app:layout_constraintStart_toStartOf="@id/add_toptag_background_v"
-        app:layout_constraintEnd_toEndOf="@id/add_toptag_background_v"
-        app:layout_constraintTop_toTopOf="@id/add_toptag_background_v"
+        app:layout_constraintStart_toStartOf="@id/add_weathertag_background_v"
+        app:layout_constraintEnd_toEndOf="@id/add_weathertag_background_v"
+        app:layout_constraintTop_toTopOf="@id/add_weathertag_background_v"
         android:layout_marginTop="28dp"/>
 
     <TextView
-        android:id="@+id/add_toptag_title_tv"
+        android:id="@+id/add_weathertag_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="나만의 TOP 태그추가하기"
+        android:text="나만의 WEATHER 태그추가하기"
         android:fontFamily="@font/noto_sans_kr"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@color/terracota"
         android:letterSpacing="-0.01"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/add_toptag_mark_iv"
-        app:layout_constraintStart_toStartOf="@id/add_toptag_background_v"
-        app:layout_constraintEnd_toEndOf="@id/add_toptag_background_v"
+        app:layout_constraintTop_toBottomOf="@id/add_weathertag_mark_iv"
+        app:layout_constraintStart_toStartOf="@id/add_weathertag_background_v"
+        app:layout_constraintEnd_toEndOf="@id/add_weathertag_background_v"
         />
 
     <EditText
-        android:id="@+id/add_toptag_et"
+        android:id="@+id/add_weathertag_et"
         android:layout_width="260dp"
         android:layout_height="48dp"
         android:background="@drawable/roundshape_add_tag_popup_edittext"
@@ -52,46 +52,46 @@
         android:textSize="16sp"
         android:textColor="@color/pinkish_grey"
         android:privateImeOptions="defaultInputmode=korean"
-        app:layout_constraintTop_toBottomOf="@id/add_toptag_title_tv"
-        app:layout_constraintStart_toStartOf="@id/add_toptag_background_v"
-        app:layout_constraintEnd_toEndOf="@id/add_toptag_background_v"
+        app:layout_constraintTop_toBottomOf="@id/add_weathertag_title_tv"
+        app:layout_constraintStart_toStartOf="@id/add_weathertag_background_v"
+        app:layout_constraintEnd_toEndOf="@id/add_weathertag_background_v"
         android:layout_marginTop="8dp"
         />
 
     <ImageView
-        android:id="@+id/add_toptag_delete_iv"
+        android:id="@+id/add_weathertag_delete_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_delete_s"
-        app:layout_constraintEnd_toEndOf="@id/add_toptag_et"
-        app:layout_constraintTop_toTopOf="@id/add_toptag_et"
+        app:layout_constraintEnd_toEndOf="@id/add_weathertag_et"
+        app:layout_constraintTop_toTopOf="@id/add_weathertag_et"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_toptag_cancel_button"
+        android:id="@+id/add_weathertag_cancel_button"
         android:layout_width="126dp"
         android:layout_height="40dp"
         android:background="@drawable/roundshape_button_addtag_cancel"
         android:text="취소"
         android:textColor="@color/pinkish_grey"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/add_toptag_et"
-        app:layout_constraintStart_toStartOf="@id/add_toptag_et"
+        app:layout_constraintTop_toBottomOf="@id/add_weathertag_et"
+        app:layout_constraintStart_toStartOf="@id/add_weathertag_et"
         android:layout_marginTop="16dp"
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_toptag_confirm_button"
+        android:id="@+id/add_weathertag_confirm_button"
         android:layout_width="126dp"
         android:layout_height="40dp"
         android:background="@drawable/roundshape_button_addtag_confirm"
         android:text="확인"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/add_toptag_et"
-        app:layout_constraintEnd_toEndOf="@id/add_toptag_et"
+        app:layout_constraintTop_toBottomOf="@id/add_weathertag_et"
+        app:layout_constraintEnd_toEndOf="@id/add_weathertag_et"
         android:layout_marginTop="16dp"
         />
 

@@ -46,10 +46,14 @@ class WritefirstActivity : AppCompatActivity() {
         }.attach()
 
 
+
+
         // 다음버튼 클릭시 Writing Second Page Start
         binding.writefirstNextButton.setOnClickListener{
             startActivity(Intent(this, WritesecondActivity::class.java))
         }
+
+
 
     }
 

@@ -1,4 +1,4 @@
-package com.eight.collection.ui.writing.first
+package com.eight.collection.ui.writing.second
 
 import android.app.Dialog
 import android.content.Context
@@ -16,7 +16,7 @@ import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.signup.SignupThirdActivity
 import com.eight.collection.ui.writing.CustomDialogInterface
 
-class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInterface) : Dialog(context) {
+class WritesecondPlaceCustomDialog(context: Context, anInterface: CustomDialogInterface) : Dialog(context) {
 
     private var customDialogInterface : CustomDialogInterface = anInterface
     private lateinit var addButton : Button
@@ -27,11 +27,11 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_toptag)
+        setContentView(R.layout.activity_add_placetag)
 
-        addButton = findViewById(R.id.add_toptag_confirm_button)
-        cancelButton = findViewById(R.id.add_toptag_cancel_button)
-        addEditText = findViewById(R.id.add_toptag_et)
+        addButton = findViewById(R.id.add_placetag_confirm_button)
+        cancelButton = findViewById(R.id.add_placetag_cancel_button)
+        addEditText = findViewById(R.id.add_placetag_et)
 
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 

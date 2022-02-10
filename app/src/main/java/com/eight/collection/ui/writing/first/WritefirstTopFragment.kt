@@ -1,19 +1,26 @@
 package com.eight.collection.ui.writing.first
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.eight.collection.R
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
+import com.eight.collection.ui.writing.CustomDialogInterface
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     WritefirstTopRVAdapter.TopClickListener {
     lateinit var binding : FragmentWritefirstTopBinding
-    private var topDatas = ArrayList<WritefirstTop>();
+    private var topDatas = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
+    private var idcount : Int = 13
+    private var addtext : String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +46,6 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
             add(WritefirstTop("코트", 12))
         }
 
-
         // Top RVA
         val topRVAdapter = WritefirstTopRVAdapter(topDatas)
         topRVAdapter.setTopClickListener(this)
@@ -51,8 +57,18 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         return binding.root
     }
 
-    override fun onAddButtonClicked() {
-        Toast.makeText(requireContext(), "추가", Toast.LENGTH_SHORT).show()
+    override fun onAddButtonClicked(addText: String) {
+        topDatas.apply {
+            add(WritefirstTop(addText,idcount))
+            idcount += 1
+        }
+
+        val topRVAdapter = WritefirstTopRVAdapter(topDatas)
+        topRVAdapter.setTopClickListener(this)
+
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writefirstTopRecyclerview.adapter = topRVAdapter
+        binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
     }
 
     override fun onCancelButtonClicked() {
