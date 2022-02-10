@@ -2,8 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/img_bg_weekly"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <ImageView
         android:id="@+id/splash_logo_iv"
