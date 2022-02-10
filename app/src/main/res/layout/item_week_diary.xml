@@ -52,7 +52,7 @@
         android:id="@+id/item_diary_default_img_iv"
         android:layout_width="18dp"
         android:layout_height="26dp"
-        android:src="@drawable/ic_hang_small"
+        android:src="@drawable/ic_hang_large_default"
         app:layout_constraintStart_toStartOf="@id/item_diary_img_cardView"
         app:layout_constraintTop_toTopOf="@id/item_diary_img_cardView"
         app:layout_constraintBottom_toBottomOf="@id/item_diary_img_cardView"
