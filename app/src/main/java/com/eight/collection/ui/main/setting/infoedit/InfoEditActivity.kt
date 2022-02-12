@@ -8,7 +8,6 @@ import com.eight.collection.ui.main.setting.infoedit.account.AccountDeleteActivi
 import com.eight.collection.ui.main.setting.infoedit.nickname.NickNameEditActivity
 import com.eight.collection.ui.main.setting.infoedit.password.PwEditActivity
 import com.eight.collection.ui.main.setting.infoedit.phonenumber.PhoneNumberEditActivity
-import com.eight.collection.utils.getChangeNickName
 import com.eight.collection.utils.getNickName
 import com.eight.collection.utils.getUserId
 

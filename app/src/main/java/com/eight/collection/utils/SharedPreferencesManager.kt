@@ -50,3 +50,5 @@ fun getJwt(): String? = mSharedPreferences.getString(X_ACCESS_TOKEN, null)
 fun getUserId(): String? = mSharedPreferences.getString("userId", null)
 
 fun getNickName(): String? = mSharedPreferences.getString("nickName", null)
+
+fun getColor(): String? = mSharedPreferences.getString("color", null)
