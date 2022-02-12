@@ -33,6 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />-->
 
+
     <ImageView
         android:id="@+id/sign_up_third_ic_back"
         android:layout_width="wrap_content"
@@ -43,6 +44,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginStart="16dp"
         />
+
 
     <TextView
         android:id="@+id/sign_up_third_signup_tv"
@@ -81,8 +83,8 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="실명을 입력하세요"
-        android:textColorHint="#C3B5AC"
         style="@style/NotoSansKr14Pt10"
+        android:textColorHint="#C3B5AC"
         android:inputType="textPersonName"
         android:textSize="14sp"
         android:textColor="@color/dark_taupe"

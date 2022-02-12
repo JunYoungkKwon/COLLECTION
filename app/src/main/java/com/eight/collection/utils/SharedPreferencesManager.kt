@@ -23,7 +23,6 @@ fun saveNickName(nickName: String) {
 
     editor.apply()
 }
-
 fun saveChangeNickName(nickName: String) {
     val editor = mSharedPreferences.edit()
     editor.putString("nickName", nickName)
@@ -31,10 +30,23 @@ fun saveChangeNickName(nickName: String) {
     editor.apply()
 }
 
+fun setColor(color: String) {
+    val editor = mSharedPreferences.edit()
+    editor.putString("color", color)
+
+    editor.apply()
+}
+
+fun removeColor() {
+    val editor = mSharedPreferences.edit()
+    editor.remove("color")
+
+    editor.apply()
+}
+
+
 fun getJwt(): String? = mSharedPreferences.getString(X_ACCESS_TOKEN, null)
 
 fun getUserId(): String? = mSharedPreferences.getString("userId", null)
 
 fun getNickName(): String? = mSharedPreferences.getString("nickName", null)
-
-fun getChangeNickName(): String? = mSharedPreferences.getString("nickName", null)
