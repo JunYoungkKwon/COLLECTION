@@ -1,30 +1,21 @@
 package com.eight.collection.ui.main.week
 
-import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
-import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.get
 import androidx.navigation.Navigation
-import com.applandeo.materialcalendarview.CalendarView
-import com.applandeo.materialcalendarview.DatePicker
 import com.eight.collection.R
 import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
-import com.eight.collection.ui.main.MainActivity
-import com.eight.collection.ui.main.lookpoint.MyLook
-import com.eight.collection.ui.main.lookpoint.MyLookRVAdapter
-import com.eight.collection.ui.main.lookpoint.Photo
+import com.eight.collection.ui.main.month.Month
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -33,13 +24,13 @@ import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import java.time.DayOfWeek
 import java.time.YearMonth
-import com.applandeo.materialcalendarview.builders.DatePickerBuilder
-import com.applandeo.materialcalendarview.listeners.OnSelectDateListener
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
-import java.util.*
+import java.util.ArrayList
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate){
+
+    private  var monthDatas = ArrayList<Month>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
@@ -48,9 +39,45 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         startSetting()
         binding.weekBtnSettingIv.bringToFront()
 
+        //더미 데이터
+        monthDatas.apply {
+            add(Month(5)) //1
+            add(Month(4)) //2
+            add(Month(4)) //3
+            add(Month(0)) //4
+            add(Month(1)) //5
+            add(Month(0)) //6
+            add(Month(4)) //7
+            add(Month(3)) //8
+            add(Month(4)) //9
+            add(Month(5)) //10
+            add(Month(0)) //11
+            add(Month(0)) //12
+            add(Month(0)) //13
+            add(Month(0)) //14
+            add(Month(0)) //15
+            add(Month(0)) //16
+            add(Month(0)) //17
+            add(Month(0)) //18
+            add(Month(0)) //19
+            add(Month(0)) //20
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
+        }
+
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
             val rankPoint = CalendarDateBinding.bind(view).calendarRankIv
+            val calendarCell = CalendarDateBinding.bind(view).dateCell
         }
 
         val dm = DisplayMetrics()
@@ -69,14 +96,27 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             @RequiresApi(Build.VERSION_CODES.O)
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.calendarDay.text = day.date.dayOfMonth.toString()
+                container.calendarCell.setOnClickListener{
+
+                }
 
 
                 if (day.owner == DayOwner.THIS_MONTH) {
+
+                    val month = monthDatas[day.date.dayOfMonth - 1 ]
+
+                    when(month.point){
+                        1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_on)
+                        2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_on)
+                        3 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_3_on)
+                        4 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_4_on)
+                        5 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_5_on)
+                        else -> container.rankPoint.setImageResource(0)
+                    }
                     container.calendarDay.setTextColor(Color.BLACK)
-                    container.rankPoint.setImageResource(R.drawable.calendar_rank_5_on)
                 } else {
                     container.calendarDay.setTextColor(Color.LTGRAY)
-                    container.rankPoint.setImageResource(R.drawable.calendar_rank_5_off)
+                    //container.rankPoint.setImageResource(R.drawable.calendar_rank_5_off)
                 }
             }
         }
@@ -151,104 +191,73 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private fun mutableList(): MutableList<Diary> {
         var diaryList = mutableListOf(
-            Diary(R.drawable.ic_diary_point,"2022/01/02", R.drawable.example1, 1,
+            Diary(R.drawable.ic_diary_point_4,"2022/02/07", R.drawable.example_0207, 4,
                 mutableListOf(
-                    Mood("눈"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창")
+                    Mood("카페"),
+                    Mood("매우추움"),
+                    Mood("친구"),
                 ), mutableListOf(
-                    Top("티셔츠", "#FFFFFF"),
+                    Top("코트", "#888888"),
+                    Top("니트", "#000000"),
+                    Top("목폴라", "#000000"),
                 ), mutableListOf(
-                    Bottom("티셔츠", "#FFFFFF"),
-                    Bottom("티셔츠2", "#FFFF00"),
-                    Bottom("티셔츠3", "#FFFFFF"),
-                    Bottom("티셔츠4", "#FFFFFF")
+                    Bottom("슬랙스", "#273e88"),
                 ), mutableListOf(
-                    Shoes("티셔츠", "#FFFFFF")
+                    Shoes("구두", "#000000"),
                 ), mutableListOf(
-                    Etc("티셔츠", "#FFFFFF")
+                    Etc("모자", "#000000"),
+                    Etc("크로스백", "#000000"),
                 )
             ),
 
             Diary(
-                R.drawable.ic_diary_point,"2022/01/03", R.drawable.example1, 1,
+                R.drawable.ic_diary_point_3,"2022/02/08", R.drawable.example_0208, 1,
                 mutableListOf(
-                    Mood("눈"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창"),
-                    Mood("화창")
+                    Mood("핫플레이스"),
+                    Mood("적당함"),
+                    Mood("친구"),
+                    Mood("선생님"),
                 ), mutableListOf(
-                    Top("티셔츠", "#FFFFFF")
+                    Top("패딩", "#888888"),
+                    Top("후드티", "#d60f0f"),
                 ), mutableListOf(
-                    Bottom("티셔츠", "#FFFFFF")
+                    Bottom("슬랙스", "#000000"),
                 ), mutableListOf(
-                    Shoes("티셔츠", "#FFFFFF")
+                    Shoes("스니커즈", "#FFFFFF"),
                 ), mutableListOf(
-                    Etc("티셔츠", "#FFFFFF")
+                    Etc("모자", "#000000"),
+                    Etc("크로스백", "#000000"),
                 )
             ),
 
             Diary(
-                R.drawable.ic_diary_point,"2022/01/04", R.drawable.example1, 8,
+                R.drawable.ic_diary_point_4,"2022/02/09", R.drawable.example_0209, 2,
                 mutableListOf(
-                    Mood("눈"), Mood("화창")
+                    Mood("결혼식장"), Mood("적당함"), Mood("비"), Mood("가족"), Mood("동료"),
                 ), mutableListOf(
-                    Top("티셔츠", "#FFFFFF")
+                    Top("코트", "#f5f5dc"), Top("가디건", "#000000"),
                 ), mutableListOf(
-                    Bottom("티셔츠", "#FFFFFF")
+                    Bottom("미니스커트", "#71a238"),
                 ), mutableListOf(
-                    Shoes("티셔츠", "#FFFFFF")
+                    Shoes("로퍼", "#f5f5dc"),
                 ), mutableListOf(
-                    Etc("티셔츠", "#FFFFFF")
+                    Etc("스카프", "#273e88"),
+                    Etc("숄더백", "#f5f5dc"),
                 )
             ),
 
             Diary(
-                R.drawable.ic_diary_point,"2022/01/06", R.drawable.example1, 12,
+                R.drawable.ic_diary_point_5,"2022/02/10", R.drawable.example_0210, 2,
                 mutableListOf(
-                    Mood("눈"), Mood("화창"), Mood("화창"), Mood("화창"), Mood("화창")
+                    Mood("휴양지"), Mood("적당함"), Mood("비"), Mood("애인"),
                 ), mutableListOf(
-                    Top("티셔츠", "#FFFFFF")
+                    Top("티셔츠", "#FFFFFF"), Top("나시", "#FFFFFF"),
                 ), mutableListOf(
-                    Bottom("티셔츠", "#FFFFFF")
+                    Bottom("청바지", "#273e88"),
                 ), mutableListOf(
-                    Shoes("티셔츠", "#FFFFFF")
+                    Shoes("단화", "#000000"),
                 ), mutableListOf(
-                    Etc("티셔츠", "#FFFFFF")
-                )
-            ),
-
-            Diary(
-                R.drawable.ic_diary_point,"2022/01/06", R.drawable.example1, 33,
-                mutableListOf(
-                    Mood("눈"), Mood("화창"), Mood("화창"), Mood("화창")
-                ), mutableListOf(
-                    Top("티셔츠", "#FFFFFF")
-                ), mutableListOf(
-                    Bottom("티셔츠", "#FFFFFF"),
-                    Bottom("티셔츠", "#FFFFFF"),
-                    Bottom("티셔츠", "#FFFFFF"),
-                    Bottom("티셔츠", "#FFFFFF"),
-                    Bottom("티셔츠", "#FFFFFF")
-                ), mutableListOf(
-                    Shoes("티셔츠", "#FFFFFF")
-                ), mutableListOf(
-                    Etc("티셔츠", "#FFFFFF"),
-                    Etc("티셔츠", "#FFFFFF"),
-                    Etc("티셔츠", "#FFFFFF"),
-                    Etc("티셔츠", "#FFFFFF"),
-                    Etc("티셔츠", "#FFFFFF"),
-                    Etc("티셔츠", "#FFFFFF"),
-                    Etc("티셔츠", "#FFFFFF")
+                    Etc("주얼리", "#888888"),Etc("시계", "#74461f"),
                 )
             ),
         )
@@ -257,7 +266,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     }
     private fun startDatePicker() {
-        startActivity(Intent(activity, DatePickerActivity::class.java))
+        startActivity(Intent(activity, DatePickerFragment::class.java))
 //        binding.weekBtnWriteIv.setOnClickListener {
 //            startActivity(Intent(activity, DatePickerActivity::class.java))
 //        }

@@ -12,6 +12,8 @@ import com.eight.collection.data.remote.auth.Auth
 import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivityNicknameEditBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.utils.saveChangeNickName
+import com.eight.collection.utils.saveNickName
 
 class NickNameEditActivity: BaseActivity<ActivityNicknameEditBinding>(ActivityNicknameEditBinding::inflate), ChangeNickNameView, View.OnClickListener{
 
@@ -21,20 +23,22 @@ class NickNameEditActivity: BaseActivity<ActivityNicknameEditBinding>(ActivityNi
 
     }
 
+
+
     override fun onClick(v: View?) {
         if(v == null) return
 
         when(v) {
-//            binding.nicknameEditIb -> changeNickName()
+            binding.nicknameEditIb -> changeNickName()
             binding.nicknameBackBtnIv -> finishActivity()
 
         }
     }
     private fun changeNickName() {
         val nickname = binding.nicknameTextEt.text.toString()
-        val user = User("", "", "", nickname, "")
+        val user = User("", "", "", nickname, "","","","")
 
-        AuthService.changeNickName(this, 8,user)
+        AuthService.changeNickName(this, user)
     }
 
     override fun onChangeNickNameLoading() {
@@ -53,6 +57,7 @@ class NickNameEditActivity: BaseActivity<ActivityNicknameEditBinding>(ActivityNi
         binding.loginLoadingBackgroundIv.visibility = View.GONE
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
+        saveChangeNickName(auth.nickName)
 
         showToast("닉네임변경 성공")
     }

@@ -11,33 +11,38 @@
         android:id="@+id/item_my_look_second_photo_iv"
         android:layout_width="114dp"
         android:layout_height="114dp"
-        android:src="@drawable/example4"
+        android:src="@drawable/mylook_second_default"
         android:scaleType="fitXY"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/item_my_look_second_img_line_rL"
+    <LinearLayout
+        android:id="@+id/item_my_look_dim_background"
         android:layout_width="114dp"
+        android:orientation="horizontal"
         android:layout_height="114dp"
-        android:background="@drawable/mylook_second_img_bg"
-        app:layout_constraintEnd_toEndOf="@id/item_my_look_second_photo_iv"
-        app:layout_constraintTop_toTopOf="@id/item_my_look_second_photo_iv"
-        app:layout_constraintBottom_toBottomOf="@id/item_my_look_second_photo_iv"
-        app:layout_constraintStart_toStartOf="@id/item_my_look_second_photo_iv">
+        android:background="#70000000"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/item_my_look_second_photo_iv"
+        app:layout_constraintStart_toStartOf="@+id/item_my_look_second_photo_iv"
+        app:layout_constraintEnd_toEndOf="@+id/item_my_look_second_photo_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/item_my_look_second_photo_iv"/>
 
-    </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/item_my_look_second_default_img_iv"
-        android:layout_width="18dp"
-        android:layout_height="26dp"
-        android:visibility="visible"
-        android:src="@drawable/ic_hang_large"
-        app:layout_constraintStart_toStartOf="@id/item_my_look_second_photo_iv"
-        app:layout_constraintTop_toTopOf="@id/item_my_look_second_photo_iv"
-        app:layout_constraintBottom_toBottomOf="@id/item_my_look_second_photo_iv"
-        app:layout_constraintEnd_toEndOf="@id/item_my_look_second_photo_iv"/>
-
+    <TextView
+        android:id="@+id/item_my_look_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:textColor="@color/light_peach"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="3sp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="@+id/item_my_look_second_photo_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/item_my_look_second_photo_iv"
+        android:text="2022.01.27"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
