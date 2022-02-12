@@ -10,6 +10,7 @@ import android.graphics.Color
 import android.util.Log
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.utils.getColor
+import com.eight.collection.utils.removeColor
 
 class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
     private var selectCheck : ArrayList<Int> = arrayListOf()
@@ -38,7 +39,6 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
     }
 
 
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding : ItemWritefirstTopBinding = ItemWritefirstTopBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
@@ -46,6 +46,7 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(topList[position], position)
+        /*holder.setcolor(topList[position], position)*/
     }
 
     override fun getItemCount(): Int = topList.size
@@ -57,97 +58,6 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
                 text = top.title
                 // select 여부 확인 및 상태 변경
                 isChecked = selectCheck[bindingAdapterPosition] == 1
-                when(data) {
-                    "red" -> {
-                        setBackgroundColor(Color.parseColor("#d60f0f"))
-                        setTextColor(Color.parseColor("#ffffff"))
-                    }
-
-                    "pink" -> {
-                        setBackgroundColor(Color.parseColor("#f59a9a"))
-                        setTextColor(Color.parseColor("#191919"))
-                    }
-
-                    "yellow" -> {
-                        setBackgroundColor(Color.parseColor("#ffb203"))
-                        setTextColor(Color.parseColor("#191919"))
-                    }
-
-                    "lightyellow" -> {
-                        setBackgroundColor(Color.parseColor("#fde6b1"))
-                        setTextColor(Color.parseColor("#191919"))
-                    }
-
-                    "green" -> {
-                        setBackgroundColor(Color.parseColor("#fde6b1"))
-                        setTextColor(Color.parseColor("#191919"))
-                    }
-
-                    "lightgreen" -> {
-                        setBackgroundColor(Color.parseColor("#b7de89"))
-                        setTextColor(Color.parseColor("#191919"))
-                    }
-
-                    "orange" -> {
-                        setBackgroundColor(Color.parseColor("#ea7831"))
-                        setTextColor(Color.parseColor("#ffffff"))
-                    }
-
-                    "navy" -> {
-                        setBackgroundColor(Color.parseColor("#273e88"))
-                        setTextColor(Color.parseColor("#ffffff"))
-                    }
-
-                    "blue" -> {
-                        setBackgroundColor(Color.parseColor("#4168e8"))
-                        setTextColor(Color.parseColor("#ffffff"))
-                    }
-
-                    "lightblue" -> {
-                        setBackgroundColor(Color.parseColor("#a5b9fa"))
-                        setTextColor(Color.parseColor("#191919"))
-                    }
-
-                    "purple" -> {
-                        setBackgroundColor(Color.parseColor("#894ac7"))
-                        setTextColor(Color.parseColor("#ffffff"))
-                    }
-
-                    "lightpurple" -> {
-                        setBackgroundColor(Color.parseColor("#dcacff"))
-                        setTextColor(Color.parseColor("#191919"))
-                    }
-
-                    "white" -> {
-                        setBackgroundColor(Color.parseColor("#ffffff"))
-                        setTextColor(Color.parseColor("#191919"))
-                    }
-
-                    "grey" -> {
-                        setBackgroundColor(Color.parseColor("#888888"))
-                        setTextColor(Color.parseColor("#ffffff"))
-                    }
-
-                    "black" -> {
-                        setBackgroundColor(Color.parseColor("#191919"))
-                        setTextColor(Color.parseColor("#ffffff"))
-                    }
-
-                    "lightpeach" -> {
-                        setBackgroundColor(Color.parseColor("#e8dcd5"))
-                        setTextColor(Color.parseColor("#191919"))
-                    }
-
-                    "pinkishgery" -> {
-                        setBackgroundColor(Color.parseColor("#c3b5ac"))
-                        setTextColor(Color.parseColor("#ffffff"))
-                    }
-
-                    "brown" -> {
-                        setBackgroundColor(Color.parseColor("#74461f"))
-                        setTextColor(Color.parseColor("#ffffff"))
-                    }
-                }
                 setOnClickListener{
                     when(topList[position].id){
                         0 -> clickListener?.plusButtonClick()
@@ -155,6 +65,7 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
                             for (k in selectCheck.indices) {
                                 if (k == bindingAdapterPosition) {
                                     selectCheck[k] = 1
+                                    topList[position].color = data
                                 }
                                 else {
                                     selectCheck[k] = 0
@@ -164,15 +75,125 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
                     }
                     notifyDataSetChanged()
                 }
+
             }
         }
-        /*fun test(top: WritefirstTop, position: Int){
+        /*fun setcolor(top: WritefirstTop, position: Int){
             binding.writefirstColorTopTextButton.apply {
-                setBackgroundColor(Color.parseColor("#d60f0f"))
-                setTextColor(Color.parseColor("#ffffff"))
+                when(topList[position].color) {
+                    "red" -> {
+                        setBackgroundColor(Color.parseColor("#d60f0f"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "pink" -> {
+                        setBackgroundColor(Color.parseColor("#f59a9a"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "yellow" -> {
+                        setBackgroundColor(Color.parseColor("#ffb203"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "lightyellow" -> {
+                        setBackgroundColor(Color.parseColor("#fde6b1"))
+                        setTextColor(Color.parseColor("#191919"))
+                        removeColor()
+                    }
+
+                    "green" -> {
+                        setBackgroundColor(Color.parseColor("#fde6b1"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "lightgreen" -> {
+                        setBackgroundColor(Color.parseColor("#b7de89"))
+                        setTextColor(Color.parseColor("#191919"))
+                        removeColor()
+                    }
+
+                    "orange" -> {
+                        setBackgroundColor(Color.parseColor("#ea7831"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "navy" -> {
+                        setBackgroundColor(Color.parseColor("#273e88"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "blue" -> {
+                        setBackgroundColor(Color.parseColor("#4168e8"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "lightblue" -> {
+                        setBackgroundColor(Color.parseColor("#a5b9fa"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "purple" -> {
+                        setBackgroundColor(Color.parseColor("#894ac7"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "lightpurple" -> {
+                        setBackgroundColor(Color.parseColor("#dcacff"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "white" -> {
+                        setBackgroundColor(Color.parseColor("#ffffff"))
+                        setTextColor(Color.parseColor("#191919"))
+                        removeColor()
+                    }
+
+                    "grey" -> {
+                        setBackgroundColor(Color.parseColor("#888888"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "black" -> {
+                        setBackgroundColor(Color.parseColor("#191919"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "lightpeach" -> {
+                        setBackgroundColor(Color.parseColor("#e8dcd5"))
+                        setTextColor(Color.parseColor("#191919"))
+                        removeColor()
+                    }
+
+                    "pinkishgrey" -> {
+                        setBackgroundColor(Color.parseColor("#c3b5ac"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+
+                    "brown" -> {
+                        setBackgroundColor(Color.parseColor("#74461f"))
+                        setTextColor(Color.parseColor("#ffffff"))
+                        removeColor()
+                    }
+                }
             }
         }*/
     }
+
+
 
 
     // 데이터 추가 메소드 (데이터 및 삭제아이콘 추가)
