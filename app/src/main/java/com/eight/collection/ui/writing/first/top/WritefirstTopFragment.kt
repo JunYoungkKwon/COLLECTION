@@ -28,7 +28,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         // 데이터 리스트 생성
         topDatas.apply {
             add(WritefirstTop("+", 0))
-            add(WritefirstTop("맨투맨", 1))
+            add(WritefirstTop("맨투맨", 1,"#d60f0f"))
             add(WritefirstTop("티셔츠", 2))
             add(WritefirstTop("블라우스", 3))
             add(WritefirstTop("목폴라", 4))
@@ -70,6 +70,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     override fun onCancelButtonClicked() {
         Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
     }
+
 
     // RVAdapter에서 plus 버튼 클릭시 이벤트 생성
     override fun plusButtonClick() {

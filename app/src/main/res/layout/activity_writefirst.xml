@@ -473,10 +473,10 @@
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_darktaupe"
+            android:id="@+id/writefirst_color_top_selector_brown"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_darktaupe"
+            android:background="@drawable/ic_color_selector_brown"
             app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_pinkishgrey"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
             />

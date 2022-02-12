@@ -26,7 +26,6 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         binding.settingLogoutTv.setOnClickListener(this)
         //닉네임변경
         binding.settingNicknameTv.text = getNickName()
-
     }
 
     override fun onClick(v: View?) {
