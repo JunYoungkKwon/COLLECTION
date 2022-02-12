@@ -14,7 +14,6 @@ import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.login.LoginFirstActivity
 import com.eight.collection.ui.main.setting.infoedit.InfoEditActivity
 import com.eight.collection.ui.main.setting.privacy.PrivacyRule
-import com.eight.collection.utils.getChangeNickName
 import com.eight.collection.utils.getNickName
 import com.eight.collection.utils.getUserId
 
