@@ -96,12 +96,4 @@
         app:layout_constraintTop_toTopOf="@+id/datepicker_confirm_btn_off_ib"
         app:layout_constraintBottom_toBottomOf="@+id/datepicker_confirm_btn_off_ib"/>
 
-<!--        <Button-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="200dp"-->
-<!--            android:text="@string/title"/>-->
-
-<!--    </DatePicker>-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,11 +10,11 @@
 
     <View
         android:id="@+id/myLook_second_lookBook_highlight_view"
-        android:layout_width="240dp"
+        android:layout_width="260dp"
         android:layout_height="17dp"
+        android:layout_marginStart="-5dp"
         android:background="@color/light_peach"
         app:layout_constraintStart_toStartOf="@id/myLook_second_lookBook_tv"
-        app:layout_constraintEnd_toEndOf="@id/myLook_second_lookBook_tv"
         app:layout_constraintBottom_toBottomOf="@id/myLook_second_lookBook_tv"/>
 
     <TextView
@@ -44,9 +44,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/vlan_llaoutline"
         android:textStyle="normal"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="13dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintTop_toBottomOf="@id/myLook_second_lookBook_tv"
+        app:layout_constraintTop_toBottomOf="@id/myLook_second_banner_vp"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="6sp"
         android:textColor="@color/terracota"
@@ -89,5 +89,28 @@
         tools:listitem="@layout/item_my_look_second_photo"
         app:layout_constraintTop_toBottomOf="@id/myLook_second_horizon_top_view"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.asksira.loopingviewpager.LoopingViewPager
+        android:id="@+id/myLook_second_banner_vp"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        app:isInfinite="true"
+        app:autoScroll="true"
+        android:orientation="vertical"
+        app:scrollInterval="4000"
+        app:layout_constraintStart_toStartOf="@id/myLook_second_lookBook_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myLook_second_lookBook_tv" />
+
+    <ImageView
+        android:id="@+id/myLook_second_btn_rank_iv"
+        android:layout_width="40dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/ic_mylook_rank"
+        app:layout_constraintTop_toTopOf="@id/myLook_second_myBest_tv"
+        app:layout_constraintBottom_toBottomOf="@id/myLook_second_lookBook_tv"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

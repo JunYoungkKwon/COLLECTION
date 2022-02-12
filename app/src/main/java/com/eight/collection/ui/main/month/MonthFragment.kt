@@ -14,6 +14,7 @@ import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentMonthBinding
 import com.eight.collection.ui.BaseFragment
+import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
@@ -38,60 +39,37 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
         //더미 데이터
         monthDatas.apply {
-            add(Month(0))
-            add(Month(1))
-            add(Month(2))
-            add(Month(3))
-            add(Month(4))
-            add(Month(5))
-            add(Month(0))
-            add(Month(0))
-            add(Month(1))
-            add(Month(0))
-            add(Month(1))
-            add(Month(2))
-            add(Month(3))
-            add(Month(4))
-            add(Month(5))
-            add(Month(0))
-            add(Month(0))
-            add(Month(1))
-            add(Month(0))
-            add(Month(1))
-            add(Month(2))
-            add(Month(3))
-            add(Month(4))
-            add(Month(5))
-            add(Month(0))
-            add(Month(0))
-            add(Month(1))
-            add(Month(0))
-            add(Month(1))
-            add(Month(2))
-            add(Month(3))
-            add(Month(4))
-            add(Month(5))
-            add(Month(0))
-            add(Month(0))
-            add(Month(1))
-            add(Month(0))
-            add(Month(1))
-            add(Month(2))
-            add(Month(3))
-            add(Month(4))
-            add(Month(5))
-            add(Month(0))
-            add(Month(0))
-            add(Month(1))
-            add(Month(0))
-            add(Month(1))
-            add(Month(2))
-            add(Month(3))
-            add(Month(4))
-            add(Month(5))
-            add(Month(0))
-            add(Month(0))
-            add(Month(1))
+            add(Month(5)) //1
+            add(Month(4)) //2
+            add(Month(4)) //3
+            add(Month(0)) //4
+            add(Month(1)) //5
+            add(Month(0)) //6
+            add(Month(4)) //7
+            add(Month(3)) //8
+            add(Month(4)) //9
+            add(Month(5)) //10
+            add(Month(0)) //11
+            add(Month(0)) //12
+            add(Month(0)) //13
+            add(Month(0)) //14
+            add(Month(0)) //15
+            add(Month(0)) //16
+            add(Month(0)) //17
+            add(Month(0)) //18
+            add(Month(0)) //19
+            add(Month(0)) //20
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
+            add(Month(0)) //2
+            add(Month(0)) //1
         }
 
         binding.monthBtnSettingIv.bringToFront()
@@ -99,6 +77,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
+            val calendarCell = CalendarDateBinding.bind(view).dateCell
             val rankPoint = CalendarDateBinding.bind(view).calendarRankIv
         }
 
@@ -120,6 +99,9 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             @RequiresApi(Build.VERSION_CODES.O)
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.calendarDay.text = day.date.dayOfMonth.toString()
+                container.calendarCell.setOnClickListener{
+                    startActivity(Intent(activity, FinishActivity::class.java))
+                }
                 //container.calendarDate.text= day.date.month.toString()
                 if (day.owner == DayOwner.THIS_MONTH) {
 

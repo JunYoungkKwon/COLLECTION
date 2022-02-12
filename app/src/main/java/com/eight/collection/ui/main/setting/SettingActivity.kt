@@ -11,8 +11,10 @@ import android.widget.ImageButton
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivitySettingBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.login.LoginFirstActivity
 import com.eight.collection.ui.main.setting.infoedit.InfoEditActivity
 import com.eight.collection.ui.main.setting.privacy.PrivacyRule
+import com.eight.collection.utils.getChangeNickName
 import com.eight.collection.utils.getNickName
 import com.eight.collection.utils.getUserId
 
@@ -27,6 +29,11 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         //닉네임변경
         binding.settingNicknameTv.text = getNickName()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.settingNicknameTv.text = getNickName()
     }
 
     override fun onClick(v: View?) {
@@ -50,7 +57,7 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
                 mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 val okButton = mDialogView.findViewById<ImageButton>(R.id.dialog_ok_ib)
                 okButton.setOnClickListener {
-                    showToast("로그아웃")
+                    startActivityWithClear(LoginFirstActivity::class.java)
                     mAlertDialog.dismiss()
                 }
 

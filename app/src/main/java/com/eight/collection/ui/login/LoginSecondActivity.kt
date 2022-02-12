@@ -2,6 +2,7 @@ package com.eight.collection.ui.login
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -38,7 +39,7 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
     private fun login() {
         val id = binding.loginIdEt.text.toString()
         val password = binding.loginPwEt.text.toString()
-        val user = User(id, password, "", "", "")
+        val user = User(id, password, "", "", "","","","")
 
         AuthService.login(this, user)
     }
@@ -99,10 +100,11 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
                 binding.loginIdHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                 binding.loginIdFailIv.visibility = View.INVISIBLE
                 binding.loginIdFailTv.visibility = View.INVISIBLE
+
             }
 
             else -> {
-                showToast("SEVER ERROR ")
+                Log.d("LoginSecond/Error", "error")
             }
         }
     }

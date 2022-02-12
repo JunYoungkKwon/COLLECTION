@@ -1,13 +1,20 @@
 package com.eight.collection.ui.main.setting.infoedit.password
 
+import android.graphics.Color
+import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
+import com.eight.collection.R
+import com.eight.collection.data.entities.User
+import com.eight.collection.data.remote.auth.Auth
+import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivityNicknameEditBinding
 import com.eight.collection.databinding.ActivityPhoneNumberEditBinding
 import com.eight.collection.databinding.ActivityPwEditBinding
 import com.eight.collection.ui.BaseActivity
 
-class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding::inflate), View.OnClickListener{
+class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding::inflate),ChangePwView, View.OnClickListener{
 
     override fun initAfterBinding() {
         binding.pwEditIb.setOnClickListener(this)
@@ -19,10 +26,222 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
         if(v == null) return
 
         when(v) {
-            binding.pwEditIb -> Toast(this).showCustomToast ("Hello! This is a custom Toast!", this)
+            binding.pwEditIb -> changePw()
             binding.pwBackBtnIv -> finishActivity()
 
+        }
+    }
 
+    private fun changePw() {
+//        if (binding.pwOriginPwEt.text.toString().isEmpty()){
+//            if (binding.pwNewPwEt.text.toString().isEmpty()) empty1("기존 비밀번호를 입력하세요.")
+//
+//            if (binding.pwNewCheckPwEt.text.toString().isEmpty()) empty1("기존 비밀번호를 입력하세요.")
+//            else empty1("기존 비밀번호를 입력하세요.")
+//            return
+//        }
+//
+//        if (binding.pwOriginPwEt.text.toString().isNotEmpty()){
+//            if (binding.pwNewPwEt.text.toString().isEmpty()) empty1("기존 비밀번호를 입력하세요.")
+//
+//            if (binding.pwNewCheckPwEt.text.toString().isEmpty()) empty1("기존 비밀번호를 입력하세요.")
+//            return
+//        }
+//        if (binding.pwNewPwEt.text.toString().isEmpty()){
+//            showToast("2")
+//        }
+//        if (binding.pwNewCheckPwEt.text.toString().isEmpty()){
+//            showToast("3")
+//        }
+//        if (binding.pwNewPwEt.text.toString().isNotEmpty() && binding.pwOriginPwEt.text.toString().isNotEmpty()){
+//            if (binding.pwNewPwEt.text.toString().equals(binding.pwOriginPwEt.text.toString())){
+//                empty1()
+//                return
+//            }
+//        }
+
+//        if (binding.pwNewPwEt.text.toString().isNotEmpty() && binding.pwNewCheckPwEt.text.toString().isNotEmpty()){
+//            if (!binding.pwNewPwEt.text.toString().equals(binding.pwNewCheckPwEt.text.toString())){
+//                //origin show
+//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+//                binding.pwNewPwFailIv.visibility = View.VISIBLE
+//                binding.pwNewPwFailTv.visibility = View.VISIBLE
+//                binding.pwNewPwFailTv.text= "새 비밀번호와 새 비밀번호 확인이 동일하지 않습니다."
+//                //extra hide
+//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+//                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//                binding.pwNewPwFailIv.visibility = View.INVISIBLE
+//                binding.pwNewPwFailTv.visibility = View.INVISIBLE
+//                return
+//            }
+//        }
+        val orginpw = binding.pwOriginPwEt.text.toString()
+        val newpw = binding.pwNewPwEt.text.toString()
+        val newcheckpw = binding.pwNewCheckPwEt.text.toString()
+        val user = User("", "", "","","",orginpw,newpw,newcheckpw)
+
+        AuthService.changePw(this, user)
+    }
+
+    private fun empty1(text: String) {
+        //origin show
+        binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+        binding.pwOriginPwFailIv.visibility = View.VISIBLE
+        binding.pwOriginPwFailTv.visibility = View.VISIBLE
+        binding.pwOriginPwFailTv.text= text
+        //extra hide
+        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+        binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+        binding.pwNewPwFailIv.visibility = View.INVISIBLE
+        binding.pwNewPwFailTv.visibility = View.INVISIBLE
+    }
+
+    private fun empty2() {
+        //origin show
+        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+        binding.pwNewPwFailIv.visibility = View.VISIBLE
+        binding.pwNewPwFailTv.visibility = View.VISIBLE
+        binding.pwNewPwFailTv.text = "새 비밀번호를 입력하세요."
+        //extra hide
+        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+        binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwNewPwFailIv.visibility = View.INVISIBLE
+        binding.pwNewPwFailTv.visibility = View.INVISIBLE
+    }
+
+    private fun empty3() {
+        //origin show
+        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+        binding.pwNewPwFailIv.visibility = View.VISIBLE
+        binding.pwNewPwFailTv.visibility = View.VISIBLE
+        binding.pwNewPwFailTv.text = "새 비밀번호를 입력하세요."
+        //extra hide
+        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+        binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwNewPwFailIv.visibility = View.INVISIBLE
+        binding.pwNewPwFailTv.visibility = View.INVISIBLE
+    }
+
+    override fun onChangePwLoading() {
+        binding.loginLoadingInIv.visibility = View.VISIBLE
+        binding.loginLoadingCircleIv.visibility = View.VISIBLE
+        binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+        //로딩이미지 애니메이션
+        val animation = AnimationUtils.loadAnimation(this, R.anim.rotate)
+        binding.loginLoadingCircleIv.startAnimation(animation)
+        binding.loginDimBackground.visibility = View.VISIBLE
+    }
+
+    override fun onChangePwSuccess(auth: Auth) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+
+        showToast("비밀번호 변경 성공")
+    }
+
+    override fun onChangePwFailure(code: Int, message: String) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+        when (code) {
+            //originPw error
+            3014, 3004, 3012 -> {
+                //origin show
+                binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.pwOriginPwFailIv.visibility = View.VISIBLE
+                binding.pwOriginPwFailTv.visibility = View.VISIBLE
+                binding.pwOriginPwFailTv.text= message
+                //extra hide
+                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+                binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwNewPwFailIv.visibility = View.INVISIBLE
+                binding.pwNewPwFailTv.visibility = View.INVISIBLE
+                Log.d("fisrt/Error", "error")
+            }
+            3015 -> {
+                //origin show
+                binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.pwNewPwFailIv.visibility = View.VISIBLE
+                binding.pwNewPwFailTv.visibility = View.VISIBLE
+                binding.pwNewPwFailTv.text= message
+                //extra hide
+                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+                binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+                Log.d("second/Error", "error")
+            }
+
+            3016-> {
+                //origin show
+                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.pwNewCheckPwFailIv.visibility = View.VISIBLE
+                binding.pwNewCheckPwFailTv.visibility = View.VISIBLE
+                binding.pwNewCheckPwFailTv.text= message
+                //extra hide
+                binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+                binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwNewPwFailIv.visibility = View.INVISIBLE
+                binding.pwNewPwFailTv.visibility = View.INVISIBLE
+                Log.d("third/Error", "error")
+            }
+
+            else -> {
+                showToast(code.toString())
+            }
+
+            //newPw error
+//            3014, 3015, 3016 -> {
+//                //origin show
+//                binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+//                binding.pwNewPwFailIv.visibility = View.VISIBLE
+//                binding.pwNewPwFailTv.visibility = View.VISIBLE
+//                binding.pwNewPwFailTv.text= message
+//                //extra hide
+//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+//                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+//                binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+//                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+//                Log.d("second/Error", "error")
+//            }
+//
+            //newCheckPw error
+//            3014, 3015, 3016 -> {
+//                //origin show
+//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+//                binding.pwNewCheckPwFailIv.visibility = View.VISIBLE
+//                binding.pwNewCheckPwFailTv.visibility = View.VISIBLE
+//                binding.pwNewCheckPwFailTv.text= message
+//                //extra hide
+//                binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+//                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+//                binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//                binding.pwNewPwFailIv.visibility = View.INVISIBLE
+//                binding.pwNewPwFailTv.visibility = View.INVISIBLE
+//                Log.d("third/Error", "error")
+//            }
         }
     }
 }

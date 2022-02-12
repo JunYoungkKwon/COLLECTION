@@ -49,11 +49,12 @@
         android:fontFamily="@font/noto_sans_kr"
         android:textStyle="normal"
         android:textSize="14sp"
+        android:layout_marginStart="32dp"
         android:textColor="@color/terracota"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="32sp"
         android:layout_marginTop="68dp"
-        app:layout_constraintStart_toEndOf="@id/account_back_btn_iv"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/account_back_btn_iv"/>
 
     <TextView
@@ -68,7 +69,8 @@
         android:textColor="@color/terracota"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="14sp"
-        app:layout_constraintStart_toStartOf="@id/account_first_title_tv"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/account_first_title_tv" />
 
     <TextView
@@ -97,7 +99,8 @@
         android:textSize="14sp"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
-        app:layout_constraintStart_toStartOf="@id/acount_third_title_tv"
+        android:layout_marginStart="33dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/acount_third_title_tv" />
 
     <ImageButton

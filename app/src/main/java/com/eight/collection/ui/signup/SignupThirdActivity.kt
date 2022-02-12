@@ -45,7 +45,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
         val nickname : String = binding.signUpThirdNicknameEt.text.toString()
         val phonenumber : String = binding.signUpThirdPhoneEt.text.toString()
 
-        return User(id,pwd,name,nickname,phonenumber)
+        return User(id,pwd,name,nickname,phonenumber,"","","")
     }
 
     private fun signUp() {

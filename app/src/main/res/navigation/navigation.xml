@@ -47,7 +47,7 @@
         android:label="MyLookSecond" />
     <dialog
         android:id="@+id/datePickerActivity"
-        android:name="com.eight.collection.ui.main.week.DatePickerActivity"
+        android:name="com.eight.collection.ui.main.week.DatePickerFragment"
         android:label="DatePickerActivity" />
 
 

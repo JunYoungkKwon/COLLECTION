@@ -8,6 +8,7 @@ import com.eight.collection.ui.main.setting.infoedit.account.AccountDeleteActivi
 import com.eight.collection.ui.main.setting.infoedit.nickname.NickNameEditActivity
 import com.eight.collection.ui.main.setting.infoedit.password.PwEditActivity
 import com.eight.collection.ui.main.setting.infoedit.phonenumber.PhoneNumberEditActivity
+import com.eight.collection.utils.getChangeNickName
 import com.eight.collection.utils.getNickName
 import com.eight.collection.utils.getUserId
 
@@ -24,8 +25,13 @@ class InfoEditActivity: BaseActivity<ActivityInfoEditBinding>(ActivityInfoEditBi
         binding.infoEditNicknameTv.text = getNickName()
         binding.infoEditIdTv.text = getUserId()
 
-
     }
+
+    override fun onResume() {
+        super.onResume()
+        binding.infoEditNicknameTv.text = getNickName()
+    }
+
 
     override fun onClick(v: View?) {
         if(v == null) return
