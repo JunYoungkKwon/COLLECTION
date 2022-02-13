@@ -17,10 +17,11 @@
         app:layout_constraintStart_toStartOf="parent"
         >
 
+
         <ImageView
             android:id="@+id/item_writefirst_photo_bg_iv"
-            android:layout_width="216dp"
-            android:layout_height="216dp"
+            android:layout_width="217dp"
+            android:layout_height="217dp"
             android:background="@drawable/square_background_border_pinkishgery"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +31,6 @@
             android:id="@+id/item_writefirst_photo_img_iv"
             android:layout_width="216dp"
             android:layout_height="216dp"
-            android:src="@drawable/example1"
             android:scaleType="fitXY"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

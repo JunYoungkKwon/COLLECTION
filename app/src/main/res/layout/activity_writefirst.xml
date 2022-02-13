@@ -16,14 +16,15 @@
             android:id="@+id/writefirst_background_iv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/img_bg_writepage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            />
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/writefirst_color_vp"
@@ -238,7 +239,6 @@
             android:layout_marginTop="1dp"
             />-->
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/writefirst_photo_recyclerview"
             android:layout_width="0dp"
@@ -249,6 +249,18 @@
             app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
             tools:listitem="@layout/item_writefirst_photo" />
+
+        <ImageView
+            android:id="@+id/writefirst_add_photo_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintTop_toTopOf="@id/writefirst_photo_recyclerview"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_photo_recyclerview"
+            app:layout_constraintStart_toStartOf="@id/writefirst_photo_recyclerview"
+            android:layout_marginStart="92dp"
+            android:visibility="visible"
+            />
 
 
         <com.google.android.material.tabs.TabLayout
