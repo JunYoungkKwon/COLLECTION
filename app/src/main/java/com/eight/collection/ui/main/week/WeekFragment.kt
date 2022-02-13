@@ -58,7 +58,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             add(Month(4)) //9
             add(Month(5)) //10
             add(Month(0)) //11
-            add(Month(0)) //12
+            add(Month(5)) //12
             add(Month(0)) //13
             add(Month(0)) //14
             add(Month(0)) //15
@@ -271,13 +271,13 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             ),
 
             Diary(
-                R.drawable.ic_diary_point_5,"2022/02/13", R.drawable.example_0213_1, 3,
+                R.drawable.ic_diary_point_5,"2022/02/12", R.drawable.example_0213_1, 3,
                 mutableListOf(
-                    Mood("핫플레이스"), Mood("매우추움"), Mood("비"), Mood("친구"),Mood("애인"),
+                    Mood("핫플레이스"), Mood("매우추움"),Mood("애인"),
                 ), mutableListOf(
-                    Top("크롭티", "#FFFFFF"), Top("나시", "#FFFFFF"),
+                    Top("크롭티", "#FFFFFF"),
                 ), mutableListOf(
-                    Bottom("청바지", "#273e88"),
+                    Bottom("데님팬츠", "#273e88"),
                 ), mutableListOf(
                     Shoes("스니커즈", "#FFFFFF"),
                 ), mutableListOf(

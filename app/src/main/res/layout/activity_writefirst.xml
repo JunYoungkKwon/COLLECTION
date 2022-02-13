@@ -179,7 +179,7 @@
             android:id="@+id/writefirst_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2021/12/31"
+            android:text="2022/02/12"
             style="@style/VlanLlaRegular4Pt"
             app:layout_constraintStart_toEndOf="@id/writefirst_datetext_tv"
             app:layout_constraintTop_toTopOf="@id/writefirst_datetext_tv"
@@ -254,11 +254,11 @@
             android:id="@+id/writefirst_add_photo_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_camera"
+            android:src="@drawable/bg_camera"
             app:layout_constraintTop_toTopOf="@id/writefirst_photo_recyclerview"
             app:layout_constraintBottom_toBottomOf="@id/writefirst_photo_recyclerview"
             app:layout_constraintStart_toStartOf="@id/writefirst_photo_recyclerview"
-            android:layout_marginStart="92dp"
+            android:layout_marginStart="13dp"
             android:visibility="visible"
             />
 

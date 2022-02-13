@@ -49,7 +49,7 @@ MyLookSecondFragment(): BaseFragment<FragmentMyLookSecondBinding>(FragmentMyLook
             add(Photo(R.drawable.example5_2022_01_28, "2022.01.28"))
             add(Photo(R.drawable.example5_2022_02_01, "2022.02.01"))
             add(Photo(R.drawable.example5_2022_02_10, "2022.02.10"))
-            add(Photo(R.drawable.example_0213_1, "2022.02.13"))
+            add(Photo(R.drawable.example_0213_1, "2022.02.12"))
         }
 
         val adapter = MyLookVPA(itemList, true)

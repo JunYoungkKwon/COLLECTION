@@ -50,7 +50,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             add(Month(4)) //9
             add(Month(5)) //10
             add(Month(0)) //11
-            add(Month(0)) //12
+            add(Month(5)) //12
             add(Month(0)) //13
             add(Month(0)) //14
             add(Month(0)) //15

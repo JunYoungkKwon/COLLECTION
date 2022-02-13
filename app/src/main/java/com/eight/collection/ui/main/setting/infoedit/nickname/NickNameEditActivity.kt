@@ -59,7 +59,7 @@ class NickNameEditActivity: BaseActivity<ActivityNicknameEditBinding>(ActivityNi
         binding.loginDimBackground.visibility = View.INVISIBLE
         saveChangeNickName(auth.nickName)
 
-        showToast("닉네임변경 성공")
+        Toast(this).showCustomToast("닉네임 변경 성공", this)
     }
 
     override fun onChangeNickNameFailure(code: Int, message: String) {

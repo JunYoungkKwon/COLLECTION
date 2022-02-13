@@ -18,19 +18,17 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
 
     override fun initAfterBinding() {
         //Ootd 데이터 삽입
-       val ootd = Ootd("2022/02/13",R.drawable.ic_diary_point_5,"캐주얼룩", "오늘 000에게 옷 잘어울린다는 칭찬을 받았다.")
+       val ootd = Ootd("2022/02/12",R.drawable.ic_diary_point_5,"캐주얼룩", "오늘 옷 잘어울린다는 칭찬을 받았다.")
         setInit(ootd)
 
         //더미 데이터
         weatherDatas.apply {
             add(Weather("매우추움"))
-            add(Weather("비"))
         }
         placeDatas.apply {
             add(Place("핫플레이스"))
         }
         whoDatas.apply {
-            add(Who("친구"))
             add(Who("애인"))
         }
         photoDatas.apply {
@@ -40,11 +38,10 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         }
         topDatas.apply {
             add(Top("크롭티", "#FFFFFF"))
-            add(Top("나시", "#FFFFFF"))
 
         }
         bottomDatas.apply {
-            add(Bottom("청바지", "#273e88"))
+            add(Bottom("데님팬츠", "#273e88"))
         }
         shoesDatas.apply {
             add(Shoes("스니커즈", "#FFFFFF"))
