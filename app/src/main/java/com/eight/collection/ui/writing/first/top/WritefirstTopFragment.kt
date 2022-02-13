@@ -8,15 +8,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.utils.getColor
+import com.eight.collection.utils.getSelectedId
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
-    WritefirstTopRVAdapter.TopClickListener {
+    WritefirstTopRVAdapter.TopClickListener, ColorTextPost {
     lateinit var binding : FragmentWritefirstTopBinding
     private var topDatas = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
     private var idcount : Int = 13
     private var addtext : String? = null
+    var selectedId : Int = getSelectedId()
+    var data : String? = getColor()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +32,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         // 데이터 리스트 생성
         topDatas.apply {
             add(WritefirstTop("+", 0))
-            add(WritefirstTop("맨투맨", 1,"#d60f0f"))
+            add(WritefirstTop("맨투맨", 1))
             add(WritefirstTop("티셔츠", 2))
             add(WritefirstTop("블라우스", 3))
             add(WritefirstTop("목폴라", 4))
@@ -62,9 +66,9 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         val topRVAdapter = WritefirstTopRVAdapter(topDatas)
         topRVAdapter.setTopClickListener(this)
 
-        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        /*val flexboxLayoutManager = FlexboxLayoutManager(activity)*/
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
-        binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
+        /*binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager*/
     }
 
     override fun onCancelButtonClicked() {
@@ -76,5 +80,14 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     override fun plusButtonClick() {
         customDialog = WritefirstTopCustomDialog(requireContext(), this)
         customDialog.show()
+    }
+
+
+    override fun refreshColor() {
+        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
+        topDatas[selectedId].color = data
+        val topRVAdapter = WritefirstTopRVAdapter(topDatas)
+        topRVAdapter.setTopClickListener(this)
+        binding.writefirstTopRecyclerview.adapter = topRVAdapter
     }
 }

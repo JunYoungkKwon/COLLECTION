@@ -37,9 +37,24 @@ fun setColor(color: String) {
     editor.apply()
 }
 
+fun setSelectedId(Id : Int) {
+    val editor = mSharedPreferences.edit()
+    editor.putInt("selectedId", Id)
+
+    editor.apply()
+}
+
+
 fun removeColor() {
     val editor = mSharedPreferences.edit()
     editor.remove("color")
+
+    editor.apply()
+}
+
+fun removeSelectedId() {
+    val editor = mSharedPreferences.edit()
+    editor.remove("selectedId")
 
     editor.apply()
 }
@@ -52,3 +67,5 @@ fun getUserId(): String? = mSharedPreferences.getString("userId", null)
 fun getNickName(): String? = mSharedPreferences.getString("nickName", null)
 
 fun getColor(): String? = mSharedPreferences.getString("color", null)
+
+fun getSelectedId(): Int = mSharedPreferences.getInt("selectedId", -1)
