@@ -1,9 +1,14 @@
 package com.eight.collection.ui.writing.first
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityWritefirstBinding
 import com.eight.collection.ui.writing.first.top.ColorTextPost
@@ -20,35 +25,33 @@ class WritefirstActivity() : AppCompatActivity(){
     lateinit var binding: ActivityWritefirstBinding
     private var photoDatas = ArrayList<Photo>()
     val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
-    private var topDatas = ArrayList<WritefirstTop>()
-    var data: String? = com.eight.collection.utils.getColor()
-    var selectedId : Int = getSelectedId()
     private var colortextpost: ColorTextPost? = null
+    val list = ArrayList<Uri>()
+    val photoRVAdapter = PhotoRVAdapter(list, this)
 
-    /*private var colorclicklistner : ColorClickListner? = null*/
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWritefirstBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
+        var getImage_btn = findViewById<ImageView>(R.id.writefirst_add_photo_iv)
+        var recyclerview = findViewById<RecyclerView>(R.id.writefirst_photo_recyclerview)
 
-        //Photo 더미 데이터 생성
-        photoDatas.apply {
-            add(Photo(R.drawable.example1))
-            add(Photo(R.drawable.example2))
-            add(Photo(R.drawable.example3))
-            add(Photo(R.drawable.example4))
-            add(Photo(R.drawable.example1))
+        getImage_btn.setOnClickListener{
+            var intent = Intent(Intent.ACTION_PICK)
+            intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+            intent.action = Intent.ACTION_GET_CONTENT
+
+            startActivityForResult(intent, 200)
         }
 
-        //Photo 부분 Adapter 연결
-        val photoRVAdapter = PhotoRVAdapter(photoDatas)
-        binding.writefirstPhotoRecyclerview.adapter = photoRVAdapter
-        binding.writefirstPhotoRecyclerview.layoutManager =
+        recyclerview.layoutManager =
             LinearLayoutManager(baseContext, LinearLayoutManager.HORIZONTAL, false)
+        recyclerview.adapter = photoRVAdapter
 
 
         //Write First PAGE - 뷰페이저 연결
@@ -171,6 +174,35 @@ class WritefirstActivity() : AppCompatActivity(){
             removeColor()
             setColor("brown")
             colortextpost?.refreshColor()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK && requestCode == 200) {
+            list.clear()
+
+            if (data?.clipData != null) {
+                val count = data.clipData!!.itemCount
+                if (count > 5) {
+                    Toast.makeText(applicationContext, "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG)
+                    return
+                }
+
+                for (i in 0 until count){
+                    val imageUri = data.clipData!!.getItemAt(i).uri
+                    list.add(imageUri)
+                }
+            } else {
+                data?.data?.let { uri ->
+                    val imageUri : Uri? = data?.data
+                    if (imageUri != null){
+                        list.add(imageUri)
+                    }
+                }
+            }
+            photoRVAdapter.notifyDataSetChanged()
         }
     }
 
