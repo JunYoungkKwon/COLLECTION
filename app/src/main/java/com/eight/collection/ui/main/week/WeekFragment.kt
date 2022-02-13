@@ -1,14 +1,17 @@
 package com.eight.collection.ui.main.week
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
 import androidx.annotation.RequiresApi
 import androidx.core.view.get
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.Navigation
 import com.eight.collection.R
 import com.eight.collection.databinding.CalendarDateBinding
@@ -26,7 +29,10 @@ import java.time.DayOfWeek
 import java.time.YearMonth
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
-import java.util.ArrayList
+import java.time.LocalDate
+import android.widget.Toast
+import java.util.*
+
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate){
 
@@ -61,17 +67,17 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             add(Month(0)) //18
             add(Month(0)) //19
             add(Month(0)) //20
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
+            add(Month(0)) //21
+            add(Month(0)) //22
+            add(Month(0)) //23
+            add(Month(0)) //24
+            add(Month(0)) //25
+            add(Month(0)) //26
+            add(Month(0)) //27
+            add(Month(0)) //28
+            add(Month(0)) //29
+            add(Month(0)) //30
+            add(Month(0)) //31
         }
 
         class DayViewContainer(view: View) : ViewContainer(view) {
@@ -152,9 +158,12 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             DayOfWeek.FRIDAY,
             DayOfWeek.SATURDAY
         )
+        val currentDay = LocalDate.now()
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
-        binding.calendarView.scrollToMonth(currentMonth)
+        //binding.calendarView.scrollToMonth(currentMonth)
+        binding.calendarView.scrollToDate(currentDay)
 
+        Log.d("currentDay",currentDay.toString())
         var diaryList = mutableList()
         val diaryRVAdapter = DiaryRVAdapter(diaryList)
         binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
@@ -258,6 +267,21 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                     Shoes("단화", "#000000"),
                 ), mutableListOf(
                     Etc("주얼리", "#888888"),Etc("시계", "#74461f"),
+                )
+            ),
+
+            Diary(
+                R.drawable.ic_diary_point_5,"2022/02/13", R.drawable.example_0213_1, 3,
+                mutableListOf(
+                    Mood("핫플레이스"), Mood("매우추움"), Mood("비"), Mood("친구"),Mood("애인"),
+                ), mutableListOf(
+                    Top("크롭티", "#FFFFFF"), Top("나시", "#FFFFFF"),
+                ), mutableListOf(
+                    Bottom("청바지", "#273e88"),
+                ), mutableListOf(
+                    Shoes("스니커즈", "#FFFFFF"),
+                ), mutableListOf(
+                    Etc("주얼리", "#888888"),
                 )
             ),
         )

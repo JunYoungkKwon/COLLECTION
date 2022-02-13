@@ -5,11 +5,11 @@
         <!-- Primary brand color. -->
 <!--        <item name="colorPrimary">@color/purple_200</item>-->
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/purple_700</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/dark_taupe</item>
         <item name="colorSecondaryVariant">@color/dark_taupe</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/purple_700</item>
         <!-- Remove the title bar -->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -24,13 +24,15 @@
     </style>
     <style name="MyDatePickerStyle" parent="android:Widget.CalendarView">
 <!--        <item name="forwardButtonSrc">@style/CalendarPrevious</item>-->
+        <item name="colorControlActivated">@color/purple_200</item>
+        <item name="colorControlHighlight">@color/purple_200</item>
         <item name="selectionColor">@color/purple_200</item>
         <item name="selectionLabelColor">@color/purple_200</item>
         <item name="colorAccent">@color/purple_200</item>
         <item name="controlBackground">@color/purple_200</item>
         <item name="colorControlNormal">@color/purple_200</item>
-        <item name="colorControlHighlight">@color/transparent</item>
-        <item name="colorControlActivated">@color/transparent</item>
+<!--        <item name="colorControlHighlight">@color/transparent</item>-->
+<!--        <item name="colorControlActivated">@color/transparent</item>-->
         <item name="previousButtonSrc">@style/CalendarPreviousBtn</item>
         <item name="android:textColorPrimary">@color/terracota</item>
         <item name="android:textColorSecondary">@color/terracota</item>

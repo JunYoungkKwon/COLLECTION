@@ -20,6 +20,7 @@ import java.util.*
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CalendarView
@@ -30,9 +31,17 @@ import com.applandeo.materialcalendarview.utils.calendar
 import com.eight.collection.databinding.ItemWritefirstPhotoBinding
 import com.applandeo.materialcalendarview.builders.DatePickerBuilder
 import com.applandeo.materialcalendarview.listeners.OnSelectDateListener
+import androidx.annotation.NonNull
+import com.eight.collection.ui.main.MainActivity
 
 
-class DatePickerFragment: DialogFragment() {
+
+
+
+
+
+
+class DatePickerFragment(): DialogFragment(), DatePickerDialog.OnDateSetListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +50,7 @@ class DatePickerFragment: DialogFragment() {
         isCancelable = true
 
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +64,11 @@ class DatePickerFragment: DialogFragment() {
         binding.datepicker.findViewById<View>(datepickerHeaderid).visibility = View.GONE
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        val c = Calendar.getInstance()
+        val year = c[Calendar.YEAR]
+        val month = c[Calendar.MONTH]
+        val day = c[Calendar.DAY_OF_MONTH]
+
         binding.datepickerCancleBtnOffIb.setOnClickListener {
             dialog?.dismiss()
         }
@@ -64,14 +79,9 @@ class DatePickerFragment: DialogFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val  listener: OnSelectDateListener = object : OnSelectDateListener {
-            override fun onSelect(calendar: List<Calendar>) {
-
-            }
-        }
-
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        TODO("Not yet implemented")
     }
+
+
 }

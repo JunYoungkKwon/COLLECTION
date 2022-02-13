@@ -18,39 +18,39 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
 
     override fun initAfterBinding() {
         //Ootd 데이터 삽입
-       val ootd = Ootd("2022/02/13",R.drawable.ic_diary_point_4,"발표룩", "오늘 옷 잘어울린다는 칭찬을 받았다.")
+       val ootd = Ootd("2022/02/13",R.drawable.ic_diary_point_5,"캐주얼룩", "오늘 000에게 옷 잘어울린다는 칭찬을 받았다.")
         setInit(ootd)
 
         //더미 데이터
         weatherDatas.apply {
-            add(Weather("적당함"))
+            add(Weather("매우추움"))
+            add(Weather("비"))
         }
         placeDatas.apply {
-            add(Place("학교"))
+            add(Place("핫플레이스"))
         }
         whoDatas.apply {
-            add(Who("동료"))
+            add(Who("친구"))
+            add(Who("애인"))
         }
         photoDatas.apply {
-            add(Photo(R.drawable.example2))
-            add(Photo(R.drawable.example3))
-            add(Photo(R.drawable.example1))
+            add(Photo(R.drawable.example_0213_1))
+            add(Photo(R.drawable.example_0213_2))
+            add(Photo(R.drawable.example_0213_3))
         }
         topDatas.apply {
-            add(Top("티셔츠", "#FFFFFF"))
-            add(Top("티셔츠", "#FFBB86FC"))
-            add(Top("티셔츠", "#FF03DAC5"))
+            add(Top("크롭티", "#FFFFFF"))
+            add(Top("나시", "#FFFFFF"))
 
         }
         bottomDatas.apply {
-            add(Bottom("티셔츠", "#FFFFFF"))
+            add(Bottom("청바지", "#273e88"))
         }
         shoesDatas.apply {
-            add(Shoes("와이셔츠", "#FFBB86FC"))
-            add(Shoes("갃낛닭띿", "#FF03DAC5"))
+            add(Shoes("스니커즈", "#FFFFFF"))
         }
         etcDatas.apply {
-            add(Etc("와이셔츠", "#FFBB86FC"))
+            add(Etc("주얼리", "#888888"))
         }
 
         //더미데이터와 어댑터 연결
