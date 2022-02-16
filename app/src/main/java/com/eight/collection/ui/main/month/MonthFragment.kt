@@ -5,11 +5,15 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
 import com.eight.collection.R
+import com.eight.collection.data.entities.Calendar
+import com.eight.collection.data.remote.calendar.CalendarService
 import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentMonthBinding
@@ -26,63 +30,63 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
-import java.util.ArrayList
+import java.time.ZoneId
+import java.util.*
+import kotlin.collections.ArrayList
 
-class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate) {
 
-    private  var monthDatas = ArrayList<Month>()
+class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate), MonthView {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         startMyLook()
         startWrite()
         startSetting()
-
-        //더미 데이터
-        monthDatas.apply {
-            add(Month(5)) //1
-            add(Month(4)) //2
-            add(Month(4)) //3
-            add(Month(0)) //4
-            add(Month(1)) //5
-            add(Month(0)) //6
-            add(Month(4)) //7
-            add(Month(3)) //8
-            add(Month(4)) //9
-            add(Month(5)) //10
-            add(Month(0)) //11
-            add(Month(5)) //12
-            add(Month(0)) //13
-            add(Month(0)) //14
-            add(Month(0)) //15
-            add(Month(0)) //16
-            add(Month(0)) //17
-            add(Month(0)) //18
-            add(Month(0)) //19
-            add(Month(0)) //20
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
-            add(Month(0)) //2
-            add(Month(0)) //1
-        }
+        getMonth()
 
         binding.monthBtnSettingIv.bringToFront()
         binding.monthBtnWriteIv.bringToFront()
 
-        class DayViewContainer(view: View) : ViewContainer(view) {
-            val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
-            val calendarCell = CalendarDateBinding.bind(view).dateCell
-            val rankPoint = CalendarDateBinding.bind(view).calendarRankIv
-            val todayHighlight = CalendarDateBinding.bind(view).calendarTodayView
+    }
+
+    private fun startSetting() {
+        binding.monthBtnSettingIv.setOnClickListener {
+            startActivity(Intent(activity, SettingActivity::class.java))
+        }
+    }
+
+    private fun startWrite() {
+        binding.monthBtnWriteIv.setOnClickListener {
+            startActivity(Intent(activity, WritefirstActivity::class.java))
+        }
+    }
+
+    private fun startMyLook() {
+        binding.monthBtnRankIv.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.MyLookFragment)
         }
 
+    }
+    private fun getMonth() {
+        CalendarService.getMonth(this)
+    }
+
+    override fun onMonthLoading() {
+        binding.loginLoadingInIv.visibility = View.VISIBLE
+        binding.loginLoadingCircleIv.visibility = View.VISIBLE
+        binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+        //로딩이미지 애니메이션
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate)
+        binding.loginLoadingCircleIv.startAnimation(animation)
+        binding.loginDimBackground.visibility = View.VISIBLE
+    }
+
+    override fun onMonthSuccess(month: ArrayList<Calendar>) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
 
         //day cell 크기 조정
         val dm = DisplayMetrics()
@@ -92,6 +96,13 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             val dayWidth = dm.widthPixels / 7
             val dayHeight = (dayWidth * 1.8).toInt()
             daySize = com.kizitonwose.calendarview.utils.Size(dayWidth, dayHeight)
+        }
+
+        class DayViewContainer(view: View) : ViewContainer(view) {
+            val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
+            val calendarCell = CalendarDateBinding.bind(view).dateCell
+            val rankPoint = CalendarDateBinding.bind(view).calendarRankIv
+            val todayHighlight = CalendarDateBinding.bind(view).calendarTodayView
         }
 
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
@@ -108,27 +119,51 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                 if (day.owner == DayOwner.THIS_MONTH) {
                     //today highlight
                     val currentDay = LocalDate.now()
+
+                    for(i in 0 .. month.size-1 step (1)){
+                        //Date Type -> LocalDate Tyoe
+                        val date: Date = month[i].date
+                        val locadate:LocalDate = date.toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDate()
+                        if (locadate == day.date){
+                            when(month[i].lookpoint){
+                                1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_on)
+                                2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_on)
+                                3 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_3_on)
+                                4 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_4_on)
+                                5 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_5_on)
+                                else -> container.rankPoint.setImageResource(0)
+                            }
+                        }
+                    }
+                    //오늘 날짜인 것 표시
                     if (currentDay == day.date){
                         container.todayHighlight.visibility = View.VISIBLE
                     }
                     else{
                         container.todayHighlight.visibility = View.GONE
                     }
-
-                    val month = monthDatas[day.date.dayOfMonth - 1 ]
-
-                    when(month.point){
-                        1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_on)
-                        2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_on)
-                        3 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_3_on)
-                        4 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_4_on)
-                        5 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_5_on)
-                        else -> container.rankPoint.setImageResource(0)
-                    }
                     container.calendarDay.setTextColor(Color.BLACK)
                 } else {
+                    for(i in 0 .. month.size-1 step (1)){
+                        //Date Type -> LocalDate Tyoe
+                        val date: Date = month[i].date
+                        val locadate:LocalDate = date.toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDate()
+                        if (locadate == day.date){
+                            when(month[i].lookpoint){
+                                1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_off)
+                                2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_off)
+                                3 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_3_off)
+                                4 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_4_off)
+                                5 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_5_off)
+                                else -> container.rankPoint.setImageResource(0)
+                            }
+                        }
+                    }
                     container.calendarDay.setTextColor(Color.LTGRAY)
-                    //container.rankPoint.setImageResource(R.drawable.calendar_rank_5_off)
                 }
             }
         }
@@ -166,23 +201,20 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
     }
 
-    private fun startSetting() {
-        binding.monthBtnSettingIv.setOnClickListener {
-            startActivity(Intent(activity, SettingActivity::class.java))
+    override fun onMonthFailure(code: Int, message: String) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+        when (code) {
+            4000,4005 -> {
+                Log.d("Month/Data/ERROR", "error")
+            }
+            else -> {
+                Log.d("Month/ERROR", "error")
+            }
         }
-    }
-
-    private fun startWrite() {
-        binding.monthBtnWriteIv.setOnClickListener {
-            startActivity(Intent(activity, WritefirstActivity::class.java))
-        }
-    }
-
-    private fun startMyLook() {
-        binding.monthBtnRankIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.MyLookFragment)
-        }
-
     }
 
 }
