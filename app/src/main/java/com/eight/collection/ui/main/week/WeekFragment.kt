@@ -84,6 +84,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
             val rankPoint = CalendarDateBinding.bind(view).calendarRankIv
             val calendarCell = CalendarDateBinding.bind(view).dateCell
+            val todayHighlight = CalendarDateBinding.bind(view).calendarTodayView
         }
 
         val dm = DisplayMetrics()
@@ -106,8 +107,15 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
                 }
 
-
                 if (day.owner == DayOwner.THIS_MONTH) {
+                    val currentDay = LocalDate.now()
+                    if (currentDay == day.date){
+                        container.todayHighlight.visibility = View.VISIBLE
+                    }
+                    else{
+                        container.todayHighlight.visibility = View.GONE
+                    }
+
 
                     val month = monthDatas[day.date.dayOfMonth - 1 ]
 

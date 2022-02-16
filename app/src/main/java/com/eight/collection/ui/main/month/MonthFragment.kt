@@ -24,6 +24,7 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.YearMonth
 import java.util.ArrayList
 
@@ -79,6 +80,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
             val calendarCell = CalendarDateBinding.bind(view).dateCell
             val rankPoint = CalendarDateBinding.bind(view).calendarRankIv
+            val todayHighlight = CalendarDateBinding.bind(view).calendarTodayView
         }
 
 
@@ -104,6 +106,14 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                 }
                 //container.calendarDate.text= day.date.month.toString()
                 if (day.owner == DayOwner.THIS_MONTH) {
+                    //today highlight
+                    val currentDay = LocalDate.now()
+                    if (currentDay == day.date){
+                        container.todayHighlight.visibility = View.VISIBLE
+                    }
+                    else{
+                        container.todayHighlight.visibility = View.GONE
+                    }
 
                     val month = monthDatas[day.date.dayOfMonth - 1 ]
 
