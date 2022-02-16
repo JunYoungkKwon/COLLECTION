@@ -88,10 +88,6 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
 
-        Log.d("Month/Data/Calendar", month.toString())
-        Log.d("Month/Calendar", month[0].date.toString())
-        Log.d("Month/Calendar", month[0].lookpoint.toString())
-
         //day cell 크기 조정
         val dm = DisplayMetrics()
         val wm = requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -159,17 +155,16 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                             .toLocalDate()
                         if (locadate == day.date){
                             when(month[i].lookpoint){
-                                //1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_off)
-                                //2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_off)
-                                //3 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_3_off)
-                                //4 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_4_off)
+                                1 -> container.rankPoint.setImageResource(R.drawable.rank_ic_grey_one)
+                                2 -> container.rankPoint.setImageResource(R.drawable.rank_ic_grey_two)
+                                3 -> container.rankPoint.setImageResource(R.drawable.rank_ic_grey_three)
+                                4 -> container.rankPoint.setImageResource(R.drawable.rank_ic_grey_four)
                                 5 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_5_off)
                                 else -> container.rankPoint.setImageResource(0)
                             }
                         }
                     }
                     container.calendarDay.setTextColor(Color.LTGRAY)
-
                 }
             }
         }
