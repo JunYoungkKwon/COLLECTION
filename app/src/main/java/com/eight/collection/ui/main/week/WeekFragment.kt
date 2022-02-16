@@ -18,7 +18,6 @@ import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
-import com.eight.collection.ui.main.month.Month
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -36,49 +35,12 @@ import java.util.*
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate){
 
-    private  var monthDatas = ArrayList<Month>()
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         startMyLook()
         startWriteFirst()
         startSetting()
         binding.weekBtnSettingIv.bringToFront()
-
-        //더미 데이터
-        monthDatas.apply {
-            add(Month(5)) //1
-            add(Month(4)) //2
-            add(Month(4)) //3
-            add(Month(0)) //4
-            add(Month(1)) //5
-            add(Month(0)) //6
-            add(Month(4)) //7
-            add(Month(3)) //8
-            add(Month(4)) //9
-            add(Month(5)) //10
-            add(Month(0)) //11
-            add(Month(5)) //12
-            add(Month(0)) //13
-            add(Month(0)) //14
-            add(Month(0)) //15
-            add(Month(0)) //16
-            add(Month(0)) //17
-            add(Month(0)) //18
-            add(Month(0)) //19
-            add(Month(0)) //20
-            add(Month(0)) //21
-            add(Month(0)) //22
-            add(Month(0)) //23
-            add(Month(0)) //24
-            add(Month(0)) //25
-            add(Month(0)) //26
-            add(Month(0)) //27
-            add(Month(0)) //28
-            add(Month(0)) //29
-            add(Month(0)) //30
-            add(Month(0)) //31
-        }
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             val calendarDay = CalendarDateBinding.bind(view).calendarDayTv
@@ -116,17 +78,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                         container.todayHighlight.visibility = View.GONE
                     }
 
-
-                    val month = monthDatas[day.date.dayOfMonth - 1 ]
-
-                    when(month.point){
-                        1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_on)
-                        2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_on)
-                        3 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_3_on)
-                        4 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_4_on)
-                        5 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_5_on)
-                        else -> container.rankPoint.setImageResource(0)
-                    }
                     container.calendarDay.setTextColor(Color.BLACK)
                 } else {
                     container.calendarDay.setTextColor(Color.LTGRAY)
