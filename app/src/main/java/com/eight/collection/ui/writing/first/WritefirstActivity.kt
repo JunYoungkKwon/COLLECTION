@@ -196,6 +196,7 @@ class WritefirstActivity() : AppCompatActivity(){
                     val imageUri = data.clipData!!.getItemAt(i).uri
                     list.add(imageUri)
                 }
+
             } else {
                 data?.data?.let { uri ->
                     val imageUri : Uri? = data?.data
