@@ -137,7 +137,6 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                             }
                         }
                     }
-
                     //오늘 날짜인 것 표시
                     if (currentDay == day.date){
                         container.todayHighlight.visibility = View.VISIBLE
@@ -155,10 +154,10 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                             .toLocalDate()
                         if (locadate == day.date){
                             when(month[i].lookpoint){
-                                1 -> container.rankPoint.setImageResource(R.drawable.rank_ic_grey_one)
-                                2 -> container.rankPoint.setImageResource(R.drawable.rank_ic_grey_two)
-                                3 -> container.rankPoint.setImageResource(R.drawable.rank_ic_grey_three)
-                                4 -> container.rankPoint.setImageResource(R.drawable.rank_ic_grey_four)
+                                1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_off)
+                                2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_off)
+                                3 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_3_off)
+                                4 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_4_off)
                                 5 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_5_off)
                                 else -> container.rankPoint.setImageResource(0)
                             }

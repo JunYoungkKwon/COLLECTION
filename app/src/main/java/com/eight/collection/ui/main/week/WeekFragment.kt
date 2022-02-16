@@ -1,6 +1,5 @@
 package com.eight.collection.ui.main.week
 
-import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -11,7 +10,6 @@ import android.view.*
 import android.widget.PopupMenu
 import androidx.annotation.RequiresApi
 import androidx.core.view.get
-import androidx.fragment.app.DialogFragment
 import androidx.navigation.Navigation
 import com.eight.collection.R
 import com.eight.collection.databinding.CalendarDateBinding
@@ -29,8 +27,6 @@ import java.time.YearMonth
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import java.time.LocalDate
-import android.widget.Toast
-import java.util.*
 
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate){
