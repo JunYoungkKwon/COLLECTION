@@ -205,7 +205,7 @@
             android:hint="EX) 히피룩,etc"
             android:textColorHint="#C3B5AC"
             android:background="@null"
-            android:fontFamily="@font/roboto"
+            android:fontFamily="@font/suit_regular"
             android:textSize="14sp"
             android:textColor="@color/dark_taupe"
             android:letterSpacing="-0.01"

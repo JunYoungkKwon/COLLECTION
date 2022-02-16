@@ -56,7 +56,7 @@
         android:background="@null"
         android:hint="최대 6글자"
         android:textColorHint="#C3B5AC"
-        android:fontFamily="@font/noto_sans_kr"
+        android:fontFamily="@font/suit_regular"
         android:textColor="@color/dark_taupe"
         android:inputType="text"
         android:textSize="24sp"
