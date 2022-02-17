@@ -16,9 +16,7 @@ import com.eight.collection.ui.writing.first.top.ColorTextPost
 import com.eight.collection.ui.writing.first.top.WritefirstTop
 import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.eight.collection.ui.writing.second.WritesecondActivity
-import com.eight.collection.utils.getSelectedId
-import com.eight.collection.utils.removeColor
-import com.eight.collection.utils.setColor
+import com.eight.collection.utils.*
 import com.google.android.material.tabs.TabLayoutMediator
 
 class WritefirstActivity() : AppCompatActivity(){
@@ -29,9 +27,6 @@ class WritefirstActivity() : AppCompatActivity(){
     private var colortextpost: ColorTextPost? = null
     val list = ArrayList<Uri>()
     val photoRVAdapter = PhotoRVAdapter(list, this)
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +39,9 @@ class WritefirstActivity() : AppCompatActivity(){
         getImage_btn.setOnClickListener{
             var intent = Intent(Intent.ACTION_PICK)
             intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+            intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
-            binding.writefirstAddPhotoIv.visibility = View.GONE
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
 
             startActivityForResult(intent, 200)
         }
@@ -207,6 +202,14 @@ class WritefirstActivity() : AppCompatActivity(){
             }
             photoRVAdapter.notifyDataSetChanged()
         }
-    }
 
+        /*else {
+            var defaultImageString : String = "drawable://" + R.drawable.bg_camera
+            var defaultImageUri : Uri = Uri.parse(defaultImageString)
+
+            list.add(defaultImageUri)
+
+            photoRVAdapter.notifyDataSetChanged()
+        }*/
+    }
 }

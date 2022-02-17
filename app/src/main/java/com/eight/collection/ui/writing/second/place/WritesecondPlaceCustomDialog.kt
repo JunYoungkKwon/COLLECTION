@@ -12,7 +12,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.R
-import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.signup.SignupThirdActivity
 import com.eight.collection.ui.writing.CustomDialogInterface
 
