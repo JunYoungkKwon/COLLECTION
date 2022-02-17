@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eight.collection.R
 import com.eight.collection.databinding.ItemWritefirstPhotoBinding
+import com.eight.collection.databinding.ItemWritefirstTopBinding
 
 class PhotoRVAdapter(private val items:ArrayList<Uri>, val context : Context) : RecyclerView.Adapter<PhotoRVAdapter.ViewHolder>(){
 

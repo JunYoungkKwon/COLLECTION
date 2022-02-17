@@ -9,7 +9,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         >
 
         <ImageView
@@ -25,14 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/writefirst_color_vp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb" />
 
         <View
             android:id="@+id/writefirst_background_Perpendicularline_first_v"
@@ -258,6 +249,7 @@
                     android:src="@drawable/camera_bg"
                     android:layout_marginStart="13dp"
                     android:layout_marginTop="13dp"
+                    android:visibility="visible"
                     />
 
                 <ImageView
@@ -267,6 +259,7 @@
                     android:src="@drawable/camera_bg"
                     android:layout_marginStart="13dp"
                     android:layout_marginTop="13dp"
+                    android:visibility="visible"
                     />
 
         </LinearLayout>
@@ -281,7 +274,8 @@
             app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
             app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
-            tools:listitem="@layout/item_writefirst_photo" />
+            android:layout_marginStart="1dp"
+            tools:listitem="@layout/item_writefirst_photo"/>
 
         <ImageView
             android:id="@+id/writefirst_add_photo_iv"
@@ -309,23 +303,31 @@
             android:id="@+id/writefirst_color_tb"
             android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="384dp"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/img_bg_writepage"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicator="@drawable/ic_padding_indicator2"
+            app:tabIndicatorColor="@color/dark_taupe"
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorGravity="top"
-            app:tabIndicatorColor="@color/dark_taupe"
-            app:tabIndicator="@drawable/ic_padding_indicator2"
+            app:tabPaddingTop="18dp"
+            app:tabRippleColor="#00ff0000"
             app:tabSelectedTextColor="@color/dark_taupe"
             app:tabTextAppearance="@style/Tab_text"
-            app:tabTextColor="#C3B5AC"
-            app:tabRippleColor="#00ff0000"
-            app:tabPaddingTop="18dp"
-            android:background="@drawable/img_bg_writepage"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:tabTextColor="#C3B5AC" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/writefirst_color_vp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="384dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            />
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb" />
 
         <View
             android:id="@+id/writefirst_line_view"

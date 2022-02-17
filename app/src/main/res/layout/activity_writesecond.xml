@@ -137,7 +137,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/writesecond_vp"
             android:layout_width="328dp"
-            android:layout_height="wrap_content"
+            android:layout_height="214dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/writesecond_tb"

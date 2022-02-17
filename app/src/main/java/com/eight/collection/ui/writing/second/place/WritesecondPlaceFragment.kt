@@ -35,7 +35,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
             add(WritesecondPlace("카페", 5))
             add(WritesecondPlace("결혼식장", 6))
             add(WritesecondPlace("핫플레이스", 7))
-            add(WritesecondPlace("휴향지", 8))
+            add(WritesecondPlace("휴양지", 8))
         }
 
 

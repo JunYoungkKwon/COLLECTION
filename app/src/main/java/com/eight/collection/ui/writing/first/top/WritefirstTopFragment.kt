@@ -1,6 +1,7 @@
 package com.eight.collection.ui.writing.first.top
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +19,8 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     private var topDatas = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
     private var idcount : Int = 13
-    private var addtext : String? = null
     var selectedId : Int = getSelectedId()
-    var data : String? = getColor()
+    var colorText : String? = getColor()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +54,14 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
         binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
 
+
+
+        //컬러데이터 삽입
+        topDatas.apply {
+            topDatas[selectedId].color = colorText
+        }
+
+
         return binding.root
     }
 
@@ -83,9 +91,12 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     }
 
 
+
+
+    // Interface
     override fun refreshColor() {
-        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
-        topDatas[selectedId].color = data
+        Log.d("text", "di")
+        topDatas[selectedId].color = colorText
         val topRVAdapter = WritefirstTopRVAdapter(topDatas)
         topRVAdapter.setTopClickListener(this)
         binding.writefirstTopRecyclerview.adapter = topRVAdapter

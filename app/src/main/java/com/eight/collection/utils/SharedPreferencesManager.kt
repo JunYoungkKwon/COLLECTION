@@ -69,4 +69,4 @@ fun getNickName(): String? = mSharedPreferences.getString("nickName", null)
 
 fun getColor(): String? = mSharedPreferences.getString("color", null)
 
-fun getSelectedId(): Int = mSharedPreferences.getInt("selectedId", -1)
+fun getSelectedId(): Int = mSharedPreferences.getInt("selectedId", 0)
