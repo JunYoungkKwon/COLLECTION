@@ -178,16 +178,15 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         class MonthViewContainer(view: View) : ViewContainer(view) {
             val calendarMonth = CalendarYearMonthHeaderBinding.bind(view).calendarMonthTv
             val calendarYear= CalendarYearMonthHeaderBinding.bind(view).calendarYearTv
-
         }
         binding.calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer> {
             override fun create(view: View) = MonthViewContainer(view)
             override fun bind(container: MonthViewContainer, month: CalendarMonth) {
                 container.calendarYear.text = "${month.year}"
                 container.calendarMonth.text = "${month.yearMonth.month.name.toLowerCase().capitalize()}"
-
             }
         }
+
 
         val currentMonth = YearMonth.now()
         val firstMonth = currentMonth.minusMonths(10)
@@ -203,7 +202,6 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         )
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
         binding.calendarView.scrollToMonth(currentMonth)
-
 
     }
 
@@ -224,3 +222,4 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
     }
 
 }
+
