@@ -331,7 +331,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         )
         val currentDay = LocalDate.now()
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
-        //binding.calendarView.scrollToMonth(currentMonth)
         binding.calendarView.scrollToDate(currentDay)
 
     }
