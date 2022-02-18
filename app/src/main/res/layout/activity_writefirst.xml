@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/transparent3">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <ImageView
             android:id="@+id/writefirst_background_iv"
@@ -24,14 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/writefirst_color_vp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb" />
 
         <View
             android:id="@+id/writefirst_background_Perpendicularline_first_v"
@@ -204,7 +196,7 @@
             android:hint="EX) 히피룩,etc"
             android:textColorHint="#C3B5AC"
             android:background="@null"
-            android:fontFamily="@font/roboto"
+            android:fontFamily="@font/suit_regular"
             android:textSize="14sp"
             android:textColor="@color/dark_taupe"
             android:letterSpacing="-0.01"
@@ -239,6 +231,40 @@
             android:layout_marginTop="1dp"
             />-->
 
+        <LinearLayout
+            android:id="@+id/writefirst_photo_zone_layout"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
+            android:layout_marginEnd="1dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/writefirst_photo_default_image1"
+                android:layout_width="215dp"
+                android:layout_height="215dp"
+                android:src="@drawable/camera_bg_01"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="13dp"
+                android:visibility="visible"
+                />
+
+            <ImageView
+                android:id="@+id/writefirst_photo_default_image2"
+                android:layout_width="215dp"
+                android:layout_height="215dp"
+                android:src="@drawable/camera_bg_01"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="13dp"
+                android:visibility="visible"
+                />
+
+        </LinearLayout>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/writefirst_photo_recyclerview"
             android:layout_width="0dp"
@@ -248,18 +274,28 @@
             app:layout_constraintStart_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
             app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toTopOf="@id/writefirst_background_horizontalline_second_v"
-            tools:listitem="@layout/item_writefirst_photo" />
+            android:layout_marginStart="1dp"
+            tools:listitem="@layout/item_writefirst_photo"/>
 
         <ImageView
             android:id="@+id/writefirst_add_photo_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bg_camera"
+            android:layout_width="216dp"
+            android:layout_height="216dp"
             app:layout_constraintTop_toTopOf="@id/writefirst_photo_recyclerview"
             app:layout_constraintBottom_toBottomOf="@id/writefirst_photo_recyclerview"
             app:layout_constraintStart_toStartOf="@id/writefirst_photo_recyclerview"
             android:layout_marginStart="13dp"
-            android:visibility="visible"
+            />
+
+        <ImageView
+            android:id="@+id/writefirst_add_photo_iv2"
+            android:layout_width="216dp"
+            android:layout_height="216dp"
+            app:layout_constraintTop_toTopOf="@id/writefirst_add_photo_iv"
+            app:layout_constraintBottom_toBottomOf="@id/writefirst_add_photo_iv"
+            app:layout_constraintStart_toEndOf="@id/writefirst_add_photo_iv"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="1dp"
             />
 
 
@@ -267,23 +303,31 @@
             android:id="@+id/writefirst_color_tb"
             android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="384dp"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/img_bg_writepage"
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicator="@drawable/ic_padding_indicator2"
+            app:tabIndicatorColor="@color/dark_taupe"
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorGravity="top"
-            app:tabIndicatorColor="@color/dark_taupe"
-            app:tabIndicator="@drawable/ic_padding_indicator2"
+            app:tabPaddingTop="18dp"
+            app:tabRippleColor="#00ff0000"
             app:tabSelectedTextColor="@color/dark_taupe"
             app:tabTextAppearance="@style/Tab_text"
-            app:tabTextColor="#C3B5AC"
-            app:tabRippleColor="#00ff0000"
-            app:tabPaddingTop="18dp"
-            android:background="@drawable/img_bg_writepage"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:tabTextColor="#C3B5AC" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/writefirst_color_vp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="384dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            />
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb" />
 
         <View
             android:id="@+id/writefirst_line_view"
