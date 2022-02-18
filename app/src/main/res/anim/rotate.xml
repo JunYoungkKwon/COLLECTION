@@ -3,7 +3,7 @@
     android:interpolator="@android:anim/linear_interpolator"
     android:repeatCount="infinite"
     android:repeatMode="restart"
-    android:duration="300"
+    android:duration="700"
     android:pivotX="50%"
     android:pivotY="50%"
     android:fromDegrees="0"

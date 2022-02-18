@@ -58,9 +58,11 @@
 
         </activity>
 
-        <activity android:name=".ui.writing.first.WritefirstActivity"/>
+        <activity android:name=".ui.writing.first.WritefirstActivity"
+            android:theme="@style/Transparent"/>
 
-        <activity android:name=".ui.writing.second.WritesecondActivity"/>
+        <activity android:name=".ui.writing.second.WritesecondActivity"
+            android:theme="@style/Transparent"/>
 
         <activity android:name=".ui.main.setting.SettingActivity"
             android:exported="true">
@@ -83,6 +85,7 @@
 
         <activity
             android:name=".ui.finish.FinishActivity"
+            android:theme="@style/Transparent"
             android:exported="true">
 
 
