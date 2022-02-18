@@ -37,8 +37,7 @@ class AccountDeleteSecondActivity: BaseActivity<ActivityAccountDeleteSecondBindi
     }
     private fun deleteAccount() {
         if(binding.accountSecondPwEt.text.toString().isNotEmpty()){
-            if(binding.accountSecondPwCheckEt.text.toString().isEmpty())
-            {
+            if(binding.accountSecondPwCheckEt.text.toString().isEmpty()) {
                 binding.accountSecondPwCheckHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.accountSecondPwCheckFailIv.visibility = View.VISIBLE
                 binding.accountSecondPwCheckFailTv.visibility = View.VISIBLE
@@ -47,20 +46,22 @@ class AccountDeleteSecondActivity: BaseActivity<ActivityAccountDeleteSecondBindi
                 binding.accountSecondPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                 binding.accountSecondPwFailIv.visibility = View.INVISIBLE
                 binding.accountSecondPwFailTv.visibility = View.INVISIBLE
-
             }
 
         }
-        if(!binding.accountSecondPwEt.text.toString().equals(binding.accountSecondPwCheckEt.text.toString())){
+        if (binding.accountSecondPwEt.text.toString().isNotEmpty() && binding.accountSecondPwCheckEt.text.toString().isNotEmpty()){
 
-            binding.accountSecondPwCheckHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-            binding.accountSecondPwCheckFailIv.visibility = View.VISIBLE
-            binding.accountSecondPwCheckFailTv.visibility = View.VISIBLE
-            binding.accountSecondPwCheckFailTv.text= "비밀번호와 일치하지 않습니다"
+            if(!binding.accountSecondPwEt.text.toString().equals(binding.accountSecondPwCheckEt.text.toString())){
 
-            binding.accountSecondPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-            binding.accountSecondPwFailIv.visibility = View.INVISIBLE
-            binding.accountSecondPwFailTv.visibility = View.INVISIBLE
+                binding.accountSecondPwCheckHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.accountSecondPwCheckFailIv.visibility = View.VISIBLE
+                binding.accountSecondPwCheckFailTv.visibility = View.VISIBLE
+                binding.accountSecondPwCheckFailTv.text= "비밀번호와 일치하지 않습니다"
+
+                binding.accountSecondPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.accountSecondPwFailIv.visibility = View.INVISIBLE
+                binding.accountSecondPwFailTv.visibility = View.INVISIBLE
+            }
         }
         val password = binding.accountSecondPwEt.text.toString()
         val user = User("", password, "", "", "","","","")

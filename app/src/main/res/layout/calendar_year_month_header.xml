@@ -59,25 +59,6 @@
         app:layout_constraintBottom_toBottomOf="@id/calendar_year_tv"/>
 
     <View
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/pinkish_grey"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="64dp"
-        app:layout_constraintBottom_toBottomOf="@id/month_day_top_line_view"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/pinkish_grey"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="64dp"
-        app:layout_constraintBottom_toBottomOf="@id/month_day_top_line_view"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-
-    <View
         android:id="@+id/month_day_top_line_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"

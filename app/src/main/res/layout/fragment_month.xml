@@ -19,6 +19,33 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <ImageView
+        android:id="@+id/month_btn_rank_iv"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_rank"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="68dp"
+        android:background="@color/pinkish_grey"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/month_btn_setting_iv"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="68dp"
+        android:background="@color/pinkish_grey"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/month_btn_rank_iv"/>
+
+    <ImageView
         android:id="@+id/month_btn_write_iv"
         android:layout_width="110dp"
         android:layout_height="110dp"
@@ -42,17 +69,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:cv_monthHeaderResource="@layout/calendar_year_month_header"
         app:cv_dayViewResource="@layout/calendar_date" />
-
-    <ImageView
-        android:id="@+id/month_btn_rank_iv"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/ic_rank"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
 
     <LinearLayout
         android:id="@+id/login_dim_background"

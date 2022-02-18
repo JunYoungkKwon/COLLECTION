@@ -11,6 +11,9 @@
     <!-- 공통 -->
     <color name="primary">#F84D17</color>
     <color name="transparent">#00ff0000</color>
+    <color name="transparent2">#CC000000</color>
+    <color name="transparent3">#66000000</color>
+    <color name="transparent4">#4D000000</color>
     <color name="form_error">#F44336</color>
     <color name="bottom_navi">#f4f2f0</color>
     <color name="background">#f9f8f6</color>

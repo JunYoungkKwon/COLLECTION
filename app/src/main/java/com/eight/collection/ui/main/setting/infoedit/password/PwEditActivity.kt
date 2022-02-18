@@ -33,101 +33,50 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
     }
 
     private fun changePw() {
-//        if (binding.pwOriginPwEt.text.toString().isEmpty()){
-//            if (binding.pwNewPwEt.text.toString().isEmpty()) empty1("기존 비밀번호를 입력하세요.")
-//
-//            if (binding.pwNewCheckPwEt.text.toString().isEmpty()) empty1("기존 비밀번호를 입력하세요.")
-//            else empty1("기존 비밀번호를 입력하세요.")
-//            return
-//        }
-//
-//        if (binding.pwOriginPwEt.text.toString().isNotEmpty()){
-//            if (binding.pwNewPwEt.text.toString().isEmpty()) empty1("기존 비밀번호를 입력하세요.")
-//
-//            if (binding.pwNewCheckPwEt.text.toString().isEmpty()) empty1("기존 비밀번호를 입력하세요.")
-//            return
-//        }
-//        if (binding.pwNewPwEt.text.toString().isEmpty()){
-//            showToast("2")
-//        }
-//        if (binding.pwNewCheckPwEt.text.toString().isEmpty()){
-//            showToast("3")
-//        }
-//        if (binding.pwNewPwEt.text.toString().isNotEmpty() && binding.pwOriginPwEt.text.toString().isNotEmpty()){
-//            if (binding.pwNewPwEt.text.toString().equals(binding.pwOriginPwEt.text.toString())){
-//                empty1()
-//                return
-//            }
-//        }
 
-//        if (binding.pwNewPwEt.text.toString().isNotEmpty() && binding.pwNewCheckPwEt.text.toString().isNotEmpty()){
-//            if (!binding.pwNewPwEt.text.toString().equals(binding.pwNewCheckPwEt.text.toString())){
-//                //origin show
-//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-//                binding.pwNewPwFailIv.visibility = View.VISIBLE
-//                binding.pwNewPwFailTv.visibility = View.VISIBLE
-//                binding.pwNewPwFailTv.text= "새 비밀번호와 새 비밀번호 확인이 동일하지 않습니다."
-//                //extra hide
-//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-//                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
-//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//                binding.pwNewPwFailIv.visibility = View.INVISIBLE
-//                binding.pwNewPwFailTv.visibility = View.INVISIBLE
-//                return
-//            }
-//        }
+        if (binding.pwNewPwEt.text.toString().isNotEmpty() && binding.pwOriginPwEt.text.toString().isNotEmpty()) {
+            if (binding.pwNewPwEt.text.toString().equals(binding.pwOriginPwEt.text.toString())) {
+                //origin show
+                binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.pwNewPwFailIv.visibility = View.VISIBLE
+                binding.pwNewPwFailTv.visibility = View.VISIBLE
+                binding.pwNewPwFailTv.text = "기존의 비밀번호와 동일합니다."
+                //extra hide
+                binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+                return
+            }
+        }
+
+
+        if (binding.pwNewPwEt.text.toString().isNotEmpty() && binding.pwNewCheckPwEt.text.toString().isNotEmpty()) {
+            if (!binding.pwNewPwEt.text.toString().equals(binding.pwNewCheckPwEt.text.toString())) {
+                //origin show
+                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.pwNewCheckPwFailIv.visibility = View.VISIBLE
+                binding.pwNewCheckPwFailTv.visibility = View.VISIBLE
+                binding.pwNewCheckPwFailTv.text = "새 비밀번호와 일치하지 않습니다."
+                //extra hide
+                binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwNewPwFailIv.visibility = View.INVISIBLE
+                binding.pwNewPwFailTv.visibility = View.INVISIBLE
+                binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+                return
+            }
+        }
+
         val orginpw = binding.pwOriginPwEt.text.toString()
         val newpw = binding.pwNewPwEt.text.toString()
         val newcheckpw = binding.pwNewCheckPwEt.text.toString()
-        val user = User("", "", "","","",orginpw,newpw,newcheckpw)
+        val user = User("", "", "", "", "", orginpw, newpw, newcheckpw)
 
         AuthService.changePw(this, user)
-    }
-
-    private fun empty1(text: String) {
-        //origin show
-        binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-        binding.pwOriginPwFailIv.visibility = View.VISIBLE
-        binding.pwOriginPwFailTv.visibility = View.VISIBLE
-        binding.pwOriginPwFailTv.text= text
-        //extra hide
-        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-        binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-        binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
-        binding.pwNewPwFailIv.visibility = View.INVISIBLE
-        binding.pwNewPwFailTv.visibility = View.INVISIBLE
-    }
-
-    private fun empty2() {
-        //origin show
-        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-        binding.pwNewPwFailIv.visibility = View.VISIBLE
-        binding.pwNewPwFailTv.visibility = View.VISIBLE
-        binding.pwNewPwFailTv.text = "새 비밀번호를 입력하세요."
-        //extra hide
-        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-        binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-        binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
-        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-        binding.pwNewPwFailIv.visibility = View.INVISIBLE
-        binding.pwNewPwFailTv.visibility = View.INVISIBLE
-    }
-
-    private fun empty3() {
-        //origin show
-        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-        binding.pwNewPwFailIv.visibility = View.VISIBLE
-        binding.pwNewPwFailTv.visibility = View.VISIBLE
-        binding.pwNewPwFailTv.text = "새 비밀번호를 입력하세요."
-        //extra hide
-        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-        binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-        binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
-        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-        binding.pwNewPwFailIv.visibility = View.INVISIBLE
-        binding.pwNewPwFailTv.visibility = View.INVISIBLE
     }
 
     override fun onChangePwLoading() {

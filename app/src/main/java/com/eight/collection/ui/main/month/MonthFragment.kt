@@ -20,6 +20,7 @@ import com.eight.collection.databinding.FragmentMonthBinding
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.setting.SettingActivity
+import com.eight.collection.ui.main.setting.infoedit.nickname.ChangeNickNameView
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -35,7 +36,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate), MonthView {
+class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate), MonthView  {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
@@ -113,7 +114,12 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.calendarDay.text = day.date.dayOfMonth.toString()
                 container.calendarCell.setOnClickListener{
-                    startActivity(Intent(activity, FinishActivity::class.java))
+                    if(container.rankPoint.drawable == null) {
+                        showToast("no image")
+                    }
+                    else{
+                        startActivity(Intent(activity, FinishActivity::class.java))
+                    }
                 }
                 //container.calendarDate.text= day.date.month.toString()
                 if (day.owner == DayOwner.THIS_MONTH) {
