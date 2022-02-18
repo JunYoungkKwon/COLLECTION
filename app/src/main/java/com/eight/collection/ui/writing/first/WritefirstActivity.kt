@@ -1,6 +1,8 @@
 package com.eight.collection.ui.writing.first
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,10 +18,13 @@ import com.eight.collection.ui.writing.first.top.ColorTextPost
 import com.eight.collection.ui.writing.first.top.WritefirstTop
 import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.eight.collection.ui.writing.second.WritesecondActivity
-import com.eight.collection.utils.getSelectedId
-import com.eight.collection.utils.removeColor
-import com.eight.collection.utils.setColor
+import com.eight.collection.utils.*
 import com.google.android.material.tabs.TabLayoutMediator
+import java.sql.Date
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class WritefirstActivity() : AppCompatActivity(){
 
@@ -30,23 +35,29 @@ class WritefirstActivity() : AppCompatActivity(){
     val list = ArrayList<Uri>()
     val photoRVAdapter = PhotoRVAdapter(list, this)
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWritefirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //날짜 데이터 삽입
+        var date = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+        val formatted = date.format(formatter)
+
+        binding.writefirstDateTv.text = formatted
+
+
+        //이미지 리사이클러뷰 및 갤러리에서 이미지 불러오기
         var getImage_btn = findViewById<ImageView>(R.id.writefirst_add_photo_iv)
         var recyclerview = findViewById<RecyclerView>(R.id.writefirst_photo_recyclerview)
 
         getImage_btn.setOnClickListener{
             var intent = Intent(Intent.ACTION_PICK)
             intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+            intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
-            binding.writefirstAddPhotoIv.visibility = View.GONE
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
 
             startActivityForResult(intent, 200)
         }
@@ -56,7 +67,7 @@ class WritefirstActivity() : AppCompatActivity(){
         recyclerview.adapter = photoRVAdapter
 
 
-        //Write First PAGE - 뷰페이저 연결
+        //Writing First Activity - Color 뷰페이저 연결
         val writefirstAdapter = WritefirstVPA(this)
         binding.writefirstColorVp.adapter = writefirstAdapter
         TabLayoutMediator(binding.writefirstColorTb, binding.writefirstColorVp) { tab, position ->
@@ -64,121 +75,108 @@ class WritefirstActivity() : AppCompatActivity(){
         }.attach()
 
 
-        // 다음버튼 클릭시 Writing Second Page Start
+        //다음버튼 클릭시 Writing Second Activity
         binding.writefirstNextButton.setOnClickListener {
             startActivity(Intent(this, WritesecondActivity::class.java))
         }
 
+
+
+        //Color블록 클릭시 데이터 전달
         binding.writefirstColorTopSelectorRed.setOnClickListener{
             removeColor()
             setColor("red")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorPink.setOnClickListener{
             removeColor()
             setColor("pink")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorYellow.setOnClickListener{
             removeColor()
             setColor("yellow")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorLightyellow.setOnClickListener{
             removeColor()
             setColor("lightyellow")
-            colortextpost?.refreshColor()
         }
 
 
         binding.writefirstColorTopSelectorGreen.setOnClickListener{
             removeColor()
             setColor("green")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorLightgreen.setOnClickListener{
             removeColor()
-            setColor("lightreen")
-            colortextpost?.refreshColor()
+            setColor("lightgreen")
         }
 
         binding.writefirstColorTopSelectorOrange.setOnClickListener{
             removeColor()
             setColor("orange")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorNavy.setOnClickListener{
             removeColor()
             setColor("navy")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorBlue.setOnClickListener{
             removeColor()
             setColor("blue")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorLightblue.setOnClickListener{
             removeColor()
             setColor("lightblue")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorPurple.setOnClickListener{
             removeColor()
             setColor("purple")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorLightpurple.setOnClickListener{
             removeColor()
             setColor("lightpurple")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorWhite.setOnClickListener{
             removeColor()
             setColor("white")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorGrey.setOnClickListener{
             removeColor()
             setColor("grey")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorBlack.setOnClickListener{
             removeColor()
             setColor("black")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorLightpeach.setOnClickListener{
             removeColor()
             setColor("lightpeach")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorPinkishgrey.setOnClickListener{
             removeColor()
             setColor("pinkishgrey")
-            colortextpost?.refreshColor()
         }
 
         binding.writefirstColorTopSelectorBrown.setOnClickListener{
             removeColor()
             setColor("brown")
-            colortextpost?.refreshColor()
         }
     }
 
+
+    //갤러리에서 이미지 선택 메소드
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -195,6 +193,8 @@ class WritefirstActivity() : AppCompatActivity(){
                 for (i in 0 until count){
                     val imageUri = data.clipData!!.getItemAt(i).uri
                     list.add(imageUri)
+                    binding.writefirstPhotoDefaultImage1.visibility = View.GONE
+                    binding.writefirstPhotoDefaultImage2.visibility = View.GONE
                 }
 
             } else {
@@ -202,11 +202,21 @@ class WritefirstActivity() : AppCompatActivity(){
                     val imageUri : Uri? = data?.data
                     if (imageUri != null){
                         list.add(imageUri)
+                        binding.writefirstPhotoDefaultImage1.visibility = View.GONE
+                        binding.writefirstPhotoDefaultImage2.visibility = View.GONE
                     }
                 }
             }
             photoRVAdapter.notifyDataSetChanged()
         }
-    }
 
+        /*else {
+            var defaultImageString : String = "drawable://" + R.drawable.bg_camera
+            var defaultImageUri : Uri = Uri.parse(defaultImageString)
+
+            list.add(defaultImageUri)
+
+            photoRVAdapter.notifyDataSetChanged()
+        }*/
+    }
 }

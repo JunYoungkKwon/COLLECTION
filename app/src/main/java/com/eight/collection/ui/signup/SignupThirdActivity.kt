@@ -52,7 +52,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
         if (binding.signUpThirdPasswordEt.text.toString() != binding.signUpThirdPasswordCheckEt.text.toString()) {
             binding.signUpThirdPasswordCheckUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
             binding.signUpThirdPasswordCheckErrorTv.visibility = View.VISIBLE
-            binding.signUpThirdPasswordCheckErrorTv.text= "비밀번호가 일치하지 않습니다."
+            binding.signUpThirdPasswordCheckErrorTv.text= "*비밀번호가 일치하지 않습니다."
 
             //나머지 원래대로
             binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
@@ -87,7 +87,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
             3041, 3050, 3051 -> {
                 binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdNameErrorTv.visibility = View.VISIBLE
-                binding.signUpThirdNameErrorTv.text= message
+                binding.signUpThirdNameErrorTv.text= '*' + message
 
                 //나머지 원래대로
                 binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
@@ -108,7 +108,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
             3000, 3001, 3002, 3050, 3051 -> {
                 binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdIdErrorTv.visibility = View.VISIBLE
-                binding.signUpThirdIdErrorTv.text= message
+                binding.signUpThirdIdErrorTv.text= '*' + message
                 binding.signUpThirdIdErrorTv.setTextColor(Color.parseColor("#c77a4a"))
 
                 //나머지 원래대로
@@ -129,7 +129,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
             3003, 3004, 3050, 3051 -> {
                 binding.signUpThirdPasswordUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdPasswordErrorTv.visibility = View.VISIBLE
-                binding.signUpThirdPasswordErrorTv.text= message
+                binding.signUpThirdPasswordErrorTv.text= '*' + message
 
                 //나머지 원래대로
                 binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
@@ -148,7 +148,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
             3008, 3009, 3010, 3050, 3051 -> {
                 binding.signUpThirdPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdPhoneErrorTv.visibility = View.VISIBLE
-                binding.signUpThirdPhoneErrorTv.text= message
+                binding.signUpThirdPhoneErrorTv.text= '*' + message
 
                 //나머지 원래대로
                 binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
@@ -182,7 +182,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     override fun onCheckIdSuccess() {
         binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
         binding.signUpThirdIdErrorTv.visibility = View.VISIBLE
-        binding.signUpThirdIdErrorTv.text= "사용가능한 아이디입니다."
+        binding.signUpThirdIdErrorTv.text= "*사용가능한 아이디입니다."
         binding.signUpThirdIdErrorTv.setTextColor(Color.parseColor("#71a238"))
     }
 
@@ -192,7 +192,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
             3000, 3002, 3050, 3051 -> {
                 binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdIdErrorTv.visibility = View.VISIBLE
-                binding.signUpThirdIdErrorTv.text = message
+                binding.signUpThirdIdErrorTv.text = '*' + message
                 binding.signUpThirdIdErrorTv.setTextColor(Color.parseColor("#c77a4a"))
 
                 //나머지 원래대로

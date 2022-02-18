@@ -60,6 +60,7 @@ fun removeSelectedId() {
 }
 
 
+
 fun getJwt(): String? = mSharedPreferences.getString(X_ACCESS_TOKEN, null)
 
 fun getUserId(): String? = mSharedPreferences.getString("userId", null)
@@ -68,4 +69,4 @@ fun getNickName(): String? = mSharedPreferences.getString("nickName", null)
 
 fun getColor(): String? = mSharedPreferences.getString("color", null)
 
-fun getSelectedId(): Int = mSharedPreferences.getInt("selectedId", -1)
+fun getSelectedId(): Int = mSharedPreferences.getInt("selectedId", 0)

@@ -8,25 +8,15 @@
     android:layout_marginTop="12dp"
     >
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/item_album_cover_img_cardView"
+
+    <ImageView
+        android:id="@+id/item_writefirst_photo_img_iv"
         android:layout_width="216dp"
         android:layout_height="216dp"
-        app:cardElevation="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_camera"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
-
-        <ImageView
-            android:id="@+id/item_writefirst_photo_img_iv"
-            android:layout_width="216dp"
-            android:layout_height="216dp"
-            android:scaleType="fitXY"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <!--<RelativeLayout
         android:id="@+id/item_writefirst_photo_bg_iv"

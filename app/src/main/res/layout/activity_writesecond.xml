@@ -136,7 +136,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/writesecond_vp"
             android:layout_width="328dp"
-            android:layout_height="wrap_content"
+            android:layout_height="214dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/writesecond_tb"
@@ -262,6 +262,7 @@
             android:paddingTop="10dp"
             android:textColor="@color/dark_taupe"
             android:textSize="12sp"
+            android:fontFamily="@font/suit_regular"
             app:layout_constraintEnd_toEndOf="@id/writesecond_background_horizontalline_fifth_v"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/writesecond_background_horizontalline_fifth_v"

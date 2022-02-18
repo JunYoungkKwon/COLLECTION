@@ -83,15 +83,16 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="실명을 입력하세요"
-        style="@style/NotoSansKr14Pt10"
         android:textColorHint="#C3B5AC"
         android:inputType="textPersonName"
         android:textSize="14sp"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
+        android:fontFamily="@font/suit_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_name_tv"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="120dp"
         />
@@ -106,6 +107,7 @@
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_name_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="9.5dp"
         />
 
     <TextView
@@ -148,7 +150,8 @@
         android:textSize="14sp"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
-        style="@style/NotoSansKr14Pt10"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/suit_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_id_tv"
@@ -166,6 +169,7 @@
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_id_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="9.5dp"
         />
 
     <ImageView
@@ -218,7 +222,8 @@
         android:textSize="14sp"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
-        style="@style/NotoSansKr14Pt10"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/suit_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_tv"
@@ -236,6 +241,7 @@
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="9.5dp"
         />
 
     <TextView
@@ -279,7 +285,8 @@
         android:textSize="14sp"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
-        style="@style/NotoSansKr14Pt10"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/suit_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_check_tv"
@@ -297,6 +304,7 @@
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_password_check_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="9.5dp"
         />
 
     <TextView
@@ -338,7 +346,8 @@
         android:textSize="14sp"
         android:textColor="@color/dark_taupe"
         android:letterSpacing="-0.01"
-        style="@style/NotoSansKr14Pt10"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/suit_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_phone_tv"
@@ -356,6 +365,7 @@
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_phone_et"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="9.5dp"
         />
 
     <TextView

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eight.collection.R
 import com.eight.collection.databinding.ItemWritefirstPhotoBinding
+import com.eight.collection.databinding.ItemWritefirstTopBinding
 
 class PhotoRVAdapter(private val items:ArrayList<Uri>, val context : Context) : RecyclerView.Adapter<PhotoRVAdapter.ViewHolder>(){
 
@@ -38,8 +39,7 @@ class PhotoRVAdapter(private val items:ArrayList<Uri>, val context : Context) : 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v){
         private var view : View = v
         var image = v.findViewById<ImageView>(R.id.item_writefirst_photo_img_iv)
-
-        fun bind(listner: View.OnClickListener, item : String){
+        fun bind(listner: View.OnClickListener){
             view.setOnClickListener(listner)
         }
     }

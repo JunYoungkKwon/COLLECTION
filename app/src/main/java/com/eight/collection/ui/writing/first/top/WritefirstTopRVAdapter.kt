@@ -78,6 +78,8 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
                     }
                     notifyDataSetChanged()
                 }
+
+
                 if(selectedId==position){
                     when(topList[position].color) {
                         "red" -> {
@@ -105,7 +107,7 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
                         }
 
                         "green" -> {
-                            setBackgroundColor(Color.parseColor("#fde6b1"))
+                            setBackgroundColor(Color.parseColor("#71a238"))
                             setTextColor(Color.parseColor("#ffffff"))
                             removeColor()
                         }

@@ -27,6 +27,7 @@ class WritesecondActivity : AppCompatActivity(){
             tab.text = information[position]
         }.attach()
 
+
         binding.writesecondFinishButton2.setOnClickListener {
             startActivity(Intent(this, FinishActivity::class.java))
         }
