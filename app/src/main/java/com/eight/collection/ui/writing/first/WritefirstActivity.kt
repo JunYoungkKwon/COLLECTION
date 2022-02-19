@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityWritefirstBinding
+import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.eight.collection.utils.*
 import com.google.android.material.tabs.TabLayoutMediator
@@ -21,7 +21,6 @@ import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
 class WritefirstActivity() : AppCompatActivity(){
-
     lateinit var binding: ActivityWritefirstBinding
     val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
     val photoList = ArrayList<Uri>()
@@ -158,6 +157,7 @@ class WritefirstActivity() : AppCompatActivity(){
             removeColor()
             setColor("brown")
         }
+
 
 
         //다음버튼 클릭시 Writing Second Activity
