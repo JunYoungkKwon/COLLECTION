@@ -14,7 +14,7 @@ import com.eight.collection.utils.getSelectedId
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
-    WritefirstTopRVAdapter.TopClickListener, ColorTextPost {
+    WritefirstTopRVAdapter.TopClickListener {
     lateinit var binding : FragmentWritefirstTopBinding
     private var topDatas = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
@@ -88,17 +88,5 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     override fun plusButtonClick() {
         customDialog = WritefirstTopCustomDialog(requireContext(), this)
         customDialog.show()
-    }
-
-
-
-
-    // Interface
-    override fun refreshColor() {
-        Log.d("text", "di")
-        topDatas[selectedId].color = colorText
-        val topRVAdapter = WritefirstTopRVAdapter(topDatas)
-        topRVAdapter.setTopClickListener(this)
-        binding.writefirstTopRecyclerview.adapter = topRVAdapter
     }
 }
