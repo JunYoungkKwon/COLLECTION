@@ -70,14 +70,13 @@ class NickNameEditActivity: BaseActivity<ActivityNicknameEditBinding>(ActivityNi
         binding.loginDimBackground.visibility = View.INVISIBLE
         when (code) {
             //NickName 에러
-            3002, 3000, 3050, 3051 -> {
+            3007, 3017, 3073, 3006 -> {
                 //오류 토스트 보이게
                 Toast(this).showCustomToast(message, this)
             }
 
             else -> {
                 Log.d("NickNameEdit/ERROR", "error")
-                showToast("SEVER ERROR ")
             }
         }
     }

@@ -46,6 +46,7 @@ class AccountDeleteSecondActivity: BaseActivity<ActivityAccountDeleteSecondBindi
                 binding.accountSecondPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                 binding.accountSecondPwFailIv.visibility = View.INVISIBLE
                 binding.accountSecondPwFailTv.visibility = View.INVISIBLE
+                return
             }
 
         }
@@ -61,6 +62,7 @@ class AccountDeleteSecondActivity: BaseActivity<ActivityAccountDeleteSecondBindi
                 binding.accountSecondPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                 binding.accountSecondPwFailIv.visibility = View.INVISIBLE
                 binding.accountSecondPwFailTv.visibility = View.INVISIBLE
+                return
             }
         }
         val password = binding.accountSecondPwEt.text.toString()
@@ -86,6 +88,7 @@ class AccountDeleteSecondActivity: BaseActivity<ActivityAccountDeleteSecondBindi
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
 
+        Toast(this).showCustomToast("회원탈퇴 되었습니다.", this)
         startActivityWithClear(LoginFirstActivity::class.java)
     }
 

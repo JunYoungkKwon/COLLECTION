@@ -6,9 +6,12 @@ import android.graphics.Color
 import android.os.Build
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
 import com.eight.collection.R
@@ -19,8 +22,8 @@ import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentMonthBinding
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.finish.FinishActivity
+import com.eight.collection.ui.main.MainActivity
 import com.eight.collection.ui.main.setting.SettingActivity
-import com.eight.collection.ui.main.setting.infoedit.nickname.ChangeNickNameView
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -115,7 +118,12 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                 container.calendarDay.text = day.date.dayOfMonth.toString()
                 container.calendarCell.setOnClickListener{
                     if(container.rankPoint.drawable == null) {
-                        showToast("no image")
+                        var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                        var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                        text.text="해당 날짜에는 ootd가 존재하지 않습니다."
+                        var toast = Toast(context)
+                        toast.view = layoutInflater
+                        toast.show()
                     }
                     else{
                         startActivity(Intent(activity, FinishActivity::class.java))

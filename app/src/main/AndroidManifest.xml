@@ -21,6 +21,8 @@
         <activity
         android:name=".ui.splash.SplashActivity"
         android:exported="true">
+
+
         </activity>
 
         <activity
@@ -55,7 +57,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity android:name=".ui.writing.first.WritefirstActivity"

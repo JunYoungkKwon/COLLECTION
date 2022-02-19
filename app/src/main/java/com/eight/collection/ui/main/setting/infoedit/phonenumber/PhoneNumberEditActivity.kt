@@ -56,7 +56,7 @@ class PhoneNumberEditActivity: BaseActivity<ActivityPhoneNumberEditBinding>(Acti
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
 
-        showToast("핸드폰번호 변경 성공")
+        Toast(this).showCustomToast("핸드폰번호가 변경되었습니다.", this)
     }
 
     override fun onChangePhoneNumberFailure(code: Int, message: String) {
@@ -74,7 +74,7 @@ class PhoneNumberEditActivity: BaseActivity<ActivityPhoneNumberEditBinding>(Acti
 
             else -> {
                 Log.d("PhonwNumnerEdit/ERROR", "error")
-                showToast("SEVER ERROR")
+
             }
         }
     }

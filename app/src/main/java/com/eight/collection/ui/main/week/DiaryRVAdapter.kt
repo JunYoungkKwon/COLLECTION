@@ -1,5 +1,7 @@
 package com.eight.collection.ui.main.week
 
+import android.nfc.Tag
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -37,10 +39,24 @@ class DiaryRVAdapter(private  val Diarylist: MutableList<Diary>) : RecyclerView.
     }
 
 
-    override fun getItemCount(): Int = Diarylist.size
+    override fun getItemCount(): Int = when (Diarylist.size) {
+        0 -> 0
+        1 -> 1
+        2 -> 2
+        3 -> 3
+        4 -> 4
+        5 -> 5
+        6 -> 6
+        7 -> 7
+        else -> 7}
+
+
+
+
 
 
     inner class ViewHolder(val binding: ItemWeekDiaryBinding): RecyclerView.ViewHolder(binding.root){
+
 
         fun bind(diary: Diary){
             binding.itemDiaryImgCountTv.text= diary.imgCount.toString()
@@ -48,7 +64,7 @@ class DiaryRVAdapter(private  val Diarylist: MutableList<Diary>) : RecyclerView.
             binding.itemDiaryDateTv.text= diary.date.toString()
             binding.itemDiaryPointIv.setImageResource(diary.point!!)
 
-            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(diary.moodList)
+            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(diary.placeList)
             binding.weekDiaryTopRecyclerView.adapter = ToprRVAdapter(diary.topList)
             binding.weekDiaryBottomRecyclerView.adapter = BottomRVAdapter(diary.bottomList)
             binding.weekDiaryShoesRecyclerView.adapter = ShoesRVAdapter(diary.shoesList)

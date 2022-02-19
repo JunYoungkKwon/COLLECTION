@@ -6,35 +6,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/toast_text_bg_cv"
-        android:layout_width="296dp"
-        android:layout_height="56dp"
+    <ImageView
+        android:id="@+id/toast_bg_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/custom_toast_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="1dp">
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <View
-            android:id="@+id/toast_text_bg_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/light_peach">
-        </View>
-
-        <TextView
-            android:id="@+id/toast_text_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_kr"
-            android:textStyle="normal"
-            android:textSize="14sp"
-            android:textColor="@color/dark_taupe"
-            android:letterSpacing="-0.01"
-            android:layout_gravity="center"
-            android:text="Test"/>
-
-    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/toast_text_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="-19dp"
+        app:layout_constraintTop_toTopOf="@+id/toast_bg_iv"
+        app:layout_constraintStart_toStartOf="@+id/toast_bg_iv"
+        app:layout_constraintBottom_toBottomOf="@+id/toast_bg_iv"
+        app:layout_constraintEnd_toEndOf="@+id/toast_bg_iv"
+        android:textColor="@color/dark_taupe"
+        android:letterSpacing="-0.01"
+        android:layout_gravity="center"
+        android:text="Test"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -193,8 +193,8 @@ class WritefirstActivity() : AppCompatActivity(){
                 for (i in 0 until count){
                     val imageUri = data.clipData!!.getItemAt(i).uri
                     list.add(imageUri)
-//                    binding.writefirstPhotoDefaultImage1.visibility = View.GONE
-//                    binding.writefirstPhotoDefaultImage2.visibility = View.GONE
+                    binding.writefirstPhotoDefaultImage1.visibility = View.GONE
+                    binding.writefirstPhotoDefaultImage2.visibility = View.GONE
                 }
 
             } else {
@@ -202,8 +202,8 @@ class WritefirstActivity() : AppCompatActivity(){
                     val imageUri : Uri? = data?.data
                     if (imageUri != null){
                         list.add(imageUri)
-//                        binding.writefirstPhotoDefaultImage1.visibility = View.GONE
-//                        binding.writefirstPhotoDefaultImage2.visibility = View.GONE
+                        binding.writefirstPhotoDefaultImage1.visibility = View.GONE
+                        binding.writefirstPhotoDefaultImage2.visibility = View.GONE
                     }
                 }
             }

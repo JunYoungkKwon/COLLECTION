@@ -96,7 +96,17 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
 
-        showToast("비밀번호 변경 성공")
+        binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwNewPwFailIv.visibility = View.INVISIBLE
+        binding.pwNewPwFailTv.visibility = View.INVISIBLE
+        binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+        binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+        binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+        binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+
+        Toast(this).showCustomToast("비밀번호가 변경되었습니다.", this)
     }
 
     override fun onChangePwFailure(code: Int, message: String) {
@@ -120,7 +130,6 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                 binding.pwNewPwFailIv.visibility = View.INVISIBLE
                 binding.pwNewPwFailTv.visibility = View.INVISIBLE
-                Log.d("fisrt/Error", "error")
             }
             3015 -> {
                 //origin show
@@ -135,7 +144,6 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                 binding.pwOriginPwFailTv.visibility = View.INVISIBLE
                 binding.pwOriginPwFailIv.visibility = View.INVISIBLE
-                Log.d("second/Error", "error")
             }
 
             3016-> {
@@ -151,46 +159,11 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                 binding.pwNewPwFailIv.visibility = View.INVISIBLE
                 binding.pwNewPwFailTv.visibility = View.INVISIBLE
-                Log.d("third/Error", "error")
             }
 
             else -> {
-                showToast(code.toString())
+                Log.d("Sever/PwEditActivity/Error", "error")
             }
-
-            //newPw error
-//            3014, 3015, 3016 -> {
-//                //origin show
-//                binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-//                binding.pwNewPwFailIv.visibility = View.VISIBLE
-//                binding.pwNewPwFailTv.visibility = View.VISIBLE
-//                binding.pwNewPwFailTv.text= message
-//                //extra hide
-//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-//                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
-//                binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
-//                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
-//                Log.d("second/Error", "error")
-//            }
-//
-            //newCheckPw error
-//            3014, 3015, 3016 -> {
-//                //origin show
-//                binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-//                binding.pwNewCheckPwFailIv.visibility = View.VISIBLE
-//                binding.pwNewCheckPwFailTv.visibility = View.VISIBLE
-//                binding.pwNewCheckPwFailTv.text= message
-//                //extra hide
-//                binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
-//                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
-//                binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//                binding.pwNewPwFailIv.visibility = View.INVISIBLE
-//                binding.pwNewPwFailTv.visibility = View.INVISIBLE
-//                Log.d("third/Error", "error")
-//            }
         }
     }
 }
