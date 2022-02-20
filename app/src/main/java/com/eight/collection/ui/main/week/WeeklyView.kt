@@ -5,6 +5,6 @@ import com.eight.collection.data.remote.auth.Auth
 
 interface WeeklyView {
     fun onWeeklyLoading()
-    fun onWeeklySuccess(weekly: ArrayList<Diary>)
+    fun onWeeklySuccess(weekly: MutableList<Diary>)
     fun onWeeklyFailure(code: Int, message: String)
 }

@@ -1,7 +1,8 @@
 package com.eight.collection.ui.main.week
 
-data class Top(
-    var cloth : String? = "",
-    var color : String? = ""
+import com.google.gson.annotations.SerializedName
 
+data class Top(
+    @SerializedName("smallClass") var cloth : String? = "",
+    @SerializedName("color") var color : String? = ""
 )

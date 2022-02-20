@@ -22,7 +22,7 @@
             android:layout_centerHorizontal="true"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:layout_marginTop="-14dp"
+            android:layout_marginTop="-15dp"
             android:letterSpacing="-0.03"
             android:lineSpacingExtra="-0.6sp"
             android:textColor="@color/black"

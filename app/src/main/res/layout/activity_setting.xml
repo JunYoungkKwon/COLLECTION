@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:text="@string/nickname"
         android:fontFamily="@font/noto_sans_kr"
-        android:textStyle="normal"
+        android:textStyle="bold"
         android:textSize="24sp"
         android:textColor="@color/terracota"
         android:letterSpacing="-0.01"

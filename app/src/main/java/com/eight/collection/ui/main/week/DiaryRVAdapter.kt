@@ -1,15 +1,23 @@
 package com.eight.collection.ui.main.week
 
-import android.nfc.Tag
+import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.eight.collection.R
 import com.eight.collection.databinding.ItemWeekDiaryBinding
-import com.eight.collection.ui.main.lookpoint.PhotoRVAdapter
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
-class DiaryRVAdapter(private  val Diarylist: MutableList<Diary>) : RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
+class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
+    private  val diarylist = mutableListOf<Diary>()
+
 
     interface MyitemClickListener{
         fun onRemoveAlbum(position: Int)
@@ -23,7 +31,15 @@ class DiaryRVAdapter(private  val Diarylist: MutableList<Diary>) : RecyclerView.
     }
 
     fun removeItem(position: Int){
-        Diarylist.removeAt(position)
+        diarylist.removeAt(position)
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addWeekly(diarylist: MutableList<Diary>) {
+        this.diarylist.clear()
+        this.diarylist.addAll(diarylist)
+
         notifyDataSetChanged()
     }
 
@@ -34,37 +50,71 @@ class DiaryRVAdapter(private  val Diarylist: MutableList<Diary>) : RecyclerView.
 
 
     override fun onBindViewHolder(holder: DiaryRVAdapter.ViewHolder, position: Int) {
-        holder.bind(Diarylist[position])
+        holder.bind(diarylist[position])
         holder.binding.itemDiaryEditIv.setOnClickListener { mItemClickListener.onRemoveAlbum(position)}
     }
 
 
-    override fun getItemCount(): Int = when (Diarylist.size) {
-        0 -> 0
-        1 -> 1
-        2 -> 2
-        3 -> 3
-        4 -> 4
-        5 -> 5
-        6 -> 6
-        7 -> 7
-        else -> 7}
-
-
-
-
-
+    override fun getItemCount(): Int = diarylist.size
+//        when (diarylist.size) {
+//        0 -> 0
+//        1 -> 1
+//        2 -> 2
+//        3 -> 3
+//        4 -> 4
+//        5 -> 5
+//        6 -> 6
+//        7 -> 7
+//        else -> 7}
 
     inner class ViewHolder(val binding: ItemWeekDiaryBinding): RecyclerView.ViewHolder(binding.root){
 
 
         fun bind(diary: Diary){
-            binding.itemDiaryImgCountTv.text= diary.imgCount.toString()
-            binding.itemDiaryImgIv.setImageResource(diary.coverImg!!)
-            binding.itemDiaryDateTv.text= diary.date.toString()
-            binding.itemDiaryPointIv.setImageResource(diary.point!!)
+            binding.itemDiaryImgCountTv.text= "+"+ diary.imgCount.toString()
+            if(diary.coverImg == null){
+                Glide.with(context).load(R.drawable.week_diary_default).into(binding.itemDiaryImgIv)
+            }
+            else{
+                Glide.with(context).load(diary.coverImg).into(binding.itemDiaryImgIv)
+            }
 
-            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(diary.placeList)
+            if(diary.topList.isNullOrEmpty()){
+                diary.topList.add(Top("해당 항목 없음", ""))
+            }
+
+            if(diary.bottomList.isNullOrEmpty()){
+                diary.bottomList.add(Bottom("해당 항목 없음", "#00000000"))
+            }
+
+            if(diary.shoesList.isNullOrEmpty()){
+                diary.shoesList.add(Shoes("해당 항목 없음", "#00000000"))
+            }
+
+            if(diary.etcList.isNullOrEmpty()){
+                diary.etcList.add(Etc("해당 항목 없음", "#00000000"))
+            }
+
+
+            //binding.itemDiaryImgIv.setImageResource(diary.coverImg!!)
+            val date: Date = diary.date
+            val localdate: LocalDate = date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate()
+            val formatters = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+            val convertDate: String = localdate.format(formatters)
+            binding.itemDiaryDateTv.text= convertDate
+            when(diary.point!!){
+                1 -> binding.itemDiaryPointIv.setImageResource(R.drawable.ic_diary_point_1)
+                2 ->  binding.itemDiaryPointIv.setImageResource(R.drawable.ic_diary_point_2)
+                3 ->  binding.itemDiaryPointIv.setImageResource(R.drawable.ic_diary_point_3)
+                4 ->  binding.itemDiaryPointIv.setImageResource(R.drawable.ic_diary_point_4)
+                5 ->  binding.itemDiaryPointIv.setImageResource(R.drawable.ic_diary_point_5)
+                else ->  binding.itemDiaryPointIv.setImageResource(R.drawable.ic_diary_point_5)
+            }
+
+            val mood = diary.placeList + diary.weatherList + diary.whoList
+            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(mood.toMutableList())
             binding.weekDiaryTopRecyclerView.adapter = ToprRVAdapter(diary.topList)
             binding.weekDiaryBottomRecyclerView.adapter = BottomRVAdapter(diary.bottomList)
             binding.weekDiaryShoesRecyclerView.adapter = ShoesRVAdapter(diary.shoesList)

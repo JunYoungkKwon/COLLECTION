@@ -28,7 +28,6 @@ class ShoesRVAdapter(private  val Shoeslist: MutableList<Shoes>) : RecyclerView.
         fun bind(shoes: Shoes){
             binding.itemDiaryClothTv.text= shoes.cloth
             binding.itemDiaryColorView.setBackgroundColor(Color.parseColor(shoes.color!!))
-
         }
     }
 
