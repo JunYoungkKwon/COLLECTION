@@ -11,14 +11,16 @@ import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
 import com.eight.collection.utils.getColor
 import com.eight.collection.utils.getSelectedId
+import com.eight.collection.utils.removeColor
+import com.eight.collection.utils.removeSelectedId
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
-    WritefirstTopRVAdapter.TopClickListener, ColorTextPost {
+    WritefirstTopRVAdapter.TopClickListener {
     lateinit var binding : FragmentWritefirstTopBinding
-    private var topDatas = ArrayList<WritefirstTop>()
+    private var topList = ArrayList<TopFixedItem>()
     lateinit var customDialog: WritefirstTopCustomDialog
-    private var idcount : Int = 13
+    private var addItemId : Int = 13
     var selectedId : Int = getSelectedId()
     var colorText : String? = getColor()
 
@@ -29,54 +31,52 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     ): View? {
         binding = FragmentWritefirstTopBinding.inflate(inflater,container,false)
 
-        // 데이터 리스트 생성
-        topDatas.apply {
-            add(WritefirstTop("+", 0))
-            add(WritefirstTop("맨투맨", 1))
-            add(WritefirstTop("티셔츠", 2))
-            add(WritefirstTop("블라우스", 3))
-            add(WritefirstTop("목폴라", 4))
-            add(WritefirstTop("후드티", 5))
-            add(WritefirstTop("니트", 6))
-            add(WritefirstTop("와이셔츠", 7))
-            add(WritefirstTop("나시", 8))
-            add(WritefirstTop("패딩", 9))
-            add(WritefirstTop("무스탕", 10))
-            add(WritefirstTop("후드집업", 11))
-            add(WritefirstTop("코트", 12))
+        //고정 Top 리스트 생성
+        topList.apply {
+            add(TopFixedItem("+", 0))
+            add(TopFixedItem("맨투맨", 1))
+            add(TopFixedItem("티셔츠", 2))
+            add(TopFixedItem("블라우스", 3))
+            add(TopFixedItem("목폴라", 4))
+            add(TopFixedItem("후드티", 5))
+            add(TopFixedItem("니트", 6))
+            add(TopFixedItem("와이셔츠", 7))
+            add(TopFixedItem("나시", 8))
+            add(TopFixedItem("패딩", 9))
+            add(TopFixedItem("무스탕", 10))
+            add(TopFixedItem("후드집업", 11))
+            add(TopFixedItem("코트", 12))
         }
 
         // Top RVA
-        val topRVAdapter = WritefirstTopRVAdapter(topDatas)
+        val topRVAdapter = WritefirstTopRVAdapter(topList)
         topRVAdapter.setTopClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
         binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
 
-
-
         //컬러데이터 삽입
-        topDatas.apply {
-            topDatas[selectedId].color = colorText
+        topList.apply {
+            topList[selectedId].color = colorText
+            removeColor()
         }
-
 
         return binding.root
     }
 
+
+
     override fun onAddButtonClicked(addText: String) {
-        topDatas.apply {
-            add(WritefirstTop(addText,idcount))
-            idcount += 1
+        topList.apply {
+            add(TopFixedItem(addText,addItemId))
+            addItemId += 1
         }
 
-        val topRVAdapter = WritefirstTopRVAdapter(topDatas)
+        val topRVAdapter = WritefirstTopRVAdapter(topList)
         topRVAdapter.setTopClickListener(this)
 
-        /*val flexboxLayoutManager = FlexboxLayoutManager(activity)*/
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
-        /*binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager*/
     }
 
     override fun onCancelButtonClicked() {
@@ -90,15 +90,4 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         customDialog.show()
     }
 
-
-
-
-    // Interface
-    override fun refreshColor() {
-        Log.d("text", "di")
-        topDatas[selectedId].color = colorText
-        val topRVAdapter = WritefirstTopRVAdapter(topDatas)
-        topRVAdapter.setTopClickListener(this)
-        binding.writefirstTopRecyclerview.adapter = topRVAdapter
-    }
 }

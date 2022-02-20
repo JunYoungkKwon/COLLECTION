@@ -7,11 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritefirstBottomBinding
-import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
-import com.eight.collection.ui.writing.first.top.WritefirstTop
-import com.eight.collection.ui.writing.first.top.WritefirstTopCustomDialog
-import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstBottomFragment : Fragment(), CustomDialogInterface,

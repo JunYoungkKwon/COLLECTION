@@ -1,8 +1,6 @@
 package com.eight.collection.ui.writing.first
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -14,26 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityWritefirstBinding
-import com.eight.collection.ui.writing.first.top.ColorTextPost
-import com.eight.collection.ui.writing.first.top.WritefirstTop
-import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
+import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.eight.collection.utils.*
 import com.google.android.material.tabs.TabLayoutMediator
-import java.sql.Date
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.collections.ArrayList
 
 class WritefirstActivity() : AppCompatActivity(){
-
     lateinit var binding: ActivityWritefirstBinding
-    private var photoDatas = ArrayList<Photo>()
     val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
-    private var colortextpost: ColorTextPost? = null
-    val list = ArrayList<Uri>()
-    val photoRVAdapter = PhotoRVAdapter(list, this)
+    val photoList = ArrayList<Uri>()
+    val photoRVAdapter = PhotoRVAdapter(photoList, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,19 +58,12 @@ class WritefirstActivity() : AppCompatActivity(){
         recyclerview.adapter = photoRVAdapter
 
 
-        //Writing First Activity - Color 뷰페이저 연결
+        //Top,Bottom,Shoes,Etc 뷰페이저 연결
         val writefirstAdapter = WritefirstVPA(this)
         binding.writefirstColorVp.adapter = writefirstAdapter
         TabLayoutMediator(binding.writefirstColorTb, binding.writefirstColorVp) { tab, position ->
             tab.text = information[position]
         }.attach()
-
-
-        //다음버튼 클릭시 Writing Second Activity
-        binding.writefirstNextButton.setOnClickListener {
-            startActivity(Intent(this, WritesecondActivity::class.java))
-        }
-
 
 
         //Color블록 클릭시 데이터 전달
@@ -173,6 +157,14 @@ class WritefirstActivity() : AppCompatActivity(){
             removeColor()
             setColor("brown")
         }
+
+
+
+        //다음버튼 클릭시 Writing Second Activity
+        binding.writefirstNextButton.setOnClickListener {
+            startActivity(Intent(this, WritesecondActivity::class.java))
+        }
+
     }
 
 
@@ -181,7 +173,7 @@ class WritefirstActivity() : AppCompatActivity(){
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK && requestCode == 200) {
-            list.clear()
+            photoList.clear()
 
             if (data?.clipData != null) {
                 val count = data.clipData!!.itemCount
@@ -192,7 +184,7 @@ class WritefirstActivity() : AppCompatActivity(){
 
                 for (i in 0 until count){
                     val imageUri = data.clipData!!.getItemAt(i).uri
-                    list.add(imageUri)
+                    photoList.add(imageUri)
                     binding.writefirstPhotoDefaultImage1.visibility = View.GONE
                     binding.writefirstPhotoDefaultImage2.visibility = View.GONE
                 }
@@ -201,7 +193,7 @@ class WritefirstActivity() : AppCompatActivity(){
                 data?.data?.let { uri ->
                     val imageUri : Uri? = data?.data
                     if (imageUri != null){
-                        list.add(imageUri)
+                        photoList.add(imageUri)
                         binding.writefirstPhotoDefaultImage1.visibility = View.GONE
                         binding.writefirstPhotoDefaultImage2.visibility = View.GONE
                     }
@@ -209,14 +201,5 @@ class WritefirstActivity() : AppCompatActivity(){
             }
             photoRVAdapter.notifyDataSetChanged()
         }
-
-        /*else {
-            var defaultImageString : String = "drawable://" + R.drawable.bg_camera
-            var defaultImageUri : Uri = Uri.parse(defaultImageString)
-
-            list.add(defaultImageUri)
-
-            photoRVAdapter.notifyDataSetChanged()
-        }*/
     }
 }

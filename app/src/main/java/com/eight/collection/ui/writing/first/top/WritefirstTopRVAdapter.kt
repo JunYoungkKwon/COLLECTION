@@ -1,17 +1,13 @@
 package com.eight.collection.ui.writing.first.top
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstTopBinding
-import android.content.Intent
 import android.graphics.Color
-import android.util.Log
-import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.utils.*
 
-class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
+class WritefirstTopRVAdapter(private val topList: ArrayList<TopFixedItem>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
     private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: TopClickListener? = null
     var data : String? = getColor()
@@ -19,7 +15,7 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
 
     init {
         for(i in topList){
-            if(i.title == "-"){
+            if(i.name == "-"){
                 selectCheck.add(1)
             }
             else{
@@ -53,9 +49,9 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
 
 
     inner class ViewHolder(val binding: ItemWritefirstTopBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(top: WritefirstTop, position: Int){
+        fun bind(top: TopFixedItem, position: Int){
             binding.writefirstColorTopTextButton.apply {
-                text = top.title
+                text = top.name
                 // select 여부 확인 및 상태 변경
                 isChecked = selectCheck[bindingAdapterPosition] == 1
 
@@ -199,7 +195,7 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
 
 
     // 데이터 추가 메소드 (데이터 및 삭제아이콘 추가)
-    fun addItem(top: WritefirstTop){
+    fun addItem(top: TopFixedItem){
         topList.add(top)
         notifyDataSetChanged()
     }
