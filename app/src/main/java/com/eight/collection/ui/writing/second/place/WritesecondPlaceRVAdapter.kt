@@ -2,12 +2,15 @@ package com.eight.collection.ui.writing.second.place
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritesecondPlaceBinding
 
 class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlace>) : RecyclerView.Adapter<WritesecondPlaceRVAdapter.ViewHolder>(){
     private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: PlaceClickListener? = null
+    private var count : Int = 0
 
     init {
         for(i in placeList){
@@ -51,14 +54,25 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
                     when(placeList[position].id){
                         0 -> clickListener?.plusButtonClick()
                         else -> {
-                            for (k in selectCheck.indices) {
-                                if (k == bindingAdapterPosition) {
-                                    selectCheck[k] = 1
+                                for (k in selectCheck.indices) {
+                                    if (k == bindingAdapterPosition) {
+                                        if(count < 2) {
+                                            if (selectCheck[k] == 1) {
+                                                selectCheck[k] = 0
+                                                count = count - 1
+                                            } else {
+                                                selectCheck[k] = 1
+                                                count = count + 1
+                                            }
+                                        }
+                                        else {
+                                            if (selectCheck[k] == 1) {
+                                                selectCheck[k] = 0
+                                                count = count - 1
+                                            }
+                                        }
+                                    }
                                 }
-                                else {
-                                    selectCheck[k] = 0
-                                }
-                            }
                         }
                     }
                     notifyDataSetChanged()
