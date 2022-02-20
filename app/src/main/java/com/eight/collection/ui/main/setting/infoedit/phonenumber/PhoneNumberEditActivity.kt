@@ -33,6 +33,10 @@ class PhoneNumberEditActivity: BaseActivity<ActivityPhoneNumberEditBinding>(Acti
     }
 
     private fun changePhoneNumber() {
+        if (binding.phoneNumberTextEt.text.toString().isEmpty()) {
+            Toast(this).showCustomToast("새로운 휴대폰번호를 입력해주세요.", this)
+            return
+        }
         val phonenumber = binding.phoneNumberTextEt.text.toString().replace("[^0-9]".toRegex(), "")
         val user = User("", "", "","",phonenumber,"","","")
 

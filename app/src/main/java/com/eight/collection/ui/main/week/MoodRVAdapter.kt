@@ -4,10 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.eight.collection.R
 import com.eight.collection.databinding.ItemWeekDiaryBinding
 import com.eight.collection.databinding.ItemWeekDiaryMoodBinding
 
-class MoodRVAdapter(val MoodList: MutableList<Mood>) : RecyclerView.Adapter<MoodRVAdapter.ViewHolder>() {
+class MoodRVAdapter(val MoodList: MutableList<String>) : RecyclerView.Adapter<MoodRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MoodRVAdapter.ViewHolder {
         val binding: ItemWeekDiaryMoodBinding = ItemWeekDiaryMoodBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -26,8 +28,8 @@ class MoodRVAdapter(val MoodList: MutableList<Mood>) : RecyclerView.Adapter<Mood
     //뷰홀더
     inner class ViewHolder(val binding: ItemWeekDiaryMoodBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(mood: Mood){
-            binding.itemDiaryMoodTv.text= mood.mood
+        fun bind(mood: String){
+            binding.itemDiaryMoodTv.text= mood
         }
 
     }

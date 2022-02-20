@@ -15,6 +15,7 @@ import androidx.navigation.Navigation
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
 import com.eight.collection.data.remote.calendar.CalendarService
+import com.eight.collection.data.remote.weekly.WeeklyService
 import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
@@ -38,12 +39,17 @@ import kotlin.collections.ArrayList
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate), MonthView, WeeklyView {
 
+    private  lateinit var diaryRVAdapter: DiaryRVAdapter
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         startMyLook()
         startWriteFirst()
         startSetting()
+
+        initWeeklyRV()
         getMonth()
+        getWeek()
 
         binding.weekBtnSettingIv.bringToFront()
 
@@ -51,125 +57,10 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 //        val diaryRVAdapter = DiaryRVAdapter(diaryList)
 //        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
 //
-//        diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
-//
-//            override fun onRemoveAlbum(position: Int) {
-//                clickOption(position)
-//            }
-//
-//            private fun clickOption(position: Int) {
-//                val popupMenu = PopupMenu(activity, binding.weekDiaryRecyclerView[position].findViewById(R.id.item_diary_edit_iv))
-//                popupMenu.inflate(R.menu.menu_week_option)
-//                popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
-//                    override fun onMenuItemClick(item: MenuItem?): Boolean {
-//                        when (item?.itemId) {
-//                            R.id.menu_item_edit -> {
-//                                startActivity(Intent(activity, WritefirstActivity::class.java))
-//                                return true
-//                            }
-//                            R.id.menu_item_delete -> {
-//                                diaryRVAdapter.removeItem(position)
-//                                return true
-//                            }
-//                        }
-//                        return false
-//                    }
-//                })
-//                popupMenu.show()
-//            }
-//        })
+
 
     }
 
-//    private fun mutableList(): MutableList<Diary> {
-//        var diaryList = mutableListOf(
-//            Diary(R.drawable.ic_diary_point_4,"2022/02/07", R.drawable.example_0207, 4,
-//                mutableListOf(
-//                    Mood("카페"),
-//                    Mood("매우추움"),
-//                    Mood("친구"),
-//                ), mutableListOf(
-//                    Top("코트", "#888888"),
-//                    Top("니트", "#000000"),
-//                    Top("목폴라", "#000000"),
-//                ), mutableListOf(
-//                    Bottom("슬랙스", "#273e88"),
-//                ), mutableListOf(
-//                    Shoes("구두", "#000000"),
-//                ), mutableListOf(
-//                    Etc("모자", "#000000"),
-//                    Etc("크로스백", "#000000"),
-//                )
-//            ),
-//
-//            Diary(
-//                R.drawable.ic_diary_point_3,"2022/02/08", R.drawable.example_0208, 1,
-//                mutableListOf(
-//                    Mood("핫플레이스"),
-//                    Mood("적당함"),
-//                    Mood("친구"),
-//                    Mood("선생님"),
-//                ), mutableListOf(
-//                    Top("패딩", "#888888"),
-//                    Top("후드티", "#d60f0f"),
-//                ), mutableListOf(
-//                    Bottom("슬랙스", "#000000"),
-//                ), mutableListOf(
-//                    Shoes("스니커즈", "#FFFFFF"),
-//                ), mutableListOf(
-//                    Etc("모자", "#000000"),
-//                    Etc("크로스백", "#000000"),
-//                )
-//            ),
-//
-//            Diary(
-//                R.drawable.ic_diary_point_4,"2022/02/09", R.drawable.example_0209, 2,
-//                mutableListOf(
-//                    Mood("결혼식장"), Mood("적당함"), Mood("비"), Mood("가족"), Mood("동료"),
-//                ), mutableListOf(
-//                    Top("코트", "#f5f5dc"), Top("가디건", "#000000"),
-//                ), mutableListOf(
-//                    Bottom("미니스커트", "#71a238"),
-//                ), mutableListOf(
-//                    Shoes("로퍼", "#f5f5dc"),
-//                ), mutableListOf(
-//                    Etc("스카프", "#273e88"),
-//                    Etc("숄더백", "#f5f5dc"),
-//                )
-//            ),
-//
-//            Diary(
-//                R.drawable.ic_diary_point_5,"2022/02/10", R.drawable.example_0210, 2,
-//                mutableListOf(
-//                    Mood("휴양지"), Mood("적당함"), Mood("비"), Mood("애인"),
-//                ), mutableListOf(
-//                    Top("티셔츠", "#FFFFFF"), Top("나시", "#FFFFFF"),
-//                ), mutableListOf(
-//                    Bottom("청바지", "#273e88"),
-//                ), mutableListOf(
-//                    Shoes("단화", "#000000"),
-//                ), mutableListOf(
-//                    Etc("주얼리", "#888888"),Etc("시계", "#74461f"),
-//                )
-//            ),
-//
-//            Diary(
-//                R.drawable.ic_diary_point_5,"2022/02/12", R.drawable.example_0213_1, 3,
-//                mutableListOf(
-//                    Mood("핫플레이스"), Mood("매우추움"),Mood("애인"),
-//                ), mutableListOf(
-//                    Top("크롭티", "#FFFFFF"),
-//                ), mutableListOf(
-//                    Bottom("데님팬츠", "#273e88"),
-//                ), mutableListOf(
-//                    Shoes("스니커즈", "#FFFFFF"),
-//                ), mutableListOf(
-//                    Etc("주얼리", "#888888"),
-//                )
-//            ),
-//        )
-//        return diaryList
-//    }
     private fun startDatePicker() {
         startActivity(Intent(activity, DatePickerFragment::class.java))
 //        binding.weekBtnWriteIv.setOnClickListener {
@@ -349,16 +240,62 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         }
     }
 
-    override fun onWeeklyLoading() {
-        TODO("Not yet implemented")
+    private fun getWeek(){
+        WeeklyService.getWeek(this)
     }
 
-    override fun onWeeklySuccess(weekly: ArrayList<Diary>) {
-        TODO("Not yet implemented")
+    private fun initWeeklyRV(){
+        diaryRVAdapter = DiaryRVAdapter(requireContext())
+        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+        diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
+
+            override fun onRemoveAlbum(position: Int) {
+                clickOption(position)
+            }
+
+            private fun clickOption(position: Int) {
+                val popupMenu = PopupMenu(activity, binding.weekDiaryRecyclerView[position].findViewById(R.id.item_diary_edit_iv))
+                popupMenu.inflate(R.menu.menu_week_option)
+                popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
+                    override fun onMenuItemClick(item: MenuItem?): Boolean {
+                        when (item?.itemId) {
+                            R.id.menu_item_edit -> {
+                                startActivity(Intent(activity, WritefirstActivity::class.java))
+                                return true
+                            }
+                            R.id.menu_item_delete -> {
+                                diaryRVAdapter.removeItem(position)
+                                return true
+                            }
+                        }
+                        return false
+                    }
+                })
+                popupMenu.show()
+            }
+        })
+    }
+
+    override fun onWeeklyLoading() {
+        Log.d("Week/Data/ERROR", "loading")
+    }
+
+    override fun onWeeklySuccess(weekly: MutableList<Diary>) {
+        diaryRVAdapter.addWeekly(weekly)
+
+
+
     }
 
     override fun onWeeklyFailure(code: Int, message: String) {
-        TODO("Not yet implemented")
+        when (code) {
+            4000,4005, 4020 -> {
+                Log.d("Week/Data/ERROR", "error")
+            }
+            else -> {
+                Log.d("Week/Server/ERROR", "error")
+            }
+        }
     }
 
 }

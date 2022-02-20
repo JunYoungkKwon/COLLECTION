@@ -12,6 +12,7 @@ import com.eight.collection.data.remote.auth.Auth
 import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivityNicknameEditBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.login.LoginFirstActivity
 import com.eight.collection.utils.saveChangeNickName
 import com.eight.collection.utils.saveNickName
 
