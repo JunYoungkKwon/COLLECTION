@@ -21,6 +21,8 @@ import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.main.month.MonthView
+import com.eight.collection.ui.main.setting.SettingActivity
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -28,13 +30,11 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import java.time.DayOfWeek
-import java.time.YearMonth
-import com.eight.collection.ui.main.setting.SettingActivity
-import com.eight.collection.ui.writing.first.WritefirstActivity
 import java.time.LocalDate
+import java.time.YearMonth
 import java.time.ZoneId
+import java.time.temporal.WeekFields
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate), MonthView, WeeklyView {
@@ -197,7 +197,10 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             MonthHeaderFooterBinder<MonthViewContainer> {
             override fun create(view: View) = MonthViewContainer(view)
             override fun bind(container: MonthViewContainer, month: CalendarMonth) {
-                container.calendarYear.text = "${month.year}"
+                val currentDate = LocalDate.now()
+                val weekOfYear = currentDate[WeekFields.ISO.weekOfYear()]
+                //container.calendarYear.text = "${month.year}"
+                container.calendarYear.text = "$weekOfYear"
                 container.calendarMonth.text = "${month.yearMonth.month.name.toLowerCase().capitalize()}"
                 container.calendarYear.setOnClickListener{
                     view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
