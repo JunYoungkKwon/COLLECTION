@@ -8,11 +8,16 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityWritefirstBinding
+import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
+import com.eight.collection.ui.writing.first.etc.WritefirstEtcFragment
+import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
 import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
+import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.eight.collection.utils.*
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,9 +27,11 @@ import kotlin.collections.ArrayList
 
 class WritefirstActivity() : AppCompatActivity(){
     lateinit var binding: ActivityWritefirstBinding
-    val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
     val photoList = ArrayList<Uri>()
     val photoRVAdapter = PhotoRVAdapter(photoList, this)
+    val fragmentList = arrayListOf<Fragment>()
+    val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
+    private var clickListener: WritefirstActivity.ColorClickListner? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,104 +65,96 @@ class WritefirstActivity() : AppCompatActivity(){
         recyclerview.adapter = photoRVAdapter
 
 
+
         //Top,Bottom,Shoes,Etc 뷰페이저 연결
-        val writefirstAdapter = WritefirstVPA(this)
+        fragmentList.apply {
+            add(WritefirstTopFragment())
+            add(WritefirstBottomFragment())
+            add(WritefirstShoesFragment())
+            add(WritefirstEtcFragment())
+        }
+
+        val writefirstAdapter = WritefirstVPA(this, fragmentList)
         binding.writefirstColorVp.adapter = writefirstAdapter
         TabLayoutMediator(binding.writefirstColorTb, binding.writefirstColorVp) { tab, position ->
             tab.text = information[position]
         }.attach()
 
+        setColorClickListener((fragmentList[0] as WritefirstTopFragment))
+
+
 
         //Color블록 클릭시 데이터 전달
         binding.writefirstColorTopSelectorRed.setOnClickListener{
-            removeColor()
-            setColor("red")
+            clickListener?.changeButtonColor("red")
         }
 
         binding.writefirstColorTopSelectorPink.setOnClickListener{
-            removeColor()
-            setColor("pink")
+            clickListener?.changeButtonColor("pink")
         }
 
-        binding.writefirstColorTopSelectorYellow.setOnClickListener{
-            removeColor()
-            setColor("yellow")
+        binding.writefirstColorTopSelectorPink.setOnClickListener{
+            clickListener?.changeButtonColor("yellow")
         }
 
         binding.writefirstColorTopSelectorLightyellow.setOnClickListener{
-            removeColor()
-            setColor("lightyellow")
+            clickListener?.changeButtonColor("lightyellow")
         }
 
-
         binding.writefirstColorTopSelectorGreen.setOnClickListener{
-            removeColor()
-            setColor("green")
+            clickListener?.changeButtonColor("green")
         }
 
         binding.writefirstColorTopSelectorLightgreen.setOnClickListener{
-            removeColor()
-            setColor("lightgreen")
+            clickListener?.changeButtonColor("lightgreen")
         }
 
         binding.writefirstColorTopSelectorOrange.setOnClickListener{
-            removeColor()
-            setColor("orange")
+            clickListener?.changeButtonColor("orange")
         }
 
         binding.writefirstColorTopSelectorNavy.setOnClickListener{
-            removeColor()
-            setColor("navy")
+            clickListener?.changeButtonColor("navy")
         }
 
         binding.writefirstColorTopSelectorBlue.setOnClickListener{
-            removeColor()
-            setColor("blue")
+            clickListener?.changeButtonColor("blue")
         }
 
         binding.writefirstColorTopSelectorLightblue.setOnClickListener{
-            removeColor()
-            setColor("lightblue")
+            clickListener?.changeButtonColor("lightblue")
         }
 
         binding.writefirstColorTopSelectorPurple.setOnClickListener{
-            removeColor()
-            setColor("purple")
+            clickListener?.changeButtonColor("purple")
         }
 
         binding.writefirstColorTopSelectorLightpurple.setOnClickListener{
-            removeColor()
-            setColor("lightpurple")
+            clickListener?.changeButtonColor("lightpurple")
         }
 
         binding.writefirstColorTopSelectorWhite.setOnClickListener{
-            removeColor()
-            setColor("white")
+            clickListener?.changeButtonColor("white")
         }
 
         binding.writefirstColorTopSelectorGrey.setOnClickListener{
-            removeColor()
-            setColor("grey")
+            clickListener?.changeButtonColor("grey")
         }
 
         binding.writefirstColorTopSelectorBlack.setOnClickListener{
-            removeColor()
-            setColor("black")
+            clickListener?.changeButtonColor("black")
         }
 
         binding.writefirstColorTopSelectorLightpeach.setOnClickListener{
-            removeColor()
-            setColor("lightpeach")
+            clickListener?.changeButtonColor("lightpeach")
         }
 
         binding.writefirstColorTopSelectorPinkishgrey.setOnClickListener{
-            removeColor()
-            setColor("pinkishgrey")
+            clickListener?.changeButtonColor("pinkishgrey")
         }
 
         binding.writefirstColorTopSelectorBrown.setOnClickListener{
-            removeColor()
-            setColor("brown")
+            clickListener?.changeButtonColor("brown")
         }
 
 
@@ -202,4 +201,15 @@ class WritefirstActivity() : AppCompatActivity(){
             photoRVAdapter.notifyDataSetChanged()
         }
     }
+
+
+    //Color 버튼 Interface 작성 및 리스너 연결
+    interface ColorClickListner {
+        fun changeButtonColor(color : String)
+    }
+
+    fun setColorClickListener(colorClickListener:WritefirstActivity.ColorClickListner) {
+        this.clickListener = colorClickListener
+    }
+
 }

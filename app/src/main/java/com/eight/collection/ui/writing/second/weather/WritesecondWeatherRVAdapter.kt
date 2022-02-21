@@ -9,6 +9,7 @@ import com.eight.collection.databinding.ItemWritesecondWeatherBinding
 class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<WritesecondWeather>) : RecyclerView.Adapter<WritesecondWeatherRVAdapter.ViewHolder>(){
     private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: WeatherClickListener? = null
+    private var count : Int = 0
 
     init {
         for(i in weatherList){
@@ -54,10 +55,21 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
                         else -> {
                             for (k in selectCheck.indices) {
                                 if (k == bindingAdapterPosition) {
-                                    selectCheck[k] = 1
-                                }
-                                else {
-                                    selectCheck[k] = 0
+                                    if(count < 2) {
+                                        if (selectCheck[k] == 1) {
+                                            selectCheck[k] = 0
+                                            count = count - 1
+                                        } else {
+                                            selectCheck[k] = 1
+                                            count = count + 1
+                                        }
+                                    }
+                                    else {
+                                        if (selectCheck[k] == 1) {
+                                            selectCheck[k] = 0
+                                            count = count - 1
+                                        }
+                                    }
                                 }
                             }
                         }

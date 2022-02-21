@@ -7,16 +7,11 @@ import com.eight.collection.ui.writing.first.etc.WritefirstEtcFragment
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
 import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
 
-class WritefirstVPA(fragment: WritefirstActivity) : FragmentStateAdapter(fragment){
-    override fun getItemCount(): Int = 4
+class WritefirstVPA(fragment:WritefirstActivity ,var fragmentList : ArrayList<Fragment>) : FragmentStateAdapter(fragment){
+    override fun getItemCount(): Int = fragmentList.size
 
     override fun createFragment(position: Int): Fragment {
-        return when(position){
-            0 -> WritefirstTopFragment()
-            1 -> WritefirstBottomFragment()
-            2 -> WritefirstShoesFragment()
-            else -> WritefirstEtcFragment()
-        }
+        return fragmentList[position]
     }
 
 }
