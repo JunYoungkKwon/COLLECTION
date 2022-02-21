@@ -79,21 +79,21 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
                 Glide.with(context).load(diary.coverImg).into(binding.itemDiaryImgIv)
             }
 
-            if(diary.topList.isNullOrEmpty()){
-                diary.topList.add(Top("해당 항목 없음", ""))
-            }
-
-            if(diary.bottomList.isNullOrEmpty()){
-                diary.bottomList.add(Bottom("해당 항목 없음", "#00000000"))
-            }
-
-            if(diary.shoesList.isNullOrEmpty()){
-                diary.shoesList.add(Shoes("해당 항목 없음", "#00000000"))
-            }
-
-            if(diary.etcList.isNullOrEmpty()){
-                diary.etcList.add(Etc("해당 항목 없음", "#00000000"))
-            }
+//            if(diary.topList.isNullOrEmpty()){
+//                diary.topList.add(Top("해당 항목 없음", ""))
+//            }
+//
+//            if(diary.bottomList.isNullOrEmpty()){
+//                diary.bottomList.add(Bottom("해당 항목 없음", "#00000000"))
+//            }
+//
+//            if(diary.shoesList.isNullOrEmpty()){
+//                diary.shoesList.add(Shoes("해당 항목 없음", "#00000000"))
+//            }
+//
+//            if(diary.etcList.isNullOrEmpty()){
+//                diary.etcList.add(Etc("해당 항목 없음", "#00000000"))
+//            }
 
 
             //binding.itemDiaryImgIv.setImageResource(diary.coverImg!!)

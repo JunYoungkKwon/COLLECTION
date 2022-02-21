@@ -1,15 +1,13 @@
 package com.eight.collection.ui.main.week
 
+import android.R.color
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.eight.collection.R
 import com.eight.collection.databinding.ItemWeekDiaryClothColorBinding
-import java.time.LocalDate
-import java.time.ZoneId
 import java.util.*
 
 
@@ -31,12 +29,14 @@ class ToprRVAdapter(private  val Toplist: MutableList<Top>) : RecyclerView.Adapt
     inner class ViewHolder(val binding: ItemWeekDiaryClothColorBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(top: Top){
-            binding.itemDiaryClothTv.text= top.cloth
             if(top.color == ""){
-                binding.itemDiaryColorView.setBackgroundColor(Color.TRANSPARENT)
-                Log.d("Test2","test")
+                binding.itemDiaryColorCardview.visibility = View.GONE
+                binding.itemDiaryColorView.visibility = View.GONE
+                binding.itemDiaryClothTv.visibility = View.GONE
+                binding.itemDiaryDefaultTv.visibility = View.VISIBLE
             }else{
-                binding.itemDiaryColorView.setBackgroundColor(Color.parseColor(top.color!!))
+                binding.itemDiaryColorView.setBackgroundColor(Color.parseColor(top.color))
+                binding.itemDiaryClothTv.text= top.cloth
             }
 
         }

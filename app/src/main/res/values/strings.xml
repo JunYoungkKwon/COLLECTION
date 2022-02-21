@@ -45,6 +45,7 @@
     <string name="bottom">Bottom.</string>
     <string name="shoes">Shoes.</string>
     <string name="etc">Etc.</string>
+    <string name="weekly_default">해당 항목 없음</string>
 
     <!-- setting page -->
     <string name="setting_back">설정</string>

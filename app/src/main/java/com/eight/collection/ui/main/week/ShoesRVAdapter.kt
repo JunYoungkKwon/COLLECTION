@@ -1,7 +1,9 @@
 package com.eight.collection.ui.main.week
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWeekDiaryClothColorBinding
@@ -26,8 +28,16 @@ class ShoesRVAdapter(private  val Shoeslist: MutableList<Shoes>) : RecyclerView.
     inner class ViewHolder(val binding: ItemWeekDiaryClothColorBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(shoes: Shoes){
-            binding.itemDiaryClothTv.text= shoes.cloth
-            binding.itemDiaryColorView.setBackgroundColor(Color.parseColor(shoes.color!!))
+            if(shoes.color == ""){
+                binding.itemDiaryColorCardview.visibility = View.GONE
+                binding.itemDiaryColorView.visibility = View.GONE
+                binding.itemDiaryClothTv.visibility = View.GONE
+                binding.itemDiaryDefaultTv.visibility = View.VISIBLE
+            }else{
+                binding.itemDiaryColorView.setBackgroundColor(Color.parseColor(shoes.color))
+                binding.itemDiaryClothTv.text= shoes.cloth
+            }
+
         }
     }
 

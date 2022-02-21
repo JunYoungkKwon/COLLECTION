@@ -39,4 +39,19 @@
         app:layout_constraintBottom_toBottomOf="@id/item_diary_color_cardview"
         tools:text="티셔츠" />
 
+    <TextView
+        android:id="@+id/item_diary_default_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_regular"
+        android:lineSpacingExtra="-0.6sp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:text="@string/weekly_default"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="티셔츠" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
