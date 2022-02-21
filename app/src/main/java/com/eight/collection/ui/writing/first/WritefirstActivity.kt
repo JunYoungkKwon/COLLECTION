@@ -93,7 +93,7 @@ class WritefirstActivity() : AppCompatActivity(){
             clickListener?.changeButtonColor("pink")
         }
 
-        binding.writefirstColorTopSelectorPink.setOnClickListener{
+        binding.writefirstColorTopSelectorYellow.setOnClickListener{
             clickListener?.changeButtonColor("yellow")
         }
 

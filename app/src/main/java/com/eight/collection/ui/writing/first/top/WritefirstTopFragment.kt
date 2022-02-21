@@ -47,7 +47,6 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         }
 
         // Top RVA
-
         topRVAdapter = WritefirstTopRVAdapter(topList)
         topRVAdapter.setTopClickListener(this)
 
@@ -84,19 +83,22 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     }
 
 
+
     //Interface 함수
     override fun changeButtonColor(color: String) {
         if(topRVAdapter.getSelectId() == -1){
             return
         }
+
         var viewHolder : WritefirstTopRVAdapter.ViewHolder = binding.writefirstTopRecyclerview.layoutManager?.findViewByPosition(topRVAdapter.getSelectId())
             ?.let { binding.writefirstTopRecyclerview.getChildViewHolder(it) } as WritefirstTopRVAdapter.ViewHolder
-        Log.d("dd","${(topRVAdapter.getSelectId())}")
+
         when (color) {
             "red" -> {
                 viewHolder.itemView.setBackgroundColor(Color.parseColor("#d60f0f"))
                 viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
             }
+
             "pink" -> {
                 viewHolder.itemView.setBackgroundColor(Color.parseColor("#f59a9a"))
                 viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
