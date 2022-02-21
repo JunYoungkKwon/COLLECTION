@@ -14,7 +14,7 @@ import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
-    WritefirstTopRVAdapter.TopClickListener, WritefirstActivity.ColorClickListner {
+    WritefirstTopRVAdapter.TopClickListener, WritefirstActivity.TopColorClickListner {
     lateinit var binding : FragmentWritefirstTopBinding
     private var topList = ArrayList<TopFixedItem>()
     lateinit var customDialog: WritefirstTopCustomDialog
@@ -64,10 +64,8 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
             add(TopFixedItem(addText,addItemId))
             addItemId += 1
         }
-
-        val topRVAdapter = WritefirstTopRVAdapter(topList)
+        topRVAdapter = WritefirstTopRVAdapter(topList)
         topRVAdapter.setTopClickListener(this)
-
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
     }
 
@@ -85,7 +83,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
 
 
     //Interface 함수
-    override fun changeButtonColor(color: String) {
+    override fun topChangeButtonColor(color: String) {
         if(topRVAdapter.getSelectId() == -1){
             return
         }

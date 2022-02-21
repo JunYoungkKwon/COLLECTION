@@ -14,9 +14,9 @@ import com.eight.collection.utils.*
 class WritefirstTopRVAdapter(private val topList: ArrayList<TopFixedItem>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
     private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: TopClickListener? = null
-    private var selectId : Int = -1
-    private var beforeselectedId : RadioButton? = null
     private var count : Int = 0
+    private var beforeselectButton : RadioButton? = null
+    private var selectId : Int = -1
 
     //버튼 Select 초기화
     init {
@@ -59,27 +59,33 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<TopFixedItem>) : Rec
                 //버튼에 Text 대입
                 text = top.name
                 // select 여부 확인 및 상태 변경
-                isChecked = selectCheck[position] == 1
                 setOnClickListener {
                     when (topList[position].id) {
                         0 -> clickListener?.plusButtonClick()
                         else -> {
                             for (i in selectCheck.indices) {
-                                if (i == position) {
-                                    selectCheck[i] = 1
-                                    selectId = position
-                                } else {
-                                    selectCheck[i] = 0
+                                if (i == bindingAdapterPosition) {
+                                    if(count < 1){
+                                        isChecked = true
+                                        selectCheck[i] = 1
+                                        selectId = bindingAdapterPosition
+                                        count = count + 1
+                                    }
+                                    else {
+                                        isChecked = false
+                                        selectCheck[i] = 0
+                                        selectId = -1
+                                        count = count - 1
+                                    }
                                 }
                             }
                         }
                     }
-
                     notifyItemChanged(position)
-                    if (beforeselectedId != null){
-                        beforeselectedId?.isChecked = false
+                    if (beforeselectButton != null){
+                        beforeselectButton?.isChecked = false
                     }
-                    beforeselectedId = this
+                    beforeselectButton = this
                 }
             }
         }

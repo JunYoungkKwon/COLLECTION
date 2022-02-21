@@ -31,7 +31,8 @@ class WritefirstActivity() : AppCompatActivity(){
     val photoRVAdapter = PhotoRVAdapter(photoList, this)
     val fragmentList = arrayListOf<Fragment>()
     val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
-    private var clickListener: WritefirstActivity.ColorClickListner? = null
+    private var topclickListener: WritefirstActivity.TopColorClickListner? = null
+    private var bottomclickListner : WritefirstActivity.BottomColorClickListner? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,83 +81,103 @@ class WritefirstActivity() : AppCompatActivity(){
             tab.text = information[position]
         }.attach()
 
-        setColorClickListener((fragmentList[0] as WritefirstTopFragment))
+
+        setTopColorClickListener((fragmentList[0] as WritefirstTopFragment))
+        setBottomColorClickListner((fragmentList[1] as WritefirstBottomFragment))
+
 
 
 
         //Color블록 클릭시 데이터 전달
         binding.writefirstColorTopSelectorRed.setOnClickListener{
-            clickListener?.changeButtonColor("red")
+            topclickListener?.topChangeButtonColor("red")
+            bottomclickListner?.bottomChangeButtonColor("red")
         }
 
         binding.writefirstColorTopSelectorPink.setOnClickListener{
-            clickListener?.changeButtonColor("pink")
+            topclickListener?.topChangeButtonColor("pink")
+            bottomclickListner?.bottomChangeButtonColor("pink")
         }
 
         binding.writefirstColorTopSelectorYellow.setOnClickListener{
-            clickListener?.changeButtonColor("yellow")
+            topclickListener?.topChangeButtonColor("yellow")
+            bottomclickListner?.bottomChangeButtonColor("yellow")
         }
 
         binding.writefirstColorTopSelectorLightyellow.setOnClickListener{
-            clickListener?.changeButtonColor("lightyellow")
+            topclickListener?.topChangeButtonColor("lightyellow")
+            bottomclickListner?.bottomChangeButtonColor("lightyellow")
         }
 
         binding.writefirstColorTopSelectorGreen.setOnClickListener{
-            clickListener?.changeButtonColor("green")
+            topclickListener?.topChangeButtonColor("green")
+            bottomclickListner?.bottomChangeButtonColor("green")
         }
 
         binding.writefirstColorTopSelectorLightgreen.setOnClickListener{
-            clickListener?.changeButtonColor("lightgreen")
+            topclickListener?.topChangeButtonColor("lightgreen")
+            bottomclickListner?.bottomChangeButtonColor("lightgreen")
         }
 
         binding.writefirstColorTopSelectorOrange.setOnClickListener{
-            clickListener?.changeButtonColor("orange")
+            topclickListener?.topChangeButtonColor("orange")
+            bottomclickListner?.bottomChangeButtonColor("orange")
         }
 
         binding.writefirstColorTopSelectorNavy.setOnClickListener{
-            clickListener?.changeButtonColor("navy")
+            topclickListener?.topChangeButtonColor("navy")
+            bottomclickListner?.bottomChangeButtonColor("navy")
         }
 
         binding.writefirstColorTopSelectorBlue.setOnClickListener{
-            clickListener?.changeButtonColor("blue")
+            topclickListener?.topChangeButtonColor("blue")
+            bottomclickListner?.bottomChangeButtonColor("blue")
         }
 
         binding.writefirstColorTopSelectorLightblue.setOnClickListener{
-            clickListener?.changeButtonColor("lightblue")
+            topclickListener?.topChangeButtonColor("lightblue")
+            bottomclickListner?.bottomChangeButtonColor("lightblue")
         }
 
         binding.writefirstColorTopSelectorPurple.setOnClickListener{
-            clickListener?.changeButtonColor("purple")
+            topclickListener?.topChangeButtonColor("purple")
+            bottomclickListner?.bottomChangeButtonColor("purple")
         }
 
         binding.writefirstColorTopSelectorLightpurple.setOnClickListener{
-            clickListener?.changeButtonColor("lightpurple")
+            topclickListener?.topChangeButtonColor("lightpurple")
+            bottomclickListner?.bottomChangeButtonColor("lightpurple")
         }
 
         binding.writefirstColorTopSelectorWhite.setOnClickListener{
-            clickListener?.changeButtonColor("white")
+            topclickListener?.topChangeButtonColor("white")
+            bottomclickListner?.bottomChangeButtonColor("white")
         }
 
         binding.writefirstColorTopSelectorGrey.setOnClickListener{
-            clickListener?.changeButtonColor("grey")
+            topclickListener?.topChangeButtonColor("grey")
+            bottomclickListner?.bottomChangeButtonColor("grey")
         }
 
         binding.writefirstColorTopSelectorBlack.setOnClickListener{
-            clickListener?.changeButtonColor("black")
+            topclickListener?.topChangeButtonColor("black")
+            bottomclickListner?.bottomChangeButtonColor("black")
         }
 
         binding.writefirstColorTopSelectorLightpeach.setOnClickListener{
-            clickListener?.changeButtonColor("lightpeach")
+            topclickListener?.topChangeButtonColor("lightpeach")
+            bottomclickListner?.bottomChangeButtonColor("lightpeach")
         }
 
         binding.writefirstColorTopSelectorPinkishgrey.setOnClickListener{
-            clickListener?.changeButtonColor("pinkishgrey")
+            topclickListener?.topChangeButtonColor("pinkishgrey")
+            bottomclickListner?.bottomChangeButtonColor("pinkishgrey")
         }
 
         binding.writefirstColorTopSelectorBrown.setOnClickListener{
-            clickListener?.changeButtonColor("brown")
+            topclickListener?.topChangeButtonColor("brown")
+            bottomclickListner?.bottomChangeButtonColor("brown")
         }
-
 
 
         //다음버튼 클릭시 Writing Second Activity
@@ -204,12 +225,21 @@ class WritefirstActivity() : AppCompatActivity(){
 
 
     //Color 버튼 Interface 작성 및 리스너 연결
-    interface ColorClickListner {
-        fun changeButtonColor(color : String)
+    interface TopColorClickListner {
+        fun topChangeButtonColor(color : String)
     }
 
-    fun setColorClickListener(colorClickListener:WritefirstActivity.ColorClickListner) {
-        this.clickListener = colorClickListener
+    fun setTopColorClickListener(topcolorClickListener:WritefirstActivity.TopColorClickListner) {
+        this.topclickListener = topcolorClickListener
     }
+
+    interface BottomColorClickListner {
+        fun bottomChangeButtonColor(color : String)
+    }
+
+    fun setBottomColorClickListner(bottomcolorClickListener:WritefirstActivity.BottomColorClickListner) {
+        this.bottomclickListner = bottomcolorClickListener
+    }
+
 
 }
