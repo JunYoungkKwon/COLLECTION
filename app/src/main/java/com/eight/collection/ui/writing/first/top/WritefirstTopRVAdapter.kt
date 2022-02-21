@@ -14,10 +14,9 @@ import com.eight.collection.utils.*
 class WritefirstTopRVAdapter(private val topList: ArrayList<TopFixedItem>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
     private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: TopClickListener? = null
-    var colorText : String? = getColor()
-    var selectedId : Int = getSelectedId()
     private var selectId : Int = -1
     private var beforeselectedId : RadioButton? = null
+    private var count : Int = 0
 
     //버튼 Select 초기화
     init {
@@ -59,10 +58,8 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<TopFixedItem>) : Rec
             binding.writefirstColorTopTextButton.apply {
                 //버튼에 Text 대입
                 text = top.name
-
                 // select 여부 확인 및 상태 변경
                 isChecked = selectCheck[position] == 1
-
                 setOnClickListener {
                     when (topList[position].id) {
                         0 -> clickListener?.plusButtonClick()
@@ -78,7 +75,6 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<TopFixedItem>) : Rec
                         }
                     }
 
-                    //
                     notifyItemChanged(position)
                     if (beforeselectedId != null){
                         beforeselectedId?.isChecked = false
