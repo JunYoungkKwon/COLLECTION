@@ -1,5 +1,6 @@
 package com.eight.collection.ui.writing.first.etc
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,21 +8,11 @@ import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstEtcBinding
 import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.eight.collection.ui.writing.first.shoes.WritefirstShoesRVAdapter
 
 class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : RecyclerView.Adapter<WritefirstEtcRVAdapter.ViewHolder>(){
-    private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: EtcClickListener? = null
-
-    init {
-        for(i in etcList){
-            if(i.title == "-"){
-                selectCheck.add(1)
-            }
-            else{
-                selectCheck.add(0)
-            }
-        }
-    }
+    private var selectId : Int = -1
 
 
     interface EtcClickListener {
@@ -33,10 +24,16 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
         this.clickListener = etcClickListener
     }
 
-    interface ColorClickListner {
-        fun colorTextPost()
-    }
+    override fun getItemCount(): Int = etcList.size
 
+    override fun onBindViewHolder(holder: WritefirstEtcRVAdapter.ViewHolder, position: Int) {
+        holder.binding.writefirstColorEtcTextButton.isChecked = etcList[position].focus
+        holder.binding.writefirstEtcItemLayout.setBackgroundColor(Color.parseColor(etcList[position].color))
+        holder.binding.writefirstColorEtcTextButton.setTextColor(Color.parseColor(etcList[position].textcolor))
+
+        holder.bind(etcList[position], position)
+        holder.setIsRecyclable(false)
+    }
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -44,34 +41,33 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(etcList[position], position)
-    }
-
-    override fun getItemCount(): Int = etcList.size
-
 
     inner class ViewHolder(val binding: ItemWritefirstEtcBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(etc: WritefirstEtc, position: Int){
             binding.writefirstColorEtcTextButton.apply {
-                text = etc.title
-                // select 여부 확인 및 상태 변경
-                isChecked = selectCheck[bindingAdapterPosition] == 1
-                setOnClickListener{
-                    when(etcList[position].id){
-                        0 -> clickListener?.plusButtonClick()
+                text = etc.name
+                setOnClickListener {
+                    when (etcList[position].id) {
+                        0 -> {
+                            clickListener?.plusButtonClick()
+                            isChecked = false
+                        }
                         else -> {
-                            for (k in selectCheck.indices) {
-                                if (k == bindingAdapterPosition) {
-                                    selectCheck[k] = 1
-                                }
-                                else {
-                                    selectCheck[k] = 0
-                                }
+                            if(selectId == -1) {
+                                etcList[position].focus = true
+                                selectId = position
+                            }
+                            else if(selectId == position) {
+                                etcList[selectId].focus = false
+                                selectId = -1
+                            }
+                            else {
+                                etcList[selectId].focus = false
+                                etcList[position].focus = true
+                                selectId = position
                             }
                         }
                     }
-
                     notifyDataSetChanged()
                 }
             }
@@ -89,5 +85,9 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
     fun removeItem(position: Int){
         etcList.removeAt(position)
         notifyDataSetChanged()
+    }
+
+    fun getSelectId() : Int{
+        return selectId
     }
 }

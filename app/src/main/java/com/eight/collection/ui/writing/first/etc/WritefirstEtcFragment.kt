@@ -9,18 +9,20 @@ import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritefirstBottomBinding
 import com.eight.collection.databinding.FragmentWritefirstEtcBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottom
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomCustomDialog
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomRVAdapter
+import com.eight.collection.ui.writing.first.shoes.WritefirstShoesRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
-    WritefirstEtcRVAdapter.EtcClickListener {
+    WritefirstEtcRVAdapter.EtcClickListener, WritefirstActivity.EtcColorClickListner {
     lateinit var binding : FragmentWritefirstEtcBinding
-    private var etcDatas = ArrayList<WritefirstEtc>()
+    private var etcList = ArrayList<WritefirstEtc>()
     lateinit var customDialog: WritefirstEtcCustomDialog
-    private var idcount : Int = 13
-    private var addtext : String? = null
+    private var addItemId : Int = 13
+    var etcRVAdapter : WritefirstEtcRVAdapter = WritefirstEtcRVAdapter(etcList)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +32,7 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
         binding = FragmentWritefirstEtcBinding.inflate(inflater,container,false)
 
         // 데이터 리스트 생성
-        etcDatas.apply {
+        etcList.apply {
             add(WritefirstEtc("+", 0))
             add(WritefirstEtc("모자", 1))
             add(WritefirstEtc("스카프/머플러", 2))
@@ -46,7 +48,7 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
             add(WritefirstEtc("주얼리", 12))
         }
 
-        val etcRVAdapter = WritefirstEtcRVAdapter(etcDatas)
+        etcRVAdapter = WritefirstEtcRVAdapter(etcList)
         etcRVAdapter.setEtcClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
@@ -57,17 +59,12 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
     }
 
     override fun onAddButtonClicked(addText: String) {
-        etcDatas.apply {
-            add(WritefirstEtc(addText,idcount))
-            idcount += 1
+        etcList.apply {
+            add(WritefirstEtc(addText,addItemId))
+            addItemId += 1
         }
 
-        val etcRVAdapter = WritefirstEtcRVAdapter(etcDatas)
-        etcRVAdapter.setEtcClickListener(this)
-
-        val flexboxLayoutManager = FlexboxLayoutManager(activity)
-        binding.writefirstEtcRecyclerview.adapter = etcRVAdapter
-        binding.writefirstEtcRecyclerview.layoutManager = flexboxLayoutManager
+        etcRVAdapter.notifyDataSetChanged()
     }
 
     override fun onCancelButtonClicked() {
@@ -78,5 +75,87 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
     override fun plusButtonClick() {
         customDialog = WritefirstEtcCustomDialog(requireContext(), this)
         customDialog.show()
+    }
+
+    override fun etcChangeButtonColor(color: String) {
+        if(etcRVAdapter.getSelectId() == -1){
+            return
+        }
+        etcList[etcRVAdapter.getSelectId()].color = color
+        when (color) {
+            //red
+            "#d60f0f" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //pink
+            "#f59a9a" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //yellow
+            "#ffb203" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightyellow
+            "#fde6b1" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
+            }
+            //green
+            "#71a238" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightgreen
+            "#b7de89" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
+            }
+            //orange
+            "#ea7831" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //navy
+            "#273e88" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //blue
+            "#4168e8" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightblue
+            "#a5b9fa" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //purple
+            "#894ac7" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightpurple
+            "#dcacff" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //white
+            "#ffffff" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
+            }
+            //grey
+            "#888888" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //black
+            "#191919" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightpeach
+            "#e8dcd5" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
+            }
+            //pinkishgrey
+            "#c3b5ac" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //brown
+            "#74461f" -> {
+                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+        }
+        etcRVAdapter.notifyDataSetChanged()
     }
 }

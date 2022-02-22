@@ -33,6 +33,8 @@ class WritefirstActivity() : AppCompatActivity(){
     val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
     private var topclickListener: WritefirstActivity.TopColorClickListner? = null
     private var bottomclickListner : WritefirstActivity.BottomColorClickListner? = null
+    private var shoesclickListner : WritefirstActivity.ShoesColorClickListner? = null
+    private var etcclickListner : WritefirstActivity.EtcColorClickListner? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,101 +86,137 @@ class WritefirstActivity() : AppCompatActivity(){
 
         setTopColorClickListener((fragmentList[0] as WritefirstTopFragment))
         setBottomColorClickListner((fragmentList[1] as WritefirstBottomFragment))
-
+        setShoesColorClickListner((fragmentList[2] as WritefirstShoesFragment))
+        setEtcColorClickListner((fragmentList[3] as WritefirstEtcFragment))
 
 
 
         //Color블록 클릭시 데이터 전달
         binding.writefirstColorTopSelectorRed.setOnClickListener{
-            topclickListener?.topChangeButtonColor("red")
-            bottomclickListner?.bottomChangeButtonColor("red")
+            topclickListener?.topChangeButtonColor("#d60f0f")
+            bottomclickListner?.bottomChangeButtonColor("#d60f0f")
+            shoesclickListner?.shoesChangeButtonColor("#d60f0f")
+            etcclickListner?.etcChangeButtonColor("#d60f0f")
         }
 
         binding.writefirstColorTopSelectorPink.setOnClickListener{
-            topclickListener?.topChangeButtonColor("pink")
-            bottomclickListner?.bottomChangeButtonColor("pink")
+            topclickListener?.topChangeButtonColor("#f59a9a")
+            bottomclickListner?.bottomChangeButtonColor("#f59a9a")
+            shoesclickListner?.shoesChangeButtonColor("#f59a9a")
+            etcclickListner?.etcChangeButtonColor("#f59a9a")
         }
 
         binding.writefirstColorTopSelectorYellow.setOnClickListener{
-            topclickListener?.topChangeButtonColor("yellow")
-            bottomclickListner?.bottomChangeButtonColor("yellow")
+            topclickListener?.topChangeButtonColor("#ffb203")
+            bottomclickListner?.bottomChangeButtonColor("#ffb203")
+            shoesclickListner?.shoesChangeButtonColor("#ffb203")
+            etcclickListner?.etcChangeButtonColor("#ffb203")
         }
 
         binding.writefirstColorTopSelectorLightyellow.setOnClickListener{
-            topclickListener?.topChangeButtonColor("lightyellow")
-            bottomclickListner?.bottomChangeButtonColor("lightyellow")
+            topclickListener?.topChangeButtonColor("#fde6b1")
+            bottomclickListner?.bottomChangeButtonColor("#fde6b1")
+            shoesclickListner?.shoesChangeButtonColor("#fde6b1")
+            etcclickListner?.etcChangeButtonColor("#fde6b1")
         }
 
         binding.writefirstColorTopSelectorGreen.setOnClickListener{
-            topclickListener?.topChangeButtonColor("green")
-            bottomclickListner?.bottomChangeButtonColor("green")
+            topclickListener?.topChangeButtonColor("#71a238")
+            bottomclickListner?.bottomChangeButtonColor("#71a238")
+            shoesclickListner?.shoesChangeButtonColor("#71a238")
+            etcclickListner?.etcChangeButtonColor("#71a238")
         }
 
         binding.writefirstColorTopSelectorLightgreen.setOnClickListener{
-            topclickListener?.topChangeButtonColor("lightgreen")
-            bottomclickListner?.bottomChangeButtonColor("lightgreen")
+            topclickListener?.topChangeButtonColor("#b7de89")
+            bottomclickListner?.bottomChangeButtonColor("#b7de89")
+            shoesclickListner?.shoesChangeButtonColor("#b7de89")
+            etcclickListner?.etcChangeButtonColor("#b7de89")
         }
 
         binding.writefirstColorTopSelectorOrange.setOnClickListener{
-            topclickListener?.topChangeButtonColor("orange")
-            bottomclickListner?.bottomChangeButtonColor("orange")
+            topclickListener?.topChangeButtonColor("#ea7831")
+            bottomclickListner?.bottomChangeButtonColor("#ea7831")
+            shoesclickListner?.shoesChangeButtonColor("#ea7831")
+            etcclickListner?.etcChangeButtonColor("#ea7831")
         }
 
         binding.writefirstColorTopSelectorNavy.setOnClickListener{
-            topclickListener?.topChangeButtonColor("navy")
-            bottomclickListner?.bottomChangeButtonColor("navy")
+            topclickListener?.topChangeButtonColor("#273e88")
+            bottomclickListner?.bottomChangeButtonColor("#273e88")
+            shoesclickListner?.shoesChangeButtonColor("#273e88")
+            etcclickListner?.etcChangeButtonColor("#273e88")
         }
 
         binding.writefirstColorTopSelectorBlue.setOnClickListener{
-            topclickListener?.topChangeButtonColor("blue")
-            bottomclickListner?.bottomChangeButtonColor("blue")
+            topclickListener?.topChangeButtonColor("#4168e8")
+            bottomclickListner?.bottomChangeButtonColor("#4168e8")
+            shoesclickListner?.shoesChangeButtonColor("#4168e8")
+            etcclickListner?.etcChangeButtonColor("#4168e8")
         }
 
         binding.writefirstColorTopSelectorLightblue.setOnClickListener{
-            topclickListener?.topChangeButtonColor("lightblue")
-            bottomclickListner?.bottomChangeButtonColor("lightblue")
+            topclickListener?.topChangeButtonColor("#a5b9fa")
+            bottomclickListner?.bottomChangeButtonColor("#a5b9fa")
+            shoesclickListner?.shoesChangeButtonColor("#a5b9fa")
+            etcclickListner?.etcChangeButtonColor("#a5b9fa")
         }
 
         binding.writefirstColorTopSelectorPurple.setOnClickListener{
-            topclickListener?.topChangeButtonColor("purple")
-            bottomclickListner?.bottomChangeButtonColor("purple")
+            topclickListener?.topChangeButtonColor("#894ac7")
+            bottomclickListner?.bottomChangeButtonColor("#894ac7")
+            shoesclickListner?.shoesChangeButtonColor("#894ac7")
+            etcclickListner?.etcChangeButtonColor("#894ac7")
         }
 
         binding.writefirstColorTopSelectorLightpurple.setOnClickListener{
-            topclickListener?.topChangeButtonColor("lightpurple")
-            bottomclickListner?.bottomChangeButtonColor("lightpurple")
+            topclickListener?.topChangeButtonColor("#dcacff")
+            bottomclickListner?.bottomChangeButtonColor("#dcacff")
+            shoesclickListner?.shoesChangeButtonColor("#dcacff")
+            etcclickListner?.etcChangeButtonColor("#dcacff")
         }
 
         binding.writefirstColorTopSelectorWhite.setOnClickListener{
-            topclickListener?.topChangeButtonColor("white")
-            bottomclickListner?.bottomChangeButtonColor("white")
+            topclickListener?.topChangeButtonColor("#ffffff")
+            bottomclickListner?.bottomChangeButtonColor("#ffffff")
+            shoesclickListner?.shoesChangeButtonColor("#ffffff")
+            etcclickListner?.etcChangeButtonColor("#ffffff")
         }
 
         binding.writefirstColorTopSelectorGrey.setOnClickListener{
-            topclickListener?.topChangeButtonColor("grey")
-            bottomclickListner?.bottomChangeButtonColor("grey")
+            topclickListener?.topChangeButtonColor("#888888")
+            bottomclickListner?.bottomChangeButtonColor("#888888")
+            shoesclickListner?.shoesChangeButtonColor("#888888")
+            etcclickListner?.etcChangeButtonColor("#888888")
         }
 
         binding.writefirstColorTopSelectorBlack.setOnClickListener{
-            topclickListener?.topChangeButtonColor("black")
-            bottomclickListner?.bottomChangeButtonColor("black")
+            topclickListener?.topChangeButtonColor("#191919")
+            bottomclickListner?.bottomChangeButtonColor("#191919")
+            shoesclickListner?.shoesChangeButtonColor("#191919")
+            etcclickListner?.etcChangeButtonColor("#191919")
         }
 
         binding.writefirstColorTopSelectorLightpeach.setOnClickListener{
-            topclickListener?.topChangeButtonColor("lightpeach")
-            bottomclickListner?.bottomChangeButtonColor("lightpeach")
+            topclickListener?.topChangeButtonColor("#e8dcd5")
+            bottomclickListner?.bottomChangeButtonColor("#e8dcd5")
+            shoesclickListner?.shoesChangeButtonColor("#e8dcd5")
+            etcclickListner?.etcChangeButtonColor("#e8dcd5")
         }
 
         binding.writefirstColorTopSelectorPinkishgrey.setOnClickListener{
-            topclickListener?.topChangeButtonColor("pinkishgrey")
-            bottomclickListner?.bottomChangeButtonColor("pinkishgrey")
+            topclickListener?.topChangeButtonColor("#c3b5ac")
+            bottomclickListner?.bottomChangeButtonColor("#c3b5ac")
+            shoesclickListner?.shoesChangeButtonColor("#c3b5ac")
+            etcclickListner?.etcChangeButtonColor("#c3b5ac")
         }
 
         binding.writefirstColorTopSelectorBrown.setOnClickListener{
-            topclickListener?.topChangeButtonColor("brown")
-            bottomclickListner?.bottomChangeButtonColor("brown")
+            topclickListener?.topChangeButtonColor("#74461f")
+            bottomclickListner?.bottomChangeButtonColor("#74461f")
+            shoesclickListner?.shoesChangeButtonColor("#74461f")
+            etcclickListner?.etcChangeButtonColor("#74461f")
         }
-
 
         //다음버튼 클릭시 Writing Second Activity
         binding.writefirstNextButton.setOnClickListener {
@@ -241,5 +279,20 @@ class WritefirstActivity() : AppCompatActivity(){
         this.bottomclickListner = bottomcolorClickListener
     }
 
+    interface ShoesColorClickListner {
+        fun shoesChangeButtonColor(color : String)
+    }
+
+    fun setShoesColorClickListner(shoesColorClickListner:WritefirstActivity.ShoesColorClickListner) {
+        this.shoesclickListner = shoesColorClickListner
+    }
+
+    interface EtcColorClickListner {
+        fun etcChangeButtonColor(color : String)
+    }
+
+    fun setEtcColorClickListner(etcColorClickListner:WritefirstActivity.EtcColorClickListner) {
+        this.etcclickListner = etcColorClickListner
+    }
 
 }

@@ -1,34 +1,17 @@
 package com.eight.collection.ui.writing.first.top
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstTopBinding
-import android.graphics.Color
-import android.util.Log
 import android.widget.RadioButton
-import com.eight.collection.R
-import com.eight.collection.ui.writing.first.WritefirstActivity
-import com.eight.collection.utils.*
+import kotlinx.coroutines.selects.select
 
-class WritefirstTopRVAdapter(private val topList: ArrayList<TopFixedItem>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
-    private var selectCheck : ArrayList<Int> = arrayListOf()
+class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
     private var clickListener: TopClickListener? = null
-    private var count : Int = 0
-    private var beforeselectButton : RadioButton? = null
     private var selectId : Int = -1
 
-    //버튼 Select 초기화
-    init {
-        for(i in topList){
-            if(i.name == "-"){
-                selectCheck.add(1)
-            }
-            else{
-                selectCheck.add(0)
-            }
-        }
-    }
 
     //Add 버튼 클릭시 데이터 추가
     interface TopClickListener {
@@ -44,8 +27,13 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<TopFixedItem>) : Rec
     override fun getItemCount(): Int = topList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.binding.writefirstColorTopTextButton.isChecked = topList[position].focus
+        holder.binding.writefirstTopItemLayout.setBackgroundColor(Color.parseColor(topList[position].color))
+        holder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor(topList[position].textcolor))
+
         holder.bind(topList[position], position)
         holder.setIsRecyclable(false)
+
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -54,38 +42,34 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<TopFixedItem>) : Rec
     }
 
     inner class ViewHolder(val binding: ItemWritefirstTopBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(top: TopFixedItem, position: Int){
+        fun bind(top: WritefirstTop, position: Int){
             binding.writefirstColorTopTextButton.apply {
                 //버튼에 Text 대입
                 text = top.name
                 // select 여부 확인 및 상태 변경
                 setOnClickListener {
                     when (topList[position].id) {
-                        0 -> clickListener?.plusButtonClick()
+                        0 -> {
+                            clickListener?.plusButtonClick()
+                            isChecked = false
+                        }
                         else -> {
-                            for (i in selectCheck.indices) {
-                                if (i == bindingAdapterPosition) {
-                                    if(count < 1){
-                                        isChecked = true
-                                        selectCheck[i] = 1
-                                        selectId = bindingAdapterPosition
-                                        count = count + 1
-                                    }
-                                    else {
-                                        isChecked = false
-                                        selectCheck[i] = 0
-                                        selectId = -1
-                                        count = count - 1
-                                    }
-                                }
+                            if(selectId == -1) {
+                                topList[position].focus = true
+                                selectId = position
+                            }
+                            else if(selectId == position) {
+                                topList[selectId].focus = false
+                                selectId = -1
+                            }
+                            else {
+                                topList[selectId].focus = false
+                                topList[position].focus = true
+                                selectId = position
                             }
                         }
                     }
-                    notifyItemChanged(position)
-                    if (beforeselectButton != null){
-                        beforeselectButton?.isChecked = false
-                    }
-                    beforeselectButton = this
+                    notifyDataSetChanged()
                 }
             }
         }

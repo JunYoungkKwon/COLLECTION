@@ -1,5 +1,6 @@
 package com.eight.collection.ui.writing.first.bottom
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.RadioButton
@@ -7,40 +8,33 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 
 class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBottom>) : RecyclerView.Adapter<WritefirstBottomRVAdapter.ViewHolder>(){
-    private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: BottomClickListener? = null
     private var selectId : Int = -1
-    private var count : Int = 0
-    private var beforeselectedId : RadioButton? = null
 
-    init {
-        for(i in bottomList){
-            if(i.name == "-"){
-                selectCheck.add(1)
-            }
-            else{
-                selectCheck.add(0)
-            }
-        }
-    }
-
-
+    //Add 버튼 클릭시 데이터 추가
     interface BottomClickListener {
         fun plusButtonClick()
     }
-
 
     fun setBottomClickListener(bottomClickListener: BottomClickListener) {
         this.clickListener = bottomClickListener
     }
 
+    //bottomList 수 반환
     override fun getItemCount(): Int = bottomList.size
 
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: WritefirstBottomRVAdapter.ViewHolder, position: Int) {
+        holder.binding.writefirstColorBottomTextButton.isChecked = bottomList[position].focus
+        holder.binding.writefirstBottomItemLayout.setBackgroundColor(Color.parseColor(bottomList[position].color))
+        holder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor(bottomList[position].textcolor))
+
         holder.bind(bottomList[position], position)
+        holder.setIsRecyclable(false)
+
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -56,31 +50,27 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
                 // select 여부 확인 및 상태 변경
                 setOnClickListener {
                     when (bottomList[position].id) {
-                        0 -> clickListener?.plusButtonClick()
+                        0 -> {
+                            clickListener?.plusButtonClick()
+                            isChecked = false
+                        }
                         else -> {
-                            for (i in selectCheck.indices) {
-                                if (i == bindingAdapterPosition) {
-                                    if(count < 1){
-                                        isChecked = true
-                                        selectCheck[i] = 1
-                                        selectId = bindingAdapterPosition
-                                        count = count + 1
-                                    }
-                                    else {
-                                        isChecked = false
-                                        selectCheck[i] = 0
-                                        selectId = -1
-                                        count = count - 1
-                                    }
-                                }
+                            if(selectId == -1) {
+                                bottomList[position].focus = true
+                                selectId = position
+                            }
+                            else if(selectId == position) {
+                                bottomList[selectId].focus = false
+                                selectId = -1
+                            }
+                            else {
+                                bottomList[selectId].focus = false
+                                bottomList[position].focus = true
+                                selectId = position
                             }
                         }
                     }
-                    notifyItemChanged(position)
-                    if (beforeselectedId != null){
-                        beforeselectedId?.isChecked = false
-                    }
-                    beforeselectedId = this
+                    notifyDataSetChanged()
                 }
             }
         }

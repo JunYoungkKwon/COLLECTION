@@ -61,10 +61,7 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
             add(WritefirstBottom(addText,addItemId))
             addItemId += 1
         }
-
-        bottomRVAdapter = WritefirstBottomRVAdapter(bottomList)
-        bottomRVAdapter.setBottomClickListener(this)
-        binding.writefirstBottomRecyclerview.adapter = bottomRVAdapter
+        bottomRVAdapter.notifyDataSetChanged()
     }
 
     override fun onCancelButtonClicked() {
@@ -81,100 +78,82 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
         if(bottomRVAdapter.getSelectId() == -1){
             return
         }
-        var viewHolder : WritefirstBottomRVAdapter.ViewHolder = binding.writefirstBottomRecyclerview.layoutManager?.findViewByPosition(bottomRVAdapter.getSelectId())
-            ?.let { binding.writefirstBottomRecyclerview.getChildViewHolder(it) } as WritefirstBottomRVAdapter.ViewHolder
-
+        bottomList[bottomRVAdapter.getSelectId()].color = color
         when (color) {
-            "red" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#d60f0f"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //red
+            "#d60f0f" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "pink" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#f59a9a"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //pink
+            "#f59a9a" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "yellow" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#ffb203"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //yellow
+            "#ffb203" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightyellow" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#fde6b1"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#191919"))
+            //lightyellow
+            "#fde6b1" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
             }
-
-            "green" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#71a238"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //green
+            "#71a238" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightgreen" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#b7de89"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#191919"))
+            //lightgreen
+            "#b7de89" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
             }
-
-            "orange" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#ea7831"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //orange
+            "#ea7831" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "navy" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#273e88"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //navy
+            "#273e88" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "blue" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#4168e8"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //blue
+            "#4168e8" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightblue" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#a5b9fa"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //lightblue
+            "#a5b9fa" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "purple" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#894ac7"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //purple
+            "#894ac7" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightpurple" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#dcacff"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //lightpurple
+            "#dcacff" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "white" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#ffffff"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#191919"))
+            //white
+            "#ffffff" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
             }
-
-            "grey" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#888888"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //grey
+            "#888888" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "black" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#191919"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //black
+            "#191919" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightpeach" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#e8dcd5"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#191919"))
+            //lightpeach
+            "#e8dcd5" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
             }
-
-            "pinkishgrey" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //pinkishgrey
+            "#c3b5ac" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "brown" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#74461f"))
-                viewHolder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //brown
+            "#74461f" -> {
+                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
         }
+        bottomRVAdapter.notifyDataSetChanged()
     }
 
 

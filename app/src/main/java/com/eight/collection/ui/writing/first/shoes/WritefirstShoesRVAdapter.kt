@@ -1,5 +1,6 @@
 package com.eight.collection.ui.writing.first.shoes
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,21 +8,11 @@ import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstShoesBinding
 import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.eight.collection.ui.writing.first.bottom.WritefirstBottomRVAdapter
 
 class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>) : RecyclerView.Adapter<WritefirstShoesRVAdapter.ViewHolder>(){
-    private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: ShoesClickListener? = null
-
-    init {
-        for(i in shoesList){
-            if(i.title == "-"){
-                selectCheck.add(1)
-            }
-            else{
-                selectCheck.add(0)
-            }
-        }
-    }
+    private var selectId : Int = -1
 
 
     interface ShoesClickListener {
@@ -33,10 +24,17 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
         this.clickListener = shoesClickListener
     }
 
-    interface ColorClickListner {
-        fun colorTextPost()
-    }
+    override fun getItemCount(): Int = shoesList.size
 
+
+    override fun onBindViewHolder(holder: WritefirstShoesRVAdapter.ViewHolder, position: Int) {
+        holder.binding.writefirstColorShoesTextButton.isChecked = shoesList[position].focus
+        holder.binding.writefirstShoesItemLayout.setBackgroundColor(Color.parseColor(shoesList[position].color))
+        holder.binding.writefirstColorShoesTextButton.setTextColor(Color.parseColor(shoesList[position].textcolor))
+
+        holder.bind(shoesList[position], position)
+        holder.setIsRecyclable(false)
+    }
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -44,34 +42,33 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(shoesList[position], position)
-    }
-
-    override fun getItemCount(): Int = shoesList.size
-
 
     inner class ViewHolder(val binding: ItemWritefirstShoesBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(shoes: WritefirstShoes, position: Int){
             binding.writefirstColorShoesTextButton.apply {
-                text = shoes.title
-                // select 여부 확인 및 상태 변경
-                isChecked = selectCheck[bindingAdapterPosition] == 1
-                setOnClickListener{
-                    when(shoesList[position].id){
-                        0 -> clickListener?.plusButtonClick()
+                text = shoes.name
+                setOnClickListener {
+                    when (shoesList[position].id) {
+                        0 -> {
+                            clickListener?.plusButtonClick()
+                            isChecked = false
+                        }
                         else -> {
-                            for (k in selectCheck.indices) {
-                                if (k == bindingAdapterPosition) {
-                                    selectCheck[k] = 1
-                                }
-                                else {
-                                    selectCheck[k] = 0
-                                }
+                            if(selectId == -1) {
+                                shoesList[position].focus = true
+                                selectId = position
+                            }
+                            else if(selectId == position) {
+                                shoesList[selectId].focus = false
+                                selectId = -1
+                            }
+                            else {
+                                shoesList[selectId].focus = false
+                                shoesList[position].focus = true
+                                selectId = position
                             }
                         }
                     }
-
                     notifyDataSetChanged()
                 }
             }
@@ -89,5 +86,9 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
     fun removeItem(position: Int){
         shoesList.removeAt(position)
         notifyDataSetChanged()
+    }
+
+    fun getSelectId() : Int{
+        return selectId
     }
 }
