@@ -1,76 +1,75 @@
 package com.eight.collection.ui.writing.first.bottom
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.RadioButton
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 
 class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBottom>) : RecyclerView.Adapter<WritefirstBottomRVAdapter.ViewHolder>(){
-    private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: BottomClickListener? = null
+    private var selectId : Int = -1
 
-    init {
-        for(i in bottomList){
-            if(i.title == "-"){
-                selectCheck.add(1)
-            }
-            else{
-                selectCheck.add(0)
-            }
-        }
-    }
-
-
+    //Add 버튼 클릭시 데이터 추가
     interface BottomClickListener {
         fun plusButtonClick()
     }
-
 
     fun setBottomClickListener(bottomClickListener: BottomClickListener) {
         this.clickListener = bottomClickListener
     }
 
-    interface ColorClickListner {
-        fun colorTextPost()
+    //bottomList 수 반환
+    override fun getItemCount(): Int = bottomList.size
+
+
+    override fun onBindViewHolder(holder: WritefirstBottomRVAdapter.ViewHolder, position: Int) {
+        holder.binding.writefirstColorBottomTextButton.isChecked = bottomList[position].focus
+        holder.binding.writefirstBottomItemLayout.setBackgroundColor(Color.parseColor(bottomList[position].color))
+        holder.binding.writefirstColorBottomTextButton.setTextColor(Color.parseColor(bottomList[position].textcolor))
+
+        holder.bind(bottomList[position], position)
+        holder.setIsRecyclable(false)
+
     }
-
-
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding : ItemWritefirstBottomBinding = ItemWritefirstBottomBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(bottomList[position], position)
-    }
-
-    override fun getItemCount(): Int = bottomList.size
-
 
     inner class ViewHolder(val binding: ItemWritefirstBottomBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(bottom: WritefirstBottom, position: Int){
             binding.writefirstColorBottomTextButton.apply {
-                text = bottom.title
+                text = bottom.name
                 // select 여부 확인 및 상태 변경
-                isChecked = selectCheck[bindingAdapterPosition] == 1
-                setOnClickListener{
-                    when(bottomList[position].id){
-                        0 -> clickListener?.plusButtonClick()
+                setOnClickListener {
+                    when (bottomList[position].id) {
+                        0 -> {
+                            clickListener?.plusButtonClick()
+                            isChecked = false
+                        }
                         else -> {
-                            for (k in selectCheck.indices) {
-                                if (k == bindingAdapterPosition) {
-                                    selectCheck[k] = 1
-                                }
-                                else {
-                                    selectCheck[k] = 0
-                                }
+                            if(selectId == -1) {
+                                bottomList[position].focus = true
+                                selectId = position
+                            }
+                            else if(selectId == position) {
+                                bottomList[selectId].focus = false
+                                selectId = -1
+                            }
+                            else {
+                                bottomList[selectId].focus = false
+                                bottomList[position].focus = true
+                                selectId = position
                             }
                         }
                     }
-
                     notifyDataSetChanged()
                 }
             }
@@ -88,5 +87,9 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
     fun removeItem(position: Int){
         bottomList.removeAt(position)
         notifyDataSetChanged()
+    }
+
+    fun getSelectId() : Int{
+        return selectId
     }
 }

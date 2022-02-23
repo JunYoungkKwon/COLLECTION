@@ -9,18 +9,20 @@ import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritefirstBottomBinding
 import com.eight.collection.databinding.FragmentWritefirstShoesBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottom
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomCustomDialog
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomRVAdapter
+import com.eight.collection.ui.writing.first.etc.WritefirstEtcRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
-    WritefirstShoesRVAdapter.ShoesClickListener {
+    WritefirstShoesRVAdapter.ShoesClickListener, WritefirstActivity.ShoesColorClickListner {
     lateinit var binding : FragmentWritefirstShoesBinding
-    private var shoesDatas = ArrayList<WritefirstShoes>()
+    private var shoesList = ArrayList<WritefirstShoes>()
     lateinit var customDialog: WritefirstShoesCustomDialog
-    private var idcount : Int = 13
-    private var addtext : String? = null
+    private var addItemId : Int = 13
+    var shoesRVAdapter : WritefirstShoesRVAdapter = WritefirstShoesRVAdapter(shoesList)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +32,7 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
         binding = FragmentWritefirstShoesBinding.inflate(inflater,container,false)
 
         // 데이터 리스트 생성
-        shoesDatas.apply {
+        shoesList.apply {
             add(WritefirstShoes("+", 0))
             add(WritefirstShoes("힐", 1))
             add(WritefirstShoes("단화", 2))
@@ -46,7 +48,7 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
             add(WritefirstShoes("아쿠아슈즈/트래킹슈즈", 12))
         }
 
-        val shoesRVAdapter = WritefirstShoesRVAdapter(shoesDatas)
+        shoesRVAdapter = WritefirstShoesRVAdapter(shoesList)
         shoesRVAdapter.setShoesClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
@@ -57,17 +59,11 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onAddButtonClicked(addText: String) {
-        shoesDatas.apply {
-            add(WritefirstShoes(addText,idcount))
-            idcount += 1
+        shoesList.apply {
+            add(WritefirstShoes(addText,addItemId))
+            addItemId += 1
         }
-
-        val shoesRVAdapter = WritefirstShoesRVAdapter(shoesDatas)
-        shoesRVAdapter.setShoesClickListener(this)
-
-        val flexboxLayoutManager = FlexboxLayoutManager(activity)
-        binding.writefirstShoesRecyclerview.adapter = shoesRVAdapter
-        binding.writefirstShoesRecyclerview.layoutManager = flexboxLayoutManager
+        shoesRVAdapter.notifyDataSetChanged()
     }
 
     override fun onCancelButtonClicked() {
@@ -78,6 +74,88 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
     override fun plusButtonClick() {
         customDialog = WritefirstShoesCustomDialog(requireContext(), this)
         customDialog.show()
+    }
+
+    override fun shoesChangeButtonColor(color: String) {
+        if(shoesRVAdapter.getSelectId() == -1){
+            return
+        }
+        shoesList[shoesRVAdapter.getSelectId()].color = color
+        when (color) {
+            //red
+            "#d60f0f" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //pink
+            "#f59a9a" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //yellow
+            "#ffb203" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightyellow
+            "#fde6b1" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
+            }
+            //green
+            "#71a238" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightgreen
+            "#b7de89" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
+            }
+            //orange
+            "#ea7831" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //navy
+            "#273e88" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //blue
+            "#4168e8" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightblue
+            "#a5b9fa" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //purple
+            "#894ac7" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightpurple
+            "#dcacff" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //white
+            "#ffffff" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
+            }
+            //grey
+            "#888888" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //black
+            "#191919" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //lightpeach
+            "#e8dcd5" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
+            }
+            //pinkishgrey
+            "#c3b5ac" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+            //brown
+            "#74461f" -> {
+                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+            }
+        }
+        shoesRVAdapter.notifyDataSetChanged()
     }
 
 }

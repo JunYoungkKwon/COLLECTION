@@ -2,7 +2,6 @@ package com.eight.collection.ui.writing.first.top
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,9 @@ import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
-    WritefirstTopRVAdapter.TopClickListener, WritefirstActivity.ColorClickListner {
+    WritefirstTopRVAdapter.TopClickListener, WritefirstActivity.TopColorClickListner {
     lateinit var binding : FragmentWritefirstTopBinding
-    private var topList = ArrayList<TopFixedItem>()
+    private var topList = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
     private var addItemId : Int = 13
     lateinit var topRVAdapter : WritefirstTopRVAdapter
@@ -31,19 +30,19 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
 
         //고정 Top 리스트 생성
         topList.apply {
-            add(TopFixedItem("+", 0))
-            add(TopFixedItem("맨투맨", 1))
-            add(TopFixedItem("티셔츠", 2))
-            add(TopFixedItem("블라우스", 3))
-            add(TopFixedItem("목폴라", 4))
-            add(TopFixedItem("후드티", 5))
-            add(TopFixedItem("니트", 6))
-            add(TopFixedItem("와이셔츠", 7))
-            add(TopFixedItem("나시", 8))
-            add(TopFixedItem("패딩", 9))
-            add(TopFixedItem("무스탕", 10))
-            add(TopFixedItem("후드집업", 11))
-            add(TopFixedItem("코트", 12))
+            add(WritefirstTop("+", 0))
+            add(WritefirstTop("맨투맨", 1))
+            add(WritefirstTop("티셔츠", 2))
+            add(WritefirstTop("블라우스", 3))
+            add(WritefirstTop("목폴라", 4))
+            add(WritefirstTop("후드티", 5))
+            add(WritefirstTop("니트", 6))
+            add(WritefirstTop("와이셔츠", 7))
+            add(WritefirstTop("나시", 8))
+            add(WritefirstTop("패딩", 9))
+            add(WritefirstTop("무스탕", 10))
+            add(WritefirstTop("후드집업", 11))
+            add(WritefirstTop("코트", 12))
         }
 
         // Top RVA
@@ -58,17 +57,12 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     }
 
 
-
     override fun onAddButtonClicked(addText: String) {
         topList.apply {
-            add(TopFixedItem(addText,addItemId))
+            add(WritefirstTop(addText,addItemId))
             addItemId += 1
         }
-
-        val topRVAdapter = WritefirstTopRVAdapter(topList)
-        topRVAdapter.setTopClickListener(this)
-
-        binding.writefirstTopRecyclerview.adapter = topRVAdapter
+        topRVAdapter.notifyDataSetChanged()
     }
 
     override fun onCancelButtonClicked() {
@@ -83,107 +77,87 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     }
 
 
-
-    //Interface 함수
-    override fun changeButtonColor(color: String) {
+    //Color Change 함수
+    override fun topChangeButtonColor(color: String) {
         if(topRVAdapter.getSelectId() == -1){
             return
         }
-
-        var viewHolder : WritefirstTopRVAdapter.ViewHolder = binding.writefirstTopRecyclerview.layoutManager?.findViewByPosition(topRVAdapter.getSelectId())
-            ?.let { binding.writefirstTopRecyclerview.getChildViewHolder(it) } as WritefirstTopRVAdapter.ViewHolder
-
+        topList[topRVAdapter.getSelectId()].color = color
         when (color) {
-            "red" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#d60f0f"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //red
+            "#d60f0f" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "pink" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#f59a9a"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //pink
+            "#f59a9a" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "yellow" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#ffb203"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //yellow
+            "#ffb203" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightyellow" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#fde6b1"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#191919"))
+            //lightyellow
+            "#fde6b1" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#191919"
             }
-
-            "green" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#71a238"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //green
+            "#71a238" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightgreen" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#b7de89"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#191919"))
+            //lightgreen
+            "#b7de89" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#191919"
             }
-
-            "orange" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#ea7831"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //orange
+            "#ea7831" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "navy" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#273e88"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //navy
+            "#273e88" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "blue" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#4168e8"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //blue
+            "#4168e8" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightblue" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#a5b9fa"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //lightblue
+            "#a5b9fa" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "purple" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#894ac7"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //purple
+            "#894ac7" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightpurple" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#dcacff"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //lightpurple
+            "#dcacff" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "white" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#ffffff"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#191919"))
+            //white
+            "#ffffff" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#191919"
             }
-
-            "grey" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#888888"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //grey
+            "#888888" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "black" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#191919"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //black
+            "#191919" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "lightpeach" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#e8dcd5"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#191919"))
+            //lightpeach
+            "#e8dcd5" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#191919"
             }
-
-            "pinkishgrey" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //pinkishgrey
+            "#c3b5ac" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
-
-            "brown" -> {
-                viewHolder.itemView.setBackgroundColor(Color.parseColor("#74461f"))
-                viewHolder.binding.writefirstColorTopTextButton.setTextColor(Color.parseColor("#ffffff"))
+            //brown
+            "#74461f" -> {
+                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
             }
         }
+        topRVAdapter.notifyDataSetChanged()
     }
 
 }
