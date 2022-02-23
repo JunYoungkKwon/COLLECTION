@@ -22,7 +22,6 @@ import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentMonthBinding
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.finish.FinishActivity
-import com.eight.collection.ui.main.MainActivity
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
@@ -163,10 +162,10 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                     for(i in 0 .. month.size-1 step (1)){
                         //Date Type -> LocalDate Tyoe
                         val date: Date = month[i].date
-                        val locadate:LocalDate = date.toInstant()
+                        val localdate:LocalDate = date.toInstant()
                             .atZone(ZoneId.systemDefault())
                             .toLocalDate()
-                        if (locadate == day.date){
+                        if (localdate == day.date){
                             when(month[i].lookpoint){
                                 1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_off)
                                 2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_off)

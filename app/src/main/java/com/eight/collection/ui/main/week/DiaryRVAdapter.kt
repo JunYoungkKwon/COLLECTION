@@ -2,7 +2,6 @@ package com.eight.collection.ui.main.week
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +19,7 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
 
     interface MyitemClickListener{
-        fun onRemoveAlbum(position: Int)
+        fun onRemoveDiary(position: Int)
     }
 
     private  lateinit var mItemClickListener: MyitemClickListener
@@ -32,7 +31,8 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
     fun removeItem(position: Int){
         diarylist.removeAt(position)
-        notifyDataSetChanged()
+        notifyItemRangeChanged(position, itemCount)
+        notifyItemRemoved(position)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -40,6 +40,12 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
         this.diarylist.clear()
         this.diarylist.addAll(diarylist)
 
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun removeWeekly() {
+        this.diarylist.clear()
         notifyDataSetChanged()
     }
 
@@ -51,21 +57,15 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
     override fun onBindViewHolder(holder: DiaryRVAdapter.ViewHolder, position: Int) {
         holder.bind(diarylist[position])
-        holder.binding.itemDiaryEditIv.setOnClickListener { mItemClickListener.onRemoveAlbum(position)}
+        holder.binding.itemDiaryEditIv.setOnClickListener {
+            removeItem(position)
+            //mItemClickListener.onRemoveDiary(holder.bindingAdapterPosition)
+        }
+
     }
 
 
     override fun getItemCount(): Int = diarylist.size
-//        when (diarylist.size) {
-//        0 -> 0
-//        1 -> 1
-//        2 -> 2
-//        3 -> 3
-//        4 -> 4
-//        5 -> 5
-//        6 -> 6
-//        7 -> 7
-//        else -> 7}
 
     inner class ViewHolder(val binding: ItemWeekDiaryBinding): RecyclerView.ViewHolder(binding.root){
 
@@ -95,8 +95,6 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 //                diary.etcList.add(Etc("해당 항목 없음", "#00000000"))
 //            }
 
-
-            //binding.itemDiaryImgIv.setImageResource(diary.coverImg!!)
             val date: Date = diary.date
             val localdate: LocalDate = date.toInstant()
                 .atZone(ZoneId.systemDefault())

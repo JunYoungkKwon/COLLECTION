@@ -67,4 +67,5 @@
         app:layout_constraintEnd_toEndOf="@+id/dialog_text_bg_cv"
         app:layout_constraintBottom_toBottomOf="@+id/dialog_text_bg_cv" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
