@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.19444444444444445" />
         <entry key="..\:/Users/gypig/.gradle/caches/transforms-3/33e2382e2a4b05258454807d965391b6/transformed/appcompat-1.4.1/res/drawable/abc_ic_menu_copy_mtrl_am_alpha.xml" value="0.1" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/logout_cancle_btn_event.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/logout_ok_btn_event.xml" value="0.17708333333333334" />
@@ -86,6 +87,34 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/week_datepicker.xml" value="0.22" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/menu/menu_week_option.xml" value="0.22" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/menu/navi_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/radio_normal.xml" value="0.105" />
+        <entry key="app/src/main/res/drawable-v24/radio_selected.xml" value="0.105" />
+        <entry key="app/src/main/res/drawable-v24/radio_selector.xml" value="0.105" />
+        <entry key="app/src/main/res/drawable-v24/selector_radio_text.xml" value="0.1125" />
+        <entry key="app/src/main/res/drawable/radio_checked_pww.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/radio_normal_bue.xml" value="0.105" />
+        <entry key="app/src/main/res/drawable/radio_normal_pww.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/radio_select_pww.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/radio_selected2.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/radio_selected_blue.xml" value="0.105" />
+        <entry key="app/src/main/res/drawable/radio_selector2.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/radio_selector_blue.xml" value="0.105" />
+        <entry key="app/src/main/res/drawable/select_radio_pww_text.xml" value="0.1125" />
+        <entry key="app/src/main/res/drawable/selector_radio_text.xml" value="0.1085" />
+        <entry key="app/src/main/res/drawable/selector_radio_text2.xml" value="0.131" />
+        <entry key="app/src/main/res/layout/fragment_writefirst_bottom.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/fragment_writefirst_shoes.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_writefirst_top.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_writesecond_place.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writefirst_bottom.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writefirst_etc.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writefirst_shoes.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writefirst_top.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writesecond_place.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_writesecond_weather.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writesecond_who.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/toast_custom.xml" value="0.13949275362318841" />
+        <entry key="app/src/main/res/layout/toast_signup.xml" value="0.11778115501519756" />
       </map>
     </option>
   </component>

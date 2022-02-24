@@ -60,6 +60,8 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
                             }
                             else if(selectId == position) {
                                 shoesList[selectId].focus = false
+                                shoesList[selectId].color = "#00ff0000"
+                                shoesList[selectId].textcolor = "#c3b5ac"
                                 selectId = -1
                             }
                             else {

@@ -8,7 +8,7 @@ import com.eight.collection.databinding.ItemWritefirstTopBinding
 import android.widget.RadioButton
 import kotlinx.coroutines.selects.select
 
-class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
+class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
     private var clickListener: TopClickListener? = null
     private var selectId : Int = -1
 
@@ -60,6 +60,8 @@ class WritefirstTopRVAdapter(private val topList: ArrayList<WritefirstTop>) : Re
                             }
                             else if(selectId == position) {
                                 topList[selectId].focus = false
+                                topList[selectId].color = "#00ff0000"
+                                topList[selectId].textcolor = "#c3b5ac"
                                 selectId = -1
                             }
                             else {

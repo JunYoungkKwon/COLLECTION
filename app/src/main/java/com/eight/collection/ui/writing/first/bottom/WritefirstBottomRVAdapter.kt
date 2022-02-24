@@ -61,6 +61,8 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
                             }
                             else if(selectId == position) {
                                 bottomList[selectId].focus = false
+                                bottomList[selectId].color = "#00ff0000"
+                                bottomList[selectId].textcolor = "#c3b5ac"
                                 selectId = -1
                             }
                             else {

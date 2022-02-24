@@ -59,7 +59,10 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
                             }
                             else if(selectId == position) {
                                 etcList[selectId].focus = false
+                                etcList[selectId].color = "#00ff0000"
+                                etcList[selectId].textcolor = "#c3b5ac"
                                 selectId = -1
+
                             }
                             else {
                                 etcList[selectId].focus = false
