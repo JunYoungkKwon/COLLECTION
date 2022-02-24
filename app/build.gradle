@@ -95,4 +95,7 @@ dependencies {
 
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
 
+    //popupmenu
+    implementation "com.github.skydoves:powermenu:2.2.0"
+
 }

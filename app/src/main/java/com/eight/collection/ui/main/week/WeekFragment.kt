@@ -3,6 +3,8 @@ package com.eight.collection.ui.main.week
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -10,10 +12,11 @@ import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.navigation.Navigation
-import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
 import com.eight.collection.data.remote.calendar.CalendarService
@@ -31,6 +34,10 @@ import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import com.skydoves.powermenu.OnMenuItemClickListener
+import com.skydoves.powermenu.PowerMenu
+import com.skydoves.powermenu.PowerMenuItem
+import okhttp3.internal.notify
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -38,7 +45,6 @@ import java.time.ZoneId
 import java.time.temporal.TemporalField
 import java.time.temporal.WeekFields
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate),MonthView, WeeklyView {
@@ -284,34 +290,58 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private fun initWeeklyRV(){
         diaryRVAdapter = DiaryRVAdapter(requireContext())
-        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+
+
+
         diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
+            override fun onRemoveDiary(view: View, position: Int) {
 
-            override fun onRemoveDiary(position: Int) {
-                clickOption(position)
-            }
+                val powerMenu = PowerMenu.Builder(requireContext())
+                    .addItem(PowerMenuItem("수정하기", false))
+                    .addItem(PowerMenuItem("삭제하기", false))
+                    .setMenuRadius(15f)
+                    .setDivider(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.pinkish_grey)))
+                    .setDividerHeight(1)
+                    .setShowBackground(false)
+                    .setMenuShadow(15f)
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_taupe))
+                    .setTextGravity(Gravity.CENTER)
+                    .setTextTypeface(Typeface.create("@font/noto_sans_kr", Typeface.NORMAL))
+                    .setMenuColor(Color.WHITE)
+                    .build()
 
-            private fun clickOption(position: Int) {
-                val popupMenu = PopupMenu(activity, binding.weekDiaryRecyclerView[position].findViewById(R.id.item_diary_edit_iv))
-                popupMenu.inflate(R.menu.menu_week_option)
-                popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
-                    override fun onMenuItemClick(item: MenuItem?): Boolean {
-                        when (item?.itemId) {
-                            R.id.menu_item_edit -> {
-                                startActivity(Intent(activity, WritefirstActivity::class.java))
-                                Log.d(TAG, "인덱스" + position)
-                            }
-                            R.id.menu_item_delete -> {
-                                diaryRVAdapter.removeItem(position)
-                                Log.d(TAG, "인덱스" + position)
-                            }
+                val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
+                    when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
+                        "삭제하기" -> {
+                            diaryRVAdapter.notifyDataSetChanged()
+                            diaryRVAdapter.removeItem(position)
+
                         }
-                        return false
                     }
-                })
-                popupMenu.show()
+                    powerMenu.selectedPosition = position
+                    powerMenu.dismiss()
+                }
+                powerMenu.onMenuItemClickListener = onMenuItemClickListener
+                powerMenu.showAsDropDown(view)
+
+//                val popupMenu = PopupMenu(activity, view)
+//                popupMenu.inflate(R.menu.menu_week_option)
+//                popupMenu.setOnMenuItemClickListener { item ->
+//                    when (item?.itemId) {
+//                        R.id.menu_item_edit -> {
+//                            startActivity(Intent(activity, WritefirstActivity::class.java))
+//                        }
+//                        R.id.menu_item_delete -> {
+//                            diaryRVAdapter.removeItem(position)
+//                        }
+//                    }
+//                    false
+//                }
+//                popupMenu.show()
             }
         })
+        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+
     }
 
     override fun onWeeklyLoading() {
@@ -365,5 +395,5 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             }
         }
     }
-
 }
+
