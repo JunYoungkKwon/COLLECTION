@@ -78,6 +78,10 @@
 
     <!-- dialog page -->
     <string name="dialog_text">로그아웃 하시겠습니까?</string>
+    <string name="dialog_text1">해당 날짜의 OOTD</string>
+    <string name="dialog_text2">검색 결과를 찾을 수 없습니다.</string>
+    <string name="dialog_text3">수정하기</string>
+    <string name="dialog_text4">삭제하기</string>
 
     <!-- privacy page -->
     <string name="privacy_first_title">*&lt; COLLECTION &gt;(‘www.collection-ootd.shop’이하 ‘COLLECTION’)*은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.

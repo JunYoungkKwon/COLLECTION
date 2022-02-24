@@ -3,13 +3,18 @@ package com.eight.collection.ui.main.week
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.navigation.Navigation
 import com.eight.collection.R
@@ -21,25 +26,51 @@ import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.main.month.MonthView
+import com.eight.collection.ui.main.setting.SettingActivity
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import com.skydoves.powermenu.OnMenuItemClickListener
+import com.skydoves.powermenu.PowerMenu
+import com.skydoves.powermenu.PowerMenuItem
+import okhttp3.internal.notify
 import java.time.DayOfWeek
-import java.time.YearMonth
-import com.eight.collection.ui.main.setting.SettingActivity
-import com.eight.collection.ui.writing.first.WritefirstActivity
 import java.time.LocalDate
+import java.time.YearMonth
 import java.time.ZoneId
+import java.time.temporal.TemporalField
+import java.time.temporal.WeekFields
 import java.util.*
-import kotlin.collections.ArrayList
 
 
-class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate), MonthView, WeeklyView {
+class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate),MonthView, WeeklyView {
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
+
+    var firstdate: LocalDate? = null
+    var lastdate: LocalDate? = null
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        getMonth()
+        initWeeklyRV()
+        binding.calendarView.monthScrollListener = {
+            if (binding.calendarView.maxRowCount == 1) {
+                val weekFields = WeekFields.of(DayOfWeek.SUNDAY, 1)
+                val weekOfMonth: TemporalField = weekFields.weekOfMonth()
+
+                firstdate = it.weekDays.first().first().date
+                lastdate = it.weekDays.last().last().date
+                getWeek()
+
+
+            }
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
@@ -47,17 +78,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         startWriteFirst()
         startSetting()
 
-        initWeeklyRV()
-        getMonth()
-        getWeek()
-
         binding.weekBtnSettingIv.bringToFront()
-
-//        var diaryList = mutableList()
-//        val diaryRVAdapter = DiaryRVAdapter(diaryList)
-//        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
-//
-
 
     }
 
@@ -142,10 +163,10 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                     for(i in 0 .. month.size-1 step (1)){
                         //Date Type -> LocalDate Tyoe
                         val date: Date = month[i].date
-                        val locadate:LocalDate = date.toInstant()
+                        val localdate:LocalDate = date.toInstant()
                             .atZone(ZoneId.systemDefault())
                             .toLocalDate()
-                        if (locadate == day.date){
+                        if (localdate == day.date){
                             when(month[i].lookpoint){
                                 1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_on)
                                 2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_on)
@@ -203,6 +224,29 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                     view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
                 }
 
+//                binding.calendarView.monthScrollListener = {
+//                    if (binding.calendarView.maxRowCount == 1) {
+//                        val weekFields = WeekFields.of(DayOfWeek.SUNDAY, 1)
+//                        val weekOfMonth: TemporalField = weekFields.weekOfMonth()
+//
+//                        firstdatetest = it.weekDays.first().first().date
+//                        Log.d("Test2", firstdatetest.toString())
+//
+//                        var firstDate = it.weekDays.first().first().date
+//                        var lastDate = it.weekDays.last().last().date
+//
+////                        DateCheck.apply {
+////                            add(DateCheck(firstDate, lastDate))
+////                        }
+//
+////                        val lastDate = it.weekDays.last().last().date
+////                        val firstDate = it.weekDays.first().first().date
+//
+//
+//                    }
+//
+//                }
+
             }
         }
 
@@ -246,34 +290,58 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private fun initWeeklyRV(){
         diaryRVAdapter = DiaryRVAdapter(requireContext())
-        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+
+
+
         diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
+            override fun onRemoveDiary(view: View, position: Int) {
 
-            override fun onRemoveAlbum(position: Int) {
-                clickOption(position)
-            }
+                val powerMenu = PowerMenu.Builder(requireContext())
+                    .addItem(PowerMenuItem("수정하기", false))
+                    .addItem(PowerMenuItem("삭제하기", false))
+                    .setMenuRadius(15f)
+                    .setDivider(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.pinkish_grey)))
+                    .setDividerHeight(1)
+                    .setShowBackground(false)
+                    .setMenuShadow(15f)
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_taupe))
+                    .setTextGravity(Gravity.CENTER)
+                    .setTextTypeface(Typeface.create("@font/noto_sans_kr", Typeface.NORMAL))
+                    .setMenuColor(Color.WHITE)
+                    .build()
 
-            private fun clickOption(position: Int) {
-                val popupMenu = PopupMenu(activity, binding.weekDiaryRecyclerView[position].findViewById(R.id.item_diary_edit_iv))
-                popupMenu.inflate(R.menu.menu_week_option)
-                popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
-                    override fun onMenuItemClick(item: MenuItem?): Boolean {
-                        when (item?.itemId) {
-                            R.id.menu_item_edit -> {
-                                startActivity(Intent(activity, WritefirstActivity::class.java))
-                                return true
-                            }
-                            R.id.menu_item_delete -> {
-                                diaryRVAdapter.removeItem(position)
-                                return true
-                            }
+                val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
+                    when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
+                        "삭제하기" -> {
+                            diaryRVAdapter.notifyDataSetChanged()
+                            diaryRVAdapter.removeItem(position)
+
                         }
-                        return false
                     }
-                })
-                popupMenu.show()
+                    powerMenu.selectedPosition = position
+                    powerMenu.dismiss()
+                }
+                powerMenu.onMenuItemClickListener = onMenuItemClickListener
+                powerMenu.showAsDropDown(view, -30, -30)
+
+//                val popupMenu = PopupMenu(activity, view)
+//                popupMenu.inflate(R.menu.menu_week_option)
+//                popupMenu.setOnMenuItemClickListener { item ->
+//                    when (item?.itemId) {
+//                        R.id.menu_item_edit -> {
+//                            startActivity(Intent(activity, WritefirstActivity::class.java))
+//                        }
+//                        R.id.menu_item_delete -> {
+//                            diaryRVAdapter.removeItem(position)
+//                        }
+//                    }
+//                    false
+//                }
+//                popupMenu.show()
             }
         })
+        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+
     }
 
     override fun onWeeklyLoading() {
@@ -281,8 +349,38 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     }
 
     override fun onWeeklySuccess(weekly: MutableList<Diary>) {
-        diaryRVAdapter.addWeekly(weekly)
-
+        var indexarraylist = ArrayList<Int>()
+        for(i in 0 .. weekly.size-1 step (1)){
+            val index = i
+            val now1: LocalDate = LocalDate.now()
+            val now =now1.minusDays(20)
+            val date:Date = weekly[i].date
+            val localdate:LocalDate = date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate()
+            if(localdate >= firstdate){
+                if(localdate <= lastdate ){
+                    val index = i
+                    indexarraylist.add(index)
+                }
+            }
+        }
+        if( indexarraylist.size != 0){
+            val filterindex = indexarraylist.filterNotNull()
+            val first = filterindex.get(0)
+            val last = filterindex.get(filterindex.size -1) +1
+            val sub_mulist = weekly.subList(first, last)
+            diaryRVAdapter.addWeekly(sub_mulist)
+            binding.weekDefault2Text.visibility= View.GONE
+            binding.weekDefault1Text.visibility= View.GONE
+            binding.weekDefaultIv.visibility= View.GONE
+        }
+        else{
+            diaryRVAdapter.removeWeekly()
+            binding.weekDefault2Text.visibility= View.VISIBLE
+            binding.weekDefault1Text.visibility= View.VISIBLE
+            binding.weekDefaultIv.visibility= View.VISIBLE
+        }
 
 
     }
@@ -297,5 +395,5 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             }
         }
     }
-
 }
+

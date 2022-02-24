@@ -2,13 +2,30 @@ package com.eight.collection.ui.main.week
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.*
+import android.view.View.OnLongClickListener
+import android.view.View.inflate
+import android.widget.PopupMenu
+import android.widget.PopupWindow
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.widget.PopupMenuCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eight.collection.R
 import com.eight.collection.databinding.ItemWeekDiaryBinding
+import com.eight.collection.ui.main.MainActivity
+import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.skydoves.powermenu.OnMenuItemClickListener
+import com.skydoves.powermenu.PowerMenu
+import com.skydoves.powermenu.PowerMenuItem
+import com.skydoves.powermenu.kotlin.createPowerMenu
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -18,9 +35,9 @@ import java.util.*
 class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
     private  val diarylist = mutableListOf<Diary>()
 
-
     interface MyitemClickListener{
-        fun onRemoveAlbum(position: Int)
+        fun onRemoveDiary(view: View, position: Int)
+        //fun onRemove(position: Int)
     }
 
     private  lateinit var mItemClickListener: MyitemClickListener
@@ -32,7 +49,8 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
     fun removeItem(position: Int){
         diarylist.removeAt(position)
-        notifyDataSetChanged()
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, itemCount)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -43,29 +61,112 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun removeWeekly() {
+        this.diarylist.clear()
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): DiaryRVAdapter.ViewHolder {
         val binding: ItemWeekDiaryBinding = ItemWeekDiaryBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return  ViewHolder(binding)
     }
 
 
-    override fun onBindViewHolder(holder: DiaryRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DiaryRVAdapter.ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(diarylist[position])
-        holder.binding.itemDiaryEditIv.setOnClickListener { mItemClickListener.onRemoveAlbum(position)}
+//        holder.binding.itemDiaryEditIv.setOnClickListener {
+
+//            val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position, item ->
+//                when(item?.title){
+//                    "수정하기" -> {
+//                        removeItem(position)
+//                        Log.d("Week/Data/ERROR1", "loading")}
+//                    "삭제하기" -> {
+//                        removeItem(position)
+//                        Log.d("Week/Data/ERROR2", "loading")
+//                    }
+//                }
+//                powerMenu.selectedPosition = position // change selected item
+//                powerMenu.dismiss()
+//                Log.d("Week/Data/ERROR3", "loading")
+//            }
+//            powerMenu.setOnMenuItemClickListener(onMenuItemClickListener)
+//            Log.d("Week/Data/ERROR4", "loading")
+//            //powerMenu.onMenuItemClickListener = onMenuItemClickListener
+//            powerMenu.showAsDropDown(View(context))
+//            Log.d("Week/Data/ERROR5", "loading")
+//                view ->
+//            if (position != RecyclerView.NO_POSITION) {
+//                mItemClickListener.onRemoveDiary(view, position)
+//                //mItemClickListener.onRemove(position)
+//            }
+//            else{
+//                Log.d("Erredfs","error")
+//            }
+//            false
+//        }
+        holder.binding.itemDiaryEditIv.setOnClickListener {
+                view ->
+            if (position != RecyclerView.NO_POSITION) {
+                mItemClickListener.onRemoveDiary(view, position)
+                //mItemClickListener.onRemove(position)
+            }
+            else{
+                Log.d("Test","error")
+            }
+            false
+            //mItemClickListener.onRemoveDiary(View(context), position)
+            //mItemClickListener.onRemove(position)
+        }
+
+//        holder.binding.itemDiaryEditIv.setOnClickListener{
+//            val popupMenu = PopupMenu(context, View(context))
+//            popupMenu.inflate(R.menu.menu_week_option)
+//            popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
+//                override fun onMenuItemClick(item: MenuItem?): Boolean {
+//                    when (item?.itemId) {
+//                        R.id.menu_item_edit -> {
+//                            removeItem(position)
+//                            notifyItemRangeChanged(position, itemCount)
+//                            notifyItemRemoved(position)
+//                            return true
+//                        }
+//                        R.id.menu_item_delete -> {
+//                            removeItem(position)
+//                            notifyItemRangeChanged(position, itemCount)
+//                            notifyItemRemoved(position)
+//                            return true
+//                        }
+//                    }
+//                    return false
+//                }
+//            })
+//            popupMenu.show()
+//        }
+
+
+//            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_delete_custom, null)
+//            val mBuilder = AlertDialog.Builder(context, binding.weekDiaryRecyclerView[position].findViewById(R.id.item_diary_edit_iv))
+//                .setView(mDialogView)
+//            val  mAlertDialog = mBuilder.show()
+//            //mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            val editButton = mDialogView.findViewById<TextView>(R.id.dialog_text1_tv)
+//            editButton.setOnClickListener {
+//                mAlertDialog.dismiss()
+//            }
+//            val deleteButton = mDialogView.findViewById<TextView>(R.id.dialog_text2_tv)
+//            deleteButton.setOnClickListener {
+//                removeItem(position)
+//                mAlertDialog.dismiss()
+//            }
+
+
+
     }
 
 
     override fun getItemCount(): Int = diarylist.size
-//        when (diarylist.size) {
-//        0 -> 0
-//        1 -> 1
-//        2 -> 2
-//        3 -> 3
-//        4 -> 4
-//        5 -> 5
-//        6 -> 6
-//        7 -> 7
-//        else -> 7}
 
     inner class ViewHolder(val binding: ItemWeekDiaryBinding): RecyclerView.ViewHolder(binding.root){
 
@@ -95,8 +196,6 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 //                diary.etcList.add(Etc("해당 항목 없음", "#00000000"))
 //            }
 
-
-            //binding.itemDiaryImgIv.setImageResource(diary.coverImg!!)
             val date: Date = diary.date
             val localdate: LocalDate = date.toInstant()
                 .atZone(ZoneId.systemDefault())
@@ -124,5 +223,6 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
 
 }
+
 
 

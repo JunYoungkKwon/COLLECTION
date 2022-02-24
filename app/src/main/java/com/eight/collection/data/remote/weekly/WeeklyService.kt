@@ -4,6 +4,8 @@ import android.util.Log
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.ApplicationClass.Companion.retrofit
 import com.eight.collection.data.entities.User
+import com.eight.collection.data.remote.calendar.CalendarResponse
+import com.eight.collection.data.remote.calendar.CalendarRetrofitInterface
 import com.eight.collection.ui.login.LoginView
 import com.eight.collection.ui.main.month.MonthView
 import com.eight.collection.ui.main.setting.infoedit.account.DeleteAccountView

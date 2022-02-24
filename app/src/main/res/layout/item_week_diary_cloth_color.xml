@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/suit_regular"
         android:lineSpacingExtra="-0.6sp"
-        android:textColor="@color/black"
+        android:textColor="@color/pinkish_grey"
         android:textSize="12sp"
         android:text="@string/weekly_default"
         android:visibility="gone"

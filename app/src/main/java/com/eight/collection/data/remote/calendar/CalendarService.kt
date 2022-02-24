@@ -10,6 +10,7 @@ import com.eight.collection.ui.main.setting.infoedit.account.DeleteAccountView
 import com.eight.collection.ui.main.setting.infoedit.nickname.ChangeNickNameView
 import com.eight.collection.ui.main.setting.infoedit.password.ChangePwView
 import com.eight.collection.ui.main.setting.infoedit.phonenumber.ChangePhoneNumberView
+import com.eight.collection.ui.main.week.WeeklyView
 import com.eight.collection.ui.signup.CheckIdView
 import com.eight.collection.ui.signup.CheckNicknameView
 import com.eight.collection.ui.signup.SignUpView
