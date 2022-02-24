@@ -11,12 +11,12 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
-import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentManager.TAG
 import androidx.navigation.Navigation
+import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
 import com.eight.collection.data.remote.calendar.CalendarService
@@ -28,6 +28,7 @@ import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.main.month.MonthView
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.google.gson.Gson
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -37,7 +38,6 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
-import okhttp3.internal.notify
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -45,11 +45,13 @@ import java.time.ZoneId
 import java.time.temporal.TemporalField
 import java.time.temporal.WeekFields
 import java.util.*
+import javax.crypto.ExemptionMechanism.getInstance
 
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate),MonthView, WeeklyView {
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
+    private var gson: Gson = Gson()
 
     var firstdate: LocalDate? = null
     var lastdate: LocalDate? = null
@@ -80,13 +82,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
         binding.weekBtnSettingIv.bringToFront()
 
-    }
-
-    private fun startDatePicker() {
-        startActivity(Intent(activity, DatePickerFragment::class.java))
-//        binding.weekBtnWriteIv.setOnClickListener {
-//            startActivity(Intent(activity, DatePickerActivity::class.java))
-//        }
     }
 
     private fun startSetting() {
@@ -220,9 +215,21 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             override fun bind(container: MonthViewContainer, month: CalendarMonth) {
                 container.calendarYear.text = "${month.year}"
                 container.calendarMonth.text = "${month.yearMonth.month.name.toLowerCase().capitalize()}"
-                container.calendarYear.setOnClickListener{
-                    view?.let { Navigation.findNavController(it).navigate(R.id.datePickerActivity) }
-                }
+                container.calendarYear.setOnClickListener(android.view.View.OnClickListener { v ->
+                    val mletterdlg: DatePickerFragment = DatePickerFragment()
+                    mletterdlg.setFragmentInterfacer(object : DatePickerFragment.MyFragmentInterfacer {
+                        //인터페이스 값 받아오기
+                        override fun onButtonClick(input: String?) {
+                            Log.d("select9",input.toString())
+
+                        }
+                    })
+                    val fm = this@WeekFragment.fragmentManager
+                    if (fm != null) {
+                        mletterdlg.show(fm, "name")
+                    }
+
+                })
 
 //                binding.calendarView.monthScrollListener = {
 //                    if (binding.calendarView.maxRowCount == 1) {
