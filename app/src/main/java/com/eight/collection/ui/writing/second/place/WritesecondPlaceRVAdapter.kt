@@ -103,6 +103,14 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
                 }
                 else {
                     visibility = View.VISIBLE
+                    setOnClickListener{
+                        when (placeList[position].id){
+                            0 -> {}
+                            else -> {
+                                removeItem(position)
+                            }
+                        }
+                    }
                 }
             }
         }

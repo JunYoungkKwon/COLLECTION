@@ -9,9 +9,9 @@ import com.eight.collection.databinding.ItemWritefirstTopBinding
 import android.widget.RadioButton
 import kotlinx.coroutines.selects.select
 
-class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(){
+class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>() {
     private var clickListener: TopClickListener? = null
-    private var selectId : Int = -1
+    private var selectId: Int = -1
 
 
     //Add 버튼 클릭시 데이터 추가
@@ -38,18 +38,22 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val binding : ItemWritefirstTopBinding = ItemWritefirstTopBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        val binding: ItemWritefirstTopBinding = ItemWritefirstTopBinding.inflate(
+            LayoutInflater.from(viewGroup.context),
+            viewGroup,
+            false
+        )
         return ViewHolder(binding)
     }
 
-    inner class ViewHolder(val binding: ItemWritefirstTopBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(top: WritefirstTop, position: Int){
+    inner class ViewHolder(val binding: ItemWritefirstTopBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(top: WritefirstTop, position: Int) {
             binding.writefirstColorTopTextButton.apply {
                 //버튼에 Text 대입
-                if(topList[position].id < 13) {
+                if (topList[position].id < 13) {
                     text = top.name
-                }
-                else {
+                } else {
                     text = top.name + "    "
                 }
                 // select 여부 확인 및 상태 변경
@@ -61,12 +65,12 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
                         }
                         else -> {
                             // 처음 선택시
-                            if(selectId == -1) {
+                            if (selectId == -1) {
                                 topList[position].focus = true
                                 selectId = position
                             }
                             // 선택한거 다시 클릭시
-                            else if(selectId == position) {
+                            else if (selectId == position) {
                                 topList[selectId].focus = false
                                 topList[selectId].color = "#00ff0000"
                                 topList[selectId].textcolor = "#c3b5ac"
@@ -84,11 +88,18 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
                 }
             }
             binding.writefirstColorTopDeleteButton.apply {
-                if(topList[position].id < 13) {
+                if (topList[position].id < 13) {
                     visibility = View.GONE
-                }
-                else {
+                } else {
                     visibility = View.VISIBLE
+                    setOnClickListener{
+                        when (topList[position].id){
+                            0 -> {}
+                            else -> {
+                                removeItem(position)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -98,13 +109,13 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
     fun addItem(top: TopFixedItem){
         topList.add(top)
         notifyDataSetChanged()
-    }
+    }*/
 
     // 데이터 삭제 메소드
     fun removeItem(position: Int){
         topList.removeAt(position)
         notifyDataSetChanged()
-    }*/
+    }
 
 
     fun getSelectId() : Int{

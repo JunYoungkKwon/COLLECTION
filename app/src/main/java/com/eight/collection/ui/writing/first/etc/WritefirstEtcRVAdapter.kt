@@ -86,6 +86,14 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
                 }
                 else {
                     visibility = View.VISIBLE
+                    setOnClickListener{
+                        when (etcList[position].id){
+                            0 -> {}
+                            else -> {
+                                removeItem(position)
+                            }
+                        }
+                    }
                 }
             }
         }

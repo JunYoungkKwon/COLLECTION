@@ -100,6 +100,14 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
                 }
                 else {
                     visibility = View.VISIBLE
+                    setOnClickListener{
+                        when (whoList[position].id){
+                            0 -> {}
+                            else -> {
+                                removeItem(position)
+                            }
+                        }
+                    }
                 }
             }
         }

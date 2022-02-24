@@ -87,6 +87,14 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
                 }
                 else {
                     visibility = View.VISIBLE
+                    setOnClickListener{
+                        when (bottomList[position].id){
+                            0 -> {}
+                            else -> {
+                                removeItem(position)
+                            }
+                        }
+                    }
                 }
             }
         }

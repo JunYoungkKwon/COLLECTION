@@ -100,6 +100,14 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
                 }
                 else {
                     visibility = View.VISIBLE
+                    setOnClickListener{
+                        when (weatherList[position].id){
+                            0 -> {}
+                            else -> {
+                                removeItem(position)
+                            }
+                        }
+                    }
                 }
             }
         }

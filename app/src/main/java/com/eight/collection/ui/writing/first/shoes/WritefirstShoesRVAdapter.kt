@@ -86,6 +86,14 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
                 }
                 else {
                     visibility = View.VISIBLE
+                    setOnClickListener{
+                        when (shoesList[position].id){
+                            0 -> {}
+                            else -> {
+                                removeItem(position)
+                            }
+                        }
+                    }
                 }
             }
         }
