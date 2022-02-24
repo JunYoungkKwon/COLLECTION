@@ -1,6 +1,8 @@
 package com.eight.collection.ui.writing.second.weather
 
 data class WritesecondWeather(
-    var title: String? = "",
-    var id : Int = 0
+    var name: String? = "",
+    var id : Int = 0,
+    var index : Int = 0,
+    var focus : Boolean = false
 )

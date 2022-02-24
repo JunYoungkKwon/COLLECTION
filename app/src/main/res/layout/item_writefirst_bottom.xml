@@ -12,7 +12,7 @@
         android:id="@+id/writefirst_color_bottom_text_button"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="+"
+        android:text=""
         android:gravity="center"
         android:button="@color/transparent"
         android:textSize="14sp"
@@ -23,6 +23,19 @@
         android:background="@drawable/radio_selector"
         android:textColor="@drawable/selector_radio_text"
         tools:ignore="MissingConstraints"
+        />
+
+    <ImageButton
+        android:id="@+id/writefirst_color_bottom_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_block_delete"
+        android:background="#00ff0000"
+        app:layout_constraintEnd_toEndOf="@id/writefirst_color_bottom_text_button"
+        app:layout_constraintTop_toTopOf="@id/writefirst_color_bottom_text_button"
+        app:layout_constraintBottom_toBottomOf="@id/writefirst_color_bottom_text_button"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
         />
 
 

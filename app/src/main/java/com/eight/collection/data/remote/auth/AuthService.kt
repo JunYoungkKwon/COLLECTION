@@ -12,6 +12,7 @@ import com.eight.collection.ui.main.setting.infoedit.phonenumber.ChangePhoneNumb
 import com.eight.collection.ui.signup.CheckIdView
 import com.eight.collection.ui.signup.CheckNicknameView
 import com.eight.collection.ui.signup.SignUpView
+import com.eight.collection.ui.writing.ReceiveS3URLView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -203,26 +204,4 @@ object AuthService {
         })
     }
 
-//    fun autoLogin(splashView: SplashView) {
-//        val authService = retrofit.create(AuthRetrofitInterface::class.java)
-//
-//        splashView.onAutoLoginLoading()
-//
-//        authService.autoLogin().enqueue(object : Callback<AuthResponse> {
-//            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-//                val resp = response.body()!!
-//
-//                when(resp.code){
-//                    1000 -> splashView.onAutoLoginSuccess()
-//                    else -> splashView.onAutoLoginFailure(resp.code, resp.message)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-//                Log.d("$TAG/API-ERROR", t.message.toString())
-//
-//                splashView.onAutoLoginFailure(400, "네트워크 오류가 발생했습니다.")
-//            }
-//        })
-//    }
 }

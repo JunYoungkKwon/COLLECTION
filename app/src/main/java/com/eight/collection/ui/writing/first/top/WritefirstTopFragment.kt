@@ -2,6 +2,7 @@ package com.eight.collection.ui.writing.first.top
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     WritefirstTopRVAdapter.TopClickListener, WritefirstActivity.TopColorClickListner {
     lateinit var binding : FragmentWritefirstTopBinding
-    private var topList = ArrayList<WritefirstTop>()
+    var topList = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
     private var addItemId : Int = 13
     lateinit var topRVAdapter : WritefirstTopRVAdapter
@@ -30,19 +31,19 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
 
         //고정 Top 리스트 생성
         topList.apply {
-            add(WritefirstTop("+", 0))
-            add(WritefirstTop("맨투맨", 1))
-            add(WritefirstTop("티셔츠", 2))
-            add(WritefirstTop("블라우스", 3))
-            add(WritefirstTop("목폴라", 4))
-            add(WritefirstTop("후드티", 5))
-            add(WritefirstTop("니트", 6))
-            add(WritefirstTop("와이셔츠", 7))
-            add(WritefirstTop("나시", 8))
-            add(WritefirstTop("패딩", 9))
-            add(WritefirstTop("무스탕", 10))
-            add(WritefirstTop("후드집업", 11))
-            add(WritefirstTop("코트", 12))
+            add(WritefirstTop("+", 0, 0))
+            add(WritefirstTop("가디건", 1, 1))
+            add(WritefirstTop("나시/민소매", 2, 2))
+            add(WritefirstTop("니트/스웨터", 3, 3))
+            add(WritefirstTop("무스탕", 4, 4))
+            add(WritefirstTop("맨투맨", 5,5))
+            add(WritefirstTop("베스트", 6, 6))
+            add(WritefirstTop("셔츠", 7,7))
+            add(WritefirstTop("자켓", 8,8))
+            add(WritefirstTop("티셔츠", 9,9))
+            add(WritefirstTop("코트", 10,10))
+            add(WritefirstTop("패딩", 11,11))
+            add(WritefirstTop("후드", 12,12))
         }
 
         // Top RVA

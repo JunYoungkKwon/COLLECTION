@@ -2,6 +2,7 @@ package com.eight.collection.ui.writing.first.bottom
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.recyclerview.widget.RecyclerView
@@ -46,7 +47,12 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
     inner class ViewHolder(val binding: ItemWritefirstBottomBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(bottom: WritefirstBottom, position: Int){
             binding.writefirstColorBottomTextButton.apply {
-                text = bottom.name
+                if(bottomList[position].id < 13) {
+                    text = bottom.name
+                }
+                else {
+                    text = bottom.name + "    "
+                }
                 // select 여부 확인 및 상태 변경
                 setOnClickListener {
                     when (bottomList[position].id) {
@@ -61,6 +67,8 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
                             }
                             else if(selectId == position) {
                                 bottomList[selectId].focus = false
+                                bottomList[selectId].color = "#00ff0000"
+                                bottomList[selectId].textcolor = "#c3b5ac"
                                 selectId = -1
                             }
                             else {
@@ -71,6 +79,22 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
                         }
                     }
                     notifyDataSetChanged()
+                }
+            }
+            binding.writefirstColorBottomDeleteButton.apply {
+                if(bottomList[position].id < 13) {
+                    visibility = View.GONE
+                }
+                else {
+                    visibility = View.VISIBLE
+                    setOnClickListener{
+                        when (bottomList[position].id){
+                            0 -> {}
+                            else -> {
+                                removeItem(position)
+                            }
+                        }
+                    }
                 }
             }
         }

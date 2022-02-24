@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -16,6 +17,7 @@ import com.eight.collection.databinding.ActivityWritefirstBinding
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
 import com.eight.collection.ui.writing.first.etc.WritefirstEtcFragment
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
+import com.eight.collection.ui.writing.first.top.WritefirstTop
 import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
 import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.eight.collection.ui.writing.second.WritesecondActivity
@@ -31,10 +33,12 @@ class WritefirstActivity() : AppCompatActivity(){
     val photoRVAdapter = PhotoRVAdapter(photoList, this)
     val fragmentList = arrayListOf<Fragment>()
     val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
+    private val GALLERY = 1
     private var topclickListener: WritefirstActivity.TopColorClickListner? = null
     private var bottomclickListner : WritefirstActivity.BottomColorClickListner? = null
     private var shoesclickListner : WritefirstActivity.ShoesColorClickListner? = null
     private var etcclickListner : WritefirstActivity.EtcColorClickListner? = null
+    var topList = ArrayList<WritefirstTop>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +58,11 @@ class WritefirstActivity() : AppCompatActivity(){
         var recyclerview = findViewById<RecyclerView>(R.id.writefirst_photo_recyclerview)
 
         getImage_btn.setOnClickListener{
-            var intent = Intent(Intent.ACTION_PICK)
-            intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            var intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
 
-            startActivityForResult(intent, 200)
+            startActivityForResult(intent, GALLERY)
         }
 
         recyclerview.layoutManager =
@@ -230,7 +232,7 @@ class WritefirstActivity() : AppCompatActivity(){
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == RESULT_OK && requestCode == 200) {
+        if (resultCode == RESULT_OK && requestCode == GALLERY) {
             photoList.clear()
 
             if (data?.clipData != null) {
