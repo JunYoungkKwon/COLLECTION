@@ -1,26 +1,17 @@
 package com.eight.collection.ui.writing.second.weather
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritesecondPlaceBinding
 import com.eight.collection.databinding.ItemWritesecondWeatherBinding
 
 class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<WritesecondWeather>) : RecyclerView.Adapter<WritesecondWeatherRVAdapter.ViewHolder>(){
-    private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: WeatherClickListener? = null
     private var count : Int = 0
-
-    init {
-        for(i in weatherList){
-            if(i.title == "-"){
-                selectCheck.add(1)
-            }
-            else{
-                selectCheck.add(0)
-            }
-        }
-    }
+    private var selectId : Int = -1
+    private var beforeId : Int = -1
 
     interface WeatherClickListener {
         fun plusButtonClick()
@@ -37,7 +28,9 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.binding.writesecondWeatherTextButton.isChecked = weatherList[position].focus
         holder.bind(weatherList[position],position)
+        holder.setIsRecyclable(false)
     }
 
     override fun getItemCount(): Int = weatherList.size
@@ -46,35 +39,67 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
     inner class ViewHolder(val binding: ItemWritesecondWeatherBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(weather: WritesecondWeather, position: Int){
             binding.writesecondWeatherTextButton.apply {
-                text = weather.title
+                if(weatherList[position].id < 9) {
+                    text = weather.name
+                }
+                else {
+                    text = weather.name + "    "
+                }
                 // select 여부 확인 및 상태 변경
-                isChecked = selectCheck[bindingAdapterPosition] == 1
                 setOnClickListener{
                     when(weatherList[position].id){
-                        0 -> clickListener?.plusButtonClick()
+                        0 -> {
+                            clickListener?.plusButtonClick()
+                            isChecked = false
+                        }
                         else -> {
-                            for (k in selectCheck.indices) {
-                                if (k == bindingAdapterPosition) {
-                                    if(count < 2) {
-                                        if (selectCheck[k] == 1) {
-                                            selectCheck[k] = 0
-                                            count = count - 1
-                                        } else {
-                                            selectCheck[k] = 1
-                                            count = count + 1
-                                        }
-                                    }
-                                    else {
-                                        if (selectCheck[k] == 1) {
-                                            selectCheck[k] = 0
-                                            count = count - 1
-                                        }
-                                    }
+                            // 0개 선택
+                            if(count == 0) {
+                                weatherList[position].focus = true
+                                selectId = position
+                                beforeId = position
+                                count = count + 1
+                            }
+
+
+                            // 1개 선택
+                            else if (count == 1) {
+                                if (selectId == position) {
+                                    weatherList[position].focus = false
+                                    count = count - 1
+                                }
+                                else {
+                                    weatherList[position].focus = true
+                                    selectId = position
+                                    count = count + 1
+                                }
+
+                            }
+
+                            //2개 선택
+                            else {
+                                if(selectId == position) {
+                                    weatherList[selectId].focus = false
+                                    selectId = beforeId
+                                    count = count - 1
+                                }
+                                else if(beforeId == position) {
+                                    weatherList[beforeId].focus = false
+                                    beforeId = selectId
+                                    count = count - 1
                                 }
                             }
                         }
                     }
                     notifyDataSetChanged()
+                }
+            }
+            binding.writesecondWeatherDeleteButton.apply {
+                if(weatherList[position].id < 9) {
+                    visibility = View.GONE
+                }
+                else {
+                    visibility = View.VISIBLE
                 }
             }
         }

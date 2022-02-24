@@ -1,25 +1,17 @@
 package com.eight.collection.ui.writing.second.who
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritesecondWhoBinding
 
 class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : RecyclerView.Adapter<WritesecondWhoRVAdapter.ViewHolder>(){
-    private var selectCheck : ArrayList<Int> = arrayListOf()
     private var clickListener: WhoClickListener? = null
     private var count : Int = 0
+    private var selectId : Int = -1
+    private var beforeId : Int = -1
 
-    init {
-        for(i in whoList){
-            if(i.title == "-"){
-                selectCheck.add(1)
-            }
-            else{
-                selectCheck.add(0)
-            }
-        }
-    }
 
     interface WhoClickListener {
         fun plusButtonClick()
@@ -36,7 +28,9 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.binding.writesecondWhoTextButton.isChecked = whoList[position].focus
         holder.bind(whoList[position],position)
+        holder.setIsRecyclable(false)
     }
 
     override fun getItemCount(): Int = whoList.size
@@ -45,35 +39,67 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
     inner class ViewHolder(val binding: ItemWritesecondWhoBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(who: WritesecondWho, position: Int){
             binding.writesecondWhoTextButton.apply {
-                text = who.title
+                if(whoList[position].id < 7) {
+                    text = who.name
+                }
+                else {
+                    text = who.name + "    "
+                }
                 // select 여부 확인 및 상태 변경
-                isChecked = selectCheck[bindingAdapterPosition] == 1
                 setOnClickListener{
                     when(whoList[position].id){
-                        0 -> clickListener?.plusButtonClick()
+                        0 -> {
+                            clickListener?.plusButtonClick()
+                            isChecked = false
+                        }
                         else -> {
-                            for (k in selectCheck.indices) {
-                                if (k == bindingAdapterPosition) {
-                                    if(count < 2) {
-                                        if (selectCheck[k] == 1) {
-                                            selectCheck[k] = 0
-                                            count = count - 1
-                                        } else {
-                                            selectCheck[k] = 1
-                                            count = count + 1
-                                        }
-                                    }
-                                    else {
-                                        if (selectCheck[k] == 1) {
-                                            selectCheck[k] = 0
-                                            count = count - 1
-                                        }
-                                    }
+                            // 0개 선택
+                            if(count == 0) {
+                                whoList[position].focus = true
+                                selectId = position
+                                beforeId = position
+                                count = count + 1
+                            }
+
+
+                            // 1개 선택
+                            else if (count == 1) {
+                                if (selectId == position) {
+                                    whoList[position].focus = false
+                                    count = count - 1
+                                }
+                                else {
+                                    whoList[position].focus = true
+                                    selectId = position
+                                    count = count + 1
+                                }
+
+                            }
+
+                            //2개 선택
+                            else {
+                                if(selectId == position) {
+                                    whoList[selectId].focus = false
+                                    selectId = beforeId
+                                    count = count - 1
+                                }
+                                else if(beforeId == position) {
+                                    whoList[beforeId].focus = false
+                                    beforeId = selectId
+                                    count = count - 1
                                 }
                             }
                         }
                     }
                     notifyDataSetChanged()
+                }
+            }
+            binding.writesecondWhoDeleteButton.apply {
+                if(whoList[position].id < 7) {
+                    visibility = View.GONE
+                }
+                else {
+                    visibility = View.VISIBLE
                 }
             }
         }

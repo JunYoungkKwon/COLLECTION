@@ -1,6 +1,8 @@
 package com.eight.collection.ui.writing.second.who
 
 data class WritesecondWho(
-    var title: String? = "",
-    var id : Int = 0
+    var name: String? = "",
+    var id : Int = 0,
+    var index : Int = 0,
+    var focus : Boolean = false
 )

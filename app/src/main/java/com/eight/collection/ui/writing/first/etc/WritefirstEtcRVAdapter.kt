@@ -2,6 +2,7 @@ package com.eight.collection.ui.writing.first.etc
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstBottomBinding
@@ -45,7 +46,12 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
     inner class ViewHolder(val binding: ItemWritefirstEtcBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(etc: WritefirstEtc, position: Int){
             binding.writefirstColorEtcTextButton.apply {
-                text = etc.name
+                if(etcList[position].id < 13) {
+                    text = etc.name
+                }
+                else {
+                    text = etc.name + "    "
+                }
                 setOnClickListener {
                     when (etcList[position].id) {
                         0 -> {
@@ -72,6 +78,14 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
                         }
                     }
                     notifyDataSetChanged()
+                }
+            }
+            binding.writefirstColorEtcDeleteButton.apply {
+                if(etcList[position].id < 13) {
+                    visibility = View.GONE
+                }
+                else {
+                    visibility = View.VISIBLE
                 }
             }
         }

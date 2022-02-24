@@ -33,19 +33,19 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
 
         // 데이터 리스트 생성
         etcList.apply {
-            add(WritefirstEtc("+", 0))
-            add(WritefirstEtc("머플러/스카프", 37))
-            add(WritefirstEtc("모자", 38))
-            add(WritefirstEtc("목도리", 39))
-            add(WritefirstEtc("메신저백", 40))
-            add(WritefirstEtc("백팩", 41))
-            add(WritefirstEtc("벨트", 42))
-            add(WritefirstEtc("시계", 43))
-            add(WritefirstEtc("아이웨어", 44))
-            add(WritefirstEtc("에코백", 45))
-            add(WritefirstEtc("장갑", 46))
-            add(WritefirstEtc("주얼리", 47))
-            add(WritefirstEtc("크로스백", 48))
+            add(WritefirstEtc("+", 0,0))
+            add(WritefirstEtc("머플러/스카프", 1,37))
+            add(WritefirstEtc("모자", 2,38))
+            add(WritefirstEtc("목도리", 3,39))
+            add(WritefirstEtc("메신저백", 4,40))
+            add(WritefirstEtc("백팩", 5,41))
+            add(WritefirstEtc("벨트", 6,42))
+            add(WritefirstEtc("시계", 7,43))
+            add(WritefirstEtc("아이웨어", 8,44))
+            add(WritefirstEtc("에코백", 9,45))
+            add(WritefirstEtc("장갑", 10,46))
+            add(WritefirstEtc("주얼리", 11,47))
+            add(WritefirstEtc("크로스백", 12,48))
         }
 
         etcRVAdapter = WritefirstEtcRVAdapter(etcList)

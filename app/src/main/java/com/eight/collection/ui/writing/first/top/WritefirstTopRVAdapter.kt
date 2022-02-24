@@ -2,6 +2,7 @@ package com.eight.collection.ui.writing.first.top
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstTopBinding
@@ -45,7 +46,12 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
         fun bind(top: WritefirstTop, position: Int){
             binding.writefirstColorTopTextButton.apply {
                 //버튼에 Text 대입
-                text = top.name
+                if(topList[position].id < 13) {
+                    text = top.name
+                }
+                else {
+                    text = top.name + "    "
+                }
                 // select 여부 확인 및 상태 변경
                 setOnClickListener {
                     when (topList[position].id) {
@@ -54,16 +60,19 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
                             isChecked = false
                         }
                         else -> {
+                            // 처음 선택시
                             if(selectId == -1) {
                                 topList[position].focus = true
                                 selectId = position
                             }
+                            // 선택한거 다시 클릭시
                             else if(selectId == position) {
                                 topList[selectId].focus = false
                                 topList[selectId].color = "#00ff0000"
                                 topList[selectId].textcolor = "#c3b5ac"
                                 selectId = -1
                             }
+                            // 선택한거말고 다른거 클릭시
                             else {
                                 topList[selectId].focus = false
                                 topList[position].focus = true
@@ -72,6 +81,14 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
                         }
                     }
                     notifyDataSetChanged()
+                }
+            }
+            binding.writefirstColorTopDeleteButton.apply {
+                if(topList[position].id < 13) {
+                    visibility = View.GONE
+                }
+                else {
+                    visibility = View.VISIBLE
                 }
             }
         }

@@ -6,8 +6,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface CalendarRetrofitInterface {
-
     @GET("app/calendar/monthly")
     fun getMonth(): Call<CalendarResponse>
-
 }

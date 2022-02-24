@@ -2,13 +2,9 @@ package com.eight.collection.ui.writing.second
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.widget.TextView
-import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.eight.collection.R
-import com.eight.collection.data.remote.auth.AuthService
+import com.eight.collection.data.remote.recieves3url.ReceiveS3UrlService
 import com.eight.collection.databinding.ActivityWritesecondBinding
 import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.writing.ReceiveS3URLView
@@ -17,7 +13,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView{
     lateinit var binding : ActivityWritesecondBinding
     val information = arrayListOf("PLACE","WEATHER","WHO")
-    lateinit var Url : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,26 +31,26 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView{
 
 
         binding.writesecondFinishButton2.setOnClickListener {
-
+            receiveS3Url()
             startActivity(Intent(this, FinishActivity::class.java))
         }
     }
 
     // Presigned URL 받아오기 메소드
 
-    /*private fun receiveS3Url() : String {
-        AuthService.checkNickname(this, nickname)
-    }*/
+    private fun receiveS3Url(){
+       ReceiveS3UrlService.receiveS3url(this)
+    }
 
     override fun onReceiveS3URLLoading() {
-
     }
 
     override fun onReceiveS3URLSuccess(url : String){
-        Url = url
+        Log.d("url",url)
     }
 
     override fun onReceiveS3URLFailure(code: Int, message: String) {
+        Log.d("message",message)
     }
 
 

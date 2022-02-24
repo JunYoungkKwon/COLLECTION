@@ -2,6 +2,7 @@ package com.eight.collection.ui.writing.first.shoes
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstBottomBinding
@@ -46,7 +47,12 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
     inner class ViewHolder(val binding: ItemWritefirstShoesBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(shoes: WritefirstShoes, position: Int){
             binding.writefirstColorShoesTextButton.apply {
-                text = shoes.name
+                if(shoesList[position].id < 13) {
+                    text = shoes.name
+                }
+                else {
+                    text = shoes.name + "    "
+                }
                 setOnClickListener {
                     when (shoesList[position].id) {
                         0 -> {
@@ -72,6 +78,14 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
                         }
                     }
                     notifyDataSetChanged()
+                }
+            }
+            binding.writefirstColorShoesDeleteButton.apply {
+                if(shoesList[position].id < 13) {
+                    visibility = View.GONE
+                }
+                else {
+                    visibility = View.VISIBLE
                 }
             }
         }

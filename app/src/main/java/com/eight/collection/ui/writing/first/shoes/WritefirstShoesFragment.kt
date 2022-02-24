@@ -33,19 +33,19 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
 
         // 데이터 리스트 생성
         shoesList.apply {
-            add(WritefirstShoes("+", 0))
-            add(WritefirstShoes("단화", 25))
-            add(WritefirstShoes("더비슈즈", 26))
-            add(WritefirstShoes("로퍼/플랫", 27))
-            add(WritefirstShoes("뮬", 28))
-            add(WritefirstShoes("부츠", 29))
-            add(WritefirstShoes("스니커즈", 30))
-            add(WritefirstShoes("슬리퍼", 31))
-            add(WritefirstShoes("샌들", 32))
-            add(WritefirstShoes("아쿠아슈즈/트래킹슈즈", 33))
-            add(WritefirstShoes("워커", 34))
-            add(WritefirstShoes("펌프스", 35))
-            add(WritefirstShoes("힐", 36))
+            add(WritefirstShoes("+", 0,0))
+            add(WritefirstShoes("단화", 1,25))
+            add(WritefirstShoes("더비슈즈", 2,26))
+            add(WritefirstShoes("로퍼/플랫", 3,27))
+            add(WritefirstShoes("뮬", 4,28))
+            add(WritefirstShoes("부츠", 5,29))
+            add(WritefirstShoes("스니커즈", 6,30))
+            add(WritefirstShoes("슬리퍼", 7,31))
+            add(WritefirstShoes("샌들", 8,32))
+            add(WritefirstShoes("아쿠아슈즈/트래킹슈즈", 9,33))
+            add(WritefirstShoes("워커", 10,34))
+            add(WritefirstShoes("펌프스", 11,35))
+            add(WritefirstShoes("힐", 12,36))
         }
 
         shoesRVAdapter = WritefirstShoesRVAdapter(shoesList)

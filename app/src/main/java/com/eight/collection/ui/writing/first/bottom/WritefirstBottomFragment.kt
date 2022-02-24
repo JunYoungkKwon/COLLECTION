@@ -31,19 +31,19 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
 
         // 데이터 리스트 생성
         bottomList.apply {
-            add(WritefirstBottom("+", 0))
-            add(WritefirstBottom("데님팬츠", 13))
-            add(WritefirstBottom("롱스커트", 14))
-            add(WritefirstBottom("레깅스", 15))
-            add(WritefirstBottom("미니스커트", 16))
-            add(WritefirstBottom("미디스커트", 17))
-            add(WritefirstBottom("반바지", 18))
-            add(WritefirstBottom("부츠컷팬츠", 19))
-            add(WritefirstBottom("스키니팬츠", 20))
-            add(WritefirstBottom("슬랙스", 21))
-            add(WritefirstBottom("일자팬츠", 22))
-            add(WritefirstBottom("와이드팬츠", 23))
-            add(WritefirstBottom("조거팬츠", 24))
+            add(WritefirstBottom("+", 0,0))
+            add(WritefirstBottom("데님팬츠", 1,13))
+            add(WritefirstBottom("롱스커트", 2,14))
+            add(WritefirstBottom("레깅스", 3,15))
+            add(WritefirstBottom("미니스커트", 4,16))
+            add(WritefirstBottom("미디스커트", 5,17))
+            add(WritefirstBottom("반바지", 6,18))
+            add(WritefirstBottom("부츠컷팬츠", 7,19))
+            add(WritefirstBottom("스키니팬츠", 8,20))
+            add(WritefirstBottom("슬랙스", 9,21))
+            add(WritefirstBottom("일자팬츠", 10,22))
+            add(WritefirstBottom("와이드팬츠", 11,23))
+            add(WritefirstBottom("조거팬츠", 12,24))
         }
 
         bottomRVAdapter = WritefirstBottomRVAdapter(bottomList)
