@@ -322,7 +322,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                     powerMenu.dismiss()
                 }
                 powerMenu.onMenuItemClickListener = onMenuItemClickListener
-                powerMenu.showAsDropDown(view)
+                powerMenu.showAsDropDown(view, -30, -30)
 
 //                val popupMenu = PopupMenu(activity, view)
 //                popupMenu.inflate(R.menu.menu_week_option)
