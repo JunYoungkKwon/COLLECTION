@@ -13,6 +13,9 @@ import android.widget.DatePicker
 import android.widget.DatePicker.OnDateChangedListener
 import androidx.fragment.app.DialogFragment
 import com.eight.collection.databinding.WeekDatepickerBinding
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -34,16 +37,6 @@ class DatePickerFragment(): DialogFragment(), DatePickerDialog.OnDateSetListener
         this.fragmentInterfacer = fragmentInterfacer
     }
 
-    interface MyitemClickListener{
-        fun getDate(selectdate: String)
-    }
-
-    private var mItemClickListener: MyitemClickListener? = null
-
-    //리스너 객체를 전달받는 함수
-    fun setMyitemClickListener(itemClickListener: MyitemClickListener){
-        mItemClickListener = itemClickListener
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,19 +54,21 @@ class DatePickerFragment(): DialogFragment(), DatePickerDialog.OnDateSetListener
         val calendar = Calendar.getInstance()
 
 
+        binding.datepickerCancleBtnOffIb.setOnClickListener{ dialog?.dismiss() }
         val listener = OnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
             val strDate = year.toString() + "/" + (monthOfYear + 1) + "/" + dayOfMonth
 
-            binding.datepickerCancleBtnOffIb.setOnClickListener{ dialog?.dismiss() }
-
-
             binding.datepickerConfirmBtnOffIb.setOnClickListener{
 
-                val selectdate:String = year.toString() + ((monthOfYear + 1)) + dayOfMonth
-                Log.d("select1",selectdate)
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, monthOfYear)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                val myFormat = "yyyy-MM-dd" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale.getDefault())
+                val selectdate = sdf.format(calendar.time)
 
                 fragmentInterfacer?.onButtonClick(selectdate)
-                mItemClickListener?.getDate(selectdate)
                 dialog?.dismiss()
             }
 

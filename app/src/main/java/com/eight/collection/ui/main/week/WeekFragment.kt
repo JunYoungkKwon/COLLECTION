@@ -42,6 +42,7 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalField
 import java.time.temporal.WeekFields
 import java.util.*
@@ -51,10 +52,10 @@ import javax.crypto.ExemptionMechanism.getInstance
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate),MonthView, WeeklyView {
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
-    private var gson: Gson = Gson()
 
-    var firstdate: LocalDate? = null
-    var lastdate: LocalDate? = null
+    private var seletDate: LocalDate? = null
+    private var firstdate: LocalDate? = null
+    private var lastdate: LocalDate? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -216,17 +217,19 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                 container.calendarYear.text = "${month.year}"
                 container.calendarMonth.text = "${month.yearMonth.month.name.toLowerCase().capitalize()}"
                 container.calendarYear.setOnClickListener(android.view.View.OnClickListener { v ->
-                    val mletterdlg: DatePickerFragment = DatePickerFragment()
-                    mletterdlg.setFragmentInterfacer(object : DatePickerFragment.MyFragmentInterfacer {
+                    val datepcikerdlg: DatePickerFragment = DatePickerFragment()
+                    datepcikerdlg.setFragmentInterfacer(object : DatePickerFragment.MyFragmentInterfacer {
                         //인터페이스 값 받아오기
-                        override fun onButtonClick(input: String?) {
-                            Log.d("select9",input.toString())
+                        override fun onButtonClick(getSeletDate: String?) {
+                            seletDate = LocalDate.parse(getSeletDate, DateTimeFormatter.ISO_DATE)
+                            binding.calendarView.scrollToDate(seletDate!!)
+                            Log.d("select9",getSeletDate.toString())
 
                         }
                     })
-                    val fm = this@WeekFragment.fragmentManager
-                    if (fm != null) {
-                        mletterdlg.show(fm, "name")
+                    val fragmanager = this@WeekFragment.fragmentManager
+                    if (fragmanager != null) {
+                        datepcikerdlg.show(fragmanager, "name")
                     }
 
                 })
@@ -271,7 +274,12 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         )
         val currentDay = LocalDate.now()
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
-        binding.calendarView.scrollToDate(currentDay)
+        if (seletDate == null){
+            binding.calendarView.scrollToDate(currentDay)
+        }else{
+            Log.d("test","test")
+        }
+
 
     }
 
@@ -352,7 +360,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     }
 
     override fun onWeeklyLoading() {
-        Log.d("Week/Data/ERROR", "loading")
+        Log.d("Week/Data/", "loading")
     }
 
     override fun onWeeklySuccess(weekly: MutableList<Diary>) {
