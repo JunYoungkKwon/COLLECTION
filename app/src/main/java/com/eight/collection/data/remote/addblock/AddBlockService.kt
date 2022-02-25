@@ -16,7 +16,7 @@ object AddBlockService {
         addBlockView.onAddBlockLoading()
 
         //이 부분 오류
-        addBlockService.addBlock(block.content,block.clothes,block.pww).enqueue(object : Callback<AddBlockResponse> {
+        addBlockService.addBlock(block.clothes,block.pww,block.content).enqueue(object : Callback<AddBlockResponse> {
             override fun onResponse(call: Call<AddBlockResponse>, response: Response<AddBlockResponse>) {
 
                 //여기서부터 오류

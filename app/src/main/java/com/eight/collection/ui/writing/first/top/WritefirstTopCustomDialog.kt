@@ -58,6 +58,7 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
             dismiss()
         }
     }
+
     private fun getBlock() : Block {
         addEditText = findViewById(R.id.add_toptag_et)
         val clothes : Int = 0

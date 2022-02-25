@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritesecondPlaceBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
@@ -17,6 +18,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritesecondPlaceCustomDialog
     private var idcount : Int = 9
     private var addtext : String? = null
+    lateinit var placeRVAdapter : WritesecondPlaceRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +41,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
         }
 
 
-        val placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
+        placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
         placeRVAdapter.setPlaceClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
@@ -55,13 +57,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
             add(WritesecondPlace(addText,idcount))
             idcount += 1
         }
-
-        val placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
-        placeRVAdapter.setPlaceClickListener(this)
-
-        val flexboxLayoutManager = FlexboxLayoutManager(activity)
-        binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
-        binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
+        placeRVAdapter.notifyDataSetChanged()
     }
 
     override fun onCancelButtonClicked() {

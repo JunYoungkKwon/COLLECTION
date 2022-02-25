@@ -91,6 +91,9 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
                             0 -> {}
                             else -> {
                                 removeItem(position)
+                                if(position == selectId){
+                                    selectId = -1
+                                }
                             }
                         }
                     }

@@ -91,6 +91,9 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
                             0 -> {}
                             else -> {
                                 removeItem(position)
+                                if(position == selectId){
+                                    selectId = -1
+                                }
                             }
                         }
                     }

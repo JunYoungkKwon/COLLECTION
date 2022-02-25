@@ -46,48 +46,28 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
                     text = weather.name + "    "
                 }
                 // select 여부 확인 및 상태 변경
-                setOnClickListener{
-                    when(weatherList[position].id){
+                setOnClickListener {
+                    when (weatherList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()
                             isChecked = false
                         }
                         else -> {
-                            // 0개 선택
-                            if(count == 0) {
+                            // 처음 선택시
+                            if (selectId == -1) {
                                 weatherList[position].focus = true
                                 selectId = position
-                                beforeId = position
-                                count = count + 1
                             }
-
-
-                            // 1개 선택
-                            else if (count == 1) {
-                                if (selectId == position) {
-                                    weatherList[position].focus = false
-                                    count = count - 1
-                                }
-                                else {
-                                    weatherList[position].focus = true
-                                    selectId = position
-                                    count = count + 1
-                                }
-
+                            // 선택한거 다시 클릭시
+                            else if (selectId == position) {
+                                weatherList[selectId].focus = false
+                                selectId = -1
                             }
-
-                            //2개 선택
+                            // 선택한거말고 다른거 클릭시
                             else {
-                                if(selectId == position) {
-                                    weatherList[selectId].focus = false
-                                    selectId = beforeId
-                                    count = count - 1
-                                }
-                                else if(beforeId == position) {
-                                    weatherList[beforeId].focus = false
-                                    beforeId = selectId
-                                    count = count - 1
-                                }
+                                weatherList[selectId].focus = false
+                                weatherList[position].focus = true
+                                selectId = position
                             }
                         }
                     }
@@ -95,16 +75,18 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
                 }
             }
             binding.writesecondWeatherDeleteButton.apply {
-                if(weatherList[position].id < 9) {
+                if (weatherList[position].id < 9) {
                     visibility = View.GONE
-                }
-                else {
+                } else {
                     visibility = View.VISIBLE
                     setOnClickListener{
                         when (weatherList[position].id){
                             0 -> {}
                             else -> {
                                 removeItem(position)
+                                if(position < selectId){
+                                    selectId = selectId - 1
+                                }
                             }
                         }
                     }

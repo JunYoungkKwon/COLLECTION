@@ -18,6 +18,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritesecondWhoCustomDialog
     private var idcount : Int = 7
     private var addtext : String? = null
+    lateinit var whoRVAdapter : WritesecondWhoRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +39,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
         }
 
 
-        val whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
+        whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
         whoRVAdapter.setWhoClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
@@ -54,12 +55,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
             idcount += 1
         }
 
-        val whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
-        whoRVAdapter.setWhoClickListener(this)
-
-        val flexboxLayoutManager = FlexboxLayoutManager(activity)
-        binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
-        binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
+        whoRVAdapter.notifyDataSetChanged()
     }
 
     override fun onCancelButtonClicked() {

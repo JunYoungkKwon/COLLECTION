@@ -92,11 +92,15 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
                             0 -> {}
                             else -> {
                                 removeItem(position)
+                                if(position == selectId){
+                                    selectId = -1
+                                }
                             }
                         }
                     }
                 }
             }
+
         }
     }
 
@@ -104,7 +108,6 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
     // 데이터 추가 메소드 (데이터 및 삭제아이콘 추가)
     fun addItem(top: WritefirstBottom){
         bottomList.add(top)
-        notifyDataSetChanged()
     }
 
     // 데이터 삭제 메소드

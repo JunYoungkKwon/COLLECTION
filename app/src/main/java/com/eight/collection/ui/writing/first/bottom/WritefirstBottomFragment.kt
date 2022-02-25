@@ -19,7 +19,7 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
     private var bottomList = ArrayList<WritefirstBottom>()
     lateinit var customDialog: WritefirstBottomCustomDialog
     private var addItemId : Int = 13
-    lateinit var bottomRVAdapter : WritefirstBottomRVAdapter
+    var bottomRVAdapter : WritefirstBottomRVAdapter = WritefirstBottomRVAdapter(bottomList)
 
 
     override fun onCreateView(
