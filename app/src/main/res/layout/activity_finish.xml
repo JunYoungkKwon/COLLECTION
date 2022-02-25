@@ -373,6 +373,48 @@
 
         </com.google.android.flexbox.FlexboxLayout>
 
+        <LinearLayout
+            android:id="@+id/login_dim_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#30000000"
+            android:visibility="gone"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/login_loading_background_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:src="@drawable/ic_loading_background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/login_loading_in_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:src="@drawable/ic_loading_in"
+            app:layout_constraintTop_toTopOf="@+id/login_loading_circle_iv"
+            app:layout_constraintStart_toStartOf="@+id/login_loading_circle_iv"
+            app:layout_constraintBottom_toBottomOf="@+id/login_loading_circle_iv"
+            app:layout_constraintEnd_toEndOf="@+id/login_loading_circle_iv"/>
+
+        <ImageView
+            android:id="@+id/login_loading_circle_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:src="@drawable/ic_loading_circle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
