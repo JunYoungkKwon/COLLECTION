@@ -23,7 +23,7 @@
             app:destination="@id/MyLookFragment" />
         <action
             android:id="@+id/action_weekFragment_to_datePickerActivity"
-            app:destination="@id/datePickerActivity" />
+            app:destination="@id/DatePickerFragment" />
     </fragment>
 
     <fragment
@@ -46,9 +46,14 @@
         android:name="com.eight.collection.ui.main.lookpoint.MyLookSecondFragment"
         android:label="MyLookSecond" />
     <dialog
-        android:id="@+id/datePickerActivity"
+        android:id="@+id/DatePickerFragment"
         android:name="com.eight.collection.ui.main.week.DatePickerFragment"
-        android:label="DatePickerActivity" />
+        android:label="DatePickerFragment" >
+        <action
+            android:id="@+id/action_DatePickerFragment_to_weekFragment"
+            app:destination="@id/weekFragment" />
+
+    </dialog>
 
 
 </navigation>
