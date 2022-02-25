@@ -23,7 +23,6 @@
         android:textSize="6sp" />
 
     <View
-        android:id="@+id/month_year_highlight_view"
         android:layout_width="68dp"
         android:layout_height="11dp"
         android:layout_marginTop="14dp"
@@ -49,7 +48,6 @@
         app:layout_constraintTop_toBottomOf="@id/calendar_month_tv" />
 
     <ImageView
-        android:id="@+id/calender_daydrop_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -69,7 +67,6 @@
         app:layout_constraintTop_toBottomOf="@id/calendar_year_tv" />
 
     <include
-        android:id="@+id/calender_day"
         layout="@layout/caledaer_day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

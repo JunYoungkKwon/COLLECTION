@@ -8,7 +8,7 @@
         android:id="@+id/datepicker"
         android:theme="@style/MyDatePickerStyle"
         android:layout_width="wrap_content"
-        android:layout_height="381dp"
+        android:layout_height="410dp"
         android:datePickerMode="calendar"
         android:background="@drawable/dialog_round"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,13 +16,23 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <View
-        android:id="@+id/datepicker_line1"
+        android:id="@+id/datepicker_line0"
         android:layout_width="280dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="13dp"
         app:layout_constraintEnd_toEndOf="@+id/datepicker"
         app:layout_constraintBottom_toTopOf="@+id/datepicker_confirm_btn_off_ib"
         app:layout_constraintStart_toStartOf="@+id/datepicker"
+        android:background="@drawable/week_datepicker_round"/>
+
+    <View
+        android:id="@+id/datepicker_line1"
+        android:layout_width="280dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/datepicker_line0"
+        app:layout_constraintBottom_toTopOf="@+id/datepicker_line0"
+        app:layout_constraintStart_toStartOf="@+id/datepicker_line0"
         android:background="@drawable/week_datepicker_round"/>
 
     <View

@@ -2,7 +2,6 @@
     <!-- Base application theme. -->
     <style name="Theme.COLLECTION" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 
-
         <!-- Primary brand color. -->
 <!--    <item name="colorPrimary">@color/purple_200</item>-->
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -18,23 +17,27 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:datePickerStyle">@style/CalendarPreviousBtn</item>
         <item name="android:calendarViewStyle">@style/MyDatePickerStyle</item>
         <item name="colorControlHighlight">@color/pinkish_grey</item>
-
+        <item name="colorControlActivated">@color/pinkish_grey</item>
     </style>
-    <style name="MyDatePickerStyle" parent="@android:style/Widget.DatePicker">
-<!--        <item name="forwardButtonSrc">@style/CalendarPrevious</item>-->
-        <item name="colorAccent">@color/transparent</item>
-        <item name="colorControlActivated">@color/transparent</item>
+    <style name="MyDatePickerStyle" parent="android:Widget.DeviceDefault.CalendarView">
+<!--        오늘날짜+선택한 날짜 색깔-->
+        <item name="android:colorControlActivated">@color/pinkish_grey</item>
+<!--        선택할 때 원 변하는 색깔-->
         <item name="colorControlHighlight">@color/transparent</item>
-        <item name="previousButtonSrc">@style/CalendarPreviousBtn</item>
+<!--        2020년 2월 색깔-->
         <item name="android:textColorPrimary">@color/terracota</item>
+<!--        일월화수목금 색깔-->
         <item name="android:textColorSecondary">@color/terracota</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="android:weekDayTextAppearance">@style/CustomCalendarWeek</item>
+<!--        1~31일 스타일-->
         <item name="android:dateTextAppearance">@style/CustomCalendarDay</item>
-        <item name="selectableItemBackgroundBorderless">@color/purple_200</item>
+<!--        꽝-->
+        <item name="android:dayOfWeekTextAppearance">@color/terracota</item>
+        <item name="android:weekDayTextAppearance">@style/CustomCalendarWeek</item>
+<!--        일월화수목금 스타일-->
+        <item name="android:headerMonthTextAppearance">@style/CustomCalendarWeek</item>
+        <item name="android:windowBackground">@color/bottom_navi</item>
     </style>
 
     <style name="CustomCalendarDay" parent="TextAppearance.MaterialComponents.Caption">
@@ -46,21 +49,12 @@
     </style>
 
     <style name="CustomCalendarWeek" parent="TextAppearance.MaterialComponents.Caption">
-            <item name="android:textColor">@color/black</item>
-            <item name="android:fontFamily">sans-serif</item>
+            <item name="android:fontFamily">sans-serif-light</item>
             <item name="android:textSize">13sp</item>
             <item name="android:textStyle">normal</item>
             <item name="android:gravity">center_horizontal</item>
     </style>
 
-    <style name="CalendarPreviousBtn" parent="TextAppearance.MaterialComponents.Button">
-<!--        <item name="forwardButtonSrc">@style/CalendarPrevious</item>-->
-        <item name="android:src">@drawable/ic_datepicker_next</item>
-    </style>
-
-<!--    <style name="CalendarPrevious" parent="Button">-->
-<!--        <item name="android:src">@drawable/ic_datepicker_next</item>-->
-<!--    </style>-->
     <style name="Transparent" parent="@style/Theme.AppCompat">
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

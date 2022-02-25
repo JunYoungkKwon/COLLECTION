@@ -208,7 +208,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         class MonthViewContainer(view: View) : ViewContainer(view) {
             val calendarMonth = CalendarYearMonthHeaderBinding.bind(view).calendarMonthTv
             val calendarYear= CalendarYearMonthHeaderBinding.bind(view).calendarYearTv
-
         }
         binding.calendarView.monthHeaderBinder = object :
             MonthHeaderFooterBinder<MonthViewContainer> {

@@ -51,7 +51,7 @@
         app:cv_dayViewResource="@layout/calendar_date"
         app:cv_hasBoundaries="true"
         app:cv_maxRowCount="1"
-        app:cv_monthHeaderResource="@layout/calendar_year_month_header_week"
+        app:cv_monthHeaderResource="@layout/calendar_year_month_header"
         app:cv_orientation="horizontal"
         app:cv_scrollMode="paged"
         app:layout_constraintEnd_toEndOf="parent"
