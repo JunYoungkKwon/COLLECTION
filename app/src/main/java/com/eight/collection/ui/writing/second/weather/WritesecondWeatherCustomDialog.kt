@@ -7,16 +7,22 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.R
+import com.eight.collection.data.entities.Write.Block
+import com.eight.collection.data.remote.addblock.AddBlockService
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.signup.SignupThirdActivity
+import com.eight.collection.ui.writing.AddBlockView
 import com.eight.collection.ui.writing.CustomDialogInterface
 
-class WritesecondWeatherCustomDialog(context: Context, anInterface: CustomDialogInterface) : Dialog(context) {
+class WritesecondWeatherCustomDialog(context: Context, anInterface: CustomDialogInterface) : Dialog(context), AddBlockView {
 
     private var customDialogInterface : CustomDialogInterface = anInterface
     private lateinit var addButton : Button
@@ -36,14 +42,55 @@ class WritesecondWeatherCustomDialog(context: Context, anInterface: CustomDialog
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         addButton.setOnClickListener {
-            var addText : String = addEditText.text.toString()
-            customDialogInterface.onAddButtonClicked(addText)
+            addBlock()
             dismiss()
         }
 
         cancelButton.setOnClickListener {
             customDialogInterface.onCancelButtonClicked()
             dismiss()
+        }
+    }
+
+    private fun getBlock() : Block {
+        addEditText = findViewById(R.id.add_weathertag_et)
+        val clothes : Int = -1
+        val pww : Int = 1
+        val content : String = addEditText.text.toString()
+        return Block(clothes,pww,content)
+    }
+
+    private fun addBlock() {
+        AddBlockService.addBlock(this, getBlock())
+    }
+
+    override fun onAddBlockLoading() {
+    }
+
+    override fun onAddBlockSuccess(content:String) {
+        customDialogInterface.onAddButtonClicked(content)
+    }
+
+    override fun onAddBlockFailure(code: Int, message: String) {
+        when(code) {
+            3029,3049,4003,4004,4014 -> {
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                text.text = message
+                var toast = Toast(context)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+            else -> {
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                text.text = "SERVER ERROR"
+                var toast = Toast(context)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
         }
     }
 }

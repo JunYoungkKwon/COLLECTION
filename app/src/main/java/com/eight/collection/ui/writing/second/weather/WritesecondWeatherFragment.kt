@@ -20,6 +20,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritesecondWeatherCustomDialog
     private var idcount : Int = 9
     private var addtext : String? = null
+    lateinit var weatherRVAdapter : WritesecondWeatherRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +42,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
             add(WritesecondWeather("우박", 8))
         }
 
-        val weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
+        weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
         weatherRVAdapter.setWeatherClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
@@ -58,12 +59,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
             idcount += 1
         }
 
-        val weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
-        weatherRVAdapter.setWeatherClickListener(this)
-
-        val flexboxLayoutManager = FlexboxLayoutManager(activity)
-        binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
-        binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
+        weatherRVAdapter.notifyDataSetChanged()
     }
 
     override fun onCancelButtonClicked() {

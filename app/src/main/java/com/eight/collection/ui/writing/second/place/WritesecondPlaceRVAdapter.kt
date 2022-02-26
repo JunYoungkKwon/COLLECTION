@@ -1,14 +1,18 @@
 package com.eight.collection.ui.writing.second.place
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
+import com.eight.collection.data.entities.Write.Block
+import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritesecondPlaceBinding
+import com.eight.collection.ui.writing.DeleteBlockView
 
-class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlace>) : RecyclerView.Adapter<WritesecondPlaceRVAdapter.ViewHolder>(){
+class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlace>) : RecyclerView.Adapter<WritesecondPlaceRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: PlaceClickListener? = null
     private var count : Int = 0
     private var selectId : Int = -1
@@ -48,49 +52,28 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
                     text = place.name + "    "
                 }
 
-
-                setOnClickListener{
-                    when(placeList[position].id){
+                setOnClickListener {
+                    when (placeList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()
                             isChecked = false
                         }
                         else -> {
-                            // 0개 선택
-                            if(count == 0) {
+                            // 처음 선택시
+                            if (selectId == -1) {
                                 placeList[position].focus = true
                                 selectId = position
-                                beforeId = position
-                                count = count + 1
                             }
-
-
-                            // 1개 선택
-                            else if (count == 1) {
-                                if (selectId == position) {
-                                    placeList[position].focus = false
-                                    count = count - 1
-                                }
-                                else {
-                                    placeList[position].focus = true
-                                    selectId = position
-                                    count = count + 1
-                                }
-
+                            // 선택한거 다시 클릭시
+                            else if (selectId == position) {
+                                placeList[selectId].focus = false
+                                selectId = -1
                             }
-
-                            //2개 선택
+                            // 선택한거말고 다른거 클릭시
                             else {
-                                if(selectId == position) {
-                                    placeList[selectId].focus = false
-                                    selectId = beforeId
-                                    count = count - 1
-                                }
-                                else if(beforeId == position) {
-                                    placeList[beforeId].focus = false
-                                    beforeId = selectId
-                                    count = count - 1
-                                }
+                                placeList[selectId].focus = false
+                                placeList[position].focus = true
+                                selectId = position
                             }
                         }
                     }
@@ -98,16 +81,18 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
                 }
             }
             binding.writesecondPlaceDeleteButton.apply {
-                if(placeList[position].id < 9) {
+                if (placeList[position].id < 9) {
                     visibility = View.GONE
-                }
-                else {
+                } else {
                     visibility = View.VISIBLE
                     setOnClickListener{
                         when (placeList[position].id){
                             0 -> {}
                             else -> {
                                 removeItem(position)
+                                if(position == selectId){
+                                    selectId = -1
+                                }
                             }
                         }
                     }
@@ -124,7 +109,37 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
 
     // 데이터 삭제 메소드
     fun removeItem(position: Int){
+        deleteBlock(placeList[position].name.toString())
         placeList.removeAt(position)
         notifyDataSetChanged()
+    }
+
+    private fun getBlock(content : String) : Block {
+        val clothes : Int = -1
+        val pww : Int = 0
+        return Block(clothes,pww,content)
+    }
+
+    private fun deleteBlock(content : String) {
+        DeleteBlockService.deleteBlock(this, getBlock(content))
+    }
+
+    override fun onDeleteBlockLoading() {
+
+    }
+
+    override fun onDeleteBlockSuccess() {
+        Log.d("message","Delete Success")
+    }
+
+    override fun onDeleteBlockFailure(code: Int, message: String) {
+        when(code) {
+            4006, 4007 -> {
+                Log.d("message",message)
+            }
+            else -> {
+                Log.d("message","SERVER ERROR")
+            }
+        }
     }
 }

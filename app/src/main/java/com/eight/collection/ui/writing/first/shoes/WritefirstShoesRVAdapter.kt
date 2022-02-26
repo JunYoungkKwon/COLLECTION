@@ -1,17 +1,22 @@
 package com.eight.collection.ui.writing.first.shoes
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.eight.collection.data.entities.Write.Block
+import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstShoesBinding
 import com.eight.collection.databinding.ItemWritefirstTopBinding
+import com.eight.collection.ui.writing.DeleteBlockView
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomRVAdapter
 
-class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>) : RecyclerView.Adapter<WritefirstShoesRVAdapter.ViewHolder>(){
+class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>) : RecyclerView.Adapter<WritefirstShoesRVAdapter.ViewHolder>(),
+    DeleteBlockView {
     private var clickListener: ShoesClickListener? = null
     private var selectId : Int = -1
 
@@ -91,6 +96,9 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
                             0 -> {}
                             else -> {
                                 removeItem(position)
+                                if(position == selectId){
+                                    selectId = -1
+                                }
                             }
                         }
                     }
@@ -108,11 +116,41 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
 
     // 데이터 삭제 메소드
     fun removeItem(position: Int){
+        deleteBlock(shoesList[position].name.toString())
         shoesList.removeAt(position)
         notifyDataSetChanged()
     }
 
     fun getSelectId() : Int{
         return selectId
+    }
+
+    private fun getBlock(content : String) : Block {
+        val clothes : Int = 2
+        val pww : Int = -1
+        return Block(clothes,pww,content)
+    }
+
+    private fun deleteBlock(content : String) {
+        DeleteBlockService.deleteBlock(this, getBlock(content))
+    }
+
+    override fun onDeleteBlockLoading() {
+
+    }
+
+    override fun onDeleteBlockSuccess() {
+        Log.d("message","Delete Success")
+    }
+
+    override fun onDeleteBlockFailure(code: Int, message: String) {
+        when(code) {
+            4006, 4007 -> {
+                Log.d("message",message)
+            }
+            else -> {
+                Log.d("message","SERVER ERROR")
+            }
+        }
     }
 }

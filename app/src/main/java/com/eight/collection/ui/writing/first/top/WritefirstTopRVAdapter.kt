@@ -1,15 +1,25 @@
 package com.eight.collection.ui.writing.first.top
 
 import android.graphics.Color
+import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstTopBinding
 import android.widget.RadioButton
+import android.widget.TextView
+import android.widget.Toast
+import com.eight.collection.R
+import com.eight.collection.data.entities.Write.Block
+import com.eight.collection.data.remote.addblock.AddBlockService
+import com.eight.collection.data.remote.deleteblock.DeleteBlockService
+import com.eight.collection.ui.writing.DeleteBlockView
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import kotlinx.coroutines.selects.select
 
-class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>() {
+class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(), DeleteBlockView {
     private var clickListener: TopClickListener? = null
     private var selectId: Int = -1
 
@@ -97,6 +107,9 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
                             0 -> {}
                             else -> {
                                 removeItem(position)
+                                if(position == selectId){
+                                    selectId = -1
+                                }
                             }
                         }
                     }
@@ -113,6 +126,7 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
 
     // 데이터 삭제 메소드
     fun removeItem(position: Int){
+        deleteBlock(topList[position].name.toString())
         topList.removeAt(position)
         notifyDataSetChanged()
     }
@@ -120,6 +134,35 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
 
     fun getSelectId() : Int{
         return selectId
+    }
+
+    private fun getBlock(content : String) : Block {
+        val clothes : Int = 0
+        val pww : Int = -1
+        return Block(clothes,pww,content)
+    }
+
+    private fun deleteBlock(content : String) {
+        DeleteBlockService.deleteBlock(this, getBlock(content))
+    }
+
+    override fun onDeleteBlockLoading() {
+
+    }
+
+    override fun onDeleteBlockSuccess() {
+        Log.d("message","Delete Success")
+    }
+
+    override fun onDeleteBlockFailure(code: Int, message: String) {
+        when(code) {
+            4006, 4007 -> {
+                Log.d("message",message)
+            }
+            else -> {
+                Log.d("message","SERVER ERROR")
+            }
+        }
     }
 
 }

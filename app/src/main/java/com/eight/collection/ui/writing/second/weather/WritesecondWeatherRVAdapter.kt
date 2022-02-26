@@ -1,13 +1,17 @@
 package com.eight.collection.ui.writing.second.weather
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.eight.collection.data.entities.Write.Block
+import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritesecondPlaceBinding
 import com.eight.collection.databinding.ItemWritesecondWeatherBinding
+import com.eight.collection.ui.writing.DeleteBlockView
 
-class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<WritesecondWeather>) : RecyclerView.Adapter<WritesecondWeatherRVAdapter.ViewHolder>(){
+class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<WritesecondWeather>) : RecyclerView.Adapter<WritesecondWeatherRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: WeatherClickListener? = null
     private var count : Int = 0
     private var selectId : Int = -1
@@ -46,48 +50,28 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
                     text = weather.name + "    "
                 }
                 // select 여부 확인 및 상태 변경
-                setOnClickListener{
-                    when(weatherList[position].id){
+                setOnClickListener {
+                    when (weatherList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()
                             isChecked = false
                         }
                         else -> {
-                            // 0개 선택
-                            if(count == 0) {
+                            // 처음 선택시
+                            if (selectId == -1) {
                                 weatherList[position].focus = true
                                 selectId = position
-                                beforeId = position
-                                count = count + 1
                             }
-
-
-                            // 1개 선택
-                            else if (count == 1) {
-                                if (selectId == position) {
-                                    weatherList[position].focus = false
-                                    count = count - 1
-                                }
-                                else {
-                                    weatherList[position].focus = true
-                                    selectId = position
-                                    count = count + 1
-                                }
-
+                            // 선택한거 다시 클릭시
+                            else if (selectId == position) {
+                                weatherList[selectId].focus = false
+                                selectId = -1
                             }
-
-                            //2개 선택
+                            // 선택한거말고 다른거 클릭시
                             else {
-                                if(selectId == position) {
-                                    weatherList[selectId].focus = false
-                                    selectId = beforeId
-                                    count = count - 1
-                                }
-                                else if(beforeId == position) {
-                                    weatherList[beforeId].focus = false
-                                    beforeId = selectId
-                                    count = count - 1
-                                }
+                                weatherList[selectId].focus = false
+                                weatherList[position].focus = true
+                                selectId = position
                             }
                         }
                     }
@@ -95,16 +79,18 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
                 }
             }
             binding.writesecondWeatherDeleteButton.apply {
-                if(weatherList[position].id < 9) {
+                if (weatherList[position].id < 9) {
                     visibility = View.GONE
-                }
-                else {
+                } else {
                     visibility = View.VISIBLE
                     setOnClickListener{
                         when (weatherList[position].id){
                             0 -> {}
                             else -> {
                                 removeItem(position)
+                                if(position == selectId){
+                                    selectId = -1
+                                }
                             }
                         }
                     }
@@ -121,7 +107,37 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
 
     // 데이터 삭제 메소드
     fun removeItem(position: Int){
+        deleteBlock(weatherList[position].name.toString())
         weatherList.removeAt(position)
         notifyDataSetChanged()
+    }
+
+    private fun getBlock(content : String) : Block {
+        val clothes : Int = -1
+        val pww : Int = 1
+        return Block(clothes,pww,content)
+    }
+
+    private fun deleteBlock(content : String) {
+        DeleteBlockService.deleteBlock(this, getBlock(content))
+    }
+
+    override fun onDeleteBlockLoading() {
+
+    }
+
+    override fun onDeleteBlockSuccess() {
+        Log.d("message","Delete Success")
+    }
+
+    override fun onDeleteBlockFailure(code: Int, message: String) {
+        when(code) {
+            4006, 4007 -> {
+                Log.d("message",message)
+            }
+            else -> {
+                Log.d("message","SERVER ERROR")
+            }
+        }
     }
 }

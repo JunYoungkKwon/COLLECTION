@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.R
+import com.eight.collection.data.entities.Write.Write
 import com.eight.collection.databinding.ActivityWritefirstBinding
+import com.eight.collection.ui.signup.SignupThirdActivity
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
 import com.eight.collection.ui.writing.first.etc.WritefirstEtcFragment
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
@@ -23,6 +25,7 @@ import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.eight.collection.utils.*
 import com.google.android.material.tabs.TabLayoutMediator
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
@@ -39,6 +42,7 @@ class WritefirstActivity() : AppCompatActivity(){
     private var shoesclickListner : WritefirstActivity.ShoesColorClickListner? = null
     private var etcclickListner : WritefirstActivity.EtcColorClickListner? = null
     var topList = ArrayList<WritefirstTop>()
+    var photoIs : Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,9 @@ class WritefirstActivity() : AppCompatActivity(){
         var date = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
         val formatted = date.format(formatter)
+
+        val formatterpost = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formattedpost = date.format(formatterpost)
 
         binding.writefirstDateTv.text = formatted
 
@@ -220,9 +227,17 @@ class WritefirstActivity() : AppCompatActivity(){
             etcclickListner?.etcChangeButtonColor("#74461f")
         }
 
+
         //다음버튼 클릭시 Writing Second Activity
         binding.writefirstNextButton.setOnClickListener {
-            startActivity(Intent(this, WritesecondActivity::class.java))
+            val intent = Intent(this, WritesecondActivity::class.java)
+            intent.putExtra("date", formattedpost)
+            intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
+            intent.putExtra("photoIs", photoIs)
+            intent.putExtra("photo", photoList)
+            /*intent.putExtra("fClothes", )*/
+
+            startActivity(intent)
         }
 
     }
@@ -259,6 +274,7 @@ class WritefirstActivity() : AppCompatActivity(){
                     }
                 }
             }
+            photoIs = 0
             photoRVAdapter.notifyDataSetChanged()
         }
     }
