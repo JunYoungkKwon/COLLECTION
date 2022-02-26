@@ -17,11 +17,12 @@ import com.eight.collection.ui.writing.ReceiveS3URLView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
 import java.util.*
 
 object FinishService {
 
-    fun getFinish(finishView: FinishView, date: Date) {
+    fun getFinish(finishView: FinishView, date: String) {
         val finishService = retrofit.create(FinishRetrofitInterface::class.java)
 
         finishView.onFinishLoading()

@@ -40,6 +40,8 @@ import kotlin.collections.ArrayList
 
 class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate), MonthView  {
 
+    private var selectedDate: LocalDate? = null
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         startMyLook()
@@ -116,6 +118,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.calendarDay.text = day.date.dayOfMonth.toString()
                 container.calendarCell.setOnClickListener{
+                    val currentSelection = selectedDate
                     if(container.rankPoint.drawable == null) {
                         var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
                         var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
@@ -126,9 +129,33 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                     }
                     else{
                         startActivity(Intent(activity, FinishActivity::class.java))
+                        for(i in 0 .. month.size-1 step (1)){
+                            //Date Type -> LocalDate Tyoe
+                            val getdate: Date = month[i].date
+                            val locadate:LocalDate = getdate.toInstant()
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate()
+                            if (currentSelection == day.date) {
+                                // If the user clicks the same date, clear selection.
+                                selectedDate = null
+                                // Reload this date so the dayBinder is called
+                                // and we can REMOVE the selection background.
+                                binding.calendarView.notifyDateChanged(currentSelection)
+                            } else {
+                                selectedDate = day.date
+                                // Reload the newly selected date so the dayBinder is
+                                // called and we can ADD the selection background.
+                                binding.calendarView.notifyDateChanged(day.date)
+                                if (currentSelection != null){
+                                    // We need to also reload the previously selected
+                                    // date so we can REMOVE the selection background.
+                                    binding.calendarView.notifyDateChanged(currentSelection)
+                                }
+                            }
+                        }
                     }
                 }
-                //container.calendarDate.text= day.date.month.toString()
+
                 if (day.owner == DayOwner.THIS_MONTH) {
                     //today highlight
                     val currentDay = LocalDate.now()
@@ -136,10 +163,10 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                     for(i in 0 .. month.size-1 step (1)){
                         //Date Type -> LocalDate Tyoe
                         val date: Date = month[i].date
-                        val locadate:LocalDate = date.toInstant()
+                        val localdate:LocalDate = date.toInstant()
                             .atZone(ZoneId.systemDefault())
                             .toLocalDate()
-                        if (locadate == day.date){
+                        if (localdate == day.date){
                             when(month[i].lookpoint){
                                 1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_on)
                                 2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_on)
@@ -149,6 +176,24 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                                 else -> container.rankPoint.setImageResource(0)
                             }
                         }
+
+//                        if (day.date == selectedDate) {
+//                            if (selectedDate == localdate){
+//                                val intent = Intent(context,FinishActivity::class.java)
+//                                intent.apply {
+//                                    this.putExtra("date",selectedDate) // 데이터 넣기
+//                                }
+//                                Log.d("selectedDate1",localdate.toString())
+//                                Log.d("selectedDate2",date.toString())
+//                                startActivity(intent)
+//                                startActivity(Intent(activity, FinishActivity::class.java))
+//                            }
+//                            val test1 = container.calendarDay
+//                            test1.text = "선택"
+//                            Log.d("selectedDate",selectedDate.toString())
+//                        } else {
+//                            Log.d("selectedDate/error","error")
+//                        }
                     }
                     //오늘 날짜인 것 표시
                     if (currentDay == day.date){

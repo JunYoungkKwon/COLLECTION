@@ -110,57 +110,12 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
                 view ->
             if (position != RecyclerView.NO_POSITION) {
                 mItemClickListener.onRemoveDiary(view, position)
-                //mItemClickListener.onRemove(position)
             }
             else{
                 Log.d("Test","error")
             }
             false
-            //mItemClickListener.onRemoveDiary(View(context), position)
-            //mItemClickListener.onRemove(position)
         }
-
-//        holder.binding.itemDiaryEditIv.setOnClickListener{
-//            val popupMenu = PopupMenu(context, View(context))
-//            popupMenu.inflate(R.menu.menu_week_option)
-//            popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
-//                override fun onMenuItemClick(item: MenuItem?): Boolean {
-//                    when (item?.itemId) {
-//                        R.id.menu_item_edit -> {
-//                            removeItem(position)
-//                            notifyItemRangeChanged(position, itemCount)
-//                            notifyItemRemoved(position)
-//                            return true
-//                        }
-//                        R.id.menu_item_delete -> {
-//                            removeItem(position)
-//                            notifyItemRangeChanged(position, itemCount)
-//                            notifyItemRemoved(position)
-//                            return true
-//                        }
-//                    }
-//                    return false
-//                }
-//            })
-//            popupMenu.show()
-//        }
-
-
-//            val mDialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_delete_custom, null)
-//            val mBuilder = AlertDialog.Builder(context, binding.weekDiaryRecyclerView[position].findViewById(R.id.item_diary_edit_iv))
-//                .setView(mDialogView)
-//            val  mAlertDialog = mBuilder.show()
-//            //mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            val editButton = mDialogView.findViewById<TextView>(R.id.dialog_text1_tv)
-//            editButton.setOnClickListener {
-//                mAlertDialog.dismiss()
-//            }
-//            val deleteButton = mDialogView.findViewById<TextView>(R.id.dialog_text2_tv)
-//            deleteButton.setOnClickListener {
-//                removeItem(position)
-//                mAlertDialog.dismiss()
-//            }
-
 
 
     }

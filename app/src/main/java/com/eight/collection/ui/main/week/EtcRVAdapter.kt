@@ -22,6 +22,8 @@ class EtcRVAdapter(private  val Etclist: MutableList<Etc>) : RecyclerView.Adapte
     }
 
 
+
+
     override fun getItemCount(): Int = Etclist.size
 
 
