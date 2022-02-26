@@ -1,13 +1,17 @@
 package com.eight.collection.ui.writing.second.weather
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.eight.collection.data.entities.Write.Block
+import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritesecondPlaceBinding
 import com.eight.collection.databinding.ItemWritesecondWeatherBinding
+import com.eight.collection.ui.writing.DeleteBlockView
 
-class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<WritesecondWeather>) : RecyclerView.Adapter<WritesecondWeatherRVAdapter.ViewHolder>(){
+class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<WritesecondWeather>) : RecyclerView.Adapter<WritesecondWeatherRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: WeatherClickListener? = null
     private var count : Int = 0
     private var selectId : Int = -1
@@ -84,8 +88,8 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
                             0 -> {}
                             else -> {
                                 removeItem(position)
-                                if(position < selectId){
-                                    selectId = selectId - 1
+                                if(position == selectId){
+                                    selectId = -1
                                 }
                             }
                         }
@@ -103,7 +107,37 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
 
     // 데이터 삭제 메소드
     fun removeItem(position: Int){
+        deleteBlock(weatherList[position].name.toString())
         weatherList.removeAt(position)
         notifyDataSetChanged()
+    }
+
+    private fun getBlock(content : String) : Block {
+        val clothes : Int = -1
+        val pww : Int = 1
+        return Block(clothes,pww,content)
+    }
+
+    private fun deleteBlock(content : String) {
+        DeleteBlockService.deleteBlock(this, getBlock(content))
+    }
+
+    override fun onDeleteBlockLoading() {
+
+    }
+
+    override fun onDeleteBlockSuccess() {
+        Log.d("message","Delete Success")
+    }
+
+    override fun onDeleteBlockFailure(code: Int, message: String) {
+        when(code) {
+            4006, 4007 -> {
+                Log.d("message",message)
+            }
+            else -> {
+                Log.d("message","SERVER ERROR")
+            }
+        }
     }
 }

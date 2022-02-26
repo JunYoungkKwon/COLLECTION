@@ -1,17 +1,21 @@
 package com.eight.collection.ui.writing.first.etc
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.eight.collection.data.entities.Write.Block
+import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstEtcBinding
 import com.eight.collection.databinding.ItemWritefirstTopBinding
+import com.eight.collection.ui.writing.DeleteBlockView
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoesRVAdapter
 
-class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : RecyclerView.Adapter<WritefirstEtcRVAdapter.ViewHolder>(){
+class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : RecyclerView.Adapter<WritefirstEtcRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: EtcClickListener? = null
     private var selectId : Int = -1
 
@@ -111,11 +115,41 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
 
     // 데이터 삭제 메소드
     fun removeItem(position: Int){
+        deleteBlock(etcList[position].name.toString())
         etcList.removeAt(position)
         notifyDataSetChanged()
     }
 
     fun getSelectId() : Int{
         return selectId
+    }
+
+    private fun getBlock(content : String) : Block {
+        val clothes : Int = 3
+        val pww : Int = -1
+        return Block(clothes,pww,content)
+    }
+
+    private fun deleteBlock(content : String) {
+        DeleteBlockService.deleteBlock(this, getBlock(content))
+    }
+
+    override fun onDeleteBlockLoading() {
+
+    }
+
+    override fun onDeleteBlockSuccess() {
+        Log.d("message","Delete Success")
+    }
+
+    override fun onDeleteBlockFailure(code: Int, message: String) {
+        when(code) {
+            4006, 4007 -> {
+                Log.d("message",message)
+            }
+            else -> {
+                Log.d("message","SERVER ERROR")
+            }
+        }
     }
 }

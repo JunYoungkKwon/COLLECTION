@@ -56,7 +56,6 @@ class WritefirstActivity() : AppCompatActivity(){
 
         val formatterpost = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formattedpost = date.format(formatterpost)
-        var datepost = LocalDate.parse(formattedpost, DateTimeFormatter.ISO_DATE)
 
         binding.writefirstDateTv.text = formatted
 
@@ -232,7 +231,7 @@ class WritefirstActivity() : AppCompatActivity(){
         //다음버튼 클릭시 Writing Second Activity
         binding.writefirstNextButton.setOnClickListener {
             val intent = Intent(this, WritesecondActivity::class.java)
-            intent.putExtra("date", datepost)
+            intent.putExtra("date", formattedpost)
             intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
             intent.putExtra("photoIs", photoIs)
             intent.putExtra("photo", photoList)
