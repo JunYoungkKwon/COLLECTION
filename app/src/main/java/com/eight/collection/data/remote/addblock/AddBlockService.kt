@@ -4,6 +4,7 @@ import android.util.Log
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.ApplicationClass.Companion.retrofit
 import com.eight.collection.data.entities.Write.Block
+import com.eight.collection.data.entities.Write.Content
 import com.eight.collection.ui.writing.AddBlockView
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,20 +17,27 @@ object AddBlockService {
         addBlockView.onAddBlockLoading()
 
         //이 부분 오류
-        addBlockService.addBlock(block.clothes,block.pww,block.content).enqueue(object : Callback<AddBlockResponse> {
+        addBlockService.addBlock(block.clothes,block.pww,Content(block.content)).enqueue(object : Callback<AddBlockResponse> {
             override fun onResponse(call: Call<AddBlockResponse>, response: Response<AddBlockResponse>) {
-
-                //여기서부터 오류
                 val resp = response.body()!!
-
                 when(resp.code){
                     1007 -> {
-                        addBlockView.onAddBlockSuccess()
-                        Log.d("Tag","Success")
+                        if(block.pww == -1) {
+                            addBlockView.onAddBlockSuccess(resp.result?.addedClothes.toString())
+                        }
+                        else if(block.pww == 0) {
+                            addBlockView.onAddBlockSuccess(resp.result?.addedPlace.toString())
+                        }
+                        else if(block.pww == 1) {
+                            addBlockView.onAddBlockSuccess(resp.result?.addedWeather.toString())
+                        }
+                        else if(block.pww == 2) {
+                            addBlockView.onAddBlockSuccess(resp.result?.addedWho.toString())
+                        }
                     }
+
                     else -> {
                         addBlockView.onAddBlockFailure(resp.code, resp.message)
-                        Log.d("Tag","Fail")
                     }
                 }
             }

@@ -4,13 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.eight.collection.data.entities.Write.Write
 import com.eight.collection.data.remote.recieves3url.ReceiveS3UrlService
 import com.eight.collection.databinding.ActivityWritesecondBinding
 import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.writing.ReceiveS3URLView
+import com.eight.collection.ui.writing.WriteView
 import com.google.android.material.tabs.TabLayoutMediator
 
-class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView{
+class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
     lateinit var binding : ActivityWritesecondBinding
     val information = arrayListOf("PLACE","WEATHER","WHO")
 
@@ -32,12 +34,12 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView{
 
         binding.writesecondFinishButton2.setOnClickListener {
             receiveS3Url()
+            write()
             startActivity(Intent(this, FinishActivity::class.java))
         }
     }
 
-    // Presigned URL 받아오기 메소드
-
+    // Presigned URL 받아오기 API
     private fun receiveS3Url(){
        ReceiveS3UrlService.receiveS3url(this)
     }
@@ -51,6 +53,31 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView{
 
     override fun onReceiveS3URLFailure(code: Int, message: String) {
         Log.d("message",message)
+    }
+
+
+
+
+    // Write API
+    private fun getWrite(){
+
+    }
+
+
+    private fun write(){
+
+    }
+
+    override fun onWriteLoading() {
+
+    }
+
+    override fun onWriteSuccess() {
+
+    }
+
+    override fun onWriteFailure(code: Int, message: String) {
+
     }
 
 

@@ -10,5 +10,4 @@ data class MyLook(
     @SerializedName("photoIs") val photoIs: Int,
     @SerializedName("date") val date: Date,
     @SerializedName("imageUrl") val imageUrl: String,
-
 )

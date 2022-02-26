@@ -27,8 +27,6 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
     private lateinit var addButton : Button
     private lateinit var cancelButton : Button
     private lateinit var addEditText : EditText
-    private var Add : Int = 0
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,15 +40,8 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         addButton.setOnClickListener {
-            val addText : String = addEditText.text.toString()
             addBlock()
-            if (Add == 1) {
-                customDialogInterface.onAddButtonClicked(addText)
-                dismiss()
-            }
-            else {
-
-            }
+            dismiss()
         }
 
         cancelButton.setOnClickListener {
@@ -74,13 +65,13 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
     override fun onAddBlockLoading() {
     }
 
-    override fun onAddBlockSuccess() {
-        Add = 1
+    override fun onAddBlockSuccess(content:String) {
+        customDialogInterface.onAddButtonClicked(content)
     }
 
     override fun onAddBlockFailure(code: Int, message: String) {
         when(code) {
-            4003,4004,4014 -> {
+            3029,3049,4003,4004,4014 -> {
                 var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
                 text.text = message
