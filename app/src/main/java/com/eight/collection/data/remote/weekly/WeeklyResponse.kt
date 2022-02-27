@@ -1,7 +1,7 @@
 package com.eight.collection.data.remote.weekly
 
 import com.eight.collection.data.entities.Calendar
-import com.eight.collection.ui.main.week.Diary
+import com.eight.collection.data.entities.Diary
 import com.google.gson.annotations.SerializedName
 
 data class WeeklyResult(@SerializedName("weekly") val weekly: MutableList<Diary>)

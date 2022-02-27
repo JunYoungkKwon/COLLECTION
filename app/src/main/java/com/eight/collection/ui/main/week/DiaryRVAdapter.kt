@@ -19,6 +19,8 @@ import androidx.core.widget.PopupMenuCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eight.collection.R
+import com.eight.collection.data.entities.Cloth
+import com.eight.collection.data.entities.Diary
 import com.eight.collection.databinding.ItemWeekDiaryBinding
 import com.eight.collection.ui.main.MainActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
@@ -135,21 +137,21 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
                 Glide.with(context).load(diary.coverImg).into(binding.itemDiaryImgIv)
             }
 
-//            if(diary.topList.isNullOrEmpty()){
-//                diary.topList.add(Top("해당 항목 없음", ""))
-//            }
-//
-//            if(diary.bottomList.isNullOrEmpty()){
-//                diary.bottomList.add(Bottom("해당 항목 없음", "#00000000"))
-//            }
-//
-//            if(diary.shoesList.isNullOrEmpty()){
-//                diary.shoesList.add(Shoes("해당 항목 없음", "#00000000"))
-//            }
-//
-//            if(diary.etcList.isNullOrEmpty()){
-//                diary.etcList.add(Etc("해당 항목 없음", "#00000000"))
-//            }
+            if(diary.topList.isNullOrEmpty()){
+                diary.topList.add(Cloth("해당 항목 없음", ""))
+            }
+
+            if(diary.bottomList.isNullOrEmpty()){
+                diary.bottomList.add(Cloth("해당 항목 없음", ""))
+            }
+
+            if(diary.shoesList.isNullOrEmpty()){
+                diary.shoesList.add(Cloth("해당 항목 없음", ""))
+            }
+
+            if(diary.etcList.isNullOrEmpty()){
+                diary.etcList.add(Cloth("해당 항목 없음", ""))
+            }
 
             val date: Date = diary.date
             val localdate: LocalDate = date.toInstant()

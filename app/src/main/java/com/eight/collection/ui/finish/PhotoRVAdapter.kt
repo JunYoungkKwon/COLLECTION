@@ -2,11 +2,13 @@ package com.eight.collection.ui.finish
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eight.collection.R
+import com.eight.collection.data.entities.Photo
 import com.eight.collection.databinding.ItemFinishPhotoBinding
 import com.eight.collection.databinding.ItemMyLookBinding
 import com.eight.collection.databinding.ItemMyLookPhotoBinding
@@ -41,7 +43,7 @@ class PhotoRVAdapter(val context: Context) : RecyclerView.Adapter<PhotoRVAdapter
     inner class ViewHolder(val binding: ItemFinishPhotoBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(photo: Photo){
-            if(photo.imageUrl == null){
+            if(photo.thumbnail == 1){
                 Glide.with(context).load(R.drawable.camera_bg_01).into(binding.itemFinishPhotoImgIv)
             }
             else{

@@ -12,9 +12,8 @@ import com.eight.collection.databinding.FragmentMonthBinding
 import com.eight.collection.databinding.FragmentMatchBinding
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.main.MainActivity
-import com.eight.collection.ui.main.week.Diary
+import com.eight.collection.data.entities.Diary
 import com.eight.collection.ui.main.week.DiaryRVAdapter
-import com.eight.collection.ui.main.week.Etc
 import com.google.gson.Gson
 import java.util.ArrayList
 

@@ -19,6 +19,7 @@ import androidx.navigation.Navigation
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
+import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.remote.calendar.CalendarService
 import com.eight.collection.data.remote.weekly.WeeklyService
 import com.eight.collection.databinding.CalendarDateBinding

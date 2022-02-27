@@ -128,30 +128,16 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                         toast.show()
                     }
                     else{
-                        startActivity(Intent(activity, FinishActivity::class.java))
-                        for(i in 0 .. month.size-1 step (1)){
-                            //Date Type -> LocalDate Tyoe
-                            val getdate: Date = month[i].date
-                            val locadate:LocalDate = getdate.toInstant()
-                                .atZone(ZoneId.systemDefault())
-                                .toLocalDate()
-                            if (currentSelection == day.date) {
-                                // If the user clicks the same date, clear selection.
-                                selectedDate = null
-                                // Reload this date so the dayBinder is called
-                                // and we can REMOVE the selection background.
-                                binding.calendarView.notifyDateChanged(currentSelection)
-                            } else {
-                                selectedDate = day.date
-                                // Reload the newly selected date so the dayBinder is
-                                // called and we can ADD the selection background.
-                                binding.calendarView.notifyDateChanged(day.date)
-                                if (currentSelection != null){
-                                    // We need to also reload the previously selected
-                                    // date so we can REMOVE the selection background.
-                                    binding.calendarView.notifyDateChanged(currentSelection)
-                                }
+                        if (currentSelection == day.date) {
+                            selectedDate = null
+                        } else {
+                            selectedDate = day.date
+                            val intent = Intent(context,FinishActivity::class.java)
+                            val date = selectedDate.toString()
+                            intent.apply {
+                                this.putExtra("date",date)
                             }
+                            startActivity(intent)
                         }
                     }
                 }

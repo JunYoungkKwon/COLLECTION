@@ -11,9 +11,8 @@ import com.eight.collection.databinding.*
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.login.LoginFirstActivity
-import com.eight.collection.ui.main.week.Diary
+import com.eight.collection.data.entities.Diary
 import com.eight.collection.ui.main.week.DiaryRVAdapter
-import com.eight.collection.ui.main.week.Etc
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.gson.Gson
 import java.util.ArrayList
