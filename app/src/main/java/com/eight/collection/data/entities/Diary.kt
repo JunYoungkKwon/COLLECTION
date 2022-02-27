@@ -1,6 +1,5 @@
-package com.eight.collection.ui.main.week
+package com.eight.collection.data.entities
 
-import com.eight.collection.ui.finish.Cloth
 import com.eight.collection.ui.main.lookpoint.Photo
 import com.google.gson.annotations.SerializedName
 import java.util.*

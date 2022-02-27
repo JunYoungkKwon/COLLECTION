@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.R
+import com.eight.collection.data.entities.Cloth
 import com.eight.collection.databinding.ItemWeekDiaryClothColorBinding
-import com.eight.collection.ui.finish.Cloth
 import java.util.*
 
 
@@ -19,13 +19,11 @@ class ToprRVAdapter(private  val Toplist: MutableList<Cloth>) : RecyclerView.Ada
         return  ViewHolder(binding)
     }
 
-
     override fun onBindViewHolder(holder: ToprRVAdapter.ViewHolder, position: Int) {
         holder.bind(Toplist[position])
     }
 
     override fun getItemCount(): Int = Toplist.size
-
 
     inner class ViewHolder(val binding: ItemWeekDiaryClothColorBinding): RecyclerView.ViewHolder(binding.root){
 

@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.eight.collection.data.entities.Cloth
 import com.eight.collection.databinding.ItemWeekDiaryClothColorBinding
-import com.eight.collection.ui.finish.Cloth
 
 class BottomRVAdapter(private  val Bottomlist: MutableList<Cloth>) : RecyclerView.Adapter<BottomRVAdapter.ViewHolder>() {
 
@@ -16,14 +16,12 @@ class BottomRVAdapter(private  val Bottomlist: MutableList<Cloth>) : RecyclerVie
         return  ViewHolder(binding)
     }
 
-
     override fun onBindViewHolder(holder: BottomRVAdapter.ViewHolder, position: Int) {
         holder.bind(Bottomlist[position])
     }
 
 
     override fun getItemCount(): Int = Bottomlist.size
-
 
     inner class ViewHolder(val binding: ItemWeekDiaryClothColorBinding): RecyclerView.ViewHolder(binding.root){
 
@@ -37,11 +35,8 @@ class BottomRVAdapter(private  val Bottomlist: MutableList<Cloth>) : RecyclerVie
                 binding.itemDiaryColorView.setBackgroundColor(Color.parseColor(cloth.color))
                 binding.itemDiaryClothTv.text= cloth.cloth
             }
-
         }
     }
-
-
 }
 
 

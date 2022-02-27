@@ -1,15 +1,27 @@
 package com.eight.collection.ui.finish
 
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import com.eight.collection.R
+import com.eight.collection.data.entities.Cloth
+import com.eight.collection.data.entities.Photo
 import com.eight.collection.data.remote.finish.Finish
 import com.eight.collection.data.remote.finish.FinishService
 import com.eight.collection.databinding.ActivityFinishBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.skydoves.powermenu.OnMenuItemClickListener
+import com.skydoves.powermenu.PowerMenu
+import com.skydoves.powermenu.PowerMenuItem
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.ZoneId
@@ -31,6 +43,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     override fun initAfterBinding() {
         initRV()
         getFinish()
+        clickSetting()
     }
 
     private fun initRV(){
@@ -51,11 +64,41 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         etcRVAdapter = EtcRVAdapter()
         binding.finishEtcRecyclerView.adapter = etcRVAdapter
     }
+    private fun clickSetting(){
+        binding.finishEditIv.setOnClickListener {
+            view ->
+            val powerMenu = PowerMenu.Builder(this)
+                .addItem(PowerMenuItem("수정하기", false))
+                .addItem(PowerMenuItem("삭제하기", false))
+                .setMenuRadius(15f)
+                .setDivider(ColorDrawable(ContextCompat.getColor(this, R.color.pinkish_grey)))
+                .setDividerHeight(1)
+                .setShowBackground(false)
+                .setMenuShadow(15f)
+                .setTextColor(ContextCompat.getColor(this, R.color.dark_taupe))
+                .setTextGravity(Gravity.CENTER)
+                .setTextTypeface(Typeface.create("@font/noto_sans_kr", Typeface.NORMAL))
+                .setMenuColor(Color.WHITE)
+                .build()
+
+            val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
+                when(item.title){ "수정하기" -> startActivity(Intent(this, WritefirstActivity::class.java))
+                    "삭제하기" -> {Log.d("Finsh/Delete","Test") }
+                }
+                powerMenu.dismiss()
+            }
+            powerMenu.onMenuItemClickListener = onMenuItemClickListener
+            powerMenu.showAsDropDown(view, -300, -30)
+        }
+    }
 
 
     private fun getFinish() {
-        val string = "2022-01-07"
-        FinishService.getFinish(this, string)
+        val MonthIntent = intent
+        val date = MonthIntent.getStringExtra("date")
+        if (date != null) {
+            FinishService.getFinish(this, date)
+        }
     }
 
     override fun onFinishLoading() {
@@ -83,8 +126,35 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
             else -> binding.finishRankPointIv.setImageResource(R.drawable.ic_diary_point_5)
         }
 
+        val getdate: Date = finish.date
+        val localdate:LocalDate = getdate.toInstant()
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate()
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+        val convertDate: String = localdate.format(formatter)
+
+        if(finish.image.isNullOrEmpty()){
+            finish.image.add(Photo("nill", 1))
+        }
+
+        if(finish.Top.isNullOrEmpty()){
+            finish.Top.add(Cloth("해당 항목 없음", ""))
+        }
+
+        if(finish.Bottom.isNullOrEmpty()){
+            finish.Bottom.add(Cloth("해당 항목 없음", ""))
+        }
+
+        if(finish.Shoes.isNullOrEmpty()){
+            finish.Shoes.add(Cloth("해당 항목 없음", ""))
+        }
+
+        if(finish.Etc.isNullOrEmpty()){
+            finish.Etc.add(Cloth("해당 항목 없음", ""))
+        }
+
         binding.finishOotdTitileTv.text = finish.lookname
-        binding.finishDateTv.text = finish.date.toString()
+        binding.finishDateTv.text = convertDate
         binding.finishCommentTv.text = finish.comment
         weatherRVAdapter.addWheeather(finish.weather)
         whoRVAdapter.addWho(finish.who)
@@ -94,6 +164,8 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         shoesRVAdapter.addShoes(finish.Shoes)
         etcRVAdapter.addEtc(finish.Etc)
         photoRVAdapter.addPhoto(finish.image)
+
+
 
     }
 
