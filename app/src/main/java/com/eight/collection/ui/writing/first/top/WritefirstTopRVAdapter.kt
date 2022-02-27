@@ -12,7 +12,6 @@ import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.ui.writing.DeleteBlockView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
-import com.eight.collection.ui.writing.first.WritefirstActivity
 
 class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(), DeleteBlockView {
     private var clickListener: TopClickListener? = null

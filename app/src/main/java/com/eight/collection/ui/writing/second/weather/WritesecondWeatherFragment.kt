@@ -8,18 +8,18 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritesecondWeatherBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.second.*
 import com.eight.collection.ui.writing.second.place.WritesecondPlace
 import com.eight.collection.ui.writing.second.place.WritesecondPlaceCustomDialog
 import com.eight.collection.ui.writing.second.place.WritesecondPlaceRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
-    WritesecondWeatherRVAdapter.WeatherClickListener {
+    WritesecondWeatherRVAdapter.WeatherClickListener, WritesecondActivity.GetWeatherDataListener  {
     lateinit var binding : FragmentWritesecondWeatherBinding
     private var weatherDatas = ArrayList<WritesecondWeather>()
     lateinit var customDialog: WritesecondWeatherCustomDialog
     private var idcount : Int = 9
-    private var addtext : String? = null
     lateinit var weatherRVAdapter : WritesecondWeatherRVAdapter
 
     override fun onCreateView(
@@ -31,15 +31,15 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
 
         // 데이터 리스트 생성
         weatherDatas.apply {
-            add(WritesecondWeather("+", 0))
-            add(WritesecondWeather("매우추움", 1))
-            add(WritesecondWeather("매우더움", 2))
-            add(WritesecondWeather("추움", 3))
-            add(WritesecondWeather("더움", 4))
-            add(WritesecondWeather("적당함", 5))
-            add(WritesecondWeather("눈", 6))
-            add(WritesecondWeather("비", 7))
-            add(WritesecondWeather("우박", 8))
+            add(WritesecondWeather("+", 0,0))
+            add(WritesecondWeather("매우추움", 1,1))
+            add(WritesecondWeather("매우더움", 2,2))
+            add(WritesecondWeather("추움", 3,3))
+            add(WritesecondWeather("더움", 4,4))
+            add(WritesecondWeather("적당함", 5,5))
+            add(WritesecondWeather("눈", 6,6))
+            add(WritesecondWeather("비", 7,7))
+            add(WritesecondWeather("우박", 8,8))
         }
 
         weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
@@ -69,6 +69,18 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     override fun plusButtonClick() {
         customDialog = WritesecondWeatherCustomDialog(requireContext(), this)
         customDialog.show()
+    }
+
+    override fun getFixedData(): ArrayList<FixedWeather> {
+        var fixedWeather = arrayListOf<FixedWeather>()
+        fixedWeather = weatherRVAdapter.getRVAFixedData()
+        return fixedWeather
+    }
+
+    override fun getAddedData(): ArrayList<AddedWeather> {
+        var addedWeather = arrayListOf<AddedWeather>()
+        addedWeather = weatherRVAdapter.getRVAAddedData()
+        return addedWeather
     }
 
 }

@@ -11,6 +11,10 @@ import com.eight.collection.data.entities.Write.Block
 import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritesecondPlaceBinding
 import com.eight.collection.ui.writing.DeleteBlockView
+import com.eight.collection.ui.writing.first.AddedClothes
+import com.eight.collection.ui.writing.first.FixedClothes
+import com.eight.collection.ui.writing.second.AddedPlace
+import com.eight.collection.ui.writing.second.FixedPlace
 
 class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlace>) : RecyclerView.Adapter<WritesecondPlaceRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: PlaceClickListener? = null
@@ -141,5 +145,33 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
                 Log.d("message","SERVER ERROR")
             }
         }
+    }
+
+    fun getRVAFixedData() : ArrayList<FixedPlace> {
+        val fixedPlace = arrayListOf<FixedPlace>()
+        for(i in placeList){
+            if(i.id < 9){
+                if(i.focus == true){
+                    fixedPlace.apply{
+                        add(FixedPlace(i.index))
+                    }
+                }
+            }
+        }
+        return fixedPlace
+    }
+
+    fun getRVAAddedData() : ArrayList<AddedPlace> {
+        val addedPlace = arrayListOf<AddedPlace>()
+        for(i in placeList) {
+            if (i.id > 8) {
+                if (i.focus == true) {
+                    addedPlace.apply {
+                        add(AddedPlace(i.name))
+                    }
+                }
+            }
+        }
+        return addedPlace
     }
 }

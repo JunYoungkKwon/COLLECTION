@@ -16,9 +16,7 @@ import com.eight.collection.databinding.ActivityWritefirstBinding
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
 import com.eight.collection.ui.writing.first.etc.WritefirstEtcFragment
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
-import com.eight.collection.ui.writing.first.top.WritefirstTop
 import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
-import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import java.time.LocalDateTime
@@ -243,7 +241,9 @@ class WritefirstActivity() : AppCompatActivity(){
             intent.putExtra("date", formattedpost)
             intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
             intent.putExtra("photoIs", photoIs)
-            intent.putExtra("photo", imageList)
+            intent.putExtra("image", imageList)
+
+
 
             fixedClothes.addAll(gettopdataListener!!.getFixedData())
             fixedClothes.addAll(getbottomdataListener!!.getFixedData())

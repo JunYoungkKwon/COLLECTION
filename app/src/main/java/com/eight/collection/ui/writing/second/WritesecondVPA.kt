@@ -6,15 +6,12 @@ import com.eight.collection.ui.writing.second.place.WritesecondPlaceFragment
 import com.eight.collection.ui.writing.second.weather.WritesecondWeatherFragment
 import com.eight.collection.ui.writing.second.who.WritesecondWhoFragment
 
-class WritesecondVPA(fragment: WritesecondActivity) : FragmentStateAdapter(fragment){
-    override fun getItemCount(): Int = 3
+class WritesecondVPA(fragment: WritesecondActivity, var fragmentList : ArrayList<Fragment>) : FragmentStateAdapter(fragment){
+    override fun getItemCount(): Int = fragmentList.size
 
     override fun createFragment(position: Int): Fragment {
-        return when(position){
-            0 -> WritesecondPlaceFragment()
-            1 -> WritesecondWeatherFragment()
-            else -> WritesecondWhoFragment()
-        }
+        return fragmentList[position]
     }
+
 
 }

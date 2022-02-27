@@ -9,6 +9,10 @@ import com.eight.collection.data.entities.Write.Block
 import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritesecondWhoBinding
 import com.eight.collection.ui.writing.DeleteBlockView
+import com.eight.collection.ui.writing.second.AddedPlace
+import com.eight.collection.ui.writing.second.AddedWho
+import com.eight.collection.ui.writing.second.FixedPlace
+import com.eight.collection.ui.writing.second.FixedWho
 
 class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : RecyclerView.Adapter<WritesecondWhoRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: WhoClickListener? = null
@@ -139,5 +143,33 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
                 Log.d("message","SERVER ERROR")
             }
         }
+    }
+
+    fun getRVAFixedData() : ArrayList<FixedWho> {
+        val fixedWho = arrayListOf<FixedWho>()
+        for(i in whoList){
+            if(i.id < 7){
+                if(i.focus == true){
+                    fixedWho.apply{
+                        add(FixedWho(i.index))
+                    }
+                }
+            }
+        }
+        return fixedWho
+    }
+
+    fun getRVAAddedData() : ArrayList<AddedWho> {
+        val addedWho = arrayListOf<AddedWho>()
+        for(i in whoList) {
+            if (i.id > 8) {
+                if (i.focus == true) {
+                    addedWho.apply {
+                        add(AddedWho(i.name))
+                    }
+                }
+            }
+        }
+        return addedWho
     }
 }

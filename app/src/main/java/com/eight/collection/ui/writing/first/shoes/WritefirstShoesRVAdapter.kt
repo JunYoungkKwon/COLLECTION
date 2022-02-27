@@ -8,14 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.data.entities.Write.Block
 import com.eight.collection.data.remote.deleteblock.DeleteBlockService
-import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstShoesBinding
-import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.ui.writing.DeleteBlockView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
-import com.eight.collection.ui.writing.first.WritefirstActivity
-import com.eight.collection.ui.writing.first.bottom.WritefirstBottomRVAdapter
 
 class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>) : RecyclerView.Adapter<WritefirstShoesRVAdapter.ViewHolder>(),
     DeleteBlockView {

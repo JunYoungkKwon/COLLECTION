@@ -5,17 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.data.entities.Write.Block
 import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritefirstBottomBinding
-import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.ui.writing.DeleteBlockView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
-import com.eight.collection.ui.writing.first.WritefirstActivity
-import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 
 class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBottom>) : RecyclerView.Adapter<WritefirstBottomRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: BottomClickListener? = null
