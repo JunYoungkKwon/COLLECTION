@@ -21,6 +21,8 @@ import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
 import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.remote.calendar.CalendarService
+import com.eight.collection.data.remote.finish.FinishService
+import com.eight.collection.data.remote.setting.SettingService
 import com.eight.collection.data.remote.weekly.WeeklyService
 import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
@@ -48,12 +50,15 @@ import java.time.temporal.TemporalField
 import java.time.temporal.WeekFields
 import java.util.*
 import javax.crypto.ExemptionMechanism.getInstance
+import kotlin.collections.ArrayList
 
 
-class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate),MonthView, WeeklyView {
+class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate),MonthView, WeeklyView, DeleteView {
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
 
+    private var dateSave: MutableList<Diary>? = null
+    private var moveToDate: LocalDate? = null
     private var seletDate: LocalDate? = null
     private var firstdate: LocalDate? = null
     private var lastdate: LocalDate? = null
@@ -71,7 +76,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                 lastdate = it.weekDays.last().last().date
                 getWeek()
 
-
             }
         }
     }
@@ -84,6 +88,12 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
         binding.weekBtnSettingIv.bringToFront()
 
+    }
+
+    private fun deleteOOTD(date : String) {
+        if (date != null) {
+            SettingService.deleteOOTD(this, date)
+        }
     }
 
     private fun startSetting() {
@@ -119,6 +129,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     }
 
     override fun onMonthSuccess(month: ArrayList<Calendar>) {
+        Log.d("Month/Data/", "SUCCESS")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -223,8 +234,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                         override fun onButtonClick(getSeletDate: String?) {
                             seletDate = LocalDate.parse(getSeletDate, DateTimeFormatter.ISO_DATE)
                             binding.calendarView.scrollToDate(seletDate!!)
-                            Log.d("select9",getSeletDate.toString())
-
                         }
                     })
                     val fragmanager = this@WeekFragment.fragmentManager
@@ -274,16 +283,21 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         )
         val currentDay = LocalDate.now()
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
-        if (seletDate == null){
+
+        if (moveToDate == null && seletDate == null){
             binding.calendarView.scrollToDate(currentDay)
         }else{
-            Log.d("test","test")
+            if (moveToDate != null){
+                binding.calendarView.scrollToDate(moveToDate!!)
+            }
+            if (seletDate != null){
+                binding.calendarView.scrollToDate(seletDate!!)
+            }
         }
-
-
     }
 
     override fun onMonthFailure(code: Int, message: String) {
+        Log.d("Month/Data/", "FAIL")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -305,9 +319,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private fun initWeeklyRV(){
         diaryRVAdapter = DiaryRVAdapter(requireContext())
-
-
-
         diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
             override fun onRemoveDiary(view: View, position: Int) {
 
@@ -318,45 +329,42 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                     .setDivider(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.pinkish_grey)))
                     .setDividerHeight(1)
                     .setShowBackground(false)
-                    .setMenuShadow(15f)
+                    .setMenuShadow(20f)
                     .setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_taupe))
                     .setTextGravity(Gravity.CENTER)
-                    .setTextTypeface(Typeface.create("@font/noto_sans_kr", Typeface.NORMAL))
+                    .setTextTypeface(Typeface.create("@font/suit_regular", Typeface.NORMAL))
                     .setMenuColor(Color.WHITE)
                     .build()
 
                 val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
                     when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
                         "삭제하기" -> {
-                            diaryRVAdapter.notifyDataSetChanged()
+                            Log.d("Month","CLICK")
                             diaryRVAdapter.removeItem(position)
-
+                            val date = dateSave?.get(position)?.date
+                            val localdate: LocalDate? = date?.toInstant()
+                                ?.atZone(ZoneId.systemDefault())
+                                ?.toLocalDate()
+                            moveToDate = localdate
+                            val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                            val deleteDate: String? = localdate?.format(formatters)
+                            if (deleteDate != null) {
+                                deleteOOTD(deleteDate)
+                            }
+                            dateSave?.removeAt(position)
+                            getMonth()
                         }
                     }
                     powerMenu.selectedPosition = position
                     powerMenu.dismiss()
+
                 }
                 powerMenu.onMenuItemClickListener = onMenuItemClickListener
                 powerMenu.showAsDropDown(view, -30, -30)
 
-//                val popupMenu = PopupMenu(activity, view)
-//                popupMenu.inflate(R.menu.menu_week_option)
-//                popupMenu.setOnMenuItemClickListener { item ->
-//                    when (item?.itemId) {
-//                        R.id.menu_item_edit -> {
-//                            startActivity(Intent(activity, WritefirstActivity::class.java))
-//                        }
-//                        R.id.menu_item_delete -> {
-//                            diaryRVAdapter.removeItem(position)
-//                        }
-//                    }
-//                    false
-//                }
-//                popupMenu.show()
             }
         })
         binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
-
     }
 
     override fun onWeeklyLoading() {
@@ -364,6 +372,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     }
 
     override fun onWeeklySuccess(weekly: MutableList<Diary>) {
+        Log.d("Week/Data/", "SUCCESS")
         var indexarraylist = ArrayList<Int>()
         for(i in 0 .. weekly.size-1 step (1)){
             val index = i
@@ -385,6 +394,8 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             val first = filterindex.get(0)
             val last = filterindex.get(filterindex.size -1) +1
             val sub_mulist = weekly.subList(first, last)
+            dateSave = sub_mulist
+
             diaryRVAdapter.addWeekly(sub_mulist)
             binding.weekDefault2Text.visibility= View.GONE
             binding.weekDefault1Text.visibility= View.GONE
@@ -401,12 +412,55 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     }
 
     override fun onWeeklyFailure(code: Int, message: String) {
+        Log.d("Week/Data/", "FAIL")
         when (code) {
             4000,4005, 4020 -> {
                 Log.d("Week/Data/ERROR", "error")
             }
             else -> {
                 Log.d("Week/Server/ERROR", "error")
+            }
+        }
+    }
+
+    override fun onDeleteLoading() {
+        binding.loginLoadingInIv.visibility = View.VISIBLE
+        binding.loginLoadingCircleIv.visibility = View.VISIBLE
+        binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate)
+        binding.loginLoadingCircleIv.startAnimation(animation)
+        binding.loginDimBackground.visibility = View.VISIBLE
+    }
+
+    override fun onDeleteSuccess() {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+    }
+
+    override fun onDeleteFailure(code: Int, message: String) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+
+        when (code) {
+            2000, 2001, 2002 -> {
+                Log.d("Week/Jwt/ERROR", "error")
+            }
+            3022, 3023, 3025, 3026, 3044-> {
+                Log.d("Week/Data/ERROR", "error")
+            }
+
+            4001, 4008-> {
+                Log.d("Week/Date/ERROR", "error")
+            }
+
+            else -> {
+                Log.d("Week/SEVER/ERROR", "error")
             }
         }
     }

@@ -66,8 +66,10 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         etcRVAdapter = EtcRVAdapter()
         binding.finishEtcRecyclerView.adapter = etcRVAdapter
     }
+
     private fun clickSetting(){
         binding.finishEditIv.setOnClickListener {
+
             view ->
             val powerMenu = PowerMenu.Builder(this)
                 .addItem(PowerMenuItem("수정하기", false))
@@ -76,10 +78,10 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
                 .setDivider(ColorDrawable(ContextCompat.getColor(this, R.color.pinkish_grey)))
                 .setDividerHeight(1)
                 .setShowBackground(false)
-                .setMenuShadow(15f)
+                .setMenuShadow(20f)
                 .setTextColor(ContextCompat.getColor(this, R.color.dark_taupe))
                 .setTextGravity(Gravity.CENTER)
-                .setTextTypeface(Typeface.create("@font/noto_sans_kr", Typeface.NORMAL))
+                .setTextTypeface(Typeface.create("suit_regular", Typeface.NORMAL))
                 .setMenuColor(Color.WHITE)
                 .build()
 
@@ -90,7 +92,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
                 powerMenu.dismiss()
             }
             powerMenu.onMenuItemClickListener = onMenuItemClickListener
-            powerMenu.showAsDropDown(view, -300, -30)
+            powerMenu.showAsDropDown(view, -327, -30)
         }
     }
 
@@ -99,6 +101,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         val date = dateIntent.getStringExtra("date")
         if (date != null) {
             SettingService.deleteOOTD(this, date)
+            finish()
         }
     }
 

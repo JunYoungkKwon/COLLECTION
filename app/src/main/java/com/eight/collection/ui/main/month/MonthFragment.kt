@@ -3,11 +3,14 @@ package com.eight.collection.ui.main.month
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.nfc.Tag
 import android.os.Build
+import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.TextView
@@ -34,6 +37,8 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.ZoneId
+import java.time.temporal.TemporalField
+import java.time.temporal.WeekFields
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -42,16 +47,19 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
     private var selectedDate: LocalDate? = null
 
+    override fun onResume() {
+        super.onResume()
+        getMonth()
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         startMyLook()
         startWrite()
         startSetting()
-        getMonth()
 
         binding.monthBtnSettingIv.bringToFront()
         binding.monthBtnWriteIv.bringToFront()
-
     }
 
     private fun startSetting() {
@@ -162,24 +170,6 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                                 else -> container.rankPoint.setImageResource(0)
                             }
                         }
-
-//                        if (day.date == selectedDate) {
-//                            if (selectedDate == localdate){
-//                                val intent = Intent(context,FinishActivity::class.java)
-//                                intent.apply {
-//                                    this.putExtra("date",selectedDate) // 데이터 넣기
-//                                }
-//                                Log.d("selectedDate1",localdate.toString())
-//                                Log.d("selectedDate2",date.toString())
-//                                startActivity(intent)
-//                                startActivity(Intent(activity, FinishActivity::class.java))
-//                            }
-//                            val test1 = container.calendarDay
-//                            test1.text = "선택"
-//                            Log.d("selectedDate",selectedDate.toString())
-//                        } else {
-//                            Log.d("selectedDate/error","error")
-//                        }
                     }
                     //오늘 날짜인 것 표시
                     if (currentDay == day.date){
@@ -239,7 +229,11 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             DayOfWeek.SATURDAY
         )
         binding.calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
-        binding.calendarView.scrollToMonth(currentMonth)
+        if(selectedDate == null){
+            binding.calendarView.scrollToMonth(currentMonth)
+        }else{
+            binding.calendarView.scrollToDate(selectedDate!!)
+        }
 
     }
 
