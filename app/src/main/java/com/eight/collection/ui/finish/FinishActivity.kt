@@ -15,8 +15,10 @@ import com.eight.collection.data.entities.Cloth
 import com.eight.collection.data.entities.Photo
 import com.eight.collection.data.remote.finish.Finish
 import com.eight.collection.data.remote.finish.FinishService
+import com.eight.collection.data.remote.setting.SettingService
 import com.eight.collection.databinding.ActivityFinishBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.skydoves.powermenu.OnMenuItemClickListener
@@ -29,7 +31,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding::inflate), FinishView {
+class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding::inflate), FinishView, DeleteView {
 
     private  lateinit var placeRVAdapter: PlaceRVAdapter
     private  lateinit var weatherRVAdapter: WeatherRVAdapter
@@ -83,7 +85,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
 
             val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
                 when(item.title){ "수정하기" -> startActivity(Intent(this, WritefirstActivity::class.java))
-                    "삭제하기" -> {Log.d("Finsh/Delete","Test") }
+                    "삭제하기" -> {deleteOOTD()}
                 }
                 powerMenu.dismiss()
             }
@@ -92,10 +94,18 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         }
     }
 
+    private fun deleteOOTD() {
+        val dateIntent = intent
+        val date = dateIntent.getStringExtra("date")
+        if (date != null) {
+            SettingService.deleteOOTD(this, date)
+        }
+    }
+
 
     private fun getFinish() {
-        val MonthIntent = intent
-        val date = MonthIntent.getStringExtra("date")
+        val dateIntent = intent
+        val date = dateIntent.getStringExtra("date")
         if (date != null) {
             FinishService.getFinish(this, date)
         }
@@ -182,6 +192,48 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
             }
             3026, 3044, 3021-> {
                 Log.d("Finish/Data/ERROR", "error")
+            }
+
+            else -> {
+                Log.d("Finish/SEVER/ERROR", "error")
+            }
+        }
+    }
+
+    override fun onDeleteLoading() {
+        binding.loginLoadingInIv.visibility = View.VISIBLE
+        binding.loginLoadingCircleIv.visibility = View.VISIBLE
+        binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+        val animation = AnimationUtils.loadAnimation(this, R.anim.rotate)
+        binding.loginLoadingCircleIv.startAnimation(animation)
+        binding.loginDimBackground.visibility = View.VISIBLE
+    }
+
+    override fun onDeleteSuccess() {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+    }
+
+    override fun onDeleteFailure(code: Int, message: String) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+
+        when (code) {
+            2000, 2001, 2002 -> {
+                Log.d("Finish/Jwt/ERROR", "error")
+            }
+            3022, 3023, 3025, 3026, 3044-> {
+                Log.d("Finish/Data/ERROR", "error")
+            }
+
+            4001, 4008-> {
+                Log.d("Finish/Date/ERROR", "error")
             }
 
             else -> {
