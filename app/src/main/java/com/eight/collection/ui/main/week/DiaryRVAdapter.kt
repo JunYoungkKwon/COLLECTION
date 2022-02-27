@@ -77,37 +77,6 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
     override fun onBindViewHolder(holder: DiaryRVAdapter.ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(diarylist[position])
-//        holder.binding.itemDiaryEditIv.setOnClickListener {
-
-//            val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position, item ->
-//                when(item?.title){
-//                    "수정하기" -> {
-//                        removeItem(position)
-//                        Log.d("Week/Data/ERROR1", "loading")}
-//                    "삭제하기" -> {
-//                        removeItem(position)
-//                        Log.d("Week/Data/ERROR2", "loading")
-//                    }
-//                }
-//                powerMenu.selectedPosition = position // change selected item
-//                powerMenu.dismiss()
-//                Log.d("Week/Data/ERROR3", "loading")
-//            }
-//            powerMenu.setOnMenuItemClickListener(onMenuItemClickListener)
-//            Log.d("Week/Data/ERROR4", "loading")
-//            //powerMenu.onMenuItemClickListener = onMenuItemClickListener
-//            powerMenu.showAsDropDown(View(context))
-//            Log.d("Week/Data/ERROR5", "loading")
-//                view ->
-//            if (position != RecyclerView.NO_POSITION) {
-//                mItemClickListener.onRemoveDiary(view, position)
-//                //mItemClickListener.onRemove(position)
-//            }
-//            else{
-//                Log.d("Erredfs","error")
-//            }
-//            false
-//        }
         holder.binding.itemDiaryEditIv.setOnClickListener {
                 view ->
             if (position != RecyclerView.NO_POSITION) {
