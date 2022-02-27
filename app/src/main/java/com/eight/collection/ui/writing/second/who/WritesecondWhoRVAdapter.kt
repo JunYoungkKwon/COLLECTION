@@ -145,13 +145,13 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
         }
     }
 
-    fun getRVAFixedData() : ArrayList<FixedWho> {
-        val fixedWho = arrayListOf<FixedWho>()
+    fun getRVAFixedData() : ArrayList<Int> {
+        val fixedWho = arrayListOf<Int>()
         for(i in whoList){
             if(i.id < 7){
                 if(i.focus == true){
                     fixedWho.apply{
-                        add(FixedWho(i.index))
+                        add(i.index)
                     }
                 }
             }
@@ -159,13 +159,13 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
         return fixedWho
     }
 
-    fun getRVAAddedData() : ArrayList<AddedWho> {
-        val addedWho = arrayListOf<AddedWho>()
+    fun getRVAAddedData() : ArrayList<String> {
+        val addedWho = arrayListOf<String>()
         for(i in whoList) {
             if (i.id > 8) {
                 if (i.focus == true) {
                     addedWho.apply {
-                        add(AddedWho(i.name))
+                        add(i.name)
                     }
                 }
             }

@@ -123,6 +123,10 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
         return selectId
     }
 
+    fun setSelectId(setId : Int){
+        selectId = setId
+    }
+
     private fun getBlock(content : String) : Block {
         val clothes : Int = 1
         val pww : Int = -1

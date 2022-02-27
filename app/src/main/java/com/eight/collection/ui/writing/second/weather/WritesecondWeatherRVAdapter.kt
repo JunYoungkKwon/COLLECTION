@@ -145,13 +145,13 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
         }
     }
 
-    fun getRVAFixedData() : ArrayList<FixedWeather> {
-        val fixedWeather = arrayListOf<FixedWeather>()
+    fun getRVAFixedData() : ArrayList<Int> {
+        val fixedWeather = arrayListOf<Int>()
         for(i in weatherList){
             if(i.id < 9){
                 if(i.focus == true){
                     fixedWeather.apply{
-                        add(FixedWeather(i.index))
+                        add(i.index)
                     }
                 }
             }
@@ -159,13 +159,13 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
         return fixedWeather
     }
 
-    fun getRVAAddedData() : ArrayList<AddedWeather> {
-        val addedWeather = arrayListOf<AddedWeather>()
+    fun getRVAAddedData() : ArrayList<String> {
+        val addedWeather = arrayListOf<String>()
         for(i in weatherList) {
             if (i.id > 8) {
                 if (i.focus == true) {
                     addedWeather.apply {
-                        add(AddedWeather(i.name))
+                        add(i.name)
                     }
                 }
             }

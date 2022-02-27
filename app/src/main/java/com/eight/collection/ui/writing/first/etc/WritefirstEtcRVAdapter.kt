@@ -121,6 +121,10 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
         return selectId
     }
 
+    fun setSelectId(setId : Int){
+        selectId = setId
+    }
+
     private fun getBlock(content : String) : Block {
         val clothes : Int = 3
         val pww : Int = -1

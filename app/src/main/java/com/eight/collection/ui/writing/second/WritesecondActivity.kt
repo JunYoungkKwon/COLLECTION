@@ -3,12 +3,16 @@ package com.eight.collection.ui.writing.second
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.eight.collection.R
 import com.eight.collection.data.entities.Write.Write
 import com.eight.collection.data.remote.recieves3url.ReceiveS3UrlService
+import com.eight.collection.data.remote.write.WriteService
 import com.eight.collection.databinding.ActivityWritesecondBinding
 import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.writing.ReceiveS3URLView
@@ -16,11 +20,6 @@ import com.eight.collection.ui.writing.WriteView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.Image
-import com.eight.collection.ui.writing.first.WritefirstActivity
-import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
-import com.eight.collection.ui.writing.first.etc.WritefirstEtcFragment
-import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
-import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
 import com.eight.collection.ui.writing.second.place.WritesecondPlaceFragment
 import com.eight.collection.ui.writing.second.weather.WritesecondWeatherFragment
 import com.eight.collection.ui.writing.second.who.WritesecondWhoFragment
@@ -35,6 +34,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
     private var getweatherdataListener : WritesecondActivity.GetWeatherDataListener? = null
     private var getwhodataListener : WritesecondActivity.GetWhoDataListener? = null
     private lateinit var ratingBar : RatingBar
+    var lookpoint : Float = 3F
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,12 +61,10 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
 
         ratingBar = findViewById(R.id.writesecond_lookpoint_ratingbar)
 
-        var lookpoint : Float = 3F
 
         ratingBar.setOnRatingChangeListener(object: RatingBar.OnRatingChangeListener{
             override fun onRatingChange(RatingCount: Float) {
                 lookpoint = RatingCount
-                Log.d("log1","$RatingCount")
             }
         })
 
@@ -75,48 +73,8 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
             //URL 받기
             receiveS3Url()
 
-            //Date
-            val date = intent.getStringExtra("date")
-
-            //lookname
-            val lookname = intent.getStringExtra("lookname")
-
-            //photoIs
-            val photoIs = intent.getIntExtra("photoIs", -1)
-
-            //image
-            val imageList = intent.getParcelableArrayListExtra<Image>("image")
-
-            //Clothes
-            val fixedClothes = intent.getParcelableArrayListExtra<FixedClothes>("fixed")
-            val addedClothes = intent.getParcelableArrayListExtra<AddedClothes>("added")
-
-
-            //PWW Part
-            val fixedPlace : ArrayList<FixedPlace> = ArrayList()
-            val addedPlace : ArrayList<AddedPlace> = ArrayList()
-            val fixedWeather : ArrayList<FixedWeather> = ArrayList()
-            val addedWeather : ArrayList<AddedWeather> = ArrayList()
-            val fixedWho : ArrayList<FixedWho> = ArrayList()
-            val addedWho : ArrayList<AddedWho> = ArrayList()
-            fixedPlace.addAll(getplacedataListener!!.getFixedData())
-            addedPlace.addAll(getplacedataListener!!.getAddedData())
-            fixedWeather.addAll(getweatherdataListener!!.getFixedData())
-            addedWeather.addAll(getweatherdataListener!!.getAddedData())
-            fixedWho.addAll(getwhodataListener!!.getFixedData())
-            addedWho.addAll(getwhodataListener!!.getAddedData())
-
-
-            //lookpoint
-            lookpoint
-
-            //comment
-            var comment : String = binding.writesecondCommentEt.text.toString()
-
-
             //Write API
             write()
-
 
 
             startActivity(Intent(this, FinishActivity::class.java))
@@ -142,12 +100,48 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
 
 
     // Write API
-    private fun getWrite(){
+    private fun getWrite() : Write{
+        //Date
+        val date = intent.getStringExtra("date")
 
+        //lookname
+        val lookname = intent.getStringExtra("lookname")
+
+        //photoIs
+        val photoIs = intent.getIntExtra("photoIs", -1)
+
+        //image
+        val imageList = intent.getParcelableArrayListExtra<Image>("image")
+
+        //Clothes
+        val fixedClothes = intent.getParcelableArrayListExtra<FixedClothes>("fixed")
+        val addedClothes = intent.getParcelableArrayListExtra<AddedClothes>("added")
+
+        //PWW Part
+        val fixedPlace : ArrayList<Int> = ArrayList()
+        val addedPlace : ArrayList<String> = ArrayList()
+        val fixedWeather : ArrayList<Int> = ArrayList()
+        val addedWeather : ArrayList<String> = ArrayList()
+        val fixedWho : ArrayList<Int> = ArrayList()
+        val addedWho : ArrayList<String> = ArrayList()
+        fixedPlace.addAll(getplacedataListener!!.getFixedData())
+        addedPlace.addAll(getplacedataListener!!.getAddedData())
+        fixedWeather.addAll(getweatherdataListener!!.getFixedData())
+        addedWeather.addAll(getweatherdataListener!!.getAddedData())
+        fixedWho.addAll(getwhodataListener!!.getFixedData())
+        addedWho.addAll(getwhodataListener!!.getAddedData())
+
+        Log.d("image","${imageList}")
+        Log.d("fixplace","${fixedPlace}")
+
+        //comment
+        var comment : String = binding.writesecondCommentEt.text.toString()
+
+        return Write(1,date,lookname,photoIs,imageList,fixedClothes,addedClothes,fixedPlace,addedPlace,fixedWeather,addedWeather,fixedWho,addedWho,lookpoint,comment)
     }
 
     private fun write(){
-
+        WriteService.write(this, getWrite())
     }
 
     override fun onWriteLoading() {
@@ -159,22 +153,42 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
     }
 
     override fun onWriteFailure(code: Int, message: String) {
+        when(code) {
+            4009,4010,4011,4012,4013,4015 -> {
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                text.text = message
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
 
+            else -> {
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                text.text = message
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+        }
     }
 
     interface GetPlaceDataListener {
-        fun getFixedData() : ArrayList<FixedPlace>
-        fun getAddedData() : ArrayList<AddedPlace>
+        fun getFixedData() : ArrayList<Int>
+        fun getAddedData() : ArrayList<String>
     }
 
     interface GetWeatherDataListener {
-        fun getFixedData() : ArrayList<FixedWeather>
-        fun getAddedData() : ArrayList<AddedWeather>
+        fun getFixedData() : ArrayList<Int>
+        fun getAddedData() : ArrayList<String>
     }
 
     interface GetWhoDataListener {
-        fun getFixedData() : ArrayList<FixedWho>
-        fun getAddedData() : ArrayList<AddedWho>
+        fun getFixedData() : ArrayList<Int>
+        fun getAddedData() : ArrayList<String>
     }
 
     fun setGetPlaceDataClickListener(getPlaceDataListener : WritesecondPlaceFragment){

@@ -71,14 +71,14 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
         customDialog.show()
     }
 
-    override fun getFixedData(): ArrayList<FixedWeather> {
-        var fixedWeather = arrayListOf<FixedWeather>()
+    override fun getFixedData(): ArrayList<Int> {
+        var fixedWeather = arrayListOf<Int>()
         fixedWeather = weatherRVAdapter.getRVAFixedData()
         return fixedWeather
     }
 
-    override fun getAddedData(): ArrayList<AddedWeather> {
-        var addedWeather = arrayListOf<AddedWeather>()
+    override fun getAddedData(): ArrayList<String> {
+        var addedWeather = arrayListOf<String>()
         addedWeather = weatherRVAdapter.getRVAAddedData()
         return addedWeather
     }

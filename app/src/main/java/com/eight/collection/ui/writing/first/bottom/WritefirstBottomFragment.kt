@@ -82,79 +82,83 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
             return
         }
         bottomList[bottomRVAdapter.getSelectId()].color = color
-        when (color) {
-            //red
-            "#d60f0f" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+        if(bottomList[bottomRVAdapter.getSelectId()].focus == true) {
+            when (color) {
+                //red
+                "#d60f0f" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //pink
+                "#f59a9a" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //yellow
+                "#ffb203" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightyellow
+                "#fde6b1" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //green
+                "#71a238" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightgreen
+                "#b7de89" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //orange
+                "#ea7831" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //navy
+                "#273e88" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //blue
+                "#4168e8" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightblue
+                "#a5b9fa" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //purple
+                "#894ac7" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightpurple
+                "#dcacff" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //white
+                "#ffffff" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //grey
+                "#888888" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //black
+                "#191919" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightpeach
+                "#e8dcd5" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //pinkishgrey
+                "#c3b5ac" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //brown
+                "#74461f" -> {
+                    bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
             }
-            //pink
-            "#f59a9a" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //yellow
-            "#ffb203" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightyellow
-            "#fde6b1" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //green
-            "#71a238" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightgreen
-            "#b7de89" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //orange
-            "#ea7831" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //navy
-            "#273e88" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //blue
-            "#4168e8" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightblue
-            "#a5b9fa" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //purple
-            "#894ac7" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightpurple
-            "#dcacff" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //white
-            "#ffffff" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //grey
-            "#888888" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //black
-            "#191919" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightpeach
-            "#e8dcd5" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //pinkishgrey
-            "#c3b5ac" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //brown
-            "#74461f" -> {
-                bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
+            bottomList[bottomRVAdapter.getSelectId()].focus = false
+                    bottomRVAdapter.setSelectId(-1)
         }
         bottomRVAdapter.notifyDataSetChanged()
     }

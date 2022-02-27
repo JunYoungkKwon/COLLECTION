@@ -74,14 +74,14 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
         customDialog.show()
     }
 
-    override fun getFixedData(): ArrayList<FixedPlace> {
-        var fixedPlace = arrayListOf<FixedPlace>()
+    override fun getFixedData(): ArrayList<Int> {
+        var fixedPlace = arrayListOf<Int>()
         fixedPlace = placeRVAdapter.getRVAFixedData()
         return fixedPlace
     }
 
-    override fun getAddedData(): ArrayList<AddedPlace> {
-        var addedPlace = arrayListOf<AddedPlace>()
+    override fun getAddedData(): ArrayList<String> {
+        var addedPlace = arrayListOf<String>()
         addedPlace = placeRVAdapter.getRVAAddedData()
         return addedPlace
     }

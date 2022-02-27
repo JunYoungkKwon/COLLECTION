@@ -68,14 +68,14 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
         customDialog.show()
     }
 
-    override fun getFixedData(): ArrayList<FixedWho> {
-        var fixedWho = arrayListOf<FixedWho>()
+    override fun getFixedData(): ArrayList<Int> {
+        var fixedWho = arrayListOf<Int>()
         fixedWho = whoRVAdapter.getRVAFixedData()
         return fixedWho
     }
 
-    override fun getAddedData(): ArrayList<AddedWho> {
-        var addedWho = arrayListOf<AddedWho>()
+    override fun getAddedData(): ArrayList<String> {
+        var addedWho = arrayListOf<String>()
         addedWho = whoRVAdapter.getRVAAddedData()
         return addedWho
     }

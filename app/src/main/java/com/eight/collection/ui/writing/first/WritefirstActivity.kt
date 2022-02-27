@@ -301,7 +301,7 @@ class WritefirstActivity() : AppCompatActivity(){
                 imageList.apply {
                     add(Image(a, b))
                 }
-                b=b+1
+                b=-1
             }
         }
     }

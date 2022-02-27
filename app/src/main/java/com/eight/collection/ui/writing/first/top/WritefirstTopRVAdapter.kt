@@ -130,6 +130,10 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
         return selectId
     }
 
+    fun setSelectId(setId : Int){
+        selectId = setId
+    }
+
     private fun getBlock(content : String) : Block {
         val clothes : Int = 0
         val pww : Int = -1

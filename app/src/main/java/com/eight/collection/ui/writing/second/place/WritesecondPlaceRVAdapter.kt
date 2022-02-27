@@ -147,13 +147,13 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
         }
     }
 
-    fun getRVAFixedData() : ArrayList<FixedPlace> {
-        val fixedPlace = arrayListOf<FixedPlace>()
+    fun getRVAFixedData() : ArrayList<Int> {
+        val fixedPlace = arrayListOf<Int>()
         for(i in placeList){
             if(i.id < 9){
                 if(i.focus == true){
                     fixedPlace.apply{
-                        add(FixedPlace(i.index))
+                        add(i.index)
                     }
                 }
             }
@@ -161,13 +161,13 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
         return fixedPlace
     }
 
-    fun getRVAAddedData() : ArrayList<AddedPlace> {
-        val addedPlace = arrayListOf<AddedPlace>()
+    fun getRVAAddedData() : ArrayList<String> {
+        val addedPlace = arrayListOf<String>()
         for(i in placeList) {
             if (i.id > 8) {
                 if (i.focus == true) {
                     addedPlace.apply {
-                        add(AddedPlace(i.name))
+                        add(i.name)
                     }
                 }
             }

@@ -129,6 +129,10 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
         return Block(clothes,pww,content)
     }
 
+    fun setSelectId(setId : Int){
+        selectId = setId
+    }
+
     private fun deleteBlock(content : String) {
         DeleteBlockService.deleteBlock(this, getBlock(content))
     }
