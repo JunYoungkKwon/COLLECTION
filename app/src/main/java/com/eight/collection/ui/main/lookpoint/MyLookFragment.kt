@@ -14,7 +14,6 @@ import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.main.MainActivity
 import com.eight.collection.ui.main.week.Diary
 import com.eight.collection.ui.main.week.DiaryRVAdapter
-import com.eight.collection.ui.main.week.Etc
 import com.google.gson.Gson
 import java.util.ArrayList
 
