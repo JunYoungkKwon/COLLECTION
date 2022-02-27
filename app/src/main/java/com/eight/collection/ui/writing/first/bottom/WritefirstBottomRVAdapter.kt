@@ -12,6 +12,8 @@ import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.ui.writing.DeleteBlockView
+import com.eight.collection.ui.writing.first.AddedClothes
+import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 
@@ -152,5 +154,33 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
                 Log.d("message","SERVER ERROR")
             }
         }
+    }
+
+    fun getRVAFixedData() : ArrayList<FixedClothes> {
+        val fixedClothes = arrayListOf<FixedClothes>()
+        for(i in bottomList){
+            if(i.id < 13){
+                if(i.color != "#00ff0000"){
+                    fixedClothes.apply{
+                        add(FixedClothes(i.index,i.color))
+                    }
+                }
+            }
+        }
+        return fixedClothes
+    }
+
+    fun getRVAAddedData() : ArrayList<AddedClothes> {
+        val addedClothes = arrayListOf<AddedClothes>()
+        for(i in bottomList) {
+            if (i.id > 12) {
+                if (i.color != "#00ff0000") {
+                    addedClothes.apply {
+                        add(AddedClothes("Top", i.name, i.color))
+                    }
+                }
+            }
+        }
+        return addedClothes
     }
 }

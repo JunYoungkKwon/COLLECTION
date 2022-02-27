@@ -9,12 +9,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritefirstBottomBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.first.AddedClothes
+import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
-    WritefirstBottomRVAdapter.BottomClickListener, WritefirstActivity.BottomColorClickListner{
+    WritefirstBottomRVAdapter.BottomClickListener, WritefirstActivity.BottomColorClickListener,
+    WritefirstActivity.GetBottomDataListener {
     lateinit var binding : FragmentWritefirstBottomBinding
     private var bottomList = ArrayList<WritefirstBottom>()
     lateinit var customDialog: WritefirstBottomCustomDialog
@@ -154,6 +157,18 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
             }
         }
         bottomRVAdapter.notifyDataSetChanged()
+    }
+
+    override fun getFixedData(): ArrayList<FixedClothes> {
+        var bottomfixedClothes = arrayListOf<FixedClothes>()
+        bottomfixedClothes = bottomRVAdapter.getRVAFixedData()
+        return bottomfixedClothes
+    }
+
+    override fun getAddedData(): ArrayList<AddedClothes> {
+        var bottomaddedClothes = arrayListOf<AddedClothes>()
+        bottomaddedClothes = bottomRVAdapter.getRVAAddedData()
+        return bottomaddedClothes
     }
 
 

@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritefirstBottomBinding
 import com.eight.collection.databinding.FragmentWritefirstEtcBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.first.AddedClothes
+import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottom
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomCustomDialog
@@ -17,7 +19,7 @@ import com.eight.collection.ui.writing.first.shoes.WritefirstShoesRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
-    WritefirstEtcRVAdapter.EtcClickListener, WritefirstActivity.EtcColorClickListner {
+    WritefirstEtcRVAdapter.EtcClickListener, WritefirstActivity.EtcColorClickListener, WritefirstActivity.GetEtcDataListener {
     lateinit var binding : FragmentWritefirstEtcBinding
     private var etcList = ArrayList<WritefirstEtc>()
     lateinit var customDialog: WritefirstEtcCustomDialog
@@ -157,5 +159,17 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
             }
         }
         etcRVAdapter.notifyDataSetChanged()
+    }
+
+    override fun getFixedData(): ArrayList<FixedClothes> {
+        var etcfixedClothes = arrayListOf<FixedClothes>()
+        etcfixedClothes = etcRVAdapter.getRVAFixedData()
+        return etcfixedClothes
+    }
+
+    override fun getAddedData(): ArrayList<AddedClothes> {
+        var etcaddedClothes = arrayListOf<AddedClothes>()
+        etcaddedClothes = etcRVAdapter.getRVAAddedData()
+        return etcaddedClothes
     }
 }

@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritefirstBottomBinding
 import com.eight.collection.databinding.FragmentWritefirstShoesBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.first.AddedClothes
+import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottom
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomCustomDialog
@@ -17,7 +19,7 @@ import com.eight.collection.ui.writing.first.etc.WritefirstEtcRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
-    WritefirstShoesRVAdapter.ShoesClickListener, WritefirstActivity.ShoesColorClickListner {
+    WritefirstShoesRVAdapter.ShoesClickListener, WritefirstActivity.ShoesColorClickListener,WritefirstActivity.GetShoesDataListener  {
     lateinit var binding : FragmentWritefirstShoesBinding
     private var shoesList = ArrayList<WritefirstShoes>()
     lateinit var customDialog: WritefirstShoesCustomDialog
@@ -156,6 +158,18 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
             }
         }
         shoesRVAdapter.notifyDataSetChanged()
+    }
+
+    override fun getFixedData(): ArrayList<FixedClothes> {
+        var shoesfixedClothes = arrayListOf<FixedClothes>()
+        shoesfixedClothes = shoesRVAdapter.getRVAFixedData()
+        return shoesfixedClothes
+    }
+
+    override fun getAddedData(): ArrayList<AddedClothes> {
+        var shoesaddedClothes = arrayListOf<AddedClothes>()
+        shoesaddedClothes = shoesRVAdapter.getRVAAddedData()
+        return shoesaddedClothes
     }
 
 }

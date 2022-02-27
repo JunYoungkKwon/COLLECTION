@@ -2,22 +2,17 @@ package com.eight.collection.ui.writing.first.top
 
 import android.graphics.Color
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.databinding.ItemWritefirstTopBinding
-import android.widget.RadioButton
-import android.widget.TextView
-import android.widget.Toast
-import com.eight.collection.R
 import com.eight.collection.data.entities.Write.Block
-import com.eight.collection.data.remote.addblock.AddBlockService
 import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.ui.writing.DeleteBlockView
+import com.eight.collection.ui.writing.first.AddedClothes
+import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
-import kotlinx.coroutines.selects.select
 
 class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerView.Adapter<WritefirstTopRVAdapter.ViewHolder>(), DeleteBlockView {
     private var clickListener: TopClickListener? = null
@@ -163,6 +158,35 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
                 Log.d("message","SERVER ERROR")
             }
         }
+    }
+
+
+    fun getRVAFixedData() : ArrayList<FixedClothes> {
+        val fixedClothes = arrayListOf<FixedClothes>()
+        for(i in topList){
+            if(i.id < 13){
+                if(i.color != "#00ff0000"){
+                    fixedClothes.apply{
+                        add(FixedClothes(i.index,i.color))
+                    }
+                }
+            }
+        }
+        return fixedClothes
+    }
+
+    fun getRVAAddedData() : ArrayList<AddedClothes> {
+        val addedClothes = arrayListOf<AddedClothes>()
+        for(i in topList) {
+            if (i.id > 12) {
+                if (i.color != "#00ff0000") {
+                    addedClothes.apply {
+                        add(AddedClothes("Top", i.name, i.color))
+                    }
+                }
+            }
+        }
+        return addedClothes
     }
 
 }

@@ -1,8 +1,6 @@
 package com.eight.collection.ui.writing.first.top
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.first.AddedClothes
+import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
-    WritefirstTopRVAdapter.TopClickListener, WritefirstActivity.TopColorClickListner {
+    WritefirstTopRVAdapter.TopClickListener, WritefirstActivity.TopColorClickListener,
+    WritefirstActivity.GetTopDataListener {
     lateinit var binding : FragmentWritefirstTopBinding
     var topList = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
@@ -159,6 +160,18 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
             }
         }
         topRVAdapter.notifyDataSetChanged()
+    }
+
+    override fun getFixedData(): ArrayList<FixedClothes> {
+        var topfixedClothes = arrayListOf<FixedClothes>()
+        topfixedClothes = topRVAdapter.getRVAFixedData()
+        return topfixedClothes
+    }
+
+    override fun getAddedData(): ArrayList<AddedClothes> {
+        var topaddedClothes = arrayListOf<AddedClothes>()
+        topaddedClothes = topRVAdapter.getRVAAddedData()
+        return topaddedClothes
     }
 
 }
