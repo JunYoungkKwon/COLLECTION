@@ -1,7 +1,7 @@
 package com.eight.collection.ui.writing.first.top
 
 data class WritefirstTop(
-    var name: String? = "",
+    var name: String = "",
     var id : Int = 0,
     var index : Int = 0,
     var color : String = "#00ff0000",

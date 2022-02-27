@@ -12,13 +12,14 @@ import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstEtcBinding
 import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.ui.writing.DeleteBlockView
+import com.eight.collection.ui.writing.first.AddedClothes
+import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoesRVAdapter
 
 class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : RecyclerView.Adapter<WritefirstEtcRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: EtcClickListener? = null
     private var selectId : Int = -1
-
 
     interface EtcClickListener {
         fun plusButtonClick()
@@ -151,5 +152,33 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
                 Log.d("message","SERVER ERROR")
             }
         }
+    }
+
+    fun getRVAFixedData() : ArrayList<FixedClothes> {
+        val fixedClothes = arrayListOf<FixedClothes>()
+        for(i in etcList){
+            if(i.id < 13){
+                if(i.color != "#00ff0000"){
+                    fixedClothes.apply{
+                        add(FixedClothes(i.index,i.color))
+                    }
+                }
+            }
+        }
+        return fixedClothes
+    }
+
+    fun getRVAAddedData() : ArrayList<AddedClothes> {
+        val addedClothes = arrayListOf<AddedClothes>()
+        for(i in etcList) {
+            if (i.id > 12) {
+                if (i.color != "#00ff0000") {
+                    addedClothes.apply {
+                        add(AddedClothes("Top", i.name, i.color))
+                    }
+                }
+            }
+        }
+        return addedClothes
     }
 }
