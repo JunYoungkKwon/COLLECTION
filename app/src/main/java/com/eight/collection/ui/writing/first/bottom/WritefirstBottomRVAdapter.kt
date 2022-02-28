@@ -176,7 +176,7 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
             if (i.id > 12) {
                 if (i.color != "#00ff0000") {
                     addedClothes.apply {
-                        add(AddedClothes("Top", i.name, i.color))
+                        add(AddedClothes("Bottom", i.name, i.color))
                     }
                 }
             }

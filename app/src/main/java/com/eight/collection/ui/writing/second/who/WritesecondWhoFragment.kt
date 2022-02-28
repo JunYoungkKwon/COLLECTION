@@ -60,7 +60,6 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onCancelButtonClicked() {
-        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
     }
 
     override fun plusButtonClick() {

@@ -77,8 +77,14 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     }
 
     override fun onSignUpSuccess() {
+        var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
+        var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+        text.text = "회원가입에 성공하였습니다."
+        var toast = Toast(this)
+        toast.view = layoutInflater
+        toast.setGravity(Gravity.BOTTOM, 0, 270)
+        toast.show()
         startActivityWithClear(LoginSecondActivity::class.java)
-        showToast("회원가입에 성공하였습니다.")
     }
 
     override fun onSignUpFailure(code: Int, message: String) {

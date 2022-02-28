@@ -175,7 +175,7 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
             if (i.id > 12) {
                 if (i.color != "#00ff0000") {
                     addedClothes.apply {
-                        add(AddedClothes("Top", i.name, i.color))
+                        add(AddedClothes("Shoes", i.name, i.color))
                     }
                 }
             }

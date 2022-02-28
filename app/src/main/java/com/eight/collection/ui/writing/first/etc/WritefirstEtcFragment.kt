@@ -70,7 +70,6 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
     }
 
     override fun onCancelButtonClicked() {
-        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
     }
 
     // RVAdapter에서 plus 버튼 클릭시 이벤트 생성

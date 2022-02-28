@@ -174,7 +174,7 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
             if (i.id > 12) {
                 if (i.color != "#00ff0000") {
                     addedClothes.apply {
-                        add(AddedClothes("Top", i.name, i.color))
+                        add(AddedClothes("Etc", i.name, i.color))
                     }
                 }
             }

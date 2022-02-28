@@ -261,6 +261,8 @@ class WritefirstActivity() : AppCompatActivity(){
             intent.putExtra("fixed", fixedClothes)
             intent.putExtra("added", addedClothes)
 
+            Log.d("added","${addedClothes}")
+
             startActivity(intent)
         }
 
