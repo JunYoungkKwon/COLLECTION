@@ -5,6 +5,6 @@ import java.net.URI
 import java.util.*
 
 data class Image(
-    @SerializedName("imageUrl") val imageurl: URI,
+    @SerializedName("imageUrl") val imageurl: String,
     @SerializedName("thumbnail") val thumbnail: Int
 )

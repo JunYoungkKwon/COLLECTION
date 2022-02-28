@@ -6,17 +6,17 @@ import android.os.Parcelable
 import java.io.Serializable
 
 data class Image(
-    var imageUrl: Uri?,
+    var imageUrl: String?,
     var thumbnail: Int
     ) : Serializable, Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readParcelable(Uri::class.java.classLoader),
+        parcel.readString(),
         parcel.readInt()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeParcelable(imageUrl, flags)
+        parcel.writeString(imageUrl)
         parcel.writeInt(thumbnail)
     }
 

@@ -4,8 +4,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -273,7 +276,13 @@ class WritefirstActivity() : AppCompatActivity(){
             if (data?.clipData != null) {
                 val count = data.clipData!!.itemCount
                 if (count > 5) {
-                    Toast.makeText(applicationContext, "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG)
+                    var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
+                    var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                    text.text = "사진은 5장까지 선택 가능합니다."
+                    var toast = Toast(this)
+                    toast.view = layoutInflater
+                    toast.setGravity(Gravity.BOTTOM, 0, 270)
+                    toast.show()
                     return
                 }
 
@@ -284,7 +293,8 @@ class WritefirstActivity() : AppCompatActivity(){
                     binding.writefirstPhotoDefaultImage2.visibility = View.GONE
                 }
 
-            } else {
+            }
+            else {
                 data?.data?.let { uri ->
                     val imageUri : Uri? = data?.data
                     if (imageUri != null){
@@ -298,8 +308,9 @@ class WritefirstActivity() : AppCompatActivity(){
             photoRVAdapter.notifyDataSetChanged()
             var b : Int = 0
             for(a in photoList) {
+                var c : String = a.toString()
                 imageList.apply {
-                    add(Image(a, b))
+                    add(Image(c, b))
                 }
                 b=-1
             }
