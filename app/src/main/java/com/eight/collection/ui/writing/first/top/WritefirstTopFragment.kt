@@ -47,6 +47,9 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
             add(WritefirstTop("후드", 12,12))
         }
 
+        //추가 Top 리스트 생성
+
+
         // Top RVA
         topRVAdapter = WritefirstTopRVAdapter(topList)
         topRVAdapter.setTopClickListener(this)

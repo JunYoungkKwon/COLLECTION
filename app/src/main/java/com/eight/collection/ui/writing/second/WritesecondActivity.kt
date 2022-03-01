@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.eight.collection.R
+import com.eight.collection.data.entities.Write.Block
 import com.eight.collection.data.entities.Write.Write
 import com.eight.collection.data.remote.recieves3url.ReceiveS3UrlService
 import com.eight.collection.data.remote.write.WriteService
@@ -205,6 +206,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
     fun setGetWhoDataClickListener(getWhoDataListener : WritesecondWhoFragment){
         this.getwhodataListener = getWhoDataListener
     }
+
 
 
 }
