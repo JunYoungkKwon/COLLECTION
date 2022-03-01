@@ -262,6 +262,7 @@ class WritefirstActivity() : AppCompatActivity(){
             intent.putExtra("added", addedClothes)
 
             Log.d("added","${addedClothes}")
+            Log.d("photo","${imageList}")
 
             startActivity(intent)
         }
