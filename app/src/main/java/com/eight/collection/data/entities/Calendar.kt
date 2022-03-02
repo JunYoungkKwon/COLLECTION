@@ -5,6 +5,6 @@ import java.util.*
 
 data class Calendar(
     @SerializedName("date") val date: Date,
-    @SerializedName("lookpoint") val lookpoint: Int,
+    @SerializedName("lookpoint") var lookpoint: Int,
 )
 

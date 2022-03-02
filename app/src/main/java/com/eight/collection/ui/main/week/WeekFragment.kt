@@ -16,10 +16,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.TAG
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
 import com.eight.collection.data.entities.Diary
+import com.eight.collection.data.entities.Photo
 import com.eight.collection.data.remote.calendar.CalendarService
 import com.eight.collection.data.remote.finish.FinishService
 import com.eight.collection.data.remote.setting.SettingService
@@ -28,6 +30,7 @@ import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
+import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.month.MonthView
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
@@ -57,16 +60,17 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
 
+    private var click: Boolean = false
     private var dateSave: MutableList<Diary>? = null
     private var moveToDate: LocalDate? = null
     private var seletDate: LocalDate? = null
     private var firstdate: LocalDate? = null
     private var lastdate: LocalDate? = null
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         getMonth()
-        initWeeklyRV()
+//        initWeeklyRV()
         binding.calendarView.monthScrollListener = {
             if (binding.calendarView.maxRowCount == 1) {
                 val weekFields = WeekFields.of(DayOfWeek.SUNDAY, 1)
@@ -79,6 +83,23 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             }
         }
     }
+
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        getMonth()
+//        initWeeklyRV()
+//        binding.calendarView.monthScrollListener = {
+//            if (binding.calendarView.maxRowCount == 1) {
+//                val weekFields = WeekFields.of(DayOfWeek.SUNDAY, 1)
+//                val weekOfMonth: TemporalField = weekFields.weekOfMonth()
+//
+//                firstdate = it.weekDays.first().first().date
+//                lastdate = it.weekDays.last().last().date
+//                getWeek()
+//
+//            }
+//        }
+//    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
@@ -152,6 +173,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             val todayHighlight = CalendarDateBinding.bind(view).calendarTodayView
         }
 
+        Log.d("Month/FLOW/1", "SUCCESS")
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
 
             override fun create(view: View) = DayViewContainer(view)
@@ -160,12 +182,18 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.calendarDay.text = day.date.dayOfMonth.toString()
                 container.calendarCell.setOnClickListener{
-
+//                    val currentSelection = moveToDate
+//                    if (currentSelection == day.date) {
+//                        moveToDate = null
+//                    } else {
+//                        container.rankPoint.setImageResource(0)
+//                        moveToDate = day.date
+//                    }
                 }
 
-                //container.calendarDate.text= day.date.month.toString()
+
                 if (day.owner == DayOwner.THIS_MONTH) {
-                    //today highlight
+
                     val currentDay = LocalDate.now()
 
                     for(i in 0 .. month.size-1 step (1)){
@@ -192,15 +220,16 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                     else{
                         container.todayHighlight.visibility = View.GONE
                     }
+
                     container.calendarDay.setTextColor(Color.BLACK)
                 } else {
                     for(i in 0 .. month.size-1 step (1)){
                         //Date Type -> LocalDate Tyoe
                         val date: Date = month[i].date
-                        val locadate:LocalDate = date.toInstant()
+                        val localdate:LocalDate = date.toInstant()
                             .atZone(ZoneId.systemDefault())
                             .toLocalDate()
-                        if (locadate == day.date){
+                        if (localdate == day.date){
                             when(month[i].lookpoint){
                                 1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_off)
                                 2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_off)
@@ -210,17 +239,153 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                                 else -> container.rankPoint.setImageResource(0)
                             }
                         }
+
+//                        if (day.date == seletDate) {
+//                            // If this is the selected date, show a round background and change the text color.
+//                            container.calendarDay.text="선택"
+//                            Log.d("noselect","success")
+//
+//                        } else {
+//                            Log.d("noselect","test")
+//                        }
+//                        if(moveToDate != null){
+//                            if (day.date == moveToDate) {
+//                                container.rankPoint.setImageResource(0)
+//                                binding.calendarView.notifyDateChanged(moveToDate!!)
+//                                Log.d("delete/calendar1/img","test")
+//                            } else {
+//                                binding.calendarView.notifyDateChanged(moveToDate!!)
+//                                Log.d("delete/calendar2/img","test")
+//                            }
+//                        }
                     }
                     container.calendarDay.setTextColor(Color.LTGRAY)
                 }
+                diaryRVAdapter = DiaryRVAdapter(requireContext())
+                diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
+                    override fun onRemoveDiary(view: View, position: Int) {
+
+                        val powerMenu = PowerMenu.Builder(requireContext())
+                            .addItem(PowerMenuItem("수정하기", false))
+                            .addItem(PowerMenuItem("삭제하기", false))
+                            .setMenuRadius(15f)
+                            .setDivider(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.pinkish_grey)))
+                            .setDividerHeight(1)
+                            .setShowBackground(false)
+                            .setMenuShadow(20f)
+                            .setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_taupe))
+                            .setTextGravity(Gravity.CENTER)
+                            .setTextTypeface(Typeface.create("@font/suit_regular", Typeface.NORMAL))
+                            .setMenuColor(Color.WHITE)
+                            .build()
+
+                        val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
+                            when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
+                                "삭제하기" -> {
+                                    diaryRVAdapter.removeItem(position)
+                                    val date = dateSave?.get(position)?.date
+                                    var localdate: LocalDate? = date?.toInstant()
+                                        ?.atZone(ZoneId.systemDefault())
+                                        ?.toLocalDate()
+                                    moveToDate = localdate
+                                    val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                    val deleteDate: String? = localdate?.format(formatters)
+                                    dateSave?.removeAt(position)
+                                    if (deleteDate != null) {
+                                        deleteOOTD(deleteDate)
+                                    }
+//                                    if (click == true){
+//                                        click = false
+//                                    }else {
+//                                        container.rankPoint.setImageResource(0)
+//                                        click = true
+//                                    }
+//                                    for(i in 0 .. month.size-1 step (1)){
+//                                        if(moveToDate == day.date){
+//                                            if(localdate == moveToDate){
+//                                                month[i].lookpoint = 5
+//                                                when(month[i].lookpoint){
+//                                                    1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_off)
+//                                                    else -> container.rankPoint.setImageResource(0)
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+
+//                                    if (moveToDate == day.date){
+//                                        container.calendarDay.text="테스"
+//                                    }
+//                                    else {
+//                                        container.calendarDay.text = "테스트"
+//                                    }
+//                                    }
+
+//                                    if (moveToDate != null){
+//                                        Log.d("delete/date/1",moveToDate.toString())
+//                                        if (moveToDate  == day.date){
+//                                            Log.d("delete/date/2",moveToDate.toString())
+//                                            container.rankPoint.setImageResource(0)
+//                                            container.calendarDay.text="테스"
+//
+//                                        }
+//                                        else{
+//                                            container.calendarDay.text="테스트"
+//                                        }
+//                                    }
+//                                    for(i in 0 until month.size step (1)){
+//                                        val date: Date = month[i].date
+//                                        val localdate1:LocalDate = date.toInstant()
+//                                            .atZone(ZoneId.systemDefault())
+//                                            .toLocalDate()
+//                                        if (moveToDate == localdate1){
+//                                            Log.d("delete/date/1",i.toString())
+//                                            Log.d("delete/date/1",localdate1.toString())
+//                                            Log.d("delete/date/2",moveToDate.toString())
+//                                            month[i].lookpoint = 6
+//                                            Log.d("delete/date/4",month[i].date.toString())
+//                                            Log.d("delete/date/4",month[i].lookpoint.toString())
+//                                            when(month[i].lookpoint){
+//                                                6 -> {
+//                                                    Log.d("delete/date/4",month[i].date.toString())
+//                                                    Log.d("delete/date/5",month[i].lookpoint.toString())
+//                                                    container.calendarDay.text="선택"
+//                                                    container.rankPoint.setImageResource(0)
+//                                                    Log.d("delete/date/5","succ")
+//                                                }
+//                                                else -> {
+//                                                    container.rankPoint.setImageResource(0)
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                    if (moveToDate == day.date) {
+//                                        moveToDate = null
+//                                    } else {
+//                                        container.calendarDay.text="삭제"
+//                                        moveToDate = day.date
+//                                    }
+                                }
+                            }
+//                            getMonth()
+                            powerMenu.selectedPosition = position
+                            powerMenu.dismiss()
+                        }
+                        powerMenu.onMenuItemClickListener = onMenuItemClickListener
+                        powerMenu.showAsDropDown(view, -30, -30)
+                    }
+                })
+                binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
             }
         }
+
+
 
 
         class MonthViewContainer(view: View) : ViewContainer(view) {
             val calendarMonth = CalendarYearMonthHeaderBinding.bind(view).calendarMonthTv
             val calendarYear= CalendarYearMonthHeaderBinding.bind(view).calendarYearTv
         }
+        Log.d("Month/FLOW/2", "SUCCESS")
         binding.calendarView.monthHeaderBinder = object :
             MonthHeaderFooterBinder<MonthViewContainer> {
             override fun create(view: View) = MonthViewContainer(view)
@@ -229,6 +394,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                 container.calendarMonth.text = "${month.yearMonth.month.name.toLowerCase().capitalize()}"
                 container.calendarYear.setOnClickListener(android.view.View.OnClickListener { v ->
                     val datepcikerdlg: DatePickerFragment = DatePickerFragment()
+                    Log.d("Month/FLOW/2-1", "SUCCESS")
                     datepcikerdlg.setFragmentInterfacer(object : DatePickerFragment.MyFragmentInterfacer {
                         //인터페이스 값 받아오기
                         override fun onButtonClick(getSeletDate: String?) {
@@ -236,11 +402,12 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                             binding.calendarView.scrollToDate(seletDate!!)
                         }
                     })
+                    Log.d("Month/FLOW/2-2", "SUCCESS")
                     val fragmanager = this@WeekFragment.fragmentManager
                     if (fragmanager != null) {
                         datepcikerdlg.show(fragmanager, "name")
                     }
-
+                    Log.d("Month/FLOW/2-3", "SUCCESS")
                 })
 
 //                binding.calendarView.monthScrollListener = {
@@ -289,9 +456,11 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         }else{
             if (moveToDate != null){
                 binding.calendarView.scrollToDate(moveToDate!!)
+                moveToDate = null
             }
             if (seletDate != null){
                 binding.calendarView.scrollToDate(seletDate!!)
+                seletDate = null
             }
         }
     }
@@ -317,55 +486,52 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         WeeklyService.getWeek(this)
     }
 
-    private fun initWeeklyRV(){
-        diaryRVAdapter = DiaryRVAdapter(requireContext())
-        diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
-            override fun onRemoveDiary(view: View, position: Int) {
-
-                val powerMenu = PowerMenu.Builder(requireContext())
-                    .addItem(PowerMenuItem("수정하기", false))
-                    .addItem(PowerMenuItem("삭제하기", false))
-                    .setMenuRadius(15f)
-                    .setDivider(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.pinkish_grey)))
-                    .setDividerHeight(1)
-                    .setShowBackground(false)
-                    .setMenuShadow(20f)
-                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_taupe))
-                    .setTextGravity(Gravity.CENTER)
-                    .setTextTypeface(Typeface.create("@font/suit_regular", Typeface.NORMAL))
-                    .setMenuColor(Color.WHITE)
-                    .build()
-
-                val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
-                    when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
-                        "삭제하기" -> {
-                            Log.d("Month","CLICK")
-                            diaryRVAdapter.removeItem(position)
-                            val date = dateSave?.get(position)?.date
-                            val localdate: LocalDate? = date?.toInstant()
-                                ?.atZone(ZoneId.systemDefault())
-                                ?.toLocalDate()
-                            moveToDate = localdate
-                            val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                            val deleteDate: String? = localdate?.format(formatters)
-                            if (deleteDate != null) {
-                                deleteOOTD(deleteDate)
-                            }
-                            dateSave?.removeAt(position)
-                            getMonth()
-                        }
-                    }
-                    powerMenu.selectedPosition = position
-                    powerMenu.dismiss()
-
-                }
-                powerMenu.onMenuItemClickListener = onMenuItemClickListener
-                powerMenu.showAsDropDown(view, -30, -30)
-
-            }
-        })
-        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
-    }
+//    private fun initWeeklyRV(){
+//        diaryRVAdapter = DiaryRVAdapter(requireContext())
+//        diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
+//            override fun onRemoveDiary(view: View, position: Int) {
+//
+//                val powerMenu = PowerMenu.Builder(requireContext())
+//                    .addItem(PowerMenuItem("수정하기", false))
+//                    .addItem(PowerMenuItem("삭제하기", false))
+//                    .setMenuRadius(15f)
+//                    .setDivider(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.pinkish_grey)))
+//                    .setDividerHeight(1)
+//                    .setShowBackground(false)
+//                    .setMenuShadow(20f)
+//                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_taupe))
+//                    .setTextGravity(Gravity.CENTER)
+//                    .setTextTypeface(Typeface.create("@font/suit_regular", Typeface.NORMAL))
+//                    .setMenuColor(Color.WHITE)
+//                    .build()
+//
+//                val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
+//                    when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
+//                        "삭제하기" -> {
+//                            diaryRVAdapter.removeItem(position)
+//                            val date = dateSave?.get(position)?.date
+//                            val localdate: LocalDate? = date?.toInstant()
+//                                ?.atZone(ZoneId.systemDefault())
+//                                ?.toLocalDate()
+//                            moveToDate = localdate
+//                            val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+//                            val deleteDate: String? = localdate?.format(formatters)
+//                            if (deleteDate != null) {
+//                                deleteOOTD(deleteDate)
+//                            }
+//                            dateSave?.removeAt(position)
+//                        }
+//                    }
+////                    getMonth()
+//                    powerMenu.selectedPosition = position
+//                    powerMenu.dismiss()
+//                }
+//                powerMenu.onMenuItemClickListener = onMenuItemClickListener
+//                powerMenu.showAsDropDown(view, -30, -30)
+//            }
+//        })
+//        binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+//    }
 
     override fun onWeeklyLoading() {
         Log.d("Week/Data/", "loading")
@@ -375,6 +541,9 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         Log.d("Week/Data/", "SUCCESS")
         var indexarraylist = ArrayList<Int>()
         for(i in 0 .. weekly.size-1 step (1)){
+            if(weekly[i].coverImg.isNullOrEmpty()){
+                weekly[i].coverImg = "null"
+            }
             val index = i
             val now1: LocalDate = LocalDate.now()
             val now =now1.minusDays(20)
@@ -400,15 +569,15 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             binding.weekDefault2Text.visibility= View.GONE
             binding.weekDefault1Text.visibility= View.GONE
             binding.weekDefaultIv.visibility= View.GONE
+            binding.itemTopLineView.visibility= View.GONE
         }
         else{
             diaryRVAdapter.removeWeekly()
             binding.weekDefault2Text.visibility= View.VISIBLE
             binding.weekDefault1Text.visibility= View.VISIBLE
             binding.weekDefaultIv.visibility= View.VISIBLE
+            binding.itemTopLineView.visibility= View.VISIBLE
         }
-
-
     }
 
     override fun onWeeklyFailure(code: Int, message: String) {

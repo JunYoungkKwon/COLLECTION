@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide
 import com.eight.collection.R
 import com.eight.collection.data.entities.Cloth
 import com.eight.collection.data.entities.Diary
+import com.eight.collection.data.entities.Photo
 import com.eight.collection.databinding.ItemWeekDiaryBinding
 import com.eight.collection.ui.main.MainActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
@@ -39,12 +40,10 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
     interface MyitemClickListener{
         fun onRemoveDiary(view: View, position: Int)
-        //fun onRemove(position: Int)
     }
 
     private  lateinit var mItemClickListener: MyitemClickListener
 
-    //리스너 객체를 전달받는 함수
     fun setMyitemClickListener(itemClickListener: MyitemClickListener){
         mItemClickListener = itemClickListener
     }
@@ -87,8 +86,6 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
             }
             false
         }
-
-
     }
 
 
@@ -99,11 +96,14 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
         fun bind(diary: Diary){
             binding.itemDiaryImgCountTv.text= "+"+ diary.imgCount.toString()
-            if(diary.coverImg == null){
+
+            if(diary.coverImg == "null"){
                 Glide.with(context).load(R.drawable.week_diary_default).into(binding.itemDiaryImgIv)
+                Log.d("null/test","null")
             }
             else{
                 Glide.with(context).load(diary.coverImg).into(binding.itemDiaryImgIv)
+                Log.d("null/test","notnull")
             }
 
             if(diary.topList.isNullOrEmpty()){
@@ -139,7 +139,12 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
             }
 
             val mood = diary.placeList + diary.weatherList + diary.whoList
-            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(mood.toMutableList())
+
+            if(mood.isNullOrEmpty()){
+                diary.placeList.add("선택 사항 없음")
+            }
+            val mood1 = diary.placeList + diary.weatherList + diary.whoList
+            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(mood1.toMutableList())
             binding.weekDiaryTopRecyclerView.adapter = ToprRVAdapter(diary.topList)
             binding.weekDiaryBottomRecyclerView.adapter = BottomRVAdapter(diary.bottomList)
             binding.weekDiaryShoesRecyclerView.adapter = ShoesRVAdapter(diary.shoesList)

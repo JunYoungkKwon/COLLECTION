@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="13dp"
-            android:text="2021/12/31"
+            tools:text="2021/12/31"
             style="@style/VlanLlaRegular4Pt"
             app:layout_constraintStart_toStartOf="@id/finish_hori_first_view"
             app:layout_constraintTop_toBottomOf="@id/finish_hori_first_view" />
@@ -104,9 +104,9 @@
             android:rotation="180"
             android:text="PHOTO."
             android:layout_marginStart="13dp"
-            android:layout_marginTop="164dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintStart_toStartOf="@id/finish_horizon_third_view"
-            app:layout_constraintTop_toBottomOf="@id/finish_hori_second_view" />
+            app:layout_constraintBottom_toTopOf="@id/finish_horizon_third_view"/>
 
         <View
             android:id="@+id/finish_horizon_third_view"
@@ -114,10 +114,10 @@
             android:layout_height="1dp"
             android:layout_marginHorizontal="16dp"
             android:background="@color/pinkish_grey"
-            app:layout_constraintTop_toBottomOf="@id/finish_photo_tv"
+            app:layout_constraintTop_toBottomOf="@id/finish_photo_recyclerview"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <View
             android:id="@+id/finish_vertical_view"
@@ -139,7 +139,7 @@
             android:textColorHint="@color/text_hint"
             android:textColor="@color/dark_taupe"
             android:letterSpacing="-0.01"
-            android:hint="@string/title"
+            tools:text="@string/title"
             app:layout_constraintStart_toStartOf="@id/finish_horizon_third_view"
             app:layout_constraintTop_toBottomOf="@id/finish_horizon_third_view"/>
 
@@ -253,6 +253,7 @@
             android:orientation="horizontal"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginVertical="12dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toEndOf="@id/finish_vertical_view"
             app:layout_constraintTop_toBottomOf="@id/finish_hori_second_view"
@@ -262,6 +263,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/finish_weather_recyclerView"
+            android:visibility="visible"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginStart="10dp"
@@ -276,6 +278,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/finish_place_recyclerView"
             android:layout_width="0dp"
+            android:visibility="visible"
             android:layout_height="20dp"
             app:layout_constraintTop_toTopOf="@id/finish_place_tv"
             app:layout_constraintBottom_toBottomOf="@id/finish_place_tv"
