@@ -21,6 +21,7 @@ import com.eight.collection.ui.writing.WriteView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.Image
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.second.place.WritesecondPlaceFragment
 import com.eight.collection.ui.writing.second.weather.WritesecondWeatherFragment
 import com.eight.collection.ui.writing.second.who.WritesecondWhoFragment
@@ -76,6 +77,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
 
             //Write API
             write()
+
 
             val date = intent.getStringExtra("date")
             val intent = Intent(this, FinishActivity::class.java)

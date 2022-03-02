@@ -47,7 +47,6 @@ class WritefirstActivity() : AppCompatActivity(){
 
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWritefirstBinding.inflate(layoutInflater)
