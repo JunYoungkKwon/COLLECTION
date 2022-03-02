@@ -16,10 +16,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.TAG
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
 import com.eight.collection.data.entities.Diary
+import com.eight.collection.data.entities.Photo
 import com.eight.collection.data.remote.calendar.CalendarService
 import com.eight.collection.data.remote.finish.FinishService
 import com.eight.collection.data.remote.setting.SettingService
@@ -539,6 +541,9 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         Log.d("Week/Data/", "SUCCESS")
         var indexarraylist = ArrayList<Int>()
         for(i in 0 .. weekly.size-1 step (1)){
+            if(weekly[i].coverImg.isNullOrEmpty()){
+                weekly[i].coverImg = "null"
+            }
             val index = i
             val now1: LocalDate = LocalDate.now()
             val now =now1.minusDays(20)
@@ -573,9 +578,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             binding.weekDefaultIv.visibility= View.VISIBLE
             binding.itemTopLineView.visibility= View.VISIBLE
         }
-
-
-
     }
 
     override fun onWeeklyFailure(code: Int, message: String) {

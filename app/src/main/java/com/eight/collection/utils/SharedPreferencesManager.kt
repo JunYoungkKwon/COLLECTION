@@ -30,9 +30,18 @@ fun saveChangeNickName(nickName: String) {
     editor.apply()
 }
 
+fun saveName(name: String) {
+    val editor = mSharedPreferences.edit()
+    editor.putString("name", name)
+
+    editor.apply()
+}
+
 
 fun getJwt(): String? = mSharedPreferences.getString(X_ACCESS_TOKEN, null)
 
 fun getUserId(): String? = mSharedPreferences.getString("userId", null)
 
 fun getNickName(): String? = mSharedPreferences.getString("nickName", null)
+
+fun getName(): String? = mSharedPreferences.getString("name", null)

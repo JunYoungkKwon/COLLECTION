@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.eight.collection.R
@@ -165,6 +166,21 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         if(finish.Etc.isNullOrEmpty()){
             finish.Etc.add(Cloth("해당 항목 없음", ""))
         }
+
+        if(finish.weather.isNullOrEmpty()){
+
+//            val constraints = ConstraintSet()
+//            constraints.clone(binding.finishCl)
+//            constraints.connect(
+//                mainView.id,
+//                ConstraintSet.TOP,
+//                TargetView.id,
+//                ConstraintSet.BOTTOM,
+//            )
+//            constraints.applyTo(binding.finishCl)
+        }
+
+
 
         binding.finishOotdTitileTv.text = finish.lookname
         binding.finishDateTv.text = convertDate

@@ -31,6 +31,7 @@
         android:layout_height="172dp"
         app:cardCornerRadius="120dp"
         app:cardElevation="0dp"
+        android:visibility="visible"
         android:layout_marginStart="16dp"
         android:layout_marginTop="19dp"
         app:layout_constraintEnd_toStartOf="@id/item_diary_half_vertical_line_view"
