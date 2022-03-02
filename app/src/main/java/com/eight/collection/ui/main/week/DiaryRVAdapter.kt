@@ -39,12 +39,10 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
     interface MyitemClickListener{
         fun onRemoveDiary(view: View, position: Int)
-        //fun onRemove(position: Int)
     }
 
     private  lateinit var mItemClickListener: MyitemClickListener
 
-    //리스너 객체를 전달받는 함수
     fun setMyitemClickListener(itemClickListener: MyitemClickListener){
         mItemClickListener = itemClickListener
     }
@@ -87,8 +85,6 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
             }
             false
         }
-
-
     }
 
 
@@ -99,7 +95,7 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
         fun bind(diary: Diary){
             binding.itemDiaryImgCountTv.text= "+"+ diary.imgCount.toString()
-            if(diary.coverImg == null){
+            if(diary.coverImg == ""){
                 Glide.with(context).load(R.drawable.week_diary_default).into(binding.itemDiaryImgIv)
             }
             else{
@@ -139,6 +135,10 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
             }
 
             val mood = diary.placeList + diary.weatherList + diary.whoList
+
+            if(mood.isNullOrEmpty()){
+                diary.placeList.add("선택 사항 없음")
+            }
             binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(mood.toMutableList())
             binding.weekDiaryTopRecyclerView.adapter = ToprRVAdapter(diary.topList)
             binding.weekDiaryBottomRecyclerView.adapter = BottomRVAdapter(diary.bottomList)
