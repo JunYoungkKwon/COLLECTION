@@ -13,7 +13,6 @@
         android:id="@+id/item_writefirst_photo_img_iv"
         android:layout_width="216dp"
         android:layout_height="216dp"
-        android:scaleType="fitXY"
         android:src="@drawable/bg_camera"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

@@ -47,6 +47,9 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
             add(WritefirstTop("후드", 12,12))
         }
 
+        //추가 Top 리스트 생성
+
+
         // Top RVA
         topRVAdapter = WritefirstTopRVAdapter(topList)
         topRVAdapter.setTopClickListener(this)
@@ -68,7 +71,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onCancelButtonClicked() {
-        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
+
     }
 
 
@@ -85,79 +88,83 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
             return
         }
         topList[topRVAdapter.getSelectId()].color = color
-        when (color) {
-            //red
-            "#d60f0f" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+        if(topList[topRVAdapter.getSelectId()].focus == true) {
+            when (color) {
+                //red
+                "#d60f0f" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //pink
+                "#f59a9a" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //yellow
+                "#ffb203" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightyellow
+                "#fde6b1" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //green
+                "#71a238" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightgreen
+                "#b7de89" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //orange
+                "#ea7831" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //navy
+                "#273e88" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //blue
+                "#4168e8" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightblue
+                "#a5b9fa" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //purple
+                "#894ac7" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightpurple
+                "#dcacff" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //white
+                "#ffffff" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //grey
+                "#888888" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //black
+                "#191919" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightpeach
+                "#e8dcd5" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //pinkishgrey
+                "#c3b5ac" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //brown
+                "#74461f" -> {
+                    topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
             }
-            //pink
-            "#f59a9a" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //yellow
-            "#ffb203" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightyellow
-            "#fde6b1" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //green
-            "#71a238" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightgreen
-            "#b7de89" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //orange
-            "#ea7831" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //navy
-            "#273e88" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //blue
-            "#4168e8" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightblue
-            "#a5b9fa" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //purple
-            "#894ac7" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightpurple
-            "#dcacff" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //white
-            "#ffffff" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //grey
-            "#888888" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //black
-            "#191919" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightpeach
-            "#e8dcd5" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //pinkishgrey
-            "#c3b5ac" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //brown
-            "#74461f" -> {
-                topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
+            topList[topRVAdapter.getSelectId()].focus = false
+            topRVAdapter.setSelectId(-1)
         }
         topRVAdapter.notifyDataSetChanged()
     }

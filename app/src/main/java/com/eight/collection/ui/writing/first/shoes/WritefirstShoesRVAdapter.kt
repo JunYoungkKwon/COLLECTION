@@ -8,14 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.data.entities.Write.Block
 import com.eight.collection.data.remote.deleteblock.DeleteBlockService
-import com.eight.collection.databinding.ItemWritefirstBottomBinding
 import com.eight.collection.databinding.ItemWritefirstShoesBinding
-import com.eight.collection.databinding.ItemWritefirstTopBinding
 import com.eight.collection.ui.writing.DeleteBlockView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
-import com.eight.collection.ui.writing.first.WritefirstActivity
-import com.eight.collection.ui.writing.first.bottom.WritefirstBottomRVAdapter
 
 class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>) : RecyclerView.Adapter<WritefirstShoesRVAdapter.ViewHolder>(),
     DeleteBlockView {
@@ -133,6 +129,10 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
         return Block(clothes,pww,content)
     }
 
+    fun setSelectId(setId : Int){
+        selectId = setId
+    }
+
     private fun deleteBlock(content : String) {
         DeleteBlockService.deleteBlock(this, getBlock(content))
     }
@@ -175,7 +175,7 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
             if (i.id > 12) {
                 if (i.color != "#00ff0000") {
                     addedClothes.apply {
-                        add(AddedClothes("Top", i.name, i.color))
+                        add(AddedClothes("Shoes", i.name, i.color))
                     }
                 }
             }

@@ -69,7 +69,6 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onCancelButtonClicked() {
-        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
     }
 
     // RVAdapter에서 plus 버튼 클릭시 이벤트 생성
@@ -83,79 +82,84 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
             return
         }
         shoesList[shoesRVAdapter.getSelectId()].color = color
-        when (color) {
-            //red
-            "#d60f0f" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+        if(shoesList[shoesRVAdapter.getSelectId()].focus == true) {
+            when (color) {
+                //red
+                "#d60f0f" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //pink
+                "#f59a9a" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //yellow
+                "#ffb203" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightyellow
+                "#fde6b1" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //green
+                "#71a238" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightgreen
+                "#b7de89" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //orange
+                "#ea7831" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //navy
+                "#273e88" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //blue
+                "#4168e8" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightblue
+                "#a5b9fa" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //purple
+                "#894ac7" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightpurple
+                "#dcacff" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //white
+                "#ffffff" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //grey
+                "#888888" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //black
+                "#191919" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightpeach
+                "#e8dcd5" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //pinkishgrey
+                "#c3b5ac" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //brown
+                "#74461f" -> {
+                    shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
             }
-            //pink
-            "#f59a9a" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //yellow
-            "#ffb203" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightyellow
-            "#fde6b1" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //green
-            "#71a238" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightgreen
-            "#b7de89" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //orange
-            "#ea7831" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //navy
-            "#273e88" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //blue
-            "#4168e8" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightblue
-            "#a5b9fa" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //purple
-            "#894ac7" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightpurple
-            "#dcacff" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //white
-            "#ffffff" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //grey
-            "#888888" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //black
-            "#191919" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightpeach
-            "#e8dcd5" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //pinkishgrey
-            "#c3b5ac" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //brown
-            "#74461f" -> {
-                shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
+
+            shoesList[shoesRVAdapter.getSelectId()].focus = false
+            shoesRVAdapter.setSelectId(-1)
         }
         shoesRVAdapter.notifyDataSetChanged()
     }

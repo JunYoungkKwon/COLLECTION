@@ -8,11 +8,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.databinding.FragmentWritesecondWhoBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.second.*
 import com.eight.collection.ui.writing.second.weather.WritesecondWeatherRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
-    WritesecondWhoRVAdapter.WhoClickListener{
+    WritesecondWhoRVAdapter.WhoClickListener, WritesecondActivity.GetWhoDataListener {
     lateinit var binding : FragmentWritesecondWhoBinding
     private var whoDatas = ArrayList<WritesecondWho>()
     lateinit var customDialog: WritesecondWhoCustomDialog
@@ -29,13 +30,13 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
 
         // 데이터 리스트 생성
         whoDatas.apply {
-            add(WritesecondWho("+", 0))
-            add(WritesecondWho("친구", 1))
-            add(WritesecondWho("가족", 2))
-            add(WritesecondWho("동료", 3))
-            add(WritesecondWho("선생님", 4))
-            add(WritesecondWho("애인", 5))
-            add(WritesecondWho("혼자", 6))
+            add(WritesecondWho("+", 0,0))
+            add(WritesecondWho("친구", 1,1))
+            add(WritesecondWho("가족", 2,2))
+            add(WritesecondWho("동료", 3,3))
+            add(WritesecondWho("선생님", 4,4))
+            add(WritesecondWho("애인", 5,5))
+            add(WritesecondWho("혼자", 6,6))
         }
 
 
@@ -59,12 +60,23 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onCancelButtonClicked() {
-        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
     }
 
     override fun plusButtonClick() {
         customDialog = WritesecondWhoCustomDialog(requireContext(), this)
         customDialog.show()
+    }
+
+    override fun getFixedData(): ArrayList<Int> {
+        var fixedWho = arrayListOf<Int>()
+        fixedWho = whoRVAdapter.getRVAFixedData()
+        return fixedWho
+    }
+
+    override fun getAddedData(): ArrayList<String> {
+        var addedWho = arrayListOf<String>()
+        addedWho = whoRVAdapter.getRVAAddedData()
+        return addedWho
     }
 
 }

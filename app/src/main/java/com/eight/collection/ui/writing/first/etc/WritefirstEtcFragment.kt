@@ -70,7 +70,6 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
     }
 
     override fun onCancelButtonClicked() {
-        Toast.makeText(requireContext(), "취소", Toast.LENGTH_SHORT).show()
     }
 
     // RVAdapter에서 plus 버튼 클릭시 이벤트 생성
@@ -84,79 +83,83 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
             return
         }
         etcList[etcRVAdapter.getSelectId()].color = color
-        when (color) {
-            //red
-            "#d60f0f" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+        if(etcList[etcRVAdapter.getSelectId()].focus == true) {
+            when (color) {
+                //red
+                "#d60f0f" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //pink
+                "#f59a9a" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //yellow
+                "#ffb203" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightyellow
+                "#fde6b1" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //green
+                "#71a238" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightgreen
+                "#b7de89" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //orange
+                "#ea7831" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //navy
+                "#273e88" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //blue
+                "#4168e8" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightblue
+                "#a5b9fa" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //purple
+                "#894ac7" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightpurple
+                "#dcacff" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //white
+                "#ffffff" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //grey
+                "#888888" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //black
+                "#191919" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //lightpeach
+                "#e8dcd5" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
+                }
+                //pinkishgrey
+                "#c3b5ac" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
+                //brown
+                "#74461f" -> {
+                    etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
+                }
             }
-            //pink
-            "#f59a9a" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //yellow
-            "#ffb203" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightyellow
-            "#fde6b1" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //green
-            "#71a238" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightgreen
-            "#b7de89" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //orange
-            "#ea7831" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //navy
-            "#273e88" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //blue
-            "#4168e8" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightblue
-            "#a5b9fa" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //purple
-            "#894ac7" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightpurple
-            "#dcacff" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //white
-            "#ffffff" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //grey
-            "#888888" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //black
-            "#191919" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //lightpeach
-            "#e8dcd5" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#191919"
-            }
-            //pinkishgrey
-            "#c3b5ac" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
-            //brown
-            "#74461f" -> {
-                etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
-            }
+            etcList[etcRVAdapter.getSelectId()].focus = false
+            etcRVAdapter.setSelectId(-1)
         }
         etcRVAdapter.notifyDataSetChanged()
     }

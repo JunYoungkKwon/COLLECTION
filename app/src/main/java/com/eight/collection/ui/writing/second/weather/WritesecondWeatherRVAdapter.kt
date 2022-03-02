@@ -10,6 +10,10 @@ import com.eight.collection.data.remote.deleteblock.DeleteBlockService
 import com.eight.collection.databinding.ItemWritesecondPlaceBinding
 import com.eight.collection.databinding.ItemWritesecondWeatherBinding
 import com.eight.collection.ui.writing.DeleteBlockView
+import com.eight.collection.ui.writing.second.AddedPlace
+import com.eight.collection.ui.writing.second.AddedWeather
+import com.eight.collection.ui.writing.second.FixedPlace
+import com.eight.collection.ui.writing.second.FixedWeather
 
 class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<WritesecondWeather>) : RecyclerView.Adapter<WritesecondWeatherRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: WeatherClickListener? = null
@@ -139,5 +143,33 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
                 Log.d("message","SERVER ERROR")
             }
         }
+    }
+
+    fun getRVAFixedData() : ArrayList<Int> {
+        val fixedWeather = arrayListOf<Int>()
+        for(i in weatherList){
+            if(i.id < 9){
+                if(i.focus == true){
+                    fixedWeather.apply{
+                        add(i.index)
+                    }
+                }
+            }
+        }
+        return fixedWeather
+    }
+
+    fun getRVAAddedData() : ArrayList<String> {
+        val addedWeather = arrayListOf<String>()
+        for(i in weatherList) {
+            if (i.id > 8) {
+                if (i.focus == true) {
+                    addedWeather.apply {
+                        add(i.name)
+                    }
+                }
+            }
+        }
+        return addedWeather
     }
 }
