@@ -27,6 +27,7 @@ import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -64,6 +65,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
     }
 
     private fun startSetting() {
+
         binding.monthBtnSettingIv.setOnClickListener {
             startActivity(Intent(activity, SettingActivity::class.java))
         }
@@ -219,6 +221,12 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             override fun bind(container: MonthViewContainer, month: CalendarMonth) {
                 container.calendarYear.text = "${month.year}"
                 container.calendarMonth.text = "${month.yearMonth.month.name.toLowerCase().capitalize()}"
+                container.calendarMonth.setOnClickListener{
+                    val dialog: BottomSheetDialog = BottomSheetDialog(requireContext())
+                    dialog.setContentView(R.layout.activity_finish)
+                    dialog.show()
+                }
+
             }
         }
 

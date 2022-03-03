@@ -16,6 +16,7 @@ import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.MainActivity
 import com.eight.collection.ui.signup.SignupFirstActivity
 import com.eight.collection.utils.saveJwt
+import com.eight.collection.utils.saveName
 import com.eight.collection.utils.saveNickName
 import com.eight.collection.utils.saveUserId
 
@@ -65,6 +66,7 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
         saveJwt(auth.jwt)
         saveUserId(auth.userId)
         saveNickName(auth.nickName)
+        saveName(auth.name)
 
         startActivityWithClear(MainActivity::class.java)
         fadeIn()
