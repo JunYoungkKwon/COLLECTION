@@ -13,6 +13,7 @@ import com.eight.collection.databinding.ActivitySettingBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.login.LoginFirstActivity
 import com.eight.collection.ui.main.setting.infoedit.InfoEditActivity
+import com.eight.collection.ui.main.setting.infoedit.mail.MailActivity
 import com.eight.collection.ui.main.setting.privacy.PrivacyRule
 import com.eight.collection.utils.getNickName
 import com.eight.collection.utils.getUserId
@@ -24,6 +25,7 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
         binding.settingInfoBtnIb.setOnClickListener(this)
         //binding.settingDeveloperInfoIb.setOnClickListener(this)
         binding.settingPrivacyRuleIb.setOnClickListener(this)
+        binding.settingMailIb.setOnClickListener(this)
         binding.settingLogoutTv.setOnClickListener(this)
         //닉네임변경
         binding.settingNicknameTv.text = getNickName()
@@ -44,6 +46,8 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
             binding.settingDeveloperInfoIb -> {startNextActivity(InfoEditActivity::class.java)
                 slideRight()}
             binding.settingPrivacyRuleIb -> {startNextActivity(PrivacyRule::class.java)
+                slideRight()}
+            binding.settingMailIb -> {startNextActivity(MailActivity::class.java)
                 slideRight()}
             binding.settingLogoutTv -> {
                 // Dialog만들기

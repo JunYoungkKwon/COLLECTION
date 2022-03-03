@@ -6,35 +6,27 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentManager.TAG
-import androidx.navigation.Navigation
-import com.bumptech.glide.Glide
-import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
 import com.eight.collection.data.entities.Diary
-import com.eight.collection.data.entities.Photo
 import com.eight.collection.data.remote.calendar.CalendarService
-import com.eight.collection.data.remote.finish.FinishService
 import com.eight.collection.data.remote.setting.SettingService
 import com.eight.collection.data.remote.weekly.WeeklyService
 import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
-import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.month.MonthView
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
-import com.google.gson.Gson
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -52,8 +44,6 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalField
 import java.time.temporal.WeekFields
 import java.util.*
-import javax.crypto.ExemptionMechanism.getInstance
-import kotlin.collections.ArrayList
 
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate),MonthView, WeeklyView, DeleteView {
@@ -69,6 +59,11 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     override fun onResume() {
         super.onResume()
+//        val contentResolver = applicationContext.contentResolver
+//
+//        val takeFlags: Int = Intent.FLAG_GRANT_READ_URI_PERMISSION or
+//                Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+//        contentResolver.takePersistableUriPermission(uri, takeFlags)
         getMonth()
 //        initWeeklyRV()
         binding.calendarView.monthScrollListener = {
@@ -84,23 +79,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         }
     }
 
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        getMonth()
-//        initWeeklyRV()
-//        binding.calendarView.monthScrollListener = {
-//            if (binding.calendarView.maxRowCount == 1) {
-//                val weekFields = WeekFields.of(DayOfWeek.SUNDAY, 1)
-//                val weekOfMonth: TemporalField = weekFields.weekOfMonth()
-//
-//                firstdate = it.weekDays.first().first().date
-//                lastdate = it.weekDays.last().last().date
-//                getWeek()
-//
-//            }
-//        }
-//    }
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initAfterBinding() {
         startMyLook()
@@ -108,6 +86,8 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         startSetting()
 
         binding.weekBtnSettingIv.bringToFront()
+        binding.weekBtnWriteIv.bringToFront()
+        binding.weekBtnRankIv.bringToFront()
 
     }
 
@@ -131,7 +111,13 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private fun startMyLook() {
         binding.weekBtnRankIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.MyLookFragment)
+            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+            text.text="Coming Soon!!!"
+            var toast = Toast(context)
+            toast.view = layoutInflater
+            toast.show()
+            //Navigation.findNavController(it).navigate(R.id.MyLookFragment)
         }
 
     }
@@ -294,6 +280,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                                     if (deleteDate != null) {
                                         deleteOOTD(deleteDate)
                                     }
+                                    getMonth()
 //                                    if (click == true){
 //                                        click = false
 //                                    }else {
@@ -366,7 +353,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 //                                    }
                                 }
                             }
-//                            getMonth()
+
                             powerMenu.selectedPosition = position
                             powerMenu.dismiss()
                         }
@@ -539,8 +526,11 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     override fun onWeeklySuccess(weekly: MutableList<Diary>) {
         Log.d("Week/Data/", "SUCCESS")
+
         var indexarraylist = ArrayList<Int>()
         for(i in 0 .. weekly.size-1 step (1)){
+
+            Log.d("Photo/data", weekly[i].coverImg.toString())
             if(weekly[i].coverImg.isNullOrEmpty()){
                 weekly[i].coverImg = "null"
             }

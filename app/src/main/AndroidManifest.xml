@@ -16,8 +16,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.COLLECTION"
-        tools:replace="android:theme"
-        >
+        tools:replace="android:theme">
         <activity
         android:name=".ui.splash.SplashActivity"
         android:exported="true">
@@ -85,6 +84,8 @@
         <activity android:name=".ui.main.setting.privacy.PrivacyRule"/>
 
         <activity android:name=".ui.main.setting.infoedit.InfoEditActivity"/>
+
+        <activity android:name=".ui.main.setting.infoedit.mail.MailActivity"/>
 
         <activity
             android:name=".ui.finish.FinishActivity"

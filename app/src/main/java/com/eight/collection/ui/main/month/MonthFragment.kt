@@ -60,6 +60,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
         binding.monthBtnSettingIv.bringToFront()
         binding.monthBtnWriteIv.bringToFront()
+        binding.monthBtnRankIv.bringToFront()
     }
 
     private fun startSetting() {
@@ -76,7 +77,13 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
     private fun startMyLook() {
         binding.monthBtnRankIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.MyLookFragment)
+            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+            text.text="Coming Soon!!!"
+            var toast = Toast(context)
+            toast.view = layoutInflater
+            toast.show()
+            //Navigation.findNavController(it).navigate(R.id.MyLookFragment)
         }
 
     }
