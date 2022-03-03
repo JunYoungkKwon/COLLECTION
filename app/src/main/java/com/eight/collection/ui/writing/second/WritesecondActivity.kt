@@ -78,7 +78,6 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
             //Write API
             write()
 
-
             val date = intent.getStringExtra("date")
             val intent = Intent(this, FinishActivity::class.java)
             intent.putExtra("date", date)
@@ -140,7 +139,12 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
 
         Log.d("date","${date}")
         Log.d("image","${imageList}")
-        Log.d("fixplace","${fixedPlace}")
+        Log.d("fixedplace","${fixedPlace}")
+        Log.d("addedplace","${addedPlace}")
+        Log.d("fixedweather","${fixedWeather}")
+        Log.d("addedweather","${addedWeather}")
+        Log.d("fixedwho","${fixedWho}")
+        Log.d("addedwho","${addedWho}")
 
         //comment
         var comment : String = binding.writesecondCommentEt.text.toString()

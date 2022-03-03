@@ -77,8 +77,8 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     }
 
     override fun onSignUpSuccess() {
-        var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
-        var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+        var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+        var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
         text.text = "회원가입에 성공하였습니다."
         var toast = Toast(this)
         toast.view = layoutInflater

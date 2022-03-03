@@ -28,7 +28,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
     private var placeDatas = ArrayList<WritesecondPlace>()
     lateinit var customDialog: WritesecondPlaceCustomDialog
     private var idcount : Int = 9
-    lateinit var placeRVAdapter : WritesecondPlaceRVAdapter
+    var placeRVAdapter : WritesecondPlaceRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,8 +50,6 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
             add(WritesecondPlace("휴양지", 8,8))
         }
 
-        getAddedBlock()
-
 
         placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
         placeRVAdapter.setPlaceClickListener(this)
@@ -59,6 +57,8 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
         binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
+
+        getAddedBlock()
 
 
         return binding.root

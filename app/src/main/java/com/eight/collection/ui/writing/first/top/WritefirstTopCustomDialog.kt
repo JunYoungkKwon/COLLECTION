@@ -72,8 +72,8 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
     override fun onAddBlockFailure(code: Int, message: String) {
         when(code) {
             3029,3049,4003,4004,4014 -> {
-                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = message
                 var toast = Toast(context)
                 toast.view = layoutInflater
@@ -81,8 +81,8 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
                 toast.show()
             }
             else -> {
-                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = "SERVER ERROR"
                 var toast = Toast(context)
                 toast.view = layoutInflater

@@ -25,7 +25,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     private var weatherDatas = ArrayList<WritesecondWeather>()
     lateinit var customDialog: WritesecondWeatherCustomDialog
     private var idcount : Int = 9
-    lateinit var weatherRVAdapter : WritesecondWeatherRVAdapter
+    var weatherRVAdapter : WritesecondWeatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,8 +47,6 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
             add(WritesecondWeather("우박", 8,8))
         }
 
-        getAddedBlock()
-
         weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
         weatherRVAdapter.setWeatherClickListener(this)
 
@@ -56,6 +54,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
         binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
         binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
 
+        getAddedBlock()
 
         return binding.root
     }
