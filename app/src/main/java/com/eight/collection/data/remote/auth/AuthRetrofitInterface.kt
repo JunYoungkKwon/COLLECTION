@@ -30,6 +30,6 @@ interface AuthRetrofitInterface {
     @PATCH("app/user/unregister")
     fun deleteAccount(@Body user: User): Call<AuthResponse>
 
-//    @GET("/users/auto-login")
-//    fun autoLogin(): Call<AuthResponse>
+    @GET("app/user/autoLogin")
+    fun autoLogin(): Call<AuthResponse>
 }

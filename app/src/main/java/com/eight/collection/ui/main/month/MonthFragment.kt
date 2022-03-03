@@ -221,11 +221,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             override fun bind(container: MonthViewContainer, month: CalendarMonth) {
                 container.calendarYear.text = "${month.year}"
                 container.calendarMonth.text = "${month.yearMonth.month.name.toLowerCase().capitalize()}"
-                container.calendarMonth.setOnClickListener{
-                    val dialog: BottomSheetDialog = BottomSheetDialog(requireContext())
-                    dialog.setContentView(R.layout.activity_finish)
-                    dialog.show()
-                }
+                container.calendarMonth.setOnClickListener{}
 
             }
         }
