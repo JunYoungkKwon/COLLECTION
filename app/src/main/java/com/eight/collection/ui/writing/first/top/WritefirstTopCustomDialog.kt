@@ -9,10 +9,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.eight.collection.R
 import com.eight.collection.data.entities.User
 import com.eight.collection.data.entities.Write.Block
@@ -27,6 +24,7 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
     private lateinit var addButton : Button
     private lateinit var cancelButton : Button
     private lateinit var addEditText : EditText
+    private lateinit var deleteEditTextButton : ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +34,7 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
         addButton = findViewById(R.id.add_toptag_confirm_button)
         cancelButton = findViewById(R.id.add_toptag_cancel_button)
         addEditText = findViewById(R.id.add_toptag_et)
+        deleteEditTextButton = findViewById(R.id.add_toptag_delete_iv)
 
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -48,6 +47,11 @@ class WritefirstTopCustomDialog(context: Context, anInterface: CustomDialogInter
             customDialogInterface.onCancelButtonClicked()
             dismiss()
         }
+
+        deleteEditTextButton.setOnClickListener{
+            addEditText.setText("")
+        }
+
     }
 
     private fun getBlock() : Block {

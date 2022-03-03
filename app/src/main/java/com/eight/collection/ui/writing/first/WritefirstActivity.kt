@@ -260,6 +260,16 @@ class WritefirstActivity() : AppCompatActivity(){
                 toast.show()
             }
 
+            else if(binding.writefirstLookstyleTv.text.toString().isEmpty() == true){
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "(필수)룩 네임을 입력해주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+
             else {
                 val intent = Intent(this, WritesecondActivity::class.java)
                 intent.putExtra("date", formattedpost)
