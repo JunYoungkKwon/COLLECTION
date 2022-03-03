@@ -109,7 +109,15 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
                 .build()
 
             val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
-                when(item.title){ "수정하기" -> startActivity(Intent(this, WritefirstActivity::class.java))
+                when(item.title){
+                    "수정하기" -> {
+                        val dateIntent = intent
+                        val date = dateIntent.getStringExtra("date")
+                        val intent2 = Intent(this, WritefirstActivity::class.java)
+                        intent2.putExtra("date", date)
+                        startActivity(intent2)
+                        finish()
+                    }
                     "삭제하기" -> {deleteOOTD()}
                 }
                 powerMenu.dismiss()

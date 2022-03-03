@@ -16,8 +16,8 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
 
     override fun initAfterBinding() {
         binding.matchColorTextIv.setOnClickListener{
-            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
-            var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
             text.text = "매칭 기능은 현재 지원하지 않습니다."
             var toast = Toast(context)
             toast.view = layoutInflater
@@ -26,8 +26,8 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
         }
 
         binding.matchWeatherTextIv.setOnClickListener{
-            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
-            var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
             text.text = "매칭 기능은 현재 지원하지 않습니다."
             var toast = Toast(context)
             toast.view = layoutInflater
@@ -36,8 +36,8 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
         }
 
         binding.matchPlaceTextIv.setOnClickListener{
-            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
-            var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
             text.text = "매칭 기능은 현재 지원하지 않습니다."
             var toast = Toast(context)
             toast.view = layoutInflater
@@ -46,8 +46,8 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
         }
 
         binding.matchWhoTextIv.setOnClickListener{
-            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
-            var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
             text.text = "매칭 기능은 현재 지원하지 않습니다."
             var toast = Toast(context)
             toast.view = layoutInflater

@@ -22,6 +22,7 @@ import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
 import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
@@ -45,7 +46,7 @@ class WritefirstActivity() : AppCompatActivity(){
     /*var firstActivity : WritefirstActivity = WritefirstActivity()*/
 
     var photoIs : Int = -1
-
+    var mode : Int = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +63,15 @@ class WritefirstActivity() : AppCompatActivity(){
         val formattedpost = date.format(formatterpost)
 
         binding.writefirstDateTv.text = formatted
+
+        var getDate = intent.getStringExtra("date")
+        if(getDate != null){
+            val date2 = LocalDate.parse(getDate, DateTimeFormatter.ISO_DATE)
+            val formatted2 = date2.format(formatter)
+            binding.writefirstDateTv.text = formatted2
+            mode = 2
+        }
+
 
 
         //이미지 리사이클러뷰 및 갤러리에서 이미지 불러오기
@@ -273,13 +283,21 @@ class WritefirstActivity() : AppCompatActivity(){
 
             else {
                 val intent = Intent(this, WritesecondActivity::class.java)
-                intent.putExtra("date", formattedpost)
                 intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
                 intent.putExtra("photoIs", photoIs)
                 intent.putExtra("image", imageList)
 
                 intent.putExtra("fixed", fixedClothes)
                 intent.putExtra("added", addedClothes)
+
+                if(mode == 2){
+                    intent.putExtra("date", getDate)
+                    intent.putExtra("mode", mode)
+                }
+                else {
+                    intent.putExtra("date", formattedpost)
+                    intent.putExtra("mode", mode)
+                }
 
                 startActivity(intent)
                 finish()

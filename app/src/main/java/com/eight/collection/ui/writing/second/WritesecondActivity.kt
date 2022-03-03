@@ -110,6 +110,8 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
 
     // Write API
     private fun getWrite() : Write{
+        val mode = intent.getIntExtra("mode",1)
+        Log.d("mode:","${mode}")
         //Date
         val date = intent.getStringExtra("date")
 
@@ -152,7 +154,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
         //comment
         var comment : String = binding.writesecondCommentEt.text.toString()
 
-        return Write(1,date,lookname,photoIs,imageList,fixedClothes,addedClothes,fixedPlace,addedPlace,fixedWeather,addedWeather,fixedWho,addedWho,lookpoint,comment)
+        return Write(mode,date,lookname,photoIs,imageList,fixedClothes,addedClothes,fixedPlace,addedPlace,fixedWeather,addedWeather,fixedWho,addedWho,lookpoint,comment)
     }
 
     private fun write(){
