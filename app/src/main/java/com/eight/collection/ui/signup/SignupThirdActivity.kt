@@ -2,11 +2,13 @@ package com.eight.collection.ui.signup
 
 import android.graphics.Color
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.eight.collection.ApplicationClass.Companion.TAG

@@ -82,7 +82,10 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
             val intent = Intent(this, FinishActivity::class.java)
             intent.putExtra("date", date)
 
+            /*var writefirstActivity : WritefirstActivity = WritefirstActivity().firstActivity as WritefirstActivity
+            writefirstActivity.finish()*/
             startActivity(intent)
+            finish()
         }
     }
 

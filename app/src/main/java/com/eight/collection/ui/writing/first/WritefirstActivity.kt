@@ -42,6 +42,7 @@ class WritefirstActivity() : AppCompatActivity(){
     private var getbottomdataListener : WritefirstActivity.GetBottomDataListener? = null
     private var getshoesdataListener : WritefirstActivity.GetShoesDataListener? = null
     private var getetcdataListener : WritefirstActivity.GetEtcDataListener? = null
+    /*var firstActivity : WritefirstActivity = WritefirstActivity()*/
 
     var photoIs : Int = -1
 
@@ -281,6 +282,7 @@ class WritefirstActivity() : AppCompatActivity(){
                 intent.putExtra("added", addedClothes)
 
                 startActivity(intent)
+                finish()
             }
         }
     }
