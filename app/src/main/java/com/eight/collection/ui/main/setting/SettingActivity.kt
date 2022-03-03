@@ -8,6 +8,7 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivitySettingBinding
 import com.eight.collection.ui.BaseActivity
@@ -22,12 +23,12 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
 
     override fun initAfterBinding() {
         binding.settingBackBtnIv.setOnClickListener(this)
-        binding.settingInfoBtnIb.setOnClickListener(this)
-        //binding.settingDeveloperInfoIb.setOnClickListener(this)
-        binding.settingPrivacyRuleIb.setOnClickListener(this)
-        binding.settingMailIb.setOnClickListener(this)
+        binding.settingInfoEditLy.setOnClickListener(this)
+        binding.settingDeveloperInfoLy.setOnClickListener(this)
+        binding.settingPrivacyRuleLy.setOnClickListener(this)
+        binding.settingMailLy.setOnClickListener(this)
         binding.settingLogoutTv.setOnClickListener(this)
-        //닉네임변경
+
         binding.settingNicknameTv.text = getNickName()
     }
 
@@ -41,13 +42,12 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
 
         when (v) {
             binding.settingBackBtnIv -> finishActivity()
-            binding.settingInfoBtnIb -> {startNextActivity(InfoEditActivity::class.java)
+            binding.settingInfoEditLy -> {startNextActivity(InfoEditActivity::class.java)
             slideRight()}
-            binding.settingDeveloperInfoIb -> {startNextActivity(InfoEditActivity::class.java)
+            binding.settingDeveloperInfoLy -> { Toast(this).showCustomToast("Coming Soon!!!", this) }
+            binding.settingPrivacyRuleLy -> {startNextActivity(PrivacyRule::class.java)
                 slideRight()}
-            binding.settingPrivacyRuleIb -> {startNextActivity(PrivacyRule::class.java)
-                slideRight()}
-            binding.settingMailIb -> {startNextActivity(MailActivity::class.java)
+            binding.settingMailLy -> {startNextActivity(MailActivity::class.java)
                 slideRight()}
             binding.settingLogoutTv -> {
                 // Dialog만들기

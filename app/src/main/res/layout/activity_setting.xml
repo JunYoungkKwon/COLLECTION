@@ -66,7 +66,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
         android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="@id/setting_nickname_tv"
         app:layout_constraintTop_toBottomOf="@id/setting_nickname_tv"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,8 +92,6 @@
             android:layout_width="40dp"
             android:layout_height="25dp"
             android:src="@drawable/ic_back2"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginEnd="32dp"
             android:gravity="end"/>
     </LinearLayout>
 
@@ -100,7 +100,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
         android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="@id/setting_nickname_tv"
         app:layout_constraintTop_toBottomOf="@id/setting_info_edit_ly"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,8 +126,6 @@
             android:layout_width="40dp"
             android:layout_height="25dp"
             android:src="@drawable/ic_back2"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginEnd="32dp"
             android:gravity="end"/>
     </LinearLayout>
 
@@ -135,6 +135,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:clickable="true"
+        android:layout_marginEnd="32dp"
+        android:background="?attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="@id/setting_nickname_tv"
         app:layout_constraintTop_toBottomOf="@id/setting_developer_info_ly"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,8 +160,6 @@
             android:layout_width="40dp"
             android:layout_height="25dp"
             android:src="@drawable/ic_back2"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginEnd="32dp"
             android:gravity="end"/>
     </LinearLayout>
 
@@ -168,7 +168,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
         android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="@id/setting_nickname_tv"
         app:layout_constraintTop_toBottomOf="@id/setting_privacy_rule_ly"
         app:layout_constraintEnd_toEndOf="parent"
@@ -192,8 +194,6 @@
             android:layout_width="40dp"
             android:layout_height="25dp"
             android:src="@drawable/ic_back2"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginEnd="32dp"
             android:gravity="end"/>
     </LinearLayout>
 
@@ -220,6 +220,7 @@
         android:layout_height="wrap_content"
         android:text="@string/app_version"
         android:clickable="true"
+        android:layout_marginStart="3dp"
         android:background="?attr/selectableItemBackground"
         android:layout_marginTop="111dp"
         android:fontFamily="@font/noto_sans_kr"

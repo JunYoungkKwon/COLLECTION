@@ -15,10 +15,10 @@ import com.eight.collection.utils.getUserId
 class InfoEditActivity: BaseActivity<ActivityInfoEditBinding>(ActivityInfoEditBinding::inflate), View.OnClickListener{
 
     override fun initAfterBinding() {
-        binding.infoEditNicknameIb.setOnClickListener(this)
-        binding.infoEditPwEditIb.setOnClickListener(this)
-        binding.infoEditAccountIb.setOnClickListener(this)
-        binding.infoEditPhoneNumberBtnIb.setOnClickListener(this)
+        binding.infoEditNicknameLy.setOnClickListener(this)
+        binding.infoEditPwLy.setOnClickListener(this)
+        binding.infoEditAccountLy.setOnClickListener(this)
+        binding.infoEditPhoneNumberLy.setOnClickListener(this)
         binding.infoEditBackBtnIv.setOnClickListener(this)
 
         binding.infoEditNicknameTv.text = getName()
@@ -30,13 +30,13 @@ class InfoEditActivity: BaseActivity<ActivityInfoEditBinding>(ActivityInfoEditBi
         if(v == null) return
 
         when(v) {
-            binding.infoEditNicknameIb ->  {startNextActivity(NickNameEditActivity::class.java)
+            binding.infoEditNicknameLy ->  {startNextActivity(NickNameEditActivity::class.java)
                 slideRight()}
-            binding.infoEditPwEditIb ->  {startNextActivity(PwEditActivity::class.java)
+            binding.infoEditPwLy ->  {startNextActivity(PwEditActivity::class.java)
                 slideRight()}
-            binding.infoEditAccountIb ->  {startNextActivity(AccountDeleteActivity::class.java)
+            binding.infoEditAccountLy ->  {startNextActivity(AccountDeleteActivity::class.java)
                 slideRight()}
-            binding.infoEditPhoneNumberBtnIb ->  {startNextActivity(PhoneNumberEditActivity::class.java)
+            binding.infoEditPhoneNumberLy ->  {startNextActivity(PhoneNumberEditActivity::class.java)
                 slideRight()}
             binding.infoEditBackBtnIv -> finishActivity()
         }
