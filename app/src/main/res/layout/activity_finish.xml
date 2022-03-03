@@ -1,438 +1,450 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    android:id="@+id/finish_sv"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/transparent3"
-    android:fillViewport="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:animateLayoutChanges="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/finish_cl"
-        android:layout_width="match_parent"
-        android:layout_marginTop="40dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/finish_background_iv"
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:id="@+id/finish_sv"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:behavior_hideable="true"-->
+<!--        app:behavior_skipCollapsed= "true"-->
+<!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"-->
+<!--        android:fillViewport="true">-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/finish_cl"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/img_bg_donepage"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <View
-            android:id="@+id/finish_header_background_iv"
-            android:layout_width="178dp"
-            android:layout_height="8dp"
-            android:background="@color/light_peach"
-            app:layout_constraintStart_toStartOf="@id/finish_header_iv"
-            app:layout_constraintEnd_toEndOf="@id/finish_header_iv"
-            app:layout_constraintBottom_toBottomOf="@id/finish_header_iv"/>
-
-        <ImageView
-            android:id="@+id/finish_header_iv"
-            android:layout_width="178dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="36dp"
-            android:src="@drawable/today_s_ootd"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/finish_edit_iv"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_edit"
-            android:layout_marginEnd="-10dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintEnd_toEndOf="@id/finish_hori_first_view"
-            app:layout_constraintTop_toTopOf="@id/finish_header_iv"
-            app:layout_constraintBottom_toBottomOf="@id/finish_header_iv"/>
-
-        <View
-            android:id="@+id/finish_hori_first_view"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
+            app:behavior_hideable="true"
+            app:behavior_skipCollapsed= "true"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            android:layout_marginTop="40dp"
             android:layout_marginHorizontal="16dp"
-            android:background="@color/pinkish_grey"
-            app:layout_constraintTop_toBottomOf="@id/finish_header_iv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="18dp"/>
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/finish_background_iv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/img_bg_donepage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/finish_date_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="13dp"
-            tools:text="2021/12/31"
-            style="@style/VlanLlaRegular4Pt"
-            app:layout_constraintStart_toStartOf="@id/finish_hori_first_view"
-            app:layout_constraintTop_toBottomOf="@id/finish_hori_first_view" />
+            <View
+                android:id="@+id/finish_header_background_iv"
+                android:layout_width="178dp"
+                android:layout_height="8dp"
+                android:background="@color/light_peach"
+                app:layout_constraintStart_toStartOf="@id/finish_header_iv"
+                app:layout_constraintEnd_toEndOf="@id/finish_header_iv"
+                app:layout_constraintBottom_toBottomOf="@id/finish_header_iv"/>
 
-        <ImageView
-            android:id="@+id/finish_rank_point_iv"
-            android:layout_width="65dp"
-            android:layout_height="14dp"
-            android:src="@drawable/ic_diary_point_2"
-            app:layout_constraintEnd_toEndOf="@id/finish_hori_first_view"
-            app:layout_constraintTop_toTopOf="@id/finish_date_tv"
-            app:layout_constraintBottom_toBottomOf="@id/finish_date_tv"/>
+            <ImageView
+                android:id="@+id/finish_header_iv"
+                android:layout_width="178dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="36dp"
+                android:src="@drawable/today_s_ootd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/finish_hori_second_view"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@color/pinkish_grey"
-            app:layout_constraintTop_toBottomOf="@id/finish_date_tv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp"/>
+            <ImageView
+                android:id="@+id/finish_edit_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_edit"
+                android:layout_marginEnd="-10dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintEnd_toEndOf="@id/finish_hori_first_view"
+                app:layout_constraintTop_toTopOf="@id/finish_header_iv"
+                app:layout_constraintBottom_toBottomOf="@id/finish_header_iv"/>
 
-        <com.eight.collection.utils.CustomTextView
-            android:id="@+id/finish_photo_tv"
-            style="@style/VlanLlaRegular4Pt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180"
-            android:text="PHOTO."
-            android:layout_marginStart="13dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_third_view"
-            app:layout_constraintBottom_toTopOf="@id/finish_horizon_third_view"/>
+            <View
+                android:id="@+id/finish_hori_first_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/pinkish_grey"
+                app:layout_constraintTop_toBottomOf="@id/finish_header_iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="18dp"/>
 
-        <View
-            android:id="@+id/finish_horizon_third_view"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@color/pinkish_grey"
-            app:layout_constraintTop_toBottomOf="@id/finish_photo_recyclerview"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <TextView
+                android:id="@+id/finish_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="13dp"
+                tools:text="2021/12/31"
+                style="@style/VlanLlaRegular4Pt"
+                app:layout_constraintStart_toStartOf="@id/finish_hori_first_view"
+                app:layout_constraintTop_toBottomOf="@id/finish_hori_first_view" />
 
-        <View
-            android:id="@+id/finish_vertical_view"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="12dp"
-            app:layout_constraintStart_toEndOf="@id/finish_photo_tv"
-            app:layout_constraintBottom_toBottomOf="@id/finish_horizon_third_view"
-            app:layout_constraintTop_toTopOf="@id/finish_hori_second_view"
-            android:background="@color/pinkish_grey"/>
+            <ImageView
+                android:id="@+id/finish_rank_point_iv"
+                android:layout_width="65dp"
+                android:layout_height="14dp"
+                android:src="@drawable/ic_diary_point_2"
+                app:layout_constraintEnd_toEndOf="@id/finish_hori_first_view"
+                app:layout_constraintTop_toTopOf="@id/finish_date_tv"
+                app:layout_constraintBottom_toBottomOf="@id/finish_date_tv"/>
 
-        <TextView
-            android:id="@+id/finish_ootd_titile_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_kr"
-            android:textStyle="normal"
-            android:textSize="13sp"
-            android:textColorHint="@color/text_hint"
-            android:textColor="@color/dark_taupe"
-            android:letterSpacing="-0.01"
-            tools:text="@string/title"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_third_view"
-            app:layout_constraintTop_toBottomOf="@id/finish_horizon_third_view"/>
+            <View
+                android:id="@+id/finish_hori_second_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/pinkish_grey"
+                app:layout_constraintTop_toBottomOf="@id/finish_date_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="12dp"/>
 
-        <View
-            android:id="@+id/finish_horizon_fourth_view"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@color/pinkish_grey"
-            app:layout_constraintTop_toBottomOf="@id/finish_ootd_titile_tv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <com.eight.collection.utils.CustomTextView
+                android:id="@+id/finish_photo_tv"
+                style="@style/VlanLlaRegular4Pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="180"
+                android:text="PHOTO."
+                android:layout_marginStart="13dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_third_view"
+                app:layout_constraintBottom_toTopOf="@id/finish_horizon_third_view"/>
 
-        <TextView
-            android:id="@+id/finish_invisible_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:visibility="invisible"
-            android:text="@string/who"
-            app:layout_constraintTop_toBottomOf="@id/finish_horizon_fourth_view"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
+            <View
+                android:id="@+id/finish_horizon_third_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/pinkish_grey"
+                app:layout_constraintTop_toBottomOf="@id/finish_photo_recyclerview"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/finish_weather_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            style="@style/Roboto13Pt3"
-            android:text="@string/weather"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/finish_horizon_fourth_view"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
+            <View
+                android:id="@+id/finish_vertical_view"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="12dp"
+                app:layout_constraintStart_toEndOf="@id/finish_photo_tv"
+                app:layout_constraintBottom_toBottomOf="@id/finish_horizon_third_view"
+                app:layout_constraintTop_toTopOf="@id/finish_hori_second_view"
+                android:background="@color/pinkish_grey"/>
 
-        <TextView
-            android:id="@+id/finish_place_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Roboto13Pt3"
-            android:visibility="visible"
-            android:text="@string/plcae"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/finish_weather_tv"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
+            <TextView
+                android:id="@+id/finish_ootd_titile_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:textColorHint="@color/text_hint"
+                android:textColor="@color/dark_taupe"
+                android:letterSpacing="-0.01"
+                tools:text="@string/title"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_third_view"
+                app:layout_constraintTop_toBottomOf="@id/finish_horizon_third_view"/>
 
-        <TextView
-            android:id="@+id/finish_who_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Roboto13Pt3"
-            android:visibility="visible"
-            android:text="@string/who"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/finish_place_tv"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
+            <View
+                android:id="@+id/finish_horizon_fourth_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/pinkish_grey"
+                app:layout_constraintTop_toBottomOf="@id/finish_ootd_titile_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-            android:id="@+id/finish_top_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Roboto13Pt3"
-            android:text="@string/top"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/finish_who_tv"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
+            <TextView
+                android:id="@+id/finish_invisible_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:visibility="invisible"
+                android:text="@string/who"
+                app:layout_constraintTop_toBottomOf="@id/finish_horizon_fourth_view"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
-        <TextView
-            android:id="@+id/finish_bottom_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Roboto13Pt3"
-            android:text="@string/bottom"
-            app:layout_constraintTop_toTopOf="@id/finish_bottom_fl"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
+            <TextView
+                android:id="@+id/finish_weather_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                style="@style/Roboto13Pt3"
+                android:text="@string/weather"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/finish_horizon_fourth_view"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
-        <TextView
-            android:id="@+id/finish_shoes_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Roboto13Pt3"
-            android:text="@string/shoes"
-            app:layout_constraintTop_toTopOf="@id/finish_shoes_fl"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
+            <TextView
+                android:id="@+id/finish_place_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Roboto13Pt3"
+                android:visibility="visible"
+                android:text="@string/plcae"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/finish_weather_tv"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
-        <TextView
-            android:id="@+id/finish_etc_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Roboto13Pt3"
-            android:text="@string/etc"
-            app:layout_constraintTop_toTopOf="@id/finish_etc_fl"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
+            <TextView
+                android:id="@+id/finish_who_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Roboto13Pt3"
+                android:visibility="visible"
+                android:text="@string/who"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/finish_place_tv"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
-        <View
-            android:id="@+id/finish_horizon_fifth_view"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@color/pinkish_grey"
-            app:layout_constraintTop_toBottomOf="@id/finish_etc_fl"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:id="@+id/finish_top_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Roboto13Pt3"
+                android:text="@string/top"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/finish_who_tv"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
-        <TextView
-            android:id="@+id/finish_comment_tv"
-            android:layout_width="288dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_kr"
-            android:layout_marginTop="5dp"
-            android:paddingBottom="60dp"
-            app:layout_constraintStart_toStartOf="@id/finish_horizon_fifth_view"
-            app:layout_constraintTop_toBottomOf="@id/finish_horizon_fifth_view"
-            android:textStyle="normal"
-            android:textSize="12sp"
-            android:textColor="@color/dark_taupe"
-            android:letterSpacing="-0.01"
-            android:text="@string/comment"/>
+            <TextView
+                android:id="@+id/finish_bottom_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Roboto13Pt3"
+                android:text="@string/bottom"
+                app:layout_constraintTop_toTopOf="@id/finish_bottom_fl"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/finish_photo_recyclerview"
-            android:layout_width="0dp"
-            android:layout_height="245dp"
-            android:orientation="horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginVertical="12dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toEndOf="@id/finish_vertical_view"
-            app:layout_constraintTop_toBottomOf="@id/finish_hori_second_view"
-            app:layout_constraintBottom_toTopOf="@id/finish_horizon_third_view"
-            app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            tools:listitem="@layout/item_finish_photo" />
+            <TextView
+                android:id="@+id/finish_shoes_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Roboto13Pt3"
+                android:text="@string/shoes"
+                app:layout_constraintTop_toTopOf="@id/finish_shoes_fl"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/finish_weather_recyclerView"
-            android:visibility="visible"
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            app:layout_constraintTop_toTopOf="@id/finish_weather_tv"
-            app:layout_constraintBottom_toBottomOf="@id/finish_weather_tv"
-            app:layout_constraintStart_toStartOf="@id/finish_invisible_tv"
-            app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            android:orientation="horizontal"
-            tools:listitem="@layout/item_week_diary_mood"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            <TextView
+                android:id="@+id/finish_etc_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Roboto13Pt3"
+                android:text="@string/etc"
+                app:layout_constraintTop_toTopOf="@id/finish_etc_fl"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_fourth_view"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/finish_place_recyclerView"
-            android:layout_width="0dp"
-            android:visibility="visible"
-            android:layout_height="20dp"
-            app:layout_constraintTop_toTopOf="@id/finish_place_tv"
-            app:layout_constraintBottom_toBottomOf="@id/finish_place_tv"
-            app:layout_constraintStart_toStartOf="@id/finish_invisible_tv"
-            app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            android:orientation="horizontal"
-            tools:listitem="@layout/item_week_diary_mood"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            <View
+                android:id="@+id/finish_horizon_fifth_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/pinkish_grey"
+                app:layout_constraintTop_toBottomOf="@id/finish_etc_fl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/finish_who_recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:visibility="visible"
-            app:layout_constraintTop_toTopOf="@id/finish_who_tv"
-            app:layout_constraintBottom_toBottomOf="@id/finish_who_tv"
-            app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            app:layout_constraintStart_toStartOf="@id/finish_invisible_tv"
-            android:orientation="horizontal"
-            tools:listitem="@layout/item_week_diary_mood"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/finish_top_fl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            app:layout_constraintTop_toTopOf="@id/finish_top_tv"
-            app:layout_constraintStart_toStartOf="@id/finish_invisible_tv"
-            app:flexWrap="wrap">
+            <TextView
+                android:id="@+id/finish_comment_tv"
+                android:layout_width="288dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="60dp"
+                app:layout_constraintStart_toStartOf="@id/finish_horizon_fifth_view"
+                app:layout_constraintTop_toBottomOf="@id/finish_horizon_fifth_view"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:textColor="@color/dark_taupe"
+                android:letterSpacing="-0.01"
+                android:text="@string/comment"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/finish_top_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_week_diary_cloth_color"
+                android:id="@+id/finish_photo_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="245dp"
                 android:orientation="horizontal"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
-        </com.google.android.flexbox.FlexboxLayout>
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/finish_bottom_fl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            app:layout_constraintTop_toBottomOf="@id/finish_top_fl"
-            app:layout_constraintStart_toStartOf="@id/finish_top_fl"
-            app:flexWrap="wrap">
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginVertical="12dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toEndOf="@id/finish_vertical_view"
+                app:layout_constraintTop_toBottomOf="@id/finish_hori_second_view"
+                app:layout_constraintBottom_toTopOf="@id/finish_horizon_third_view"
+                app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
+                tools:listitem="@layout/item_finish_photo" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/finish_bottom_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_week_diary_cloth_color"
+                android:id="@+id/finish_weather_recyclerView"
+                android:visibility="visible"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                app:layout_constraintTop_toTopOf="@id/finish_weather_tv"
+                app:layout_constraintBottom_toBottomOf="@id/finish_weather_tv"
+                app:layout_constraintStart_toStartOf="@id/finish_invisible_tv"
+                app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
                 android:orientation="horizontal"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
-        </com.google.android.flexbox.FlexboxLayout>
-
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/finish_shoes_fl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            app:layout_constraintTop_toBottomOf="@id/finish_bottom_fl"
-            app:layout_constraintStart_toStartOf="@id/finish_bottom_fl"
-            app:flexWrap="wrap">
+                tools:listitem="@layout/item_week_diary_mood"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/finish_shoes_recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_week_diary_cloth_color"
+                android:id="@+id/finish_place_recyclerView"
+                android:layout_width="0dp"
+                android:visibility="visible"
+                android:layout_height="20dp"
+                app:layout_constraintTop_toTopOf="@id/finish_place_tv"
+                app:layout_constraintBottom_toBottomOf="@id/finish_place_tv"
+                app:layout_constraintStart_toStartOf="@id/finish_invisible_tv"
+                app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
                 android:orientation="horizontal"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/finish_etc_fl"
-            android:layout_width="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
-            app:layout_constraintTop_toBottomOf="@id/finish_shoes_fl"
-            app:layout_constraintStart_toStartOf="@id/finish_shoes_fl"
-            app:flexWrap="wrap">
+                tools:listitem="@layout/item_week_diary_mood"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/finish_etc_recyclerView"
+                android:id="@+id/finish_who_recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="@id/finish_who_tv"
+                app:layout_constraintBottom_toBottomOf="@id/finish_who_tv"
+                app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
+                app:layout_constraintStart_toStartOf="@id/finish_invisible_tv"
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_week_diary_mood"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/finish_top_fl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
+                app:layout_constraintTop_toTopOf="@id/finish_top_tv"
+                app:layout_constraintStart_toStartOf="@id/finish_invisible_tv"
+                app:flexWrap="wrap">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/finish_top_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_week_diary_cloth_color"
+                    android:orientation="horizontal"
+                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/finish_bottom_fl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
+                app:layout_constraintTop_toBottomOf="@id/finish_top_fl"
+                app:layout_constraintStart_toStartOf="@id/finish_top_fl"
+                app:flexWrap="wrap">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/finish_bottom_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_week_diary_cloth_color"
+                    android:orientation="horizontal"
+                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/finish_shoes_fl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
+                app:layout_constraintTop_toBottomOf="@id/finish_bottom_fl"
+                app:layout_constraintStart_toStartOf="@id/finish_bottom_fl"
+                app:flexWrap="wrap">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/finish_shoes_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_week_diary_cloth_color"
+                    android:orientation="horizontal"
+                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/finish_etc_fl"
+                android:layout_width="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/finish_background_iv"
+                app:layout_constraintTop_toBottomOf="@id/finish_shoes_fl"
+                app:layout_constraintStart_toStartOf="@id/finish_shoes_fl"
+                app:flexWrap="wrap">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/finish_etc_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/item_week_diary_cloth_color"
+                    android:orientation="horizontal"
+                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <LinearLayout
+                android:id="@+id/login_dim_background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_week_diary_cloth_color"
-                android:orientation="horizontal"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+                android:background="#30000000"
+                android:visibility="gone"
+                android:orientation="vertical">
+            </LinearLayout>
 
-        </com.google.android.flexbox.FlexboxLayout>
+            <ImageView
+                android:id="@+id/login_loading_background_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:src="@drawable/ic_loading_background"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-        <LinearLayout
-            android:id="@+id/login_dim_background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#30000000"
-            android:visibility="gone"
-            android:orientation="vertical">
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/login_loading_in_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:src="@drawable/ic_loading_in"
+                app:layout_constraintTop_toTopOf="@+id/login_loading_circle_iv"
+                app:layout_constraintStart_toStartOf="@+id/login_loading_circle_iv"
+                app:layout_constraintBottom_toBottomOf="@+id/login_loading_circle_iv"
+                app:layout_constraintEnd_toEndOf="@+id/login_loading_circle_iv"/>
 
-        <ImageView
-            android:id="@+id/login_loading_background_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:src="@drawable/ic_loading_background"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <ImageView
+                android:id="@+id/login_loading_circle_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:src="@drawable/ic_loading_circle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-        <ImageView
-            android:id="@+id/login_loading_in_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:src="@drawable/ic_loading_in"
-            app:layout_constraintTop_toTopOf="@+id/login_loading_circle_iv"
-            app:layout_constraintStart_toStartOf="@+id/login_loading_circle_iv"
-            app:layout_constraintBottom_toBottomOf="@+id/login_loading_circle_iv"
-            app:layout_constraintEnd_toEndOf="@+id/login_loading_circle_iv"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    </androidx.core.widget.NestedScrollView>-->
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <ImageView
-            android:id="@+id/login_loading_circle_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:src="@drawable/ic_loading_circle"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>

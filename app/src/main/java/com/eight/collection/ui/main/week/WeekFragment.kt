@@ -201,6 +201,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                     }
                     //오늘 날짜인 것 표시
                     if (currentDay == day.date){
+                        Log.d("highlight", day.date.toString())
                         container.todayHighlight.visibility = View.VISIBLE
                     }
                     else{
