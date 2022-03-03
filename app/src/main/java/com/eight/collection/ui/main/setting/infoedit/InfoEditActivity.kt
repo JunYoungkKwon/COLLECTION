@@ -39,8 +39,6 @@ class InfoEditActivity: BaseActivity<ActivityInfoEditBinding>(ActivityInfoEditBi
             binding.infoEditPhoneNumberBtnIb ->  {startNextActivity(PhoneNumberEditActivity::class.java)
                 slideRight()}
             binding.infoEditBackBtnIv -> finishActivity()
-
-
         }
     }
 }

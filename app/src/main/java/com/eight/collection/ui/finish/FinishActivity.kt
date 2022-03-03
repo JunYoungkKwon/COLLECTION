@@ -24,6 +24,8 @@ import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
@@ -49,6 +51,24 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         initRV()
         getFinish()
         clickSetting()
+        scrollFinsh()
+    }
+
+    private fun scrollFinsh() {
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.finishCl)
+
+        bottomSheetBehavior.addBottomSheetCallback(object :
+            BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                if (newState == STATE_HIDDEN) {
+                    finish()
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            }
+
+        })
     }
 
     private fun initRV(){
