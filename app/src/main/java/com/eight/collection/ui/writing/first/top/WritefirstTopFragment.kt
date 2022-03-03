@@ -1,13 +1,18 @@
 package com.eight.collection.ui.writing.first.top
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
+import com.eight.collection.data.remote.recieves3url.ReceiveS3UrlService
 import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.GetAddedBlockView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
@@ -15,7 +20,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     WritefirstTopRVAdapter.TopClickListener, WritefirstActivity.TopColorClickListener,
-    WritefirstActivity.GetTopDataListener {
+    WritefirstActivity.GetTopDataListener, GetAddedBlockView {
     lateinit var binding : FragmentWritefirstTopBinding
     var topList = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
@@ -48,6 +53,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         }
 
         //추가 Top 리스트 생성
+        getAddedBlock()
 
 
         // Top RVA
@@ -181,4 +187,27 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         return topaddedClothes
     }
 
+    private fun getAddedBlock(){
+        GetAddedBlockService.getAddedBlock(this)
+    }
+
+    override fun onGetAddedBlockLoading() {
+
+    }
+
+    override fun onGetAddedBlockSuccess(getaddedblockresult: GetAddedBlockResult) {
+        if(getaddedblockresult.atop != null) {
+            for (i in getaddedblockresult.atop) {
+                topList.apply {
+                    add(WritefirstTop(i, addItemId))
+                    addItemId += 1
+                }
+            }
+            topRVAdapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onGetAddedBlockFailure(code: Int, message: String) {
+
+    }
 }

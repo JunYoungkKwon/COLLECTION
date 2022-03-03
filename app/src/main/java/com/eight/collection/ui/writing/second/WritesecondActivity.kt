@@ -94,6 +94,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
     }
 
     override fun onReceiveS3URLLoading() {
+
     }
 
     override fun onReceiveS3URLSuccess(url : String){
@@ -137,6 +138,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
         fixedWho.addAll(getwhodataListener!!.getFixedData())
         addedWho.addAll(getwhodataListener!!.getAddedData())
 
+        Log.d("date","${date}")
         Log.d("image","${imageList}")
         Log.d("fixplace","${fixedPlace}")
 

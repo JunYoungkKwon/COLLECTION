@@ -6,20 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.databinding.FragmentWritefirstBottomBinding
 import com.eight.collection.databinding.FragmentWritefirstShoesBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.GetAddedBlockView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottom
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomCustomDialog
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomRVAdapter
+import com.eight.collection.ui.writing.first.etc.WritefirstEtc
 import com.eight.collection.ui.writing.first.etc.WritefirstEtcRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
-    WritefirstShoesRVAdapter.ShoesClickListener, WritefirstActivity.ShoesColorClickListener,WritefirstActivity.GetShoesDataListener  {
+    WritefirstShoesRVAdapter.ShoesClickListener, WritefirstActivity.ShoesColorClickListener,WritefirstActivity.GetShoesDataListener,
+    GetAddedBlockView {
     lateinit var binding : FragmentWritefirstShoesBinding
     private var shoesList = ArrayList<WritefirstShoes>()
     lateinit var customDialog: WritefirstShoesCustomDialog
@@ -49,6 +54,8 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
             add(WritefirstShoes("펌프스", 11,35))
             add(WritefirstShoes("힐", 12,36))
         }
+
+        getAddedBlock()
 
         shoesRVAdapter = WritefirstShoesRVAdapter(shoesList)
         shoesRVAdapter.setShoesClickListener(this)
@@ -174,6 +181,30 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
         var shoesaddedClothes = arrayListOf<AddedClothes>()
         shoesaddedClothes = shoesRVAdapter.getRVAAddedData()
         return shoesaddedClothes
+    }
+
+    private fun getAddedBlock(){
+        GetAddedBlockService.getAddedBlock(this)
+    }
+
+    override fun onGetAddedBlockLoading() {
+
+    }
+
+    override fun onGetAddedBlockSuccess(getaddedblockresult: GetAddedBlockResult) {
+        if (getaddedblockresult.ashoes != null) {
+            for (i in getaddedblockresult.ashoes) {
+                shoesList.apply {
+                    add(WritefirstShoes(i, addItemId))
+                    addItemId += 1
+                }
+            }
+            shoesRVAdapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onGetAddedBlockFailure(code: Int, message: String) {
+
     }
 
 }
