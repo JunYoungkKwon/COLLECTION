@@ -160,7 +160,7 @@
 
         <TextView
             android:id="@+id/writesecond_select_03_tv"
-            android:text="장소를 선택해주세요."
+            android:text="장소,날씨,사람을 선택해주세요."
             android:textColor="@color/dark_taupe"
             android:fontFamily="@font/suit_regular"
             android:layout_width="wrap_content"
@@ -260,7 +260,7 @@
             android:isIndicator="false"
             android:clickable="true"
             android:numStars="5"
-            android:rating="3"
+            android:rating="1"
             android:stepSize="1"
             hedgehog:starImageHeight="26dp"
             hedgehog:starImageWidth="27dp"

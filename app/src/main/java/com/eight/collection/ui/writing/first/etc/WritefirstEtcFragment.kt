@@ -54,14 +54,15 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
             add(WritefirstEtc("크로스백", 12,48))
         }
 
-        getAddedBlock()
-
         etcRVAdapter = WritefirstEtcRVAdapter(etcList)
         etcRVAdapter.setEtcClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writefirstEtcRecyclerview.adapter = etcRVAdapter
         binding.writefirstEtcRecyclerview.layoutManager = flexboxLayoutManager
+
+
+        getAddedBlock()
 
         return binding.root
     }

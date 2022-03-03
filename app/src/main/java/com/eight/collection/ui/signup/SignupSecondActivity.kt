@@ -33,14 +33,15 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
 
     private fun checkNickname() {
         if (binding.signUpSecondNicknameEt.text.toString().isEmpty()) {
-            var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
-            var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+            var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
             text.text = "닉네임을 입력해주세요."
             var toast = Toast(this)
             toast.view = layoutInflater
             toast.setGravity(Gravity.BOTTOM, 0, 270)
             toast.show()
             return
+
         }
         val nickname : String = binding.signUpSecondNicknameEt.text.toString()
         AuthService.checkNickname(this, nickname)
@@ -58,8 +59,8 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
     override fun onCheckNicknameFailure(code: Int, message: String) {
         when(code) {
             3005, 3006, 3007, 3050, 3051 -> {
-                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = message
                 var toast = Toast(this)
                 toast.view = layoutInflater
@@ -67,8 +68,8 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
                 toast.show()
             }
             else -> {
-                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = "SERVER ERROR"
                 var toast = Toast(this)
                 toast.view = layoutInflater

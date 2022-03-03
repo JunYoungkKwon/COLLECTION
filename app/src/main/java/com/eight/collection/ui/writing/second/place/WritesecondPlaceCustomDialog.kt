@@ -9,10 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.eight.collection.R
 import com.eight.collection.data.entities.Write.Block
@@ -28,6 +25,7 @@ class WritesecondPlaceCustomDialog(context: Context, anInterface: CustomDialogIn
     private lateinit var addButton : Button
     private lateinit var cancelButton : Button
     private lateinit var addEditText : EditText
+    private lateinit var deleteEditTextButton : ImageView
 
 
 
@@ -38,6 +36,7 @@ class WritesecondPlaceCustomDialog(context: Context, anInterface: CustomDialogIn
         addButton = findViewById(R.id.add_placetag_confirm_button)
         cancelButton = findViewById(R.id.add_placetag_cancel_button)
         addEditText = findViewById(R.id.add_placetag_et)
+        deleteEditTextButton = findViewById(R.id.add_placetag_delete_iv)
 
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -49,6 +48,10 @@ class WritesecondPlaceCustomDialog(context: Context, anInterface: CustomDialogIn
         cancelButton.setOnClickListener {
             customDialogInterface.onCancelButtonClicked()
             dismiss()
+        }
+
+        deleteEditTextButton.setOnClickListener{
+            addEditText.setText("")
         }
     }
 
@@ -74,8 +77,8 @@ class WritesecondPlaceCustomDialog(context: Context, anInterface: CustomDialogIn
     override fun onAddBlockFailure(code: Int, message: String) {
         when(code) {
             3029,3049,4003,4004,4014 -> {
-                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = message
                 var toast = Toast(context)
                 toast.view = layoutInflater
@@ -83,8 +86,8 @@ class WritesecondPlaceCustomDialog(context: Context, anInterface: CustomDialogIn
                 toast.show()
             }
             else -> {
-                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_signup,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = "SERVER ERROR"
                 var toast = Toast(context)
                 toast.view = layoutInflater

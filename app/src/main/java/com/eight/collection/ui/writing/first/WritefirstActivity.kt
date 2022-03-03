@@ -237,16 +237,10 @@ class WritefirstActivity() : AppCompatActivity(){
 
         //다음버튼 클릭시 Writing Second Activity
         binding.writefirstNextButton.setOnClickListener {
+
+            // Clothes 필수선택
             val fixedClothes : ArrayList<FixedClothes> = ArrayList()
             val addedClothes : ArrayList<AddedClothes> = ArrayList()
-            val intent = Intent(this, WritesecondActivity::class.java)
-            intent.putExtra("date", formattedpost)
-            intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
-            intent.putExtra("photoIs", photoIs)
-            intent.putExtra("image", imageList)
-
-
-
             fixedClothes.addAll(gettopdataListener!!.getFixedData())
             fixedClothes.addAll(getbottomdataListener!!.getFixedData())
             fixedClothes.addAll(getshoesdataListener!!.getFixedData())
@@ -256,16 +250,39 @@ class WritefirstActivity() : AppCompatActivity(){
             addedClothes.addAll(getshoesdataListener!!.getAddedData())
             addedClothes.addAll(getetcdataListener!!.getAddedData())
 
+            if(fixedClothes.isEmpty() == true && addedClothes.isEmpty() == true ){
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "(필수선택)옷을 한 개 이상 선택해주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
 
-            intent.putExtra("fixed", fixedClothes)
-            intent.putExtra("added", addedClothes)
+            else if(binding.writefirstLookstyleTv.text.toString().isEmpty() == true){
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "(필수)룩 네임을 입력해주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
 
-            Log.d("added","${addedClothes}")
-            Log.d("photo","${imageList}")
+            else {
+                val intent = Intent(this, WritesecondActivity::class.java)
+                intent.putExtra("date", formattedpost)
+                intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
+                intent.putExtra("photoIs", photoIs)
+                intent.putExtra("image", imageList)
 
-            startActivity(intent)
+                intent.putExtra("fixed", fixedClothes)
+                intent.putExtra("added", addedClothes)
+
+                startActivity(intent)
+            }
         }
-
     }
 
 
@@ -278,8 +295,8 @@ class WritefirstActivity() : AppCompatActivity(){
             if (data?.clipData != null) {
                 val count = data.clipData!!.itemCount
                 if (count > 5) {
-                    var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
-                    var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                    var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                    var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                     text.text = "사진은 5장까지 선택 가능합니다."
                     var toast = Toast(this)
                     toast.view = layoutInflater

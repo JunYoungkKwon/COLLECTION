@@ -13,6 +13,7 @@ import com.eight.collection.ui.writing.CustomDialogInterface
 import com.eight.collection.ui.writing.GetAddedBlockView
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoes
 import com.eight.collection.ui.writing.second.*
+import com.eight.collection.ui.writing.second.place.WritesecondPlaceRVAdapter
 import com.eight.collection.ui.writing.second.weather.WritesecondWeatherRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
@@ -20,11 +21,10 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     WritesecondWhoRVAdapter.WhoClickListener, WritesecondActivity.GetWhoDataListener,
     GetAddedBlockView {
     lateinit var binding : FragmentWritesecondWhoBinding
-    private var whoDatas = ArrayList<WritesecondWho>()
+    var whoDatas = ArrayList<WritesecondWho>()
     lateinit var customDialog: WritesecondWhoCustomDialog
     private var idcount : Int = 7
-    private var addtext : String? = null
-    lateinit var whoRVAdapter : WritesecondWhoRVAdapter
+    var whoRVAdapter : WritesecondWhoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +44,6 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
             add(WritesecondWho("혼자", 6,6))
         }
 
-        getAddedBlock()
-
 
         whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
         whoRVAdapter.setWhoClickListener(this)
@@ -53,6 +51,9 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
         binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
+
+        //추가 Top 리스트 생성
+        getAddedBlock()
 
         return binding.root
     }

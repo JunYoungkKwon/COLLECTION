@@ -329,7 +329,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
             }
 
             else -> {
-                Log.d("Finish/SEVER/ERROR", "error")
+                Log.d("Finish/SEVER/ERROR", message)
             }
         }
     }

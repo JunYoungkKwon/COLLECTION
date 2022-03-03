@@ -25,7 +25,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     var topList = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
     private var addItemId : Int = 13
-    lateinit var topRVAdapter : WritefirstTopRVAdapter
+    var topRVAdapter : WritefirstTopRVAdapter = WritefirstTopRVAdapter(topList)
 
 
     override fun onCreateView(
@@ -52,9 +52,6 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
             add(WritefirstTop("후드", 12,12))
         }
 
-        //추가 Top 리스트 생성
-        getAddedBlock()
-
 
         // Top RVA
         topRVAdapter = WritefirstTopRVAdapter(topList)
@@ -63,6 +60,9 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
         binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
+
+        //추가 Top 리스트 생성
+        getAddedBlock()
 
         return binding.root
     }
@@ -75,6 +75,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         }
         topRVAdapter.notifyDataSetChanged()
     }
+
 
     override fun onCancelButtonClicked() {
 

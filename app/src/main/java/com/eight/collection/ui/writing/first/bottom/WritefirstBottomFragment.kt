@@ -53,14 +53,15 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
             add(WritefirstBottom("조거팬츠", 12,24))
         }
 
-        getAddedBlock()
-
         bottomRVAdapter = WritefirstBottomRVAdapter(bottomList)
         bottomRVAdapter.setBottomClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writefirstBottomRecyclerview.adapter = bottomRVAdapter
         binding.writefirstBottomRecyclerview.layoutManager = flexboxLayoutManager
+
+
+        getAddedBlock()
 
         return binding.root
     }

@@ -55,14 +55,14 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
             add(WritefirstShoes("힐", 12,36))
         }
 
-        getAddedBlock()
-
         shoesRVAdapter = WritefirstShoesRVAdapter(shoesList)
         shoesRVAdapter.setShoesClickListener(this)
 
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writefirstShoesRecyclerview.adapter = shoesRVAdapter
         binding.writefirstShoesRecyclerview.layoutManager = flexboxLayoutManager
+
+        getAddedBlock()
 
         return binding.root
     }
