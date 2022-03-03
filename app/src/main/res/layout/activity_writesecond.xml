@@ -133,6 +133,44 @@
             android:layout_marginEnd="1dp"
             />
 
+        <TextView
+            android:id="@+id/writesecond_select_01_tv"
+            android:text="*"
+            android:textColor="@color/dark_taupe"
+            android:fontFamily="@font/suit_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/writesecond_background_horizontalline_fifth_v"
+            app:layout_constraintTop_toBottomOf="@id/writesecond_tb"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="2dp"
+            />
+
+        <TextView
+            android:id="@+id/writesecond_select_02_tv"
+            android:text="(추가선택)"
+            android:textColor="@color/dark_taupe"
+            android:fontFamily="@font/suit_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/writesecond_select_01_tv"
+            app:layout_constraintTop_toBottomOf="@id/writesecond_tb"
+            android:layout_marginTop="17dp"
+            />
+
+        <TextView
+            android:id="@+id/writesecond_select_03_tv"
+            android:text="장소를 선택해주세요."
+            android:textColor="@color/dark_taupe"
+            android:fontFamily="@font/suit_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/writesecond_select_02_tv"
+            app:layout_constraintTop_toBottomOf="@id/writesecond_tb"
+            android:layout_marginTop="17dp"
+            />
+
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/writesecond_vp"
             android:layout_width="328dp"
@@ -140,6 +178,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/writesecond_tb"
+            android:layout_marginTop="20dp"
             />
 
         <View
