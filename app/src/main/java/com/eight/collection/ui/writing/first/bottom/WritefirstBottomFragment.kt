@@ -7,17 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.databinding.FragmentWritefirstBottomBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.GetAddedBlockView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.eight.collection.ui.writing.first.top.WritefirstTop
 import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
     WritefirstBottomRVAdapter.BottomClickListener, WritefirstActivity.BottomColorClickListener,
-    WritefirstActivity.GetBottomDataListener {
+    WritefirstActivity.GetBottomDataListener, GetAddedBlockView {
     lateinit var binding : FragmentWritefirstBottomBinding
     private var bottomList = ArrayList<WritefirstBottom>()
     lateinit var customDialog: WritefirstBottomCustomDialog
@@ -48,6 +52,8 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
             add(WritefirstBottom("와이드팬츠", 11,23))
             add(WritefirstBottom("조거팬츠", 12,24))
         }
+
+        getAddedBlock()
 
         bottomRVAdapter = WritefirstBottomRVAdapter(bottomList)
         bottomRVAdapter.setBottomClickListener(this)
@@ -172,6 +178,30 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
         var bottomaddedClothes = arrayListOf<AddedClothes>()
         bottomaddedClothes = bottomRVAdapter.getRVAAddedData()
         return bottomaddedClothes
+    }
+
+    private fun getAddedBlock(){
+        GetAddedBlockService.getAddedBlock(this)
+    }
+
+    override fun onGetAddedBlockLoading() {
+
+    }
+
+    override fun onGetAddedBlockSuccess(getaddedblockresult: GetAddedBlockResult) {
+        if(getaddedblockresult.abottom != null) {
+            for (i in getaddedblockresult.abottom) {
+                bottomList.apply {
+                    add(WritefirstBottom(i, addItemId))
+                    addItemId += 1
+                }
+            }
+            bottomRVAdapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onGetAddedBlockFailure(code: Int, message: String) {
+
     }
 
 

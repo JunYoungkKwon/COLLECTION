@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.databinding.FragmentWritefirstBottomBinding
 import com.eight.collection.databinding.FragmentWritefirstEtcBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.GetAddedBlockView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
@@ -19,7 +22,8 @@ import com.eight.collection.ui.writing.first.shoes.WritefirstShoesRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
-    WritefirstEtcRVAdapter.EtcClickListener, WritefirstActivity.EtcColorClickListener, WritefirstActivity.GetEtcDataListener {
+    WritefirstEtcRVAdapter.EtcClickListener, WritefirstActivity.EtcColorClickListener, WritefirstActivity.GetEtcDataListener,
+    GetAddedBlockView {
     lateinit var binding : FragmentWritefirstEtcBinding
     private var etcList = ArrayList<WritefirstEtc>()
     lateinit var customDialog: WritefirstEtcCustomDialog
@@ -49,6 +53,8 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
             add(WritefirstEtc("주얼리", 11,47))
             add(WritefirstEtc("크로스백", 12,48))
         }
+
+        getAddedBlock()
 
         etcRVAdapter = WritefirstEtcRVAdapter(etcList)
         etcRVAdapter.setEtcClickListener(this)
@@ -174,5 +180,29 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
         var etcaddedClothes = arrayListOf<AddedClothes>()
         etcaddedClothes = etcRVAdapter.getRVAAddedData()
         return etcaddedClothes
+    }
+
+    private fun getAddedBlock(){
+        GetAddedBlockService.getAddedBlock(this)
+    }
+
+    override fun onGetAddedBlockLoading() {
+
+    }
+
+    override fun onGetAddedBlockSuccess(getaddedblockresult: GetAddedBlockResult) {
+        if(getaddedblockresult.aetc != null) {
+            for(i in getaddedblockresult.aetc){
+                etcList.apply {
+                    add(WritefirstEtc(i,addItemId))
+                    addItemId += 1
+                }
+            }
+            etcRVAdapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onGetAddedBlockFailure(code: Int, message: String) {
+
     }
 }

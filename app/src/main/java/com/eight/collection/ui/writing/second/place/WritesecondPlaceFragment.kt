@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.databinding.FragmentWritesecondPlaceBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.GetAddedBlockView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
@@ -15,10 +18,12 @@ import com.eight.collection.ui.writing.first.top.WritefirstTopRVAdapter
 import com.eight.collection.ui.writing.second.AddedPlace
 import com.eight.collection.ui.writing.second.FixedPlace
 import com.eight.collection.ui.writing.second.WritesecondActivity
+import com.eight.collection.ui.writing.second.weather.WritesecondWeather
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
-    WritesecondPlaceRVAdapter.PlaceClickListener, WritesecondActivity.GetPlaceDataListener {
+    WritesecondPlaceRVAdapter.PlaceClickListener, WritesecondActivity.GetPlaceDataListener ,
+    GetAddedBlockView {
     lateinit var binding : FragmentWritesecondPlaceBinding
     private var placeDatas = ArrayList<WritesecondPlace>()
     lateinit var customDialog: WritesecondPlaceCustomDialog
@@ -44,6 +49,8 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
             add(WritesecondPlace("핫플레이스", 7,7))
             add(WritesecondPlace("휴양지", 8,8))
         }
+
+        getAddedBlock()
 
 
         placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
@@ -85,5 +92,28 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
         return addedPlace
     }
 
+    private fun getAddedBlock(){
+        GetAddedBlockService.getAddedBlock(this)
+    }
+
+    override fun onGetAddedBlockLoading() {
+
+    }
+
+    override fun onGetAddedBlockSuccess(getaddedblockresult: GetAddedBlockResult) {
+        if(getaddedblockresult.aplace != null) {
+            for (i in getaddedblockresult.aplace) {
+                placeDatas.apply {
+                    add(WritesecondPlace(i, idcount))
+                    idcount += 1
+                }
+            }
+            placeRVAdapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onGetAddedBlockFailure(code: Int, message: String) {
+
+    }
 
 }

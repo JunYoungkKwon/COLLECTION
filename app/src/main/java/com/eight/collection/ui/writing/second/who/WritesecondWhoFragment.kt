@@ -6,14 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.databinding.FragmentWritesecondWhoBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
+import com.eight.collection.ui.writing.GetAddedBlockView
+import com.eight.collection.ui.writing.first.shoes.WritefirstShoes
 import com.eight.collection.ui.writing.second.*
 import com.eight.collection.ui.writing.second.weather.WritesecondWeatherRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
-    WritesecondWhoRVAdapter.WhoClickListener, WritesecondActivity.GetWhoDataListener {
+    WritesecondWhoRVAdapter.WhoClickListener, WritesecondActivity.GetWhoDataListener,
+    GetAddedBlockView {
     lateinit var binding : FragmentWritesecondWhoBinding
     private var whoDatas = ArrayList<WritesecondWho>()
     lateinit var customDialog: WritesecondWhoCustomDialog
@@ -38,6 +43,8 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
             add(WritesecondWho("애인", 5,5))
             add(WritesecondWho("혼자", 6,6))
         }
+
+        getAddedBlock()
 
 
         whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
@@ -77,6 +84,30 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
         var addedWho = arrayListOf<String>()
         addedWho = whoRVAdapter.getRVAAddedData()
         return addedWho
+    }
+
+    private fun getAddedBlock(){
+        GetAddedBlockService.getAddedBlock(this)
+    }
+
+    override fun onGetAddedBlockLoading() {
+
+    }
+
+    override fun onGetAddedBlockSuccess(getaddedblockresult: GetAddedBlockResult) {
+        if(getaddedblockresult.aplace != null) {
+            for (i in getaddedblockresult.awho) {
+                whoDatas.apply {
+                    add(WritesecondWho(i, idcount))
+                    idcount += 1
+                }
+            }
+            whoRVAdapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onGetAddedBlockFailure(code: Int, message: String) {
+
     }
 
 }

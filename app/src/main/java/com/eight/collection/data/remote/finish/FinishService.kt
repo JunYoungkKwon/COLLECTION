@@ -32,7 +32,7 @@ object FinishService {
                 val resp = response.body()!!
 
                 when(resp.code){
-                    1014 -> finishView.onFinishSuccess(resp.result!!)
+                    1028 -> finishView.onFinishSuccess(resp.result!!)
                     else -> finishView.onFinishFailure(resp.code, resp.message)
                 }
             }
