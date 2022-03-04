@@ -43,7 +43,6 @@ class WritefirstActivity() : AppCompatActivity(){
     private var getbottomdataListener : WritefirstActivity.GetBottomDataListener? = null
     private var getshoesdataListener : WritefirstActivity.GetShoesDataListener? = null
     private var getetcdataListener : WritefirstActivity.GetEtcDataListener? = null
-    /*var firstActivity : WritefirstActivity = WritefirstActivity()*/
 
     var photoIs : Int = -1
     var mode : Int = 1
@@ -274,7 +273,7 @@ class WritefirstActivity() : AppCompatActivity(){
             else if(binding.writefirstLookstyleTv.text.toString().isEmpty() == true){
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "(필수)룩 네임을 입력해주세요."
+                text.text = "(필수)LOOK NAME을 입력해주세요."
                 var toast = Toast(this)
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
