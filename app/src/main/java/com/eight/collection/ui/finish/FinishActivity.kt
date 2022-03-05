@@ -155,7 +155,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     }
 
     override fun onFinishSuccess(finish: Finish) {
-        Log.d("Photo/data", finish.image.toString())
+        Log.d("Photo/data", finish.image?.toString())
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE

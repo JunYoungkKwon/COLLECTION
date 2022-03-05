@@ -3,6 +3,7 @@ package com.eight.collection.ui.writing.first
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -78,9 +79,11 @@ class WritefirstActivity() : AppCompatActivity(){
         var recyclerview = findViewById<RecyclerView>(R.id.writefirst_photo_recyclerview)
 
         getImage_btn.setOnClickListener{
-            var intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
+            var intent = Intent(Intent.ACTION_PICK)
+            intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_OPEN_DOCUMENT
 
             startActivityForResult(intent, GALLERY)
         }
@@ -346,6 +349,7 @@ class WritefirstActivity() : AppCompatActivity(){
             photoRVAdapter.notifyDataSetChanged()
             var b : Int = 0
             for(a in photoList) {
+                contentResolver.takePersistableUriPermission(a,Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 var c : String = a.toString()
                 imageList.apply {
                     add(Image(c, b))
