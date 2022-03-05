@@ -1,8 +1,10 @@
 package com.eight.collection.ui.main.setting
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
@@ -47,8 +49,10 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
             binding.settingDeveloperInfoLy -> { Toast(this).showCustomToast("Coming Soon!!!", this) }
             binding.settingPrivacyRuleLy -> {startNextActivity(PrivacyRule::class.java)
                 slideRight()}
-            binding.settingMailLy -> {startNextActivity(MailActivity::class.java)
-                slideRight()}
+            binding.settingMailLy -> {
+                var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/1YTfmceuF4hZEFy5PzZ4Pq1BqkfsQchK8xePRzSjWSUY/edit"))
+                startActivity(intent)
+            }
             binding.settingLogoutTv -> {
                 // Dialog만들기
                 val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_logout_custom, null)
