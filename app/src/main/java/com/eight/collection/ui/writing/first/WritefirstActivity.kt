@@ -1,5 +1,7 @@
 package com.eight.collection.ui.writing.first
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -55,6 +57,7 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
     var mode : Int = 1
 
     var modidate : String? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -477,7 +480,6 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
         if(modiresult.selected?.lookname != null){
             binding.writefirstLookstyleTv.setText(modiresult.selected?.lookname)
         }
-
 
     }
 

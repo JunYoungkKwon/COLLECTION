@@ -17,6 +17,7 @@ import com.eight.collection.data.remote.modi.ModiService
 import com.eight.collection.data.remote.recieves3url.ReceiveS3UrlService
 import com.eight.collection.data.remote.write.WriteService
 import com.eight.collection.databinding.ActivityWritesecondBinding
+import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.writing.ModiView
 import com.eight.collection.ui.writing.ReceiveS3URLView
@@ -41,6 +42,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, Mo
     private lateinit var ratingBar : RatingBar
     var lookpoint : Float = 0F
     var modidate : String? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,9 +107,9 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, Mo
                 val intent = Intent(this, FinishActivity::class.java)
                 intent.putExtra("date", date)
 
-                /*var writefirstActivity : WritefirstActivity = WritefirstActivity().firstActivity as WritefirstActivity
-                writefirstActivity.finish()*/
+
                 startActivity(intent)
+
                 finish()
             }
         }
