@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.eight.collection.data.entities.Cloth
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.data.remote.recieves3url.ReceiveS3UrlService
@@ -52,6 +53,8 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
             add(WritefirstTop("후드", 12,12))
         }
 
+        //추가 Top 리스트 생성
+        getAddedBlock()
 
         // Top RVA
         topRVAdapter = WritefirstTopRVAdapter(topList)
@@ -61,8 +64,6 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         binding.writefirstTopRecyclerview.adapter = topRVAdapter
         binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
 
-        //추가 Top 리스트 생성
-        getAddedBlock()
 
         return binding.root
     }

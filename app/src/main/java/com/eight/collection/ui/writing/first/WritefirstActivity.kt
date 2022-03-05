@@ -12,11 +12,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.R
+import com.eight.collection.data.entities.Cloth
+import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
+import com.eight.collection.data.remote.modi.ModiResult
+import com.eight.collection.data.remote.modi.ModiService
 import com.eight.collection.databinding.ActivityWritefirstBinding
+import com.eight.collection.ui.writing.ModiView
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
 import com.eight.collection.ui.writing.first.etc.WritefirstEtcFragment
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
@@ -28,7 +34,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
-class WritefirstActivity() : AppCompatActivity(){
+class WritefirstActivity() : AppCompatActivity(), ModiView{
     lateinit var binding: ActivityWritefirstBinding
     val photoList = ArrayList<Uri>()
     val imageList = ArrayList<Image>()
@@ -48,6 +54,8 @@ class WritefirstActivity() : AppCompatActivity(){
     var photoIs : Int = -1
     var mode : Int = 1
 
+    var modidate : String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +73,14 @@ class WritefirstActivity() : AppCompatActivity(){
         binding.writefirstDateTv.text = formatted
 
         var getDate = intent.getStringExtra("date")
+
         if(getDate != null){
             val date2 = LocalDate.parse(getDate, DateTimeFormatter.ISO_DATE)
             val formatted2 = date2.format(formatter)
             binding.writefirstDateTv.text = formatted2
             mode = 2
+            modidate = getDate
+            modi()
         }
 
 
@@ -118,6 +129,8 @@ class WritefirstActivity() : AppCompatActivity(){
         setGetBottomDataClickListener(fragmentList[1] as WritefirstBottomFragment)
         setGetShoesDataClickListener(fragmentList[2] as WritefirstShoesFragment)
         setGetEtcDataClickListener(fragmentList[3] as WritefirstEtcFragment)
+
+
 
 
         //Color블록 클릭시 데이터 전달
@@ -429,5 +442,49 @@ class WritefirstActivity() : AppCompatActivity(){
     fun setGetEtcDataClickListener(getEtcDataListener : WritefirstEtcFragment){
         this.getetcdataListener = getEtcDataListener
     }
+
+
+    //수정하기시 블럭 색 셋팅해놓기
+    private fun modi(){
+        ModiService.modi(this, modidate!!)
+    }
+
+    override fun onModiLoading() {
+
+    }
+
+    override fun onModiSuccess(modiresult: ModiResult) {
+        if(modiresult.selected?.image != null){
+            for(i in modiresult.selected?.image){
+                photoList.apply {
+                    add(i.imageurl.toUri())
+                }
+            }
+            photoRVAdapter.notifyDataSetChanged()
+            binding.writefirstPhotoDefaultImage1.visibility = View.GONE
+            binding.writefirstPhotoDefaultImage2.visibility = View.GONE
+            var b : Int = 0
+            for(a in photoList) {
+                contentResolver.takePersistableUriPermission(a,Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                var c : String = a.toString()
+                imageList.apply {
+                    add(Image(c, b))
+                }
+                b=-1
+            }
+        }
+
+        if(modiresult.selected?.lookname != null){
+            binding.writefirstLookstyleTv.setText(modiresult.selected?.lookname)
+        }
+
+
+    }
+
+
+    override fun onModiFailure(code: Int, message: String) {
+
+    }
+
 
 }
