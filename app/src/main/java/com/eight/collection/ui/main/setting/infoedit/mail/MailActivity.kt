@@ -1,5 +1,7 @@
 package com.eight.collection.ui.main.setting.infoedit.mail
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -25,7 +27,12 @@ class MailActivity: BaseActivity<ActivityMailBinding>(ActivityMailBinding::infla
         if(v == null) return
 
         when(v) {
-            binding.mailLinkTv -> {}
+            binding.mailLinkTv -> {
+                binding.mailLinkTv.setOnClickListener {
+                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/1YTfmceuF4hZEFy5PzZ4Pq1BqkfsQchK8xePRzSjWSUY/edit"))
+                    startActivity(intent)
+                }
+            }
             binding.mailBackBtnIv -> finishActivity()
 
         }
