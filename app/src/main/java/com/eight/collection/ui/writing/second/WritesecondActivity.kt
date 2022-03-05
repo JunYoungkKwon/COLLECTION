@@ -12,10 +12,13 @@ import androidx.fragment.app.Fragment
 import com.eight.collection.R
 import com.eight.collection.data.entities.Write.Block
 import com.eight.collection.data.entities.Write.Write
+import com.eight.collection.data.remote.modi.ModiResult
+import com.eight.collection.data.remote.modi.ModiService
 import com.eight.collection.data.remote.recieves3url.ReceiveS3UrlService
 import com.eight.collection.data.remote.write.WriteService
 import com.eight.collection.databinding.ActivityWritesecondBinding
 import com.eight.collection.ui.finish.FinishActivity
+import com.eight.collection.ui.writing.ModiView
 import com.eight.collection.ui.writing.ReceiveS3URLView
 import com.eight.collection.ui.writing.WriteView
 import com.eight.collection.ui.writing.first.AddedClothes
@@ -28,7 +31,7 @@ import com.eight.collection.ui.writing.second.who.WritesecondWhoFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hedgehog.ratingbar.RatingBar
 
-class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
+class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, ModiView {
     lateinit var binding : ActivityWritesecondBinding
     val information = arrayListOf("PLACE","WEATHER","WHO")
     val fragmentList = arrayListOf<Fragment>()
@@ -37,6 +40,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
     private var getwhodataListener : WritesecondActivity.GetWhoDataListener? = null
     private lateinit var ratingBar : RatingBar
     var lookpoint : Float = 0F
+    var modidate : String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +61,15 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
             tab.text = information[position]
         }.attach()
 
+        val date = intent.getStringExtra("date")
+        modidate = date
+
+        if (intent.getIntExtra("mode",1) == 2){
+            modi()
+        }
+
+
+
         setGetPlaceDataClickListener((fragmentList[0] as WritesecondPlaceFragment))
         setGetWeatherDataClickListener(fragmentList[1] as WritesecondWeatherFragment)
         setGetWhoDataClickListener(fragmentList[2] as WritesecondWhoFragment)
@@ -69,6 +82,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
                 lookpoint = RatingCount
             }
         })
+
 
 
         binding.writesecondFinishButton2.setOnClickListener {
@@ -88,7 +102,6 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
                 //Write API
                 write()
 
-                val date = intent.getStringExtra("date")
                 val intent = Intent(this, FinishActivity::class.java)
                 intent.putExtra("date", date)
 
@@ -231,6 +244,27 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
         this.getwhodataListener = getWhoDataListener
     }
 
+
+    private fun modi(){
+        ModiService.modi(this, modidate!!)
+    }
+
+    override fun onModiLoading() {
+
+    }
+
+    override fun onModiSuccess(modiresult: ModiResult) {
+        if(modiresult.selected?.comment != null){
+            binding.writesecondCommentEt.setText(modiresult.selected?.comment)
+        }
+        if(modiresult.selected?.lookpoint != null){
+            binding.writesecondLookpointRatingbar.setStar(modiresult.selected?.lookpoint)
+        }
+    }
+
+    override fun onModiFailure(code: Int, message: String) {
+
+    }
 
 
 }
