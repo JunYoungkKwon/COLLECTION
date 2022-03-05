@@ -50,6 +50,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
 
+    private var current: LocalDate = LocalDate.now()
     private var click: Boolean = false
     private var dateSave: MutableList<Diary>? = null
     private var moveToDate: LocalDate? = null
@@ -167,20 +168,100 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             @RequiresApi(Build.VERSION_CODES.O)
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.calendarDay.text = day.date.dayOfMonth.toString()
-                container.calendarCell.setOnClickListener{
-//                    val currentSelection = moveToDate
-//                    if (currentSelection == day.date) {
-//                        moveToDate = null
-//                    } else {
-//                        container.rankPoint.setImageResource(0)
-//                        moveToDate = day.date
-//                    }
-                }
-
+                container.calendarCell.setOnClickListener{}
+                diaryRVAdapter = DiaryRVAdapter(requireContext())
+                binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
 
                 if (day.owner == DayOwner.THIS_MONTH) {
 
                     val currentDay = LocalDate.now()
+
+                    if (currentDay == day.date){
+                        container.todayHighlight.visibility = View.VISIBLE
+                    }else{
+                        container.todayHighlight.visibility = View.INVISIBLE
+                    }
+                    diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
+                        override fun onRemoveDiary(view: View, position: Int) {
+
+                            val powerMenu = PowerMenu.Builder(requireContext())
+                                .addItem(PowerMenuItem("수정하기", false))
+                                .addItem(PowerMenuItem("삭제하기", false))
+                                .setMenuRadius(15f)
+                                .setDivider(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.pinkish_grey)))
+                                .setDividerHeight(1)
+                                .setShowBackground(false)
+                                .setMenuShadow(20f)
+                                .setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_taupe))
+                                .setTextGravity(Gravity.CENTER)
+                                .setTextTypeface(Typeface.create("@font/suit_regular", Typeface.NORMAL))
+                                .setMenuColor(Color.WHITE)
+                                .build()
+
+                            val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
+                                when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
+                                    "삭제하기" -> {
+                                        diaryRVAdapter.removeItem(position)
+                                        val date = dateSave?.get(position)?.date
+                                        var localdate: LocalDate? = date?.toInstant()
+                                            ?.atZone(ZoneId.systemDefault())
+                                            ?.toLocalDate()
+                                        var moveToDate = localdate
+                                        val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                        val deleteDate: String? = localdate?.format(formatters)
+                                        dateSave?.removeAt(position)
+                                        if (deleteDate != null) {
+                                            deleteOOTD(deleteDate)
+                                        }
+
+                                        val currentSelection = moveToDate
+                                        if (currentSelection == day.date) {
+                                            moveToDate == null
+                                            Log.d("delete/FLOW/1", moveToDate.toString())
+                                            Log.d("delete/FLOW/1", day.date.toString())
+                                        } else {
+                                            Log.d("delete/FLOW/2", moveToDate.toString())
+                                            Log.d("delete/FLOW/2", day.date.toString())
+                                            moveToDate = day.date
+                                            Log.d("delete/FLOW/3", moveToDate.toString())
+                                            Log.d("delete/FLOW/3", day.date.toString())
+                                        }
+
+                                        for(i in 0 .. month.size-1 step (1)){
+                                            if (localdate == day.date){
+                                                Log.d("delete/FLOW/1", localdate.toString())
+                                                Log.d("delete/FLOW/1", moveToDate.toString())
+//                                                when(month[i].lookpoint){
+//                                                    1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_on)
+//                                                    2 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_2_on)
+//                                                    3 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_3_on)
+//                                                    4 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_4_on)
+//                                                    5 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_5_on)
+//                                                    else -> container.rankPoint.setImageResource(0)
+//                                                }
+                                            }
+                                        }
+
+//                                        Log.d("delete/FLOW/1", moveToDate.toString())
+//                                        if (moveToDate == day.date) {
+//                                            moveToDate = null
+//                                        } else {
+//                                            Log.d("delete/FLOW/2", moveToDate.toString())
+//                                            var day.date: LocalDate = moveToDate!!
+//                                            Log.d("delete/FLOW/3", day.date.toString())
+//                                            container.calendarDay.text ="삭제됨"
+//                                            container.rankPoint.setImageResource(0)
+//
+//                                        }
+                                    }
+                                }
+                                powerMenu.selectedPosition = position
+                                powerMenu.dismiss()
+                            }
+                            powerMenu.onMenuItemClickListener = onMenuItemClickListener
+                            powerMenu.showAsDropDown(view, -30, -30)
+                        }
+                    })
 
                     for(i in 0 .. month.size-1 step (1)){
                         //Date Type -> LocalDate Tyoe
@@ -199,17 +280,56 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                             }
                         }
                     }
-                    //오늘 날짜인 것 표시
-                    if (currentDay == day.date){
-                        Log.d("highlight", day.date.toString())
-                        container.todayHighlight.visibility = View.VISIBLE
-                    }
-                    else{
-                        container.todayHighlight.visibility = View.GONE
-                    }
-
                     container.calendarDay.setTextColor(Color.BLACK)
                 } else {
+                    container.todayHighlight.visibility = View.INVISIBLE
+                    diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
+                        override fun onRemoveDiary(view: View, position: Int) {
+
+                            val powerMenu = PowerMenu.Builder(requireContext())
+                                .addItem(PowerMenuItem("수정하기", false))
+                                .addItem(PowerMenuItem("삭제하기", false))
+                                .setMenuRadius(15f)
+                                .setDivider(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.pinkish_grey)))
+                                .setDividerHeight(1)
+                                .setShowBackground(false)
+                                .setMenuShadow(20f)
+                                .setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_taupe))
+                                .setTextGravity(Gravity.CENTER)
+                                .setTextTypeface(Typeface.create("@font/suit_regular", Typeface.NORMAL))
+                                .setMenuColor(Color.WHITE)
+                                .build()
+
+                            val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
+                                when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
+                                    "삭제하기" -> {
+                                        diaryRVAdapter.removeItem(position)
+                                        val date = dateSave?.get(position)?.date
+                                        var localdate: LocalDate? = date?.toInstant()
+                                            ?.atZone(ZoneId.systemDefault())
+                                            ?.toLocalDate()
+                                        moveToDate = localdate
+                                        val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                        val deleteDate: String? = localdate?.format(formatters)
+                                        dateSave?.removeAt(position)
+                                        if (deleteDate != null) {
+                                            deleteOOTD(deleteDate)
+                                        }
+                                        if (moveToDate == day.date) {
+                                            moveToDate = null
+                                        } else {
+                                            container.rankPoint.setImageResource(0)
+                                            moveToDate = day.date
+                                        }
+                                    }
+                                }
+                                powerMenu.selectedPosition = position
+                                powerMenu.dismiss()
+                            }
+                            powerMenu.onMenuItemClickListener = onMenuItemClickListener
+                            powerMenu.showAsDropDown(view, -30, -30)
+                        }
+                    })
                     for(i in 0 .. month.size-1 step (1)){
                         //Date Type -> LocalDate Tyoe
                         val date: Date = month[i].date
@@ -226,143 +346,9 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                                 else -> container.rankPoint.setImageResource(0)
                             }
                         }
-
-//                        if (day.date == seletDate) {
-//                            // If this is the selected date, show a round background and change the text color.
-//                            container.calendarDay.text="선택"
-//                            Log.d("noselect","success")
-//
-//                        } else {
-//                            Log.d("noselect","test")
-//                        }
-//                        if(moveToDate != null){
-//                            if (day.date == moveToDate) {
-//                                container.rankPoint.setImageResource(0)
-//                                binding.calendarView.notifyDateChanged(moveToDate!!)
-//                                Log.d("delete/calendar1/img","test")
-//                            } else {
-//                                binding.calendarView.notifyDateChanged(moveToDate!!)
-//                                Log.d("delete/calendar2/img","test")
-//                            }
-//                        }
                     }
                     container.calendarDay.setTextColor(Color.LTGRAY)
                 }
-                diaryRVAdapter = DiaryRVAdapter(requireContext())
-                diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
-                    override fun onRemoveDiary(view: View, position: Int) {
-
-                        val powerMenu = PowerMenu.Builder(requireContext())
-                            .addItem(PowerMenuItem("수정하기", false))
-                            .addItem(PowerMenuItem("삭제하기", false))
-                            .setMenuRadius(15f)
-                            .setDivider(ColorDrawable(ContextCompat.getColor(requireContext(), R.color.pinkish_grey)))
-                            .setDividerHeight(1)
-                            .setShowBackground(false)
-                            .setMenuShadow(20f)
-                            .setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_taupe))
-                            .setTextGravity(Gravity.CENTER)
-                            .setTextTypeface(Typeface.create("@font/suit_regular", Typeface.NORMAL))
-                            .setMenuColor(Color.WHITE)
-                            .build()
-
-                        val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
-                            when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
-                                "삭제하기" -> {
-                                    diaryRVAdapter.removeItem(position)
-                                    val date = dateSave?.get(position)?.date
-                                    var localdate: LocalDate? = date?.toInstant()
-                                        ?.atZone(ZoneId.systemDefault())
-                                        ?.toLocalDate()
-                                    moveToDate = localdate
-                                    val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                                    val deleteDate: String? = localdate?.format(formatters)
-                                    dateSave?.removeAt(position)
-                                    if (deleteDate != null) {
-                                        deleteOOTD(deleteDate)
-                                    }
-                                    getMonth()
-//                                    if (click == true){
-//                                        click = false
-//                                    }else {
-//                                        container.rankPoint.setImageResource(0)
-//                                        click = true
-//                                    }
-//                                    for(i in 0 .. month.size-1 step (1)){
-//                                        if(moveToDate == day.date){
-//                                            if(localdate == moveToDate){
-//                                                month[i].lookpoint = 5
-//                                                when(month[i].lookpoint){
-//                                                    1 -> container.rankPoint.setImageResource(R.drawable.calendar_rank_1_off)
-//                                                    else -> container.rankPoint.setImageResource(0)
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-
-//                                    if (moveToDate == day.date){
-//                                        container.calendarDay.text="테스"
-//                                    }
-//                                    else {
-//                                        container.calendarDay.text = "테스트"
-//                                    }
-//                                    }
-
-//                                    if (moveToDate != null){
-//                                        Log.d("delete/date/1",moveToDate.toString())
-//                                        if (moveToDate  == day.date){
-//                                            Log.d("delete/date/2",moveToDate.toString())
-//                                            container.rankPoint.setImageResource(0)
-//                                            container.calendarDay.text="테스"
-//
-//                                        }
-//                                        else{
-//                                            container.calendarDay.text="테스트"
-//                                        }
-//                                    }
-//                                    for(i in 0 until month.size step (1)){
-//                                        val date: Date = month[i].date
-//                                        val localdate1:LocalDate = date.toInstant()
-//                                            .atZone(ZoneId.systemDefault())
-//                                            .toLocalDate()
-//                                        if (moveToDate == localdate1){
-//                                            Log.d("delete/date/1",i.toString())
-//                                            Log.d("delete/date/1",localdate1.toString())
-//                                            Log.d("delete/date/2",moveToDate.toString())
-//                                            month[i].lookpoint = 6
-//                                            Log.d("delete/date/4",month[i].date.toString())
-//                                            Log.d("delete/date/4",month[i].lookpoint.toString())
-//                                            when(month[i].lookpoint){
-//                                                6 -> {
-//                                                    Log.d("delete/date/4",month[i].date.toString())
-//                                                    Log.d("delete/date/5",month[i].lookpoint.toString())
-//                                                    container.calendarDay.text="선택"
-//                                                    container.rankPoint.setImageResource(0)
-//                                                    Log.d("delete/date/5","succ")
-//                                                }
-//                                                else -> {
-//                                                    container.rankPoint.setImageResource(0)
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                    if (moveToDate == day.date) {
-//                                        moveToDate = null
-//                                    } else {
-//                                        container.calendarDay.text="삭제"
-//                                        moveToDate = day.date
-//                                    }
-                                }
-                            }
-
-                            powerMenu.selectedPosition = position
-                            powerMenu.dismiss()
-                        }
-                        powerMenu.onMenuItemClickListener = onMenuItemClickListener
-                        powerMenu.showAsDropDown(view, -30, -30)
-                    }
-                })
-                binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
             }
         }
 
