@@ -23,7 +23,7 @@
     </style>
     <style name="MyDatePickerStyle" parent="android:Widget.DeviceDefault.CalendarView">
 <!--        오늘날짜+선택한 날짜 색깔-->
-        <item name="android:colorControlActivated">@color/pinkish_grey</item>
+        <item name="android:colorControlActivated">#D8CEC7</item>
 <!--        선택할 때 원 변하는 색깔-->
         <item name="colorControlHighlight">@color/transparent</item>
 <!--        2020년 2월 색깔-->
