@@ -348,6 +348,7 @@
         android:letterSpacing="-0.01"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/suit_regular"
+        android:maxLength="13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_phone_tv"

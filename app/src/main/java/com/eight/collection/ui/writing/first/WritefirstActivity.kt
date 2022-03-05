@@ -3,6 +3,7 @@ package com.eight.collection.ui.writing.first
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
 import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
@@ -44,7 +46,7 @@ class WritefirstActivity() : AppCompatActivity(){
     private var getetcdataListener : WritefirstActivity.GetEtcDataListener? = null
 
     var photoIs : Int = -1
-
+    var mode : Int = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,15 +64,26 @@ class WritefirstActivity() : AppCompatActivity(){
 
         binding.writefirstDateTv.text = formatted
 
+        var getDate = intent.getStringExtra("date")
+        if(getDate != null){
+            val date2 = LocalDate.parse(getDate, DateTimeFormatter.ISO_DATE)
+            val formatted2 = date2.format(formatter)
+            binding.writefirstDateTv.text = formatted2
+            mode = 2
+        }
+
+
 
         //이미지 리사이클러뷰 및 갤러리에서 이미지 불러오기
         var getImage_btn = findViewById<ImageView>(R.id.writefirst_add_photo_iv)
         var recyclerview = findViewById<RecyclerView>(R.id.writefirst_photo_recyclerview)
 
         getImage_btn.setOnClickListener{
-            var intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
+            var intent = Intent(Intent.ACTION_PICK)
+            intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_OPEN_DOCUMENT
 
             startActivityForResult(intent, GALLERY)
         }
@@ -263,7 +276,7 @@ class WritefirstActivity() : AppCompatActivity(){
             else if(binding.writefirstLookstyleTv.text.toString().isEmpty() == true){
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "(필수)룩 네임을 입력해주세요."
+                text.text = "(필수)LOOK NAME을 입력해주세요."
                 var toast = Toast(this)
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
@@ -272,7 +285,6 @@ class WritefirstActivity() : AppCompatActivity(){
 
             else {
                 val intent = Intent(this, WritesecondActivity::class.java)
-                intent.putExtra("date", formattedpost)
                 intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
                 intent.putExtra("photoIs", photoIs)
                 intent.putExtra("image", imageList)
@@ -280,7 +292,17 @@ class WritefirstActivity() : AppCompatActivity(){
                 intent.putExtra("fixed", fixedClothes)
                 intent.putExtra("added", addedClothes)
 
+                if(mode == 2){
+                    intent.putExtra("date", getDate)
+                    intent.putExtra("mode", mode)
+                }
+                else {
+                    intent.putExtra("date", formattedpost)
+                    intent.putExtra("mode", mode)
+                }
+
                 startActivity(intent)
+                finish()
             }
         }
     }
@@ -327,6 +349,7 @@ class WritefirstActivity() : AppCompatActivity(){
             photoRVAdapter.notifyDataSetChanged()
             var b : Int = 0
             for(a in photoList) {
+                contentResolver.takePersistableUriPermission(a,Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 var c : String = a.toString()
                 imageList.apply {
                     add(Image(c, b))
