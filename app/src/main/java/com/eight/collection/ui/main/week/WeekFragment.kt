@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import com.applandeo.materialcalendarview.utils.calendar
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
 import com.eight.collection.data.entities.Diary
@@ -215,16 +216,19 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                                         }
 
                                         val currentSelection = moveToDate
-                                        if (currentSelection == day.date) {
-                                            moveToDate == null
-                                            Log.d("delete/FLOW/1", moveToDate.toString())
-                                            Log.d("delete/FLOW/1", day.date.toString())
-                                        } else {
-                                            Log.d("delete/FLOW/2", moveToDate.toString())
-                                            Log.d("delete/FLOW/2", day.date.toString())
-                                            moveToDate = day.date
-                                            Log.d("delete/FLOW/3", moveToDate.toString())
-                                            Log.d("delete/FLOW/3", day.date.toString())
+                                        if (currentSelection != null) {
+                                            if (currentSelection >= day.date) {
+                                                val text = day.date.toString()
+
+                                                Log.d("delete/FLOW/1", moveToDate.toString())
+                                                Log.d("delete/FLOW/1", day.date.toString())
+                                            } else {
+                                                Log.d("delete/FLOW/2", moveToDate.toString())
+                                                Log.d("delete/FLOW/2", day.date.toString())
+                                                moveToDate = day.date
+                                                Log.d("delete/FLOW/3", moveToDate.toString())
+                                                Log.d("delete/FLOW/3", day.date.toString())
+                                            }
                                         }
 
                                         for(i in 0 .. month.size-1 step (1)){
