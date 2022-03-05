@@ -52,6 +52,53 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
             }
         }
 
+//        if (binding.pwOriginPwEt.text.toString().isEmpty()){
+//            binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+//            binding.pwOriginPwFailIv.visibility = View.VISIBLE
+//            binding.pwOriginPwFailTv.visibility = View.VISIBLE
+//            binding.pwOriginPwFailTv.text= "비밀번호는 6~15자리를 입력해주세요"
+//
+//            binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//            binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+//            binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+//            binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//            binding.pwNewPwFailIv.visibility = View.INVISIBLE
+//            binding.pwNewPwFailTv.visibility = View.INVISIBLE
+//            return
+//        }
+//
+//        if (binding.pwNewPwEt.text.toString().isEmpty()){
+//            //origin show
+//            binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+//            binding.pwNewPwFailIv.visibility = View.VISIBLE
+//            binding.pwNewPwFailTv.visibility = View.VISIBLE
+//            binding.pwNewPwFailTv.text = "비밀번호는 6~15자리를 입력해주세요"
+//            //extra hide
+//            binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//            binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+//            binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+//            binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//            binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
+//            binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+//            return
+//        }
+//
+//        if (binding.pwNewCheckPwEt.text.toString().isEmpty()){
+//            //origin show
+//            binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
+//            binding.pwNewCheckPwFailIv.visibility = View.VISIBLE
+//            binding.pwNewCheckPwFailTv.visibility = View.VISIBLE
+//            binding.pwNewCheckPwFailTv.text = "비밀번호는 6~15자리를 입력해주세요"
+//            //extra hide
+//            binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//            binding.pwNewPwFailIv.visibility = View.INVISIBLE
+//            binding.pwNewPwFailTv.visibility = View.INVISIBLE
+//            binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+//            binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+//            binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+//            return
+//        }
+
 
         if (binding.pwNewPwEt.text.toString().isNotEmpty() && binding.pwNewCheckPwEt.text.toString().isNotEmpty()) {
             if (!binding.pwNewPwEt.text.toString().equals(binding.pwNewCheckPwEt.text.toString())) {
@@ -131,7 +178,7 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwNewPwFailIv.visibility = View.INVISIBLE
                 binding.pwNewPwFailTv.visibility = View.INVISIBLE
             }
-            3015 -> {
+            3116 , 3015 -> {
                 //origin show
                 binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.pwNewPwFailIv.visibility = View.VISIBLE
@@ -146,7 +193,7 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwOriginPwFailIv.visibility = View.INVISIBLE
             }
 
-            3016-> {
+            3117 , 3016-> {
                 //origin show
                 binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.pwNewCheckPwFailIv.visibility = View.VISIBLE
