@@ -21,7 +21,7 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
             text.text = "매칭 기능은 현재 지원하지 않습니다."
             var toast = Toast(context)
             toast.view = layoutInflater
-            toast.setGravity(Gravity.BOTTOM, 0, 270)
+            toast.setGravity(Gravity.BOTTOM, 0, 150)
             toast.show()
         }
 
@@ -31,7 +31,7 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
             text.text = "매칭 기능은 현재 지원하지 않습니다."
             var toast = Toast(context)
             toast.view = layoutInflater
-            toast.setGravity(Gravity.BOTTOM, 0, 270)
+            toast.setGravity(Gravity.BOTTOM, 0, 150)
             toast.show()
         }
 
@@ -41,7 +41,7 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
             text.text = "매칭 기능은 현재 지원하지 않습니다."
             var toast = Toast(context)
             toast.view = layoutInflater
-            toast.setGravity(Gravity.BOTTOM, 0, 270)
+            toast.setGravity(Gravity.BOTTOM, 0, 150)
             toast.show()
         }
 
@@ -51,7 +51,7 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
             text.text = "매칭 기능은 현재 지원하지 않습니다."
             var toast = Toast(context)
             toast.view = layoutInflater
-            toast.setGravity(Gravity.BOTTOM, 0, 270)
+            toast.setGravity(Gravity.BOTTOM, 0, 150)
             toast.show()
         }
     }

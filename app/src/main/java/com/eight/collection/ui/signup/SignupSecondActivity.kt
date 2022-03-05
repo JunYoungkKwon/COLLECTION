@@ -64,7 +64,7 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
                 text.text = message
                 var toast = Toast(this)
                 toast.view = layoutInflater
-                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.setGravity(Gravity.BOTTOM, 0, 410)
                 toast.show()
             }
             else -> {
@@ -73,7 +73,7 @@ class SignupSecondActivity: BaseActivity<ActivitySignupSecondBinding>(ActivitySi
                 text.text = "SERVER ERROR"
                 var toast = Toast(this)
                 toast.view = layoutInflater
-                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.setGravity(Gravity.BOTTOM, 0, 410)
                 toast.show()
             }
         }

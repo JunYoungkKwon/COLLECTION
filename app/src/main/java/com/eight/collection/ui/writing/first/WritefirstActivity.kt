@@ -40,6 +40,7 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
     lateinit var binding: ActivityWritefirstBinding
     val photoList = ArrayList<Uri>()
     val imageList = ArrayList<Image>()
+    var reviseimageList = ArrayList<Image>()
     val photoRVAdapter = PhotoRVAdapter(photoList, this)
     val fragmentList = arrayListOf<Fragment>()
     val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
@@ -57,6 +58,7 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
     var mode : Int = 1
 
     var modidate : String? = null
+
 
 
 
@@ -282,7 +284,7 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
             if(fixedClothes.isEmpty() == true && addedClothes.isEmpty() == true ){
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "(필수선택)옷을 한 개 이상 선택해주세요."
+                text.text = "옷을 한 개 이상 선택해주세요."
                 var toast = Toast(this)
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
@@ -292,7 +294,7 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
             else if(binding.writefirstLookstyleTv.text.toString().isEmpty() == true){
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "(필수)LOOK NAME을 입력해주세요."
+                text.text = "LOOK NAME을 입력해주세요."
                 var toast = Toast(this)
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
@@ -303,16 +305,17 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
                 val intent = Intent(this, WritesecondActivity::class.java)
                 intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
                 intent.putExtra("photoIs", photoIs)
-                intent.putExtra("image", imageList)
 
                 intent.putExtra("fixed", fixedClothes)
                 intent.putExtra("added", addedClothes)
 
                 if(mode == 2){
+                    intent.putExtra("image", reviseimageList)
                     intent.putExtra("date", getDate)
                     intent.putExtra("mode", mode)
                 }
                 else {
+                    intent.putExtra("image", imageList)
                     intent.putExtra("date", formattedpost)
                     intent.putExtra("mode", mode)
                 }
@@ -475,6 +478,7 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
                 }
                 b=-1
             }
+            reviseimageList = imageList
         }
 
         if(modiresult.selected?.lookname != null){

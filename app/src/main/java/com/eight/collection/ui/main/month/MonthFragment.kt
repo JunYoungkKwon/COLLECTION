@@ -8,10 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
@@ -81,9 +78,10 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         binding.monthBtnRankIv.setOnClickListener {
             var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
             var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-            text.text="Coming Soon!!!"
+            text.text="추후 업데이트될 예정입니다."
             var toast = Toast(context)
             toast.view = layoutInflater
+            toast.setGravity(Gravity.BOTTOM, 0, 150)
             toast.show()
             //Navigation.findNavController(it).navigate(R.id.MyLookFragment)
         }
@@ -142,6 +140,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
                         text.text="해당 날짜에는 ootd가 존재하지 않습니다."
                         var toast = Toast(context)
                         toast.view = layoutInflater
+                        toast.setGravity(Gravity.BOTTOM, 0, 150)
                         toast.show()
                     }
                     else{

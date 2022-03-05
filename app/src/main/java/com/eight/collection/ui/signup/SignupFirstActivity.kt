@@ -43,7 +43,7 @@ class SignupFirstActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySign
                     text.text = "개인정보 수집제공 동의를 해주세요."
                     var toast = Toast(this)
                     toast.view = layoutInflater
-                    toast.setGravity(Gravity.BOTTOM, 0, 270)
+                    toast.setGravity(Gravity.BOTTOM, 0, 410)
                     toast.show()
                 }
             }

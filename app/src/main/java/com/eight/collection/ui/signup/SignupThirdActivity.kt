@@ -44,7 +44,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
                     text.text = "중복확인을 해주세요."
                     var toast = Toast(this)
                     toast.view = layoutInflater
-                    toast.setGravity(Gravity.BOTTOM, 0, 270)
+                    toast.setGravity(Gravity.BOTTOM, 0, 410)
                     toast.show()
                     return
                 }
