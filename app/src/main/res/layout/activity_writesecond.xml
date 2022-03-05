@@ -260,7 +260,7 @@
             android:isIndicator="false"
             android:clickable="true"
             android:numStars="5"
-            android:rating="1"
+            android:rating="0"
             android:stepSize="1"
             hedgehog:starImageHeight="26dp"
             hedgehog:starImageWidth="27dp"

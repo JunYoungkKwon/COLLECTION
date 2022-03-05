@@ -22,19 +22,37 @@ import com.eight.collection.ui.main.MainActivity
 
 class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySignupThirdBinding::inflate), SignUpView, CheckIdView, View.OnClickListener {
 
+    var checkId : Int = 0
+
     override fun initAfterBinding() {
         binding.signUpThirdIcBack.setOnClickListener(this)
         binding.signUpThirdFinishButton.setOnClickListener(this)
         binding.signUpThirdDoubleCheckIv.setOnClickListener(this)
         val value = intent.getStringExtra("postnickname")
         binding.signUpThirdNicknameEt.setText(value)
+
     }
 
     override fun onClick(v: View?) {
         if(v == null) return
 
         when(v) {
-            binding.signUpThirdFinishButton -> signUp()
+            binding.signUpThirdFinishButton -> {
+                if(checkId == 0){
+                    var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                    var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                    text.text = "중복확인을 해주세요."
+                    var toast = Toast(this)
+                    toast.view = layoutInflater
+                    toast.setGravity(Gravity.BOTTOM, 0, 270)
+                    toast.show()
+                    return
+                }
+                checkId()
+                if(checkId == 1){
+                    signUp()
+                }
+            }
             binding.signUpThirdDoubleCheckIv -> checkId()
             binding.signUpThirdIcBack -> finish()
         }
@@ -92,7 +110,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
     override fun onSignUpFailure(code: Int, message: String) {
         when(code) {
             //Name 에러
-            3041, 3050, 3051 -> {
+            3041, 3050, 3051, 3072 -> {
                 binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdNameErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdNameErrorTv.text= '*' + message
@@ -113,7 +131,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
             }
             //ID 에러
-            3000, 3001, 3002, 3050, 3051 -> {
+            3000, 3001, 3002, 3050, 3051, 3074 -> {
                 binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdIdErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdIdErrorTv.text= '*' + message
@@ -134,7 +152,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
 
             }
             //Password 에러
-            3003, 3004, 3050, 3051 -> {
+            3003, 3004, 3050, 3051, 3080 -> {
                 binding.signUpThirdPasswordUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                 binding.signUpThirdPasswordErrorTv.visibility = View.VISIBLE
                 binding.signUpThirdPasswordErrorTv.text= '*' + message
@@ -192,6 +210,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
         binding.signUpThirdIdErrorTv.visibility = View.VISIBLE
         binding.signUpThirdIdErrorTv.text= "*사용가능한 아이디입니다."
         binding.signUpThirdIdErrorTv.setTextColor(Color.parseColor("#71a238"))
+        checkId = 1
     }
 
     override fun onCheckIdFailure(code: Int, message: String) {
@@ -216,9 +235,11 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
                 binding.signUpThirdPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                 binding.signUpThirdPhoneErrorTv.visibility = View.GONE
 
+                checkId = 0
             }
             else -> {
                 showToast("SEVER ERROR")
+                checkId = 0
             }
         }
     }

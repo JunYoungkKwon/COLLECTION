@@ -52,6 +52,7 @@
         android:textSize="16sp"
         android:textColor="@color/pinkish_grey"
         android:fontFamily="@font/suit_regular"
+        android:maxLength="6"
         android:privateImeOptions="defaultInputmode=korean"
         app:layout_constraintTop_toBottomOf="@id/add_toptag_title_tv"
         app:layout_constraintStart_toStartOf="@id/add_toptag_background_v"

@@ -36,7 +36,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
     private var getweatherdataListener : WritesecondActivity.GetWeatherDataListener? = null
     private var getwhodataListener : WritesecondActivity.GetWhoDataListener? = null
     private lateinit var ratingBar : RatingBar
-    var lookpoint : Float = 3F
+    var lookpoint : Float = 0F
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,20 +72,31 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
 
 
         binding.writesecondFinishButton2.setOnClickListener {
-            //URL 받기
-            receiveS3Url()
+            if(lookpoint == 0F){
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "(필수)LOOK POINT를 설정해주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+            else {
+                //URL 받기
+                receiveS3Url()
 
-            //Write API
-            write()
+                //Write API
+                write()
 
-            val date = intent.getStringExtra("date")
-            val intent = Intent(this, FinishActivity::class.java)
-            intent.putExtra("date", date)
+                val date = intent.getStringExtra("date")
+                val intent = Intent(this, FinishActivity::class.java)
+                intent.putExtra("date", date)
 
-            /*var writefirstActivity : WritefirstActivity = WritefirstActivity().firstActivity as WritefirstActivity
-            writefirstActivity.finish()*/
-            startActivity(intent)
-            finish()
+                /*var writefirstActivity : WritefirstActivity = WritefirstActivity().firstActivity as WritefirstActivity
+                writefirstActivity.finish()*/
+                startActivity(intent)
+                finish()
+            }
         }
     }
 
@@ -172,8 +183,8 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
     override fun onWriteFailure(code: Int, message: String) {
         when(code) {
             4009,4010,4011,4012,4013,4015 -> {
-                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = message
                 var toast = Toast(this)
                 toast.view = layoutInflater
@@ -182,8 +193,8 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView{
             }
 
             else -> {
-                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_signup,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_signup_text)
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = message
                 var toast = Toast(this)
                 toast.view = layoutInflater
