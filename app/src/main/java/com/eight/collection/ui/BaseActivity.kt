@@ -48,7 +48,7 @@ abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater
 
         // use the application extension function
         this.apply {
-            setGravity(Gravity.BOTTOM, 0, 180)
+            setGravity(Gravity.BOTTOM, 0, 410)
             duration = Toast.LENGTH_SHORT
             view = layout
             show()
