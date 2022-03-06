@@ -32,7 +32,7 @@ import com.eight.collection.ui.writing.second.who.WritesecondWhoFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hedgehog.ratingbar.RatingBar
 
-class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, ModiView {
+class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView {
     lateinit var binding : ActivityWritesecondBinding
     val information = arrayListOf("PLACE","WEATHER","WHO")
     val fragmentList = arrayListOf<Fragment>()
@@ -64,11 +64,11 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, Mo
         }.attach()
 
         val date = intent.getStringExtra("date")
-        modidate = date
+        /*modidate = date*/
 
-        if (intent.getIntExtra("mode",1) == 2){
+        /*if (intent.getIntExtra("mode",1) == 2){
             modi()
-        }
+        }*/
 
 
 
@@ -106,8 +106,6 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, Mo
 
                 val intent = Intent(this, FinishActivity::class.java)
                 intent.putExtra("date", date)
-                Log.d("date2","${date}")
-
 
                 startActivity(intent)
 
@@ -127,7 +125,6 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, Mo
     }
 
     override fun onReceiveS3URLSuccess(url : String){
-        Log.d("url",url)
     }
 
     override fun onReceiveS3URLFailure(code: Int, message: String) {
@@ -138,7 +135,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, Mo
     // Write API
     private fun getWrite() : Write{
         val mode = intent.getIntExtra("mode",1)
-        Log.d("mode:","${mode}")
+
         //Date
         val date = intent.getStringExtra("date")
 
@@ -248,7 +245,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, Mo
     }
 
 
-    private fun modi(){
+    /*private fun modi(){
         ModiService.modi(this, modidate!!)
     }
 
@@ -267,7 +264,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, Mo
 
     override fun onModiFailure(code: Int, message: String) {
 
-    }
+    }*/
 
 
 }

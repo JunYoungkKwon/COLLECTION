@@ -162,7 +162,7 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
     fun getRVAAddedData() : ArrayList<String> {
         val addedWho = arrayListOf<String>()
         for(i in whoList) {
-            if (i.id > 8) {
+            if (i.id > 6) {
                 if (i.focus == true) {
                     addedWho.apply {
                         add(i.name)

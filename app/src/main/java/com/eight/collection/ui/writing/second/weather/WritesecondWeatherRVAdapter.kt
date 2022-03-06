@@ -104,8 +104,8 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
     }
 
     // 데이터 추가 메소드 (데이터 및 삭제아이콘 추가)
-    fun addItem(who: WritesecondWeather){
-        weatherList.add(who)
+    fun addItem(weather: WritesecondWeather){
+        weatherList.add(weather)
         notifyDataSetChanged()
     }
 

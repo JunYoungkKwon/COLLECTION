@@ -96,7 +96,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onGetAddedBlockSuccess(getaddedblockresult: GetAddedBlockResult) {
-        if(getaddedblockresult.aplace != null) {
+        if(getaddedblockresult.awho != null) {
             for (i in getaddedblockresult.awho) {
                 whoDatas.apply {
                     add(WritesecondWho(i, idcount))

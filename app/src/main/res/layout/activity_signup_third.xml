@@ -404,8 +404,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sign_up_third_finish_button"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/signup_btn_event_third"
         android:textColor="@color/terracota"
         app:layout_constraintBottom_toBottomOf="parent"

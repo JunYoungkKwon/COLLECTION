@@ -97,7 +97,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onGetAddedBlockSuccess(getaddedblockresult: GetAddedBlockResult) {
-        if(getaddedblockresult.aplace != null) {
+        if(getaddedblockresult.aweather != null) {
             for (i in getaddedblockresult.aweather) {
                 weatherDatas.apply {
                     add(WritesecondWeather(i, idcount))

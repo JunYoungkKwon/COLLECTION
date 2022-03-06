@@ -36,7 +36,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
-class WritefirstActivity() : AppCompatActivity(), ModiView{
+class WritefirstActivity() : AppCompatActivity(){
     lateinit var binding: ActivityWritefirstBinding
     val photoList = ArrayList<Uri>()
     val imageList = ArrayList<Image>()
@@ -83,8 +83,8 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
             val formatted2 = date2.format(formatter)
             binding.writefirstDateTv.text = formatted2
             mode = 2
-            modidate = getDate
-            modi()
+            /*modidate = getDate
+            modi()*/
         }
 
 
@@ -314,21 +314,19 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
                 val intent = Intent(this, WritesecondActivity::class.java)
                 intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
                 intent.putExtra("photoIs", photoIs)
-
+                intent.putExtra("image", imageList)
                 intent.putExtra("fixed", fixedClothes)
                 intent.putExtra("added", addedClothes)
 
                 if(mode == 2){
-                    intent.putExtra("image", reviseimageList)
+                    /*intent.putExtra("image", reviseimageList)*/
                     intent.putExtra("date", getDate)
                     intent.putExtra("mode", mode)
                 }
                 else {
-                    intent.putExtra("image", imageList)
+                    /*intent.putExtra("image", imageList)*/
                     intent.putExtra("date", formattedpost)
                     intent.putExtra("mode", mode)
-                    Log.d("image","${imageList}")
-                    Log.d("date","${formattedpost}")
                 }
 
                 startActivity(intent)
@@ -461,7 +459,7 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
     }
 
 
-    //수정하기시 블럭 색 셋팅해놓기
+    /*//수정하기시 블럭 색 셋팅해놓기
     private fun modi(){
         ModiService.modi(this, modidate!!)
     }
@@ -501,7 +499,7 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
 
     override fun onModiFailure(code: Int, message: String) {
 
-    }
+    }*/
 
 
 }

@@ -59,7 +59,7 @@ class WritesecondWhoCustomDialog(context: Context, anInterface: CustomDialogInte
     private fun getBlock() : Block {
         addEditText = findViewById(R.id.add_whotag_et)
         val clothes : Int = -1
-        val pww : Int = 1
+        val pww : Int = 2
         val content : String = addEditText.text.toString()
         return Block(clothes,pww,content)
     }
