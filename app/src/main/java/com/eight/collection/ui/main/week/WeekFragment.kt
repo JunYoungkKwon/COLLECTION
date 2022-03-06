@@ -49,6 +49,7 @@ import java.util.*
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate),MonthView, WeeklyView, DeleteView {
 
+
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
 
     private var current: LocalDate = LocalDate.now()
