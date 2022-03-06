@@ -47,6 +47,8 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     private  lateinit var etcRVAdapter: EtcRVAdapter
     private  lateinit var photoRVAdapter: PhotoRVAdapter
 
+
+
     override fun initAfterBinding() {
         overridePendingTransition(R.anim.slide_up, R.anim.none)
         initRV()
@@ -73,6 +75,8 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
                     finish()
                 }
             }
+
+
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
             }
@@ -149,6 +153,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     private fun getFinish() {
         val dateIntent = intent
         val date = dateIntent.getStringExtra("date")
+        Log.d("date2323","${date}")
         if (date != null) {
             FinishService.getFinish(this, date)
         }

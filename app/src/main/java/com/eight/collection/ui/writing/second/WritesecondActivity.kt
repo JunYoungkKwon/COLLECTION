@@ -106,6 +106,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView, Mo
 
                 val intent = Intent(this, FinishActivity::class.java)
                 intent.putExtra("date", date)
+                Log.d("date2","${date}")
 
 
                 startActivity(intent)
