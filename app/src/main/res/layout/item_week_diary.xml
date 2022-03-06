@@ -43,8 +43,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_bg_weekly" />
+            android:src="@drawable/week_diary_default" />
     </androidx.cardview.widget.CardView>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/item_diary_img_iv1"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/img_bg_weekly"-->
+<!--        android:layout_width="112dp"-->
+<!--        android:layout_height="172dp"-->
+<!--        android:visibility="visible"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="19dp"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/item_diary_half_vertical_line_view"-->
+<!--        app:layout_constraintTop_toTopOf="@id/item_top_line_view"-->
+<!--        app:layout_constraintStart_toStartOf="parent"/>-->
 
     <RelativeLayout
         android:id="@+id/item_diary_img_line_rL"

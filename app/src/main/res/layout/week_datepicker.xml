@@ -15,74 +15,73 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <View
-        android:id="@+id/datepicker_line0"
-        android:layout_width="280dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="13dp"
-        app:layout_constraintEnd_toEndOf="@+id/datepicker"
-        app:layout_constraintBottom_toTopOf="@+id/datepicker_confirm_btn_off_ib"
-        app:layout_constraintStart_toStartOf="@+id/datepicker"
-        android:background="@drawable/week_datepicker_round"/>
+<!--    <View-->
+<!--        android:id="@+id/datepicker_line0"-->
+<!--        android:layout_width="280dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginBottom="13dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/datepicker"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/datepicker_confirm_btn_off_ib"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/datepicker"-->
+<!--        android:background="@drawable/week_datepicker_round"/>-->
 
-    <View
-        android:id="@+id/datepicker_line1"
-        android:layout_width="280dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/datepicker_line0"
-        app:layout_constraintBottom_toTopOf="@+id/datepicker_line0"
-        app:layout_constraintStart_toStartOf="@+id/datepicker_line0"
-        android:background="@drawable/week_datepicker_round"/>
+<!--    <View-->
+<!--        android:id="@+id/datepicker_line1"-->
+<!--        android:layout_width="280dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/datepicker_line0"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/datepicker_line0"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/datepicker_line0"-->
+<!--        android:background="@drawable/week_datepicker_round"/>-->
 
-    <View
-        android:id="@+id/datepicker_line2"
-        android:layout_width="280dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/datepicker_line1"
-        app:layout_constraintBottom_toTopOf="@+id/datepicker_line1"
-        app:layout_constraintStart_toStartOf="@+id/datepicker_line1"
-        android:background="@drawable/week_datepicker_round"/>
+<!--    <View-->
+<!--        android:id="@+id/datepicker_line2"-->
+<!--        android:layout_width="280dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/datepicker_line1"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/datepicker_line1"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/datepicker_line1"-->
+<!--        android:background="@drawable/week_datepicker_round"/>-->
 
-    <View
-        android:id="@+id/datepicker_line3"
-        android:layout_width="280dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/datepicker_line2"
-        app:layout_constraintBottom_toTopOf="@+id/datepicker_line2"
-        app:layout_constraintStart_toStartOf="@+id/datepicker_line2"
-        android:background="@drawable/week_datepicker_round"/>
+<!--    <View-->
+<!--        android:id="@+id/datepicker_line3"-->
+<!--        android:layout_width="280dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/datepicker_line2"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/datepicker_line2"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/datepicker_line2"-->
+<!--        android:background="@drawable/week_datepicker_round"/>-->
 
-    <View
-        android:id="@+id/datepicker_line4"
-        android:layout_width="280dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/datepicker_line3"
-        app:layout_constraintBottom_toTopOf="@+id/datepicker_line3"
-        app:layout_constraintStart_toStartOf="@+id/datepicker_line3"
-        android:background="@drawable/week_datepicker_round"/>
-    <View
-        android:id="@+id/datepicker_line5"
-        android:layout_width="280dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/datepicker_line4"
-        app:layout_constraintBottom_toTopOf="@+id/datepicker_line4"
-        app:layout_constraintStart_toStartOf="@+id/datepicker_line4"
-        android:background="@drawable/week_datepicker_round"/>
+<!--    <View-->
+<!--        android:id="@+id/datepicker_line4"-->
+<!--        android:layout_width="280dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/datepicker_line3"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/datepicker_line3"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/datepicker_line3"-->
+<!--        android:background="@drawable/week_datepicker_round"/>-->
+<!--    <View-->
+<!--        android:id="@+id/datepicker_line5"-->
+<!--        android:layout_width="280dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/datepicker_line4"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/datepicker_line4"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/datepicker_line4"-->
+<!--        android:background="@drawable/week_datepicker_round"/>-->
 
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="@+id/datepicker"
-        app:layout_constraintBottom_toTopOf="@+id/datepicker_line5"
+        app:layout_constraintTop_toTopOf="@id/datepicker"
         app:layout_constraintStart_toStartOf="@+id/datepicker"
-        android:background="@color/pinkish_grey">
-    </View>
+        android:background="@color/pinkish_grey"/>
 
     <ImageButton
         android:id="@+id/datepicker_confirm_btn_off_ib"

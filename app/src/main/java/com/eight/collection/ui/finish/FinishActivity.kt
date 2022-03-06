@@ -48,14 +48,23 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     private  lateinit var photoRVAdapter: PhotoRVAdapter
 
     override fun initAfterBinding() {
+        overridePendingTransition(R.anim.slide_up, R.anim.none)
         initRV()
         getFinish()
         clickSetting()
         scrollFinsh()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (isFinishing) {
+            overridePendingTransition(R.anim.none, R.anim.slide_down)
+        }
+    }
+
     private fun scrollFinsh() {
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.finishCl)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
