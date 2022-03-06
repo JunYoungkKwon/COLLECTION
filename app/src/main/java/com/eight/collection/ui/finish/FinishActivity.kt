@@ -48,8 +48,8 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     private  lateinit var photoRVAdapter: PhotoRVAdapter
 
     override fun initAfterBinding() {
-        initRV()
         getFinish()
+        initRV()
         clickSetting()
         scrollFinsh()
     }

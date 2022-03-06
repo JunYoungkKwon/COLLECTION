@@ -53,10 +53,8 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
     private var getbottomdataListener : WritefirstActivity.GetBottomDataListener? = null
     private var getshoesdataListener : WritefirstActivity.GetShoesDataListener? = null
     private var getetcdataListener : WritefirstActivity.GetEtcDataListener? = null
-
     var photoIs : Int = -1
     var mode : Int = 1
-
     var modidate : String? = null
 
 
@@ -77,8 +75,9 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
 
         binding.writefirstDateTv.text = formatted
 
-        var getDate = intent.getStringExtra("date")
 
+        //(수정하기시) 날짜 데이터 삽입
+        var getDate = intent.getStringExtra("date")
         if(getDate != null){
             val date2 = LocalDate.parse(getDate, DateTimeFormatter.ISO_DATE)
             val formatted2 = date2.format(formatter)
@@ -88,6 +87,17 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
             modi()
         }
 
+
+        //초기화 기능 구현 (현재 미구현)
+        binding.writefirstRefreshIv.setOnClickListener{
+            var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+            text.text = "초기화 기능은 추후 업데이트 예정입니다."
+            var toast = Toast(this)
+            toast.view = layoutInflater
+            toast.setGravity(Gravity.BOTTOM, 0, 150)
+            toast.show()
+        }
 
 
         //이미지 리사이클러뷰 및 갤러리에서 이미지 불러오기
@@ -268,7 +278,6 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
 
         //다음버튼 클릭시 Writing Second Activity
         binding.writefirstNextButton.setOnClickListener {
-
             // Clothes 필수선택
             val fixedClothes : ArrayList<FixedClothes> = ArrayList()
             val addedClothes : ArrayList<AddedClothes> = ArrayList()
@@ -318,6 +327,8 @@ class WritefirstActivity() : AppCompatActivity(), ModiView{
                     intent.putExtra("image", imageList)
                     intent.putExtra("date", formattedpost)
                     intent.putExtra("mode", mode)
+                    Log.d("image","${imageList}")
+                    Log.d("date","${formattedpost}")
                 }
 
                 startActivity(intent)
