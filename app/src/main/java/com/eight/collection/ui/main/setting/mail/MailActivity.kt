@@ -1,4 +1,4 @@
-package com.eight.collection.ui.main.setting.infoedit.mail
+package com.eight.collection.ui.main.setting.mail
 
 import android.content.Intent
 import android.net.Uri
