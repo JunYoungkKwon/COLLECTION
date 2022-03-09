@@ -47,6 +47,18 @@
     <string name="etc">Etc.</string>
     <string name="weekly_default">해당 항목 없음</string>
 
+    <!-- developerInfo page -->
+    <string name="team_name">8:-)</string>
+    <string name="leader_role">Project\nManager</string>
+    <string name="leader_name">이프</string>
+    <string name="design_role">UI/UX\nDESIGNER</string>
+    <string name="design_name">니제이</string>
+    <string name="android_role">ANDROID</string>
+    <string name="android_name1">테오</string>
+    <string name="android_name2">라프</string>
+    <string name="server_role">SERVER</string>
+    <string name="server_name1">써니</string>
+    <string name="server_name2">녜</string>
     <!-- setting page -->
     <string name="setting_back">설정</string>
     <string name="id">collection</string>

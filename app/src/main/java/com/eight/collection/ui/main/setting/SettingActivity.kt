@@ -7,19 +7,15 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
-import android.view.Window
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivitySettingBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.login.LoginFirstActivity
+import com.eight.collection.ui.main.setting.developerinfo.DeveloperInfoActivity
 import com.eight.collection.ui.main.setting.infoedit.InfoEditActivity
-import com.eight.collection.ui.main.setting.infoedit.mail.MailActivity
-import com.eight.collection.ui.main.setting.privacy.PrivacyRule
+import com.eight.collection.ui.main.setting.privacy.PrivacyRuleActivity
 import com.eight.collection.utils.getNickName
-import com.eight.collection.utils.getUserId
 
 class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBinding::inflate), View.OnClickListener {
 
@@ -46,8 +42,9 @@ class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBindi
             binding.settingBackBtnIv -> finishActivity()
             binding.settingInfoEditLy -> {startNextActivity(InfoEditActivity::class.java)
             slideRight()}
-            binding.settingDeveloperInfoLy -> { Toast(this).showCustomToast("Coming Soon!!!", this) }
-            binding.settingPrivacyRuleLy -> {startNextActivity(PrivacyRule::class.java)
+            binding.settingDeveloperInfoLy ->  {startNextActivity(DeveloperInfoActivity::class.java)
+                slideRight()}
+            binding.settingPrivacyRuleLy -> {startNextActivity(PrivacyRuleActivity::class.java)
                 slideRight()}
             binding.settingMailLy -> {
                 var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/1YTfmceuF4hZEFy5PzZ4Pq1BqkfsQchK8xePRzSjWSUY/edit"))
