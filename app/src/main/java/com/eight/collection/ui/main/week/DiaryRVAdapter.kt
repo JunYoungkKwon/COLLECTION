@@ -54,6 +54,7 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
         notifyItemRangeChanged(position, itemCount)
     }
 
+
     @SuppressLint("NotifyDataSetChanged")
     fun addWeekly(diarylist: MutableList<Diary>) {
         this.diarylist.clear()
@@ -95,6 +96,7 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
 
         fun bind(diary: Diary){
+            binding.weekDiaryBottomRecyclerView.scrollToPosition(1)
             binding.itemDiaryImgCountTv.text= "+"+ diary.imgCount.toString()
 
             if(diary.coverImg == "null"){

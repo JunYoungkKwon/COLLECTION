@@ -14,6 +14,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.applandeo.materialcalendarview.utils.calendar
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
@@ -25,6 +27,7 @@ import com.eight.collection.databinding.CalendarDateBinding
 import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
+import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.month.MonthView
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
@@ -37,6 +40,7 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
+import kotlinx.coroutines.selects.select
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -52,6 +56,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
 
+    private var selectedDate: LocalDate? = null
     private var current: LocalDate = LocalDate.now()
     private var click: Boolean = false
     private var dateSave: MutableList<Diary>? = null
@@ -165,14 +170,73 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         Log.d("Month/FLOW/1", "SUCCESS")
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
 
+
+
             override fun create(view: View) = DayViewContainer(view)
 
             @RequiresApi(Build.VERSION_CODES.O)
             override fun bind(container: DayViewContainer, day: CalendarDay) {
-                container.calendarDay.text = day.date.dayOfMonth.toString()
-                container.calendarCell.setOnClickListener{}
                 diaryRVAdapter = DiaryRVAdapter(requireContext())
                 binding.weekDiaryRecyclerView.adapter = diaryRVAdapter
+                container.calendarDay.text = day.date.dayOfMonth.toString()
+                container.calendarCell.setOnClickListener{
+                    val currentSelection = selectedDate
+                    if(container.rankPoint.drawable == null) {
+                        var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                        var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                        text.text="해당 날짜에는 ootd가 존재하지 않습니다."
+                        var toast = Toast(context)
+                        toast.view = layoutInflater
+                        toast.setGravity(Gravity.BOTTOM, 0, 150)
+                        toast.show()
+                    }
+                    else{
+
+
+                        if (currentSelection == day.date) {
+                            selectedDate = null
+                        } else {
+                            selectedDate = day.date
+                            val smoothScroller: RecyclerView.SmoothScroller by lazy {
+                                object : LinearSmoothScroller(context) {
+                                    override fun getVerticalSnapPreference() = SNAP_TO_START
+                                }
+                            }
+                            when(selectedDate){
+                                firstdate -> {
+                                    smoothScroller.targetPosition = 0
+                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                }
+                                firstdate?.plusDays(1) ->  {
+                                    smoothScroller.targetPosition = 1
+                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                }
+                                firstdate?.plusDays(2) ->  {
+                                    smoothScroller.targetPosition = 2
+                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                }
+                                firstdate?.plusDays(3) ->  {
+                                    smoothScroller.targetPosition = 3
+                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                }
+                                firstdate?.plusDays(4) ->  {
+                                    smoothScroller.targetPosition = 4
+                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                }
+                                firstdate?.plusDays(5) ->  {
+                                    smoothScroller.targetPosition = 5
+                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                }
+                                lastdate ->  {
+                                    smoothScroller.targetPosition = 6
+                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                }
+                                else ->  binding.weekDiaryRecyclerView.smoothScrollToPosition(0)
+                            }
+                        }
+                    }
+                }
+
 
                 diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener{
                     override fun onRemoveDiary(view: View, position: Int) {
@@ -206,7 +270,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                                     if (deleteDate != null) {
                                         deleteOOTD(deleteDate)
                                     }
-
                                 }
                             }
                             powerMenu.selectedPosition = position
