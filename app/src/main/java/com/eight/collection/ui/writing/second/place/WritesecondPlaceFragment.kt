@@ -1,6 +1,9 @@
 package com.eight.collection.ui.writing.second.place
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +11,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
+import com.eight.collection.data.remote.modi.ModiResult
+import com.eight.collection.data.remote.modi.ModiService
 import com.eight.collection.databinding.FragmentWritesecondPlaceBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
 import com.eight.collection.ui.writing.GetAddedBlockView
+import com.eight.collection.ui.writing.ModiView
 import com.eight.collection.ui.writing.first.AddedClothes
 import com.eight.collection.ui.writing.first.FixedClothes
 import com.eight.collection.ui.writing.first.WritefirstActivity
@@ -23,12 +29,13 @@ import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
     WritesecondPlaceRVAdapter.PlaceClickListener, WritesecondActivity.GetPlaceDataListener ,
-    GetAddedBlockView {
+    GetAddedBlockView, ModiView, WritesecondActivity.RefreshPlaceDataListener {
     lateinit var binding : FragmentWritesecondPlaceBinding
     private var placeDatas = ArrayList<WritesecondPlace>()
     lateinit var customDialog: WritesecondPlaceCustomDialog
     private var idcount : Int = 9
     var placeRVAdapter : WritesecondPlaceRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
+    var date : String = "2021-01-01"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,15 +57,18 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
             add(WritesecondPlace("휴양지", 8,8))
         }
 
-
-        placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
-        placeRVAdapter.setPlaceClickListener(this)
-
-        val flexboxLayoutManager = FlexboxLayoutManager(activity)
-        binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
-        binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
-
         getAddedBlock()
+
+        modi()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
+            placeRVAdapter.setPlaceClickListener(this)
+
+            val flexboxLayoutManager = FlexboxLayoutManager(activity)
+            binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
+            binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
+        }, 100)
 
 
         return binding.root
@@ -113,7 +123,40 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onGetAddedBlockFailure(code: Int, message: String) {
+    }
 
+    private fun modi(){
+        date = (activity as WritesecondActivity).modidate.toString()
+        ModiService.modi(this, date!!)
+    }
+
+    override fun onModiLoading() {
+    }
+
+    override fun onModiSuccess(modiresult: ModiResult) {
+        if(modiresult.selected?.place.isNullOrEmpty() == false){
+            for(i in placeDatas){
+                for(j in modiresult.selected?.place!!){
+                    if(i.name == j){
+                        i.apply{
+                            i.focus = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onModiFailure(code: Int, message: String) {
+    }
+
+    override fun refreshData() {
+        for(i in placeDatas){
+            i.apply{
+                i.focus = false
+            }
+        }
+        placeRVAdapter.notifyDataSetChanged()
     }
 
 }

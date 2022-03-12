@@ -1,6 +1,5 @@
 package com.eight.collection.ui.signup
 
-import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import com.eight.collection.R
 import com.eight.collection.databinding.ActivitySignupFirstBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.login.LoginFirstActivity
-import com.eight.collection.ui.login.LoginSecondActivity
 import com.eight.collection.ui.main.setting.privacy.PrivacyRule
 
 class SignupFirstActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySignupFirstBinding::inflate), View.OnClickListener {

@@ -7,8 +7,6 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
-import android.view.Window
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import com.eight.collection.R
@@ -16,10 +14,8 @@ import com.eight.collection.databinding.ActivitySettingBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.login.LoginFirstActivity
 import com.eight.collection.ui.main.setting.infoedit.InfoEditActivity
-import com.eight.collection.ui.main.setting.infoedit.mail.MailActivity
 import com.eight.collection.ui.main.setting.privacy.PrivacyRule
 import com.eight.collection.utils.getNickName
-import com.eight.collection.utils.getUserId
 
 class SettingActivity: BaseActivity<ActivitySettingBinding>(ActivitySettingBinding::inflate), View.OnClickListener {
 

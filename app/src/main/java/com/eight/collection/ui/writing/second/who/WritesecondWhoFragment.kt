@@ -1,6 +1,9 @@
 package com.eight.collection.ui.writing.second.who
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +11,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
+import com.eight.collection.data.remote.modi.ModiResult
+import com.eight.collection.data.remote.modi.ModiService
 import com.eight.collection.databinding.FragmentWritesecondWhoBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
 import com.eight.collection.ui.writing.GetAddedBlockView
+import com.eight.collection.ui.writing.ModiView
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoes
 import com.eight.collection.ui.writing.second.*
 import com.eight.collection.ui.writing.second.place.WritesecondPlaceRVAdapter
@@ -19,12 +25,13 @@ import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     WritesecondWhoRVAdapter.WhoClickListener, WritesecondActivity.GetWhoDataListener,
-    GetAddedBlockView {
+    GetAddedBlockView, ModiView, WritesecondActivity.RefreshWhoDataListener {
     lateinit var binding : FragmentWritesecondWhoBinding
     var whoDatas = ArrayList<WritesecondWho>()
     lateinit var customDialog: WritesecondWhoCustomDialog
     private var idcount : Int = 7
     var whoRVAdapter : WritesecondWhoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
+    var date : String = "2021-01-01"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,16 +51,19 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
             add(WritesecondWho("혼자", 6,6))
         }
 
-
-        whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
-        whoRVAdapter.setWhoClickListener(this)
-
-        val flexboxLayoutManager = FlexboxLayoutManager(activity)
-        binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
-        binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
-
-        //추가 Top 리스트 생성
         getAddedBlock()
+
+        modi()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
+            whoRVAdapter.setWhoClickListener(this)
+
+            val flexboxLayoutManager = FlexboxLayoutManager(activity)
+            binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
+            binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
+        }, 100)
+
 
         return binding.root
     }
@@ -108,7 +118,41 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onGetAddedBlockFailure(code: Int, message: String) {
+    }
 
+
+    private fun modi(){
+        date = (activity as WritesecondActivity).modidate.toString()
+        ModiService.modi(this, date!!)
+    }
+
+    override fun onModiLoading() {
+    }
+
+    override fun onModiSuccess(modiresult: ModiResult) {
+        if(modiresult.selected?.who.isNullOrEmpty() == false){
+            for(i in whoDatas){
+                for(j in modiresult.selected?.who!!){
+                    if(i.name == j){
+                        i.apply{
+                            i.focus = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onModiFailure(code: Int, message: String) {
+    }
+
+    override fun refreshData() {
+        for(i in whoDatas){
+            i.apply{
+                i.focus = false
+            }
+        }
+        whoRVAdapter.notifyDataSetChanged()
     }
 
 }

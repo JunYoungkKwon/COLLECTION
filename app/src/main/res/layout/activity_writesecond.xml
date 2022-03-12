@@ -110,7 +110,6 @@
             />
 
 
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/writesecond_tb"
             android:layout_width="0dp"
@@ -140,7 +139,7 @@
             android:fontFamily="@font/suit_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/writesecond_background_horizontalline_fifth_v"
+            app:layout_constraintStart_toStartOf="@id/writesecond_vp"
             app:layout_constraintTop_toBottomOf="@id/writesecond_tb"
             android:layout_marginTop="17dp"
             android:layout_marginStart="2dp"
