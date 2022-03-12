@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/img_bg_matchpage">
+
+    <ImageView
+        android:id="@+id/developer_info_btn_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/developer_info_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/developer_info"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:textStyle="normal"
+        android:textColor="@color/dark_taupe"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/developer_info_btn_iv"
+        app:layout_constraintTop_toTopOf="@id/developer_info_btn_iv"
+        app:layout_constraintBottom_toBottomOf="@id/developer_info_btn_iv"
+        android:letterSpacing="-0.01"
+        android:layout_marginStart="8dp" />
+
+    <TextView
+        android:id="@+id/developer_info_team_tv"
+        android:text="@string/team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="bold"
+        android:textSize="48sp"
+        android:textColor="@color/terracota"
+        android:lineSpacingExtra="14sp"
+        android:layout_marginTop="88dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/developer_info_btn_iv"/>
+
+    <View
+        android:id="@+id/developer_info_vertical_view"
+        android:layout_width="170dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="-10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/developer_info_team_tv"
+        android:background="@color/terracota"/>
+
+    <TextView
+        android:id="@+id/developer_info_leader_role_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_regular"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:layout_marginTop="22dp"
+        android:textColor="@color/terracota"
+        android:lineSpacingExtra="5sp"
+        app:layout_constraintStart_toStartOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toBottomOf="@id/developer_info_team_tv"
+        android:text="@string/leader_role"/>
+
+    <TextView
+        android:id="@+id/developer_info_leader_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_semibold"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="17sp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toTopOf="@id/developer_info_leader_role_tv"
+        android:text="@string/leader_name"/>
+
+    <TextView
+        android:id="@+id/developer_info_design_role_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_regular"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/terracota"
+        android:lineSpacingExtra="5sp"
+        app:layout_constraintStart_toStartOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toBottomOf="@id/developer_info_leader_role_tv"
+        android:text="@string/design_role"/>
+
+    <TextView
+        android:id="@+id/developer_info_design_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_semibold"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="17sp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toTopOf="@id/developer_info_design_role_tv"
+        android:text="@string/design_name"/>
+
+    <TextView
+        android:id="@+id/developer_info_android_role_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_regular"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:layout_marginTop="35dp"
+        android:textColor="@color/terracota"
+        android:lineSpacingExtra="5sp"
+        app:layout_constraintStart_toStartOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toBottomOf="@id/developer_info_design_role_tv"
+        android:text="@string/android_role"/>
+
+    <TextView
+        android:id="@+id/developer_info_android_name1_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_semibold"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="17sp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toTopOf="@id/developer_info_android_role_tv"
+        android:text="@string/android_name1"/>
+
+    <TextView
+        android:id="@+id/developer_info_android_name2_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_semibold"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="17sp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toBottomOf="@id/developer_info_android_name1_tv"
+        android:text="@string/android_name2"/>
+
+    <TextView
+        android:id="@+id/developer_info_server_role_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_regular"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:layout_marginTop="54dp"
+        android:textColor="@color/terracota"
+        android:lineSpacingExtra="5sp"
+        app:layout_constraintStart_toStartOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toBottomOf="@id/developer_info_android_role_tv"
+        android:text="@string/server_role"/>
+
+    <TextView
+        android:id="@+id/developer_info_server_name1_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_semibold"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="17sp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toTopOf="@id/developer_info_server_role_tv"
+        android:text="@string/server_name1"/>
+
+    <TextView
+        android:id="@+id/developer_info_server_name2_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_semibold"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/terracota"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="17sp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="@+id/developer_info_vertical_view"
+        app:layout_constraintTop_toBottomOf="@id/developer_info_server_name1_tv"
+        android:text="@string/server_name2"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

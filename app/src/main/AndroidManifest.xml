@@ -78,11 +78,13 @@
 
         <activity android:name=".ui.main.setting.infoedit.account.AccountDeleteSecondActivity"/>
 
-        <activity android:name=".ui.main.setting.privacy.PrivacyRule"/>
+        <activity android:name=".ui.main.setting.privacy.PrivacyRuleActivity"/>
 
         <activity android:name=".ui.main.setting.infoedit.InfoEditActivity"/>
 
-        <activity android:name=".ui.main.setting.infoedit.mail.MailActivity"/>
+        <activity android:name=".ui.main.setting.mail.MailActivity"/>
+
+        <activity android:name=".ui.main.setting.developerinfo.DeveloperInfoActivity"/>
 
         <activity
             android:name=".ui.finish.FinishActivity"

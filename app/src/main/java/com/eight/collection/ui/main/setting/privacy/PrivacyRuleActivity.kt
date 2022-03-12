@@ -6,7 +6,7 @@ import com.eight.collection.databinding.ActivityNicknameEditBinding
 import com.eight.collection.databinding.ActivityPrivacyRuleBinding
 import com.eight.collection.ui.BaseActivity
 
-class PrivacyRule: BaseActivity<ActivityPrivacyRuleBinding>(ActivityPrivacyRuleBinding::inflate), View.OnClickListener{
+class PrivacyRuleActivity: BaseActivity<ActivityPrivacyRuleBinding>(ActivityPrivacyRuleBinding::inflate), View.OnClickListener{
 
     override fun initAfterBinding() {
         binding.privacyBackBtnIv.setOnClickListener(this)
