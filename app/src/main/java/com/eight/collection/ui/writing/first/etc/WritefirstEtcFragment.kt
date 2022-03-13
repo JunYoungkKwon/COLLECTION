@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
@@ -36,6 +37,7 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
     private var addItemId : Int = 13
     var etcRVAdapter : WritefirstEtcRVAdapter = WritefirstEtcRVAdapter(etcList)
     var date : String = "2021-01-01"
+    var looknameEt : EditText? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,7 +74,7 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writefirstEtcRecyclerview.adapter = etcRVAdapter
             binding.writefirstEtcRecyclerview.layoutManager = flexboxLayoutManager
-        }, 100)
+        }, 200)
 
         return binding.root
     }
@@ -84,6 +86,8 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
         }
 
         etcRVAdapter.notifyDataSetChanged()
+        looknameEt = (activity as WritefirstActivity).binding.writefirstLookstyleTv
+        looknameEt!!.clearFocus()
     }
 
     override fun onCancelButtonClicked() {

@@ -3,9 +3,11 @@ package com.eight.collection.ui.writing.first
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.InputType
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -103,6 +105,9 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
         binding.writefirstRefreshIv.setOnClickListener{
             refreshDialog.show()
         }
+
+        //EditText 자동완성 끄기
+        binding.writefirstLookstyleTv.setRawInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
 
 
         //이미지 리사이클러뷰 및 갤러리에서 이미지 불러오기
@@ -319,6 +324,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
                 toast.show()
+                binding.writefirstLookstyleTv.setHintTextColor(Color.parseColor("red"))
             }
 
             else {
@@ -531,6 +537,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     override fun onModiLoading() {
     }
     override fun onModiSuccess(modiresult: ModiResult) {
+        Log.d("modiresult","${modiresult}")
         //수정하기시, 기존 LookName 불러오기
         if(modiresult.selected?.lookname != null){
             binding.writefirstLookstyleTv.setText(modiresult.selected?.lookname)

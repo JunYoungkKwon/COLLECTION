@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.R
 import com.eight.collection.data.entities.User
@@ -28,6 +29,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
         binding.signUpThirdIcBack.setOnClickListener(this)
         binding.signUpThirdFinishButton.setOnClickListener(this)
         binding.signUpThirdDoubleCheckIv.setOnClickListener(this)
+        binding.signUpThirdPhoneEt.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         val value = intent.getStringExtra("postnickname")
         binding.signUpThirdNicknameEt.setText(value)
 

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
@@ -37,6 +38,7 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
     private var addItemId : Int = 13
     var shoesRVAdapter : WritefirstShoesRVAdapter = WritefirstShoesRVAdapter(shoesList)
     var date : String = "2021-01-01"
+    var looknameEt : EditText? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,7 +75,7 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writefirstShoesRecyclerview.adapter = shoesRVAdapter
             binding.writefirstShoesRecyclerview.layoutManager = flexboxLayoutManager
-        }, 100)
+        }, 200)
 
         return binding.root
     }
@@ -84,6 +86,8 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
             addItemId += 1
         }
         shoesRVAdapter.notifyDataSetChanged()
+        looknameEt = (activity as WritefirstActivity).binding.writefirstLookstyleTv
+        looknameEt!!.clearFocus()
     }
 
     override fun onCancelButtonClicked() {

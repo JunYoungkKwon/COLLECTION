@@ -9,7 +9,7 @@ import com.eight.collection.R
 import com.eight.collection.databinding.ActivitySignupFirstBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.login.LoginFirstActivity
-import com.eight.collection.ui.main.setting.privacy.PrivacyRule
+import com.eight.collection.ui.main.setting.privacy.PrivacyRuleActivity
 
 class SignupFirstActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySignupFirstBinding::inflate), View.OnClickListener {
     override fun initAfterBinding() {
@@ -24,7 +24,7 @@ class SignupFirstActivity: BaseActivity<ActivitySignupFirstBinding>(ActivitySign
         when (v) {
             binding.signUpFirstIcBack -> startNextActivity(LoginFirstActivity::class.java)
             binding.signUpFirstAgreeFirstIv, binding.signUpFirstAgreeFirstTv -> {
-                startNextActivity(PrivacyRule::class.java)
+                startNextActivity(PrivacyRuleActivity::class.java)
                 slideRight()
             }
         }
