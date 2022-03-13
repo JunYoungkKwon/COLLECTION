@@ -8,11 +8,6 @@ import retrofit2.http.*
 
 interface MyLookRetrofitInterface {
 
-    @GET("app/user/check-nickname")
-    fun getMainMyLook(@Query("nickname") nickname : Int): Call<MyLookResponse>
-
-
-    @GET("app/calendar/monthly")
-    fun getMonth(): Call<CalendarResponse>
-
+    @GET("app/mylook/mainpage/{lookpoint}")
+    fun getMainMyLook(@Path("lookpoint") lookpoint : Int): Call<MyLookResponse>
 }

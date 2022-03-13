@@ -1,6 +1,5 @@
 package com.eight.collection.data.entities
 
-import com.eight.collection.ui.main.lookpoint.Photo
 import com.google.gson.annotations.SerializedName
 import java.util.*
 

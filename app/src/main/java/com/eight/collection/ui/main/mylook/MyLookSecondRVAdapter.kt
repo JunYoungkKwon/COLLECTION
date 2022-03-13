@@ -1,13 +1,10 @@
-package com.eight.collection.ui.main.lookpoint
+package com.eight.collection.ui.main.mylook
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.eight.collection.databinding.ItemMyLookBinding
 import com.eight.collection.databinding.ItemMyLookSecondPhotoBinding
-import com.eight.collection.databinding.ItemWeekDiaryBinding
 
 
 class MyLookSecondRVAdapter(private val myLookSecondList: ArrayList<Photo>) : RecyclerView.Adapter<MyLookSecondRVAdapter.ViewHolder>() {

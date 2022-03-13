@@ -1,11 +1,9 @@
-package com.eight.collection.ui.main.lookpoint
+package com.eight.collection.ui.main.mylook
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.eight.collection.R
 

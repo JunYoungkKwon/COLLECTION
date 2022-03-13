@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/MyLookFragment"
-        android:name="com.eight.collection.ui.main.lookpoint.MyLookFragment"
+        android:name="com.eight.collection.ui.main.mylook.MyLookFragment"
         android:label="LookPointFragment" >
         <action
             android:id="@+id/action_MyLookFragment_to_myLookSecond"
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/MyLookSecondFragment"
-        android:name="com.eight.collection.ui.main.lookpoint.MyLookSecondFragment"
+        android:name="com.eight.collection.ui.main.mylook.MyLookSecondFragment"
         android:label="MyLookSecond" />
     <dialog
         android:id="@+id/DatePickerFragment"

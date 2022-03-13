@@ -1,4 +1,4 @@
-package com.eight.collection.ui.main.lookpoint
+package com.eight.collection.ui.main.mylook
 
 data class Photo(
     var photoImg : Int? = null,

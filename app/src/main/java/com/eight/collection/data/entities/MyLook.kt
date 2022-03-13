@@ -1,13 +1,11 @@
 package com.eight.collection.data.entities
 
+import com.eight.collection.ui.main.mylook.MyLookOOTD
 import com.google.gson.annotations.SerializedName
 import java.util.*
+import kotlin.collections.ArrayList
 
 data class MyLook(
     @SerializedName("lookpoint") val lookpoint: Int,
-    @SerializedName("ootdIdx") val ootdIdx: Int,
-    @SerializedName("thumbnailIdx") val thumbnailIdx: Int,
-    @SerializedName("photoIs") val photoIs: Int,
-    @SerializedName("date") val date: Date,
-    @SerializedName("imageUrl") val imageUrl: String,
+    @SerializedName("lastOOTDArr") val lastOOTDArr: ArrayList<MyLookOOTD>
 )
