@@ -7,11 +7,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.eight.collection.R
 import com.eight.collection.databinding.ActivityMainBinding
 import com.eight.collection.ui.BaseActivity
-import com.eight.collection.ui.main.mylook.MyLookFragment
+import com.eight.collection.ui.main.mylook.MyLookActivity
 
 class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
-    lateinit var fragment: MyLookFragment
+    lateinit var fragment: MyLookActivity
     private lateinit var navHostFragment: NavHostFragment
 
 

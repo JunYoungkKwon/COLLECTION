@@ -1,38 +1,27 @@
 package com.eight.collection.ui.main.mylook
 
-import android.os.Bundle
+import android.content.Intent
 import android.util.Log
 import android.view.View
-import android.view.animation.AnimationUtils
-import androidx.navigation.fragment.findNavController
-import com.eight.collection.R
-import com.eight.collection.data.entities.MyLook
 import com.eight.collection.data.remote.mylook.MyLookResult
 import com.eight.collection.data.remote.mylook.MyLookService
-import com.eight.collection.databinding.FragmentMyLookBinding
-import com.eight.collection.ui.BaseFragment
-import com.eight.collection.ui.main.week.DiaryRVAdapter
-import com.google.gson.Gson
+import com.eight.collection.databinding.ActivityMyLookBinding
+import com.eight.collection.ui.BaseActivity
 import java.util.ArrayList
 
-class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBinding::inflate), MyLookView, MyLook2View, MyLook3View , MyLook4View, MyLook5View   {
+class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBinding::inflate),View.OnClickListener, MyLookView, MyLook2View, MyLook3View , MyLook4View, MyLook5View   {
+
 
     private  lateinit var myLookRVAdapter: MyLookRVAdapter
 
     override fun initAfterBinding() {
+        binding.itemMyLookPhotoTv.setOnClickListener(this)
+        binding.itemMyLookPhoto2Tv.setOnClickListener(this)
+        binding.itemMyLookPhoto3Tv.setOnClickListener(this)
+        binding.itemMyLookPhoto4Tv.setOnClickListener(this)
+        binding.itemMyLookPhoto5Tv.setOnClickListener(this)
 
         var itemList = ArrayList<String>()
-//        var myLookDatas = mutableList()
-//
-//        myLookRVAdapter = MyLookRVAdapter(myLookDatas)
-//        binding.myLookScrollRecyclerview.adapter = myLookRVAdapter
-//
-//        myLookRVAdapter.setMyitemClickListener(object : MyLookRVAdapter.MyitemClickListener{
-//            override fun onItemClik(myLookMain: MyLookMain) {
-//                startMyLookSecond(myLookMain)
-//            }
-//
-//        })
 
         itemList.apply {
             add("작성한 OOTD를 룩포인트 별로 확인해보세요!")
@@ -44,41 +33,53 @@ class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBindin
 
     }
 
-//    private fun mutableList(): MutableList<MyLookMain> {
-//        var myLookDatas = mutableListOf(
-//            MyLookMain(
-//                "01", R.drawable.mylook_point_5, mutableListOf(
-//                )
-//            ),
-//
-//            MyLookMain(
-//                "02", R.drawable.mylook_point_4, mutableListOf(
-//                )
-//            ),
-//
-//            MyLookMain(
-//                "03", R.drawable.mylook_point_3, mutableListOf()
-//            ),
-//
-//            MyLookMain(
-//                "04", R.drawable.mylook_point_2, mutableListOf()
-//            ),
-//
-//            MyLookMain(
-//                "05", R.drawable.mylook_point_1, mutableListOf()
-//            ),
-//        )
-//        return myLookDatas
-//    }
+    override fun onClick(v: View?) {
+        if(v == null) return
 
-    private fun startMyLookSecond(myLookOOTD: MyLookMain) {
-        arguments = Bundle().apply {
-            val gson = Gson()
-            val myLookJson = gson.toJson(myLookOOTD)
-            putString("myLook", myLookJson)
+        when(v) {
+            binding.itemMyLookPhotoTv -> {
+                val intent = Intent(this, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook01Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number",num)
+                }
+                startActivity(intent)
+            }
+            binding.itemMyLookPhoto2Tv -> {
+                val intent = Intent(this, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook02Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number",num)
+                }
+                startActivity(intent)
+            }
+            binding.itemMyLookPhoto3Tv -> {
+                val intent = Intent(this, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook03Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number",num)
+                }
+                startActivity(intent)
+            }
+            binding.itemMyLookPhoto4Tv -> {
+                val intent = Intent(this, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook04Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number",num)
+                }
+                startActivity(intent)
+            }
+            binding.itemMyLookPhoto5Tv -> {
+                val intent = Intent(this, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook05Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number",num)
+                }
+                startActivity(intent)
+            }
         }
-        findNavController().navigate(R.id.MyLookSecondFragment, arguments)
     }
+
     override fun onResume() {
         super.onResume()
         binding.myLookBannerVp.resumeAutoScroll()
@@ -101,7 +102,7 @@ class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBindin
     override fun onMyLookLoading() {}
 
     override fun onMyLookSuccess(myLookResult: MyLookResult) {
-        myLookRVAdapter = MyLookRVAdapter(requireContext())
+        myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImgRecyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
     }
@@ -126,7 +127,7 @@ class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBindin
     override fun onMyLook2Loading() {}
 
     override fun onMyLook2Success(myLookResult: MyLookResult) {
-        myLookRVAdapter = MyLookRVAdapter(requireContext())
+        myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImg2Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
     }
@@ -135,7 +136,7 @@ class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBindin
     override fun onMyLook3Loading() {}
 
     override fun onMyLook3Success(myLookResult: MyLookResult) {
-        myLookRVAdapter = MyLookRVAdapter(requireContext())
+        myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImg3Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
     }
@@ -145,7 +146,7 @@ class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBindin
     override fun onMyLook4Loading() {}
 
     override fun onMyLook4Success(myLookResult: MyLookResult) {
-        myLookRVAdapter = MyLookRVAdapter(requireContext())
+        myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImg4Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
     }
@@ -155,7 +156,7 @@ class MyLookFragment(): BaseFragment<FragmentMyLookBinding>(FragmentMyLookBindin
     override fun onMyLook5Loading() {}
 
     override fun onMyLook5Success(myLookResult: MyLookResult) {
-        myLookRVAdapter = MyLookRVAdapter(requireContext())
+        myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImg5Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
     }

@@ -10,4 +10,7 @@ interface MyLookRetrofitInterface {
 
     @GET("app/mylook/mainpage/{lookpoint}")
     fun getMainMyLook(@Path("lookpoint") lookpoint : Int): Call<MyLookResponse>
+
+    @GET("app/mylook/detail/{lookpoint}")
+    fun getDetailMyLook(@Path("lookpoint") lookpoint : Int): Call<MyLookResponse>
 }

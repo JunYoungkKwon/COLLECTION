@@ -19,27 +19,16 @@ import com.eight.collection.ui.main.week.ToprRVAdapter
 class MyLookRVAdapter(val context: Context) : RecyclerView.Adapter<MyLookRVAdapter.ViewHolder>() {
 
     private val myLookOOTDList = mutableListOf<MyLookOOTD>()
-//    interface MyitemClickListener{
-//        fun onItemClik(myLook: MyLook)
-//    }
-//
-//    private  lateinit var mItemClickListener: MyitemClickListener
-//
-//
-//    fun setMyitemClickListener(itemClickListener: MyitemClickListener){
-//        mItemClickListener = itemClickListener
-//    }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MyLookRVAdapter.ViewHolder {
         val binding: ItemMyLookPhotoBinding = ItemMyLookPhotoBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return  ViewHolder(binding)
     }
 
-
-
     override fun onBindViewHolder(holder: MyLookRVAdapter.ViewHolder, position: Int) {
         holder.bind(myLookOOTDList[position])
-//        holder.itemView.setOnClickListener{ mItemClickListener.onItemClik(myLookOOTDList[position])}
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun addOOTD(myLookResult:  MutableList<MyLookOOTD>){
@@ -55,11 +44,6 @@ class MyLookRVAdapter(val context: Context) : RecyclerView.Adapter<MyLookRVAdapt
     inner class ViewHolder(val binding: ItemMyLookPhotoBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(myLookOOTD: MyLookOOTD){
-//            binding.itemMyLook01Tv.text= myLookOOTD.number.toString()
-//            binding.itemMyLookPoint5Iv.setImageResource(myLookOOTD.pointImg!!)
-
-            //binding.itemMyLookImgRecyclerview.adapter = PhotoRVAdapter(myLookMain.innerList)
-
             if(myLookOOTD.imageUrl.isNullOrEmpty()){
                 Glide.with(context).load(R.drawable.mylook_second_default).into(binding.itemLookPointPhotoImgIv)
             }

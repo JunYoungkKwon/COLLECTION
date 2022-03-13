@@ -22,6 +22,7 @@ import com.eight.collection.databinding.CalendarYearMonthHeaderBinding
 import com.eight.collection.databinding.FragmentMonthBinding
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.finish.FinishActivity
+import com.eight.collection.ui.main.mylook.MyLookActivity
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -76,7 +77,7 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
 
     private fun startMyLook() {
         binding.monthBtnRankIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.MyLookFragment)
+            startActivity(Intent(activity, MyLookActivity::class.java))
         }
 
     }
