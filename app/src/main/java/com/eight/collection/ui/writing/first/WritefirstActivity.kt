@@ -3,9 +3,11 @@ package com.eight.collection.ui.writing.first
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.InputType
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +27,10 @@ import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.data.remote.modi.ModiResult
 import com.eight.collection.data.remote.modi.ModiService
 import com.eight.collection.databinding.ActivityWritefirstBinding
+import com.eight.collection.ui.introduce.IntroduceFirstDialog
+import com.eight.collection.ui.writing.CustomDialogInterface
 import com.eight.collection.ui.writing.ModiView
+import com.eight.collection.ui.writing.RefreshDialogInterface
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
 import com.eight.collection.ui.writing.first.etc.WritefirstEtcFragment
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
@@ -36,8 +42,9 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
-class WritefirstActivity() : AppCompatActivity(){
+class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiView {
     lateinit var binding: ActivityWritefirstBinding
+    lateinit var refreshDialog : RefreshDialog
     val photoList = ArrayList<Uri>()
     val imageList = ArrayList<Image>()
     var reviseimageList = ArrayList<Image>()
@@ -53,10 +60,15 @@ class WritefirstActivity() : AppCompatActivity(){
     private var getbottomdataListener : WritefirstActivity.GetBottomDataListener? = null
     private var getshoesdataListener : WritefirstActivity.GetShoesDataListener? = null
     private var getetcdataListener : WritefirstActivity.GetEtcDataListener? = null
+    private var refreshtopdataListener : WritefirstActivity.RefreshTopDataListener? = null
+    private var refreshbottomdataListener : WritefirstActivity.RefreshBottomDataListener? = null
+    private var refreshshoesdataListener : WritefirstActivity.RefreshShoesDataListener? = null
+    private var refreshetcdataListener : WritefirstActivity.RefreshEtcDataListener? = null
+
+
     var photoIs : Int = -1
     var mode : Int = 1
     var modidate : String? = null
-
 
 
 
@@ -83,21 +95,19 @@ class WritefirstActivity() : AppCompatActivity(){
             val formatted2 = date2.format(formatter)
             binding.writefirstDateTv.text = formatted2
             mode = 2
-            /*modidate = getDate
-            modi()*/
+            modidate = getDate
+            modi()
         }
 
 
-        //초기화 기능 구현 (현재 미구현)
+        //초기화 기능 구현
+        refreshDialog = RefreshDialog(this, this)
         binding.writefirstRefreshIv.setOnClickListener{
-            var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
-            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-            text.text = "초기화 기능은 추후 업데이트 예정입니다."
-            var toast = Toast(this)
-            toast.view = layoutInflater
-            toast.setGravity(Gravity.BOTTOM, 0, 150)
-            toast.show()
+            refreshDialog.show()
         }
+
+        //EditText 자동완성 끄기
+        binding.writefirstLookstyleTv.setRawInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
 
 
         //이미지 리사이클러뷰 및 갤러리에서 이미지 불러오기
@@ -144,6 +154,11 @@ class WritefirstActivity() : AppCompatActivity(){
         setGetBottomDataClickListener(fragmentList[1] as WritefirstBottomFragment)
         setGetShoesDataClickListener(fragmentList[2] as WritefirstShoesFragment)
         setGetEtcDataClickListener(fragmentList[3] as WritefirstEtcFragment)
+
+        setRefreshTopDataClickListener((fragmentList[0] as WritefirstTopFragment))
+        setRefreshBottomDataClickListener(fragmentList[1] as WritefirstBottomFragment)
+        setRefreshShoesDataClickListener(fragmentList[2] as WritefirstShoesFragment)
+        setRefreshEtcDataClickListener(fragmentList[3] as WritefirstEtcFragment)
 
 
 
@@ -276,6 +291,7 @@ class WritefirstActivity() : AppCompatActivity(){
         }
 
 
+
         //다음버튼 클릭시 Writing Second Activity
         binding.writefirstNextButton.setOnClickListener {
             // Clothes 필수선택
@@ -308,23 +324,23 @@ class WritefirstActivity() : AppCompatActivity(){
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
                 toast.show()
+                binding.writefirstLookstyleTv.setHintTextColor(Color.parseColor("red"))
             }
 
             else {
                 val intent = Intent(this, WritesecondActivity::class.java)
                 intent.putExtra("lookname", binding.writefirstLookstyleTv.text.toString())
                 intent.putExtra("photoIs", photoIs)
-                intent.putExtra("image", imageList)
                 intent.putExtra("fixed", fixedClothes)
                 intent.putExtra("added", addedClothes)
 
                 if(mode == 2){
-                    /*intent.putExtra("image", reviseimageList)*/
+                    intent.putExtra("image", reviseimageList)
                     intent.putExtra("date", getDate)
                     intent.putExtra("mode", mode)
                 }
                 else {
-                    /*intent.putExtra("image", imageList)*/
+                    intent.putExtra("image", imageList)
                     intent.putExtra("date", formattedpost)
                     intent.putExtra("mode", mode)
                 }
@@ -384,6 +400,7 @@ class WritefirstActivity() : AppCompatActivity(){
                 }
                 b=-1
             }
+            reviseimageList = imageList
         }
     }
 
@@ -458,24 +475,82 @@ class WritefirstActivity() : AppCompatActivity(){
         this.getetcdataListener = getEtcDataListener
     }
 
+    //색 초기화
+    interface RefreshTopDataListener {
+        fun refreshData()
+    }
 
-    /*//수정하기시 블럭 색 셋팅해놓기
+    interface RefreshBottomDataListener {
+        fun refreshData()
+    }
+
+    interface RefreshShoesDataListener {
+        fun refreshData()
+    }
+
+    interface RefreshEtcDataListener {
+        fun refreshData()
+    }
+
+    fun setRefreshTopDataClickListener(refreshTopDataListener : WritefirstTopFragment){
+        this.refreshtopdataListener = refreshTopDataListener
+    }
+
+    fun setRefreshBottomDataClickListener(refreshBottomDataListener : WritefirstBottomFragment){
+        this.refreshbottomdataListener = refreshBottomDataListener
+    }
+
+    fun setRefreshShoesDataClickListener(refreshShoesDataListener : WritefirstShoesFragment){
+        this.refreshshoesdataListener = refreshShoesDataListener
+    }
+
+    fun setRefreshEtcDataClickListener(refreshEtcDataListener : WritefirstEtcFragment){
+        this.refreshetcdataListener = refreshEtcDataListener
+    }
+
+
+
+    override fun onOkButtonClicked() {
+        photoIs = -1
+        photoList.clear()
+        imageList.clear()
+        photoRVAdapter.notifyDataSetChanged()
+        binding.writefirstPhotoDefaultImage1.visibility = View.VISIBLE
+        binding.writefirstPhotoDefaultImage2.visibility = View.VISIBLE
+        binding.writefirstLookstyleTv.setText("")
+        //블럭 색 초기화
+        refreshtopdataListener?.refreshData()
+        refreshbottomdataListener?.refreshData()
+        refreshshoesdataListener?.refreshData()
+        refreshetcdataListener?.refreshData()
+
+
+    }
+    override fun onCancelButtonClicked() {
+    }
+
+
+    //수정하기시 블럭 색 셋팅해놓기
     private fun modi(){
         ModiService.modi(this, modidate!!)
     }
-
     override fun onModiLoading() {
-
     }
-
     override fun onModiSuccess(modiresult: ModiResult) {
-        if(modiresult.selected?.image != null){
-            for(i in modiresult.selected?.image){
+        Log.d("modiresult","${modiresult}")
+        //수정하기시, 기존 LookName 불러오기
+        if(modiresult.selected?.lookname != null){
+            binding.writefirstLookstyleTv.setText(modiresult.selected?.lookname)
+        }
+        //수정하기시, 기존 이미지 불러오기
+        if(modiresult.selected?.image.isNullOrEmpty() == false){
+            for(i in modiresult.selected?.image!!){
                 photoList.apply {
-                    add(i.imageurl.toUri())
+                    add(i.imageurl!!.toUri())
                 }
             }
             photoRVAdapter.notifyDataSetChanged()
+            photoIs = 0
             binding.writefirstPhotoDefaultImage1.visibility = View.GONE
             binding.writefirstPhotoDefaultImage2.visibility = View.GONE
             var b : Int = 0
@@ -489,17 +564,16 @@ class WritefirstActivity() : AppCompatActivity(){
             }
             reviseimageList = imageList
         }
-
-        if(modiresult.selected?.lookname != null){
-            binding.writefirstLookstyleTv.setText(modiresult.selected?.lookname)
+        else {
+            photoIs = -1
+            photoList.clear()
+            imageList.clear()
+            photoRVAdapter.notifyDataSetChanged()
+            binding.writefirstPhotoDefaultImage1.visibility = View.VISIBLE
+            binding.writefirstPhotoDefaultImage2.visibility = View.VISIBLE
         }
 
     }
-
-
     override fun onModiFailure(code: Int, message: String) {
-
-    }*/
-
-
+    }
 }

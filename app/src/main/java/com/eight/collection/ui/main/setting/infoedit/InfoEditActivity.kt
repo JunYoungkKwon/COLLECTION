@@ -3,13 +3,11 @@ package com.eight.collection.ui.main.setting.infoedit
 import android.view.View
 import com.eight.collection.databinding.*
 import com.eight.collection.ui.BaseActivity
-import com.eight.collection.ui.login.LoginSecondActivity
 import com.eight.collection.ui.main.setting.infoedit.account.AccountDeleteActivity
 import com.eight.collection.ui.main.setting.infoedit.nickname.NickNameEditActivity
 import com.eight.collection.ui.main.setting.infoedit.password.PwEditActivity
 import com.eight.collection.ui.main.setting.infoedit.phonenumber.PhoneNumberEditActivity
 import com.eight.collection.utils.getName
-import com.eight.collection.utils.getNickName
 import com.eight.collection.utils.getUserId
 
 class InfoEditActivity: BaseActivity<ActivityInfoEditBinding>(ActivityInfoEditBinding::inflate), View.OnClickListener{

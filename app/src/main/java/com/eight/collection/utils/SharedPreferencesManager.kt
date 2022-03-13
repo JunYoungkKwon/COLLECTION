@@ -37,6 +37,13 @@ fun saveName(name: String) {
     editor.apply()
 }
 
+fun saveIntroduceIs(getIntroduceis : Boolean) {
+    val editor = mSharedPreferences.edit()
+    editor.putBoolean("getIntroduceIs", getIntroduceis)
+
+    editor.apply()
+}
+
 
 fun getJwt(): String? = mSharedPreferences.getString(X_ACCESS_TOKEN, null)
 
@@ -45,3 +52,5 @@ fun getUserId(): String? = mSharedPreferences.getString("userId", null)
 fun getNickName(): String? = mSharedPreferences.getString("nickName", null)
 
 fun getName(): String? = mSharedPreferences.getString("name", null)
+
+fun getIntroduceIs(): Boolean = mSharedPreferences.getBoolean("getIntroduceIs", false)

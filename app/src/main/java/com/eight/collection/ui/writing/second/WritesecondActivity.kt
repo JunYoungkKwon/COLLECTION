@@ -2,6 +2,8 @@ package com.eight.collection.ui.writing.second
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -21,24 +23,30 @@ import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.writing.ModiView
 import com.eight.collection.ui.writing.ReceiveS3URLView
+import com.eight.collection.ui.writing.RefreshDialogInterface
 import com.eight.collection.ui.writing.WriteView
-import com.eight.collection.ui.writing.first.AddedClothes
-import com.eight.collection.ui.writing.first.FixedClothes
-import com.eight.collection.ui.writing.first.Image
-import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.eight.collection.ui.writing.first.*
+import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
+import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
+import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
 import com.eight.collection.ui.writing.second.place.WritesecondPlaceFragment
 import com.eight.collection.ui.writing.second.weather.WritesecondWeatherFragment
 import com.eight.collection.ui.writing.second.who.WritesecondWhoFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hedgehog.ratingbar.RatingBar
 
-class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView {
+class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
+    RefreshDialogInterface, ModiView {
     lateinit var binding : ActivityWritesecondBinding
+    lateinit var refreshDialog : RefreshDialog
     val information = arrayListOf("PLACE","WEATHER","WHO")
     val fragmentList = arrayListOf<Fragment>()
     private var getplacedataListener : WritesecondActivity.GetPlaceDataListener? = null
     private var getweatherdataListener : WritesecondActivity.GetWeatherDataListener? = null
     private var getwhodataListener : WritesecondActivity.GetWhoDataListener? = null
+    private var refreshplacedataListener : WritesecondActivity.RefreshPlaceDataListener? = null
+    private var refreshweatherdataListener : WritesecondActivity.RefreshWeatherDataListener? = null
+    private var refreshwhodataListener : WritesecondActivity.RefreshWhoDataListener? = null
     private lateinit var ratingBar : RatingBar
     var lookpoint : Float = 0F
     var modidate : String? = null
@@ -64,17 +72,30 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView {
         }.attach()
 
         val date = intent.getStringExtra("date")
-        /*modidate = date*/
+        modidate = date
 
-        /*if (intent.getIntExtra("mode",1) == 2){
+
+        //수정하기시 기존 데이터 불러오기
+        if (intent.getIntExtra("mode",1) == 2){
             modi()
-        }*/
+        }
+
+
+        //초기화 기능 구현
+        refreshDialog = RefreshDialog(this, this)
+        binding.writesecondRefreshIv.setOnClickListener{
+            refreshDialog.show()
+        }
 
 
 
         setGetPlaceDataClickListener((fragmentList[0] as WritesecondPlaceFragment))
         setGetWeatherDataClickListener(fragmentList[1] as WritesecondWeatherFragment)
         setGetWhoDataClickListener(fragmentList[2] as WritesecondWhoFragment)
+
+        setRefreshPlaceDataClickListener((fragmentList[0] as WritesecondPlaceFragment))
+        setRefreshWeatherDataClickListener(fragmentList[1] as WritesecondWeatherFragment)
+        setRefreshWhoDataClickListener(fragmentList[2] as WritesecondWhoFragment)
 
         ratingBar = findViewById(R.id.writesecond_lookpoint_ratingbar)
 
@@ -104,12 +125,14 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView {
                 //Write API
                 write()
 
-                val intent = Intent(this, FinishActivity::class.java)
-                intent.putExtra("date", date)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val intent = Intent(this, FinishActivity::class.java)
+                    intent.putExtra("date", date)
 
-                startActivity(intent)
+                    startActivity(intent)
 
-                finish()
+                    finish()
+                }, 500)
             }
         }
     }
@@ -244,27 +267,67 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView {
         this.getwhodataListener = getWhoDataListener
     }
 
+    //색 초기화
+    interface RefreshPlaceDataListener {
+        fun refreshData()
+    }
 
-    /*private fun modi(){
+    interface RefreshWeatherDataListener {
+        fun refreshData()
+    }
+
+    interface RefreshWhoDataListener {
+        fun refreshData()
+    }
+
+    fun setRefreshPlaceDataClickListener(refreshPlaceDataListener : WritesecondPlaceFragment){
+        this.refreshplacedataListener = refreshPlaceDataListener
+    }
+
+    fun setRefreshWeatherDataClickListener(refreshWeatherDataListener : WritesecondWeatherFragment){
+        this.refreshweatherdataListener = refreshWeatherDataListener
+    }
+
+    fun setRefreshWhoDataClickListener(refreshWhoDataListener : WritesecondWhoFragment){
+        this.refreshwhodataListener = refreshWhoDataListener
+    }
+
+
+
+    override fun onOkButtonClicked() {
+        //LOOK POINT 초기화
+        binding.writesecondLookpointRatingbar.setStar(0F)
+        lookpoint = 0F
+        //COMENT 초기화
+        binding.writesecondCommentEt.setText("")
+        //버튼 초기화
+        refreshplacedataListener?.refreshData()
+        refreshweatherdataListener?.refreshData()
+        refreshwhodataListener?.refreshData()
+
+    }
+    override fun onCancelButtonClicked() {
+    }
+
+
+    private fun modi(){
         ModiService.modi(this, modidate!!)
     }
-
     override fun onModiLoading() {
-
     }
-
     override fun onModiSuccess(modiresult: ModiResult) {
+        //수정하기시 LookPoint 설정
+        if(modiresult.selected?.lookpoint != null){
+            binding.writesecondLookpointRatingbar.setStar(modiresult.selected?.lookpoint)
+            lookpoint = modiresult.selected?.lookpoint
+        }
+        //수정하기시 Comment 설정
         if(modiresult.selected?.comment != null){
             binding.writesecondCommentEt.setText(modiresult.selected?.comment)
         }
-        if(modiresult.selected?.lookpoint != null){
-            binding.writesecondLookpointRatingbar.setStar(modiresult.selected?.lookpoint)
-        }
     }
-
     override fun onModiFailure(code: Int, message: String) {
-
-    }*/
+    }
 
 
 }

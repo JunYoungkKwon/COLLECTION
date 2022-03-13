@@ -1,6 +1,9 @@
 package com.eight.collection.ui.writing.second.weather
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +11,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
+import com.eight.collection.data.remote.modi.ModiResult
+import com.eight.collection.data.remote.modi.ModiService
 import com.eight.collection.databinding.FragmentWritesecondWeatherBinding
 import com.eight.collection.ui.writing.CustomDialogInterface
 import com.eight.collection.ui.writing.GetAddedBlockView
+import com.eight.collection.ui.writing.ModiView
 import com.eight.collection.ui.writing.second.*
 import com.eight.collection.ui.writing.second.place.WritesecondPlace
 import com.eight.collection.ui.writing.second.place.WritesecondPlaceCustomDialog
@@ -20,12 +26,13 @@ import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     WritesecondWeatherRVAdapter.WeatherClickListener, WritesecondActivity.GetWeatherDataListener,
-    GetAddedBlockView {
+    GetAddedBlockView, ModiView, WritesecondActivity.RefreshWeatherDataListener {
     lateinit var binding : FragmentWritesecondWeatherBinding
     private var weatherDatas = ArrayList<WritesecondWeather>()
     lateinit var customDialog: WritesecondWeatherCustomDialog
     private var idcount : Int = 9
     var weatherRVAdapter : WritesecondWeatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
+    var date : String = "2021-01-01"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,14 +54,18 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
             add(WritesecondWeather("우박", 8,8))
         }
 
-        weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
-        weatherRVAdapter.setWeatherClickListener(this)
-
-        val flexboxLayoutManager = FlexboxLayoutManager(activity)
-        binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
-        binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
-
         getAddedBlock()
+
+        modi()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
+            weatherRVAdapter.setWeatherClickListener(this)
+
+            val flexboxLayoutManager = FlexboxLayoutManager(activity)
+            binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
+            binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
+        }, 100)
 
         return binding.root
     }
@@ -93,7 +104,6 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onGetAddedBlockLoading() {
-
     }
 
     override fun onGetAddedBlockSuccess(getaddedblockresult: GetAddedBlockResult) {
@@ -109,6 +119,40 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onGetAddedBlockFailure(code: Int, message: String) {
-
     }
+
+    private fun modi(){
+        date = (activity as WritesecondActivity).modidate.toString()
+        ModiService.modi(this, date!!)
+    }
+
+    override fun onModiLoading() {
+    }
+
+    override fun onModiSuccess(modiresult: ModiResult) {
+        if(modiresult.selected?.weather.isNullOrEmpty() == false){
+            for(i in weatherDatas){
+                for(j in modiresult.selected?.weather!!){
+                    if(i.name == j){
+                        i.apply{
+                            i.focus = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onModiFailure(code: Int, message: String) {
+    }
+
+    override fun refreshData() {
+        for(i in weatherDatas){
+            i.apply{
+                i.focus = false
+            }
+        }
+        weatherRVAdapter.notifyDataSetChanged()
+    }
+
 }
