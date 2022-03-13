@@ -1,19 +1,11 @@
-package com.eight.collection.ui.main.lookpoint
+package com.eight.collection.ui.main.mylook
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.eight.collection.R
 import com.eight.collection.databinding.*
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.finish.FinishActivity
-import com.eight.collection.ui.login.LoginFirstActivity
-import com.eight.collection.data.entities.Diary
-import com.eight.collection.ui.main.week.DiaryRVAdapter
-import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.gson.Gson
 import java.util.ArrayList
 
@@ -81,15 +73,15 @@ MyLookSecondFragment(): BaseFragment<FragmentMyLookSecondBinding>(FragmentMyLook
 
         //MyLook에서 넘어온 데이터 받아오기
         val myLookData = arguments?.getString("myLook")
-        val myLook = gson.fromJson(myLookData, MyLook::class.java)
+        val myLook = gson.fromJson(myLookData, MyLookOOTD::class.java)
 
         //MyLook에서 넘어온 데이터 반영
         setInit(myLook)
 
     }
-    private fun setInit(myLook: MyLook) {
-        binding.myLookSecondPoint5Iv.setImageResource(myLook.pointImg!!)
-        binding.myLookSecond01Tv.text = myLook.number
+    private fun setInit(myLookOOTD: MyLookOOTD) {
+//        binding.myLookSecondPoint5Iv.setImageResource(myLookOOTD.pointImg!!)
+//        binding.myLookSecond01Tv.text = myLookOOTD.number
 
     }
 

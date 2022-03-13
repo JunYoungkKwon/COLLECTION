@@ -60,17 +60,500 @@
         app:layout_constraintBottom_toBottomOf="@id/myLook_lookBook_tv"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/myLook_scroll_recyclerview"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/finish_comment_ns"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:fillViewport="true"
         android:layout_marginTop="15dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/myLook_banner_vp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_my_look" />
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/item_myLook_01_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/vlan_llaoutline"
+                android:textStyle="normal"
+                android:layout_marginStart="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="6sp"
+                android:textColor="@color/terracota"
+                android:letterSpacing="-0.1"
+                android:text="01"/>
+
+            <ImageView
+                android:id="@+id/item_myLook_point_5_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/mylook_point_5"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_01_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_01_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_01_tv" />
+
+            <View
+                android:id="@+id/item_myLook_horizon_top_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_01_tv"
+                android:background="@color/pinkish_grey"/>
+
+            <com.eight.collection.utils.CustomTextView
+                android:id="@+id/item_myLook_photo_tv"
+                style="@style/VlanLlaRegular4Pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:rotation="180"
+                android:text="PHOTO."
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="92dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view" />
+
+            <ImageView
+                android:id="@+id/item_myLook_move_btn_iv"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginBottom="-10dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_daydrop"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo_tv" />
+
+
+
+            <View
+                android:id="@+id/item_myLook_horizon_bottom_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_photo_tv"
+                android:background="@color/pinkish_grey"/>
+
+            <View
+                android:id="@+id/item_myLook_vertical_view"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom_view"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top_view"
+                android:background="@color/pinkish_grey"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_myLook_img_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="148dp"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom_view"
+                tools:listitem="@layout/item_my_look_photo" />
+
+            <TextView
+                android:id="@+id/item_myLook_02_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/vlan_llaoutline"
+                android:textStyle="normal"
+                android:layout_marginTop="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="@+id/item_myLook_01_tv"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_bottom_view"
+                android:textSize="6sp"
+                android:textColor="@color/terracota"
+                android:letterSpacing="-0.1"
+                android:text="02"/>
+
+            <ImageView
+                android:id="@+id/item_myLook_point_4_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/mylook_point_4"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_02_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_02_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_02_tv" />
+
+            <View
+                android:id="@+id/item_myLook_horizon_top2_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_02_tv"
+                android:background="@color/pinkish_grey"/>
+
+            <com.eight.collection.utils.CustomTextView
+                android:id="@+id/item_myLook_photo2_tv"
+                style="@style/VlanLlaRegular4Pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:rotation="180"
+                android:text="PHOTO."
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="92dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top2_view" />
+
+            <ImageView
+                android:id="@+id/item_myLook_move_btn2_iv"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginBottom="-10dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_daydrop"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo2_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo2_tv" />
+
+
+
+            <View
+                android:id="@+id/item_myLook_horizon_bottom2_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_photo2_tv"
+                android:background="@color/pinkish_grey"/>
+
+            <View
+                android:id="@+id/item_myLook_vertical2_view"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo2_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom2_view"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top2_view"
+                android:background="@color/pinkish_grey"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_myLook_img2_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="148dp"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical2_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top2_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom2_view"
+                tools:listitem="@layout/item_my_look_photo" />
+
+            <TextView
+                android:id="@+id/item_myLook_03_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/vlan_llaoutline"
+                android:textStyle="normal"
+                android:layout_marginTop="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="@+id/item_myLook_01_tv"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_bottom2_view"
+                android:textSize="6sp"
+                android:textColor="@color/terracota"
+                android:letterSpacing="-0.1"
+                android:text="03"/>
+
+            <ImageView
+                android:id="@+id/item_myLook_point_3_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/mylook_point_3"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_03_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_03_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_03_tv" />
+
+            <View
+                android:id="@+id/item_myLook_horizon_top3_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_03_tv"
+                android:background="@color/pinkish_grey"/>
+
+            <com.eight.collection.utils.CustomTextView
+                android:id="@+id/item_myLook_photo3_tv"
+                style="@style/VlanLlaRegular4Pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:rotation="180"
+                android:text="PHOTO."
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="92dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top3_view" />
+
+            <ImageView
+                android:id="@+id/item_myLook_move_btn3_iv"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginBottom="-10dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_daydrop"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo3_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo3_tv" />
+
+            <View
+                android:id="@+id/item_myLook_horizon_bottom3_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_photo3_tv"
+                android:background="@color/pinkish_grey"/>
+
+            <View
+                android:id="@+id/item_myLook_vertical3_view"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo3_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom3_view"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top3_view"
+                android:background="@color/pinkish_grey"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_myLook_img3_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="148dp"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical3_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top3_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom3_view"
+                tools:listitem="@layout/item_my_look_photo" />
+
+            <TextView
+                android:id="@+id/item_myLook_04_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/vlan_llaoutline"
+                android:textStyle="normal"
+                android:layout_marginTop="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="@+id/item_myLook_01_tv"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_bottom3_view"
+                android:textSize="6sp"
+                android:textColor="@color/terracota"
+                android:letterSpacing="-0.1"
+                android:text="04"/>
+
+            <ImageView
+                android:id="@+id/item_myLook_point4_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/mylook_point_2"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_04_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_04_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_04_tv" />
+
+            <View
+                android:id="@+id/item_myLook_horizon_top4_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_04_tv"
+                android:background="@color/pinkish_grey"/>
+
+            <com.eight.collection.utils.CustomTextView
+                android:id="@+id/item_myLook_photo4_tv"
+                style="@style/VlanLlaRegular4Pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:rotation="180"
+                android:text="PHOTO."
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="92dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top4_view" />
+
+            <ImageView
+                android:id="@+id/item_myLook_move_btn4_iv"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginBottom="-10dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_daydrop"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo4_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo4_tv" />
+
+
+
+            <View
+                android:id="@+id/item_myLook_horizon_bottom4_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_photo4_tv"
+                android:background="@color/pinkish_grey"/>
+
+            <View
+                android:id="@+id/item_myLook_vertical4_view"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo4_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom4_view"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top4_view"
+                android:background="@color/pinkish_grey"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_myLook_img4_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="148dp"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical4_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top4_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom4_view"
+                tools:listitem="@layout/item_my_look_photo" />
+            <TextView
+                android:id="@+id/item_myLook_05_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/vlan_llaoutline"
+                android:textStyle="normal"
+                android:layout_marginTop="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="@+id/item_myLook_01_tv"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_bottom4_view"
+                android:textSize="6sp"
+                android:textColor="@color/terracota"
+                android:letterSpacing="-0.1"
+                android:text="05"/>
+
+            <ImageView
+                android:id="@+id/item_myLook_point_1_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/mylook_point_1"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_05_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_05_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_05_tv" />
+
+            <View
+                android:id="@+id/item_myLook_horizon_top5_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_05_tv"
+                android:background="@color/pinkish_grey"/>
+
+            <com.eight.collection.utils.CustomTextView
+                android:id="@+id/item_myLook_photo5_tv"
+                style="@style/VlanLlaRegular4Pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:rotation="180"
+                android:text="PHOTO."
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="92dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top5_view" />
+
+            <ImageView
+                android:id="@+id/item_myLook_move_btn5_iv"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginBottom="-10dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_daydrop"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo5_tv"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo5_tv" />
+
+            <View
+                android:id="@+id/item_myLook_horizon_bottom5_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_photo5_tv"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@color/pinkish_grey"/>
+
+            <View
+                android:id="@+id/item_myLook_vertical5_view"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_photo5_tv"
+                app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom5_view"
+                app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top5_view"
+                android:background="@color/pinkish_grey"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_myLook_img5_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="148dp"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical5_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top5_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom5_view"
+                tools:listitem="@layout/item_my_look_photo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/myLook_scroll_recyclerview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/myLook_banner_vp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        tools:listitem="@layout/item_my_look" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -100,15 +100,13 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
             binding.itemDiaryImgCountTv.text= "+"+ diary.imgCount.toString()
 
             if(diary.coverImg == "null"){
+                Glide.with(context).load(diary.coverImg).into(binding.itemDiaryImgIv)
                 //binding.itemDiaryImgCardView.visibility = View.INVISIBLE
                 //Glide.with(context).load(R.drawable.week_diary_default).into(binding.itemDiaryImgIv)
                 //Glide.with(context).load(R.drawable.ic_hang_large_default).into(binding.itemDiaryImgIv)
-                Log.d("null/test","null")
             }
             else{
                 Glide.with(context).load(diary.coverImg).into(binding.itemDiaryImgIv)
-                //Glide.with(context).load(diary.coverImg).error(R.drawable.week_diary_default).into(binding.itemDiaryImgIv)
-                Log.d("null/test","notnull")
             }
 
             if(diary.topList.isNullOrEmpty()){

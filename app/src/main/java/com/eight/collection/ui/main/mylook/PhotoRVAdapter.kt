@@ -1,11 +1,9 @@
-package com.eight.collection.ui.main.lookpoint
+package com.eight.collection.ui.main.mylook
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.eight.collection.databinding.ItemMyLookBinding
 import com.eight.collection.databinding.ItemMyLookPhotoBinding
-import com.eight.collection.databinding.ItemWeekDiaryBinding
 
 
 class PhotoRVAdapter(val photoList: MutableList<Photo>) : RecyclerView.Adapter<PhotoRVAdapter.ViewHolder>() {

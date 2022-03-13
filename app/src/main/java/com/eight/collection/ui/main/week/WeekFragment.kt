@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.applandeo.materialcalendarview.utils.calendar
@@ -119,13 +120,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private fun startMyLook() {
         binding.weekBtnRankIv.setOnClickListener {
-            var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
-            var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-            text.text="Coming Soon!!!"
-            var toast = Toast(context)
-            toast.view = layoutInflater
-            toast.show()
-            //Navigation.findNavController(it).navigate(R.id.MyLookFragment)
+            Navigation.findNavController(it).navigate(R.id.MyLookFragment)
         }
 
     }
