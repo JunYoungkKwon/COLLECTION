@@ -89,6 +89,10 @@
 
         <activity android:name=".ui.main.setting.developerinfo.DeveloperInfoActivity"/>
 
+        <activity android:name=".ui.main.mylook.MyLookActivity"/>
+
+        <activity android:name=".ui.main.mylook.MyLookDetailActivity"/>
+
         <activity
             android:name=".ui.finish.FinishActivity"
             android:theme="@style/Transparent"

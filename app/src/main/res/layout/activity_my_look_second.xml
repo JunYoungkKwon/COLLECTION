@@ -79,9 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="16dp"
         app:spanCount="3"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,5 +111,52 @@
         app:layout_constraintTop_toTopOf="@id/myLook_second_myBest_tv"
         app:layout_constraintBottom_toBottomOf="@id/myLook_second_lookBook_tv"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/week_default_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_padding_indicator1"
+        android:layout_marginBottom="-35dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/week_default1_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/week_default1_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="normal"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:textColor="@color/dark_taupe"
+        android:letterSpacing="-0.01"
+        android:layout_marginBottom="-25dp"
+        app:layout_constraintBottom_toTopOf="@id/week_default2_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:lineSpacingExtra="8sp"
+        android:gravity="center_horizontal"
+        android:text="@string/dialog_text1"/>
+
+    <TextView
+        android:id="@+id/week_default2_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="normal"
+        android:textSize="16sp"
+        android:textColor="@color/dark_taupe"
+        android:letterSpacing="-0.01"
+        android:layout_marginBottom="270dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:lineSpacingExtra="8sp"
+        android:gravity="center_horizontal"
+        android:text="@string/dialog_text2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

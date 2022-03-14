@@ -139,4 +139,28 @@ object MyLookService {
             }
         })
     }
+
+    fun getDetailMyLook(myLookDetailView: MyLookDetailView, lookpoint:Int) {
+        val datailMyLookService = retrofit.create(MyLookRetrofitInterface::class.java)
+
+        myLookDetailView.onMyLookDetailLoading()
+
+        datailMyLookService.getDetailMyLook(lookpoint).enqueue(object : Callback<MyLookResponse> {
+            override fun onResponse(call: Call<MyLookResponse>, response: Response<MyLookResponse>) {
+
+                val resp = response.body()!!
+
+                when(resp.code){
+                    1016 -> myLookDetailView.onMyLookDetailSuccess(resp.result!!)
+                    else -> myLookDetailView.onMyLookDetailFailure(resp.code, resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<MyLookResponse>, t: Throwable) {
+                Log.d("$TAG/API-ERROR", t.message.toString())
+
+                myLookDetailView.onMyLookDetailFailure(400, "네트워크 오류가 발생했습니다.")
+            }
+        })
+    }
 }

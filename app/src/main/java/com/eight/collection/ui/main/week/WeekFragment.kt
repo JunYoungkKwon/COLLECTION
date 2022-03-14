@@ -30,6 +30,7 @@ import com.eight.collection.databinding.FragmentWeekBinding
 import com.eight.collection.ui.BaseFragment
 import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.month.MonthView
+import com.eight.collection.ui.main.mylook.MyLookActivity
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.kizitonwose.calendarview.model.CalendarDay
@@ -120,7 +121,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
 
     private fun startMyLook() {
         binding.weekBtnRankIv.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.MyLookFragment)
+            startActivity(Intent(activity, MyLookActivity::class.java))
         }
 
     }
