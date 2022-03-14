@@ -105,6 +105,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImgRecyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
+
     }
 
     override fun onMyLookFailure(code: Int, message: String) {
@@ -130,6 +131,17 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImg2Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
+
+        if(myLookResult.lastOOTDArr.isNullOrEmpty()){
+            binding.weekDefault11Iv.visibility = View.VISIBLE
+            binding.weekDefault12Text.visibility = View.VISIBLE
+            binding.weekDefault13Text.visibility = View.VISIBLE
+        }
+        else{
+            binding.weekDefault11Iv.visibility = View.GONE
+            binding.weekDefault12Text.visibility = View.GONE
+            binding.weekDefault13Text.visibility = View.GONE
+        }
     }
 
     override fun onMyLook2Failure(code: Int, message: String) {}

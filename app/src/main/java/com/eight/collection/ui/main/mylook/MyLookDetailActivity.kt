@@ -3,14 +3,21 @@ package com.eight.collection.ui.main.mylook
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.eight.collection.R
 import com.eight.collection.data.remote.mylook.MyLookResult
 import com.eight.collection.data.remote.mylook.MyLookService
-import com.eight.collection.databinding.*
+import com.eight.collection.databinding.ActivityMyLookSecondBinding
+import com.eight.collection.databinding.ItemMyLookSecondPhotoBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.finish.FinishActivity
 import com.google.gson.Gson
-import java.util.ArrayList
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class
 
@@ -18,15 +25,15 @@ MyLookDetailActivity(): BaseActivity<ActivityMyLookSecondBinding>(ActivityMyLook
 
     private  lateinit var myLookDetailRVAdapter: MyLookDetailRVAdapter
     lateinit var binding1: ItemMyLookSecondPhotoBinding
+    var delay: Long = 0
 
     private var isClick: Boolean = true
     private  var gson: Gson = Gson()
-    private  var photoDatas = ArrayList<Photo>()
     private var itemList = ArrayList<String>()
 
     override fun initAfterBinding() {
         setInit()
-        binding1 = ItemMyLookSecondPhotoBinding.inflate(layoutInflater)
+
 
         itemList.apply {
             add("사진을 탭하여 작성날짜를 확인해보세요!")
@@ -36,10 +43,6 @@ MyLookDetailActivity(): BaseActivity<ActivityMyLookSecondBinding>(ActivityMyLook
         val adapter = MyLookVPA(itemList, true)
         binding.myLookSecondBannerVp.setAdapter(adapter)
 
-    }
-
-    private fun startFinishAcitivity(photo: Photo) {
-        startActivity(Intent(this, FinishActivity::class.java))
     }
 
     private fun setInit() {
@@ -80,25 +83,68 @@ MyLookDetailActivity(): BaseActivity<ActivityMyLookSecondBinding>(ActivityMyLook
         binding.myLookSecondScrollRecyclerview.adapter = myLookDetailRVAdapter
         myLookDetailRVAdapter.addOOTD(myLookResult.lastOOTDDetailArr)
 
+        if(myLookResult.lastOOTDDetailArr.isNullOrEmpty()){
+            binding.weekDefault1Text.visibility = View.VISIBLE
+            binding.weekDefault2Text.visibility = View.VISIBLE
+            binding.weekDefaultIv.visibility = View.VISIBLE
+        }
+        else{
+            binding.weekDefault1Text.visibility = View.GONE
+            binding.weekDefault2Text.visibility = View.GONE
+            binding.weekDefaultIv.visibility = View.GONE
+        }
+
+
         myLookDetailRVAdapter.setMyItemClickListener(object : MyLookDetailRVAdapter.MyitemClickListener{
 
-            override fun onItemClick(myLookOOTD: MyLookOOTD) {
-                if(isClick == true){
-                    binding1.itemMyLookDateTv.visibility = View.VISIBLE
-                    binding1.itemMyLookDimBackground.visibility = View.VISIBLE
-                    isClick = false
-
+            override fun onItemClick(myLookOOTD: MyLookOOTD, position: Int) {
+                when(position){
+                    0 -> {
+                        if (System.currentTimeMillis() > delay) {
+                            //한번 클릭했을 때
+                            Log.d("CLICK/TEST0",myLookOOTD.date.toString())
+                            delay = System.currentTimeMillis() + 4000;
+                            return;
+                        }
+                        if (System.currentTimeMillis() <= delay) {
+                            Log.d("CLICK/TEST1",myLookOOTD.date.toString())
+                        }
+                    }
+                    1 -> {
+                        if (System.currentTimeMillis() > delay) {
+                            //한번 클릭했을 때
+                            Log.d("CLICK/TEST5",myLookOOTD.date.toString())
+                            delay = System.currentTimeMillis() + 4000;
+                            return;
+                        }
+                        if (System.currentTimeMillis() <= delay) {
+                            Log.d("CLICK/TEST6",myLookOOTD.date.toString())
+                        }
+                    }
                 }
-                else{
-                    binding1.itemMyLookDateTv.visibility = View.GONE
-                    binding1.itemMyLookDimBackground.visibility = View.GONE
-                    isClick = true
 
-                    //startFinishAcitivity(photo)
+            }
+        })
+
+        myLookDetailRVAdapter.setMyItemLongClickListener(object :MyLookDetailRVAdapter.MyitemLongClickListener{
+            override fun onItemLongClick(myLookOOTD: MyLookOOTD, position: Int) {
+                val date: Date = myLookOOTD.date
+                val localdate: LocalDate = date.toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate()
+                val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                val convertDate: String = localdate.format(formatters)
+
+                val intent = Intent(applicationContext, FinishActivity::class.java)
+                intent.apply {
+                    this.putExtra("date",convertDate)
                 }
+                startActivity(intent)
             }
 
         })
+
+
     }
 
     override fun onMyLookDetailFailure(code: Int, message: String) {

@@ -540,21 +540,55 @@
                 app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom5_view"
                 tools:listitem="@layout/item_my_look_photo" />
 
+            <ImageView
+                android:id="@+id/week_default_1_1_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_padding_indicator1"
+                android:layout_marginBottom="-35dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/week_default_1_2_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/week_default_1_2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:visibility="gone"
+                android:textColor="@color/dark_taupe"
+                android:letterSpacing="-0.01"
+                android:layout_marginBottom="-25dp"
+                app:layout_constraintBottom_toTopOf="@id/week_default_1_3_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="@string/dialog_text1"/>
+
+            <TextView
+                android:id="@+id/week_default_1_3_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:textColor="@color/dark_taupe"
+                android:letterSpacing="-0.01"
+                android:layout_marginBottom="60dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom2_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="@string/dialog_text2"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/myLook_scroll_recyclerview"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:orientation="vertical"-->
-<!--        android:layout_marginTop="15dp"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/myLook_banner_vp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        tools:listitem="@layout/item_my_look" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.eight.collection.ui.main.mylook
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,13 +21,23 @@ class MyLookDetailRVAdapter(val context: Context) : RecyclerView.Adapter<MyLookD
     private val myLookOOTDList = mutableListOf<MyLookOOTD>()
 
     interface MyitemClickListener{
-        fun onItemClick(myLookOOTD: MyLookOOTD)
+        fun onItemClick(myLookOOTD: MyLookOOTD, position: Int)
+    }
+
+    interface MyitemLongClickListener{
+        fun onItemLongClick(myLookOOTD: MyLookOOTD, position: Int)
     }
 
     private  lateinit var mItemClickListener: MyitemClickListener
 
+    private  lateinit var mItemLongClickListener: MyitemLongClickListener
+
     fun setMyItemClickListener(itemClickListener: MyitemClickListener){
         mItemClickListener = itemClickListener
+    }
+
+    fun setMyItemLongClickListener(itemClickListener: MyitemLongClickListener){
+        mItemLongClickListener = itemClickListener
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MyLookDetailRVAdapter.ViewHolder {
@@ -45,7 +56,24 @@ class MyLookDetailRVAdapter(val context: Context) : RecyclerView.Adapter<MyLookD
 
     override fun onBindViewHolder(holder: MyLookDetailRVAdapter.ViewHolder, position: Int) {
         holder.bind(myLookOOTDList[position])
-        holder.itemView.setOnClickListener{  mItemClickListener.onItemClick(myLookOOTDList[position]) }
+        var isClick: Boolean = true
+        holder.itemView.setOnClickListener{
+            mItemClickListener.onItemClick(myLookOOTDList[position], position)
+            if(isClick == true){
+                holder.binding.itemMyLookDateTv.visibility = View.VISIBLE
+                holder.binding.itemMyLookDimBackground.visibility = View.VISIBLE
+                isClick = false
+            }
+            else{
+                holder.binding.itemMyLookDateTv.visibility = View.GONE
+                holder.binding.itemMyLookDimBackground.visibility = View.GONE
+                isClick = true
+            }
+        }
+        holder.itemView.setOnLongClickListener {
+            mItemLongClickListener.onItemLongClick(myLookOOTDList[position], position)
+            false
+        }
     }
 
 
@@ -54,21 +82,24 @@ class MyLookDetailRVAdapter(val context: Context) : RecyclerView.Adapter<MyLookD
 
     inner class ViewHolder(val binding: ItemMyLookSecondPhotoBinding): RecyclerView.ViewHolder(binding.root){
 
-        private var isClick: Boolean = true
-        init {
-            binding.itemMyLookSecondPhotoIv.setOnClickListener {
-                if(isClick == true){
-                    binding.itemMyLookDateTv.visibility = View.VISIBLE
-                    binding.itemMyLookDimBackground.visibility = View.VISIBLE
-                    isClick = false
-                }
-                else{
-                    binding.itemMyLookDateTv.visibility = View.GONE
-                    binding.itemMyLookDimBackground.visibility = View.GONE
-                    isClick = true
-                }
-            }
-        }
+
+//        init {
+//            binding.itemMyLookSecondPhotoIv.setOnClickListener {
+//                if(isClick == true){
+//                    Log.d("CLICK/TEST2","test")
+//                    binding.itemMyLookDateTv.visibility = View.VISIBLE
+//                    binding.itemMyLookDimBackground.visibility = View.VISIBLE
+//                    isClick = false
+//                }
+//                else{
+//                    Log.d("CLICK/TEST3","test")
+//                    binding.itemMyLookDateTv.visibility = View.GONE
+//                    binding.itemMyLookDimBackground.visibility = View.GONE
+//                    isClick = true
+//
+//                }
+//            }
+//        }
 
 
         fun bind(myLookOOTD: MyLookOOTD){
