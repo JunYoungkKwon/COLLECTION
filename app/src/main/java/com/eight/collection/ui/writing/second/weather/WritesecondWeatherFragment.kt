@@ -33,6 +33,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     private var idcount : Int = 9
     var weatherRVAdapter : WritesecondWeatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
     var date : String = "2021-01-01"
+    var mode : Int = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,7 +57,10 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
 
         getAddedBlock()
 
-        modi()
+        mode = (activity as WritesecondActivity).mode
+        if(mode == 2) {
+            modi()
+        }
 
         Handler(Looper.getMainLooper()).postDelayed({
             weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
@@ -65,7 +69,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
             binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
-        }, 100)
+        }, 200)
 
         return binding.root
     }

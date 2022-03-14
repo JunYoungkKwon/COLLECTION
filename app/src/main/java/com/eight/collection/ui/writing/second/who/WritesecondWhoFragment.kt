@@ -32,6 +32,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     private var idcount : Int = 7
     var whoRVAdapter : WritesecondWhoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
     var date : String = "2021-01-01"
+    var mode : Int = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +54,10 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
 
         getAddedBlock()
 
-        modi()
+        mode = (activity as WritesecondActivity).mode
+        if(mode == 2) {
+            modi()
+        }
 
         Handler(Looper.getMainLooper()).postDelayed({
             whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
@@ -62,7 +66,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
             binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
-        }, 100)
+        }, 200)
 
 
         return binding.root

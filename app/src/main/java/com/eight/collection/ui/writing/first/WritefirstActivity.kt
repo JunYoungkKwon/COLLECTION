@@ -1,9 +1,9 @@
 package com.eight.collection.ui.writing.first
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Insets.add
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,19 +16,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.R
-import com.eight.collection.data.entities.Cloth
-import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.data.remote.modi.ModiResult
 import com.eight.collection.data.remote.modi.ModiService
 import com.eight.collection.databinding.ActivityWritefirstBinding
-import com.eight.collection.ui.introduce.IntroduceFirstDialog
-import com.eight.collection.ui.writing.CustomDialogInterface
 import com.eight.collection.ui.writing.ModiView
 import com.eight.collection.ui.writing.RefreshDialogInterface
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
@@ -37,17 +32,23 @@ import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
 import com.eight.collection.ui.writing.first.top.WritefirstTopFragment
 import com.eight.collection.ui.writing.second.WritesecondActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
-class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiView {
+class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiView, WritesecondActivity.OnClickFinishListener {
     lateinit var binding: ActivityWritefirstBinding
     lateinit var refreshDialog : RefreshDialog
     val photoList = ArrayList<Uri>()
-    val imageList = ArrayList<Image>()
+    var imageList = ArrayList<Image>()
     var reviseimageList = ArrayList<Image>()
+    var bitmapList = ArrayList<Bitmap>()
+    var imageFileList = ArrayList<String>()
     val photoRVAdapter = PhotoRVAdapter(photoList, this)
     val fragmentList = arrayListOf<Fragment>()
     val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
@@ -64,11 +65,12 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     private var refreshbottomdataListener : WritefirstActivity.RefreshBottomDataListener? = null
     private var refreshshoesdataListener : WritefirstActivity.RefreshShoesDataListener? = null
     private var refreshetcdataListener : WritefirstActivity.RefreshEtcDataListener? = null
-
+    var writesecondactivity : WritesecondActivity? = null
 
     var photoIs : Int = -1
     var mode : Int = 1
     var modidate : String? = null
+    var filepath : String? = null
 
 
 
@@ -76,6 +78,9 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
         super.onCreate(savedInstanceState)
         binding = ActivityWritefirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        writesecondactivity?.setOnClickFinish(this)
+
 
         //날짜 데이터 삽입
         var date = LocalDateTime.now()
@@ -115,13 +120,12 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
         var recyclerview = findViewById<RecyclerView>(R.id.writefirst_photo_recyclerview)
 
         getImage_btn.setOnClickListener{
-            var intent = Intent(Intent.ACTION_PICK)
-            intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            var intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             intent.type = "image/*"
             intent.action = Intent.ACTION_OPEN_DOCUMENT
 
-            startActivityForResult(intent, GALLERY)
+            startActivityForResult(intent, 200)
         }
 
         recyclerview.layoutManager =
@@ -333,6 +337,8 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 intent.putExtra("photoIs", photoIs)
                 intent.putExtra("fixed", fixedClothes)
                 intent.putExtra("added", addedClothes)
+                intent.putExtra("photo", photoList)
+                intent.putExtra("file", imageFileList)
 
                 if(mode == 2){
                     intent.putExtra("image", reviseimageList)
@@ -346,6 +352,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 }
 
                 startActivity(intent)
+
                 finish()
             }
         }
@@ -355,9 +362,10 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     //갤러리에서 이미지 선택 메소드
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == GALLERY) {
+        if (resultCode == RESULT_OK && requestCode == 200) {
             photoList.clear()
             imageList.clear()
+            bitmapList.clear()
             if (data?.clipData != null) {
                 val count = data.clipData!!.itemCount
                 if (count > 5) {
@@ -374,9 +382,17 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 for (i in 0 until count){
                     val imageUri = data.clipData!!.getItemAt(i).uri
                     photoList.add(imageUri)
+                    var bitmap : Bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
+                    saveBitmapAsPNGFile(bitmap)
+                    bitmapList.add(bitmap)
+                    imageFileList.apply{
+                        add(filepath!!)
+                    }
                     binding.writefirstPhotoDefaultImage1.visibility = View.GONE
                     binding.writefirstPhotoDefaultImage2.visibility = View.GONE
                 }
+                Log.d("포토","${photoList}")
+                Log.d("파일","${imageFileList}")
 
             }
             else {
@@ -384,6 +400,12 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                     val imageUri : Uri? = data?.data
                     if (imageUri != null){
                         photoList.add(imageUri)
+                        var bitmap : Bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
+                        saveBitmapAsPNGFile(bitmap)
+                        bitmapList.add(bitmap)
+                        imageFileList.apply{
+                            add(filepath!!)
+                        }
                         binding.writefirstPhotoDefaultImage1.visibility = View.GONE
                         binding.writefirstPhotoDefaultImage2.visibility = View.GONE
                     }
@@ -537,7 +559,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     override fun onModiLoading() {
     }
     override fun onModiSuccess(modiresult: ModiResult) {
-        Log.d("modiresult","${modiresult}")
+        /*Log.d("modiresult","${modiresult}")*/
         //수정하기시, 기존 LookName 불러오기
         if(modiresult.selected?.lookname != null){
             binding.writefirstLookstyleTv.setText(modiresult.selected?.lookname)
@@ -575,5 +597,36 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
 
     }
     override fun onModiFailure(code: Int, message: String) {
+    }
+
+    override fun onFinish() {
+        Log.d("successfinish","successfinish")
+        finish()
+    }
+
+    private fun newPngFileName() : String {
+        val sdf = SimpleDateFormat("yyyyMMdd__HHmmss")
+        val filename = sdf.format(System.currentTimeMillis())
+        return "${filename}.png"
+    }
+
+    private fun saveBitmapAsPNGFile(bitmap: Bitmap){
+        val path = File(filesDir, "image")
+        if(!path.exists()){
+            path.mkdirs()
+        }
+        val photoName = newPngFileName()
+        val file = File(path,photoName)
+        var imageFile : OutputStream? = null
+        try {
+            file.createNewFile()
+            imageFile = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 80, imageFile)
+            imageFile.close()
+
+            filepath = file.absolutePath.toString()
+        }catch (e: Exception){
+
+        }
     }
 }

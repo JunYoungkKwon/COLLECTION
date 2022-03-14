@@ -1,6 +1,8 @@
 package com.eight.collection.ui.writing.second
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,6 +16,7 @@ import androidx.fragment.app.Fragment
 import com.eight.collection.R
 import com.eight.collection.data.entities.Write.Block
 import com.eight.collection.data.entities.Write.Write
+import com.eight.collection.data.remote.imageUpload.ImageUploadService
 import com.eight.collection.data.remote.modi.ModiResult
 import com.eight.collection.data.remote.modi.ModiService
 import com.eight.collection.data.remote.recieves3url.ReceiveS3UrlService
@@ -21,10 +24,7 @@ import com.eight.collection.data.remote.write.WriteService
 import com.eight.collection.databinding.ActivityWritesecondBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.finish.FinishActivity
-import com.eight.collection.ui.writing.ModiView
-import com.eight.collection.ui.writing.ReceiveS3URLView
-import com.eight.collection.ui.writing.RefreshDialogInterface
-import com.eight.collection.ui.writing.WriteView
+import com.eight.collection.ui.writing.*
 import com.eight.collection.ui.writing.first.*
 import com.eight.collection.ui.writing.first.bottom.WritefirstBottomFragment
 import com.eight.collection.ui.writing.first.shoes.WritefirstShoesFragment
@@ -34,9 +34,10 @@ import com.eight.collection.ui.writing.second.weather.WritesecondWeatherFragment
 import com.eight.collection.ui.writing.second.who.WritesecondWhoFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hedgehog.ratingbar.RatingBar
+import java.io.File
 
 class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
-    RefreshDialogInterface, ModiView {
+    RefreshDialogInterface, ModiView, ImageUploadView {
     lateinit var binding : ActivityWritesecondBinding
     lateinit var refreshDialog : RefreshDialog
     val information = arrayListOf("PLACE","WEATHER","WHO")
@@ -48,9 +49,12 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     private var refreshweatherdataListener : WritesecondActivity.RefreshWeatherDataListener? = null
     private var refreshwhodataListener : WritesecondActivity.RefreshWhoDataListener? = null
     private lateinit var ratingBar : RatingBar
+    private var mListener : OnClickFinishListener? = null
     var lookpoint : Float = 0F
     var modidate : String? = null
-
+    var upLoadUrl : String? = null
+    var writefirstActivity : WritefirstActivity? = null
+    var mode : Int = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,8 +79,10 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
         modidate = date
 
 
+        mode = intent.getIntExtra("mode",1)
+        Log.d("mode","${mode}")
         //수정하기시 기존 데이터 불러오기
-        if (intent.getIntExtra("mode",1) == 2){
+        if (mode == 2){
             modi()
         }
 
@@ -144,7 +150,6 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     }
 
     override fun onReceiveS3URLLoading() {
-
     }
 
     override fun onReceiveS3URLSuccess(url : String){
@@ -170,6 +175,18 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
 
         //image
         val imageList = intent.getParcelableArrayListExtra<Image>("image")
+
+        val imagefileList = intent.getStringArrayListExtra("file")
+
+
+        //image Upload
+        if (imagefileList != null) {
+            for (i in imagefileList){
+                imageUpload(i!!)
+                Log.d("RETURN URL","${upLoadUrl}")
+            }
+        }
+
 
         //Clothes
         val fixedClothes = intent.getParcelableArrayListExtra<FixedClothes>("fixed")
@@ -209,11 +226,9 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     }
 
     override fun onWriteLoading() {
-
     }
 
     override fun onWriteSuccess() {
-
     }
 
     override fun onWriteFailure(code: Int, message: String) {
@@ -327,6 +342,36 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
         }
     }
     override fun onModiFailure(code: Int, message: String) {
+    }
+
+
+    // 이미지 S3 업로드 API
+    private fun imageUpload(upLoadImage : String){
+        val file = File(upLoadImage)
+        Log.d("file","${file}")
+
+        ImageUploadService.imageUpload(this, file)
+    }
+
+    override fun onImageUploadLoading() {
+    }
+
+    override fun onImageUploadSuccess(url: String) {
+        Log.d("s3url","${url}")
+        upLoadUrl = url
+    }
+
+    override fun onImageUploadFailure(code: Int, message: String) {
+        Log.d("failmessage",message)
+    }
+
+    //WritefirstActivity 종료
+    interface OnClickFinishListener {
+        fun onFinish()
+    }
+
+    fun setOnClickFinish(listener: WritefirstActivity){
+        this.mListener = listener
     }
 
 
