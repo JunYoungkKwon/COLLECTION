@@ -153,7 +153,6 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     private fun getFinish() {
         val dateIntent = intent
         val date = dateIntent.getStringExtra("date")
-        Log.d("date2323","${date}")
         if (date != null) {
             FinishService.getFinish(this, date)
         }

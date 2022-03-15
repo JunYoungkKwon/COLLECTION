@@ -41,7 +41,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
-class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiView, WritesecondActivity.OnClickFinishListener {
+class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiView {
     lateinit var binding: ActivityWritefirstBinding
     lateinit var refreshDialog : RefreshDialog
     val photoList = ArrayList<String>()
@@ -65,7 +65,6 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     private var refreshbottomdataListener : WritefirstActivity.RefreshBottomDataListener? = null
     private var refreshshoesdataListener : WritefirstActivity.RefreshShoesDataListener? = null
     private var refreshetcdataListener : WritefirstActivity.RefreshEtcDataListener? = null
-    var writesecondactivity : WritesecondActivity? = null
 
     var photoIs : Int = -1
     var mode : Int = 1
@@ -80,7 +79,6 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
         binding = ActivityWritefirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        writesecondactivity?.setOnClickFinish(this)
 
 
         //날짜 데이터 삽입
@@ -352,9 +350,8 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                     intent.putExtra("mode", mode)
                 }
 
-                startActivity(intent)
-
                 finish()
+                startActivity(intent)
             }
         }
     }
@@ -599,10 +596,6 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     override fun onModiFailure(code: Int, message: String) {
     }
 
-    override fun onFinish() {
-        Log.d("successfinish","successfinish")
-        finish()
-    }
 
     private fun newPngFileName() : String {
         val sdf = SimpleDateFormat("yyyyMMdd__HHmmss")
