@@ -104,6 +104,8 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/menu/navi_menu.xml" value="0.1" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1135" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1135" />
+        <entry key="app/src/main/res/layout/activity_writesecond.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_finish_photo.xml" value="0.11828774062816616" />
       </map>
     </option>
   </component>

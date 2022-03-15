@@ -49,11 +49,10 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     private var refreshweatherdataListener : WritesecondActivity.RefreshWeatherDataListener? = null
     private var refreshwhodataListener : WritesecondActivity.RefreshWhoDataListener? = null
     private lateinit var ratingBar : RatingBar
-    private var mListener : OnClickFinishListener? = null
     var lookpoint : Float = 0F
     var modidate : String? = null
     var upLoadUrl : String? = null
-    var writefirstActivity : WritefirstActivity? = null
+    var writefirstActivity = WritefirstActivity()
     var mode : Int = 1
     var a : Int = 0
 
@@ -153,9 +152,9 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
                     val intent = Intent(this, FinishActivity::class.java)
                     intent.putExtra("date", date)
 
+                    finish()
                     startActivity(intent)
 
-                    finish()
                 }, 700)
             }
         }
@@ -373,15 +372,5 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     override fun onImageUploadFailure(code: Int, message: String) {
         Log.d("failmessage",message)
     }
-
-    //WritefirstActivity 종료
-    interface OnClickFinishListener {
-        fun onFinish()
-    }
-
-    fun setOnClickFinish(listener: WritefirstActivity){
-        this.mListener = listener
-    }
-
 
 }
