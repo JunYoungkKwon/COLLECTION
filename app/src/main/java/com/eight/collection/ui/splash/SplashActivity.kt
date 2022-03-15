@@ -17,22 +17,12 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(ActivitySplashBinding:
     var getIntroduceIs : Boolean = getIntroduceIs()
 
     override fun initAfterBinding() {
-        if(getIntroduceIs == true){
-            Handler(Looper.getMainLooper()).postDelayed({
-                val intent= Intent(this, LoginFirstActivity::class.java)
-                startActivity(intent)
-                finish()
-                autoLogin()
-            }, 2000)
-        }
-
-        else {
-            Handler(Looper.getMainLooper()).postDelayed({
-                val intent= Intent(this, LoginFirstActivity::class.java)
-                startActivity(intent)
-                finish()
-            }, 2000)
-        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            val  intent= Intent(this, LoginFirstActivity::class.java)
+            startActivity(intent)
+            finish()
+            autoLogin()
+        }, 2000)
     }
 
     private fun autoLogin() {

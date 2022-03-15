@@ -55,6 +55,11 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     var upLoadUrl : String? = null
     var writefirstActivity : WritefirstActivity? = null
     var mode : Int = 1
+    var a : Int = 0
+
+    //image
+    var imageList : ArrayList<Image>? = null
+    var imagefileList : ArrayList<String>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +99,6 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
         }
 
 
-
         setGetPlaceDataClickListener((fragmentList[0] as WritesecondPlaceFragment))
         setGetWeatherDataClickListener(fragmentList[1] as WritesecondWeatherFragment)
         setGetWhoDataClickListener(fragmentList[2] as WritesecondWhoFragment)
@@ -128,8 +132,22 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
                 //URL 받기
                 receiveS3Url()
 
-                //Write API
-                write()
+                //image Upload
+                imageList = intent.getParcelableArrayListExtra("image")
+                imagefileList = intent.getStringArrayListExtra("file")
+                Log.d("imagefileList","${imagefileList}")
+
+                if (imagefileList != null) {
+                    for (i in imagefileList!!){
+                        imageUpload(i!!)
+                    }
+                }
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    //Write API
+                    write()
+                }, 100)
+
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     val intent = Intent(this, FinishActivity::class.java)
@@ -138,7 +156,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
                     startActivity(intent)
 
                     finish()
-                }, 500)
+                }, 700)
             }
         }
     }
@@ -161,7 +179,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
 
 
     // Write API
-    private fun getWrite() : Write{
+    private fun getWrite() : Write {
         val mode = intent.getIntExtra("mode",1)
 
         //Date
@@ -172,21 +190,6 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
 
         //photoIs
         val photoIs = intent.getIntExtra("photoIs", -1)
-
-        //image
-        val imageList = intent.getParcelableArrayListExtra<Image>("image")
-
-        val imagefileList = intent.getStringArrayListExtra("file")
-
-
-        //image Upload
-        if (imagefileList != null) {
-            for (i in imagefileList){
-                imageUpload(i!!)
-                Log.d("RETURN URL","${upLoadUrl}")
-            }
-        }
-
 
         //Clothes
         val fixedClothes = intent.getParcelableArrayListExtra<FixedClothes>("fixed")
@@ -207,13 +210,13 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
         addedWho.addAll(getwhodataListener!!.getAddedData())
 
         Log.d("date","${date}")
-        Log.d("image","${imageList}")
         Log.d("fixedplace","${fixedPlace}")
         Log.d("addedplace","${addedPlace}")
         Log.d("fixedweather","${fixedWeather}")
         Log.d("addedweather","${addedWeather}")
         Log.d("fixedwho","${fixedWho}")
         Log.d("addedwho","${addedWho}")
+        Log.d("imageList","${imageList}")
 
         //comment
         var comment : String = binding.writesecondCommentEt.text.toString()
@@ -222,7 +225,9 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     }
 
     private fun write(){
-        WriteService.write(this, getWrite())
+        Handler(Looper.getMainLooper()).postDelayed({
+            WriteService.write(this, getWrite())
+        }, 500)
     }
 
     override fun onWriteLoading() {
@@ -359,6 +364,10 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     override fun onImageUploadSuccess(url: String) {
         Log.d("s3url","${url}")
         upLoadUrl = url
+        Log.d("upLoadUrl","${upLoadUrl}")
+        imageList?.get(a)?.imageUrl = url
+        a=a+1
+        Log.d("ImageList","${imageList}")
     }
 
     override fun onImageUploadFailure(code: Int, message: String) {

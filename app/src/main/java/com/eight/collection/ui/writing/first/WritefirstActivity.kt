@@ -44,7 +44,7 @@ import kotlin.collections.ArrayList
 class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiView, WritesecondActivity.OnClickFinishListener {
     lateinit var binding: ActivityWritefirstBinding
     lateinit var refreshDialog : RefreshDialog
-    val photoList = ArrayList<Uri>()
+    val photoList = ArrayList<String>()
     var imageList = ArrayList<Image>()
     var reviseimageList = ArrayList<Image>()
     var bitmapList = ArrayList<Bitmap>()
@@ -71,6 +71,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     var mode : Int = 1
     var modidate : String? = null
     var filepath : String? = null
+    var count : Int = 0
 
 
 
@@ -381,8 +382,9 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
 
                 for (i in 0 until count){
                     val imageUri = data.clipData!!.getItemAt(i).uri
-                    photoList.add(imageUri)
+                    contentResolver.takePersistableUriPermission(imageUri,Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     var bitmap : Bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
+                    photoList.add(imageUri.toString())
                     saveBitmapAsPNGFile(bitmap)
                     bitmapList.add(bitmap)
                     imageFileList.apply{
@@ -399,8 +401,9 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 data?.data?.let { uri ->
                     val imageUri : Uri? = data?.data
                     if (imageUri != null){
-                        photoList.add(imageUri)
+                        contentResolver.takePersistableUriPermission(imageUri,Intent.FLAG_GRANT_READ_URI_PERMISSION)
                         var bitmap : Bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
+                        photoList.add(imageUri.toString())
                         saveBitmapAsPNGFile(bitmap)
                         bitmapList.add(bitmap)
                         imageFileList.apply{
@@ -415,8 +418,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             photoRVAdapter.notifyDataSetChanged()
             var b : Int = 0
             for(a in photoList) {
-                contentResolver.takePersistableUriPermission(a,Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                var c : String = a.toString()
+                var c : String = a
                 imageList.apply {
                     add(Image(c, b))
                 }
@@ -559,7 +561,6 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     override fun onModiLoading() {
     }
     override fun onModiSuccess(modiresult: ModiResult) {
-        /*Log.d("modiresult","${modiresult}")*/
         //수정하기시, 기존 LookName 불러오기
         if(modiresult.selected?.lookname != null){
             binding.writefirstLookstyleTv.setText(modiresult.selected?.lookname)
@@ -568,7 +569,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
         if(modiresult.selected?.image.isNullOrEmpty() == false){
             for(i in modiresult.selected?.image!!){
                 photoList.apply {
-                    add(i.imageurl!!.toUri())
+                    add(i.imageurl!!)
                 }
             }
             photoRVAdapter.notifyDataSetChanged()
@@ -577,8 +578,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             binding.writefirstPhotoDefaultImage2.visibility = View.GONE
             var b : Int = 0
             for(a in photoList) {
-                contentResolver.takePersistableUriPermission(a,Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                var c : String = a.toString()
+                var c : String = a
                 imageList.apply {
                     add(Image(c, b))
                 }
@@ -607,7 +607,8 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     private fun newPngFileName() : String {
         val sdf = SimpleDateFormat("yyyyMMdd__HHmmss")
         val filename = sdf.format(System.currentTimeMillis())
-        return "${filename}.png"
+        count=count+1
+        return "${filename}${count}.png"
     }
 
     private fun saveBitmapAsPNGFile(bitmap: Bitmap){
@@ -621,7 +622,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
         try {
             file.createNewFile()
             imageFile = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 80, imageFile)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 60, imageFile)
             imageFile.close()
 
             filepath = file.absolutePath.toString()

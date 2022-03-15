@@ -351,8 +351,6 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         etcRVAdapter.addEtc(finish.Etc)
         photoRVAdapter.addPhoto(finish.image)
 
-
-
     }
 
     override fun onFinishFailure(code: Int, message: String) {

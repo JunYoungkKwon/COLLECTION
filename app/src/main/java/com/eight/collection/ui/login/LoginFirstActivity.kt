@@ -9,17 +9,17 @@ import com.eight.collection.utils.getIntroduceIs
 import com.eight.collection.utils.saveJwt
 
 class LoginFirstActivity: BaseActivity<ActivityLoginFirstBinding>(ActivityLoginFirstBinding::inflate), View.OnClickListener {
-    lateinit var introduceDialog: IntroduceFirstDialog
-    var getIntroduceIs : Boolean = getIntroduceIs()
+    /*lateinit var introduceDialog: IntroduceFirstDialog
+    var getIntroduceIs : Boolean = getIntroduceIs()*/
 
     override fun initAfterBinding() {
         binding.loginLoginBtnOffIv.setOnClickListener(this)
         binding.loginSignupBtnIv.setOnClickListener(this)
-        introduceDialog = IntroduceFirstDialog(this)
+        /*introduceDialog = IntroduceFirstDialog(this)
 
         if(getIntroduceIs == false){
             introduceDialog.show()
-        }
+        }*/
     }
 
     override fun onClick(v: View?) {
