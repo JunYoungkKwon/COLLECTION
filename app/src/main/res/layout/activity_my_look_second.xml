@@ -139,7 +139,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:lineSpacingExtra="8sp"
         android:gravity="center_horizontal"
-        android:text="@string/dialog_text1"/>
+        android:text="@string/lookpoint_error1"/>
 
     <TextView
         android:id="@+id/week_default2_text"
@@ -157,6 +157,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:lineSpacingExtra="8sp"
         android:gravity="center_horizontal"
-        android:text="@string/dialog_text2"/>
+        android:text="@string/lookpoint_error2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

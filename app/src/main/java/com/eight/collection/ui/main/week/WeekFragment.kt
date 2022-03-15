@@ -188,7 +188,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                     }
                     else{
 
-
                         if (currentSelection == day.date) {
                             selectedDate = null
                         } else {

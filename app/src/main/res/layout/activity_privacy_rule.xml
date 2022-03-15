@@ -345,7 +345,7 @@
 
             <TextView
                 android:id="@+id/privacy_seven_1_tv"
-                android:text="@string/privacy_six_1_text"
+                android:text="@string/privacy_seven_1_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-18dp"

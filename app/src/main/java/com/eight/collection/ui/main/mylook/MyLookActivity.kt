@@ -106,6 +106,13 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         binding.itemMyLookImgRecyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
+        if(myLookResult.lastOOTDArr.isNullOrEmpty()){
+            binding.weekDefault11Text.visibility = View.VISIBLE
+        }
+        else{
+            binding.weekDefault11Text.visibility = View.GONE
+        }
+
     }
 
     override fun onMyLookFailure(code: Int, message: String) {
@@ -133,14 +140,11 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
-            binding.weekDefault11Iv.visibility = View.VISIBLE
             binding.weekDefault12Text.visibility = View.VISIBLE
-            binding.weekDefault13Text.visibility = View.VISIBLE
+
         }
         else{
-            binding.weekDefault11Iv.visibility = View.GONE
             binding.weekDefault12Text.visibility = View.GONE
-            binding.weekDefault13Text.visibility = View.GONE
         }
     }
 
@@ -151,6 +155,13 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImg3Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
+
+        if(myLookResult.lastOOTDArr.isNullOrEmpty()){
+            binding.weekDefault13Text.visibility = View.VISIBLE
+        }
+        else{
+            binding.weekDefault13Text.visibility = View.GONE
+        }
     }
 
     override fun onMyLook3Failure(code: Int, message: String) {}
@@ -161,6 +172,13 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImg4Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
+
+        if(myLookResult.lastOOTDArr.isNullOrEmpty()){
+            binding.weekDefault14Text.visibility = View.VISIBLE
+        }
+        else{
+            binding.weekDefault14Text.visibility = View.GONE
+        }
     }
 
     override fun onMyLook4Failure(code: Int, message: String) {}
@@ -171,6 +189,13 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter = MyLookRVAdapter(this)
         binding.itemMyLookImg5Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
+
+        if(myLookResult.lastOOTDArr.isNullOrEmpty()){
+            binding.weekDefault15Text.visibility = View.VISIBLE
+        }
+        else{
+            binding.weekDefault15Text.visibility = View.GONE
+        }
     }
 
     override fun onMyLook5Failure(code: Int, message: String) {}
