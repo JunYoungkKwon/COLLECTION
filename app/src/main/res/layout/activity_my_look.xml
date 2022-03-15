@@ -540,16 +540,24 @@
                 app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom5_view"
                 tools:listitem="@layout/item_my_look_photo" />
 
-            <ImageView
-                android:id="@+id/week_default_1_1_iv"
+            <TextView
+                android:id="@+id/week_default_1_1_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_padding_indicator1"
-                android:layout_marginBottom="-35dp"
+                android:fontFamily="@font/noto_sans_kr"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:layout_marginStart="5dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/week_default_1_2_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:textColor="#C3B5AC"
+                android:letterSpacing="-0.01"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom_view"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="@string/lookpoint_error"/>
 
             <TextView
                 android:id="@+id/week_default_1_2_text"
@@ -557,17 +565,18 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr"
                 android:textStyle="normal"
-                android:textSize="16sp"
+                android:textSize="14sp"
+                android:layout_marginStart="5dp"
                 android:visibility="gone"
-                android:textColor="@color/dark_taupe"
+                android:textColor="#C3B5AC"
                 android:letterSpacing="-0.01"
-                android:layout_marginBottom="-25dp"
-                app:layout_constraintBottom_toTopOf="@id/week_default_1_3_text"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top2_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom2_view"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical2_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:lineSpacingExtra="8sp"
                 android:gravity="center_horizontal"
-                android:text="@string/dialog_text1"/>
+                android:text="@string/lookpoint_error"/>
 
             <TextView
                 android:id="@+id/week_default_1_3_text"
@@ -575,17 +584,58 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr"
                 android:textStyle="normal"
-                android:textSize="16sp"
-                android:textColor="@color/dark_taupe"
-                android:letterSpacing="-0.01"
-                android:layout_marginBottom="60dp"
+                android:textSize="14sp"
+                android:layout_marginStart="5dp"
                 android:visibility="gone"
+                android:textColor="#C3B5AC"
+                android:letterSpacing="-0.01"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top3_view"
                 app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom3_view"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical3_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:lineSpacingExtra="8sp"
                 android:gravity="center_horizontal"
-                android:text="@string/dialog_text2"/>
+                android:text="@string/lookpoint_error"/>
+
+            <TextView
+                android:id="@+id/week_default_1_4_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:layout_marginStart="5dp"
+                android:visibility="gone"
+                android:textColor="#C3B5AC"
+                android:letterSpacing="-0.01"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top4_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom4_view"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical4_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="@string/lookpoint_error"/>
+
+            <TextView
+                android:id="@+id/week_default_1_5_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:layout_marginStart="5dp"
+                android:visibility="gone"
+                android:textColor="#C3B5AC"
+                android:letterSpacing="-0.01"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top5_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom5_view"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical5_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="@string/lookpoint_error"/>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

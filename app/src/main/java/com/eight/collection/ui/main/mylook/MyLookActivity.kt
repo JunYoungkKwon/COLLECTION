@@ -107,14 +107,10 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
-            binding.weekDefault11Iv.visibility = View.VISIBLE
-            binding.weekDefault12Text.visibility = View.VISIBLE
-            binding.weekDefault13Text.visibility = View.VISIBLE
+            binding.weekDefault11Text.visibility = View.VISIBLE
         }
         else{
-            binding.weekDefault11Iv.visibility = View.GONE
-            binding.weekDefault12Text.visibility = View.GONE
-            binding.weekDefault13Text.visibility = View.GONE
+            binding.weekDefault11Text.visibility = View.GONE
         }
 
     }
@@ -144,14 +140,11 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
-            binding.weekDefault11Iv.visibility = View.VISIBLE
             binding.weekDefault12Text.visibility = View.VISIBLE
-            binding.weekDefault13Text.visibility = View.VISIBLE
+
         }
         else{
-            binding.weekDefault11Iv.visibility = View.GONE
             binding.weekDefault12Text.visibility = View.GONE
-            binding.weekDefault13Text.visibility = View.GONE
         }
     }
 
@@ -164,13 +157,9 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
-            binding.weekDefault11Iv.visibility = View.VISIBLE
-            binding.weekDefault12Text.visibility = View.VISIBLE
             binding.weekDefault13Text.visibility = View.VISIBLE
         }
         else{
-            binding.weekDefault11Iv.visibility = View.GONE
-            binding.weekDefault12Text.visibility = View.GONE
             binding.weekDefault13Text.visibility = View.GONE
         }
     }
@@ -185,14 +174,10 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
-            binding.weekDefault11Iv.visibility = View.VISIBLE
-            binding.weekDefault12Text.visibility = View.VISIBLE
-            binding.weekDefault13Text.visibility = View.VISIBLE
+            binding.weekDefault14Text.visibility = View.VISIBLE
         }
         else{
-            binding.weekDefault11Iv.visibility = View.GONE
-            binding.weekDefault12Text.visibility = View.GONE
-            binding.weekDefault13Text.visibility = View.GONE
+            binding.weekDefault14Text.visibility = View.GONE
         }
     }
 
@@ -206,14 +191,10 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
-            binding.weekDefault11Iv.visibility = View.VISIBLE
-            binding.weekDefault12Text.visibility = View.VISIBLE
-            binding.weekDefault13Text.visibility = View.VISIBLE
+            binding.weekDefault15Text.visibility = View.VISIBLE
         }
         else{
-            binding.weekDefault11Iv.visibility = View.GONE
-            binding.weekDefault12Text.visibility = View.GONE
-            binding.weekDefault13Text.visibility = View.GONE
+            binding.weekDefault15Text.visibility = View.GONE
         }
     }
 
