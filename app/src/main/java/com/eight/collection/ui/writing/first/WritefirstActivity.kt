@@ -44,7 +44,8 @@ import kotlin.collections.ArrayList
 class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiView {
     lateinit var binding: ActivityWritefirstBinding
     lateinit var refreshDialog : RefreshDialog
-    val photoList = ArrayList<String>()
+    var photoList = ArrayList<String>()
+    var photoListsecond = ArrayList<String>()
     var imageList = ArrayList<Image>()
     var reviseimageList = ArrayList<Image>()
     var bitmapList = ArrayList<Bitmap>()
@@ -52,7 +53,6 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     val photoRVAdapter = PhotoRVAdapter(photoList, this)
     val fragmentList = arrayListOf<Fragment>()
     val information = arrayListOf("TOP", "BOTTOM", "SHOES", "ETC")
-    private val GALLERY = 1
     private var topclickListener: WritefirstActivity.TopColorClickListener? = null
     private var bottomclickListener : WritefirstActivity.BottomColorClickListener? = null
     private var shoesclickListener : WritefirstActivity.ShoesColorClickListener? = null
@@ -71,6 +71,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     var modidate : String? = null
     var filepath : String? = null
     var count : Int = 0
+    var imagechange : Boolean = false
 
 
 
@@ -327,7 +328,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
                 toast.show()
-                binding.writefirstLookstyleTv.setHintTextColor(Color.parseColor("red"))
+                binding.writefirstLookstyleTv.setHintTextColor(Color.parseColor("#c77a4a"))
             }
 
             else {
@@ -338,6 +339,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 intent.putExtra("added", addedClothes)
                 intent.putExtra("photo", photoList)
                 intent.putExtra("file", imageFileList)
+                intent.putExtra("imageChange",imagechange)
 
                 if(mode == 2){
                     intent.putExtra("image", reviseimageList)
@@ -349,6 +351,8 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                     intent.putExtra("date", formattedpost)
                     intent.putExtra("mode", mode)
                 }
+
+                Log.d("보내기전 파일","${imageFileList}")
 
                 finish()
                 startActivity(intent)
@@ -364,6 +368,8 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             photoList.clear()
             imageList.clear()
             bitmapList.clear()
+            imageFileList.clear()
+            reviseimageList.clear()
             if (data?.clipData != null) {
                 val count = data.clipData!!.itemCount
                 if (count > 5) {
@@ -380,8 +386,8 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 for (i in 0 until count){
                     val imageUri = data.clipData!!.getItemAt(i).uri
                     contentResolver.takePersistableUriPermission(imageUri,Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    var bitmap : Bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
                     photoList.add(imageUri.toString())
+                    var bitmap : Bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
                     saveBitmapAsPNGFile(bitmap)
                     bitmapList.add(bitmap)
                     imageFileList.apply{
@@ -389,9 +395,8 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                     }
                     binding.writefirstPhotoDefaultImage1.visibility = View.GONE
                     binding.writefirstPhotoDefaultImage2.visibility = View.GONE
+                    imagechange = true
                 }
-                Log.d("포토","${photoList}")
-                Log.d("파일","${imageFileList}")
 
             }
             else {
@@ -408,6 +413,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                         }
                         binding.writefirstPhotoDefaultImage1.visibility = View.GONE
                         binding.writefirstPhotoDefaultImage2.visibility = View.GONE
+                        imagechange = true
                     }
                 }
             }
@@ -533,6 +539,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
 
     override fun onOkButtonClicked() {
         photoIs = -1
+        imagechange = true
         photoList.clear()
         imageList.clear()
         photoRVAdapter.notifyDataSetChanged()
@@ -582,11 +589,15 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 b=-1
             }
             reviseimageList = imageList
+            Log.d("수정하기전, 이미지파일 리스트","${imageFileList}")
+            Log.d("수정하기전, 리바이스 이미지 리스트","${reviseimageList}")
         }
         else {
             photoIs = -1
             photoList.clear()
             imageList.clear()
+            imageFileList.clear()
+            reviseimageList.clear()
             photoRVAdapter.notifyDataSetChanged()
             binding.writefirstPhotoDefaultImage1.visibility = View.VISIBLE
             binding.writefirstPhotoDefaultImage2.visibility = View.VISIBLE

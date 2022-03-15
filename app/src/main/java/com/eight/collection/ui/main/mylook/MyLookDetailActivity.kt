@@ -37,7 +37,7 @@ MyLookDetailActivity(): BaseActivity<ActivityMyLookSecondBinding>(ActivityMyLook
 
         itemList.apply {
             add("사진을 탭하여 작성날짜를 확인해보세요!")
-            add("더블탭으로 상세페이지를 확인해보세요!")
+            add("사진을 길게 터치해서 상세페이지를 확인해보세요!")
         }
 
         val adapter = MyLookVPA(itemList, true)

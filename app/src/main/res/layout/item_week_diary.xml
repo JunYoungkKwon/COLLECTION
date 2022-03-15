@@ -73,8 +73,8 @@
 
     <View
         android:id="@+id/item_diary_count_bg_view"
-        android:layout_width="24dp"
-        android:layout_height="17dp"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="3dp"
         android:background="@drawable/week_diary_round_text"
         app:layout_constraintBottom_toBottomOf="@id/item_diary_img_line_rL"
@@ -93,7 +93,7 @@
         android:letterSpacing="-0.03"
         android:lineSpacingExtra="7sp"
         android:textColor="@color/white"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:textStyle="normal"
         tools:text="+54" />
 

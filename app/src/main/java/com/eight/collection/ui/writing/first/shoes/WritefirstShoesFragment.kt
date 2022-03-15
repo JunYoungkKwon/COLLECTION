@@ -75,7 +75,7 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writefirstShoesRecyclerview.adapter = shoesRVAdapter
             binding.writefirstShoesRecyclerview.layoutManager = flexboxLayoutManager
-        }, 200)
+        }, 300)
 
         return binding.root
     }

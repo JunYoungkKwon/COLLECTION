@@ -49,7 +49,7 @@
 
     <!-- developerInfo page -->
     <string name="team_name">8:-)</string>
-    <string name="leader_role">Project\nManager</string>
+    <string name="leader_role">PROJECT\nMANAGER</string>
     <string name="leader_name">이프</string>
     <string name="design_role">UI/UX\nDESIGNER</string>
     <string name="design_name">니제이</string>
