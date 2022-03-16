@@ -55,6 +55,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     var writefirstActivity = WritefirstActivity()
     var mode : Int = 1
     var a : Int = 0
+    var imagechange : Boolean = false
 
     //image
     var imageList : ArrayList<Image>? = null
@@ -84,7 +85,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
 
 
         mode = intent.getIntExtra("mode",1)
-        Log.d("mode","${mode}")
+        /*Log.d("mode","${mode}")*/
         //수정하기시 기존 데이터 불러오기
         if (mode == 2){
             modi()
@@ -116,8 +117,24 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
         })
 
 
+        // 이미지 업로드
+        imagechange = intent.getBooleanExtra("imageChange",false)
+        imageList = intent.getParcelableArrayListExtra("image")
+        imagefileList = intent.getStringArrayListExtra("file")
+        Log.d("넘어온 파일","${imagefileList}")
+
+        if(imagechange == true) {
+            if (imagefileList != null) {
+                for (i in imagefileList!!) {
+                    imageUpload(i!!)
+                }
+            }
+        }
+
+
 
         binding.writesecondFinishButton2.setOnClickListener {
+            Log.d("업로드되고 반환된 주소","${imageList}")
             if(lookpoint == 0F){
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
@@ -128,24 +145,10 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
                 toast.show()
             }
             else {
-                //URL 받기
-                receiveS3Url()
-
-                //image Upload
-                imageList = intent.getParcelableArrayListExtra("image")
-                imagefileList = intent.getStringArrayListExtra("file")
-                Log.d("imagefileList","${imagefileList}")
-
-                if (imagefileList != null) {
-                    for (i in imagefileList!!){
-                        imageUpload(i!!)
-                    }
-                }
-
                 Handler(Looper.getMainLooper()).postDelayed({
                     //Write API
                     write()
-                }, 100)
+                }, 0)
 
 
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -155,7 +158,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
                     finish()
                     startActivity(intent)
 
-                }, 700)
+                }, 300)
             }
         }
     }
@@ -226,7 +229,7 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     private fun write(){
         Handler(Looper.getMainLooper()).postDelayed({
             WriteService.write(this, getWrite())
-        }, 500)
+        }, 0)
     }
 
     override fun onWriteLoading() {
@@ -361,12 +364,9 @@ class WritesecondActivity : AppCompatActivity(), ReceiveS3URLView, WriteView,
     }
 
     override fun onImageUploadSuccess(url: String) {
-        Log.d("s3url","${url}")
         upLoadUrl = url
-        Log.d("upLoadUrl","${upLoadUrl}")
         imageList?.get(a)?.imageUrl = url
         a=a+1
-        Log.d("ImageList","${imageList}")
     }
 
     override fun onImageUploadFailure(code: Int, message: String) {

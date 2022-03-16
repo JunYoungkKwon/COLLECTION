@@ -14,6 +14,7 @@
         android:layout_width="216dp"
         android:layout_height="216dp"
         android:src="@drawable/bg_camera"
+        android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

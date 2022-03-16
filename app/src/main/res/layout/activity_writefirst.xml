@@ -195,7 +195,7 @@
             android:id="@+id/writefirst_lookstyle_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="EX) 히피룩,etc"
+            android:hint="ex) 히피룩,etc"
             android:textColorHint="#C3B5AC"
             android:background="@null"
             android:fontFamily="@font/suit_regular"
