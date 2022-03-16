@@ -34,11 +34,11 @@
         android:id="@+id/match_place_text_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:src="@drawable/ic_match_place_text"
         app:layout_constraintStart_toStartOf="@id/match_main_ic"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="307dp"
-        />
+        android:layout_marginBottom="307dp" />
 
     <View
         android:id="@+id/match_background_horizontalline_place_v"
@@ -67,6 +67,7 @@
         android:id="@+id/match_weather_text_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:src="@drawable/ic_match_weather_text"
         app:layout_constraintStart_toStartOf="@id/match_main_ic"
         app:layout_constraintTop_toBottomOf="@id/match_background_horizontalline_place_v"
@@ -99,6 +100,7 @@
     <ImageView
         android:id="@+id/match_who_text_iv"
         android:layout_width="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_match_who_text_2"
         app:layout_constraintStart_toStartOf="@id/match_main_ic"
@@ -133,12 +135,11 @@
         android:id="@+id/match_color_text_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:src="@drawable/ic_match_color_text_2"
         app:layout_constraintStart_toStartOf="@id/match_main_ic"
         app:layout_constraintTop_toBottomOf="@id/match_background_horizontalline_who_v"
-        android:layout_marginTop="17.5dp"
-
-        />
+        android:layout_marginTop="17.5dp" />
 
     <View
         android:id="@+id/match_background_horizontalline_color_v"

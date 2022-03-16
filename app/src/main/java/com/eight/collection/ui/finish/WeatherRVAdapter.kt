@@ -11,7 +11,7 @@ import com.eight.collection.databinding.ItemWeekDiaryMoodBinding
 
 class WeatherRVAdapter() : RecyclerView.Adapter<WeatherRVAdapter.ViewHolder>() {
 
-    private val wheatherList = ArrayList<String>()
+    private val weatherList = ArrayList<String>()
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): WeatherRVAdapter.ViewHolder {
         val binding: ItemWeekDiaryMoodBinding = ItemWeekDiaryMoodBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
 
@@ -19,20 +19,20 @@ class WeatherRVAdapter() : RecyclerView.Adapter<WeatherRVAdapter.ViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addWheeather(wheatherList: ArrayList<String>) {
-        this.wheatherList.clear()
-        this.wheatherList.addAll(wheatherList)
+    fun addWheeather(weatherList: ArrayList<String>) {
+        this.weatherList.clear()
+        this.weatherList.addAll(weatherList)
 
         notifyDataSetChanged()
     }
 
 
     override fun onBindViewHolder(holder: WeatherRVAdapter.ViewHolder, position: Int) {
-        holder.bind(wheatherList[position])
+        holder.bind(weatherList[position])
     }
 
     //데이터의 크기를 알려줌 => 리사이클러뷰의 마지막이 언제지 파악
-    override fun getItemCount(): Int = wheatherList.size
+    override fun getItemCount(): Int = weatherList.size
 
     //뷰홀더
     inner class ViewHolder(val binding: ItemWeekDiaryMoodBinding): RecyclerView.ViewHolder(binding.root){

@@ -92,6 +92,10 @@
         <activity android:name=".ui.main.mylook.MyLookActivity"/>
 
         <activity android:name=".ui.main.mylook.MyLookDetailActivity"/>
+        <activity android:name=".ui.main.match.place.PlaceActivity"/>
+        <activity android:name=".ui.main.match.who.WhoActivity"/>
+        <activity android:name=".ui.main.match.color.ColorActivity"/>
+        <activity android:name=".ui.main.match.weather.WeatherActivity"/>
 
         <activity
             android:name=".ui.finish.FinishActivity"

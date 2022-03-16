@@ -90,6 +90,12 @@
     <string name="mybest">MY BEST</string>
     <string name="lookbook">LOOK BOOK</string>
 
+    <!-- matchpage -->
+    <string name="match_weather">Weather</string>
+    <string name="match_place">PLACE</string>
+    <string name="match_color">COLOR</string>
+    <string name="match_who">WHO</string>
+
     <!-- dialog page -->
     <string name="dialog_text">로그아웃 하시겠습니까?</string>
     <string name="dialog_text1">해당 날짜의 OOTD</string>
