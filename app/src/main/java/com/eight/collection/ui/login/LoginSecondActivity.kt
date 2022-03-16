@@ -1,12 +1,15 @@
 package com.eight.collection.ui.login
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintSet
 import com.eight.collection.R
 import com.eight.collection.data.entities.User
 import com.eight.collection.data.remote.auth.Auth
@@ -88,8 +91,19 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
                 binding.loginIdFailTv.text= message
                 //PW 안보이게
                 binding.loginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.loginPwFailIv.visibility = View.INVISIBLE
-                binding.loginPwFailTv.visibility = View.INVISIBLE
+                binding.loginPwFailIv.visibility = View.GONE
+                binding.loginPwFailTv.visibility = View.GONE
+
+                val constraints = ConstraintSet()
+                constraints.clone(binding.loginCl)
+                constraints.connect(
+                    binding.loginPwEt.id,
+                    ConstraintSet.TOP,
+                    binding.loginIdFailIv.id,
+                    ConstraintSet.BOTTOM,
+                    convertDpToPixel(10f, this)
+                )
+                constraints.applyTo(binding.loginCl)
             }
             //PW 에러
             3003, 3012 -> {
@@ -100,8 +114,20 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
                 binding.loginPwFailTv.text= message
                 //ID 부분 안보이게
                 binding.loginIdHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.loginIdFailIv.visibility = View.INVISIBLE
-                binding.loginIdFailTv.visibility = View.INVISIBLE
+                binding.loginIdFailIv.visibility = View.GONE
+                binding.loginIdFailTv.visibility = View.GONE
+
+                val constraints = ConstraintSet()
+                constraints.clone(binding.loginCl)
+                constraints.connect(
+                    binding.loginPwEt.id,
+                    ConstraintSet.TOP,
+                    binding.loginIdHighlightView.id,
+                    ConstraintSet.BOTTOM,
+                    convertDpToPixel(30f, this)
+                )
+                constraints.applyTo(binding.loginCl)
+
 
             }
 
@@ -109,5 +135,10 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
                 Log.d("LoginSecond/Error", "error")
             }
         }
+    }
+
+    fun convertDpToPixel(dp: Float, context: Context): Int {
+        return (dp * (context.resources
+            .displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)).toInt()
     }
 }

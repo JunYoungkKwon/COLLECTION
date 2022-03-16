@@ -43,62 +43,14 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwNewPwFailTv.text = "기존의 비밀번호와 동일합니다."
                 //extra hide
                 binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
-                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+                binding.pwOriginPwFailIv.visibility = View.GONE
+                binding.pwOriginPwFailTv.visibility = View.GONE
                 binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+                binding.pwNewCheckPwFailIv.visibility = View.GONE
+                binding.pwNewCheckPwFailTv.visibility = View.GONE
                 return
             }
         }
-
-//        if (binding.pwOriginPwEt.text.toString().isEmpty()){
-//            binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-//            binding.pwOriginPwFailIv.visibility = View.VISIBLE
-//            binding.pwOriginPwFailTv.visibility = View.VISIBLE
-//            binding.pwOriginPwFailTv.text= "비밀번호는 6~15자리를 입력해주세요"
-//
-//            binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//            binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-//            binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
-//            binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//            binding.pwNewPwFailIv.visibility = View.INVISIBLE
-//            binding.pwNewPwFailTv.visibility = View.INVISIBLE
-//            return
-//        }
-//
-//        if (binding.pwNewPwEt.text.toString().isEmpty()){
-//            //origin show
-//            binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-//            binding.pwNewPwFailIv.visibility = View.VISIBLE
-//            binding.pwNewPwFailTv.visibility = View.VISIBLE
-//            binding.pwNewPwFailTv.text = "비밀번호는 6~15자리를 입력해주세요"
-//            //extra hide
-//            binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//            binding.pwOriginPwFailIv.visibility = View.INVISIBLE
-//            binding.pwOriginPwFailTv.visibility = View.INVISIBLE
-//            binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//            binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-//            binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
-//            return
-//        }
-//
-//        if (binding.pwNewCheckPwEt.text.toString().isEmpty()){
-//            //origin show
-//            binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c77a4a"))
-//            binding.pwNewCheckPwFailIv.visibility = View.VISIBLE
-//            binding.pwNewCheckPwFailTv.visibility = View.VISIBLE
-//            binding.pwNewCheckPwFailTv.text = "비밀번호는 6~15자리를 입력해주세요"
-//            //extra hide
-//            binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//            binding.pwNewPwFailIv.visibility = View.INVISIBLE
-//            binding.pwNewPwFailTv.visibility = View.INVISIBLE
-//            binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-//            binding.pwOriginPwFailIv.visibility = View.INVISIBLE
-//            binding.pwOriginPwFailTv.visibility = View.INVISIBLE
-//            return
-//        }
-
 
         if (binding.pwNewPwEt.text.toString().isNotEmpty() && binding.pwNewCheckPwEt.text.toString().isNotEmpty()) {
             if (!binding.pwNewPwEt.text.toString().equals(binding.pwNewCheckPwEt.text.toString())) {
@@ -109,11 +61,11 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwNewCheckPwFailTv.text = "새 비밀번호와 일치하지 않습니다."
                 //extra hide
                 binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwNewPwFailIv.visibility = View.INVISIBLE
-                binding.pwNewPwFailTv.visibility = View.INVISIBLE
+                binding.pwNewPwFailIv.visibility = View.GONE
+                binding.pwNewPwFailTv.visibility = View.GONE
                 binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
-                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+                binding.pwOriginPwFailIv.visibility = View.GONE
+                binding.pwOriginPwFailTv.visibility = View.GONE
                 return
             }
         }
@@ -144,14 +96,14 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
         binding.loginDimBackground.visibility = View.INVISIBLE
 
         binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-        binding.pwNewPwFailIv.visibility = View.INVISIBLE
-        binding.pwNewPwFailTv.visibility = View.INVISIBLE
+        binding.pwNewPwFailIv.visibility = View.GONE
+        binding.pwNewPwFailTv.visibility = View.GONE
         binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-        binding.pwOriginPwFailIv.visibility = View.INVISIBLE
-        binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+        binding.pwOriginPwFailIv.visibility = View.GONE
+        binding.pwOriginPwFailTv.visibility = View.GONE
         binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-        binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-        binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+        binding.pwNewCheckPwFailIv.visibility = View.GONE
+        binding.pwNewCheckPwFailTv.visibility = View.GONE
 
         Toast(this).showCustomToast("비밀번호가 변경되었습니다.", this)
     }
@@ -172,11 +124,11 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwOriginPwFailTv.text= message
                 //extra hide
                 binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+                binding.pwNewCheckPwFailIv.visibility = View.GONE
+                binding.pwNewCheckPwFailTv.visibility = View.GONE
                 binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwNewPwFailIv.visibility = View.INVISIBLE
-                binding.pwNewPwFailTv.visibility = View.INVISIBLE
+                binding.pwNewPwFailIv.visibility = View.GONE
+                binding.pwNewPwFailTv.visibility = View.GONE
             }
             3116 , 3015 -> {
                 //origin show
@@ -186,11 +138,11 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwNewPwFailTv.text= message
                 //extra hide
                 binding.pwNewCheckPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwNewCheckPwFailIv.visibility = View.INVISIBLE
-                binding.pwNewCheckPwFailTv.visibility = View.INVISIBLE
+                binding.pwNewCheckPwFailIv.visibility = View.GONE
+                binding.pwNewCheckPwFailTv.visibility = View.GONE
                 binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
-                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
+                binding.pwOriginPwFailTv.visibility = View.GONE
+                binding.pwOriginPwFailIv.visibility = View.GONE
             }
 
             3117 , 3016-> {
@@ -201,11 +153,11 @@ class PwEditActivity: BaseActivity<ActivityPwEditBinding>(ActivityPwEditBinding:
                 binding.pwNewCheckPwFailTv.text= message
                 //extra hide
                 binding.pwOriginPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwOriginPwFailIv.visibility = View.INVISIBLE
-                binding.pwOriginPwFailTv.visibility = View.INVISIBLE
+                binding.pwOriginPwFailIv.visibility = View.GONE
+                binding.pwOriginPwFailTv.visibility = View.GONE
                 binding.pwNewPwHighlightView.setBackgroundColor(Color.parseColor("#c3b5ac"))
-                binding.pwNewPwFailIv.visibility = View.INVISIBLE
-                binding.pwNewPwFailTv.visibility = View.INVISIBLE
+                binding.pwNewPwFailIv.visibility = View.GONE
+                binding.pwNewPwFailTv.visibility = View.GONE
             }
 
             else -> {
