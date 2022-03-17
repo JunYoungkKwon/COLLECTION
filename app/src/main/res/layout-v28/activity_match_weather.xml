@@ -70,7 +70,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
         android:layout_marginTop="6dp"
         android:layout_marginStart="16dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <ImageView
@@ -82,6 +82,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
         android:layout_marginTop="6dp"
         android:layout_marginStart="16dp"
+        android:visibility="gone"
         />
 
 
@@ -96,7 +97,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_search_ic"
         app:layout_constraintBottom_toBottomOf="@id/match_weather_search_ic"
         app:layout_constraintStart_toEndOf="@id/match_weather_search_ic"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <EditText
@@ -127,7 +128,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
-        android:visibility="visible"
+        android:visibility="gone"
         />
 
 
@@ -185,7 +186,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -202,7 +203,7 @@
         app:layout_constraintTop_toBottomOf="@id/match_weather_default_tv"
         app:layout_constraintStart_toStartOf="@id/match_weather_default_tv"
         android:layout_marginTop="12dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -219,7 +220,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_very_cold_bt"
         app:layout_constraintStart_toEndOf="@id/match_weather_very_cold_bt"
         android:layout_marginStart="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -236,7 +237,7 @@
         app:layout_constraintTop_toBottomOf="@id/match_weather_very_cold_bt"
         app:layout_constraintStart_toStartOf="@id/match_weather_very_cold_bt"
         android:layout_marginTop="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -253,7 +254,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_cold_bt"
         app:layout_constraintStart_toEndOf="@id/match_weather_cold_bt"
         android:layout_marginStart="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -270,7 +271,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_hot_bt"
         app:layout_constraintStart_toEndOf="@id/match_weather_hot_bt"
         android:layout_marginStart="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -287,7 +288,7 @@
         app:layout_constraintTop_toBottomOf="@id/match_weather_cold_bt"
         app:layout_constraintStart_toStartOf="@id/match_weather_cold_bt"
         android:layout_marginTop="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -304,7 +305,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_snow_bt"
         app:layout_constraintStart_toEndOf="@id/match_weather_snow_bt"
         android:layout_marginStart="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -321,7 +322,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_rain_bt"
         app:layout_constraintStart_toEndOf="@id/match_weather_rain_bt"
         android:layout_marginStart="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <ImageView
@@ -333,7 +334,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="213dp"
         android:layout_marginTop="368dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -411,9 +412,10 @@
         android:layout_height="20dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toEndOf="@id/match_weather_search_back_ic"
+        app:layout_constraintStart_toStartOf="@id/match_weather_search_view"
         app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
         app:layout_constraintBottom_toBottomOf="@id/match_weather_search_view"
+        android:layout_marginStart="40dp"
         tools:listitem="@layout/item_week_diary_mood"
         android:visibility="visible"
         />
