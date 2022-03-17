@@ -85,18 +85,17 @@
         android:visibility="gone"
         />
 
-
-    <TextView
-        android:id="@+id/match_weather_search_view_tv"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/match_weather_search_button_result_recyclerview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/match_weather_search_view"
-        android:textColor="@color/pinkish_grey"
-        android:textSize="14sp"
-        android:fontFamily="@font/suit_regular"
-        app:layout_constraintTop_toTopOf="@id/match_weather_search_ic"
-        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_ic"
-        app:layout_constraintStart_toEndOf="@id/match_weather_search_ic"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="@id/match_weather_search_view"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
+        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_view"
+        android:layout_marginStart="40dp"
+        tools:listitem="@layout/item_week_diary_mood"
         android:visibility="visible"
         />
 
@@ -117,6 +116,20 @@
         app:layout_constraintBottom_toBottomOf="@id/match_weather_search_view"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="5dp"
+        />
+
+    <TextView
+        android:id="@+id/match_weather_search_view_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_weather_search_view"
+        android:textColor="@color/pinkish_grey"
+        android:textSize="14sp"
+        android:fontFamily="@font/suit_regular"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_ic"
+        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_ic"
+        app:layout_constraintStart_toEndOf="@id/match_weather_search_ic"
+        android:visibility="visible"
         />
 
     <ImageView
@@ -405,20 +418,6 @@
         </androidx.recyclerview.widget.RecyclerView>
 
     </com.google.android.flexbox.FlexboxLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/match_weather_search_button_result_recyclerview"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="@id/match_weather_search_view"
-        app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
-        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_view"
-        android:layout_marginStart="40dp"
-        tools:listitem="@layout/item_week_diary_mood"
-        android:visibility="visible"
-        />
 
 
 
