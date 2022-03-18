@@ -83,7 +83,7 @@
     <string name="privacy_rule">개인정보 취급방침</string>
     <string name="mail">문의하기</string>
     <string name="logout">로그아웃</string>
-    <string name="app_version">v.1.0.1</string>
+    <string name="app_version">v.1.0.0</string>
     <string name="nickname_annotation">콜렉션에서 사용할 닉네임을 입력해주세요.</string>
 
     <!-- myLook page -->
@@ -95,6 +95,10 @@
     <string name="match_place">PLACE</string>
     <string name="match_color">COLOR</string>
     <string name="match_who">WHO</string>
+    <string name="match_search_title">검색결과</string>
+    <string name="match_search_result_sub">건</string>
+    <string name="match_search_date_find">날짜조회</string>
+    <string name="match_search_recent">최신순</string>
     <string name="match_weather_search_view">원하는 날씨태그를 검색하세요.(*최대2개)</string>
     <string name="match_place_search_view">원하는 장소태그를 검색하세요.(*최대2개)</string>
     <string name="match_color_search_view">원하는 컬러태그를 검색하세요.</string>
@@ -224,7 +228,5 @@
         <item name="android:textSize">24dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
-
 
 </resources>

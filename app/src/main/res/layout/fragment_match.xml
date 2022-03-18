@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/img_bg_matchpage"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/match_main_ic"
