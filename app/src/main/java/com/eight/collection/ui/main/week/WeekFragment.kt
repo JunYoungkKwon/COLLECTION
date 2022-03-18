@@ -133,14 +133,12 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         binding.loginLoadingInIv.visibility = View.VISIBLE
         binding.loginLoadingCircleIv.visibility = View.VISIBLE
         binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
-        //로딩이미지 애니메이션
         val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate)
         binding.loginLoadingCircleIv.startAnimation(animation)
         binding.loginDimBackground.visibility = View.VISIBLE
     }
 
     override fun onMonthSuccess(month: ArrayList<Calendar>) {
-        Log.d("Month/Data/", "SUCCESS")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -408,7 +406,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     }
 
     override fun onMonthFailure(code: Int, message: String) {
-        Log.d("Month/Data/", "FAIL")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE

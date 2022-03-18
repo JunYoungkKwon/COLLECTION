@@ -95,6 +95,10 @@
     <string name="match_place">PLACE</string>
     <string name="match_color">COLOR</string>
     <string name="match_who">WHO</string>
+    <string name="match_search_title">검색결과</string>
+    <string name="match_search_result_sub">건</string>
+    <string name="match_search_date_find">날짜조회</string>
+    <string name="match_search_recent">최신순</string>
 
     <!-- dialog page -->
     <string name="dialog_text">로그아웃 하시겠습니까?</string>

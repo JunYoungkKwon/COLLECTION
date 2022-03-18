@@ -24,11 +24,6 @@ class
 MyLookDetailActivity(): BaseActivity<ActivityMyLookSecondBinding>(ActivityMyLookSecondBinding::inflate), MyLookDetailView {
 
     private  lateinit var myLookDetailRVAdapter: MyLookDetailRVAdapter
-    lateinit var binding1: ItemMyLookSecondPhotoBinding
-    var delay: Long = 0
-
-    private var isClick: Boolean = true
-    private  var gson: Gson = Gson()
     private var itemList = ArrayList<String>()
 
     override fun initAfterBinding() {
@@ -95,36 +90,6 @@ MyLookDetailActivity(): BaseActivity<ActivityMyLookSecondBinding>(ActivityMyLook
         }
 
 
-        myLookDetailRVAdapter.setMyItemClickListener(object : MyLookDetailRVAdapter.MyitemClickListener{
-
-            override fun onItemClick(myLookOOTD: MyLookOOTD, position: Int) {
-                when(position){
-                    0 -> {
-                        if (System.currentTimeMillis() > delay) {
-                            //한번 클릭했을 때
-                            Log.d("CLICK/TEST0",myLookOOTD.date.toString())
-                            delay = System.currentTimeMillis() + 4000;
-                            return;
-                        }
-                        if (System.currentTimeMillis() <= delay) {
-                            Log.d("CLICK/TEST1",myLookOOTD.date.toString())
-                        }
-                    }
-                    1 -> {
-                        if (System.currentTimeMillis() > delay) {
-                            //한번 클릭했을 때
-                            Log.d("CLICK/TEST5",myLookOOTD.date.toString())
-                            delay = System.currentTimeMillis() + 4000;
-                            return;
-                        }
-                        if (System.currentTimeMillis() <= delay) {
-                            Log.d("CLICK/TEST6",myLookOOTD.date.toString())
-                        }
-                    }
-                }
-
-            }
-        })
 
         myLookDetailRVAdapter.setMyItemLongClickListener(object :MyLookDetailRVAdapter.MyitemLongClickListener{
             override fun onItemLongClick(myLookOOTD: MyLookOOTD, position: Int) {
