@@ -22,6 +22,14 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
     private var selectId : Int = -1
     private var beforeId : Int = -1
 
+    /*fun setselectedId() {
+        for(i in placeList){
+            if(i.focus == true){
+                selectId = i.id
+            }
+        }
+    }*/
+
     interface PlaceClickListener {
         fun plusButtonClick()
     }
@@ -49,6 +57,11 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
     inner class ViewHolder(val binding: ItemWritesecondPlaceBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(place: WritesecondPlace, position: Int){
             binding.writesecondPlaceTextButton.apply {
+                for(i in placeList){
+                    if(i.focus == true){
+                        selectId = i.id
+                    }
+                }
                 if(placeList[position].id < 9) {
                     text = place.name
                 }

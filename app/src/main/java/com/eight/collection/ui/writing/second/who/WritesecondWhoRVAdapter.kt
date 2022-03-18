@@ -46,6 +46,11 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
 
     inner class ViewHolder(val binding: ItemWritesecondWhoBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(who: WritesecondWho, position: Int){
+            for(i in whoList){
+                if(i.focus == true){
+                    selectId = i.id
+                }
+            }
             binding.writesecondWhoTextButton.apply {
                 if(whoList[position].id < 7) {
                     text = who.name

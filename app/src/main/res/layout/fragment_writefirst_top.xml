@@ -10,13 +10,13 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/writefirst_top_recyclerview"
-            android:layout_width="328dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
-            tools:listitem="@layout/item_writefirst_top"
-            tools:ignore="MissingConstraints"
+        android:id="@+id/writefirst_top_recyclerview"
+        android:layout_width="328dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+        tools:listitem="@layout/item_writefirst_top"
+        tools:ignore="MissingConstraints"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         >

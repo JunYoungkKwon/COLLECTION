@@ -99,6 +99,23 @@
     <string name="match_search_result_sub">건</string>
     <string name="match_search_date_find">날짜조회</string>
     <string name="match_search_recent">최신순</string>
+    <string name="match_weather_search_view">원하는 날씨태그를 검색하세요.(*최대2개)</string>
+    <string name="match_place_search_view">원하는 장소태그를 검색하세요.(*최대2개)</string>
+    <string name="match_color_search_view">원하는 컬러태그를 검색하세요.</string>
+    <string name="match_who_search_view">함께한 사람을 검색해보세요.(*최대2개)</string>
+    <string name="match_weather_search">원하는 날씨태그를 검색하세요!</string>
+    <string name="match_place_search">원하는 위치 태그를 검색하세요!</string>
+    <string name="match_who_search">원하는 인물 태그를 검색하세요!</string>
+    <string name="match_weather_last">최근 검색한 날씨</string>
+    <string name="match_place_last">최근 검색한 장소</string>
+    <string name="match_color_last">최근 검색한 컬러</string>
+    <string name="match_who_last">최근 검색한 태그</string>
+    <string name="match_all_delete">모두삭제</string>
+    <string name="match_weather_default">기본 날씨</string>
+    <string name="match_place_default">기본 장소</string>
+    <string name="match_color_default">기본 컬러</string>
+    <string name="match_who_default">기본 태그</string>
+
 
     <!-- dialog page -->
     <string name="dialog_text">로그아웃 하시겠습니까?</string>

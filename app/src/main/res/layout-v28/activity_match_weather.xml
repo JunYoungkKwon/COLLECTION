@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/img_bg_matchpage"
     android:orientation="vertical">
 
@@ -59,5 +60,365 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/match_weather_title_tv" />
+
+    <ImageView
+        android:id="@+id/match_weather_search_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_search"
+        app:layout_constraintStart_toStartOf="@id/match_weather_search_view"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="16dp"
+        android:visibility="visible"
+        />
+
+    <ImageView
+        android:id="@+id/match_weather_search_back_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back3"
+        app:layout_constraintStart_toStartOf="@id/match_weather_search_view"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="16dp"
+        android:visibility="gone"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/match_weather_search_button_result_recyclerview"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="@id/match_weather_search_view"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
+        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_view"
+        android:layout_marginStart="40dp"
+        tools:listitem="@layout/item_week_diary_mood"
+        android:visibility="visible"
+        />
+
+    <EditText
+        android:id="@+id/match_weather_search_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dark_taupe"
+        android:background="@null"
+        android:fontFamily="@font/suit_regular"
+        android:textSize="14sp"
+        android:letterSpacing="-0.01"
+        android:autoText="false"
+        tools:ignore="Deprecated"
+        app:layout_constraintStart_toEndOf="@id/match_weather_search_button_result_recyclerview"
+        app:layout_constraintEnd_toEndOf="@id/match_weather_search_view"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
+        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_view"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="5dp"
+        />
+
+    <TextView
+        android:id="@+id/match_weather_search_view_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_weather_search_view"
+        android:textColor="@color/pinkish_grey"
+        android:textSize="14sp"
+        android:fontFamily="@font/suit_regular"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_ic"
+        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_ic"
+        app:layout_constraintStart_toEndOf="@id/match_weather_search_ic"
+        android:visibility="visible"
+        />
+
+    <ImageView
+        android:id="@+id/match_weather_search_delete_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete_s"
+        app:layout_constraintEnd_toEndOf="@id/match_weather_search_view"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_view"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        />
+
+
+    <TextView
+        android:id="@+id/match_weather_last_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_weather_last"
+        android:fontFamily="@font/suit_regular"
+        android:textColor="@color/pinkish_grey"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_view"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/match_all_delete_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_all_delete"
+        android:fontFamily="@font/suit_regular"
+        android:textColor="@color/pinkish_grey"
+        android:textSize="12sp"
+        app:layout_constraintTop_toTopOf="@id/match_weather_last_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="32dp"
+        android:visibility="gone"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/match_weather_last_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="@id/match_weather_last_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_last_tv"
+        tools:listitem="@layout/item_match_weather_last"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/match_weather_default_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_weather_default"
+        android:fontFamily="@font/suit_regular"
+        android:textColor="@color/pinkish_grey"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_last_recyclerview"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_weather_very_cold_bt"
+        android:layout_width="92dp"
+        android:layout_height="40dp"
+        android:text="매우추움"
+        android:gravity="center"
+        android:button="@color/transparent"
+        android:textSize="14sp"
+        android:background="@drawable/radio_selector"
+        android:textColor="@drawable/selector_radio_text"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_default_tv"
+        app:layout_constraintStart_toStartOf="@id/match_weather_default_tv"
+        android:layout_marginTop="12dp"
+        android:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_weather_very_hot_bt"
+        android:layout_width="92dp"
+        android:layout_height="40dp"
+        android:text="매우더움"
+        android:gravity="center"
+        android:button="@color/transparent"
+        android:textSize="14sp"
+        android:background="@drawable/radio_selector"
+        android:textColor="@drawable/selector_radio_text"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@id/match_weather_very_cold_bt"
+        app:layout_constraintStart_toEndOf="@id/match_weather_very_cold_bt"
+        android:layout_marginStart="10dp"
+        android:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_weather_cold_bt"
+        android:layout_width="66dp"
+        android:layout_height="40dp"
+        android:text="추움"
+        android:gravity="center"
+        android:button="@color/transparent"
+        android:textSize="14sp"
+        android:background="@drawable/radio_selector"
+        android:textColor="@drawable/selector_radio_text"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_very_cold_bt"
+        app:layout_constraintStart_toStartOf="@id/match_weather_very_cold_bt"
+        android:layout_marginTop="10dp"
+        android:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_weather_hot_bt"
+        android:layout_width="66dp"
+        android:layout_height="40dp"
+        android:text="더움"
+        android:gravity="center"
+        android:button="@color/transparent"
+        android:textSize="14sp"
+        android:background="@drawable/radio_selector"
+        android:textColor="@drawable/selector_radio_text"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@id/match_weather_cold_bt"
+        app:layout_constraintStart_toEndOf="@id/match_weather_cold_bt"
+        android:layout_marginStart="10dp"
+        android:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_weather_soso_bt"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="적당함"
+        android:gravity="center"
+        android:button="@color/transparent"
+        android:textSize="14sp"
+        android:background="@drawable/radio_selector"
+        android:textColor="@drawable/selector_radio_text"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@id/match_weather_hot_bt"
+        app:layout_constraintStart_toEndOf="@id/match_weather_hot_bt"
+        android:layout_marginStart="10dp"
+        android:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_weather_snow_bt"
+        android:layout_width="66dp"
+        android:layout_height="40dp"
+        android:text="눈"
+        android:gravity="center"
+        android:button="@color/transparent"
+        android:textSize="14sp"
+        android:background="@drawable/radio_selector"
+        android:textColor="@drawable/selector_radio_text"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_cold_bt"
+        app:layout_constraintStart_toStartOf="@id/match_weather_cold_bt"
+        android:layout_marginTop="10dp"
+        android:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_weather_rain_bt"
+        android:layout_width="66dp"
+        android:layout_height="40dp"
+        android:text="비"
+        android:gravity="center"
+        android:button="@color/transparent"
+        android:textSize="14sp"
+        android:background="@drawable/radio_selector"
+        android:textColor="@drawable/selector_radio_text"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@id/match_weather_snow_bt"
+        app:layout_constraintStart_toEndOf="@id/match_weather_snow_bt"
+        android:layout_marginStart="10dp"
+        android:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_weather_hail_bt"
+        android:layout_width="66dp"
+        android:layout_height="40dp"
+        android:text="우박"
+        android:gravity="center"
+        android:button="@color/transparent"
+        android:textSize="14sp"
+        android:background="@drawable/radio_selector"
+        android:textColor="@drawable/selector_radio_text"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@id/match_weather_rain_bt"
+        app:layout_constraintStart_toEndOf="@id/match_weather_rain_bt"
+        android:layout_marginStart="10dp"
+        android:visibility="visible"
+        />
+
+    <ImageView
+        android:id="@+id/match_weather_cloth_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_match_cloth"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_view"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="213dp"
+        android:layout_marginTop="368dp"
+        android:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_weather_search_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/match_search_btn_event"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_view"
+        android:layout_marginTop="411dp"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/match_weather_search_cloth_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_search_cloth"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="172dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/match_weather_search_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_weather_search"
+        android:textColor="@color/pinkish_grey"
+        android:textSize="14sp"
+        android:fontFamily="@font/suit_regular"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_cloth_iv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="17dp"
+        android:visibility="gone"
+        />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/match_weather_search_button_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:alignItems="stretch"
+        app:alignContent="stretch"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="4dp"
+        tools:ignore="MissingConstraints"
+        android:visibility="gone"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/match_weather_search_button_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="385dp"
+            android:orientation="horizontal"
+            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+            tools:listitem="@layout/item_match_weather_last"
+            tools:ignore="MissingConstraints"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
