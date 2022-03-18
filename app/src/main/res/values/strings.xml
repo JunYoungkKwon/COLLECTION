@@ -111,6 +111,9 @@
     <string name="match_place_default">기본 장소</string>
     <string name="match_color_default">기본 컬러</string>
     <string name="match_who_default">기본 태그</string>
+    <string name="match_search_result_first">검색 결과</string>
+    <string name="match_search_result_second">0</string>
+    <string name="match_search_result_third">건</string>
 
 
     <!-- dialog page -->

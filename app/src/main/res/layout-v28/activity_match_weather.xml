@@ -419,6 +419,102 @@
 
     </com.google.android.flexbox.FlexboxLayout>
 
+    <TextView
+        android:id="@+id/match_weather_search_result_first_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_search_result_first"
+        android:textColor="@color/pinkish_grey"
+        android:textSize="12sp"
+        android:fontFamily="@font/suit_regular"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_view"
+        app:layout_constraintStart_toStartOf="@id/match_weather_search_view"
+        android:layout_marginTop="27dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/match_weather_search_result_second_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_search_result_second"
+        android:textColor="@color/dark_taupe"
+        android:textSize="13sp"
+        android:fontFamily="@font/suit_regular"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_result_first_tv"
+        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_result_first_tv"
+        app:layout_constraintStart_toEndOf="@id/match_weather_search_result_first_tv"
+        android:layout_marginStart="4dp"
+        android:visibility="gone"
+
+        />
+
+    <TextView
+        android:id="@+id/match_weather_search_result_third_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/match_search_result_third"
+        android:textColor="@color/pinkish_grey"
+        android:textSize="12sp"
+        android:fontFamily="@font/suit_regular"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_result_second_tv"
+        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_result_second_tv"
+        app:layout_constraintStart_toEndOf="@id/match_weather_search_result_second_tv"
+        android:layout_marginStart="2dp"
+        android:visibility="gone"
+        />
+
+    <ImageButton
+        android:id="@+id/match_weather_search_day_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/button_search_day"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toStartOf="@id/match_weather_search_last_bt"
+        app:layout_constraintTop_toTopOf="@id/match_weather_search_last_bt"
+        app:layout_constraintBottom_toBottomOf="@id/match_weather_search_last_bt"
+        android:layout_marginEnd="4dp"
+        android:visibility="gone"
+        />
+
+    <ImageButton
+        android:id="@+id/match_weather_search_last_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/button_search_last"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="@id/match_weather_search_view"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_view"
+        android:layout_marginTop="22dp"
+        android:visibility="gone"
+        />
+
+    <ImageButton
+        android:id="@+id/match_weather_search_old_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/button_search_old"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="@id/match_weather_search_view"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_view"
+        android:layout_marginTop="22dp"
+        android:visibility="gone"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/week_diary_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/match_weather_search_result_first_tv"
+        tools:listitem="@layout/item_week_diary"
+        android:layout_marginTop="11.5dp"
+        android:visibility="gone"
+        />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
