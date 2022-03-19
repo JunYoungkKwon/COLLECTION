@@ -110,6 +110,7 @@
         <entry key="app/src/main/res/font/noto_sans_kr.xml" value="0.23055555555555557" />
         <entry key="app/src/main/res/layout-v28/activity_match_place.xml" value="0.24322916666666666" />
         <entry key="app/src/main/res/layout-v28/activity_match_weather.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-v28/activity_match_who.xml" value="0.11778115501519756" />
         <entry key="app/src/main/res/layout/activity_developer_info.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_finish.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_info_edit.xml" value="0.25" />
