@@ -21,11 +21,22 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file('key')
+            storePassword "Collection"
+            keyAlias "my app"
+            keyPassword "Collection"
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled true
             debuggable = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
