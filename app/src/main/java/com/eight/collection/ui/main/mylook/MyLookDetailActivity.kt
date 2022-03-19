@@ -90,6 +90,11 @@ MyLookDetailActivity(): BaseActivity<ActivityMyLookSecondBinding>(ActivityMyLook
         }
 
 
+        myLookDetailRVAdapter.setMyItemClickListener(object :MyLookDetailRVAdapter.MyitemClickListener{
+            override fun onItemClick(myLookOOTD: MyLookOOTD, position: Int) {
+            }
+
+        })
 
         myLookDetailRVAdapter.setMyItemLongClickListener(object :MyLookDetailRVAdapter.MyitemLongClickListener{
             override fun onItemLongClick(myLookOOTD: MyLookOOTD, position: Int) {

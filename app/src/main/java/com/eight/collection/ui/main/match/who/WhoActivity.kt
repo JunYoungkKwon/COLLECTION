@@ -21,10 +21,11 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     }
 
     private fun getSearchResult(){
-        MatchService.getMatch(this, 2, "","", "", "", "", "")
+        MatchService.getMatch(this, 0, "공원","", "", "", "", "")
     }
 
     override fun onMatchLoading() {
+        Log.d("Match/Load","test")
         binding.loginLoadingInIv.visibility = View.VISIBLE
         binding.loginLoadingCircleIv.visibility = View.VISIBLE
         binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
@@ -34,6 +35,7 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     }
 
     override fun onMatchSuccess(match: MutableList<Diary>) {
+        Log.d("Match/Succ","test")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -43,26 +45,28 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         diaryRVAdapter = DiaryRVAdapter(this)
         binding.matchWhoSearchResultRv.adapter = diaryRVAdapter
 
-        if( match.size != 0){
-
-            diaryRVAdapter.addWeekly(match)
-            binding.matchDefault2Text.visibility= View.GONE
-            binding.matchDefault1Text.visibility= View.GONE
-            binding.matchDefaultIv.visibility= View.GONE
-            binding.itemTopLine1View.visibility= View.GONE
-            binding.itemTopLine2View.visibility= View.GONE
-        }
-        else{
-            diaryRVAdapter.removeWeekly()
-            binding.matchDefault2Text.visibility= View.VISIBLE
-            binding.matchDefault1Text.visibility= View.VISIBLE
-            binding.matchDefaultIv.visibility= View.VISIBLE
-            binding.itemTopLine1View.visibility= View.VISIBLE
-            binding.itemTopLine2View.visibility= View.VISIBLE
-        }
+        diaryRVAdapter.addWeekly(match)
+//        if( match.size != 0){
+//
+//
+//            binding.matchDefault2Text.visibility= View.GONE
+//            binding.matchDefault1Text.visibility= View.GONE
+//            binding.matchDefaultIv.visibility= View.GONE
+//            binding.itemTopLine1View.visibility= View.GONE
+//            binding.itemTopLine2View.visibility= View.GONE
+//        }
+//        else{
+//            diaryRVAdapter.removeWeekly()
+//            binding.matchDefault2Text.visibility= View.VISIBLE
+//            binding.matchDefault1Text.visibility= View.VISIBLE
+//            binding.matchDefaultIv.visibility= View.VISIBLE
+//            binding.itemTopLine1View.visibility= View.VISIBLE
+//            binding.itemTopLine2View.visibility= View.VISIBLE
+//        }
     }
 
     override fun onMatchFailure(code: Int, message: String) {
+        Log.d("Match/Load","test")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
