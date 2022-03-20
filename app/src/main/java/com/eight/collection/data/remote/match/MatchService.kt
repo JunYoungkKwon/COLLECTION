@@ -9,12 +9,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 object MatchService {
-    fun getMatch(matchView: MatchView, pwwc: Int, keword1: String, keword2: String, color1: String, color2: String, startAt: String, endAt: String) {
+    fun getMatch(matchView: MatchView, PWWC: Int, keyword1: String, keyword2: String, color1: String, color2: String, startAt: String, endAt: String) {
         val matchService = retrofit.create(MatchRetrofitInterface::class.java)
 
         matchView.onMatchLoading()
 
-        matchService.getMatch(pwwc,keword1, keword2, color1, color2, startAt, endAt).enqueue(object : Callback<MatchResponse> {
+        matchService.getMatch(PWWC,keyword1, keyword2, color1, color2, startAt, endAt).enqueue(object : Callback<MatchResponse> {
             override fun onResponse(call: Call<MatchResponse>, response: Response<MatchResponse>) {
 
                 val resp = response.body()!!

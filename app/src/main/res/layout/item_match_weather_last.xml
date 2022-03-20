@@ -5,9 +5,8 @@
     android:id="@+id/match_weather_item_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="12dp"
-    >
+    android:layout_marginBottom="12dp"
+    android:layout_marginRight="10dp">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/match_weather_last_text_button"
@@ -36,8 +35,7 @@
         app:layout_constraintTop_toTopOf="@id/match_weather_last_text_button"
         app:layout_constraintBottom_toBottomOf="@id/match_weather_last_text_button"
         android:layout_marginEnd="8dp"
-        android:visibility="gone"
-        />
+        android:visibility="invisible" />
 
 
 

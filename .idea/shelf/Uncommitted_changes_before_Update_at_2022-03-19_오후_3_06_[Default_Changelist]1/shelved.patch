@@ -1,0 +1,240 @@
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Add project specific ProGuard rules here.\r\n# You can control the set of applied configuration files using the\r\n# proguardFiles setting in build.gradle.\r\n#\r\n# For more details, see\r\n#   http://developer.android.com/guide/developing/tools/proguard.html\r\n\r\n# If your project uses WebView with JS, uncomment the following\r\n# and specify the fully qualified class name to the JavaScript interface\r\n# class:\r\n#-keepclassmembers class fqcn.of.javascript.interface.for.webview {\r\n#   public *;\r\n#}\r\n\r\n# Uncomment this to preserve the line number information for\r\n# debugging stack traces.\r\n#-keepattributes SourceFile,LineNumberTable\r\n\r\n# If you keep the line number information, uncomment this to\r\n# hide the original source file name.\r\n#-renamesourcefileattribute SourceFile
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/proguard-rules.pro b/app/proguard-rules.pro
+--- a/app/proguard-rules.pro	
++++ b/app/proguard-rules.pro	
+@@ -1,4 +1,4 @@
+-# Add project specific ProGuard rules here.
++-keep class com.eight.collection.** { *; }
+ # You can control the set of applied configuration files using the
+ # proguardFiles setting in build.gradle.
+ #
+@@ -18,4 +18,4 @@
+ 
+ # If you keep the line number information, uncomment this to
+ # hide the original source file name.
+-#-renamesourcefileattribute SourceFile
+\ No newline at end of file
++#-renamesourcefileattribute SourceFile
+Index: app/src/main/java/com/eight/collection/ui/main/match/who/WhoActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.eight.collection.ui.main.match.who\r\n\r\nimport android.util.Log\r\nimport android.view.View\r\nimport android.view.animation.AnimationUtils\r\nimport com.eight.collection.R\r\nimport com.eight.collection.data.entities.Diary\r\nimport com.eight.collection.data.remote.match.MatchService\r\nimport com.eight.collection.databinding.ActivityMatchWhoBinding\r\nimport com.eight.collection.ui.BaseActivity\r\nimport com.eight.collection.ui.main.match.MatchView\r\nimport com.eight.collection.ui.main.week.DiaryRVAdapter\r\n\r\nclass WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding::inflate), MatchView {\r\n\r\n\r\n    private  lateinit var diaryRVAdapter: DiaryRVAdapter\r\n\r\n    override fun initAfterBinding() {\r\n        getSearchResult()\r\n    }\r\n\r\n    private fun getSearchResult(){\r\n        MatchService.getMatch(this, 2, \"\",\"\", \"\", \"\", \"\", \"\")\r\n    }\r\n\r\n    override fun onMatchLoading() {\r\n        binding.loginLoadingInIv.visibility = View.VISIBLE\r\n        binding.loginLoadingCircleIv.visibility = View.VISIBLE\r\n        binding.loginLoadingBackgroundIv.visibility = View.VISIBLE\r\n        val animation = AnimationUtils.loadAnimation(this, R.anim.rotate)\r\n        binding.loginLoadingCircleIv.startAnimation(animation)\r\n        binding.loginDimBackground.visibility = View.VISIBLE\r\n    }\r\n\r\n    override fun onMatchSuccess(match: MutableList<Diary>) {\r\n        binding.loginLoadingCircleIv.visibility = View.GONE\r\n        binding.loginLoadingInIv.visibility = View.GONE\r\n        binding.loginLoadingBackgroundIv.visibility = View.GONE\r\n        binding.loginLoadingCircleIv.clearAnimation()\r\n        binding.loginDimBackground.visibility = View.INVISIBLE\r\n\r\n        diaryRVAdapter = DiaryRVAdapter(this)\r\n        binding.matchWhoSearchResultRv.adapter = diaryRVAdapter\r\n\r\n        if( match.size != 0){\r\n\r\n            diaryRVAdapter.addWeekly(match)\r\n            binding.matchDefault2Text.visibility= View.GONE\r\n            binding.matchDefault1Text.visibility= View.GONE\r\n            binding.matchDefaultIv.visibility= View.GONE\r\n            binding.itemTopLine1View.visibility= View.GONE\r\n            binding.itemTopLine2View.visibility= View.GONE\r\n        }\r\n        else{\r\n            diaryRVAdapter.removeWeekly()\r\n            binding.matchDefault2Text.visibility= View.VISIBLE\r\n            binding.matchDefault1Text.visibility= View.VISIBLE\r\n            binding.matchDefaultIv.visibility= View.VISIBLE\r\n            binding.itemTopLine1View.visibility= View.VISIBLE\r\n            binding.itemTopLine2View.visibility= View.VISIBLE\r\n        }\r\n    }\r\n\r\n    override fun onMatchFailure(code: Int, message: String) {\r\n        binding.loginLoadingCircleIv.visibility = View.GONE\r\n        binding.loginLoadingInIv.visibility = View.GONE\r\n        binding.loginLoadingBackgroundIv.visibility = View.GONE\r\n        binding.loginLoadingCircleIv.clearAnimation()\r\n        binding.loginDimBackground.visibility = View.INVISIBLE\r\n        when (code) {\r\n            2000,2001, 2002 -> {\r\n                Log.d(\"Match/JWT/ERROR\", \"error\")\r\n            }\r\n            3101,3048, 3036 -> {\r\n                Log.d(\"Match/PWWC/ERROR\", \"error\")\r\n            }\r\n            3038,3113, -> {\r\n                Log.d(\"Match/Keword/ERROR\", \"error\")\r\n            }\r\n            3112, 3061, 3114, 3115, 3118 -> {\r\n                Log.d(\"Match/Color/ERROR\", \"error\")\r\n            }\r\n            3039, 3106, 3107, 3040, 3108, 3109 -> {\r\n                Log.d(\"Match/Date/ERROR\", \"error\")\r\n            }\r\n            3110, 3050 -> {\r\n                Log.d(\"Match/Text/ERROR\", \"error\")\r\n            }\r\n            4018, 4001 -> {\r\n                Log.d(\"Match/Response/ERROR\", \"error\")\r\n            }\r\n            else -> {\r\n                Log.d(\"Month/DB/ERROR\", \"error\")\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/eight/collection/ui/main/match/who/WhoActivity.kt b/app/src/main/java/com/eight/collection/ui/main/match/who/WhoActivity.kt
+--- a/app/src/main/java/com/eight/collection/ui/main/match/who/WhoActivity.kt	
++++ b/app/src/main/java/com/eight/collection/ui/main/match/who/WhoActivity.kt	
+@@ -21,10 +21,11 @@
+     }
+ 
+     private fun getSearchResult(){
+-        MatchService.getMatch(this, 2, "","", "", "", "", "")
++        MatchService.getMatch(this, 0, "공원","", "", "", "", "")
+     }
+ 
+     override fun onMatchLoading() {
++        Log.d("Match/Load","test")
+         binding.loginLoadingInIv.visibility = View.VISIBLE
+         binding.loginLoadingCircleIv.visibility = View.VISIBLE
+         binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+@@ -34,6 +35,7 @@
+     }
+ 
+     override fun onMatchSuccess(match: MutableList<Diary>) {
++        Log.d("Match/Succ","test")
+         binding.loginLoadingCircleIv.visibility = View.GONE
+         binding.loginLoadingInIv.visibility = View.GONE
+         binding.loginLoadingBackgroundIv.visibility = View.GONE
+@@ -43,26 +45,28 @@
+         diaryRVAdapter = DiaryRVAdapter(this)
+         binding.matchWhoSearchResultRv.adapter = diaryRVAdapter
+ 
+-        if( match.size != 0){
+-
+-            diaryRVAdapter.addWeekly(match)
+-            binding.matchDefault2Text.visibility= View.GONE
+-            binding.matchDefault1Text.visibility= View.GONE
+-            binding.matchDefaultIv.visibility= View.GONE
+-            binding.itemTopLine1View.visibility= View.GONE
+-            binding.itemTopLine2View.visibility= View.GONE
+-        }
+-        else{
+-            diaryRVAdapter.removeWeekly()
+-            binding.matchDefault2Text.visibility= View.VISIBLE
+-            binding.matchDefault1Text.visibility= View.VISIBLE
+-            binding.matchDefaultIv.visibility= View.VISIBLE
+-            binding.itemTopLine1View.visibility= View.VISIBLE
+-            binding.itemTopLine2View.visibility= View.VISIBLE
+-        }
++        diaryRVAdapter.addWeekly(match)
++//        if( match.size != 0){
++//
++//
++//            binding.matchDefault2Text.visibility= View.GONE
++//            binding.matchDefault1Text.visibility= View.GONE
++//            binding.matchDefaultIv.visibility= View.GONE
++//            binding.itemTopLine1View.visibility= View.GONE
++//            binding.itemTopLine2View.visibility= View.GONE
++//        }
++//        else{
++//            diaryRVAdapter.removeWeekly()
++//            binding.matchDefault2Text.visibility= View.VISIBLE
++//            binding.matchDefault1Text.visibility= View.VISIBLE
++//            binding.matchDefaultIv.visibility= View.VISIBLE
++//            binding.itemTopLine1View.visibility= View.VISIBLE
++//            binding.itemTopLine2View.visibility= View.VISIBLE
++//        }
+     }
+ 
+     override fun onMatchFailure(code: Int, message: String) {
++        Log.d("Match/Load","test")
+         binding.loginLoadingCircleIv.visibility = View.GONE
+         binding.loginLoadingInIv.visibility = View.GONE
+         binding.loginLoadingBackgroundIv.visibility = View.GONE
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"../../../../layout/custom_preview.xml\" value=\"0.24444444444444444\" />\r\n        <entry key=\"..\\:/Users/gypig/.gradle/caches/transforms-3/33e2382e2a4b05258454807d965391b6/transformed/appcompat-1.4.1/res/drawable/abc_ic_menu_copy_mtrl_am_alpha.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/logout_cancle_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/logout_ok_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/week_datepicker__ok_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/week_datepicker_cancle_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/week_datepicker_ok_btn_event.xml\" value=\"0.17\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-mdpi/mylook_second_img_bg.xml\" value=\"0.12407407407407407\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/change_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/edit_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/nickname_btn.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/nickname_btn_ac.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/nickname_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/nickname_edit_round.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/radio_selected.xml\" value=\"0.17\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/radio_selector.xml\" value=\"0.17\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/secssion_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/week_diary_img_bg.xml\" value=\"0.1328125\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/week_diary_mood_round.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/week_diary_round_text.xml\" value=\"0.14912280701754385\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/weel_diary_round_text.xml\" value=\"0.1328125\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-xxhdpi/signup_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/dialog_round.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/login_btn_event.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/ripple_button.xml\" value=\"0.12916666666666668\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/ripple_effect.xml\" value=\"0.17708333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/roundshape_button.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/selector_navi_week.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/signup_btn_event_first.xml\" value=\"0.10833333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/signup_btn_event_third.xml\" value=\"0.10833333333333334\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/toast_signup_shape.xml\" value=\"0.1115\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/week_datepicker_round.xml\" value=\"0.1398148148148148\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/font/noto_sans_kr.xml\" value=\"0.17314814814814813\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/font/noto_sans_light.xml\" value=\"0.12685185185185185\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/font/roboto_light.xml\" value=\"0.15683760683760684\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/font/vlan_llaoutline.xml\" value=\"0.19114583333333332\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_mail.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/date_picker_caledaer_day.xml\" value=\"0.14666666666666667\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/date_picker_calendar_date.xml\" value=\"0.14666666666666667\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/dialog_edit_delete_custom.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/dialog_introduce_second.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/week_datepicker.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_account_delete.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_account_delete_second.xml\" value=\"0.4201474201474201\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_add_bottomtag.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_add_toptag.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_add_weathertag.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_developer_info.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_finish.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_info_edit.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login_first.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login_second.xml\" value=\"0.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_main.xml\" value=\"0.13999999999999999\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_my_look.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_my_look_second.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_nickname_edit.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_phone_number_edit.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_privacy_rule.xml\" value=\"0.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_pw_edit.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_setting.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_signup_first.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_signup_second.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_signup_third.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_splash.xml\" value=\"0.5\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_writefirst.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_writesecond.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/caledaer_day.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/calendar_date.xml\" value=\"0.14666666666666667\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/calendar_year_month_header.xml\" value=\"0.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/calendar_year_month_header_week.xml\" value=\"0.5\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/date_picker_calendar_year_month_header.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/dialog_logout_custom.xml\" value=\"0.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/dim_background.xml\" value=\"0.1140625\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_look_point.xml\" value=\"0.13333333333333333\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_match.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_month.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_my_look.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_my_look_banner.xml\" value=\"0.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_my_look_second.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_week.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_writefirst_top.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_writesecond_place.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_finish_photo.xml\" value=\"0.1355263157894737\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_look_point.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_look_point_photo.xml\" value=\"0.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_my_look.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_my_look_photo.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_my_look_second_photo.xml\" value=\"0.5\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_week_diary.xml\" value=\"0.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_week_diary_cloth_color.xml\" value=\"1.3333333333333333\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_week_diary_mood.xml\" value=\"0.6038961038961039\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_writefirst_bottom.xml\" value=\"0.12760416666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_writefirst_photo.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_writefirst_top.xml\" value=\"0.1609375\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/toast_custom.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/toast_signup.xml\" value=\"0.16666666666666666\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/week_datepicker.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/menu/menu_week_option.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/menu/navi_menu.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml\" value=\"0.1135\" />\r\n        <entry key=\"..\\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml\" value=\"0.1135\" />\r\n        <entry key=\"app/src/main/res/drawable/match_search_btn_event.xml\" value=\"0.132\" />\r\n        <entry key=\"app/src/main/res/drawable/writefirst_next_btn_event.xml\" value=\"0.132\" />\r\n        <entry key=\"app/src/main/res/font/noto_sans_kr.xml\" value=\"0.23055555555555557\" />\r\n        <entry key=\"app/src/main/res/layout-v28/activity_match_place.xml\" value=\"0.24322916666666666\" />\r\n        <entry key=\"app/src/main/res/layout-v28/activity_match_weather.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_developer_info.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_finish.xml\" value=\"0.125\" />\r\n        <entry key=\"app/src/main/res/layout/activity_info_edit.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_pw_edit.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_setting.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_writefirst.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/activity_writesecond.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/fragment_week.xml\" value=\"0.25\" />\r\n        <entry key=\"app/src/main/res/layout/fragment_writefirst_top.xml\" value=\"0.11778115501519756\" />\r\n        <entry key=\"app/src/main/res/layout/item_finish_photo.xml\" value=\"0.11828774062816616\" />\r\n        <entry key=\"app/src/main/res/layout/item_match_weather.xml\" value=\"0.2421875\" />\r\n        <entry key=\"app/src/main/res/layout/item_match_weather_last.xml\" value=\"0.2421875\" />\r\n        <entry key=\"app/src/main/res/layout/item_my_look_photo.xml\" value=\"0.10462962962962963\" />\r\n        <entry key=\"app/src/main/res/layout/item_week_diary.xml\" value=\"0.375\" />\r\n        <entry key=\"app/src/main/res/layout/item_week_diary_mood.xml\" value=\"0.2421875\" />\r\n        <entry key=\"app/src/main/res/layout/item_writefirst_photo.xml\" value=\"0.10462962962962963\" />\r\n        <entry key=\"app/src/main/res/layout/item_writefirst_top.xml\" value=\"0.11778115501519756\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -3,13 +3,13 @@
+   <component name="DesignSurface">
+     <option name="filePathToZoomLevelMap">
+       <map>
+-        <entry key="../../../../layout/custom_preview.xml" value="0.24444444444444444" />
+         <entry key="..\:/Users/gypig/.gradle/caches/transforms-3/33e2382e2a4b05258454807d965391b6/transformed/appcompat-1.4.1/res/drawable/abc_ic_menu_copy_mtrl_am_alpha.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/logout_cancle_btn_event.xml" value="0.17708333333333334" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/logout_ok_btn_event.xml" value="0.17708333333333334" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/week_datepicker__ok_btn_event.xml" value="0.17708333333333334" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/week_datepicker_cancle_btn_event.xml" value="0.17708333333333334" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-hdpi/week_datepicker_ok_btn_event.xml" value="0.17" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-mdpi/match_search_btn_round.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-mdpi/mylook_second_img_bg.xml" value="0.12407407407407407" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/change_btn_event.xml" value="0.17708333333333334" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/edit_btn_event.xml" value="0.17708333333333334" />
+@@ -26,9 +26,14 @@
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/weel_diary_round_text.xml" value="0.1328125" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-xxhdpi/signup_btn_event.xml" value="0.17708333333333334" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/dialog_round.xml" value="0.17708333333333334" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/ic_main_background.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/login_btn_event.xml" value="0.17708333333333334" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/match_search_round.xml" value="0.1" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/radio_checked_pww.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/ripple_button.xml" value="0.12916666666666668" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/ripple_effect.xml" value="0.17708333333333334" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/roundbutton_shape.xml" value="0.1" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/roundshape_add_tag_popup_background.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/roundshape_button.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/selector_navi_week.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/signup_btn_event_first.xml" value="0.10833333333333334" />
+@@ -40,6 +45,10 @@
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/font/roboto_light.xml" value="0.15683760683760684" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/font/vlan_llaoutline.xml" value="0.19114583333333332" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_mail.xml" value="0.1609375" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_color.xml" value="0.4466666666666667" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_place.xml" value="0.5" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_weather.xml" value="0.22" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_who.xml" value="0.14666666666666667" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/date_picker_caledaer_day.xml" value="0.14666666666666667" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/date_picker_calendar_date.xml" value="0.14666666666666667" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/dialog_edit_delete_custom.xml" value="0.22" />
+@@ -55,14 +64,14 @@
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_info_edit.xml" value="0.16666666666666666" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login.xml" value="0.1609375" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login_first.xml" value="0.16666666666666666" />
+-        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login_second.xml" value="0.3333333333333333" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login_second.xml" value="0.22" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_main.xml" value="0.13999999999999999" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_my_look.xml" value="0.22" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_my_look_second.xml" value="0.1609375" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_nickname_edit.xml" value="0.22" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_phone_number_edit.xml" value="0.22" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_privacy_rule.xml" value="0.3333333333333333" />
+-        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_pw_edit.xml" value="0.22" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_pw_edit.xml" value="0.3333333333333333" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_setting.xml" value="0.22" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_signup_first.xml" value="0.1609375" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_signup_second.xml" value="0.1609375" />
+@@ -83,16 +92,17 @@
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_my_look.xml" value="0.22" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_my_look_banner.xml" value="0.3333333333333333" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_my_look_second.xml" value="0.22" />
+-        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_week.xml" value="0.16666666666666666" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_week.xml" value="0.3333333333333333" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_writefirst_top.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/fragment_writesecond_place.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_finish_photo.xml" value="0.1355263157894737" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_look_point.xml" value="0.22" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_look_point_photo.xml" value="0.3333333333333333" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_match_weather_last.xml" value="0.4466666666666667" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_my_look.xml" value="0.22" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_my_look_photo.xml" value="0.1609375" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_my_look_second_photo.xml" value="0.5" />
+-        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_week_diary.xml" value="0.3333333333333333" />
++        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_week_diary.xml" value="0.12" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_week_diary_cloth_color.xml" value="1.3333333333333333" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_week_diary_mood.xml" value="0.6038961038961039" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/item_writefirst_bottom.xml" value="0.12760416666666666" />
+@@ -105,28 +115,18 @@
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/menu/navi_menu.xml" value="0.1" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1135" />
+         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1135" />
+-        <entry key="app/src/main/res/drawable/match_search_btn_event.xml" value="0.132" />
+-        <entry key="app/src/main/res/drawable/writefirst_next_btn_event.xml" value="0.132" />
+         <entry key="app/src/main/res/font/noto_sans_kr.xml" value="0.23055555555555557" />
+-        <entry key="app/src/main/res/layout-v28/activity_match_place.xml" value="0.24322916666666666" />
+-        <entry key="app/src/main/res/layout-v28/activity_match_weather.xml" value="0.25" />
+         <entry key="app/src/main/res/layout/activity_developer_info.xml" value="0.25" />
+-        <entry key="app/src/main/res/layout/activity_finish.xml" value="0.125" />
+         <entry key="app/src/main/res/layout/activity_info_edit.xml" value="0.25" />
+         <entry key="app/src/main/res/layout/activity_pw_edit.xml" value="0.25" />
+-        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.25" />
++        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.1" />
+         <entry key="app/src/main/res/layout/activity_writefirst.xml" value="0.25" />
+         <entry key="app/src/main/res/layout/activity_writesecond.xml" value="0.25" />
+         <entry key="app/src/main/res/layout/fragment_week.xml" value="0.25" />
+-        <entry key="app/src/main/res/layout/fragment_writefirst_top.xml" value="0.11778115501519756" />
+         <entry key="app/src/main/res/layout/item_finish_photo.xml" value="0.11828774062816616" />
+-        <entry key="app/src/main/res/layout/item_match_weather.xml" value="0.2421875" />
+-        <entry key="app/src/main/res/layout/item_match_weather_last.xml" value="0.2421875" />
+         <entry key="app/src/main/res/layout/item_my_look_photo.xml" value="0.10462962962962963" />
+         <entry key="app/src/main/res/layout/item_week_diary.xml" value="0.375" />
+-        <entry key="app/src/main/res/layout/item_week_diary_mood.xml" value="0.2421875" />
+         <entry key="app/src/main/res/layout/item_writefirst_photo.xml" value="0.10462962962962963" />
+-        <entry key="app/src/main/res/layout/item_writefirst_top.xml" value="0.11778115501519756" />
+       </map>
+     </option>
+   </component>
+Index: app/src/main/java/com/eight/collection/ui/main/mylook/MyLookDetailActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.eight.collection.ui.main.mylook\r\n\r\nimport android.content.Intent\r\nimport android.util.Log\r\nimport android.view.View\r\nimport android.widget.Toast\r\nimport com.eight.collection.R\r\nimport com.eight.collection.data.remote.mylook.MyLookResult\r\nimport com.eight.collection.data.remote.mylook.MyLookService\r\nimport com.eight.collection.databinding.ActivityMyLookSecondBinding\r\nimport com.eight.collection.databinding.ItemMyLookSecondPhotoBinding\r\nimport com.eight.collection.ui.BaseActivity\r\nimport com.eight.collection.ui.finish.FinishActivity\r\nimport com.google.gson.Gson\r\nimport java.time.LocalDate\r\nimport java.time.ZoneId\r\nimport java.time.format.DateTimeFormatter\r\nimport java.util.*\r\nimport kotlin.collections.ArrayList\r\n\r\n\r\nclass\r\n\r\nMyLookDetailActivity(): BaseActivity<ActivityMyLookSecondBinding>(ActivityMyLookSecondBinding::inflate), MyLookDetailView {\r\n\r\n    private  lateinit var myLookDetailRVAdapter: MyLookDetailRVAdapter\r\n    private var itemList = ArrayList<String>()\r\n\r\n    override fun initAfterBinding() {\r\n        setInit()\r\n\r\n\r\n        itemList.apply {\r\n            add(\"사진을 탭하여 작성날짜를 확인해보세요!\")\r\n            add(\"사진을 길게 터치해서 상세페이지를 확인해보세요!\")\r\n        }\r\n\r\n        val adapter = MyLookVPA(itemList, true)\r\n        binding.myLookSecondBannerVp.setAdapter(adapter)\r\n\r\n    }\r\n\r\n    private fun setInit() {\r\n        val num = intent.getStringExtra(\"number\")\r\n        when(num){\r\n            \"01\" -> {\r\n                binding.myLookSecond01Tv.text = \"01\"\r\n                binding.myLookSecondPoint5Iv.setImageResource(R.drawable.mylook_point_5)\r\n                MyLookService.getDetailMyLook(this, 5)\r\n            }\r\n            \"02\" -> {\r\n                binding.myLookSecond01Tv.text = \"02\"\r\n                binding.myLookSecondPoint5Iv.setImageResource(R.drawable.mylook_point_4)\r\n                MyLookService.getDetailMyLook(this, 4)\r\n            }\r\n            \"03\" -> {\r\n                binding.myLookSecond01Tv.text = \"03\"\r\n                binding.myLookSecondPoint5Iv.setImageResource(R.drawable.mylook_point_3)\r\n                MyLookService.getDetailMyLook(this, 3)\r\n            }\r\n            \"04\" -> {\r\n                binding.myLookSecond01Tv.text = \"04\"\r\n                binding.myLookSecondPoint5Iv.setImageResource(R.drawable.mylook_point_2)\r\n                MyLookService.getDetailMyLook(this, 2)\r\n            }\r\n            \"05\" -> {\r\n                binding.myLookSecond01Tv.text = \"05\"\r\n                binding.myLookSecondPoint5Iv.setImageResource(R.drawable.mylook_point_1)\r\n                MyLookService.getDetailMyLook(this, 1)\r\n            }\r\n        }\r\n    }\r\n\r\n    override fun onMyLookDetailLoading() {}\r\n\r\n    override fun onMyLookDetailSuccess(myLookResult: MyLookResult) {\r\n        myLookDetailRVAdapter = MyLookDetailRVAdapter(this)\r\n        binding.myLookSecondScrollRecyclerview.adapter = myLookDetailRVAdapter\r\n        myLookDetailRVAdapter.addOOTD(myLookResult.lastOOTDDetailArr)\r\n\r\n        if(myLookResult.lastOOTDDetailArr.isNullOrEmpty()){\r\n            binding.weekDefault1Text.visibility = View.VISIBLE\r\n            binding.weekDefault2Text.visibility = View.VISIBLE\r\n            binding.weekDefaultIv.visibility = View.VISIBLE\r\n        }\r\n        else{\r\n            binding.weekDefault1Text.visibility = View.GONE\r\n            binding.weekDefault2Text.visibility = View.GONE\r\n            binding.weekDefaultIv.visibility = View.GONE\r\n        }\r\n\r\n\r\n\r\n        myLookDetailRVAdapter.setMyItemLongClickListener(object :MyLookDetailRVAdapter.MyitemLongClickListener{\r\n            override fun onItemLongClick(myLookOOTD: MyLookOOTD, position: Int) {\r\n                val date: Date = myLookOOTD.date\r\n                val localdate: LocalDate = date.toInstant()\r\n                    .atZone(ZoneId.systemDefault())\r\n                    .toLocalDate()\r\n                val formatters = DateTimeFormatter.ofPattern(\"yyyy-MM-dd\")\r\n                val convertDate: String = localdate.format(formatters)\r\n\r\n                val intent = Intent(applicationContext, FinishActivity::class.java)\r\n                intent.apply {\r\n                    this.putExtra(\"date\",convertDate)\r\n                }\r\n                startActivity(intent)\r\n            }\r\n\r\n        })\r\n\r\n\r\n    }\r\n\r\n    override fun onMyLookDetailFailure(code: Int, message: String) {\r\n        when(code) {\r\n\r\n            2000, 2001, 2002 -> {\r\n                Log.d(\"MyLook/JWT/Error\", \"error\")\r\n            }\r\n\r\n            3031, 3032 -> {\r\n                Log.d(\"MyLook/LookPoint/Error\", \"error\")\r\n            }\r\n\r\n            5000, 6000 -> {\r\n                Log.d(\"MyLook/Server/Error\", \"error\")\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/eight/collection/ui/main/mylook/MyLookDetailActivity.kt b/app/src/main/java/com/eight/collection/ui/main/mylook/MyLookDetailActivity.kt
+--- a/app/src/main/java/com/eight/collection/ui/main/mylook/MyLookDetailActivity.kt	
++++ b/app/src/main/java/com/eight/collection/ui/main/mylook/MyLookDetailActivity.kt	
+@@ -90,6 +90,11 @@
+         }
+ 
+ 
++        myLookDetailRVAdapter.setMyItemClickListener(object :MyLookDetailRVAdapter.MyitemClickListener{
++            override fun onItemClick(myLookOOTD: MyLookOOTD, position: Int) {
++            }
++
++        })
+ 
+         myLookDetailRVAdapter.setMyItemLongClickListener(object :MyLookDetailRVAdapter.MyitemLongClickListener{
+             override fun onItemLongClick(myLookOOTD: MyLookOOTD, position: Int) {

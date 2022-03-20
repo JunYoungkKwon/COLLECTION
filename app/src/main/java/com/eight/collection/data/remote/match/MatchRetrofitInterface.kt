@@ -9,7 +9,7 @@ import retrofit2.http.*
 interface MatchRetrofitInterface {
 
     @GET("app/search/{PWWC}")
-    fun getMatch(@Path("PWWC") pwwc : Int,
+    fun getMatch(@Path("PWWC") PWWC : Int,
                  @Query("keyword1") keyword1 : String,
                  @Query("keyword2") keyword2 : String,
                  @Query("color1") color1 : String,

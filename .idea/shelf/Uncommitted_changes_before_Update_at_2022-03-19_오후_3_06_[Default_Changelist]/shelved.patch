@@ -1,0 +1,41 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'kotlin-android'\r\n    id 'kotlin-kapt'\r\n    id 'androidx.navigation.safeargs.kotlin'\r\n    id 'kotlin-parcelize'\r\n}\r\n\r\n\r\nandroid {\r\n    compileSdk 31\r\n\r\n    defaultConfig {\r\n        applicationId \"com.eight.collection\"\r\n        minSdk 26\r\n\r\n        targetSdk 31\r\n        versionCode 2\r\n        versionName \"1.0.1\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled true\r\n            debuggable = false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n    viewBinding {\r\n        enabled = true\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation 'androidx.core:core-ktx:1.7.0'\r\n    implementation 'androidx.appcompat:appcompat:1.4.1'\r\n    implementation 'com.google.android.material:material:1.5.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'\r\n    implementation 'com.hedgehog.ratingbar:app:1.1.2'\r\n    implementation 'androidx.databinding:databinding-runtime:7.1.1'\r\n    testImplementation 'junit:junit:4.+'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\r\n\r\n    //Retrofit\r\n    implementation \"com.squareup.retrofit2:retrofit:$retrofit_version\"\r\n    implementation \"com.squareup.retrofit2:converter-gson:$retrofit_version\"\r\n    implementation \"com.squareup.retrofit2:adapter-rxjava2:$retrofit_version\"\r\n\r\n    //okHttp\r\n    implementation \"com.squareup.okhttp3:okhttp:$okHttp_version\"\r\n    implementation \"com.squareup.okhttp3:logging-interceptor:$okHttp_version\"\r\n\r\n    //Glide\r\n    implementation \"com.github.bumptech.glide:glide:$glide_version\"\r\n    annotationProcessor \"com.github.bumptech.glide:compiler:$glide_version\"\r\n\r\n    //viewpager2\r\n    implementation \"androidx.viewpager2:viewpager2:1.0.0\"\r\n\r\n    //RoomDB\r\n    implementation \"androidx.room:room-runtime:$roomdb_version\"\r\n    kapt \"androidx.room:room-compiler:$roomdb_version\"\r\n\r\n    //Gson\r\n    implementation 'com.google.code.gson:gson:2.8.7'\r\n\r\n    //Navigation\r\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'\r\n    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'\r\n\r\n    //calendar\r\n    implementation 'com.github.kizitonwose:CalendarView:1.0.4'\r\n\r\n    //RecyclerView\r\n    implementation 'androidx.recyclerview:recyclerview:1.2.1'\r\n\r\n    //flexbox\r\n    implementation \"com.google.android:flexbox:2.0.1\"\r\n\r\n    //datepicker\r\n    implementation 'com.applandeo:material-calendar-view:1.9.0-rc03'\r\n\r\n    //infinitiViewPager\r\n    implementation 'com.asksira.android:loopingviewpager:1.4.1'\r\n\r\n    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'\r\n\r\n    //popupmenu\r\n    implementation \"com.github.skydoves:powermenu:2.2.0\"\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	
++++ b/app/build.gradle	
+@@ -21,12 +21,30 @@
+         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+     }
+ 
++    signingConfigs {
++        release
++                {
++                    storeFile file("collection.jks")
++                    storePassword "collection"
++                    keyAlias"collection"
++                    keyPassword "collection"
++                }
++    }
++
++
+     buildTypes {
+         release {
+             minifyEnabled true
+             debuggable = false
+             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
++            signingConfig signingConfigs.release
++        }
++
++        debug {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+         }
++
+     }
+     compileOptions {
+         sourceCompatibility JavaVersion.VERSION_1_8
