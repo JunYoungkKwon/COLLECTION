@@ -70,6 +70,9 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
             binding.matchWeatherSearchDayBt.visibility = View.GONE
             binding.matchWeatherSearchLastBt.visibility = View.GONE
             binding.weekDiaryRecyclerView.visibility = View.GONE
+
+            binding.matchWeatherSearchLastBt.visibility = View.GONE
+            binding.matchWeatherSearchOldBt.visibility = View.GONE
         }
 
         // 검색창 x버튼 눌렀을시 이벤트
@@ -86,6 +89,9 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
             binding.matchWeatherSearchDayBt.visibility = View.GONE
             binding.matchWeatherSearchLastBt.visibility = View.GONE
             binding.weekDiaryRecyclerView.visibility = View.GONE
+
+            binding.matchWeatherSearchLastBt.visibility = View.GONE
+            binding.matchWeatherSearchOldBt.visibility = View.GONE
         }
 
         // 검색 버튼 눌렀을시 이벤트
@@ -113,7 +119,5 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
             binding.matchWeatherSearchLastBt.visibility = View.VISIBLE
             binding.matchWeatherSearchOldBt.visibility = View.INVISIBLE
         }
-
-
     }
 }
