@@ -35,6 +35,7 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(ActivitySplashBinding:
             appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
                 if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
                     // 업데이트 있음
+                    Log.e("Update", "AppUpdateManager")
                     try {
                         mAppUpdateManager!!.startUpdateFlowForResult(
                             appUpdateInfo,
@@ -47,6 +48,7 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(ActivitySplashBinding:
                     }
                 } else {
                     //업데이트 없음
+                    Log.e("NoUpdate", "AppUpdateManager")
                     val  intent= Intent(this, LoginFirstActivity::class.java)
                     startActivity(intent)
                     finish()
