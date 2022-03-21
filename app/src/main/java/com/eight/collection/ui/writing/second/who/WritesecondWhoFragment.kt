@@ -66,7 +66,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
             binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
-        }, 300)
+        }, 100)
 
 
         return binding.root

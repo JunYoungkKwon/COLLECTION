@@ -72,7 +72,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
             binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
-        }, 300)
+        }, 100)
 
 
         return binding.root

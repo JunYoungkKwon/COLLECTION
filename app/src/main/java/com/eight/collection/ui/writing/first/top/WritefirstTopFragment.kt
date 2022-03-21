@@ -73,7 +73,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writefirstTopRecyclerview.adapter = topRVAdapter
             binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
-        }, 300)
+        }, 100)
 
 
         return binding.root

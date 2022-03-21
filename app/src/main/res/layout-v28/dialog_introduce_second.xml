@@ -15,16 +15,6 @@
         android:background="@drawable/roundshape_dialog_introduce_background"
         />
 
-    <ImageView
-        android:id="@+id/introduce_close_ic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/dialog_introduce_close_ic"
-        app:layout_constraintTop_toTopOf="@id/introduce_v"
-        app:layout_constraintEnd_toEndOf="@id/introduce_v"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        />
 
     <ImageView
         android:id="@+id/introduce_second_ic"
@@ -42,10 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/introduce_second_calender_ic"
-        app:layout_constraintTop_toBottomOf="@id/introduce_close_ic"
+        app:layout_constraintTop_toTopOf="@id/introduce_v"
         app:layout_constraintStart_toStartOf="@id/introduce_v"
         app:layout_constraintEnd_toEndOf="@id/introduce_v"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="55dp"
         />
 
     <ImageView
