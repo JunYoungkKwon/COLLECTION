@@ -1,5 +1,6 @@
 package com.eight.collection.ui.main
 
+import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -10,6 +11,7 @@ import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.introduce.IntroduceFirstDialog
 import com.eight.collection.ui.main.mylook.MyLookActivity
 import com.eight.collection.utils.getIntroduceIs
+import com.eight.collection.utils.getJwt
 
 class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 

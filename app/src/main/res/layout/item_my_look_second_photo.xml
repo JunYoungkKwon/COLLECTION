@@ -11,8 +11,8 @@
         android:id="@+id/item_my_look_second_photo_iv"
         android:layout_width="114dp"
         android:layout_height="114dp"
-        android:src="@drawable/mylook_second_default"
-        android:scaleType="fitXY"
+        android:background="@drawable/mylook_second_default"
+        android:scaleType="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

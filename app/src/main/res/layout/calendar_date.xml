@@ -46,9 +46,10 @@
 
     <ImageView
         android:id="@+id/calendar_rank_iv"
-        android:layout_width="30dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
+        android:paddingBottom="12dp"
         android:scaleType="center"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/calendar_day_tv"
@@ -56,4 +57,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="center"/>
 
+    <ImageView
+        android:id="@+id/calendar_rank_invisible_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:visibility="invisible"
+        android:src="@drawable/calendar_rank_5_on"
+        android:paddingBottom="12dp"
+        android:scaleType="center"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/calendar_day_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="center"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
