@@ -28,6 +28,7 @@ android {
             keyAlias "my app"
             keyPassword "Collection"
         }
+
     }
 
 
@@ -37,7 +38,13 @@ android {
             debuggable = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            resValue("string", "app_name", "Collection")
         }
+        debug {
+            applicationIdSuffix ".debug"
+            resValue("string", "app_name", "Collection_DEV")
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -58,8 +65,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.hedgehog.ratingbar:app:1.1.2'
-    implementation 'androidx.databinding:databinding-runtime:7.1.1'
-    testImplementation 'junit:junit:4.+'
+    implementation 'androidx.databinding:databinding-runtime:7.1.2'
+    testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
@@ -109,5 +116,8 @@ dependencies {
 
     //popupmenu
     implementation "com.github.skydoves:powermenu:2.2.0"
+
+    //update
+    implementation 'com.google.android.play:core:1.10.3'
 
 }

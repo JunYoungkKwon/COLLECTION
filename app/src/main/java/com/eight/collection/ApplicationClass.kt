@@ -15,8 +15,8 @@ class ApplicationClass : Application() {
         const val TAG: String = "COLLECTION-APP"                      // Log, SharedPreference
         const val APP_DATABASE = "$TAG-DB"
 
-        const val DEV_URL: String = "https://collection-ootd.shop/"     // 테스트 서버 주소
-        const val PROD_URL: String = "https://api.template.com/"    // 실서버 주소
+        const val DEV_URL: String = "https://www.collection-dev.shop/"     // 테스트 서버 주소
+        const val PROD_URL: String = "https://collection-ootd.shop/"    // 실서버 주소
         const val BASE_URL: String = DEV_URL
 
         lateinit var mSharedPreferences: SharedPreferences

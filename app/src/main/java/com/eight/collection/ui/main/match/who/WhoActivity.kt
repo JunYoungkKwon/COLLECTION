@@ -8,16 +8,35 @@ import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.remote.match.MatchService
 import com.eight.collection.databinding.ActivityMatchWhoBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.main.match.Button
+import com.eight.collection.ui.main.match.MatchButtonRVAdapter
 import com.eight.collection.ui.main.match.MatchView
+import com.eight.collection.ui.main.mylook.MyLookRVAdapter
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import java.util.ArrayList
 
 class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding::inflate), MatchView {
 
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
+    private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
+    private  var defaultButton = ArrayList<Button>()
 
     override fun initAfterBinding() {
-        getSearchResult()
+//        getSearchResult()
+
+//        defaultButton.apply {
+//            add(Button("나", ""))
+//            add(Button("친구", ""))
+//            add(Button("애인", ""))
+//            add(Button("가족", ""))
+//            add(Button("동료", ""))
+//            add(Button("애완동물", ""))
+//        }
+//
+//        matchButtonRVAdapter = MatchButtonRVAdapter(defaultButton)
+//        binding.matchWeatherDefaultRecyclerview.adapter = matchButtonRVAdapter
+
     }
 
     private fun getSearchResult(){
@@ -25,7 +44,6 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     }
 
     override fun onMatchLoading() {
-        Log.d("Match/Load","test")
         binding.loginLoadingInIv.visibility = View.VISIBLE
         binding.loginLoadingCircleIv.visibility = View.VISIBLE
         binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
@@ -35,7 +53,6 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     }
 
     override fun onMatchSuccess(match: MutableList<Diary>) {
-        Log.d("Match/Succ","test")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -66,7 +83,6 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     }
 
     override fun onMatchFailure(code: Int, message: String) {
-        Log.d("Match/Load","test")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
