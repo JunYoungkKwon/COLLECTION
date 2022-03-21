@@ -20,7 +20,6 @@ class PhoneNumberEditActivity: BaseActivity<ActivityPhoneNumberEditBinding>(Acti
         binding.phoneNumberEditIb.setOnClickListener(this)
         binding.phoneNumberBackBtnIv.setOnClickListener(this)
         binding.phoneNumberTextEt.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-
     }
 
     override fun onClick(v: View?) {

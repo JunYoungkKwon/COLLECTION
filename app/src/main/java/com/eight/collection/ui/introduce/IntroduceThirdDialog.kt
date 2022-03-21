@@ -32,7 +32,6 @@ class IntroduceThirdDialog(context: Context) : Dialog(context){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_introduce_third)
 
-        closeImage = findViewById(R.id.introduce_close_ic)
         nextImage = findViewById(R.id.introduce_next_ic)
         previousImage = findViewById(R.id.introduce_previous_ic)
 
@@ -48,10 +47,6 @@ class IntroduceThirdDialog(context: Context) : Dialog(context){
             dismiss()
         }
 
-        closeImage.setOnClickListener{
-            dismiss()
-            saveIntroduceIs(true)
-        }
 
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }

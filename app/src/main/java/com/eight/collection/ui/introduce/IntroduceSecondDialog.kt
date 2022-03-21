@@ -32,7 +32,6 @@ class IntroduceSecondDialog(context: Context) : Dialog(context){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_introduce_second)
 
-        closeImage = findViewById(R.id.introduce_close_ic)
         nextImage = findViewById(R.id.introduce_next_ic)
         previousImage = findViewById(R.id.introduce_previous_ic)
 
@@ -46,11 +45,6 @@ class IntroduceSecondDialog(context: Context) : Dialog(context){
             previousDialog = IntroduceFirstDialog(context)
             previousDialog.show()
             dismiss()
-        }
-
-        closeImage.setOnClickListener{
-            dismiss()
-            saveIntroduceIs(true)
         }
 
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

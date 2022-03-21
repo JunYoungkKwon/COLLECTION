@@ -32,7 +32,6 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
         binding.signUpThirdPhoneEt.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         val value = intent.getStringExtra("postnickname")
         binding.signUpThirdNicknameEt.setText(value)
-
     }
 
     override fun onClick(v: View?) {
@@ -65,7 +64,7 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
         val pwd : String = binding.signUpThirdPasswordEt.text.toString()
         val name : String = binding.signUpThirdNameEt.text.toString()
         val nickname : String = binding.signUpThirdNicknameEt.text.toString()
-        val phonenumber : String = binding.signUpThirdPhoneEt.text.toString()
+        val phonenumber = binding.signUpThirdPhoneEt.text.toString().replace("[^0-9]".toRegex(), "")
 
         return User(id,pwd,name,nickname,phonenumber,"","","")
     }
