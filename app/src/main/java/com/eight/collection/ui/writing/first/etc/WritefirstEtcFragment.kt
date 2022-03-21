@@ -74,7 +74,7 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writefirstEtcRecyclerview.adapter = etcRVAdapter
             binding.writefirstEtcRecyclerview.layoutManager = flexboxLayoutManager
-        }, 300)
+        }, 100)
 
         return binding.root
     }

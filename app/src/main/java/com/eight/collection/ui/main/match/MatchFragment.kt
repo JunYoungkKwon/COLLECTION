@@ -34,16 +34,44 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
 
         when(v) {
             binding.matchWhoTextIv -> {
-                startActivity(Intent(activity, WhoActivity::class.java))
+                /*startActivity(Intent(activity, WhoActivity::class.java))*/
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "매칭 기능은 현재 지원하지 않습니다."
+                var toast = Toast(context)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 150)
+                toast.show()
             }
             binding.matchPlaceTextIv -> {
-                startActivity(Intent(activity, PlaceActivity::class.java))
+                /*startActivity(Intent(activity, PlaceActivity::class.java))*/
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "매칭 기능은 현재 지원하지 않습니다."
+                var toast = Toast(context)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 150)
+                toast.show()
             }
             binding.matchWeatherTextIv -> {
-                startActivity(Intent(activity, WeatherActivity::class.java))
+                /*startActivity(Intent(activity, WeatherActivity::class.java))*/
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "매칭 기능은 현재 지원하지 않습니다."
+                var toast = Toast(context)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 150)
+                toast.show()
             }
             binding.matchColorTextIv -> {
-                startActivity(Intent(activity, ColorActivity::class.java))
+                /*startActivity(Intent(activity, ColorActivity::class.java))*/
+                var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "매칭 기능은 현재 지원하지 않습니다."
+                var toast = Toast(context)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 150)
+                toast.show()
             }
         }
     }

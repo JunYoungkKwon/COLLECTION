@@ -69,7 +69,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
             binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
-        }, 300)
+        }, 100)
 
         return binding.root
     }
