@@ -352,7 +352,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             else if(topSelectIs == 1) {
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "Top 포커스 블록 색상 선택을 해주세요."
+                text.text = "Top 태그 블록 색상 선택을 해주세요."
                 var toast = Toast(this)
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
@@ -362,7 +362,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             else if(bottomSelectIs == 1) {
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "Bottom 포커스 블록 색상 선택을 해주세요."
+                text.text = "Bottom 태그 블록 색상 선택을 해주세요."
                 var toast = Toast(this)
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
@@ -372,7 +372,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             else if(shoesSelectIs == 1) {
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "Shoes 포커스 블록 색상 선택을 해주세요."
+                text.text = "Shoes 태그 블록 색상 선택을 해주세요."
                 var toast = Toast(this)
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)
@@ -382,7 +382,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             else if(etcSelectIs == 1) {
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "Etc 포커스 블록 색상 선택을 해주세요."
+                text.text = "Etc 태그 블록 색상 선택을 해주세요."
                 var toast = Toast(this)
                 toast.view = layoutInflater
                 toast.setGravity(Gravity.BOTTOM, 0, 270)

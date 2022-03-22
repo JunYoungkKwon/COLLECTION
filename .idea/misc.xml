@@ -106,6 +106,9 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1135" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1135" />
         <entry key="app/src/main/res/drawable/match_search_btn_event.xml" value="0.132" />
+        <entry key="app/src/main/res/drawable/radio_checked_pww.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/radio_normal_pww.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/radio_select_pww.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/writefirst_next_btn_event.xml" value="0.132" />
         <entry key="app/src/main/res/font/noto_sans_kr.xml" value="0.23055555555555557" />
         <entry key="app/src/main/res/layout-v28/activity_match_place.xml" value="0.24322916666666666" />
@@ -123,6 +126,7 @@
         <entry key="app/src/main/res/layout/activity_writesecond.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_week.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_writefirst_top.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/fragment_writesecond_place.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_finish_photo.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/item_match_weather.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/item_match_weather_last.xml" value="0.2421875" />
