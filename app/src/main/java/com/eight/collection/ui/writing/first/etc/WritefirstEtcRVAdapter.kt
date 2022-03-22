@@ -181,4 +181,14 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
         }
         return addedClothes
     }
+
+    fun getSelectIs() : Int {
+        var selectIs : Int = 0
+        for (i in etcList) {
+            if (i.focus == true){
+                selectIs = 1
+            }
+        }
+        return selectIs
+    }
 }

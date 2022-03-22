@@ -13,7 +13,7 @@
         android:id="@+id/writefirst_color_top_text_button"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text=" "
+        android:text=""
         android:gravity="center"
         android:button="@color/transparent"
         android:textSize="14sp"
@@ -22,6 +22,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:background="@drawable/radio_selector"
+        android:fontFamily="@font/suit_regular"
         android:textColor="@drawable/selector_radio_text"
         tools:ignore="MissingConstraints"
         />

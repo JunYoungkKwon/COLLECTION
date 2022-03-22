@@ -182,4 +182,14 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
         }
         return addedClothes
     }
+
+    fun getSelectIs() : Int {
+        var selectIs : Int = 0
+        for (i in shoesList) {
+            if (i.focus == true){
+                selectIs = 1
+            }
+        }
+        return selectIs
+    }
 }

@@ -28,7 +28,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
     WritefirstBottomRVAdapter.BottomClickListener, WritefirstActivity.BottomColorClickListener,
-    WritefirstActivity.GetBottomDataListener, GetAddedBlockView, ModiView,WritefirstActivity.RefreshBottomDataListener {
+    WritefirstActivity.GetBottomDataListener, GetAddedBlockView, ModiView,WritefirstActivity.RefreshBottomDataListener, WritefirstActivity.BottomSelectIsListener {
     lateinit var binding : FragmentWritefirstBottomBinding
     var bottomList = ArrayList<WritefirstBottom>()
     lateinit var customDialog: WritefirstBottomCustomDialog
@@ -193,6 +193,12 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
         var bottomaddedClothes = arrayListOf<AddedClothes>()
         bottomaddedClothes = bottomRVAdapter.getRVAAddedData()
         return bottomaddedClothes
+    }
+
+    override fun getIs() : Int {
+        var selectIs : Int = 0
+        selectIs = bottomRVAdapter.getSelectIs()
+        return selectIs
     }
 
     private fun getAddedBlock(){

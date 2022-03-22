@@ -30,7 +30,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
     WritefirstEtcRVAdapter.EtcClickListener, WritefirstActivity.EtcColorClickListener, WritefirstActivity.GetEtcDataListener,
-    GetAddedBlockView, ModiView,WritefirstActivity.RefreshEtcDataListener {
+    GetAddedBlockView, ModiView,WritefirstActivity.RefreshEtcDataListener,  WritefirstActivity.EtcSelectIsListener {
     lateinit var binding : FragmentWritefirstEtcBinding
     var etcList = ArrayList<WritefirstEtc>()
     lateinit var customDialog: WritefirstEtcCustomDialog
@@ -196,6 +196,13 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
         etcaddedClothes = etcRVAdapter.getRVAAddedData()
         return etcaddedClothes
     }
+
+    override fun getIs() : Int {
+        var selectIs : Int = 0
+        selectIs = etcRVAdapter.getSelectIs()
+        return selectIs
+    }
+
 
     private fun getAddedBlock(){
         GetAddedBlockService.getAddedBlock(this)

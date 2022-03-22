@@ -125,6 +125,8 @@
             app:tabTextColor="#C3B5AC"
             app:tabRippleColor="#00ff0000"
             app:tabPaddingTop="18dp"
+            app:tabPaddingStart="0dp"
+            app:tabPaddingEnd="0dp"
             android:background="@drawable/img_bg_writepage"
             app:layout_constraintStart_toStartOf="@id/writesecond_background_iv"
             app:layout_constraintEnd_toEndOf="@id/writesecond_background_iv"

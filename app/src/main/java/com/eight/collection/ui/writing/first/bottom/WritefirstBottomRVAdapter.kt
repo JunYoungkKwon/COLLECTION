@@ -183,4 +183,14 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
         }
         return addedClothes
     }
+
+    fun getSelectIs() : Int {
+        var selectIs : Int = 0
+        for (i in bottomList) {
+            if (i.focus == true){
+                selectIs = 1
+            }
+        }
+        return selectIs
+    }
 }
