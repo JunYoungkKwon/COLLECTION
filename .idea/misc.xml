@@ -129,8 +129,14 @@
         <entry key="app/src/main/res/layout/item_my_look_photo.xml" value="0.10462962962962963" />
         <entry key="app/src/main/res/layout/item_week_diary.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_week_diary_mood.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout/item_writefirst_bottom.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writefirst_etc.xml" value="0.11778115501519756" />
         <entry key="app/src/main/res/layout/item_writefirst_photo.xml" value="0.10462962962962963" />
-        <entry key="app/src/main/res/layout/item_writefirst_top.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writefirst_shoes.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writefirst_top.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_writesecond_place.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writesecond_weather.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout/item_writesecond_who.xml" value="0.11778115501519756" />
       </map>
     </option>
   </component>

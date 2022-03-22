@@ -20,6 +20,7 @@
         android:paddingBottom="10dp"
         android:background="@drawable/radio_select_pww"
         android:textColor="@drawable/select_radio_pww_text"
+        android:fontFamily="@font/suit_regular"
         tools:ignore="MissingConstraints" />
 
     <ImageButton

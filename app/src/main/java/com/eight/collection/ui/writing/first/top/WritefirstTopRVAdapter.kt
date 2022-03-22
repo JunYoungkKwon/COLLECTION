@@ -192,4 +192,14 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
         return addedClothes
     }
 
+    fun getSelectIs() : Int {
+        var selectIs : Int = 0
+        for (i in topList) {
+            if (i.focus == true){
+                selectIs = 1
+            }
+        }
+        return selectIs
+    }
+
 }

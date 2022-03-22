@@ -31,7 +31,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
     WritefirstShoesRVAdapter.ShoesClickListener, WritefirstActivity.ShoesColorClickListener,WritefirstActivity.GetShoesDataListener,
-    GetAddedBlockView, ModiView,WritefirstActivity.RefreshShoesDataListener {
+    GetAddedBlockView, ModiView,WritefirstActivity.RefreshShoesDataListener, WritefirstActivity.ShoesSelectIsListener {
     lateinit var binding : FragmentWritefirstShoesBinding
     var shoesList = ArrayList<WritefirstShoes>()
     lateinit var customDialog: WritefirstShoesCustomDialog
@@ -196,6 +196,12 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
         var shoesaddedClothes = arrayListOf<AddedClothes>()
         shoesaddedClothes = shoesRVAdapter.getRVAAddedData()
         return shoesaddedClothes
+    }
+
+    override fun getIs() : Int {
+        var selectIs : Int = 0
+        selectIs = shoesRVAdapter.getSelectIs()
+        return selectIs
     }
 
     private fun getAddedBlock(){

@@ -27,7 +27,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 
 class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     WritefirstTopRVAdapter.TopClickListener, WritefirstActivity.TopColorClickListener,
-    WritefirstActivity.GetTopDataListener, GetAddedBlockView, ModiView,WritefirstActivity.RefreshTopDataListener {
+    WritefirstActivity.GetTopDataListener, GetAddedBlockView, ModiView,WritefirstActivity.RefreshTopDataListener, WritefirstActivity.TopSelectIsListener {
     lateinit var binding : FragmentWritefirstTopBinding
     var topList = ArrayList<WritefirstTop>()
     lateinit var customDialog: WritefirstTopCustomDialog
@@ -202,6 +202,15 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         return topaddedClothes
     }
 
+
+    override fun getIs() : Int {
+        var selectIs : Int = 0
+        selectIs = topRVAdapter.getSelectIs()
+        return selectIs
+    }
+
+
+
     private fun getAddedBlock(){
         GetAddedBlockService.getAddedBlock(this)
     }
@@ -232,6 +241,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     }
 
     override fun onModiLoading() {
+
     }
 
     override fun onModiSuccess(modiresult: ModiResult) {

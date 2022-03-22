@@ -65,6 +65,10 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     private var refreshbottomdataListener : WritefirstActivity.RefreshBottomDataListener? = null
     private var refreshshoesdataListener : WritefirstActivity.RefreshShoesDataListener? = null
     private var refreshetcdataListener : WritefirstActivity.RefreshEtcDataListener? = null
+    private var topselectIsListener : WritefirstActivity.TopSelectIsListener? = null
+    private var bottomselectIsListener : WritefirstActivity.BottomSelectIsListener? = null
+    private var shoesselectIsListener : WritefirstActivity.ShoesSelectIsListener? = null
+    private var etcselectIsListener : WritefirstActivity.EtcSelectIsListener? = null
 
     var photoIs : Int = -1
     var mode : Int = 1
@@ -163,6 +167,11 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
         setRefreshBottomDataClickListener(fragmentList[1] as WritefirstBottomFragment)
         setRefreshShoesDataClickListener(fragmentList[2] as WritefirstShoesFragment)
         setRefreshEtcDataClickListener(fragmentList[3] as WritefirstEtcFragment)
+
+        setTopSelectIsListener((fragmentList[0] as WritefirstTopFragment))
+        setBottomSelectIsListener(fragmentList[1] as WritefirstBottomFragment)
+        setShoesSelectIsListener(fragmentList[2] as WritefirstShoesFragment)
+        setEtcSelectIsListener(fragmentList[3] as WritefirstEtcFragment)
 
 
 
@@ -301,6 +310,10 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             // Clothes 필수선택
             val fixedClothes : ArrayList<FixedClothes> = ArrayList()
             val addedClothes : ArrayList<AddedClothes> = ArrayList()
+            var topSelectIs : Int = 0
+            var bottomSelectIs : Int = 0
+            var shoesSelectIs : Int = 0
+            var etcSelectIs : Int = 0
             fixedClothes.addAll(gettopdataListener!!.getFixedData())
             fixedClothes.addAll(getbottomdataListener!!.getFixedData())
             fixedClothes.addAll(getshoesdataListener!!.getFixedData())
@@ -309,18 +322,13 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             addedClothes.addAll(getbottomdataListener!!.getAddedData())
             addedClothes.addAll(getshoesdataListener!!.getAddedData())
             addedClothes.addAll(getetcdataListener!!.getAddedData())
+            topSelectIs = topselectIsListener!!.getIs()
+            bottomSelectIs = bottomselectIsListener!!.getIs()
+            shoesSelectIs = shoesselectIsListener!!.getIs()
+            etcSelectIs = etcselectIsListener!!.getIs()
 
-            if(fixedClothes.isEmpty() == true && addedClothes.isEmpty() == true ){
-                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "옷을 한 개 이상 선택해주세요."
-                var toast = Toast(this)
-                toast.view = layoutInflater
-                toast.setGravity(Gravity.BOTTOM, 0, 270)
-                toast.show()
-            }
 
-            else if(binding.writefirstLookstyleTv.text.toString().isEmpty() == true){
+            if(binding.writefirstLookstyleTv.text.toString().isEmpty() == true){
                 var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = "LOOK NAME을 입력해주세요."
@@ -330,6 +338,57 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                 toast.show()
                 binding.writefirstLookstyleTv.setHintTextColor(Color.parseColor("#c77a4a"))
             }
+
+            else if(fixedClothes.isEmpty() == true && addedClothes.isEmpty() == true ){
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "옷을 한 개 이상 선택해주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+
+            else if(topSelectIs == 1) {
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "Top 포커스 블록 색상 선택을 해주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+
+            else if(bottomSelectIs == 1) {
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "Bottom 포커스 블록 색상 선택을 해주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+
+            else if(shoesSelectIs == 1) {
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "Shoes 포커스 블록 색상 선택을 해주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+
+            else if(etcSelectIs == 1) {
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "Etc 포커스 블록 색상 선택을 해주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+
 
             else {
                 val intent = Intent(this, WritesecondActivity::class.java)
@@ -536,6 +595,41 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
     }
 
 
+    //색 초기화
+    interface TopSelectIsListener {
+        fun getIs() : Int
+    }
+
+    interface BottomSelectIsListener {
+        fun getIs() : Int
+    }
+
+    interface ShoesSelectIsListener {
+        fun getIs() : Int
+    }
+
+    interface EtcSelectIsListener {
+        fun getIs() : Int
+    }
+
+
+    fun setTopSelectIsListener(topselectIsListener : WritefirstTopFragment){
+        this.topselectIsListener = topselectIsListener
+    }
+
+    fun setBottomSelectIsListener(bottomselectIsListener : WritefirstBottomFragment){
+        this.bottomselectIsListener = bottomselectIsListener
+    }
+
+    fun setShoesSelectIsListener(shoesselectIsListener : WritefirstShoesFragment){
+        this.shoesselectIsListener = shoesselectIsListener
+    }
+
+    fun setEtcSelectIsListener(etcselectIsListener : WritefirstEtcFragment){
+        this.etcselectIsListener = etcselectIsListener
+    }
+
+
 
     override fun onOkButtonClicked() {
         photoIs = -1
@@ -631,7 +725,6 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
 
             filepath = file.absolutePath.toString()
         }catch (e: Exception){
-
         }
     }
 }
