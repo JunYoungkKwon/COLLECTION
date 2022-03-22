@@ -28,6 +28,12 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(ActivitySplashBinding:
     private var mAppUpdateManager: AppUpdateManager? = null
 
     override fun initAfterBinding() {
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            val  intent= Intent(this, LoginFirstActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//            autoLogin()
+//        }, 2000)
         Handler(Looper.getMainLooper()).postDelayed({
             mAppUpdateManager = AppUpdateManagerFactory.create(this)
             val appUpdateInfoTask = mAppUpdateManager!!.appUpdateInfo
