@@ -51,6 +51,7 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalField
 import java.time.temporal.WeekFields
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inflate),MonthView, WeeklyView, DeleteView {
@@ -61,6 +62,7 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     private var selectedDate: LocalDate? = null
     private var current: LocalDate = LocalDate.now()
     private var click: Boolean = false
+    val datasizeList: ArrayList<LocalDate>? = null
     private var dateSave: MutableList<Diary>? = null
     private var moveToDate: LocalDate? = null
     private var seletDate: LocalDate? = null
@@ -195,37 +197,309 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                                     override fun getVerticalSnapPreference() = SNAP_TO_START
                                 }
                             }
-                            when(selectedDate){
-                                firstdate -> {
-                                    smoothScroller.targetPosition = 0
-                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+
+                            if(dateSave?.size == 1){
+                                val date1: Date? = dateSave?.get(0)?.date
+                                val localdate1: LocalDate? = date1?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                when(selectedDate){
+                                    localdate1-> {
+                                        smoothScroller.targetPosition = 0
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    else ->  binding.weekDiaryRecyclerView.smoothScrollToPosition(0)
                                 }
-                                firstdate?.plusDays(1) ->  {
-                                    smoothScroller.targetPosition = 1
-                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
-                                }
-                                firstdate?.plusDays(2) ->  {
-                                    smoothScroller.targetPosition = 2
-                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
-                                }
-                                firstdate?.plusDays(3) ->  {
-                                    smoothScroller.targetPosition = 3
-                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
-                                }
-                                firstdate?.plusDays(4) ->  {
-                                    smoothScroller.targetPosition = 4
-                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
-                                }
-                                firstdate?.plusDays(5) ->  {
-                                    smoothScroller.targetPosition = 5
-                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
-                                }
-                                lastdate ->  {
-                                    smoothScroller.targetPosition = 6
-                                    binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
-                                }
-                                else ->  binding.weekDiaryRecyclerView.smoothScrollToPosition(0)
                             }
+
+                            if(dateSave?.size == 2){
+                                val date1: Date? = dateSave?.get(0)?.date
+                                val localdate1: LocalDate? = date1?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date2: Date? = dateSave?.get(1)?.date
+                                val localdate2: LocalDate? = date2?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                when(selectedDate){
+                                    localdate1-> {
+                                        smoothScroller.targetPosition = 0
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate2 ->  {
+                                        smoothScroller.targetPosition = 1
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    else ->  binding.weekDiaryRecyclerView.smoothScrollToPosition(0)
+                                }
+                            }
+
+                            if(dateSave?.size == 3){
+                                val date1: Date? = dateSave?.get(0)?.date
+                                val localdate1: LocalDate? = date1?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date2: Date? = dateSave?.get(1)?.date
+                                val localdate2: LocalDate? = date2?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date3: Date? = dateSave?.get(2)?.date
+                                val localdate3: LocalDate? = date3?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                when(selectedDate){
+                                    localdate1-> {
+                                        smoothScroller.targetPosition = 0
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate2 ->  {
+                                        smoothScroller.targetPosition = 1
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate3  ->  {
+                                        smoothScroller.targetPosition = 2
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    else ->  binding.weekDiaryRecyclerView.smoothScrollToPosition(0)
+                                }
+                            }
+
+
+
+                            if(dateSave?.size == 4){
+                                val date1: Date? = dateSave?.get(0)?.date
+                                val localdate1: LocalDate? = date1?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date2: Date? = dateSave?.get(1)?.date
+                                val localdate2: LocalDate? = date2?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date3: Date? = dateSave?.get(2)?.date
+                                val localdate3: LocalDate? = date3?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date4: Date? = dateSave?.get(3)?.date
+                                val localdate4: LocalDate? = date4?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                when(selectedDate){
+                                    localdate1-> {
+                                        smoothScroller.targetPosition = 0
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate2 ->  {
+                                        smoothScroller.targetPosition = 1
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate3  ->  {
+                                        smoothScroller.targetPosition = 2
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate4  ->  {
+                                        smoothScroller.targetPosition = 3
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    else ->  binding.weekDiaryRecyclerView.smoothScrollToPosition(0)
+                                }
+                            }
+
+                            if(dateSave?.size == 5){
+                                val date1: Date? = dateSave?.get(0)?.date
+                                val localdate1: LocalDate? = date1?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date2: Date? = dateSave?.get(1)?.date
+                                val localdate2: LocalDate? = date2?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date3: Date? = dateSave?.get(2)?.date
+                                val localdate3: LocalDate? = date3?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date4: Date? = dateSave?.get(3)?.date
+                                val localdate4: LocalDate? = date4?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date5: Date? = dateSave?.get(4)?.date
+                                val localdate5: LocalDate? = date5?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                when(selectedDate){
+                                    localdate1-> {
+                                        smoothScroller.targetPosition = 0
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate2 ->  {
+                                        smoothScroller.targetPosition = 1
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate3  ->  {
+                                        smoothScroller.targetPosition = 2
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate4  ->  {
+                                        smoothScroller.targetPosition = 3
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+
+                                    localdate5  ->  {
+                                        smoothScroller.targetPosition = 4
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    else ->  binding.weekDiaryRecyclerView.smoothScrollToPosition(0)
+                                }
+                            }
+
+                            if(dateSave?.size == 6){
+                                val date1: Date? = dateSave?.get(0)?.date
+                                val localdate1: LocalDate? = date1?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date2: Date? = dateSave?.get(1)?.date
+                                val localdate2: LocalDate? = date2?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date3: Date? = dateSave?.get(2)?.date
+                                val localdate3: LocalDate? = date3?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date4: Date? = dateSave?.get(3)?.date
+                                val localdate4: LocalDate? = date4?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date5: Date? = dateSave?.get(4)?.date
+                                val localdate5: LocalDate? = date5?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date6: Date? = dateSave?.get(5)?.date
+                                val localdate6: LocalDate? = date6?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                when(selectedDate){
+                                    localdate1-> {
+                                        smoothScroller.targetPosition = 0
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate2 ->  {
+                                        smoothScroller.targetPosition = 1
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate3  ->  {
+                                        smoothScroller.targetPosition = 2
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate4  ->  {
+                                        smoothScroller.targetPosition = 3
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+
+                                    localdate5  ->  {
+                                        smoothScroller.targetPosition = 4
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+
+                                    localdate6  ->  {
+                                        smoothScroller.targetPosition = 5
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    else ->  binding.weekDiaryRecyclerView.smoothScrollToPosition(0)
+                                }
+                            }
+
+                            if(dateSave?.size == 7){
+                                val date1: Date? = dateSave?.get(0)?.date
+                                val localdate1: LocalDate? = date1?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date2: Date? = dateSave?.get(1)?.date
+                                val localdate2: LocalDate? = date2?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date3: Date? = dateSave?.get(2)?.date
+                                val localdate3: LocalDate? = date3?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date4: Date? = dateSave?.get(3)?.date
+                                val localdate4: LocalDate? = date4?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date5: Date? = dateSave?.get(4)?.date
+                                val localdate5: LocalDate? = date5?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date6: Date? = dateSave?.get(5)?.date
+                                val localdate6: LocalDate? = date6?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                val date7: Date? = dateSave?.get(6)?.date
+                                val localdate7: LocalDate? = date7?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+
+                                when(selectedDate){
+                                    localdate1-> {
+                                        smoothScroller.targetPosition = 0
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate2 ->  {
+                                        smoothScroller.targetPosition = 1
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate3  ->  {
+                                        smoothScroller.targetPosition = 2
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    localdate4  ->  {
+                                        smoothScroller.targetPosition = 3
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+
+                                    localdate5  ->  {
+                                        smoothScroller.targetPosition = 4
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+
+                                    localdate6  ->  {
+                                        smoothScroller.targetPosition = 5
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+
+                                    localdate7  ->  {
+                                        smoothScroller.targetPosition = 6
+                                        binding.weekDiaryRecyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+                                    }
+                                    else ->  binding.weekDiaryRecyclerView.smoothScrollToPosition(0)
+                                }
+                            }
+
                         }
                     }
                 }

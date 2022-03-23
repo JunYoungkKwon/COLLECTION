@@ -23,7 +23,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
 
     override fun initAfterBinding() {
-        Log.d("jwt", getJwt().toString())
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController: NavController = navHostFragment.findNavController()

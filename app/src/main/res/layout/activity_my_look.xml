@@ -99,73 +99,103 @@
                 app:layout_constraintBottom_toBottomOf="@id/item_myLook_01_tv"
                 app:layout_constraintStart_toEndOf="@id/item_myLook_01_tv" />
 
-            <View
-                android:id="@+id/item_myLook_horizon_top_view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mylook_first_cl"
+                android:layout_width="match_parent"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_01_tv"
-                android:background="@color/pinkish_grey"/>
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_02_tv"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_01_tv">
 
-            <com.eight.collection.utils.CustomTextView
-                android:id="@+id/item_myLook_photo_tv"
-                style="@style/VlanLlaRegular4Pt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:rotation="180"
-                android:text="PHOTO."
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="92dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view" />
+                <View
+                    android:id="@+id/item_myLook_horizon_top_view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/pinkish_grey"/>
 
-            <ImageView
-                android:id="@+id/item_myLook_move_btn_iv"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginBottom="-10dp"
-                android:layout_marginStart="6dp"
-                android:src="@drawable/ic_daydrop"
-                app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo_tv"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_photo_tv" />
+                <com.eight.collection.utils.CustomTextView
+                    android:id="@+id/item_myLook_photo_tv"
+                    style="@style/VlanLlaRegular4Pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:rotation="180"
+                    android:text="PHOTO."
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="92dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view" />
 
+                <ImageView
+                    android:id="@+id/item_myLook_move_btn_iv"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginBottom="-10dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ic_daydrop"
+                    app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo_tv"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_photo_tv" />
 
+                <View
+                    android:id="@+id/item_myLook_horizon_bottom_view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_photo_tv"
+                    android:background="@color/pinkish_grey"/>
 
-            <View
-                android:id="@+id/item_myLook_horizon_bottom_view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_photo_tv"
-                android:background="@color/pinkish_grey"/>
+                <View
+                    android:id="@+id/item_myLook_vertical_view"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_photo_tv"
+                    app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom_view"
+                    app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top_view"
+                    android:background="@color/pinkish_grey"/>
 
-            <View
-                android:id="@+id/item_myLook_vertical_view"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_photo_tv"
-                app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom_view"
-                app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top_view"
-                android:background="@color/pinkish_grey"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/item_myLook_img_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="148dp"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_vertical_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view"
+                    app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom_view"
+                    tools:listitem="@layout/item_my_look_photo" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/item_myLook_img_recyclerview"
-                android:layout_width="0dp"
-                android:layout_height="148dp"
-                android:orientation="horizontal"
-                android:layout_marginStart="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view"
-                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom_view"
-                tools:listitem="@layout/item_my_look_photo" />
+                <TextView
+                    android:id="@+id/week_default_1_1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:layout_marginStart="5dp"
+                    android:visibility="gone"
+                    android:textColor="#C3B5AC"
+                    android:letterSpacing="-0.01"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view"
+                    app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom_view"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_vertical_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:lineSpacingExtra="8sp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/lookpoint_error"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <TextView
                 android:id="@+id/item_myLook_02_tv"
@@ -176,7 +206,7 @@
                 android:layout_marginTop="15dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="@+id/item_myLook_01_tv"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_bottom_view"
+                app:layout_constraintTop_toBottomOf="@id/mylook_first_cl"
                 android:textSize="6sp"
                 android:textColor="@color/terracota"
                 android:letterSpacing="-0.1"
@@ -193,73 +223,100 @@
                 app:layout_constraintBottom_toBottomOf="@id/item_myLook_02_tv"
                 app:layout_constraintStart_toEndOf="@id/item_myLook_02_tv" />
 
-            <View
-                android:id="@+id/item_myLook_horizon_top2_view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mylook_second_cl"
+                android:layout_width="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_02_tv"
-                android:background="@color/pinkish_grey"/>
 
-            <com.eight.collection.utils.CustomTextView
-                android:id="@+id/item_myLook_photo2_tv"
-                style="@style/VlanLlaRegular4Pt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:rotation="180"
-                android:text="PHOTO."
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="92dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top2_view" />
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_02_tv">
 
-            <ImageView
-                android:id="@+id/item_myLook_move_btn2_iv"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginBottom="-10dp"
-                android:layout_marginStart="6dp"
-                android:src="@drawable/ic_daydrop"
-                app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo2_tv"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_photo2_tv" />
+                <View
+                    android:id="@+id/item_myLook_horizon_top2_view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/pinkish_grey"/>
 
+                <com.eight.collection.utils.CustomTextView
+                    android:id="@+id/item_myLook_photo2_tv"
+                    style="@style/VlanLlaRegular4Pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:rotation="180"
+                    android:text="PHOTO."
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="92dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top2_view" />
 
+                <ImageView
+                    android:id="@+id/item_myLook_move_btn2_iv"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginBottom="-10dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ic_daydrop"
+                    app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo2_tv"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_photo2_tv" />
 
-            <View
-                android:id="@+id/item_myLook_horizon_bottom2_view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_photo2_tv"
-                android:background="@color/pinkish_grey"/>
+                <View
+                    android:id="@+id/item_myLook_horizon_bottom2_view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_photo2_tv"
+                    android:background="@color/pinkish_grey"/>
 
-            <View
-                android:id="@+id/item_myLook_vertical2_view"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_photo2_tv"
-                app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom2_view"
-                app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top2_view"
-                android:background="@color/pinkish_grey"/>
+                <View
+                    android:id="@+id/item_myLook_vertical2_view"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_photo2_tv"
+                    app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom2_view"
+                    app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top2_view"
+                    android:background="@color/pinkish_grey"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/item_myLook_img2_recyclerview"
-                android:layout_width="0dp"
-                android:layout_height="148dp"
-                android:orientation="horizontal"
-                android:layout_marginStart="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical2_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top2_view"
-                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom2_view"
-                tools:listitem="@layout/item_my_look_photo" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/item_myLook_img2_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="148dp"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_vertical2_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top2_view"
+                    app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom2_view"
+                    tools:listitem="@layout/item_my_look_photo" />
+
+                <TextView
+                    android:id="@+id/week_default_1_2_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:layout_marginStart="5dp"
+                    android:visibility="gone"
+                    android:textColor="#C3B5AC"
+                    android:letterSpacing="-0.01"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top2_view"
+                    app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom2_view"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_vertical2_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:lineSpacingExtra="8sp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/lookpoint_error"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/item_myLook_03_tv"
@@ -270,7 +327,7 @@
                 android:layout_marginTop="15dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="@+id/item_myLook_01_tv"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_bottom2_view"
+                app:layout_constraintTop_toBottomOf="@id/mylook_second_cl"
                 android:textSize="6sp"
                 android:textColor="@color/terracota"
                 android:letterSpacing="-0.1"
@@ -287,71 +344,100 @@
                 app:layout_constraintBottom_toBottomOf="@id/item_myLook_03_tv"
                 app:layout_constraintStart_toEndOf="@id/item_myLook_03_tv" />
 
-            <View
-                android:id="@+id/item_myLook_horizon_top3_view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mylook_third_cl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_03_tv"
-                android:background="@color/pinkish_grey"/>
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_03_tv">
 
-            <com.eight.collection.utils.CustomTextView
-                android:id="@+id/item_myLook_photo3_tv"
-                style="@style/VlanLlaRegular4Pt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:rotation="180"
-                android:text="PHOTO."
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="92dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top3_view" />
+                <View
+                    android:id="@+id/item_myLook_horizon_top3_view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/pinkish_grey"/>
 
-            <ImageView
-                android:id="@+id/item_myLook_move_btn3_iv"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginBottom="-10dp"
-                android:layout_marginStart="6dp"
-                android:src="@drawable/ic_daydrop"
-                app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo3_tv"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_photo3_tv" />
+                <com.eight.collection.utils.CustomTextView
+                    android:id="@+id/item_myLook_photo3_tv"
+                    style="@style/VlanLlaRegular4Pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:rotation="180"
+                    android:text="PHOTO."
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="92dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top3_view" />
 
-            <View
-                android:id="@+id/item_myLook_horizon_bottom3_view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_photo3_tv"
-                android:background="@color/pinkish_grey"/>
+                <ImageView
+                    android:id="@+id/item_myLook_move_btn3_iv"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginBottom="-10dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ic_daydrop"
+                    app:layout_constraintBottom_toBottomOf="@id/item_myLook_photo3_tv"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_photo3_tv" />
 
-            <View
-                android:id="@+id/item_myLook_vertical3_view"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_photo3_tv"
-                app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom3_view"
-                app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top3_view"
-                android:background="@color/pinkish_grey"/>
+                <View
+                    android:id="@+id/item_myLook_horizon_bottom3_view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_photo3_tv"
+                    android:background="@color/pinkish_grey"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/item_myLook_img3_recyclerview"
-                android:layout_width="0dp"
-                android:layout_height="148dp"
-                android:orientation="horizontal"
-                android:layout_marginStart="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical3_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top3_view"
-                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom3_view"
-                tools:listitem="@layout/item_my_look_photo" />
+                <View
+                    android:id="@+id/item_myLook_vertical3_view"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_photo3_tv"
+                    app:layout_constraintBottom_toBottomOf="@id/item_myLook_horizon_bottom3_view"
+                    app:layout_constraintTop_toTopOf="@id/item_myLook_horizon_top3_view"
+                    android:background="@color/pinkish_grey"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/item_myLook_img3_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="148dp"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_vertical3_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top3_view"
+                    app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom3_view"
+                    tools:listitem="@layout/item_my_look_photo" />
+
+                <TextView
+                    android:id="@+id/week_default_1_3_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:layout_marginStart="5dp"
+                    android:visibility="gone"
+                    android:textColor="#C3B5AC"
+                    android:letterSpacing="-0.01"
+                    app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top3_view"
+                    app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom3_view"
+                    app:layout_constraintStart_toEndOf="@id/item_myLook_vertical3_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:lineSpacingExtra="8sp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/lookpoint_error"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/item_myLook_04_tv"
@@ -362,7 +448,7 @@
                 android:layout_marginTop="15dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="@+id/item_myLook_01_tv"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_bottom3_view"
+                app:layout_constraintTop_toBottomOf="@id/mylook_third_cl"
                 android:textSize="6sp"
                 android:textColor="@color/terracota"
                 android:letterSpacing="-0.1"
@@ -379,14 +465,23 @@
                 app:layout_constraintBottom_toBottomOf="@id/item_myLook_04_tv"
                 app:layout_constraintStart_toEndOf="@id/item_myLook_04_tv" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mylook_fourth_cl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_myLook_04_tv">
+
             <View
                 android:id="@+id/item_myLook_horizon_top4_view"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_04_tv"
                 android:background="@color/pinkish_grey"/>
 
             <com.eight.collection.utils.CustomTextView
@@ -394,7 +489,6 @@
                 style="@style/VlanLlaRegular4Pt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
                 android:rotation="180"
                 android:text="PHOTO."
                 android:layout_marginStart="16dp"
@@ -446,6 +540,28 @@
                 app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top4_view"
                 app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom4_view"
                 tools:listitem="@layout/item_my_look_photo" />
+
+            <TextView
+                android:id="@+id/week_default_1_4_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:layout_marginStart="5dp"
+                android:visibility="gone"
+                android:textColor="#C3B5AC"
+                android:letterSpacing="-0.01"
+                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top4_view"
+                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom4_view"
+                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical4_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="@string/lookpoint_error"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
                 android:id="@+id/item_myLook_05_tv"
                 android:layout_width="wrap_content"
@@ -455,7 +571,7 @@
                 android:layout_marginTop="15dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="@+id/item_myLook_01_tv"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_bottom4_view"
+                app:layout_constraintTop_toBottomOf="@id/mylook_fourth_cl"
                 android:textSize="6sp"
                 android:textColor="@color/terracota"
                 android:letterSpacing="-0.1"
@@ -472,14 +588,23 @@
                 app:layout_constraintBottom_toBottomOf="@id/item_myLook_05_tv"
                 app:layout_constraintStart_toEndOf="@id/item_myLook_05_tv" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mylook_fifth_cl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_myLook_05_tv">
+
             <View
                 android:id="@+id/item_myLook_horizon_top5_view"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_05_tv"
                 android:background="@color/pinkish_grey"/>
 
             <com.eight.collection.utils.CustomTextView
@@ -487,7 +612,6 @@
                 style="@style/VlanLlaRegular4Pt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
                 android:rotation="180"
                 android:text="PHOTO."
                 android:layout_marginStart="16dp"
@@ -541,82 +665,6 @@
                 tools:listitem="@layout/item_my_look_photo" />
 
             <TextView
-                android:id="@+id/week_default_1_1_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_kr"
-                android:textStyle="normal"
-                android:textSize="14sp"
-                android:layout_marginStart="5dp"
-                android:visibility="gone"
-                android:textColor="#C3B5AC"
-                android:letterSpacing="-0.01"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top_view"
-                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom_view"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:lineSpacingExtra="8sp"
-                android:gravity="center_horizontal"
-                android:text="@string/lookpoint_error"/>
-
-            <TextView
-                android:id="@+id/week_default_1_2_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_kr"
-                android:textStyle="normal"
-                android:textSize="14sp"
-                android:layout_marginStart="5dp"
-                android:visibility="gone"
-                android:textColor="#C3B5AC"
-                android:letterSpacing="-0.01"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top2_view"
-                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom2_view"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical2_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:lineSpacingExtra="8sp"
-                android:gravity="center_horizontal"
-                android:text="@string/lookpoint_error"/>
-
-            <TextView
-                android:id="@+id/week_default_1_3_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_kr"
-                android:textStyle="normal"
-                android:textSize="14sp"
-                android:layout_marginStart="5dp"
-                android:visibility="gone"
-                android:textColor="#C3B5AC"
-                android:letterSpacing="-0.01"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top3_view"
-                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom3_view"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical3_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:lineSpacingExtra="8sp"
-                android:gravity="center_horizontal"
-                android:text="@string/lookpoint_error"/>
-
-            <TextView
-                android:id="@+id/week_default_1_4_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_kr"
-                android:textStyle="normal"
-                android:textSize="14sp"
-                android:layout_marginStart="5dp"
-                android:visibility="gone"
-                android:textColor="#C3B5AC"
-                android:letterSpacing="-0.01"
-                app:layout_constraintTop_toBottomOf="@id/item_myLook_horizon_top4_view"
-                app:layout_constraintBottom_toTopOf="@id/item_myLook_horizon_bottom4_view"
-                app:layout_constraintStart_toEndOf="@id/item_myLook_vertical4_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:lineSpacingExtra="8sp"
-                android:gravity="center_horizontal"
-                android:text="@string/lookpoint_error"/>
-
-            <TextView
                 android:id="@+id/week_default_1_5_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -635,8 +683,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/lookpoint_error"/>
 
-
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

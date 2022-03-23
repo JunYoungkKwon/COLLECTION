@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,6 +21,16 @@ class MyLookRVAdapter(val context: Context) : RecyclerView.Adapter<MyLookRVAdapt
 
     private val myLookOOTDList = mutableListOf<MyLookOOTD>()
 
+    interface MyitemClickListener{
+        fun onItemClick(myLookOOTD: MyLookOOTD, position: Int, context: Context)
+    }
+
+    private  lateinit var mItemClickListener: MyitemClickListener
+
+    fun setMyItemClickListener(itemClickListener: MyitemClickListener){
+        mItemClickListener = itemClickListener
+    }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MyLookRVAdapter.ViewHolder {
         val binding: ItemMyLookPhotoBinding = ItemMyLookPhotoBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return  ViewHolder(binding)
@@ -27,6 +38,8 @@ class MyLookRVAdapter(val context: Context) : RecyclerView.Adapter<MyLookRVAdapt
 
     override fun onBindViewHolder(holder: MyLookRVAdapter.ViewHolder, position: Int) {
         holder.bind(myLookOOTDList[position])
+        holder.itemView.setOnClickListener{
+            mItemClickListener.onItemClick(myLookOOTDList[position], position, context) }
     }
 
 
