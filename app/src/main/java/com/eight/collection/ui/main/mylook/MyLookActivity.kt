@@ -1,5 +1,6 @@
 package com.eight.collection.ui.main.mylook
 
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
@@ -15,11 +16,11 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
     private  lateinit var myLookRVAdapter: MyLookRVAdapter
 
     override fun initAfterBinding() {
-        binding.itemMyLookPhotoTv.setOnClickListener(this)
-        binding.itemMyLookPhoto2Tv.setOnClickListener(this)
-        binding.itemMyLookPhoto3Tv.setOnClickListener(this)
-        binding.itemMyLookPhoto4Tv.setOnClickListener(this)
-        binding.itemMyLookPhoto5Tv.setOnClickListener(this)
+        binding.mylookFirstCl.setOnClickListener(this)
+        binding.mylookSecondCl.setOnClickListener(this)
+        binding.mylookThirdCl.setOnClickListener(this)
+        binding.mylookFourthCl.setOnClickListener(this)
+        binding.mylookFifthCl.setOnClickListener(this)
 
         var itemList = ArrayList<String>()
 
@@ -37,7 +38,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         if(v == null) return
 
         when(v) {
-            binding.itemMyLookPhotoTv -> {
+            binding.mylookFirstCl -> {
                 val intent = Intent(this, MyLookDetailActivity::class.java)
                 val num = binding.itemMyLook01Tv.text.toString()
                 intent.apply {
@@ -45,7 +46,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                 }
                 startActivity(intent)
             }
-            binding.itemMyLookPhoto2Tv -> {
+            binding.mylookSecondCl -> {
                 val intent = Intent(this, MyLookDetailActivity::class.java)
                 val num = binding.itemMyLook02Tv.text.toString()
                 intent.apply {
@@ -53,7 +54,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                 }
                 startActivity(intent)
             }
-            binding.itemMyLookPhoto3Tv -> {
+            binding.mylookThirdCl -> {
                 val intent = Intent(this, MyLookDetailActivity::class.java)
                 val num = binding.itemMyLook03Tv.text.toString()
                 intent.apply {
@@ -61,7 +62,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                 }
                 startActivity(intent)
             }
-            binding.itemMyLookPhoto4Tv -> {
+            binding.mylookFourthCl -> {
                 val intent = Intent(this, MyLookDetailActivity::class.java)
                 val num = binding.itemMyLook04Tv.text.toString()
                 intent.apply {
@@ -69,7 +70,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                 }
                 startActivity(intent)
             }
-            binding.itemMyLookPhoto5Tv -> {
+            binding.mylookFifthCl -> {
                 val intent = Intent(this, MyLookDetailActivity::class.java)
                 val num = binding.itemMyLook05Tv.text.toString()
                 intent.apply {
@@ -106,11 +107,26 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         binding.itemMyLookImgRecyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
+        myLookRVAdapter.setMyItemClickListener(object :MyLookRVAdapter.MyitemClickListener{
+
+            override fun onItemClick(myLookOOTD: MyLookOOTD, position: Int, context: Context) {
+                val intent = Intent(context, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook01Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number", num)
+                }
+                startActivity(intent)
+            }
+
+        })
+
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
             binding.weekDefault11Text.visibility = View.VISIBLE
+            binding.itemMyLookImgRecyclerview.visibility = View.GONE
         }
         else{
             binding.weekDefault11Text.visibility = View.GONE
+            binding.itemMyLookImgRecyclerview.visibility = View.VISIBLE
         }
 
     }
@@ -139,12 +155,27 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         binding.itemMyLookImg2Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
+        myLookRVAdapter.setMyItemClickListener(object :MyLookRVAdapter.MyitemClickListener{
+
+            override fun onItemClick(myLookOOTD: MyLookOOTD, position: Int, context: Context) {
+                val intent = Intent(context, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook02Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number", num)
+                }
+                startActivity(intent)
+            }
+
+        })
+
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
             binding.weekDefault12Text.visibility = View.VISIBLE
+            binding.itemMyLookImg2Recyclerview.visibility = View.GONE
 
         }
         else{
             binding.weekDefault12Text.visibility = View.GONE
+            binding.itemMyLookImg2Recyclerview.visibility = View.VISIBLE
         }
     }
 
@@ -156,11 +187,26 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         binding.itemMyLookImg3Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
+        myLookRVAdapter.setMyItemClickListener(object :MyLookRVAdapter.MyitemClickListener{
+
+            override fun onItemClick(myLookOOTD: MyLookOOTD, position: Int, context: Context) {
+                val intent = Intent(context, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook03Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number", num)
+                }
+                startActivity(intent)
+            }
+
+        })
+
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
             binding.weekDefault13Text.visibility = View.VISIBLE
+            binding.itemMyLookImg3Recyclerview.visibility = View.GONE
         }
         else{
             binding.weekDefault13Text.visibility = View.GONE
+            binding.itemMyLookImg3Recyclerview.visibility = View.VISIBLE
         }
     }
 
@@ -173,11 +219,26 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         binding.itemMyLookImg4Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
+        myLookRVAdapter.setMyItemClickListener(object :MyLookRVAdapter.MyitemClickListener{
+
+            override fun onItemClick(myLookOOTD: MyLookOOTD, position: Int, context: Context) {
+                val intent = Intent(context, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook04Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number", num)
+                }
+                startActivity(intent)
+            }
+
+        })
+
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
             binding.weekDefault14Text.visibility = View.VISIBLE
+            binding.itemMyLookImg4Recyclerview.visibility = View.GONE
         }
         else{
             binding.weekDefault14Text.visibility = View.GONE
+            binding.itemMyLookImg4Recyclerview.visibility = View.VISIBLE
         }
     }
 
@@ -190,11 +251,26 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
         binding.itemMyLookImg5Recyclerview.adapter = myLookRVAdapter
         myLookRVAdapter.addOOTD(myLookResult.lastOOTDArr)
 
+        myLookRVAdapter.setMyItemClickListener(object :MyLookRVAdapter.MyitemClickListener{
+
+            override fun onItemClick(myLookOOTD: MyLookOOTD, position: Int, context: Context) {
+                val intent = Intent(context, MyLookDetailActivity::class.java)
+                val num = binding.itemMyLook05Tv.text.toString()
+                intent.apply {
+                    this.putExtra("number", num)
+                }
+                startActivity(intent)
+            }
+
+        })
+
         if(myLookResult.lastOOTDArr.isNullOrEmpty()){
             binding.weekDefault15Text.visibility = View.VISIBLE
+            binding.itemMyLookImg5Recyclerview.visibility = View.GONE
         }
         else{
             binding.weekDefault15Text.visibility = View.GONE
+            binding.itemMyLookImg5Recyclerview.visibility = View.VISIBLE
         }
     }
 
