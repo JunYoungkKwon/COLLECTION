@@ -249,7 +249,20 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                             .build()
 
                         val onMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position1, item ->
-                            when(item.title){ "수정하기" -> startActivity(Intent(activity, WritefirstActivity::class.java))
+                            when(item.title){
+                                "수정하기" -> {
+                                    val date = dateSave?.get(position)?.date
+                                    var localdate: LocalDate? = date?.toInstant()
+                                        ?.atZone(ZoneId.systemDefault())
+                                        ?.toLocalDate()
+                                    moveToDate = localdate
+                                    val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                    val deleteDate: String? = localdate?.format(formatters)
+                                    dateSave?.removeAt(position)
+                                    val intent2 = Intent(context, WritefirstActivity::class.java)
+                                    intent2.putExtra("date", deleteDate)
+                                    startActivity(intent2)
+                                }
                                 "삭제하기" -> {
                                     diaryRVAdapter.removeItem(position)
                                     val date = dateSave?.get(position)?.date

@@ -118,7 +118,7 @@
         <entry key="app/src/main/res/layout-v28/dialog_introduce_second.xml" value="0.25" />
         <entry key="app/src/main/res/layout-v28/dialog_introduce_third.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_developer_info.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_finish.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_finish.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_info_edit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_pw_edit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.25" />

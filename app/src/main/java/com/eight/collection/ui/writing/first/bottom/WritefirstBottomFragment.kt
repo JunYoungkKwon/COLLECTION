@@ -34,7 +34,7 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritefirstBottomCustomDialog
     private var addItemId : Int = 13
     var bottomRVAdapter : WritefirstBottomRVAdapter = WritefirstBottomRVAdapter(bottomList)
-    var date : String = "2021-01-01"
+    var date : String = "2019-01-01"
     var looknameEt : EditText? = null
 
     override fun onCreateView(
@@ -63,7 +63,9 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
 
         getAddedBlock()
 
-        modi()
+        Handler(Looper.getMainLooper()).postDelayed({
+            modi()
+        }, 100)
 
         Handler(Looper.getMainLooper()).postDelayed({
             bottomRVAdapter = WritefirstBottomRVAdapter(bottomList)
@@ -72,7 +74,7 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writefirstBottomRecyclerview.adapter = bottomRVAdapter
             binding.writefirstBottomRecyclerview.layoutManager = flexboxLayoutManager
-        }, 100)
+        }, 200)
 
 
         return binding.root
@@ -319,6 +321,12 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
                 }
             }
         }
+        bottomRVAdapter = WritefirstBottomRVAdapter(bottomList)
+        bottomRVAdapter.setBottomClickListener(this)
+
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writefirstBottomRecyclerview.adapter = bottomRVAdapter
+        binding.writefirstBottomRecyclerview.layoutManager = flexboxLayoutManager
     }
 
     override fun onModiFailure(code: Int, message: String) {

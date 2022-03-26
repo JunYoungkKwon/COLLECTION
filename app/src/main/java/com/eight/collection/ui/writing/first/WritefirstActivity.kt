@@ -132,6 +132,7 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
             startActivityForResult(intent, 200)
         }
 
+
         recyclerview.layoutManager =
             LinearLayoutManager(baseContext, LinearLayoutManager.HORIZONTAL, false)
         recyclerview.adapter = photoRVAdapter

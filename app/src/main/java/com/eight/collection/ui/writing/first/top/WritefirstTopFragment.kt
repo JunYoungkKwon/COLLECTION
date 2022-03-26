@@ -33,7 +33,7 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritefirstTopCustomDialog
     private var addItemId : Int = 13
     var topRVAdapter : WritefirstTopRVAdapter = WritefirstTopRVAdapter(topList)
-    var date : String = "2021-01-01"
+    var date : String = "2019-01-01"
     var looknameEt : EditText? = null
 
     override fun onCreateView(
@@ -63,18 +63,19 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         //추가 Top 리스트 생성
         getAddedBlock()
 
-        modi()
-
         Handler(Looper.getMainLooper()).postDelayed({
-            // Top RVA
-            topRVAdapter = WritefirstTopRVAdapter(topList)
-            topRVAdapter.setTopClickListener(this)
+            modi()
+        }, 200)
 
-            val flexboxLayoutManager = FlexboxLayoutManager(activity)
-            binding.writefirstTopRecyclerview.adapter = topRVAdapter
-            binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
-        }, 100)
+        // Top RVA
+        Handler(Looper.getMainLooper()).postDelayed({
+                topRVAdapter = WritefirstTopRVAdapter(topList)
+                topRVAdapter.setTopClickListener(this)
 
+                val flexboxLayoutManager = FlexboxLayoutManager(activity)
+                binding.writefirstTopRecyclerview.adapter = topRVAdapter
+                binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
+        }, 300)
 
         return binding.root
     }
@@ -330,6 +331,13 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
                 }
             }
         }
+        topRVAdapter = WritefirstTopRVAdapter(topList)
+        topRVAdapter.setTopClickListener(this)
+
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writefirstTopRecyclerview.adapter = topRVAdapter
+        binding.writefirstTopRecyclerview.layoutManager = flexboxLayoutManager
+
     }
 
     override fun onModiFailure(code: Int, message: String) {

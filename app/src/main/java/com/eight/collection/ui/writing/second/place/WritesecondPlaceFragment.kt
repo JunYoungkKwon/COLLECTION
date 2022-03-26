@@ -35,7 +35,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritesecondPlaceCustomDialog
     private var idcount : Int = 9
     var placeRVAdapter : WritesecondPlaceRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
-    var date : String = "2021-01-01"
+    var date : String = "2019-01-01"
     var mode : Int = 1
 
     override fun onCreateView(
@@ -61,18 +61,22 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
         getAddedBlock()
 
         mode = (activity as WritesecondActivity).mode
-        if(mode == 2) {
-            modi()
-        }
 
         Handler(Looper.getMainLooper()).postDelayed({
-            placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
-            placeRVAdapter.setPlaceClickListener(this)
-
-            val flexboxLayoutManager = FlexboxLayoutManager(activity)
-            binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
-            binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
+            modi()
         }, 100)
+
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            if(mode == 1) {
+                placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
+                placeRVAdapter.setPlaceClickListener(this)
+
+                val flexboxLayoutManager = FlexboxLayoutManager(activity)
+                binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
+                binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
+            }
+        }, 200)
 
 
         return binding.root
@@ -149,6 +153,12 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
                 }
             }
         }
+        placeRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
+        placeRVAdapter.setPlaceClickListener(this)
+
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
+        binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
     }
 
     override fun onModiFailure(code: Int, message: String) {
