@@ -11,16 +11,17 @@
         android:id="@+id/item_my_look_second_photo_iv"
         android:layout_width="104dp"
         android:layout_height="104dp"
+        app:layout_constraintHorizontal_weight="1"
         android:background="@drawable/mylook_second_default"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/item_my_look_dim_background"
-        android:layout_width="114dp"
+        android:layout_width="104dp"
         android:orientation="horizontal"
-        android:layout_height="114dp"
+        android:layout_height="104dp"
         android:background="#70000000"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="@+id/item_my_look_second_photo_iv"

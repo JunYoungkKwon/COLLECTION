@@ -66,6 +66,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
 
     private fun scrollFinsh() {
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.finishCl)
+        bottomSheetBehavior.setGestureInsetBottomIgnored(true)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         bottomSheetBehavior.addBottomSheetCallback(object :
