@@ -344,13 +344,15 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/writefirst_color_vp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="214dp"
             app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb"
             android:layout_marginTop="20dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             />
 
         <TextView
@@ -360,9 +362,10 @@
             android:fontFamily="@font/suit_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/writefirst_color_top_color_icon_iv"
+            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb"
             android:layout_marginTop="17dp"
+            android:layout_marginStart="27dp"
             />
 
         <TextView
@@ -396,7 +399,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:src="@drawable/ic_indicator_writefirst"
-            app:layout_constraintEnd_toStartOf="@id/writefirst_background_Perpendicularline_fourth_v"
+            app:layout_constraintStart_toStartOf="@id/writefirst_select_01_tv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_vp" />
 
         <TextView
@@ -418,6 +421,7 @@
             app:layout_constraintStart_toStartOf="@id/writefirst_color_top_colortext_tv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_colortext_tv"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -472,6 +476,7 @@
             android:background="@drawable/ic_color_selector_orange"
             app:layout_constraintStart_toStartOf="@id/writefirst_color_top_colortext_tv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
+            android:layout_marginStart="10dp"
             />
 
         <androidx.appcompat.widget.AppCompatImageButton

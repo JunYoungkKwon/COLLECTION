@@ -26,17 +26,10 @@ class IntroduceFirstDialog(context: Context) : Dialog(context){
         setContentView(R.layout.dialog_introduce_first)
 
         nextImage = findViewById(R.id.introduce_next_ic)
-        previousImage = findViewById(R.id.introduce_previous_ic)
 
         nextImage.setOnClickListener{
             nextDialog = IntroduceSecondDialog(context)
             nextDialog.show()
-            dismiss()
-        }
-
-        previousImage.setOnClickListener{
-            previousDialog = IntroduceFourthDialog(context)
-            previousDialog.show()
             dismiss()
         }
 
