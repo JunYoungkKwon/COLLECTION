@@ -45,6 +45,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number",num)
                 }
                 startActivity(intent)
+                slideRight()
             }
             binding.mylookSecondCl -> {
                 val intent = Intent(this, MyLookDetailActivity::class.java)
@@ -53,6 +54,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number",num)
                 }
                 startActivity(intent)
+                slideRight()
             }
             binding.mylookThirdCl -> {
                 val intent = Intent(this, MyLookDetailActivity::class.java)
@@ -61,6 +63,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number",num)
                 }
                 startActivity(intent)
+                slideRight()
             }
             binding.mylookFourthCl -> {
                 val intent = Intent(this, MyLookDetailActivity::class.java)
@@ -69,6 +72,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number",num)
                 }
                 startActivity(intent)
+                slideRight()
             }
             binding.mylookFifthCl -> {
                 val intent = Intent(this, MyLookDetailActivity::class.java)
@@ -77,6 +81,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number",num)
                 }
                 startActivity(intent)
+                slideRight()
             }
         }
     }
@@ -116,6 +121,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number", num)
                 }
                 startActivity(intent)
+                slideRight()
             }
 
         })
@@ -164,6 +170,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number", num)
                 }
                 startActivity(intent)
+                slideRight()
             }
 
         })
@@ -196,6 +203,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number", num)
                 }
                 startActivity(intent)
+                slideRight()
             }
 
         })
@@ -228,6 +236,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number", num)
                 }
                 startActivity(intent)
+                slideRight()
             }
 
         })
@@ -260,6 +269,7 @@ class MyLookActivity(): BaseActivity<ActivityMyLookBinding>(ActivityMyLookBindin
                     this.putExtra("number", num)
                 }
                 startActivity(intent)
+                slideRight()
             }
 
         })

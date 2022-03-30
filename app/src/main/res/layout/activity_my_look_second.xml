@@ -76,7 +76,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myLook_second_scroll_recyclerview"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_marginHorizontal="12dp"
