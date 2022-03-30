@@ -348,7 +348,7 @@
             app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_tb"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:layout_marginStart="15dp"
@@ -421,7 +421,6 @@
             app:layout_constraintStart_toStartOf="@id/writefirst_color_top_colortext_tv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_colortext_tv"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="12dp"
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -476,7 +475,6 @@
             android:background="@drawable/ic_color_selector_orange"
             app:layout_constraintStart_toStartOf="@id/writefirst_color_top_colortext_tv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
-            android:layout_marginStart="12dp"
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
