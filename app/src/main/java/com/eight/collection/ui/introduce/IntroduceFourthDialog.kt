@@ -23,10 +23,11 @@ import com.eight.collection.utils.saveIntroduceIs
 class IntroduceFourthDialog(context: Context) : Dialog(context){
 
     private lateinit var closeImage : ImageView
-    private lateinit var nextImage : ImageView
     private lateinit var previousImage : ImageView
+    private lateinit var startText : TextView
     lateinit var previousDialog: IntroduceThirdDialog
     lateinit var nextDialog: IntroduceFirstDialog
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,7 @@ class IntroduceFourthDialog(context: Context) : Dialog(context){
 
         closeImage = findViewById(R.id.introduce_close_ic)
         previousImage = findViewById(R.id.introduce_previous_ic)
+        startText = findViewById(R.id.introduce_start_tv)
 
 
         previousImage.setOnClickListener{
@@ -43,6 +45,11 @@ class IntroduceFourthDialog(context: Context) : Dialog(context){
         }
 
         closeImage.setOnClickListener{
+            dismiss()
+            saveIntroduceIs(true)
+        }
+
+        startText.setOnClickListener{
             dismiss()
             saveIntroduceIs(true)
         }
