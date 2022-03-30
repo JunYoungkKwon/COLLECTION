@@ -33,14 +33,8 @@ class IntroduceFourthDialog(context: Context) : Dialog(context){
         setContentView(R.layout.dialog_introduce_fourth)
 
         closeImage = findViewById(R.id.introduce_close_ic)
-        nextImage = findViewById(R.id.introduce_next_ic)
         previousImage = findViewById(R.id.introduce_previous_ic)
 
-        nextImage.setOnClickListener{
-            nextDialog = IntroduceFirstDialog(context)
-            nextDialog.show()
-            dismiss()
-        }
 
         previousImage.setOnClickListener{
             previousDialog = IntroduceThirdDialog(context)

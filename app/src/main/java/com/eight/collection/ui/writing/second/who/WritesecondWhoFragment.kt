@@ -31,7 +31,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritesecondWhoCustomDialog
     private var idcount : Int = 7
     var whoRVAdapter : WritesecondWhoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
-    var date : String = "2021-01-01"
+    var date : String = "2019-01-01"
     var mode : Int = 1
 
     override fun onCreateView(
@@ -55,18 +55,21 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
         getAddedBlock()
 
         mode = (activity as WritesecondActivity).mode
-        if(mode == 2) {
-            modi()
-        }
 
         Handler(Looper.getMainLooper()).postDelayed({
-            whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
-            whoRVAdapter.setWhoClickListener(this)
-
-            val flexboxLayoutManager = FlexboxLayoutManager(activity)
-            binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
-            binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
+            modi()
         }, 100)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            if(mode == 1) {
+                whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
+                whoRVAdapter.setWhoClickListener(this)
+
+                val flexboxLayoutManager = FlexboxLayoutManager(activity)
+                binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
+                binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
+            }
+        }, 200)
 
 
         return binding.root
@@ -145,6 +148,12 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
                 }
             }
         }
+        whoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
+        whoRVAdapter.setWhoClickListener(this)
+
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
+        binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
     }
 
     override fun onModiFailure(code: Int, message: String) {

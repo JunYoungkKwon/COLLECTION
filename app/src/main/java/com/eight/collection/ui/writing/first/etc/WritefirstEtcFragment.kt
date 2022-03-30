@@ -36,7 +36,7 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritefirstEtcCustomDialog
     private var addItemId : Int = 13
     var etcRVAdapter : WritefirstEtcRVAdapter = WritefirstEtcRVAdapter(etcList)
-    var date : String = "2021-01-01"
+    var date : String = "2019-01-01"
     var looknameEt : EditText? = null
 
     override fun onCreateView(
@@ -65,7 +65,9 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
 
         getAddedBlock()
 
-        modi()
+        Handler(Looper.getMainLooper()).postDelayed({
+            modi()
+        }, 100)
 
         Handler(Looper.getMainLooper()).postDelayed({
             etcRVAdapter = WritefirstEtcRVAdapter(etcList)
@@ -74,7 +76,7 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writefirstEtcRecyclerview.adapter = etcRVAdapter
             binding.writefirstEtcRecyclerview.layoutManager = flexboxLayoutManager
-        }, 100)
+        }, 200)
 
         return binding.root
     }
@@ -320,6 +322,12 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
                 }
             }
         }
+        etcRVAdapter = WritefirstEtcRVAdapter(etcList)
+        etcRVAdapter.setEtcClickListener(this)
+
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writefirstEtcRecyclerview.adapter = etcRVAdapter
+        binding.writefirstEtcRecyclerview.layoutManager = flexboxLayoutManager
     }
 
     override fun onModiFailure(code: Int, message: String) {

@@ -32,7 +32,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritesecondWeatherCustomDialog
     private var idcount : Int = 9
     var weatherRVAdapter : WritesecondWeatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
-    var date : String = "2021-01-01"
+    var date : String = "2019-01-01"
     var mode : Int = 1
 
     override fun onCreateView(
@@ -58,18 +58,23 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
         getAddedBlock()
 
         mode = (activity as WritesecondActivity).mode
-        if(mode == 2) {
-            modi()
-        }
 
         Handler(Looper.getMainLooper()).postDelayed({
-            weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
-            weatherRVAdapter.setWeatherClickListener(this)
-
-            val flexboxLayoutManager = FlexboxLayoutManager(activity)
-            binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
-            binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
+            modi()
         }, 100)
+
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            if(mode == 1) {
+                weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
+                weatherRVAdapter.setWeatherClickListener(this)
+
+                val flexboxLayoutManager = FlexboxLayoutManager(activity)
+                binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
+                binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
+            }
+        }, 200)
+
 
         return binding.root
     }
@@ -145,6 +150,12 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
                 }
             }
         }
+        weatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
+        weatherRVAdapter.setWeatherClickListener(this)
+
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
+        binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
     }
 
     override fun onModiFailure(code: Int, message: String) {

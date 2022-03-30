@@ -37,7 +37,7 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
     lateinit var customDialog: WritefirstShoesCustomDialog
     private var addItemId : Int = 13
     var shoesRVAdapter : WritefirstShoesRVAdapter = WritefirstShoesRVAdapter(shoesList)
-    var date : String = "2021-01-01"
+    var date : String = "2019-01-01"
     var looknameEt : EditText? = null
 
     override fun onCreateView(
@@ -66,7 +66,10 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
 
         getAddedBlock()
 
-        modi()
+        Handler(Looper.getMainLooper()).postDelayed({
+            modi()
+        }, 100)
+
 
         Handler(Looper.getMainLooper()).postDelayed({
             shoesRVAdapter = WritefirstShoesRVAdapter(shoesList)
@@ -75,7 +78,7 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
             val flexboxLayoutManager = FlexboxLayoutManager(activity)
             binding.writefirstShoesRecyclerview.adapter = shoesRVAdapter
             binding.writefirstShoesRecyclerview.layoutManager = flexboxLayoutManager
-        }, 100)
+        }, 200)
 
         return binding.root
     }
@@ -320,6 +323,12 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
                 }
             }
         }
+        shoesRVAdapter = WritefirstShoesRVAdapter(shoesList)
+        shoesRVAdapter.setShoesClickListener(this)
+
+        val flexboxLayoutManager = FlexboxLayoutManager(activity)
+        binding.writefirstShoesRecyclerview.adapter = shoesRVAdapter
+        binding.writefirstShoesRecyclerview.layoutManager = flexboxLayoutManager
     }
 
     override fun onModiFailure(code: Int, message: String) {
