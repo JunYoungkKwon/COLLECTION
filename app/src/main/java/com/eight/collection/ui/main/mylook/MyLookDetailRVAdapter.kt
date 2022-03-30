@@ -82,26 +82,6 @@ class MyLookDetailRVAdapter(val context: Context) : RecyclerView.Adapter<MyLookD
 
     inner class ViewHolder(val binding: ItemMyLookSecondPhotoBinding): RecyclerView.ViewHolder(binding.root){
 
-
-//        init {
-//            binding.itemMyLookSecondPhotoIv.setOnClickListener {
-//                if(isClick == true){
-//                    Log.d("CLICK/TEST2","test")
-//                    binding.itemMyLookDateTv.visibility = View.VISIBLE
-//                    binding.itemMyLookDimBackground.visibility = View.VISIBLE
-//                    isClick = false
-//                }
-//                else{
-//                    Log.d("CLICK/TEST3","test")
-//                    binding.itemMyLookDateTv.visibility = View.GONE
-//                    binding.itemMyLookDimBackground.visibility = View.GONE
-//                    isClick = true
-//
-//                }
-//            }
-//        }
-
-
         fun bind(myLookOOTD: MyLookOOTD){
             if(myLookOOTD.imageUrl.isNullOrEmpty()){
                 Glide.with(context).load(R.drawable.mylook_second_default).into(binding.itemMyLookSecondPhotoIv)

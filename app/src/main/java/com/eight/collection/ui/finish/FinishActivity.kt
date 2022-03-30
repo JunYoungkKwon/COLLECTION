@@ -65,7 +65,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     }
 
     private fun scrollFinsh() {
-        val bottomSheetBehavior = BottomSheetBehavior.from(binding.finishCl)
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.finishNs)
         bottomSheetBehavior.setGestureInsetBottomIgnored(true)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
@@ -76,8 +76,6 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
                     finish()
                 }
             }
-
-
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
             }
@@ -212,66 +210,65 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
             finish.Etc.add(Cloth("해당 항목 없음", ""))
         }
 
-        if(finish.weather.isNullOrEmpty()){
-            // weather 비고 place 있는상태
-            if(finish.place.isNotEmpty()){
-                binding.finishWeatherRecyclerView.visibility = View.GONE
-                binding.finishWeatherTv.visibility = View.GONE
-
+        //  place, weather, who
+        if(finish.place.isNullOrEmpty()){
+            binding.finishPlaceRecyclerView.visibility = View.GONE
+            binding.finishPlaceTv.visibility = View.GONE
+            // place -> x weather -> o
+            if(finish.weather.isNotEmpty()){
                 val constraints = ConstraintSet()
-                constraints.clone(binding.finishCl)
+                constraints.clone(binding.finishNsCl)
                 constraints.connect(
-                    binding.finishPlaceTv.id,
+                    binding.finishWeatherTv.id,
                     ConstraintSet.TOP,
                     binding.finishHorizonFourthView.id,
                     ConstraintSet.BOTTOM,
                     convertDpToPixel(16f, this)
                 )
-                constraints.applyTo(binding.finishCl)
-                // weather 비고 place 있고 who 없는상태
+                constraints.applyTo(binding.finishNsCl)
+                //  who -> x
                 if(finish.who.isNullOrEmpty()){
                     binding.finishWhoRecyclerView.visibility = View.GONE
                     binding.finishWhoTv.visibility = View.GONE
 
                     val constraints = ConstraintSet()
-                    constraints.clone(binding.finishCl)
+                    constraints.clone(binding.finishNsCl)
                     constraints.connect(
                         binding.finishTopTv.id,
                         ConstraintSet.TOP,
-                        binding.finishWhoTv.id,
+                        binding.finishWeatherTv.id,
                         ConstraintSet.BOTTOM,
+                        convertDpToPixel(16f, this)
                     )
-                    constraints.applyTo(binding.finishCl)
+                    constraints.applyTo(binding.finishNsCl)
 
                 }
             }
+            // place -> x weather -> x
             else{
+                binding.finishWeatherRecyclerView.visibility = View.GONE
+                binding.finishWeatherTv.visibility = View.GONE
+
+                // who -> x
                 if(finish.who.isNullOrEmpty()){
-                    binding.finishWeatherRecyclerView.visibility = View.GONE
-                    binding.finishWeatherTv.visibility = View.GONE
-                    binding.finishPlaceRecyclerView.visibility = View.GONE
-                    binding.finishPlaceTv.visibility = View.GONE
                     binding.finishWhoRecyclerView.visibility = View.GONE
                     binding.finishWhoTv.visibility = View.GONE
 
                     val constraints = ConstraintSet()
-                    constraints.clone(binding.finishCl)
+                    constraints.clone(binding.finishNsCl)
                     constraints.connect(
                         binding.finishTopTv.id,
                         ConstraintSet.TOP,
                         binding.finishHorizonFourthView.id,
                         ConstraintSet.BOTTOM,
                     )
-                    constraints.applyTo(binding.finishCl)
+                    constraints.applyTo(binding.finishNsCl)
 
-                }else{
-                    binding.finishWeatherRecyclerView.visibility = View.GONE
-                    binding.finishWeatherTv.visibility = View.GONE
-                    binding.finishPlaceRecyclerView.visibility = View.GONE
-                    binding.finishPlaceTv.visibility = View.GONE
-
+                }
+                // who -> o
+                else{
                     val constraints = ConstraintSet()
-                    constraints.clone(binding.finishCl)
+                    constraints.clone(binding.finishNsCl)
                     constraints.connect(
                         binding.finishWhoTv.id,
                         ConstraintSet.TOP,
@@ -279,59 +276,66 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
                         ConstraintSet.BOTTOM,
                         convertDpToPixel(16f, this)
                     )
-                    constraints.applyTo(binding.finishCl)
+                    constraints.applyTo(binding.finishNsCl)
                 }
 
             }
-        }else{
-            if(finish.place.isNotEmpty()){
+        }
+        else{
+            // place -> o weather -> o
+            if(finish.weather.isNotEmpty()){
 
+                // who -> x
                 if(finish.who.isNullOrEmpty()){
                     binding.finishWhoRecyclerView.visibility = View.GONE
                     binding.finishWhoTv.visibility = View.GONE
 
                     val constraints = ConstraintSet()
-                    constraints.clone(binding.finishCl)
+                    constraints.clone(binding.finishNsCl)
+                    constraints.connect(
+                        binding.finishTopTv.id,
+                        ConstraintSet.TOP,
+                        binding.finishWeatherTv.id,
+                        ConstraintSet.BOTTOM,
+                    )
+                    constraints.applyTo(binding.finishNsCl)
+
+                }
+
+            }
+            // place -> o weather -> x
+            else {
+                binding.finishWeatherRecyclerView.visibility = View.GONE
+                binding.finishWeatherTv.visibility = View.GONE
+
+                // who -> x
+                if(finish.who.isNullOrEmpty()){
+
+                    binding.finishWhoRecyclerView.visibility = View.GONE
+                    binding.finishWhoTv.visibility = View.GONE
+
+                    val constraints = ConstraintSet()
+                    constraints.clone(binding.finishNsCl)
                     constraints.connect(
                         binding.finishTopTv.id,
                         ConstraintSet.TOP,
                         binding.finishPlaceTv.id,
                         ConstraintSet.BOTTOM,
                     )
-                    constraints.applyTo(binding.finishCl)
+                    constraints.applyTo(binding.finishNsCl)
 
                 }
-
-            }
-            else {
-                binding.finishPlaceRecyclerView.visibility = View.GONE
-                binding.finishPlaceTv.visibility = View.GONE
-
-                if(finish.who.isNullOrEmpty()){
-
-                    binding.finishWhoRecyclerView.visibility = View.GONE
-                    binding.finishWhoTv.visibility = View.GONE
-
+                // who -> o
+                else{
                     val constraints = ConstraintSet()
-                    constraints.clone(binding.finishCl)
-                    constraints.connect(
-                        binding.finishTopTv.id,
-                        ConstraintSet.TOP,
-                        binding.finishWeatherTv.id,
-                        ConstraintSet.BOTTOM,
-                    )
-                    constraints.applyTo(binding.finishCl)
-
-                }else{
-                    val constraints = ConstraintSet()
-                    constraints.clone(binding.finishCl)
+                    constraints.clone(binding.finishNsCl)
                     constraints.connect(
                         binding.finishWhoTv.id,
                         ConstraintSet.TOP,
-                        binding.finishWeatherTv.id,
+                        binding.finishPlaceTv.id,
                         ConstraintSet.BOTTOM,
                     )
-                    constraints.applyTo(binding.finishCl)
+                    constraints.applyTo(binding.finishNsCl)
 
                 }
             }
