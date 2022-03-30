@@ -421,7 +421,7 @@
             app:layout_constraintStart_toStartOf="@id/writefirst_color_top_colortext_tv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_colortext_tv"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -476,7 +476,7 @@
             android:background="@drawable/ic_color_selector_orange"
             app:layout_constraintStart_toStartOf="@id/writefirst_color_top_colortext_tv"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
