@@ -11,8 +11,9 @@ import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginTop
+import androidx.core.widget.NestedScrollView
 import com.eight.collection.R
 import com.eight.collection.data.entities.Cloth
 import com.eight.collection.data.entities.Photo
@@ -22,14 +23,12 @@ import com.eight.collection.data.remote.setting.SettingService
 import com.eight.collection.databinding.ActivityFinishBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.week.DeleteView
-import com.eight.collection.ui.main.week.DiaryRVAdapter
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter

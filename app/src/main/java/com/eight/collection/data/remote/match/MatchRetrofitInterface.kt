@@ -17,4 +17,7 @@ interface MatchRetrofitInterface {
                  @Query("startAt") startAt : String,
                  @Query("endAt") endAt : String): Call<MatchResponse>
 
+    @GET("app/search/mainpage/{PWWC}")
+    fun getLastTag(@Path("PWWC") PWWC : Int): Call<LastTagResponse>
+
 }

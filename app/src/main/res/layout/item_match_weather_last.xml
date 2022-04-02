@@ -8,36 +8,55 @@
     android:layout_marginBottom="12dp"
     android:layout_marginRight="10dp">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/match_weather_last_text_button"
-        android:layout_width="wrap_content"
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/match_weather_last_text_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:text="사용자사용자사용자입니다sdfsdf"-->
+<!--        android:gravity="center"-->
+<!--        android:button="@color/transparent"-->
+<!--        android:textSize="14sp"-->
+<!--        android:paddingStart="20dp"-->
+<!--        android:paddingEnd="20dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        android:background="@drawable/radio_selector"-->
+<!--        android:textColor="@drawable/selector_radio_text"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+    <RelativeLayout
+        android:id="@+id/match_default_rl"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="사용자사용자"
-        android:gravity="center"
-        android:button="@color/transparent"
-        android:textSize="14sp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:background="@drawable/radio_selector"
-        android:textColor="@drawable/selector_radio_text"
-        tools:ignore="MissingConstraints"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/match_weather_last_delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_block_delete"
-        android:background="#00ff0000"
-        app:layout_constraintEnd_toEndOf="@id/match_weather_last_text_button"
-        app:layout_constraintTop_toTopOf="@id/match_weather_last_text_button"
-        app:layout_constraintBottom_toBottomOf="@id/match_weather_last_text_button"
-        android:layout_marginEnd="8dp"
-        android:visibility="invisible" />
+        <TextView
+            android:id="@+id/match_default_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:button="@color/transparent"
+            android:textSize="14sp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@drawable/selector_radio_text"
+            android:textStyle="normal"
+            tools:text="하얀눈길하이하이하이" />
+    </RelativeLayout>
 
-
-
-
+<!--    <ImageButton-->
+<!--        android:id="@+id/match_weather_last_delete_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/ic_add_block_delete"-->
+<!--        android:background="#00ff0000"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/match_weather_last_text_button"-->
+<!--        app:layout_constraintTop_toTopOf="@id/match_weather_last_text_button"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/match_weather_last_text_button"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:visibility="invisible" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

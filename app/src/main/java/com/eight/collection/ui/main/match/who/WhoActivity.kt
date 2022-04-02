@@ -8,39 +8,46 @@ import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.remote.match.MatchService
 import com.eight.collection.databinding.ActivityMatchWhoBinding
 import com.eight.collection.ui.BaseActivity
-import com.eight.collection.ui.main.match.Button
+import com.eight.collection.ui.main.match.LastTag
+import com.eight.collection.ui.main.match.LastTagView
 import com.eight.collection.ui.main.match.MatchButtonRVAdapter
 import com.eight.collection.ui.main.match.MatchView
-import com.eight.collection.ui.main.mylook.MyLookRVAdapter
 import com.eight.collection.ui.main.week.DiaryRVAdapter
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
-class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding::inflate), MatchView {
+class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding::inflate), MatchView, LastTagView {
 
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
     private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
-    private  var defaultButton = ArrayList<Button>()
+    private  lateinit var lastTagRVAdapter: MatchButtonRVAdapter
+    private  var defaultTag = ArrayList<LastTag>()
 
     override fun initAfterBinding() {
 //        getSearchResult()
+        getLastTag()
 
-//        defaultButton.apply {
-//            add(Button("나", ""))
-//            add(Button("친구", ""))
-//            add(Button("애인", ""))
-//            add(Button("가족", ""))
-//            add(Button("동료", ""))
-//            add(Button("애완동물", ""))
-//        }
-//
-//        matchButtonRVAdapter = MatchButtonRVAdapter(defaultButton)
-//        binding.matchWeatherDefaultRecyclerview.adapter = matchButtonRVAdapter
+        defaultTag.apply {
+            add(LastTag("나", "",1))
+            add(LastTag("친구", "",2))
+            add(LastTag("애인", "",3))
+            add(LastTag("가족", "",4))
+            add(LastTag("동료", "",5))
+            add(LastTag("애완동물", "",6))
+        }
+
+        matchButtonRVAdapter = MatchButtonRVAdapter()
+        binding.matchWhoDefaultRecyclerview.adapter = matchButtonRVAdapter
+        matchButtonRVAdapter.addButton(defaultTag)
 
     }
 
     private fun getSearchResult(){
         MatchService.getMatch(this, 0, "공원","", "", "", "", "")
+    }
+
+    private fun getLastTag(){
+        MatchService.getLastTag(this, 0)
     }
 
     override fun onMatchLoading() {
@@ -112,6 +119,29 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
             }
             else -> {
                 Log.d("Month/DB/ERROR", "error")
+            }
+        }
+    }
+
+    override fun onLastTagLoading() {}
+
+    override fun onLastTagSuccess(lastTag: ArrayList<LastTag>) {
+        lastTagRVAdapter = MatchButtonRVAdapter()
+        binding.matchWhoLastRecyclerview.adapter = lastTagRVAdapter
+        lastTagRVAdapter.addButton(lastTag)
+    }
+
+    override fun onLastTagFailure(code: Int, message: String) {
+        Log.d("LastTag1", "error")
+        when (code) {
+            2000,2001, 2002 -> {
+                Log.d("LastTag/JWT/ERROR", "error")
+            }
+            3101,3048, 3036 -> {
+                Log.d("LastTag/PWWC/ERROR", "error")
+            }
+            else -> {
+                Log.d("LastTag/DB/ERROR", "error")
             }
         }
     }

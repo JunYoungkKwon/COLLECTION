@@ -34,7 +34,7 @@ class MatchFragment(): BaseFragment<FragmentMatchBinding>(FragmentMatchBinding::
 
         when(v) {
             binding.matchWhoTextIv -> {
-                /*startActivity(Intent(activity, WhoActivity::class.java))*/
+//                startActivity(Intent(activity, WhoActivity::class.java))
                 var layoutInflater = LayoutInflater.from(context).inflate(R.layout.toast_custom,null)
                 var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
                 text.text = "매칭 기능은 현재 지원하지 않습니다."

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/date_cell"
     android:background="?attr/selectableItemBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -44,31 +44,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@color/terracota"/>
 
+    <View
+        android:id="@+id/calendar_vertical_view"
+        android:layout_width="1dp"
+        android:visibility="invisible"
+        android:background="@color/dark_taupe"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/calendar_today_view"
+        app:layout_constraintBottom_toTopOf="@id/calendar_rank_iv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ImageView
         android:id="@+id/calendar_rank_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:paddingBottom="12dp"
+        android:layout_marginBottom="12dp"
         android:scaleType="center"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/calendar_day_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendar_vertical_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="center"/>
 
-    <ImageView
-        android:id="@+id/calendar_rank_invisible_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:visibility="invisible"
-        android:src="@drawable/calendar_rank_5_on"
-        android:paddingBottom="12dp"
-        android:scaleType="center"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/calendar_day_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_gravity="center"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

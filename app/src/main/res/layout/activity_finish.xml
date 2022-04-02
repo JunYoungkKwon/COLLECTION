@@ -14,7 +14,6 @@
         android:id="@+id/finish_ns"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
         android:layout_marginHorizontal="16dp"
         android:fillViewport="true"
         app:behavior_hideable="true"
@@ -27,6 +26,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/finish_ns_cl"
+            android:layout_marginTop="40dp"
             android:nestedScrollingEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -121,9 +121,9 @@
                 android:rotation="180"
                 android:text="PHOTO."
                 android:layout_marginStart="13dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="164dp"
                 app:layout_constraintStart_toStartOf="@id/finish_horizon_third_view"
-                app:layout_constraintBottom_toTopOf="@id/finish_horizon_third_view"/>
+                app:layout_constraintTop_toBottomOf="@id/finish_hori_second_view" />
 
             <View
                 android:id="@+id/finish_horizon_third_view"
@@ -131,9 +131,9 @@
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="16dp"
                 android:background="@color/pinkish_grey"
-                app:layout_constraintTop_toBottomOf="@id/finish_photo_recyclerview"
+                app:layout_constraintTop_toBottomOf="@id/finish_photo_tv"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <View
@@ -280,9 +280,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/finish_photo_recyclerview"
                 android:layout_width="0dp"
-                android:layout_height="230dp"
+                android:layout_height="0dp"
                 android:orientation="horizontal"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginVertical="12dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

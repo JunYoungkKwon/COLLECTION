@@ -1,29 +1,20 @@
 package com.eight.collection.ui.main.match
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.eight.collection.R
 import com.eight.collection.databinding.ItemMatchWeatherLastBinding
-import com.eight.collection.databinding.ItemMyLookSecondPhotoBinding
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MatchButtonRVAdapter(private  val buttonlist: ArrayList<Button>) : RecyclerView.Adapter<MatchButtonRVAdapter.ViewHolder>() {
+class MatchButtonRVAdapter() : RecyclerView.Adapter<MatchButtonRVAdapter.ViewHolder>() {
+//    private  val buttonlist: ArrayList<LastTag>
 
-//    private val buttonlist = ArrayList<Button>()
+    private val buttonlist = ArrayList<LastTag>()
 
     interface MyitemClickListener{
-        fun onItemClick(button: Button, position: Int)
+        fun onItemClick(lastTag: LastTag, position: Int)
     }
 
 
@@ -42,9 +33,9 @@ class MatchButtonRVAdapter(private  val buttonlist: ArrayList<Button>) : Recycle
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addButton(button:  ArrayList<Button>){
+    fun addButton(lastTag:  ArrayList<LastTag>){
         this.buttonlist.clear()
-        this.buttonlist.addAll(button)
+        this.buttonlist.addAll(lastTag)
 
         notifyDataSetChanged()
     }
@@ -64,8 +55,9 @@ class MatchButtonRVAdapter(private  val buttonlist: ArrayList<Button>) : Recycle
 
     inner class ViewHolder(val binding: ItemMatchWeatherLastBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(button: Button){
-            binding.matchWeatherLastTextButton.text = button.text
+        fun bind(lastTag: LastTag){
+            binding.matchDefaultTv.text = lastTag.text
+
         }
     }
 

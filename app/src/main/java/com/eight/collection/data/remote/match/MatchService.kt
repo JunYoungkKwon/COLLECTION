@@ -3,6 +3,7 @@ package com.eight.collection.data.remote.match
 import android.util.Log
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.ApplicationClass.Companion.retrofit
+import com.eight.collection.ui.main.match.LastTagView
 import com.eight.collection.ui.main.match.MatchView
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,6 +30,30 @@ object MatchService {
                 Log.d("$TAG/API-ERROR", t.message.toString())
 
                 matchView.onMatchFailure(400, "네트워크 오류가 발생했습니다.")
+            }
+        })
+    }
+
+    fun getLastTag(lastTagView: LastTagView, PWWC: Int) {
+        val lastTagService = retrofit.create(MatchRetrofitInterface::class.java)
+
+        lastTagView.onLastTagLoading()
+
+        lastTagService.getLastTag(PWWC).enqueue(object : Callback<LastTagResponse> {
+            override fun onResponse(call: Call<LastTagResponse>, response: Response<LastTagResponse>) {
+
+                val resp = response.body()!!
+
+                when(resp.code){
+                    1017 -> lastTagView.onLastTagSuccess(resp.result!!.lastTag)
+                    else -> lastTagView.onLastTagFailure(resp.code, resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<LastTagResponse>, t: Throwable) {
+                Log.d("$TAG/API-ERROR", t.message.toString())
+
+                lastTagView.onLastTagFailure(400, "네트워크 오류가 발생했습니다.")
             }
         })
     }
