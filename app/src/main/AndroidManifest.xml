@@ -22,23 +22,20 @@
         <activity
         android:name=".ui.splash.SplashActivity"
         android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
             android:name=".ui.login.LoginFirstActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
 
         <activity
             android:name=".ui.login.LoginSecondActivity"
             android:exported="true">
-
 
         </activity>
 
@@ -53,6 +50,10 @@
         <activity
             android:name=".ui.signup.SignupThirdActivity"
             android:exported="true"/>
+
+        <activity android:name=".ui.introduce.IntroduceDialog"
+            android:theme="@style/Transparent"/>
+            />
 
         <activity
             android:name=".ui.main.MainActivity"

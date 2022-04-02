@@ -114,10 +114,12 @@
         <entry key="app/src/main/res/layout-v28/activity_match_place.xml" value="0.24322916666666666" />
         <entry key="app/src/main/res/layout-v28/activity_match_weather.xml" value="0.25" />
         <entry key="app/src/main/res/layout-v28/activity_match_who.xml" value="0.11778115501519756" />
+        <entry key="app/src/main/res/layout-v28/dialog_introduce.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout-v28/dialog_introduce_first.xml" value="0.25" />
         <entry key="app/src/main/res/layout-v28/dialog_introduce_fourth.xml" value="0.25" />
         <entry key="app/src/main/res/layout-v28/dialog_introduce_second.xml" value="0.25" />
         <entry key="app/src/main/res/layout-v28/dialog_introduce_third.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-v28/fragment_introduce_third.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/activity_account_delete.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/activity_developer_info.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_finish.xml" value="0.25" />
@@ -126,6 +128,10 @@
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_writefirst.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_writesecond.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_introduce_first.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_introduce_fourth.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_introduce_fouth.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/fragment_introduce_second.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_week.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_writefirst_bottom.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_writefirst_etc.xml" value="0.1" />
