@@ -719,9 +719,9 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
         var indexarraylist = ArrayList<Int>()
         for(i in 0 .. weekly.size-1 step (1)){
 
-            if(weekly[i].coverImg.isNullOrEmpty()){
-                weekly[i].coverImg = "null"
-            }
+//            if(weekly[i].coverImg.isNullOrEmpty()){
+//                weekly[i].coverImg = "null"
+//            }
             val index = i
             val now1: LocalDate = LocalDate.now()
             val now =now1.minusDays(20)

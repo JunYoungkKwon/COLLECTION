@@ -44,7 +44,7 @@ class PhotoRVAdapter(val context: Context) : RecyclerView.Adapter<PhotoRVAdapter
 
         fun bind(photo: Photo){
             if(photo.thumbnail == 1){
-                Glide.with(context).load(R.drawable.camera_bg_01).into(binding.itemFinishPhotoImgIv)
+                Glide.with(context).load(R.drawable.finish_default_img).into(binding.itemFinishPhotoImgIv)
             }
             else{
                 Glide.with(context).load(photo.imageUrl).into(binding.itemFinishPhotoImgIv)
