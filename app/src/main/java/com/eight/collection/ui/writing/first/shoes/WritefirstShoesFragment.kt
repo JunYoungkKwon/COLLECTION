@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.data.remote.modi.ModiResult
@@ -102,6 +104,46 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
         customDialog.show()
     }
 
+    override fun scrollButtonClickFirst() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 13
+        binding.writefirstShoesRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickSecond() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 20
+        binding.writefirstShoesRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickThird() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 27
+        binding.writefirstShoesRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickFourth() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 37
+        binding.writefirstShoesRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
     override fun shoesChangeButtonColor(color: String) {
         if(shoesRVAdapter.getSelectId() == -1){
             return
@@ -181,6 +223,21 @@ class WritefirstShoesFragment : Fragment(), CustomDialogInterface,
                 "#74461f" -> {
                     shoesList[shoesRVAdapter.getSelectId()].textcolor = "#ffffff"
                 }
+            }
+            if (shoesList[shoesRVAdapter.getSelectId()].id > 11 && shoesList[shoesRVAdapter.getSelectId()].id < 18) {
+                scrollButtonClickFirst()
+            }
+
+            else if(shoesList[shoesRVAdapter.getSelectId()].id > 17 && shoesList[shoesRVAdapter.getSelectId()].id < 23){
+                scrollButtonClickSecond()
+            }
+
+            else if(shoesList[shoesRVAdapter.getSelectId()].id > 22 && shoesList[shoesRVAdapter.getSelectId()].id < 28){
+                scrollButtonClickThird()
+            }
+
+            else if(shoesList[shoesRVAdapter.getSelectId()].id > 27 && shoesList[shoesRVAdapter.getSelectId()].id < 33){
+                scrollButtonClickFourth()
             }
 
             shoesList[shoesRVAdapter.getSelectId()].focus = false

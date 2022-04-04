@@ -21,6 +21,10 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
     //Add 버튼 클릭시 데이터 추가
     interface TopClickListener {
         fun plusButtonClick()
+        fun scrollButtonClickFirst()
+        fun scrollButtonClickSecond()
+        fun scrollButtonClickThird()
+        fun scrollButtonClickFourth()
     }
 
     fun setTopClickListener(topClickListener: TopClickListener) {
@@ -62,6 +66,22 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
                 }
                 // select 여부 확인 및 상태 변경
                 setOnClickListener {
+                    if (topList[position].id > 11 && topList[position].id < 18) {
+                        clickListener?.scrollButtonClickFirst()
+                    }
+
+                    else if(topList[position].id > 17 && topList[position].id < 23){
+                        clickListener?.scrollButtonClickSecond()
+                    }
+
+                    else if(topList[position].id > 22 && topList[position].id < 28){
+                        clickListener?.scrollButtonClickThird()
+                    }
+
+                    else if(topList[position].id > 27 && topList[position].id < 33){
+                        clickListener?.scrollButtonClickFourth()
+                    }
+
                     when (topList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()
@@ -79,6 +99,7 @@ class WritefirstTopRVAdapter(var topList: ArrayList<WritefirstTop>) : RecyclerVi
                                 topList[selectId].color = "#00ff0000"
                                 topList[selectId].textcolor = "#c3b5ac"
                                 selectId = -1
+
                             }
                             // 선택한거말고 다른거 클릭시
                             else {

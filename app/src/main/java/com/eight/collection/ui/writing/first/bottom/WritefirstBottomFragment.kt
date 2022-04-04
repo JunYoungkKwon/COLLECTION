@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.data.remote.modi.ModiResult
@@ -99,6 +101,46 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
         customDialog.show()
     }
 
+    override fun scrollButtonClickFirst() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 13
+        binding.writefirstBottomRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickSecond() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 20
+        binding.writefirstBottomRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickThird() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 27
+        binding.writefirstBottomRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickFourth() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 37
+        binding.writefirstBottomRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
     override fun bottomChangeButtonColor(color: String) {
         if(bottomRVAdapter.getSelectId() == -1){
             return
@@ -179,6 +221,22 @@ class WritefirstBottomFragment : Fragment(), CustomDialogInterface,
                     bottomList[bottomRVAdapter.getSelectId()].textcolor = "#ffffff"
                 }
             }
+            if (bottomList[bottomRVAdapter.getSelectId()].id > 11 && bottomList[bottomRVAdapter.getSelectId()].id < 18) {
+                scrollButtonClickFirst()
+            }
+
+            else if(bottomList[bottomRVAdapter.getSelectId()].id > 17 && bottomList[bottomRVAdapter.getSelectId()].id < 23){
+                scrollButtonClickSecond()
+            }
+
+            else if(bottomList[bottomRVAdapter.getSelectId()].id > 22 && bottomList[bottomRVAdapter.getSelectId()].id < 28){
+                scrollButtonClickThird()
+            }
+
+            else if(bottomList[bottomRVAdapter.getSelectId()].id > 27 && bottomList[bottomRVAdapter.getSelectId()].id < 33){
+                scrollButtonClickFourth()
+            }
+
             bottomList[bottomRVAdapter.getSelectId()].focus = false
                     bottomRVAdapter.setSelectId(-1)
         }

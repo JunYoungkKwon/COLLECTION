@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.data.remote.modi.ModiResult
@@ -101,6 +103,46 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
         customDialog.show()
     }
 
+    override fun scrollButtonClickFirst() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 13
+        binding.writefirstEtcRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickSecond() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 20
+        binding.writefirstEtcRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickThird() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 27
+        binding.writefirstEtcRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickFourth() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 37
+        binding.writefirstEtcRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
     override fun etcChangeButtonColor(color: String) {
         if(etcRVAdapter.getSelectId() == -1){
             return
@@ -180,6 +222,21 @@ class WritefirstEtcFragment :  Fragment(), CustomDialogInterface,
                 "#74461f" -> {
                     etcList[etcRVAdapter.getSelectId()].textcolor = "#ffffff"
                 }
+            }
+            if (etcList[etcRVAdapter.getSelectId()].id > 11 && etcList[etcRVAdapter.getSelectId()].id < 18) {
+                scrollButtonClickFirst()
+            }
+
+            else if(etcList[etcRVAdapter.getSelectId()].id > 17 && etcList[etcRVAdapter.getSelectId()].id < 23){
+                scrollButtonClickSecond()
+            }
+
+            else if(etcList[etcRVAdapter.getSelectId()].id > 22 && etcList[etcRVAdapter.getSelectId()].id < 28){
+                scrollButtonClickThird()
+            }
+
+            else if(etcList[etcRVAdapter.getSelectId()].id > 27 && etcList[etcRVAdapter.getSelectId()].id < 33){
+                scrollButtonClickFourth()
             }
             etcList[etcRVAdapter.getSelectId()].focus = false
             etcRVAdapter.setSelectId(-1)

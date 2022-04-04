@@ -129,7 +129,7 @@
         <entry key="app/src/main/res/layout/activity_writefirst.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_writesecond.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_introduce_first.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/fragment_introduce_fourth.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_introduce_fourth.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_introduce_fouth.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_introduce_second.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_week.xml" value="0.25" />

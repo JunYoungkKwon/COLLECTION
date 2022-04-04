@@ -20,6 +20,10 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
     //Add 버튼 클릭시 데이터 추가
     interface BottomClickListener {
         fun plusButtonClick()
+        fun scrollButtonClickFirst()
+        fun scrollButtonClickSecond()
+        fun scrollButtonClickThird()
+        fun scrollButtonClickFourth()
     }
 
     fun setBottomClickListener(bottomClickListener: BottomClickListener) {
@@ -57,6 +61,22 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
                 }
                 // select 여부 확인 및 상태 변경
                 setOnClickListener {
+                    if (bottomList[position].id > 11 && bottomList[position].id < 18) {
+                        clickListener?.scrollButtonClickFirst()
+                    }
+
+                    else if(bottomList[position].id > 17 && bottomList[position].id < 23){
+                        clickListener?.scrollButtonClickSecond()
+                    }
+
+                    else if(bottomList[position].id > 22 && bottomList[position].id < 28){
+                        clickListener?.scrollButtonClickThird()
+                    }
+
+                    else if(bottomList[position].id > 27 && bottomList[position].id < 33){
+                        clickListener?.scrollButtonClickFourth()
+                    }
+
                     when (bottomList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()
