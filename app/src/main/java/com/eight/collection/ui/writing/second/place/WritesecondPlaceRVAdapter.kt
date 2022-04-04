@@ -32,6 +32,10 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
 
     interface PlaceClickListener {
         fun plusButtonClick()
+        fun scrollButtonClickFirst()
+        fun scrollButtonClickSecond()
+        fun scrollButtonClickThird()
+        fun scrollButtonClickFourth()
     }
 
     fun setPlaceClickListener(placeClickListener: PlaceClickListener) {
@@ -70,6 +74,21 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
                 }
 
                 setOnClickListener {
+                    if (placeList[position].id > 11 && placeList[position].id < 18) {
+                        clickListener?.scrollButtonClickFirst()
+                    }
+
+                    else if(placeList[position].id > 17 && placeList[position].id < 23){
+                        clickListener?.scrollButtonClickSecond()
+                    }
+
+                    else if(placeList[position].id > 22 && placeList[position].id < 28){
+                        clickListener?.scrollButtonClickThird()
+                    }
+
+                    else if(placeList[position].id > 27 && placeList[position].id < 33){
+                        clickListener?.scrollButtonClickFourth()
+                    }
                     when (placeList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()
