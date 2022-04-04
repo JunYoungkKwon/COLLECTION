@@ -32,6 +32,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+
         </activity>
 
 
@@ -59,9 +62,6 @@
             android:exported="true">
 
         </activity>
-
-        <activity android:name=".ui.introduce.IntroduceDialog"
-            android:theme="@style/Transparent"/>
 
         <activity android:name=".ui.writing.first.WritefirstActivity"
             android:theme="@style/Transparent"/>
