@@ -21,6 +21,10 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
 
     interface ShoesClickListener {
         fun plusButtonClick()
+        fun scrollButtonClickFirst()
+        fun scrollButtonClickSecond()
+        fun scrollButtonClickThird()
+        fun scrollButtonClickFourth()
     }
 
 
@@ -57,6 +61,21 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
                     text = shoes.name + "    "
                 }
                 setOnClickListener {
+                    if (shoesList[position].id > 11 && shoesList[position].id < 18) {
+                        clickListener?.scrollButtonClickFirst()
+                    }
+
+                    else if(shoesList[position].id > 17 && shoesList[position].id < 23){
+                        clickListener?.scrollButtonClickSecond()
+                    }
+
+                    else if(shoesList[position].id > 22 && shoesList[position].id < 28){
+                        clickListener?.scrollButtonClickThird()
+                    }
+
+                    else if(shoesList[position].id > 27 && shoesList[position].id < 33){
+                        clickListener?.scrollButtonClickFourth()
+                    }
                     when (shoesList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()

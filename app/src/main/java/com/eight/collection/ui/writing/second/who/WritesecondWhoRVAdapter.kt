@@ -23,6 +23,10 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
 
     interface WhoClickListener {
         fun plusButtonClick()
+        fun scrollButtonClickFirst()
+        fun scrollButtonClickSecond()
+        fun scrollButtonClickThird()
+        fun scrollButtonClickFourth()
     }
 
     fun setWhoClickListener(whoClickListener: WhoClickListener) {
@@ -60,6 +64,21 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
                 }
                 // select 여부 확인 및 상태 변경
                 setOnClickListener {
+                    if (whoList[position].id > 11 && whoList[position].id < 18) {
+                        clickListener?.scrollButtonClickFirst()
+                    }
+
+                    else if(whoList[position].id > 17 && whoList[position].id < 23){
+                        clickListener?.scrollButtonClickSecond()
+                    }
+
+                    else if(whoList[position].id > 22 && whoList[position].id < 28){
+                        clickListener?.scrollButtonClickThird()
+                    }
+
+                    else if(whoList[position].id > 27 && whoList[position].id < 33){
+                        clickListener?.scrollButtonClickFourth()
+                    }
                     when (whoList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()

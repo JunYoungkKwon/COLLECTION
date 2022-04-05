@@ -19,6 +19,10 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
 
     interface EtcClickListener {
         fun plusButtonClick()
+        fun scrollButtonClickFirst()
+        fun scrollButtonClickSecond()
+        fun scrollButtonClickThird()
+        fun scrollButtonClickFourth()
     }
 
 
@@ -54,6 +58,22 @@ class WritefirstEtcRVAdapter(private val etcList: ArrayList<WritefirstEtc>) : Re
                     text = etc.name + "    "
                 }
                 setOnClickListener {
+                    if (etcList[position].id > 11 && etcList[position].id < 18) {
+                        clickListener?.scrollButtonClickFirst()
+                    }
+
+                    else if(etcList[position].id > 17 && etcList[position].id < 23){
+                        clickListener?.scrollButtonClickSecond()
+                    }
+
+                    else if(etcList[position].id > 22 && etcList[position].id < 28){
+                        clickListener?.scrollButtonClickThird()
+                    }
+
+                    else if(etcList[position].id > 27 && etcList[position].id < 33){
+                        clickListener?.scrollButtonClickFourth()
+                    }
+
                     when (etcList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()

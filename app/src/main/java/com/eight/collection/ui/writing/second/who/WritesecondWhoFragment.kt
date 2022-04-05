@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
 import com.eight.collection.data.remote.modi.ModiResult
@@ -90,6 +92,45 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     override fun plusButtonClick() {
         customDialog = WritesecondWhoCustomDialog(requireContext(), this)
         customDialog.show()
+    }
+
+    override fun scrollButtonClickFirst() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 13
+        binding.writesecondWhoRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+    override fun scrollButtonClickSecond() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 20
+        binding.writesecondWhoRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickThird() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 27
+        binding.writesecondWhoRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickFourth() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 37
+        binding.writesecondWhoRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
     }
 
     override fun getFixedData(): ArrayList<Int> {

@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.data.entities.Cloth
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockResult
 import com.eight.collection.data.remote.getaddedblock.GetAddedBlockService
@@ -103,6 +105,46 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         customDialog.show()
     }
 
+    override fun scrollButtonClickFirst() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 13
+        binding.writefirstTopRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickSecond() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 20
+        binding.writefirstTopRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickThird() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 27
+        binding.writefirstTopRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun scrollButtonClickFourth() {
+        val smoothScroller: RecyclerView.SmoothScroller by lazy {
+            object : LinearSmoothScroller(context) {
+                override fun getVerticalSnapPreference() = SNAP_TO_START
+            }
+        }
+        smoothScroller.targetPosition = 37
+        binding.writefirstTopRecyclerview.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
 
     //Color Change 함수
     override fun topChangeButtonColor(color: String) {
@@ -185,6 +227,22 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
                     topList[topRVAdapter.getSelectId()].textcolor = "#ffffff"
                 }
             }
+            if (topList[topRVAdapter.getSelectId()].id > 11 && topList[topRVAdapter.getSelectId()].id < 18) {
+                scrollButtonClickFirst()
+            }
+
+            else if(topList[topRVAdapter.getSelectId()].id > 17 && topList[topRVAdapter.getSelectId()].id < 23){
+                scrollButtonClickSecond()
+            }
+
+            else if(topList[topRVAdapter.getSelectId()].id > 22 && topList[topRVAdapter.getSelectId()].id < 28){
+                scrollButtonClickThird()
+            }
+
+            else if(topList[topRVAdapter.getSelectId()].id > 27 && topList[topRVAdapter.getSelectId()].id < 33){
+                scrollButtonClickFourth()
+            }
+
             topList[topRVAdapter.getSelectId()].focus = false
             topRVAdapter.setSelectId(-1)
         }
@@ -352,4 +410,6 @@ class WritefirstTopFragment : Fragment(), CustomDialogInterface,
         }
         topRVAdapter.notifyDataSetChanged()
     }
+
+
 }

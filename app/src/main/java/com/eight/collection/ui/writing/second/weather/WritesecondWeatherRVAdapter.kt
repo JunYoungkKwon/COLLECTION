@@ -23,6 +23,10 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
 
     interface WeatherClickListener {
         fun plusButtonClick()
+        fun scrollButtonClickFirst()
+        fun scrollButtonClickSecond()
+        fun scrollButtonClickThird()
+        fun scrollButtonClickFourth()
     }
 
     fun setWeatherClickListener(weatherClickListener: WeatherClickListener) {
@@ -60,6 +64,21 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
                 }
                 // select 여부 확인 및 상태 변경
                 setOnClickListener {
+                    if (weatherList[position].id > 11 && weatherList[position].id < 18) {
+                        clickListener?.scrollButtonClickFirst()
+                    }
+
+                    else if(weatherList[position].id > 17 && weatherList[position].id < 23){
+                        clickListener?.scrollButtonClickSecond()
+                    }
+
+                    else if(weatherList[position].id > 22 && weatherList[position].id < 28){
+                        clickListener?.scrollButtonClickThird()
+                    }
+
+                    else if(weatherList[position].id > 27 && weatherList[position].id < 33){
+                        clickListener?.scrollButtonClickFourth()
+                    }
                     when (weatherList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()

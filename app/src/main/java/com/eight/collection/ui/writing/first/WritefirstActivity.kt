@@ -477,6 +477,8 @@ class WritefirstActivity() : AppCompatActivity(), RefreshDialogInterface, ModiVi
                     }
                 }
             }
+
+
             photoIs = 0
             photoRVAdapter.notifyDataSetChanged()
             var b : Int = 0
