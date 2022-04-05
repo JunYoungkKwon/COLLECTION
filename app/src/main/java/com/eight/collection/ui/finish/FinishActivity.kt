@@ -16,12 +16,18 @@ import androidx.core.view.marginTop
 import androidx.core.widget.NestedScrollView
 import com.eight.collection.R
 import com.eight.collection.data.entities.Cloth
+import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.entities.Photo
 import com.eight.collection.data.remote.finish.Finish
 import com.eight.collection.data.remote.finish.FinishService
 import com.eight.collection.data.remote.setting.SettingService
 import com.eight.collection.databinding.ActivityFinishBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.introduce.IntroduceDialog
+import com.eight.collection.ui.main.mylook.MyLookDetailActivity
+import com.eight.collection.ui.main.mylook.MyLookOOTD
+import com.eight.collection.ui.main.mylook.MyLookRVAdapter
+import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -45,6 +51,8 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     private  lateinit var shoesRVAdapter: ShoesRVAdapter
     private  lateinit var etcRVAdapter: EtcRVAdapter
     private  lateinit var photoRVAdapter: PhotoRVAdapter
+    private var originPhoto: ArrayList<String>? = null
+
 
 
 
@@ -54,6 +62,8 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         getFinish()
         clickSetting()
         scrollFinsh()
+        clickPhoto()
+
     }
 
     override fun onBackPressed() {
@@ -99,6 +109,25 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         binding.finishShoesRecyclerView.adapter = shoesRVAdapter
         etcRVAdapter = EtcRVAdapter()
         binding.finishEtcRecyclerView.adapter = etcRVAdapter
+    }
+
+    private fun clickPhoto(){
+
+        photoRVAdapter.setMyItemClickListener(object : PhotoRVAdapter.MyitemClickListener{
+
+
+            override fun onItemClick(photo: Photo, position: Int, context: Context) {
+                val intent = Intent(context, PhotoActivity::class.java)
+                intent.apply {
+                    this.putExtra("photo", originPhoto)
+                }
+                Log.d("phototest", originPhoto.toString())
+                startActivity(intent)
+                slideRight()
+            }
+
+        })
+
     }
 
     private fun clickSetting(){
@@ -166,12 +195,15 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     }
 
     override fun onFinishSuccess(finish: Finish) {
-        Log.d("Photo/data", finish.image?.toString())
+        Log.d("Photo/data1", finish.image?.toString())
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
+
+        Log.d("Photo/data1-1", originPhoto.toString())
+
 
         when(finish.lookpoint){
             1 -> binding.finishRankPointIv.setImageResource(R.drawable.ic_diary_point_1)
@@ -190,8 +222,17 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
         val convertDate: String = localdate.format(formatter)
 
         if(finish.image.isNullOrEmpty()){
-            finish.image.add(Photo("nill", 1))
+            finish.image.add(Photo("null", 1))
+        }else{
+            for(i in 0 until finish.image.size step (1)){
+                originPhoto?.add(finish.image[i].imageUrl!!)
+//                image?.add(finish.image[i].imageUrl!!)
+                Log.d("Photo/data2", finish.image[i].imageUrl!!)
+
+            }
+            Log.d("Photo/data3", originPhoto.toString())
         }
+        Log.d("Photo/data3-2", originPhoto.toString())
 
         if(finish.Top.isNullOrEmpty()){
             finish.Top.add(Cloth("해당 항목 없음", ""))
@@ -425,3 +466,4 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     }
 
 }
+
