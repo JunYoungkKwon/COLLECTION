@@ -277,6 +277,7 @@
                 app:layout_constraintTop_toBottomOf="@id/finish_horizon_fifth_view"
                 android:text="@string/comment"/>
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/finish_photo_recyclerview"
                 android:layout_width="0dp"

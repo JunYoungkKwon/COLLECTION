@@ -59,7 +59,7 @@
         android:id="@+id/calendar_rank_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="10dp"
         android:scaleType="center"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"

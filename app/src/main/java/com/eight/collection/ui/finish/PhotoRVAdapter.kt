@@ -13,11 +13,23 @@ import com.eight.collection.databinding.ItemFinishPhotoBinding
 import com.eight.collection.databinding.ItemMyLookBinding
 import com.eight.collection.databinding.ItemMyLookPhotoBinding
 import com.eight.collection.databinding.ItemWeekDiaryBinding
+import com.eight.collection.ui.main.mylook.MyLookOOTD
 
 
 class PhotoRVAdapter(val context: Context) : RecyclerView.Adapter<PhotoRVAdapter.ViewHolder>() {
 
     private val photoList = ArrayList<Photo>()
+
+    interface MyitemClickListener{
+        fun onItemClick(photo: Photo, position: Int, context: Context)
+    }
+
+    private  lateinit var mItemClickListener: MyitemClickListener
+
+    fun setMyItemClickListener(itemClickListener: MyitemClickListener){
+        mItemClickListener = itemClickListener
+    }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PhotoRVAdapter.ViewHolder {
         val binding: ItemFinishPhotoBinding = ItemFinishPhotoBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return  ViewHolder(binding)
@@ -26,6 +38,8 @@ class PhotoRVAdapter(val context: Context) : RecyclerView.Adapter<PhotoRVAdapter
 
     override fun onBindViewHolder(holder: PhotoRVAdapter.ViewHolder, position: Int) {
         holder.bind(photoList[position])
+        holder.itemView.setOnClickListener{
+            mItemClickListener.onItemClick(photoList[position], position, context) }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -44,7 +58,7 @@ class PhotoRVAdapter(val context: Context) : RecyclerView.Adapter<PhotoRVAdapter
 
         fun bind(photo: Photo){
             if(photo.thumbnail == 1){
-                Glide.with(context).load(R.drawable.camera_bg_01).into(binding.itemFinishPhotoImgIv)
+                Glide.with(context).load(R.drawable.finish_default_img).into(binding.itemFinishPhotoImgIv)
             }
             else{
                 Glide.with(context).load(photo.imageUrl).into(binding.itemFinishPhotoImgIv)
