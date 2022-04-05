@@ -1,5 +1,4 @@
 package com.eight.collection.data.remote.deleteblock
-
 import android.util.Log
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.ApplicationClass.Companion.retrofit

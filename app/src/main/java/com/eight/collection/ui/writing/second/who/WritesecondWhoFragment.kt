@@ -35,6 +35,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
     var whoRVAdapter : WritesecondWhoRVAdapter = WritesecondWhoRVAdapter(whoDatas)
     var date : String = "2019-01-01"
     var mode : Int = 1
+    var selectId : Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -184,6 +185,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
                     if(i.name == j){
                         i.apply{
                             i.focus = true
+                            selectId = i.id
                         }
                     }
                 }
@@ -195,6 +197,7 @@ class WritesecondWhoFragment : Fragment(), CustomDialogInterface,
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writesecondWhoRecyclerview.adapter = whoRVAdapter
         binding.writesecondWhoRecyclerview.layoutManager = flexboxLayoutManager
+        whoRVAdapter.setSelectId(selectId)
     }
 
     override fun onModiFailure(code: Int, message: String) {

@@ -36,6 +36,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
     var weatherRVAdapter : WritesecondWeatherRVAdapter = WritesecondWeatherRVAdapter(weatherDatas)
     var date : String = "2019-01-01"
     var mode : Int = 1
+    var selectId : Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -186,6 +187,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
                     if(i.name == j){
                         i.apply{
                             i.focus = true
+                            selectId = i.id
                         }
                     }
                 }
@@ -197,6 +199,7 @@ class WritesecondWeatherFragment : Fragment(), CustomDialogInterface,
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writesecondWeatherRecyclerview.adapter = weatherRVAdapter
         binding.writesecondWeatherRecyclerview.layoutManager = flexboxLayoutManager
+        weatherRVAdapter.setSelectId(selectId)
     }
 
     override fun onModiFailure(code: Int, message: String) {

@@ -50,11 +50,6 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
 
     inner class ViewHolder(val binding: ItemWritesecondWeatherBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(weather: WritesecondWeather, position: Int){
-            for(i in weatherList){
-                if(i.focus == true){
-                    selectId = i.id
-                }
-            }
             binding.writesecondWeatherTextButton.apply {
                 if(weatherList[position].id < 9) {
                     text = weather.name
@@ -138,6 +133,14 @@ class WritesecondWeatherRVAdapter(private val weatherList: ArrayList<Writesecond
         deleteBlock(weatherList[position].name.toString())
         weatherList.removeAt(position)
         notifyDataSetChanged()
+    }
+
+    fun getSelectId() : Int{
+        return selectId
+    }
+
+    fun setSelectId(setId : Int){
+        selectId = setId
     }
 
     private fun getBlock(content : String) : Block {

@@ -18,9 +18,7 @@ import com.eight.collection.ui.writing.second.FixedPlace
 
 class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlace>) : RecyclerView.Adapter<WritesecondPlaceRVAdapter.ViewHolder>(), DeleteBlockView{
     private var clickListener: PlaceClickListener? = null
-    private var count : Int = 0
     private var selectId : Int = -1
-    private var beforeId : Int = -1
 
     /*fun setselectedId() {
         for(i in placeList){
@@ -43,6 +41,8 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
     }
 
 
+
+
     override fun getItemCount(): Int = placeList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -61,11 +61,6 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
     inner class ViewHolder(val binding: ItemWritesecondPlaceBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(place: WritesecondPlace, position: Int){
             binding.writesecondPlaceTextButton.apply {
-                for(i in placeList){
-                    if(i.focus == true){
-                        selectId = i.id
-                    }
-                }
                 if(placeList[position].id < 9) {
                     text = place.name
                 }
@@ -89,12 +84,16 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
                     else if(placeList[position].id > 27 && placeList[position].id < 33){
                         clickListener?.scrollButtonClickFourth()
                     }
+
                     when (placeList[position].id) {
                         0 -> {
                             clickListener?.plusButtonClick()
                             isChecked = false
                         }
                         else -> {
+                            Log.d("Item","${placeList}")
+                            Log.d("selectId","${selectId}")
+
                             // 처음 선택시
                             if (selectId == -1) {
                                 placeList[position].focus = true
@@ -147,7 +146,16 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
     fun removeItem(position: Int){
         deleteBlock(placeList[position].name.toString())
         placeList.removeAt(position)
+        Log.d("placeList","${placeList}")
         notifyDataSetChanged()
+    }
+
+    fun getSelectId() : Int{
+        return selectId
+    }
+
+    fun setSelectId(setId : Int){
+        selectId = setId
     }
 
     private fun getBlock(content : String) : Block {

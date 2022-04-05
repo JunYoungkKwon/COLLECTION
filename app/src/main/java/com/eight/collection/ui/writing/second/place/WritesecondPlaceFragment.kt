@@ -39,6 +39,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
     var placeRVAdapter : WritesecondPlaceRVAdapter = WritesecondPlaceRVAdapter(placeDatas)
     var date : String = "2019-01-01"
     var mode : Int = 1
+    var selectId : Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -189,6 +190,8 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
                     if(i.name == j){
                         i.apply{
                             i.focus = true
+                            selectId = i.id
+                            Log.d("SelectID","${placeRVAdapter.getSelectId()}")
                         }
                     }
                 }
@@ -200,6 +203,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
         val flexboxLayoutManager = FlexboxLayoutManager(activity)
         binding.writesecondPlaceRecyclerview.adapter = placeRVAdapter
         binding.writesecondPlaceRecyclerview.layoutManager = flexboxLayoutManager
+        placeRVAdapter.setSelectId(selectId)
     }
 
     override fun onModiFailure(code: Int, message: String) {
