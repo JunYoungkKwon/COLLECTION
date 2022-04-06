@@ -15,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/item_top_line" />
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/item_diary_img_cardView"
         android:layout_width="112dp"

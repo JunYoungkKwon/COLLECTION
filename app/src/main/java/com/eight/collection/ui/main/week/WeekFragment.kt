@@ -60,9 +60,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
 
     private var selectedDate: LocalDate? = null
-    private var current: LocalDate = LocalDate.now()
-    private var click: Boolean = false
-    val datasizeList: ArrayList<LocalDate>? = null
     private var dateSave: MutableList<Diary>? = null
     private var moveToDate: LocalDate? = null
     private var seletDate: LocalDate? = null

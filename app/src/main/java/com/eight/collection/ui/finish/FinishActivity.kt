@@ -35,13 +35,14 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
+import java.io.Serializable
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding::inflate), FinishView, DeleteView {
+class FinishActivity :BaseActivity <ActivityFinishBinding>(ActivityFinishBinding::inflate)  , FinishView, DeleteView ,Serializable {
 
     private  lateinit var placeRVAdapter: PlaceRVAdapter
     private  lateinit var weatherRVAdapter: WeatherRVAdapter
@@ -51,7 +52,7 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     private  lateinit var shoesRVAdapter: ShoesRVAdapter
     private  lateinit var etcRVAdapter: EtcRVAdapter
     private  lateinit var photoRVAdapter: PhotoRVAdapter
-    private var originPhoto: ArrayList<String>? = null
+    private var originPhoto = arrayListOf<String>()
 
 
 
@@ -115,15 +116,18 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
 
         photoRVAdapter.setMyItemClickListener(object : PhotoRVAdapter.MyitemClickListener{
 
-
             override fun onItemClick(photo: Photo, position: Int, context: Context) {
-                val intent = Intent(context, PhotoActivity::class.java)
-                intent.apply {
-                    this.putExtra("photo", originPhoto)
+                if(originPhoto.isNullOrEmpty()){
+
+                }else{
+                    val intent = Intent(context, PhotoActivity::class.java)
+                    intent.apply {
+                        this.putExtra("photo", originPhoto)
+                    }
+                    startActivity(intent)
+                    slideRight()
                 }
-                Log.d("phototest", originPhoto.toString())
-                startActivity(intent)
-                slideRight()
+
             }
 
         })
@@ -195,15 +199,11 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
     }
 
     override fun onFinishSuccess(finish: Finish) {
-        Log.d("Photo/data1", finish.image?.toString())
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
-
-        Log.d("Photo/data1-1", originPhoto.toString())
-
 
         when(finish.lookpoint){
             1 -> binding.finishRankPointIv.setImageResource(R.drawable.ic_diary_point_1)
@@ -225,14 +225,9 @@ class FinishActivity :BaseActivity<ActivityFinishBinding>(ActivityFinishBinding:
             finish.image.add(Photo("null", 1))
         }else{
             for(i in 0 until finish.image.size step (1)){
-                originPhoto?.add(finish.image[i].imageUrl!!)
-//                image?.add(finish.image[i].imageUrl!!)
-                Log.d("Photo/data2", finish.image[i].imageUrl!!)
-
+                originPhoto.add(finish.image[i].imageUrl!!)
             }
-            Log.d("Photo/data3", originPhoto.toString())
         }
-        Log.d("Photo/data3-2", originPhoto.toString())
 
         if(finish.Top.isNullOrEmpty()){
             finish.Top.add(Cloth("해당 항목 없음", ""))

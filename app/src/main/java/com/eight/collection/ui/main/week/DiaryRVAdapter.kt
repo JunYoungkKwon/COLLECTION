@@ -96,7 +96,13 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
 
         fun bind(diary: Diary){
-            binding.itemDiaryImgCountTv.text= "+"+ diary.imgCount.toString()
+            if(diary.imgCount == 0){
+                binding.itemDiaryCountBgView.visibility = View.GONE
+                binding.itemDiaryImgCountTv.visibility = View.GONE
+            }else{
+                binding.itemDiaryImgCountTv.text= "+"+ diary.imgCount.toString()
+            }
+
 
 //            if(diary.coverImg == "null"){
 //                Glide.with(context).load(diary.coverImg).into(binding.itemDiaryImgIv)
