@@ -117,6 +117,9 @@ class WritefirstBottomRVAdapter(private val bottomList: ArrayList<WritefirstBott
                                 if(position == selectId){
                                     selectId = -1
                                 }
+                                else if(position < selectId){
+                                    selectId = selectId - 1
+                                }
                             }
                         }
                     }

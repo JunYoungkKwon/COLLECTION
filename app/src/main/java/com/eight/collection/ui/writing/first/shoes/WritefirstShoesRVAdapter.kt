@@ -116,6 +116,9 @@ class WritefirstShoesRVAdapter(private val shoesList: ArrayList<WritefirstShoes>
                                 if(position == selectId){
                                     selectId = -1
                                 }
+                                else if(position < selectId){
+                                    selectId = selectId - 1
+                                }
                             }
                         }
                     }
