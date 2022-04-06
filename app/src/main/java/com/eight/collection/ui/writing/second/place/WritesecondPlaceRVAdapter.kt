@@ -112,6 +112,8 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
                             }
                         }
                     }
+
+                    Log.d("클릭","클릭")
                     notifyDataSetChanged()
                 }
             }
@@ -127,6 +129,9 @@ class WritesecondPlaceRVAdapter(private val placeList: ArrayList<WritesecondPlac
                                 removeItem(position)
                                 if(position == selectId){
                                     selectId = -1
+                                }
+                                else if(position < selectId){
+                                    selectId = selectId - 1
                                 }
                             }
                         }

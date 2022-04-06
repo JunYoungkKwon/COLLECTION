@@ -114,6 +114,9 @@ class WritesecondWhoRVAdapter(private val whoList: ArrayList<WritesecondWho>) : 
                                 if(position == selectId){
                                     selectId = -1
                                 }
+                                else if(position < selectId){
+                                    selectId = selectId - 1
+                                }
                             }
                         }
                     }
