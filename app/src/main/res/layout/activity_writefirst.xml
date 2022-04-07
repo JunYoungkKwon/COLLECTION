@@ -413,185 +413,197 @@
             android:layout_marginTop="8dp"
             />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_red"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_red"
-            app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/writefirst_color_part_view"
+            android:layout_width="wrap_content"
+            android:layout_height="144dp"
+            android:layout_marginTop="16dp"
+            android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_colortext_tv"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="18dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_pink"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_pink"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_red"
-            app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_red"
-            android:layout_marginStart="2dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_yellow"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_yellow"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_pink"
-            app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_pink"
-            android:layout_marginStart="2dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_lightyellow"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_lightyellow"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_yellow"
-            app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_yellow"
-            android:layout_marginStart="2dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_green"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_green"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightyellow"
-            app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_lightyellow"
-            android:layout_marginStart="2dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_lightgreen"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_lightgreen"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_green"
-            app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_green"
-            android:layout_marginStart="2dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_orange"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_orange"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
-            android:layout_marginStart="18dp"
-            />
+            app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            >
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_navy"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_navy"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_orange"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_red"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_blue"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_blue"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_navy"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_pink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_pink"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_red"
+                app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_red"
+                android:layout_marginStart="2dp"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_lightblue"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_lightblue"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_blue"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_yellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_yellow"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_pink"
+                app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_pink"
+                android:layout_marginStart="2dp"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_purple"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_purple"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightblue"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_lightyellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_lightyellow"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_yellow"
+                app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_yellow"
+                android:layout_marginStart="2dp"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_lightpurple"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_lightpurple"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_purple"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_green"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightyellow"
+                app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_lightyellow"
+                android:layout_marginStart="2dp"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_white"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_white"
-            app:layout_constraintStart_toStartOf="@id/writefirst_color_top_selector_orange"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_lightgreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_lightgreen"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_green"
+                app:layout_constraintTop_toTopOf="@id/writefirst_color_top_selector_green"
+                android:layout_marginStart="2dp"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_grey"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_grey"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_white"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_orange"
+                app:layout_constraintStart_toStartOf="@id/writefirst_color_top_selector_red"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_black"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_black"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_grey"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_navy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_navy"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_orange"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
+                android:layout_marginStart="2dp"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_lightpeach"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_lightpeach"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_black"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_blue"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_navy"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
+                android:layout_marginStart="2dp"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_pinkishgrey"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_pinkishgrey"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightpeach"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_lightblue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_lightblue"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_blue"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
+                android:layout_marginStart="2dp"
+                />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/writefirst_color_top_selector_brown"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/ic_color_selector_brown"
-            app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_pinkishgrey"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
-            android:layout_marginStart="2dp"
-            />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_purple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_purple"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightblue"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
+                android:layout_marginStart="2dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_lightpurple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_lightpurple"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_purple"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_red"
+                android:layout_marginStart="2dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_white"
+                app:layout_constraintStart_toStartOf="@id/writefirst_color_top_selector_orange"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_grey"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_white"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
+                android:layout_marginStart="2dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_black"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_grey"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
+                android:layout_marginStart="2dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_lightpeach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_lightpeach"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_black"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
+                android:layout_marginStart="2dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_pinkishgrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_pinkishgrey"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_lightpeach"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
+                android:layout_marginStart="2dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/writefirst_color_top_selector_brown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_color_selector_brown"
+                app:layout_constraintStart_toEndOf="@id/writefirst_color_top_selector_pinkishgrey"
+                app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_orange"
+                android:layout_marginStart="2dp"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/writefirst_next_button"
@@ -600,7 +612,7 @@
             android:background="@drawable/writefirst_next_btn_event"
             android:textColor="#7C6350"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/writefirst_color_top_selector_white"
+            app:layout_constraintTop_toBottomOf="@id/writefirst_color_part_view"
             app:layout_constraintStart_toStartOf="@id/writefirst_background_iv"
             app:layout_constraintEnd_toEndOf="@id/writefirst_background_iv"
             android:layout_marginStart="94dp"
