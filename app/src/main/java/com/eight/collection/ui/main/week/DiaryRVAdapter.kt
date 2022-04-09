@@ -40,6 +40,7 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
     interface MyitemClickListener{
         fun onRemoveDiary(view: View, position: Int)
+        fun onStartFinish(position: Int)
     }
 
     private  lateinit var mItemClickListener: MyitemClickListener
@@ -77,6 +78,7 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
 
     override fun onBindViewHolder(holder: DiaryRVAdapter.ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(diarylist[position])
+        holder.itemView.setOnClickListener { mItemClickListener.onStartFinish(position)}
         holder.binding.itemDiaryEditIv.setOnClickListener {
                 view ->
             if (position != RecyclerView.NO_POSITION) {
