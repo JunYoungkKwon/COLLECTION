@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/calendar_year_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/year"
+        android:gravity="center"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:text="2022"
+        android:background="?attr/selectableItemBackground"
+        android:textColor="@color/calendar_header"
+        android:layout_marginTop="32dp"
+        android:textSize="6sp"
+        app:layout_constraintEnd_toStartOf="@id/calendar_month_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/calendar_month_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/year"
+        android:gravity="center"
+        android:layout_marginStart="10dp"
+        android:text="1"
+        android:background="?attr/selectableItemBackground"
+        android:textColor="@color/calendar_header"
+        android:layout_marginTop="32dp"
+        android:textSize="6sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/calendar_year_tv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/calendar_previous_btn_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/calendar_year_tv"
+        app:layout_constraintBottom_toBottomOf="@id/calendar_year_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"
+        android:src="@drawable/ic_back"/>
+
+    <ImageView
+        android:id="@+id/calendar_next_btn_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/calendar_year_tv"
+        app:layout_constraintBottom_toBottomOf="@id/calendar_year_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/ic_arrow_right"/>
+
+    <View
+        android:id="@+id/calendar_top_line_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bottom_navi"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendar_year_tv" />
+
+    <include
+        layout="@layout/caledaer_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendar_top_line_view" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
