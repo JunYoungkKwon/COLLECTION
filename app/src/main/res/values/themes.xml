@@ -39,7 +39,7 @@
         <item name="android:headerMonthTextAppearance">@style/CustomCalendarWeek</item>
         <item name="android:windowBackground">@color/bottom_navi</item>
     </style>
-    //폰트 바꿀게요!! 근데 2022년 3월 부분 폰트는 못바꿔요 ㅠㅠ
+
 
     <style name="CustomCalendarDay" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/black</item>
@@ -64,4 +64,19 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/match_calendar_round</item>
+    </style>
+
 </resources>

@@ -63,6 +63,7 @@ class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(Activity
     override fun initAfterBinding() {
         overridePendingTransition(R.anim.slide_up, R.anim.none)
         //scrollFinsh()
+        initCalendar()
 
     }
 
