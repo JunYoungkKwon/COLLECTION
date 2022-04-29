@@ -62,7 +62,7 @@ class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(Activity
 
     override fun initAfterBinding() {
         overridePendingTransition(R.anim.slide_up, R.anim.none)
-        //scrollFinsh()
+        scrollFinsh()
         initCalendar()
 
     }
@@ -122,14 +122,6 @@ class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(Activity
             }
         }
 
-
-
-
-
-
-
-
-
         class MonthViewContainer(view: View) : ViewContainer(view) {
             val calendarYear = CalendarBsYearMonthHeaderBinding.bind(view).calendarYearTv
             val calendarMonth= CalendarBsYearMonthHeaderBinding.bind(view).calendarMonthTv
@@ -160,24 +152,25 @@ class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(Activity
 
     }
 
-//    private fun scrollFinsh() {
-//        val bottomSheetBehavior = BottomSheetBehavior.from(binding.finishNs)
-//        bottomSheetBehavior.setGestureInsetBottomIgnored(true)
-//        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-//
-//        bottomSheetBehavior.addBottomSheetCallback(object :
-//            BottomSheetBehavior.BottomSheetCallback() {
-//            override fun onStateChanged(bottomSheet: View, newState: Int) {
-//                if (newState == STATE_HIDDEN) {
-//                    finish()
-//                }
-//            }
-//
-//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-//            }
-//
-//        })
-//    }
+    private fun scrollFinsh() {
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.matchCalendarCl)
+        bottomSheetBehavior.setGestureInsetBottomIgnored(true)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+
+        bottomSheetBehavior.addBottomSheetCallback(object :
+            BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                if (newState == STATE_HIDDEN) {
+                    finish()
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            }
+
+
+        })
+    }
 
 }
 
