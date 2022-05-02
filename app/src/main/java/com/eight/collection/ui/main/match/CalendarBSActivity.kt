@@ -167,7 +167,6 @@ class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(Activity
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
             }
-
         })
     }
 
