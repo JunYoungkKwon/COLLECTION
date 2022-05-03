@@ -17,14 +17,39 @@ import kotlin.collections.ArrayList
 
 class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding::inflate), MatchView, LastTagView {
 
-
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
     private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
     private  lateinit var lastTagRVAdapter: MatchButtonRVAdapter
     private  var defaultTag = ArrayList<LastTag>()
 
     override fun initAfterBinding() {
-//        getSearchResult()
+        // 검색창 눌렀을시 이벤트
+        binding.matchWhoSearchBeforeView.setOnClickListener{
+            searchViewClick()
+        }
+
+        // 돌아가기 버튼 눌렀을시 이벤트
+        binding.matchWhoSearchBackIc.setOnClickListener{
+            backViewClick()
+        }
+
+        // 검색창 x버튼 눌렀을시 이벤트
+        binding.matchWhoSearchDeleteIc.setOnClickListener{
+            deleteButtonClick()
+        }
+
+        // 검색 버튼 눌렀을시 이벤트
+        binding.matchWhoSearchBt.setOnClickListener{
+            searchButtonClick()
+        }
+
+        //최신순 버튼 눌렀을시 이벤트
+        binding.matchWhoSearchRecentRl.setOnClickListener{
+            latestButtonClick()
+        }
+
+
+//      getSearchResult()
         getLastTag()
 
         defaultTag.apply {
@@ -42,6 +67,63 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
 
     }
 
+
+
+
+    // 디자인 이벤트
+    fun searchViewClick() {
+        binding.matchWhoSearchBeforeCl.visibility = View.INVISIBLE
+        binding.matchWhoSearchAfterCl.visibility = View.VISIBLE
+        binding.matchWhoSearchDefault.visibility = View.VISIBLE
+        binding.matchWhoSearchResult.visibility = View.INVISIBLE
+    }
+
+    fun backViewClick(){
+        binding.matchWhoSearchEt.setText("")
+        binding.matchWhoSearchBeforeCl.visibility = View.VISIBLE
+        binding.matchWhoSearchAfterCl.visibility = View.INVISIBLE
+        binding.matchWhoSearchDefault.visibility = View.INVISIBLE
+        binding.matchWhoSearchResult.visibility = View.INVISIBLE
+    }
+
+    fun deleteButtonClick(){
+        binding.matchWhoSearchEt.setText("")
+        binding.matchWhoSearchBeforeCl.visibility = View.INVISIBLE
+        binding.matchWhoSearchAfterCl.visibility = View.VISIBLE
+        binding.matchWhoSearchDefault.visibility = View.VISIBLE
+        binding.matchWhoSearchResult.visibility = View.INVISIBLE
+    }
+
+    fun searchButtonClick(){
+        binding.matchWhoSearchBeforeCl.visibility = View.INVISIBLE
+        binding.matchWhoSearchAfterCl.visibility = View.VISIBLE
+        binding.matchWhoSearchDefault.visibility = View.INVISIBLE
+        binding.matchWhoSearchResult.visibility = View.VISIBLE
+    }
+
+    fun latestButtonClick(){
+
+    }
+
+    fun historyView(){
+        binding.matchWhoLastTv.visibility = View.VISIBLE
+        binding.matchAllDeleteTv.visibility = View.VISIBLE
+        binding.matchWhoLastFl.visibility = View.VISIBLE
+    }
+
+    fun historyUnView(){
+        binding.matchWhoLastTv.visibility = View.INVISIBLE
+        binding.matchAllDeleteTv.visibility = View.INVISIBLE
+        binding.matchWhoLastFl.visibility = View.INVISIBLE
+    }
+
+
+
+
+
+
+
+    // API 이벤트
     private fun getSearchResult(){
         MatchService.getMatch(this, 0, "공원","", "", "", "", "")
     }
@@ -126,12 +208,15 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     override fun onLastTagLoading() {}
 
     override fun onLastTagSuccess(lastTag: ArrayList<LastTag>) {
+        historyView()
         lastTagRVAdapter = MatchButtonRVAdapter()
         binding.matchWhoLastRecyclerview.adapter = lastTagRVAdapter
         lastTagRVAdapter.addButton(lastTag)
+
     }
 
     override fun onLastTagFailure(code: Int, message: String) {
+        historyUnView()
         Log.d("LastTag1", "error")
         when (code) {
             2000,2001, 2002 -> {

@@ -1,18 +1,34 @@
 package com.eight.collection.ui.main.match.weather
 
+import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
+import com.eight.collection.R
+import com.eight.collection.data.entities.Diary
+import com.eight.collection.data.remote.match.MatchService
 import com.eight.collection.databinding.ActivityMatchWeatherBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.main.match.LastTag
+import com.eight.collection.ui.main.match.LastTagView
+import com.eight.collection.ui.main.match.MatchButtonRVAdapter
+import com.eight.collection.ui.main.match.MatchView
+import com.eight.collection.ui.main.week.DiaryRVAdapter
 
-class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWeatherBinding::inflate) {
+class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWeatherBinding::inflate),
+    MatchView, LastTagView {
+    private  lateinit var diaryRVAdapter: DiaryRVAdapter
+    private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
+    private  lateinit var lastTagRVAdapter: MatchButtonRVAdapter
+    private  var defaultTag = ArrayList<LastTag>()
+
 
     override fun initAfterBinding() {
         // 검색창 눌렀을시 이벤트
-        binding.matchWeatherSearchViewTv.setOnClickListener{
+        binding.matchWeatherSearchBeforeView.setOnClickListener{
             searchViewClick()
         }
 
-        // 돌아가기창 눌렀을시 이벤트
+        // 돌아가기 버튼 눌렀을시 이벤트
         binding.matchWeatherSearchBackIc.setOnClickListener{
            backViewClick()
         }
@@ -27,105 +43,185 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
             searchButtonClick()
         }
 
-
         //최신순 버튼 눌렀을시 이벤트
-        binding.matchWeatherSearchLastBt.setOnClickListener{
-            binding.matchWeatherSearchLastBt.visibility = View.INVISIBLE
-            binding.matchWeatherSearchOldBt.visibility = View.VISIBLE
+        binding.matchWeatherSearchRecentRl.setOnClickListener{
+            latestButtonClick()
         }
 
-        //오래된순 버튼 눌렀을시 이벤트
-        binding.matchWeatherSearchOldBt.setOnClickListener{
-            binding.matchWeatherSearchLastBt.visibility = View.VISIBLE
-            binding.matchWeatherSearchOldBt.visibility = View.INVISIBLE
+
+        //      getSearchResult()
+        getLastTag()
+
+        defaultTag.apply {
+            add(LastTag("매우추움", "",1))
+            add(LastTag("매우더움", "",2))
+            add(LastTag("추움", "",3))
+            add(LastTag("더움", "",4))
+            add(LastTag("적당함", "",5))
+            add(LastTag("눈", "",6))
+            add(LastTag("비", "",7))
+            add(LastTag("우박", "",8))
         }
+
+        matchButtonRVAdapter = MatchButtonRVAdapter()
+        binding.matchWeatherDefaultRecyclerview.adapter = matchButtonRVAdapter
+        matchButtonRVAdapter.addButton(defaultTag)
     }
 
-
     fun searchViewClick() {
-        binding.matchWeatherDefaultTv.visibility = View.GONE
-        binding.matchWeatherVeryColdBt.visibility = View.GONE
-        binding.matchWeatherVeryHotBt.visibility = View.GONE
-        binding.matchWeatherColdBt.visibility = View.GONE
-        binding.matchWeatherHotBt.visibility = View.GONE
-        binding.matchWeatherSosoBt.visibility = View.GONE
-        binding.matchWeatherSnowBt.visibility = View.GONE
-        binding.matchWeatherRainBt.visibility = View.GONE
-        binding.matchWeatherHailBt.visibility = View.GONE
-        binding.matchWeatherClothIv.visibility = View.GONE
-        binding.matchWeatherSearchViewTv.visibility = View.GONE
-        binding.matchWeatherSearchIc.visibility = View.GONE
-        binding.matchWeatherSearchBackIc.visibility = View.VISIBLE
-        binding.matchWeatherSearchDeleteIc.visibility = View.VISIBLE
-        binding.matchWeatherSearchButtonRecyclerview.visibility = View.VISIBLE
-        binding.matchWeatherSearchBt.visibility = View.VISIBLE
-        binding.matchWeatherSearchEt.visibility = View.VISIBLE
-        binding.matchWeatherSearchClothIv.visibility = View.VISIBLE
-        binding.matchWeatherSearchTv.visibility = View.VISIBLE
+        binding.matchWeatherSearchBeforeCl.visibility = View.INVISIBLE
+        binding.matchWeatherSearchAfterCl.visibility = View.VISIBLE
+        binding.matchWeatherSearchDefault.visibility = View.VISIBLE
+        binding.matchWeatherSearchResult.visibility = View.INVISIBLE
     }
 
     fun backViewClick(){
-        binding.matchWeatherDefaultTv.visibility = View.VISIBLE
-        binding.matchWeatherVeryColdBt.visibility = View.VISIBLE
-        binding.matchWeatherVeryHotBt.visibility = View.VISIBLE
-        binding.matchWeatherColdBt.visibility = View.VISIBLE
-        binding.matchWeatherHotBt.visibility = View.VISIBLE
-        binding.matchWeatherSosoBt.visibility = View.VISIBLE
-        binding.matchWeatherSnowBt.visibility = View.VISIBLE
-        binding.matchWeatherRainBt.visibility = View.VISIBLE
-        binding.matchWeatherHailBt.visibility = View.VISIBLE
-        binding.matchWeatherClothIv.visibility = View.VISIBLE
-        binding.matchWeatherSearchViewTv.visibility = View.VISIBLE
-        binding.matchWeatherSearchIc.visibility = View.VISIBLE
-        binding.matchWeatherSearchBackIc.visibility = View.GONE
-        binding.matchWeatherSearchDeleteIc.visibility = View.GONE
-        binding.matchWeatherSearchButtonRecyclerview.visibility = View.GONE
         binding.matchWeatherSearchEt.setText("")
-        binding.matchWeatherSearchEt.visibility = View.GONE
-
-        binding.matchWeatherSearchBt.visibility = View.GONE
-        binding.matchWeatherSearchClothIv.visibility = View.GONE
-        binding.matchWeatherSearchTv.visibility = View.GONE
-
-        binding.matchWeatherSearchResultFirstTv.visibility = View.GONE
-        binding.matchWeatherSearchResultSecondTv.visibility = View.GONE
-        binding.matchWeatherSearchResultThirdTv.visibility = View.GONE
-        binding.matchWeatherSearchDayBt.visibility = View.GONE
-        binding.matchWeatherSearchLastBt.visibility = View.GONE
-        binding.weekDiaryRecyclerView.visibility = View.GONE
-
-        binding.matchWeatherSearchLastBt.visibility = View.GONE
-        binding.matchWeatherSearchOldBt.visibility = View.GONE
+        binding.matchWeatherSearchBeforeCl.visibility = View.VISIBLE
+        binding.matchWeatherSearchAfterCl.visibility = View.INVISIBLE
+        binding.matchWeatherSearchDefault.visibility = View.INVISIBLE
+        binding.matchWeatherSearchResult.visibility = View.INVISIBLE
     }
 
     fun deleteButtonClick(){
         binding.matchWeatherSearchEt.setText("")
-
-        binding.matchWeatherSearchBt.visibility = View.VISIBLE
-        binding.matchWeatherSearchClothIv.visibility = View.VISIBLE
-        binding.matchWeatherSearchTv.visibility = View.VISIBLE
-
-        binding.matchWeatherSearchResultFirstTv.visibility = View.GONE
-        binding.matchWeatherSearchResultSecondTv.visibility = View.GONE
-        binding.matchWeatherSearchResultThirdTv.visibility = View.GONE
-        binding.matchWeatherSearchDayBt.visibility = View.GONE
-        binding.matchWeatherSearchLastBt.visibility = View.GONE
-        binding.weekDiaryRecyclerView.visibility = View.GONE
-
-        binding.matchWeatherSearchLastBt.visibility = View.GONE
-        binding.matchWeatherSearchOldBt.visibility = View.GONE
+        binding.matchWeatherSearchBeforeCl.visibility = View.INVISIBLE
+        binding.matchWeatherSearchAfterCl.visibility = View.VISIBLE
+        binding.matchWeatherSearchDefault.visibility = View.VISIBLE
+        binding.matchWeatherSearchResult.visibility = View.INVISIBLE
     }
 
     fun searchButtonClick(){
-        binding.matchWeatherSearchBt.visibility = View.GONE
-        binding.matchWeatherSearchClothIv.visibility = View.GONE
-        binding.matchWeatherSearchTv.visibility = View.GONE
-
-        binding.matchWeatherSearchResultFirstTv.visibility = View.VISIBLE
-        binding.matchWeatherSearchResultSecondTv.visibility = View.VISIBLE
-        binding.matchWeatherSearchResultThirdTv.visibility = View.VISIBLE
-        binding.matchWeatherSearchDayBt.visibility = View.VISIBLE
-        binding.matchWeatherSearchLastBt.visibility = View.VISIBLE
-        binding.weekDiaryRecyclerView.visibility = View.VISIBLE
+        binding.matchWeatherSearchBeforeCl.visibility = View.INVISIBLE
+        binding.matchWeatherSearchAfterCl.visibility = View.VISIBLE
+        binding.matchWeatherSearchDefault.visibility = View.INVISIBLE
+        binding.matchWeatherSearchResult.visibility = View.VISIBLE
     }
+
+    fun latestButtonClick(){
+
+    }
+
+    fun historyView(){
+        binding.matchWeatherLastTv.visibility = View.VISIBLE
+        binding.matchAllDeleteTv.visibility = View.VISIBLE
+        binding.matchWeatherLastFl.visibility = View.VISIBLE
+    }
+
+    fun historyUnView(){
+        binding.matchWeatherLastTv.visibility = View.INVISIBLE
+        binding.matchAllDeleteTv.visibility = View.INVISIBLE
+        binding.matchWeatherLastFl.visibility = View.INVISIBLE
+    }
+
+
+
+    // API 이벤트
+    private fun getSearchResult(){
+        MatchService.getMatch(this, 0, "공원","", "", "", "", "")
+    }
+
+    private fun getLastTag(){
+        MatchService.getLastTag(this, 0)
+    }
+
+    override fun onMatchLoading() {
+        binding.loginLoadingInIv.visibility = View.VISIBLE
+        binding.loginLoadingCircleIv.visibility = View.VISIBLE
+        binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+        val animation = AnimationUtils.loadAnimation(this, R.anim.rotate)
+        binding.loginLoadingCircleIv.startAnimation(animation)
+        binding.loginDimBackground.visibility = View.VISIBLE
+    }
+
+    override fun onMatchSuccess(match: MutableList<Diary>) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+
+        diaryRVAdapter = DiaryRVAdapter(this)
+        binding.matchWeatherSearchResultRv.adapter = diaryRVAdapter
+
+        diaryRVAdapter.addWeekly(match)
+//        if( match.size != 0){
+//
+//
+//            binding.matchDefault2Text.visibility= View.GONE
+//            binding.matchDefault1Text.visibility= View.GONE
+//            binding.matchDefaultIv.visibility= View.GONE
+//            binding.itemTopLine1View.visibility= View.GONE
+//            binding.itemTopLine2View.visibility= View.GONE
+//        }
+//        else{
+//            diaryRVAdapter.removeWeekly()
+//            binding.matchDefault2Text.visibility= View.VISIBLE
+//            binding.matchDefault1Text.visibility= View.VISIBLE
+//            binding.matchDefaultIv.visibility= View.VISIBLE
+//            binding.itemTopLine1View.visibility= View.VISIBLE
+//            binding.itemTopLine2View.visibility= View.VISIBLE
+//        }
+    }
+
+    override fun onMatchFailure(code: Int, message: String) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+        when (code) {
+            2000,2001, 2002 -> {
+                Log.d("Match/JWT/ERROR", "error")
+            }
+            3101,3048, 3036 -> {
+                Log.d("Match/PWWC/ERROR", "error")
+            }
+            3038,3113, -> {
+                Log.d("Match/Keword/ERROR", "error")
+            }
+            3112, 3061, 3114, 3115, 3118 -> {
+                Log.d("Match/Color/ERROR", "error")
+            }
+            3039, 3106, 3107, 3040, 3108, 3109 -> {
+                Log.d("Match/Date/ERROR", "error")
+            }
+            3110, 3050 -> {
+                Log.d("Match/Text/ERROR", "error")
+            }
+            4018, 4001 -> {
+                Log.d("Match/Response/ERROR", "error")
+            }
+            else -> {
+                Log.d("Month/DB/ERROR", "error")
+            }
+        }
+    }
+
+    override fun onLastTagLoading() {}
+
+    override fun onLastTagSuccess(lastTag: ArrayList<LastTag>) {
+        historyView()
+        lastTagRVAdapter = MatchButtonRVAdapter()
+        binding.matchWeatherLastRecyclerview.adapter = lastTagRVAdapter
+        lastTagRVAdapter.addButton(lastTag)
+
+    }
+
+    override fun onLastTagFailure(code: Int, message: String) {
+        historyUnView()
+        Log.d("LastTag1", "error")
+        when (code) {
+            2000,2001, 2002 -> {
+                Log.d("LastTag/JWT/ERROR", "error")
+            }
+            3101,3048, 3036 -> {
+                Log.d("LastTag/PWWC/ERROR", "error")
+            }
+            else -> {
+                Log.d("LastTag/DB/ERROR", "error")
+            }
+        }
+    }
+
 }

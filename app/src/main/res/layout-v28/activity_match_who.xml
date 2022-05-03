@@ -30,29 +30,55 @@
         android:letterSpacing="-0.1"
         android:text="@string/match_who" />
 
-    <View
-        android:id="@+id/match_who_search_view"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginHorizontal="16dp"
-        android:background="@drawable/match_search_round"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/match_who_title_tv" />
+
+
 
 <!--검색 버튼 클릭 전-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/match_who_search_before_cl"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/match_who_search_view"
+        app:layout_constraintTop_toBottomOf="@id/match_who_title_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
+        android:visibility="visible">
+
+        <View
+            android:id="@+id/match_who_search_before_view"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:background="@drawable/match_search_round"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="16dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/match_who_search_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search"
+            app:layout_constraintStart_toStartOf="@id/match_who_search_before_view"
+            app:layout_constraintTop_toTopOf="@id/match_who_search_before_view"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"
+            />
+
+        <TextView
+            android:id="@+id/match_who_search_view_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/match_who_search_view"
+            android:textColor="@color/pinkish_grey"
+            android:textSize="14sp"
+            android:fontFamily="@font/suit_regular"
+            app:layout_constraintTop_toTopOf="@id/match_who_search_ic"
+            app:layout_constraintBottom_toBottomOf="@id/match_who_search_ic"
+            app:layout_constraintStart_toEndOf="@id/match_who_search_ic"
+            />
 
         <TextView
             android:id="@+id/match_who_last_tv"
@@ -62,10 +88,12 @@
             android:fontFamily="@font/suit_regular"
             android:textColor="@color/pinkish_grey"
             android:textSize="12sp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/match_who_search_before_view"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp"
-            android:visibility="visible" />
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            />
 
         <TextView
             android:id="@+id/match_all_delete_tv"
@@ -78,7 +106,9 @@
             app:layout_constraintTop_toTopOf="@id/match_who_last_tv"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="32dp"
-            android:visibility="visible" />
+            android:visibility="gone"
+            />
+
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/match_who_last_fl"
@@ -88,13 +118,15 @@
             app:layout_constraintStart_toStartOf="@id/match_who_last_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/match_who_last_tv"
-            app:flexWrap="wrap">
+            app:flexWrap="wrap"
+            android:visibility="gone"
+            >
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/match_who_last_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_match_weather_last"
+                tools:listitem="@layout/item_match_who_last"
                 android:orientation="horizontal"
                 app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
         </com.google.android.flexbox.FlexboxLayout>
@@ -111,7 +143,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:visibility="visible" />
+            />
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/match_who_default_fl"
@@ -132,216 +164,389 @@
                 app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
         </com.google.android.flexbox.FlexboxLayout>
 
+        <ImageView
+            android:id="@+id/match_who_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_match_who"
+            app:layout_constraintTop_toBottomOf="@id/match_who_search_before_view"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="213dp"
+            android:layout_marginTop="368dp"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
 
 <!--검색 버튼 클릭 후-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/match_who_search_result_cl"
-        android:layout_width="match_parent"
+        android:id="@+id/match_who_search_after_cl"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="22dp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/match_who_search_view"
+        app:layout_constraintTop_toBottomOf="@id/match_who_title_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
+        android:visibility="gone">
 
-        <TextView
-            android:id="@+id/match_who_search_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:fontFamily="@font/suit_regular"
-            android:textStyle="normal"
-            android:textSize="12sp"
-            android:textColor="@color/pinkish_grey"
-            android:letterSpacing="-0.05"
-            android:lineSpacingExtra="5sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintTop_toTopOf="parent"
+        <View
+            android:id="@+id/match_who_search_after_view"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:background="@drawable/match_search_round"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/match_search_title" />
-
-        <TextView
-            android:id="@+id/match_who_search_result_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:visibility="visible"
-            android:textStyle="normal"
-            android:textSize="13sp"
-            android:textColor="@color/dark_taupe"
-            tools:text="2"
-            app:layout_constraintBaseline_toBaselineOf="@+id/match_who_search_title_tv"
-            android:letterSpacing="-0.05"
-            android:lineSpacingExtra="5sp"
-            android:layout_marginStart="4dp"
-            app:layout_constraintStart_toEndOf="@+id/match_who_search_title_tv" />
-
-        <TextView
-            android:id="@+id/match_who_search_result_sub_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:fontFamily="@font/suit_regular"
-            android:textStyle="normal"
-            android:textSize="12sp"
-            android:textColor="@color/pinkish_grey"
-            android:letterSpacing="-0.05"
-            android:lineSpacingExtra="5sp"
-            android:layout_marginStart="2dp"
-            app:layout_constraintTop_toTopOf="@+id/match_who_search_title_tv"
-            app:layout_constraintBottom_toBottomOf="@+id/match_who_search_title_tv"
-            app:layout_constraintStart_toEndOf="@+id/match_who_search_result_tv"
-            android:text="@string/match_search_result_sub" />
-
-        <RelativeLayout
-            android:id="@+id/match_who_search_date_find_rl"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:visibility="visible"
-            android:layout_marginEnd="4dp"
-            android:background="@drawable/match_search_btn_round"
-            app:layout_constraintEnd_toStartOf="@+id/match_who_search_recent_rl"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/match_who_search_date_find_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/suit_regular"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.05"
-                android:lineSpacingExtra="5sp"
-                android:paddingHorizontal="16dp"
-                android:text="@string/match_search_date_find"
-                android:textColor="@color/dark_taupe"
-                android:textSize="12sp"
-                android:textStyle="normal" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/match_who_search_recent_rl"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:visibility="visible"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/match_search_btn_round"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="16dp"
+            tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:id="@+id/match_who_search_recent_tv"
+        <ImageView
+            android:id="@+id/match_who_search_back_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back3"
+            app:layout_constraintStart_toStartOf="@id/match_who_search_after_view"
+            app:layout_constraintTop_toTopOf="@id/match_who_search_after_view"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/match_who_search_button_result_recyclerview"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@id/match_who_search_after_view"
+            app:layout_constraintTop_toTopOf="@id/match_who_search_after_view"
+            app:layout_constraintBottom_toBottomOf="@id/match_who_search_after_view"
+            android:layout_marginStart="40dp"
+            tools:listitem="@layout/item_week_diary_mood"
+            />
+
+        <EditText
+            android:id="@+id/match_who_search_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_taupe"
+            android:background="@null"
+            android:fontFamily="@font/suit_regular"
+            android:textSize="14sp"
+            android:letterSpacing="-0.01"
+            android:autoText="false"
+            tools:ignore="Deprecated"
+            app:layout_constraintStart_toEndOf="@id/match_who_search_button_result_recyclerview"
+            app:layout_constraintEnd_toEndOf="@id/match_who_search_after_view"
+            app:layout_constraintTop_toTopOf="@id/match_who_search_after_view"
+            app:layout_constraintBottom_toBottomOf="@id/match_who_search_after_view"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="5dp"
+            />
+
+        <ImageView
+            android:id="@+id/match_who_search_delete_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_s"
+            app:layout_constraintEnd_toEndOf="@id/match_who_search_after_view"
+            app:layout_constraintTop_toTopOf="@id/match_who_search_after_view"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            />
+
+ <!-- 검색 기본 세팅 레이아웃 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/match_who_search_default"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/match_who_search_after_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/match_who_search_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/match_search_btn_event"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="411dp"
+                />
+
+            <ImageView
+                android:id="@+id/match_who_search_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_search_who"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="172dp"
+                />
+
+            <TextView
+                android:id="@+id/match_who_search_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/match_who_search"
+                android:textColor="@color/pinkish_grey"
+                android:textSize="14sp"
+                android:fontFamily="@font/suit_regular"
+                app:layout_constraintTop_toBottomOf="@id/match_who_search_iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="17dp"
+                />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/match_who_search_button_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:flexWrap="wrap"
+                app:alignItems="stretch"
+                app:alignContent="stretch"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="16dp"
+                tools:ignore="MissingConstraints"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/match_who_search_button_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="385dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+                    tools:listitem="@layout/item_match_who_last"
+                    tools:ignore="MissingConstraints"
+                    >
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </com.google.android.flexbox.FlexboxLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!-- 검색 결과 레이아웃 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/match_who_search_result"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/match_who_search_after_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="visible"
+            >
+
+            <TextView
+                android:id="@+id/match_who_search_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/match_search_result_first"
+                android:textColor="@color/pinkish_grey"
+                android:textSize="12sp"
+                android:fontFamily="@font/suit_regular"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="27dp"
+                android:layout_marginStart="16dp"
+                />
+
+            <TextView
+                android:id="@+id/match_who_search_result_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/match_search_result_second"
+                android:textColor="@color/dark_taupe"
+                android:textSize="13sp"
+                android:fontFamily="@font/suit_regular"
+                app:layout_constraintTop_toTopOf="@id/match_who_search_title_tv"
+                app:layout_constraintBottom_toBottomOf="@id/match_who_search_title_tv"
+                app:layout_constraintStart_toEndOf="@id/match_who_search_title_tv"
+                android:layout_marginStart="4dp"
+                />
+
+            <TextView
+                android:id="@+id/match_who_search_result_sub_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
                 android:fontFamily="@font/suit_regular"
                 android:textStyle="normal"
                 android:textSize="12sp"
-                android:textColor="@color/terracota"
+                android:textColor="@color/pinkish_grey"
                 android:letterSpacing="-0.05"
                 android:lineSpacingExtra="5sp"
-                android:gravity="center_horizontal"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="12dp"
-                android:text="@string/match_search_recent"/>
+                android:layout_marginStart="2dp"
+                app:layout_constraintTop_toTopOf="@+id/match_who_search_title_tv"
+                app:layout_constraintBottom_toBottomOf="@+id/match_who_search_title_tv"
+                app:layout_constraintStart_toEndOf="@+id/match_who_search_result_tv"
+                android:text="@string/match_search_result_sub" />
 
-            <TextView
-                android:id="@+id/match_who_search_recent_arrow_tv"
+            <RelativeLayout
+                android:id="@+id/match_who_search_date_find_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:visibility="visible"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/match_search_btn_round"
+                app:layout_constraintEnd_toStartOf="@+id/match_who_search_recent_rl"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="22dp"
+                >
+
+                <TextView
+                    android:id="@+id/match_who_search_date_find_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/suit_regular"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="5sp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/match_search_date_find"
+                    android:textColor="@color/dark_taupe"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/match_who_search_recent_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:visibility="visible"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/match_search_btn_round"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="22dp"
+                >
+
+                <TextView
+                    android:id="@+id/match_who_search_recent_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/suit_regular"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="5sp"
+                    android:text="@string/match_search_recent"
+                    android:textColor="@color/terracota"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/match_who_search_recent_arrow_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/match_who_search_recent_tv"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_toEndOf="@+id/match_who_search_recent_tv"
+                    android:gravity="end"
+                    android:text="↑"
+                    android:textColor="@color/terracota"
+                    android:textSize="11sp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/match_who_search_result_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/match_who_search_title_tv"
+                tools:listitem="@layout/item_week_diary"/>
+
+            <ImageView
+                android:id="@+id/match_default_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/match_who_search_recent_tv"
-                android:layout_marginStart="7dp"
-                android:layout_marginEnd="12dp"
-                android:layout_toEndOf="@+id/match_who_search_recent_tv"
-                android:gravity="end"
-                android:text="↑"
-                android:textColor="@color/terracota"
-                android:textSize="11sp"
-                android:textStyle="normal" />
-        </RelativeLayout>
+                android:src="@drawable/ic_padding_indicator1"
+                android:layout_marginBottom="-35dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/match_default1_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/match_who_search_result_rv"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:visibility="visible"
-            android:orientation="vertical"
-            android:layout_marginTop="12dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/match_who_search_title_tv"
-            tools:listitem="@layout/item_week_diary"/>
+            <TextView
+                android:id="@+id/match_default1_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:visibility="gone"
+                android:textColor="@color/dark_taupe"
+                android:letterSpacing="-0.01"
+                android:layout_marginBottom="-25dp"
+                app:layout_constraintBottom_toTopOf="@id/match_default2_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="@string/dialog_text1"/>
 
-        <ImageView
-            android:id="@+id/match_default_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_padding_indicator1"
-            android:layout_marginBottom="-35dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/match_default1_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:id="@+id/match_default2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:textStyle="normal"
+                android:textSize="16sp"
+                android:textColor="@color/dark_taupe"
+                android:letterSpacing="-0.01"
+                android:layout_marginBottom="300dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="@string/dialog_text2"/>
 
-        <TextView
-            android:id="@+id/match_default1_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_kr"
-            android:textStyle="normal"
-            android:textSize="16sp"
-            android:visibility="gone"
-            android:textColor="@color/dark_taupe"
-            android:letterSpacing="-0.01"
-            android:layout_marginBottom="-25dp"
-            app:layout_constraintBottom_toTopOf="@id/match_default2_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:lineSpacingExtra="8sp"
-            android:gravity="center_horizontal"
-            android:text="@string/dialog_text1"/>
+            <View
+                android:id="@+id/item_top_line1_view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:visibility="gone"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/match_who_search_title_tv"
+                app:layout_constraintBottom_toTopOf="@+id/item_top_line2_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/pinkish_grey"/>
 
-        <TextView
-            android:id="@+id/match_default2_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_kr"
-            android:textStyle="normal"
-            android:textSize="16sp"
-            android:textColor="@color/dark_taupe"
-            android:letterSpacing="-0.01"
-            android:layout_marginBottom="300dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:lineSpacingExtra="8sp"
-            android:gravity="center_horizontal"
-            android:text="@string/dialog_text2"/>
-
-        <View
-            android:id="@+id/item_top_line1_view"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:visibility="gone"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/match_who_search_title_tv"
-            app:layout_constraintBottom_toTopOf="@+id/item_top_line2_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/pinkish_grey"/>
-
-        <View
-            android:id="@+id/item_top_line2_view"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/item_top_line1_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/item_top_line" />
+            <View
+                android:id="@+id/item_top_line2_view"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/item_top_line1_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@color/item_top_line" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -376,6 +581,7 @@
         app:layout_constraintStart_toStartOf="@+id/login_loading_circle_iv"
         app:layout_constraintBottom_toBottomOf="@+id/login_loading_circle_iv"
         app:layout_constraintEnd_toEndOf="@+id/login_loading_circle_iv"/>
+
 
     <ImageView
         android:id="@+id/login_loading_circle_iv"
