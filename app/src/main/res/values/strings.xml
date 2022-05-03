@@ -84,7 +84,7 @@
     <string name="privacy_rule">개인정보 취급방침</string>
     <string name="mail">문의하기</string>
     <string name="logout">로그아웃</string>
-    <string name="app_version">v.1.0.3</string>
+    <string name="app_version">v.1.0.4</string>
     <string name="nickname_annotation">콜렉션에서 사용할 닉네임을 입력해주세요.</string>
 
     <!-- myLook page -->

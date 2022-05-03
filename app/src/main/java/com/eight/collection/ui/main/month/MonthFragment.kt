@@ -3,9 +3,7 @@ package com.eight.collection.ui.main.month
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.nfc.Tag
 import android.os.Build
-import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
@@ -13,7 +11,6 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.navigation.Navigation
 import com.eight.collection.R
 import com.eight.collection.data.entities.Calendar
 import com.eight.collection.data.remote.calendar.CalendarService
@@ -25,7 +22,6 @@ import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.mylook.MyLookActivity
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.writing.first.WritefirstActivity
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -36,10 +32,7 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.ZoneId
-import java.time.temporal.TemporalField
-import java.time.temporal.WeekFields
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate), MonthView  {
@@ -119,7 +112,9 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             val todayHighlight = CalendarDateBinding.bind(view).calendarTodayView
         }
 
+
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
+
 
             override fun create(view: View) = DayViewContainer(view)
 
@@ -219,7 +214,6 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
             }
         }
 
-
         val currentMonth = YearMonth.now()
         val firstMonth = currentMonth.minusMonths(10)
         val lastMonth = currentMonth.plusMonths(10)
@@ -238,6 +232,18 @@ class MonthFragment(): BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::
         }else{
             binding.calendarView.scrollToDate(selectedDate!!)
         }
+
+
+//        binding.calendarView.monthScrollListener = { month ->
+//
+//
+//            if(true){
+//                val firstMonthAsync = firstMonth.minusMonths(10)
+//                val lastMonthAsync = lastMonth.plusMonths(1)
+//                binding.calendarView.updateMonthRangeAsync(firstMonthAsync, lastMonthAsync)
+//            }
+//            Log.d("scrolltest", "test")
+//        }
 
     }
 

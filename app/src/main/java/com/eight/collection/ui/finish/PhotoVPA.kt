@@ -11,11 +11,18 @@ import com.eight.collection.R
 import com.eight.collection.databinding.FragmentFinishPhotoBinding
 
 class PhotoVPA(val context: Context) : RecyclerView.Adapter<PhotoVPA.PagerViewHolder>() {
-//    var item = idolList
 
     private val item = ArrayList<String>()
 
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PagerViewHolder((parent))
+    interface MyitemClickListener{
+        fun onBack()
+    }
+
+    private  lateinit var mItemClickListener: MyitemClickListener
+
+    fun setMyitemClickListener(itemClickListener: MyitemClickListener){
+        mItemClickListener = itemClickListener
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PhotoVPA.PagerViewHolder {
         val binding: FragmentFinishPhotoBinding = FragmentFinishPhotoBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -35,8 +42,8 @@ class PhotoVPA(val context: Context) : RecyclerView.Adapter<PhotoVPA.PagerViewHo
 
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-//        holder.idol.setBackgroundResource(position)
         holder.bind(item[position])
+//        holder.binding.finishPhotoDelete.setOnClickListener { mItemClickListener.onBack()}
 
     }
 
@@ -44,7 +51,6 @@ class PhotoVPA(val context: Context) : RecyclerView.Adapter<PhotoVPA.PagerViewHo
 
         fun bind(photo: String){
             if(photo.isNullOrEmpty()){
-                Glide.with(context).load(R.drawable.finish_default2_nobg).into(binding.finishPhoto)
             }
             else{
                 Glide.with(context).load(photo).into(binding.finishPhoto)

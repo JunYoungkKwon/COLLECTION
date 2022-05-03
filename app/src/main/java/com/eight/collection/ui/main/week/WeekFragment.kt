@@ -160,7 +160,6 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
             val todayHighlight = CalendarDateBinding.bind(view).calendarTodayView
         }
 
-        Log.d("Month/FLOW/1", "SUCCESS")
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
 
 
@@ -554,6 +553,23 @@ class WeekFragment(): BaseFragment<FragmentWeekBinding>(FragmentWeekBinding::inf
                         }
                         powerMenu.onMenuItemClickListener = onMenuItemClickListener
                         powerMenu.showAsDropDown(view, -30, -30)
+                    }
+
+                    override fun onStartFinish(position: Int) {
+                        val date = dateSave?.get(position)?.date
+                        var localdate: LocalDate? = date?.toInstant()
+                            ?.atZone(ZoneId.systemDefault())
+                            ?.toLocalDate()
+                        moveToDate = localdate
+                        val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                        val moveDate: String? = localdate?.format(formatters)
+
+                        val intent = Intent(context,FinishActivity::class.java)
+                        intent.apply {
+                            this.putExtra("date",moveDate)
+                        }
+                        startActivity(intent)
+
                     }
                 })
 
