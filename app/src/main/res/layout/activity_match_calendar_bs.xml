@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/match_calendar_cl"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/match_coor_dL"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:behavior_hideable="true"
-    app:behavior_skipCollapsed= "true"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:background="@drawable/img_bg_matchpage">
+    android:animateLayoutChanges="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/transparent3"
+    android:orientation="vertical">
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:id="@+id/match_ns"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:fillViewport="true"-->
+<!--        app:behavior_hideable="true"-->
+<!--        app:behavior_skipCollapsed= "true"-->
+<!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/match_ns_cl"
+        android:layout_marginTop="40dp"
+        app:behavior_hideable="true"
+        app:behavior_skipCollapsed= "true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        android:background="@drawable/img_bg_weekly"
+        android:nestedScrollingEnabled="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <com.kizitonwose.calendarview.CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:cv_scrollMode="paged"
         app:cv_orientation="horizontal"
         app:cv_hasBoundaries="true"
@@ -24,6 +50,8 @@
         app:cv_dayViewResource="@layout/calendar_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    </androidx.core.widget.NestedScrollView>-->
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 

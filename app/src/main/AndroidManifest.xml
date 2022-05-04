@@ -30,6 +30,7 @@
             android:name=".ui.login.LoginFirstActivity"
             android:exported="true">
 
+
         </activity>
 
 
@@ -106,6 +107,7 @@
             android:name=".ui.finish.FinishActivity"
             android:theme="@style/Transparent"
             android:exported="true">
+
         </activity>
 
         <activity

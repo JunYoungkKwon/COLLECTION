@@ -153,9 +153,10 @@ class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(Activity
     }
 
     private fun scrollFinsh() {
-        val bottomSheetBehavior = BottomSheetBehavior.from(binding.matchCalendarCl)
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.matchNsCl)
         bottomSheetBehavior.setGestureInsetBottomIgnored(true)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        Log.d("scrolltest","t")
 
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
@@ -163,9 +164,12 @@ class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(Activity
                 if (newState == STATE_HIDDEN) {
                     finish()
                 }
+                Log.d("scrolltest","t1")
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
+
+                Log.d("scrolltest","t2")
             }
 
         })
