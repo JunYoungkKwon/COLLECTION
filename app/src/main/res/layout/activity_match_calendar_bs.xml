@@ -10,6 +10,7 @@
     android:background="@color/transparent3"
     android:orientation="vertical">
 
+
 <!--    <androidx.core.widget.NestedScrollView-->
 <!--        android:id="@+id/match_ns"-->
 <!--        android:layout_width="match_parent"-->
