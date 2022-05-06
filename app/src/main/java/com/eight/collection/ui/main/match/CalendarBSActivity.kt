@@ -6,12 +6,10 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
@@ -40,6 +38,9 @@ import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.kizitonwose.calendarview.CalendarView
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -58,28 +59,38 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(ActivityMatchCalendarBsBinding::inflate) {
+class CalendarBSActivity(context: Context) : BottomSheetDialogFragment() {
 
-    override fun initAfterBinding() {
-        overridePendingTransition(R.anim.slide_up, R.anim.none)
-        scrollFinsh()
+    private lateinit var binding: ActivityMatchCalendarBsBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme)
+        binding = ActivityMatchCalendarBsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
         initCalendar()
-
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (isFinishing) {
-            overridePendingTransition(R.anim.none, R.anim.slide_down)
-        }
-    }
+//    override fun onBackPressed() {
+//        super.onBackPressed()
+//        if (isFinishing) {
+//            overridePendingTransition(R.anim.none, R.anim.slide_down)
+//        }
+//    }
 
     private fun initCalendar(){
         //day cell 크기 조정
         val dm = DisplayMetrics()
-        val wm = this.getSystemService(Context.WINDOW_SERVICE) as WindowManager //requireContext() -> this
+        val wm = requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager //requireContext() -> this
         wm.defaultDisplay.getMetrics(dm)
-        binding.calendarView.apply {
+        view?.findViewById<CalendarView>(R.id.calendarView)?.apply {
             val dayWidth = dm.widthPixels / 7
             val dayHeight = (dayWidth * 1.8).toInt()
             daySize = com.kizitonwose.calendarview.utils.Size(dayWidth, dayHeight)
@@ -91,7 +102,6 @@ class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(Activity
             val rankPoint = CalendarDateBinding.bind(view).calendarRankIv
             val todayHighlight = CalendarDateBinding.bind(view).calendarTodayView
         }
-
 
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
 
@@ -152,28 +162,30 @@ class CalendarBSActivity :BaseActivity <ActivityMatchCalendarBsBinding>(Activity
 
     }
 
-    private fun scrollFinsh() {
-        val bottomSheetBehavior = BottomSheetBehavior.from(binding.matchNsCl)
-        bottomSheetBehavior.setGestureInsetBottomIgnored(true)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-        Log.d("scrolltest","t")
 
-        bottomSheetBehavior.addBottomSheetCallback(object :
-            BottomSheetBehavior.BottomSheetCallback() {
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                if (newState == STATE_HIDDEN) {
-                    finish()
-                }
-                Log.d("scrolltest","t1")
-            }
 
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-
-                Log.d("scrolltest","t2")
-            }
-
-        })
-    }
+//    private fun scrollFinsh() {
+//        val bottomSheetBehavior = BottomSheetBehavior.from(binding.matchNsCl)
+//        bottomSheetBehavior.setGestureInsetBottomIgnored(true)
+//        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+//        Log.d("scrolltest","t")
+//
+//        bottomSheetBehavior.addBottomSheetCallback(object :
+//            BottomSheetBehavior.BottomSheetCallback() {
+//            override fun onStateChanged(bottomSheet: View, newState: Int) {
+//                if (newState == STATE_HIDDEN) {
+//                    finish()
+//                }
+//                Log.d("scrolltest","t1")
+//            }
+//
+//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+//
+//                Log.d("scrolltest","t2")
+//            }
+//
+//        })
+//    }
 
 }
 

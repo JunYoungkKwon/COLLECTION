@@ -56,6 +56,7 @@
             android:name=".ui.main.MainActivity"
             android:exported="true">
 
+
         </activity>
 
         <activity android:name=".ui.introduce.IntroduceDialog"
@@ -96,6 +97,11 @@
         <activity android:name=".ui.main.match.place.PlaceActivity"/>
         <activity android:name=".ui.main.match.who.WhoActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".ui.main.match.color.ColorActivity"/>
@@ -113,11 +119,7 @@
         <activity
             android:name=".ui.main.match.CalendarBSActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
     </application>

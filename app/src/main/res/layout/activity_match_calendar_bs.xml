@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:id="@+id/match_coor_dL"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/match_ns_cl"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/transparent3"
+    app:behavior_hideable="true"
+    app:behavior_draggable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:background="@drawable/match_calendar_round"
     android:orientation="vertical">
+<!--<androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--    android:id="@+id/match_coor_dL"-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:animateLayoutChanges="true"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:background="@color/transparent3"-->
+<!--    android:orientation="vertical">-->
 
 
 <!--    <androidx.core.widget.NestedScrollView-->
@@ -25,16 +38,27 @@
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintBottom_toBottomOf="parent">-->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/match_ns_cl"
-        android:layout_marginTop="40dp"
-        app:behavior_hideable="true"
-        app:behavior_skipCollapsed= "true"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        android:background="@drawable/img_bg_weekly"
-        android:nestedScrollingEnabled="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/match_ns_cl"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        app:behavior_hideable="true"-->
+<!--        app:behavior_skipCollapsed= "true"-->
+<!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"-->
+<!--        android:background="@drawable/img_bg_weekly"-->
+<!--        android:nestedScrollingEnabled="true"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="dsfsdfdsfsdf"-->
+<!--        android:textSize="60dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"/>-->
 
     <com.kizitonwose.calendarview.CalendarView
         android:id="@+id/calendarView"
@@ -52,7 +76,7 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 <!--    </androidx.core.widget.NestedScrollView>-->
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+<!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 
 
 

@@ -8,11 +8,9 @@ import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.remote.match.MatchService
 import com.eight.collection.databinding.ActivityMatchWhoBinding
 import com.eight.collection.ui.BaseActivity
-import com.eight.collection.ui.main.match.LastTag
-import com.eight.collection.ui.main.match.LastTagView
-import com.eight.collection.ui.main.match.MatchButtonRVAdapter
-import com.eight.collection.ui.main.match.MatchView
+import com.eight.collection.ui.main.match.*
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlin.collections.ArrayList
 
 class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding::inflate), MatchView, LastTagView {
@@ -39,6 +37,19 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         matchButtonRVAdapter = MatchButtonRVAdapter()
         binding.matchWhoDefaultRecyclerview.adapter = matchButtonRVAdapter
         matchButtonRVAdapter.addButton(defaultTag)
+
+        val bottomSheetFragment = CalendarBSActivity(applicationContext)
+
+
+//        val bottomSheetView = layoutInflater.inflate(R.layout.activity_match_calendar_bs, null)
+//        val bottomSheetDialog = BottomSheetDialog(this)
+//        bottomSheetDialog.setContentView(bottomSheetView)
+
+        binding.matchAllDeleteTv.setOnClickListener {
+//            bottomSheetDialog.show()
+            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+
+        }
 
     }
 
