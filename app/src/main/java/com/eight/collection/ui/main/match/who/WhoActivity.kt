@@ -3,6 +3,10 @@ package com.eight.collection.ui.main.match.who
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
+import com.aminography.primecalendar.civil.CivilCalendar
+import com.aminography.primedatepicker.picker.PrimeDatePicker
+import com.aminography.primedatepicker.picker.callback.RangeDaysPickCallback
+import com.aminography.primedatepicker.picker.callback.SingleDayPickCallback
 import com.eight.collection.R
 import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.remote.match.MatchService
@@ -38,16 +42,27 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         binding.matchWhoDefaultRecyclerview.adapter = matchButtonRVAdapter
         matchButtonRVAdapter.addButton(defaultTag)
 
-        val bottomSheetFragment = CalendarBSActivity(applicationContext)
-
-
+//        val bottomSheetFragment = CalendarBSActivity(applicationContext)
 //        val bottomSheetView = layoutInflater.inflate(R.layout.activity_match_calendar_bs, null)
 //        val bottomSheetDialog = BottomSheetDialog(this)
 //        bottomSheetDialog.setContentView(bottomSheetView)
 
         binding.matchAllDeleteTv.setOnClickListener {
 //            bottomSheetDialog.show()
-            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+//            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+
+            // To show a date picker with Civil dates, also today as the starting date
+            val callback = RangeDaysPickCallback { startDay, endDay ->
+            }
+
+            val today = CivilCalendar()
+
+            val datePicker = PrimeDatePicker.bottomSheetWith(today)
+                .pickRangeDays(callback)
+                .build()
+
+            datePicker.show(supportFragmentManager, "SOME_TAG")
+
 
         }
 
@@ -157,3 +172,5 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         }
     }
 }
+
+

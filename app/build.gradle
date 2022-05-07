@@ -10,15 +10,27 @@ plugins {
 android {
     compileSdk 31
 
+
+//    packagingOptions {exclude 'org/threeten/bp/format/ChronologyText.properties'}
+
+//    configurations {
+//        all{
+//            exclude group :"org.threeten", module: "threetenbp"
+//        }
+//    }
+
     defaultConfig {
         applicationId "com.eight.collection"
         minSdk 26
+
 
         targetSdk 31
         versionCode 5
         versionName "1.0.4"
 
         testInstrumentationRunner "androi`dx.test.runner.AndroidJUnitRunner"
+
+        //multiDexEnabled true
     }
 
     signingConfigs {
@@ -56,16 +68,19 @@ android {
     viewBinding {
         enabled = true
     }
+
 }
+
+
 
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.hedgehog.ratingbar:app:1.1.2'
-    implementation 'androidx.databinding:databinding-runtime:7.1.2'
+    implementation 'androidx.databinding:databinding-runtime:7.1.3'
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -94,8 +109,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.7'
 
     //Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
 
     //calendar
     implementation 'com.github.kizitonwose:CalendarView:1.0.4'
@@ -119,5 +134,13 @@ dependencies {
 
     //update
     implementation 'com.google.android.play:core:1.10.3'
+
+    //bottomsheet Calendar
+    implementation ('com.aminography:primedatepicker:3.6.0') { exclude group :"org.threeten", module: "threetenbp" }
+    implementation ('com.aminography:primecalendar:1.7.0'){ exclude group :"org.threeten", module: "threetenbp" }
+
+
+    //implementation 'org.threeten:threetenbp:1.5.2'
+    //implementation 'androidx.multidex:multidex:2.0.1'
 
 }
