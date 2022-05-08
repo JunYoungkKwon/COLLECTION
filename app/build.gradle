@@ -10,15 +10,6 @@ plugins {
 android {
     compileSdk 31
 
-
-//    packagingOptions {exclude 'org/threeten/bp/format/ChronologyText.properties'}
-
-//    configurations {
-//        all{
-//            exclude group :"org.threeten", module: "threetenbp"
-//        }
-//    }
-
     defaultConfig {
         applicationId "com.eight.collection"
         minSdk 26
@@ -29,8 +20,6 @@ android {
         versionName "1.0.4"
 
         testInstrumentationRunner "androi`dx.test.runner.AndroidJUnitRunner"
-
-        //multiDexEnabled true
     }
 
     signingConfigs {
@@ -139,8 +128,5 @@ dependencies {
     implementation ('com.aminography:primedatepicker:3.6.0') { exclude group :"org.threeten", module: "threetenbp" }
     implementation ('com.aminography:primecalendar:1.7.0'){ exclude group :"org.threeten", module: "threetenbp" }
 
-
-    //implementation 'org.threeten:threetenbp:1.5.2'
-    //implementation 'androidx.multidex:multidex:2.0.1'
 
 }
