@@ -58,6 +58,23 @@
 
 
         </activity>
+        <activity android:name=".ui.login.IdFindFirstActivity" android:exported="true">
+
+        </activity>
+        <activity android:name=".ui.login.IdFindSecondActivity" android:exported="true">
+
+        </activity>
+        <activity android:name=".ui.login.PwFindFirstActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.login.PwFindSecondActivity" android:exported="true">
+
+        </activity>
+
 
         <activity android:name=".ui.introduce.IntroduceDialog"
             android:theme="@style/Transparent"/>
@@ -97,11 +114,7 @@
         <activity android:name=".ui.main.match.place.PlaceActivity"/>
         <activity android:name=".ui.main.match.who.WhoActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".ui.main.match.color.ColorActivity"/>
@@ -116,11 +129,11 @@
 
         </activity>
 
-        <activity
-            android:name=".ui.main.match.CalendarBSActivity"
-            android:exported="true">
+<!--        <activity-->
+<!--            android:name=".ui.main.match.CalendarBSActivity"-->
+<!--            android:exported="true">-->
 
-        </activity>
+<!--        </activity>-->
 
     </application>
 
