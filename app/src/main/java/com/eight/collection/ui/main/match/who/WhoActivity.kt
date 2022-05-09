@@ -13,6 +13,7 @@ import com.eight.collection.ui.main.match.LastTagView
 import com.eight.collection.ui.main.match.MatchButtonRVAdapter
 import com.eight.collection.ui.main.match.MatchView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.google.android.flexbox.FlexboxLayoutManager
 import kotlin.collections.ArrayList
 
 class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding::inflate), MatchView, LastTagView {
@@ -53,16 +54,18 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         getLastTag()
 
         defaultTag.apply {
-            add(LastTag("나", "",1))
-            add(LastTag("친구", "",2))
-            add(LastTag("애인", "",3))
-            add(LastTag("가족", "",4))
-            add(LastTag("동료", "",5))
-            add(LastTag("애완동물", "",6))
+            add(LastTag("나", "",1,true))
+            add(LastTag("친구", "",2,true))
+            add(LastTag("애인", "",3,true))
+            add(LastTag("가족", "",4,true))
+            add(LastTag("동료", "",5,true))
+            add(LastTag("애완동물", "",6,true))
         }
 
+        val flexboxLayoutManager = FlexboxLayoutManager(this)
         matchButtonRVAdapter = MatchButtonRVAdapter()
         binding.matchWhoDefaultRecyclerview.adapter = matchButtonRVAdapter
+        binding.matchWhoDefaultRecyclerview.layoutManager = flexboxLayoutManager
         matchButtonRVAdapter.addButton(defaultTag)
 
     }
@@ -112,9 +115,9 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     }
 
     fun historyUnView(){
-        binding.matchWhoLastTv.visibility = View.INVISIBLE
-        binding.matchAllDeleteTv.visibility = View.INVISIBLE
-        binding.matchWhoLastFl.visibility = View.INVISIBLE
+        binding.matchWhoLastTv.visibility = View.GONE
+        binding.matchAllDeleteTv.visibility = View.GONE
+        binding.matchWhoLastFl.visibility = View.GONE
     }
 
 
@@ -125,11 +128,11 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
 
     // API 이벤트
     private fun getSearchResult(){
-        MatchService.getMatch(this, 0, "공원","", "", "", "", "")
+        MatchService.getMatch(this, 2, "공원","", "", "", "", "")
     }
 
     private fun getLastTag(){
-        MatchService.getLastTag(this, 0)
+        MatchService.getLastTag(this, 2)
     }
 
     override fun onMatchLoading() {
@@ -208,11 +211,15 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     override fun onLastTagLoading() {}
 
     override fun onLastTagSuccess(lastTag: ArrayList<LastTag>) {
-        historyView()
-        lastTagRVAdapter = MatchButtonRVAdapter()
-        binding.matchWhoLastRecyclerview.adapter = lastTagRVAdapter
-        lastTagRVAdapter.addButton(lastTag)
-
+        if (lastTag.isEmpty() == false){
+            historyView()
+            lastTagRVAdapter = MatchButtonRVAdapter()
+            binding.matchWhoLastRecyclerview.adapter = lastTagRVAdapter
+            lastTagRVAdapter.addButton(lastTag)
+        }
+        else {
+            historyUnView()
+        }
     }
 
     override fun onLastTagFailure(code: Int, message: String) {

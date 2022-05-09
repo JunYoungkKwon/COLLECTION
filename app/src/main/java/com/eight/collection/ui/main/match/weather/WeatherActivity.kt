@@ -13,6 +13,7 @@ import com.eight.collection.ui.main.match.LastTagView
 import com.eight.collection.ui.main.match.MatchButtonRVAdapter
 import com.eight.collection.ui.main.match.MatchView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.google.android.flexbox.FlexboxLayoutManager
 
 class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWeatherBinding::inflate),
     MatchView, LastTagView {
@@ -53,18 +54,20 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
         getLastTag()
 
         defaultTag.apply {
-            add(LastTag("매우추움", "",1))
-            add(LastTag("매우더움", "",2))
-            add(LastTag("추움", "",3))
-            add(LastTag("더움", "",4))
-            add(LastTag("적당함", "",5))
-            add(LastTag("눈", "",6))
-            add(LastTag("비", "",7))
-            add(LastTag("우박", "",8))
+            add(LastTag("매우추움", "",1,true))
+            add(LastTag("매우더움", "",2,true))
+            add(LastTag("추움", "",3,true))
+            add(LastTag("더움", "",4,true))
+            add(LastTag("적당함", "",5,true))
+            add(LastTag("눈", "",6,true))
+            add(LastTag("비", "",7,true))
+            add(LastTag("우박", "",8,true))
         }
 
+        val flexboxLayoutManager = FlexboxLayoutManager(this)
         matchButtonRVAdapter = MatchButtonRVAdapter()
         binding.matchWeatherDefaultRecyclerview.adapter = matchButtonRVAdapter
+        binding.matchWeatherDefaultRecyclerview.layoutManager = flexboxLayoutManager
         matchButtonRVAdapter.addButton(defaultTag)
     }
 
@@ -109,20 +112,20 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
     }
 
     fun historyUnView(){
-        binding.matchWeatherLastTv.visibility = View.INVISIBLE
-        binding.matchAllDeleteTv.visibility = View.INVISIBLE
-        binding.matchWeatherLastFl.visibility = View.INVISIBLE
+        binding.matchWeatherLastTv.visibility = View.GONE
+        binding.matchAllDeleteTv.visibility = View.GONE
+        binding.matchWeatherLastFl.visibility = View.GONE
     }
 
 
 
     // API 이벤트
     private fun getSearchResult(){
-        MatchService.getMatch(this, 0, "공원","", "", "", "", "")
+        MatchService.getMatch(this, 1, "공원","", "", "", "", "")
     }
 
     private fun getLastTag(){
-        MatchService.getLastTag(this, 0)
+        MatchService.getLastTag(this, 1)
     }
 
     override fun onMatchLoading() {
@@ -201,10 +204,17 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
     override fun onLastTagLoading() {}
 
     override fun onLastTagSuccess(lastTag: ArrayList<LastTag>) {
-        historyView()
-        lastTagRVAdapter = MatchButtonRVAdapter()
-        binding.matchWeatherLastRecyclerview.adapter = lastTagRVAdapter
-        lastTagRVAdapter.addButton(lastTag)
+        if (lastTag.isEmpty() == false){
+            historyView()
+            val flexboxLayoutManager = FlexboxLayoutManager(this)
+            lastTagRVAdapter = MatchButtonRVAdapter()
+            binding.matchWeatherLastRecyclerview.adapter = lastTagRVAdapter
+            binding.matchWeatherLastRecyclerview.layoutManager = flexboxLayoutManager
+            lastTagRVAdapter.addButton(lastTag)
+        }
+        else {
+            historyUnView()
+        }
 
     }
 
@@ -223,5 +233,7 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
             }
         }
     }
+
+
 
 }

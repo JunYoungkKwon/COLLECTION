@@ -8,6 +8,6 @@ data class LastTag(
     @SerializedName("content") val text: String? = "",
     @SerializedName("color") val color: String? = "",
     @SerializedName("index") val index: Int? = 0,
-
+    @SerializedName("isdefault") val isdefault: Boolean? = false
 )
 

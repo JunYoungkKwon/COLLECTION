@@ -153,19 +153,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            app:layout_constraintStart_toStartOf="@id/match_weather_default_tv"
+            app:flexWrap="wrap"
+            app:alignItems="stretch"
+            app:alignContent="stretch"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/match_weather_default_tv"
-            app:flexWrap="wrap">
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/match_weather_default_tv"
+            app:layout_constraintTop_toBottomOf="@id/match_weather_default_tv">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/match_weather_default_recyclerview"
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_match_weather_last"
                 android:orientation="horizontal"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+                tools:listitem="@layout/item_match_weather_last" />
         </com.google.android.flexbox.FlexboxLayout>
+
 
         <ImageView
             android:id="@+id/match_weather_cloth_iv"

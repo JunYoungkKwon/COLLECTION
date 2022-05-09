@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginEnd="8dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/match_color_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="맨투맨"
+        android:gravity="center"
+        android:button="@color/transparent"
+        android:textSize="14sp"
+        android:background="@drawable/radio_selector"
+        android:fontFamily="@font/suit_regular"
+        android:textColor="@drawable/selector_radio_text"
+        tools:ignore="MissingConstraints"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
