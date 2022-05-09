@@ -20,6 +20,7 @@
         <item name="android:calendarViewStyle">@style/MyDatePickerStyle</item>
         <item name="colorControlHighlight">@color/pinkish_grey</item>
         <item name="colorControlActivated">@color/pinkish_grey</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogTheme</item>
     </style>
     <style name="MyDatePickerStyle" parent="android:Widget.DeviceDefault.CalendarView">
         <!--        오늘날짜+선택한 날짜 색깔-->
@@ -65,17 +66,10 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomRoundedBackgroundBottomSheet</item>
     </style>
-
-    <style name="AppBottomSheetDialogTheme"
-        parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/AppModalStyle</item>
-    </style>
-
-    <style name="AppModalStyle"
-        parent="Widget.Design.BottomSheet.Modal">
+    <style name="CustomRoundedBackgroundBottomSheet" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/match_calendar_round</item>
     </style>
 

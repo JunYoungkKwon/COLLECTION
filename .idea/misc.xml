@@ -17,6 +17,7 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/nickname_btn_ac.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/nickname_btn_event.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/nickname_edit_round.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/ok_btn_event.xml" value="0.1" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/radio_selected.xml" value="0.17" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/radio_selector.xml" value="0.17" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/secssion_btn_event.xml" value="0.17708333333333334" />
@@ -25,6 +26,8 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/week_diary_round_text.xml" value="0.14912280701754385" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-v24/weel_diary_round_text.xml" value="0.1328125" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-xxhdpi/signup_btn_event.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-xxxhdpi/secret_ok_btn_event.xml" value="0.1" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable-xxxhdpi/secret_post_btn_event.xml" value="0.1" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/custom_checkbox.xml" value="0.1" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/dialog_round.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/drawable/login_btn_event.xml" value="0.17708333333333334" />
@@ -42,7 +45,11 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/font/roboto_light.xml" value="0.15683760683760684" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/font/vlan_llaoutline.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_finish_photo.xml" value="0.38625" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_id_find_first.xml" value="0.22" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_id_find_second.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_mail.xml" value="0.1609375" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_pw_find_first.xml" value="0.38625" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_pw_find_second.xml" value="0.5" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/date_picker_caledaer_day.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/date_picker_calendar_date.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/dialog_edit_delete_custom.xml" value="0.22" />
@@ -55,23 +62,24 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_add_toptag.xml" value="0.1" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_add_weathertag.xml" value="0.1609375" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_developer_info.xml" value="0.22" />
-        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_finish.xml" value="0.22" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_finish.xml" value="0.1" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_info_edit.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login.xml" value="0.1609375" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login_first.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_login_second.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_main.xml" value="0.13999999999999999" />
-        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_match_calendar_bs.xml" value="0.31875" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_match_calendar_bs.xml" value="0.2572614107883817" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_my_look.xml" value="0.22" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_my_look_second.xml" value="0.1609375" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_nickname_edit.xml" value="0.22" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_phone_number_edit.xml" value="0.22" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_privacy_rule.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_pw_edit.xml" value="0.22" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_pw_find_first.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_setting.xml" value="0.22" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_signup_first.xml" value="0.1609375" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_signup_second.xml" value="0.1609375" />
-        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_signup_third.xml" value="0.22" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_signup_third.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_splash.xml" value="0.5" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_writefirst.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_writesecond.xml" value="0.16666666666666666" />

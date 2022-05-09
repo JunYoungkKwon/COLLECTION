@@ -7,6 +7,17 @@
     <string name="splash_ootd_diary">ootd calendar</string>
     <string name="splash_collection">collection</string>
 
+    <!--Prime Calendar-->
+    <string name="action_today">오늘</string>
+    <string name="action_cancel">취소</string>
+    <string name="action_select">확인</string>
+
+    <string name="prime_date_picker_selected_day">이미 선택한 날짜입니다!</string>
+    <string name="prime_date_picker_from">From</string>
+    <string name="prime_date_picker_to">To</string>
+    <string name="no_range_is_selected">날짜를 선택해 주세요!</string>
+    <string name="no_day_is_selected">No day is selected!</string>
+
 
     <!--메뉴-->
     <string name="menu_month">월별</string>
@@ -23,8 +34,8 @@
     <string name="login_third_title">콜렉션은 나만의 OOTD를 작성기록 앱입니다.</string>
     <string name="login_welcome_first_title">언제나</string>
     <string name="login_welcome_second_title">반가워요 8:-)</string>
-    <string name="login_id_hint">아이디를 입력해주세요.</string>
-    <string name="login_pw_hint">비밀번호를 입력해주세요.</string>
+    <string name="login_id_hint">아이디를 입력해 주세요.</string>
+    <string name="login_pw_hint">비밀번호를 입력해 주세요.</string>
     <string name="login_email_delimiter">\@</string>
     <string name="login_name_hint">이름</string>
     <string name="login_signup">회원가입</string>
@@ -65,27 +76,37 @@
     <string name="id">collection</string>
     <string name="id_title">아이디</string>
     <string name="nickname_title">이름</string>
+    <string name="phone_title">휴대폰</string>
+    <string name="secret_number_title">인증번호</string>
+    <string name="secret_number_annotation">인증번호를 입력해 주세요</string>
     <string name="nickname">콜렉션짱짱</string>
     <string name="nickname_support">님</string>
     <string name="nickname_edit">닉네임 변경</string>
     <string name="nickname_edit_title">닉네임을 변경하세요</string>
     <string name="phone_number_edit_title">휴대폰번호를 변경하세요</string>
     <string name="pw_edit_title">비밀번호를 변경하세요</string>
-    <string name="phone_number_annotaion">\'-\'를 제외하고 입력해주세요.</string>
+    <string name="pw_find_title">비밀번호를 변경해 주세요</string>
+    <string name="id_find_title">아래 정보를 입력해 주세요.</string>
+    <string name="id_find_second_title">아이디를 확인하세요</string>
+    <string name="nickname_annotation_1">실명을 입력하세요.</string>
+    <string name="phone_number_annotation">\'-\'를 제외하고 입력해 주세요.</string>
     <string name="info_edit">회원정보 수정</string>
     <string name="phone_number_edit">휴대폰번호 변경</string>
-    <string name="pw_length_check">6~15자리를 입력해주세요.</string>
+    <string name="pw_length_check">6~15자리를 입력해 주세요.</string>
+    <string name="pw_finde">비밀번호를 변경하세요</string>
     <string name="pw_origin">기존 비밀번호</string>
     <string name="pw_new">새 비밀번호</string>
     <string name="pw_new_check">새 비밀번호 확인</string>
     <string name="pw_edit">비밀번호 변경</string>
+    <string name="pw_find">비밀번호 찾기</string>
+    <string name="id_find">아이디 찾기</string>
     <string name="delete_account">회원탈퇴</string>
     <string name="developer_info">개발자 정보</string>
     <string name="privacy_rule">개인정보 취급방침</string>
     <string name="mail">문의하기</string>
     <string name="logout">로그아웃</string>
     <string name="app_version">v.1.0.4</string>
-    <string name="nickname_annotation">콜렉션에서 사용할 닉네임을 입력해주세요.</string>
+    <string name="nickname_annotation">콜렉션에서 사용할 닉네임을 입력해 주세요.</string>
 
     <!-- myLook page -->
     <string name="mybest">MY BEST</string>
@@ -177,7 +198,7 @@
     <string name="account_title_fourth">탈퇴시 데이터 복구가 불가능 합니다.</string>
     <string name="account_second_title_first">그동안</string>
     <string name="account_second_title_second">반가웠어요 :)</string>
-    <string name="account_second_title_third">정보 보호를 위해 비밀번호를 입력해주세요.</string>
+    <string name="account_second_title_third">정보 보호를 위해 비밀번호를 입력해 주세요.</string>
 
     <!-- Finsh page -->
     <string name="title">학교갈때 입는 데일리룩</string>
