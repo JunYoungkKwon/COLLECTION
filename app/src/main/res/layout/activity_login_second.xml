@@ -193,6 +193,50 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_pw_fail_tv" />
 
+    <TextView
+        android:id="@+id/login_id_find_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:text="@string/id_find"
+        android:fontFamily="@font/suit_regular"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/pinkish_grey"
+        android:letterSpacing="-0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/login_find_view"
+        app:layout_constraintTop_toBottomOf="@id/login_login_btn_off_iv" />
+
+    <View
+        android:id="@+id/login_find_view"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/pinkish_grey"
+        app:layout_constraintStart_toEndOf="@id/login_id_find_tv"
+        app:layout_constraintEnd_toStartOf="@id/login_pw_find_tv"
+        app:layout_constraintTop_toTopOf="@id/login_id_find_tv"
+        app:layout_constraintBottom_toBottomOf="@+id/login_id_find_tv"/>
+
+    <TextView
+        android:id="@+id/login_pw_find_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pw_find"
+        android:background="?attr/selectableItemBackground"
+        android:fontFamily="@font/suit_regular"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/pinkish_grey"
+        android:letterSpacing="-0.01"
+        app:layout_constraintStart_toEndOf="@id/login_find_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_login_btn_off_iv" />
+
     <ImageView
         android:id="@+id/login_loading_background_iv"
         android:layout_width="wrap_content"

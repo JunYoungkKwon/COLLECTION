@@ -17,6 +17,7 @@ import com.eight.collection.data.remote.auth.AuthService
 import com.eight.collection.databinding.ActivityLoginSecondBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.MainActivity
+import com.eight.collection.ui.main.setting.infoedit.nickname.NickNameEditActivity
 import com.eight.collection.ui.signup.SignupFirstActivity
 import com.eight.collection.utils.saveJwt
 import com.eight.collection.utils.saveName
@@ -28,6 +29,8 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
     override fun initAfterBinding() {
         binding.loginLoginBtnOffIv.setOnClickListener(this)
         binding.loginBackBtnIv.setOnClickListener(this)
+        binding.loginIdFindTv.setOnClickListener(this)
+        binding.loginPwFindTv.setOnClickListener(this)
     }
 
 
@@ -37,6 +40,12 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
         when(v) {
             binding.loginLoginBtnOffIv -> login()
             binding.loginBackBtnIv -> finishActivity()
+            binding.loginIdFindTv -> {
+                startNextActivity(IdFindFirstActivity::class.java)
+                slideRight()}
+            binding.loginPwFindTv -> {
+                startNextActivity(PwFindFirstActivity::class.java)
+                slideRight()}
         }
     }
 

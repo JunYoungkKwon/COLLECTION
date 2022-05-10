@@ -61,14 +61,13 @@
             android:id="@+id/id_find_first_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CollectionTest"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:fontFamily="@font/suit_regular"
-            android:textStyle="normal"
-            android:textSize="20sp"
+            android:letterSpacing="-0.01"
+            android:text="CollectionTest"
             android:textColor="@color/dark_taupe"
-            android:letterSpacing="-0.01" />
+            android:textSize="20sp"
+            android:textStyle="normal" />
 
     </RelativeLayout>
 
@@ -109,7 +108,7 @@
         android:text="@string/pw_find"
         android:fontFamily="@font/suit_regular"
         android:textStyle="normal"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:layout_marginTop="20dp"
         android:textColor="@color/pinkish_grey"
         android:letterSpacing="-0.01"

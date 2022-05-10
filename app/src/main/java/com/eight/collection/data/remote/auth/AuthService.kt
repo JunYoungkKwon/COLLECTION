@@ -4,7 +4,9 @@ import android.util.Log
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.ApplicationClass.Companion.retrofit
 import com.eight.collection.data.entities.User
+import com.eight.collection.ui.login.IdFindView
 import com.eight.collection.ui.login.LoginView
+import com.eight.collection.ui.login.PwFindView
 import com.eight.collection.ui.main.setting.infoedit.account.DeleteAccountView
 import com.eight.collection.ui.main.setting.infoedit.nickname.ChangeNickNameView
 import com.eight.collection.ui.main.setting.infoedit.password.ChangePwView
@@ -224,6 +226,75 @@ object AuthService {
                 Log.d("$TAG/API-ERROR", t.message.toString())
 
                 splashView.onAutoLoginFailure(400, "네트워크 오류가 발생했습니다.")
+            }
+        })
+    }
+
+    fun findId(idFindView: IdFindView, name: String, phonenumber: String) {
+        val authService = retrofit.create(AuthRetrofitInterface::class.java)
+
+        idFindView.onIdFindLoading()
+
+        authService.findId(name,phonenumber).enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                val resp = response.body()!!
+
+                when(resp.code){
+                    1029 -> idFindView.onIdFindSuccess(resp.result!!)
+                    else -> idFindView.onIdFindFailure(resp.code, resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                Log.d("$TAG/API-ERROR", t.message.toString())
+
+                idFindView.onIdFindFailure(400, "네트워크 오류가 발생했습니다.")
+            }
+        })
+    }
+
+    fun findPw(pwFindView: PwFindView, name: String, phonenumber: String, ID: String) {
+        val authService = retrofit.create(AuthRetrofitInterface::class.java)
+
+        pwFindView.onPwFindLoading()
+
+        authService.findPw(name, phonenumber, ID).enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                val resp = response.body()!!
+
+                when(resp.code){
+                    1030 -> pwFindView.onPwFindSuccess()
+                    else -> pwFindView.onPwFindFailure(resp.code, resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                Log.d("$TAG/API-ERROR", t.message.toString())
+
+                pwFindView.onPwFindFailure(400, "네트워크 오류가 발생했습니다.")
+            }
+        })
+    }
+
+    fun resetPw(pwFindView: PwFindView, user: User) {
+        val authService = retrofit.create(AuthRetrofitInterface::class.java)
+
+        pwFindView.onPwFindLoading()
+
+        authService.resetPw(user).enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                val resp = response.body()!!
+
+                when(resp.code){
+                    1031 -> pwFindView.onPwFindSuccess()
+                    else -> pwFindView.onPwFindFailure(resp.code, resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                Log.d("$TAG/API-ERROR", t.message.toString())
+
+                pwFindView.onPwFindFailure(400, "네트워크 오류가 발생했습니다.")
             }
         })
     }
