@@ -37,6 +37,7 @@ class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFi
 //    private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
 //    private val viewModel: PhoneAuthViewModel by viewModels()
 
+
     override fun initAfterBinding() {
         binding.pwFindFirstBackBtnIv.setOnClickListener(this)
         binding.pwFindFirstPhoneEt.addTextChangedListener(PhoneNumberFormattingTextWatcher())
