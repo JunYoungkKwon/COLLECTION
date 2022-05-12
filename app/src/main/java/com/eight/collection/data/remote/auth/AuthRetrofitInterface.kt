@@ -32,4 +32,13 @@ interface AuthRetrofitInterface {
 
     @GET("app/user/autoLogin")
     fun autoLogin(): Call<AuthResponse>
+
+    @GET("app/user/find-id")
+    fun findId(@Query("name") name : String, @Query("phoneNumber") phoneNumber : String): Call<AuthResponse>
+
+    @GET("app/user/find-password")
+    fun findPw(@Query("name") name : String, @Query("phoneNumber") phoneNumber : String , @Query("ID") ID : String): Call<AuthResponse>
+
+    @PATCH("app/user/reset-password")
+    fun resetPw(@Body user: User): Call<AuthResponse>
 }
