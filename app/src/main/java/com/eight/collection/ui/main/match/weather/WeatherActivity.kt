@@ -1,32 +1,40 @@
 package com.eight.collection.ui.main.match.weather
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.EditText
 import com.eight.collection.R
 import com.eight.collection.data.entities.Diary
+import com.eight.collection.data.entities.Write.Content
 import com.eight.collection.data.remote.match.MatchService
 import com.eight.collection.databinding.ActivityMatchWeatherBinding
 import com.eight.collection.ui.BaseActivity
-import com.eight.collection.ui.main.match.LastTag
-import com.eight.collection.ui.main.match.LastTagView
-import com.eight.collection.ui.main.match.MatchButtonRVAdapter
-import com.eight.collection.ui.main.match.MatchView
+import com.eight.collection.ui.main.match.*
 import com.eight.collection.ui.main.week.DiaryRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWeatherBinding::inflate),
-    MatchView, LastTagView {
+    MatchView, LastTagView, DeleteTagView, MatchButtonRVAdapter.MyitemClickListener {
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
     private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
     private  lateinit var lastTagRVAdapter: MatchButtonRVAdapter
     private  var defaultTag = ArrayList<LastTag>()
+    private  var reallastTag = ArrayList<LastTag>()
+    private lateinit var searchEditText : EditText
 
 
     override fun initAfterBinding() {
         // 검색창 눌렀을시 이벤트
         binding.matchWeatherSearchBeforeView.setOnClickListener{
             searchViewClick()
+        }
+
+        // 모두삭제 눌렀을시 이벤트
+        binding.matchAllDeleteTv.setOnClickListener{
+            removeAllTag()
         }
 
         // 돌아가기 버튼 눌렀을시 이벤트
@@ -44,13 +52,15 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
             searchButtonClick()
         }
 
-        //최신순 버튼 눌렀을시 이벤트
+        // 최신순 버튼 눌렀을시 이벤트
         binding.matchWeatherSearchRecentRl.setOnClickListener{
             latestButtonClick()
         }
 
+        getSearchResult()
 
-        //      getSearchResult()
+
+        // 최근 및 기본 태그 생성
         getLastTag()
 
         defaultTag.apply {
@@ -69,6 +79,26 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
         binding.matchWeatherDefaultRecyclerview.adapter = matchButtonRVAdapter
         binding.matchWeatherDefaultRecyclerview.layoutManager = flexboxLayoutManager
         matchButtonRVAdapter.addButton(defaultTag)
+
+
+        // 태그 버튼 Click 시
+        matchButtonRVAdapter.setMyItemClickListener(this)
+
+
+        // 검색 EditText 이용 시
+        searchEditText = findViewById(R.id.match_weather_search_et)
+
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            // 입력난 변화 있을 시
+            }
+            override fun afterTextChanged(p0: Editable?) {
+            // 입력 끝났을 때
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            // 입력 하기 전
+            }
+        })
     }
 
     fun searchViewClick() {
@@ -127,6 +157,7 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
     private fun getLastTag(){
         MatchService.getLastTag(this, 1)
     }
+
 
     override fun onMatchLoading() {
         binding.loginLoadingInIv.visibility = View.VISIBLE
@@ -204,18 +235,18 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
     override fun onLastTagLoading() {}
 
     override fun onLastTagSuccess(lastTag: ArrayList<LastTag>) {
-        if (lastTag.isEmpty() == false){
+        reallastTag = lastTag
+        if (reallastTag.isEmpty() == false){
             historyView()
             val flexboxLayoutManager = FlexboxLayoutManager(this)
             lastTagRVAdapter = MatchButtonRVAdapter()
             binding.matchWeatherLastRecyclerview.adapter = lastTagRVAdapter
             binding.matchWeatherLastRecyclerview.layoutManager = flexboxLayoutManager
-            lastTagRVAdapter.addButton(lastTag)
+            lastTagRVAdapter.addButton(reallastTag)
         }
         else {
             historyUnView()
         }
-
     }
 
     override fun onLastTagFailure(code: Int, message: String) {
@@ -234,6 +265,43 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
         }
     }
 
+    fun removeAllTag(){
+        deleteAllTag()
+        reallastTag.clear()
+        lastTagRVAdapter.notifyDataSetChanged()
+    }
+
+
+    private fun getContent(content : String) : Content {
+        return Content(content)
+    }
+
+    private fun deleteAllTag(){
+        MatchService.deleteTag(this, 1, 2, getContent("야호"))
+    }
+
+    override fun onDeleteTagLoading() {
+    }
+
+    override fun onDeleteTagSuccess() {
+        Log.d("message","Delete Success")
+    }
+
+    override fun onDeleteTagFailure(code: Int, message: String) {
+        when(code) {
+            4016 -> {
+                Log.d("message",message)
+            }
+            else -> {
+                Log.d("message",message)
+            }
+        }
+    }
+
+
+    override fun onItemClick(lastTag: LastTag, position: Int) {
+        Log.d("text","${lastTag.text}")
+    }
 
 
 }

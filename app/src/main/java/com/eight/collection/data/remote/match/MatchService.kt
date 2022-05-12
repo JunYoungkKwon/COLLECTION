@@ -3,6 +3,8 @@ package com.eight.collection.data.remote.match
 import android.util.Log
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.ApplicationClass.Companion.retrofit
+import com.eight.collection.data.entities.Write.Content
+import com.eight.collection.ui.main.match.DeleteTagView
 import com.eight.collection.ui.main.match.LastTagView
 import com.eight.collection.ui.main.match.MatchView
 import retrofit2.Call
@@ -56,5 +58,60 @@ object MatchService {
                 lastTagView.onLastTagFailure(400, "네트워크 오류가 발생했습니다.")
             }
         })
+    }
+
+    fun deleteTag(deleteTagView: DeleteTagView, PWWC: Int, type : Int, content : Content){
+        val deleteTagService = retrofit.create(MatchRetrofitInterface::class.java)
+
+        deleteTagView.onDeleteTagLoading()
+
+
+        if(type == 1) {
+            deleteTagService.deleteBlock(PWWC, type, content)
+                .enqueue(object : Callback<DeleteTagResponse> {
+                    override fun onResponse(
+                        call: Call<DeleteTagResponse>,
+                        response: Response<DeleteTagResponse>
+                    ) {
+
+                        val resp = response.body()!!
+
+                        when (resp.code) {
+                            1018 -> deleteTagView.onDeleteTagSuccess()
+                            else -> deleteTagView.onDeleteTagFailure(resp.code, resp.message)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<DeleteTagResponse>, t: Throwable) {
+                        Log.d("$TAG/API-ERROR", t.message.toString())
+
+                        deleteTagView.onDeleteTagFailure(400, "네트워크 오류가 발생했습니다.")
+                    }
+                })
+        }
+        else {
+            deleteTagService.deleteBlock(PWWC, type, content)
+                .enqueue(object : Callback<DeleteTagResponse> {
+                    override fun onResponse(
+                        call: Call<DeleteTagResponse>,
+                        response: Response<DeleteTagResponse>
+                    ) {
+
+                        val resp = response.body()!!
+
+                        when (resp.code) {
+                            1018 -> deleteTagView.onDeleteTagSuccess()
+                            else -> deleteTagView.onDeleteTagFailure(resp.code, resp.message)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<DeleteTagResponse>, t: Throwable) {
+                        Log.d("$TAG/API-ERROR", t.message.toString())
+
+                        deleteTagView.onDeleteTagFailure(400, t.message.toString())
+                    }
+                })
+        }
+
     }
 }
