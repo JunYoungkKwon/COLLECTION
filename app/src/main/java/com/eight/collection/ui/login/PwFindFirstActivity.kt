@@ -22,6 +22,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager.TAG
 import androidx.lifecycle.Observer
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -32,17 +33,20 @@ import java.util.concurrent.TimeUnit
 
 class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFindFirstBinding::inflate), View.OnClickListener , PwFindView {
 
-//    private lateinit var auth: FirebaseAuth
-//    private var storedVerificationId = ""
-//    private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
-//    private val viewModel: PhoneAuthViewModel by viewModels()
-
+    private var phoneNum = ""
+    private var phoneEdit = ""
+    private val code = "123456"
+    private val TAG = "FireTest"
+    private val auth = Firebase.auth
+    //private val credential = AuthCredential.CONTENTS_FILE_DESCRIPTOR
+    private var storedVerificationId = ""
 
     override fun initAfterBinding() {
         binding.pwFindFirstBackBtnIv.setOnClickListener(this)
         binding.pwFindFirstPhoneEt.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         binding.pwFindSecondEditIb.setOnClickListener(this)
-
+        binding.pwFindFirstSecretNumberCheckIb.setOnClickListener(this)
+        binding.pwFindFirstPhoneCheckIb.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -55,13 +59,29 @@ class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFi
             binding.pwFindSecondEditIb -> {
                 findPw()
             }
+            binding.pwFindFirstPhoneCheckIb -> {
+                phoneNum = binding.pwFindFirstPhoneEt.text.toString().replace("[^0-9]".toRegex(), "")
+                if (phoneNum.length > 3){
+                    phoneNumberChange(phoneNum)
+                    secretNum()
+                }
+            }
+
+            binding.pwFindFirstSecretNumberCheckIb -> {
+                val smsCode = binding.pwFindFirstSecretNumberEt.text.toString()
+                val credential = PhoneAuthProvider.getCredential(storedVerificationId, smsCode)
+                signInWithPhoneAuthCredential(credential)
+            }
         }
     }
     private fun findPw() {
         val name = binding.pwFindFirstNameEt.text.toString()
         val id = binding.pwFindFirstIdEt.text.toString()
-        val phoneNum = binding.pwFindFirstPhoneEt.text.toString().replace("[^0-9]".toRegex(), "")
+        phoneNum = binding.pwFindFirstPhoneEt.text.toString().replace("[^0-9]".toRegex(), "")
 
+//        if (binding.pwFindFirstSecretNumberEt.text.toString().isEmpty()) {
+//            return
+//        }
 
         AuthService.findPw(this, name,phoneNum,id)
     }
@@ -135,6 +155,88 @@ class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFi
                 Log.d("PwFindFirst/Error", "error")
             }
         }
+    }
+
+     private fun secretNum() {
+        val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                Log.d(TAG, "onVerificationCompleted")
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+                Log.w(TAG, "onVerificationFailed")
+
+                if (e is FirebaseAuthInvalidCredentialsException) {
+                    // Invalid request
+                } else if (e is FirebaseTooManyRequestsException) {
+                    // The SMS quota for the project has been exceeded
+                }
+
+                // Show a message and update the UI
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+                // The SMS verification code has been sent to the provided phone number
+                Log.d(TAG, "onCodeSent")
+                storedVerificationId = verificationId
+
+            }
+        }
+
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(phoneEdit)       // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this)                 // Activity (for callback binding)
+            .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                        showToast("인증완료")
+                    Log.d(TAG, "success")
+
+                    val user = task.result?.user
+                } else {
+                    // Sign in failed, display a message and update the UI
+
+                    Log.d(TAG, "fail1")
+                    showToast("인증실패")
+                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        // The verification code entered was invalid
+                        showToast("fail2")
+                    }
+                }
+            }
+    }
+
+    private fun phoneNumberChange(msg : String): String {
+
+        if (msg.isNotEmpty()){
+            val firstNumber : String = msg.substring(0,3)
+            phoneEdit = msg.substring(3)
+
+            when(firstNumber){
+                "010" -> phoneEdit = "+8210$phoneEdit"
+                "011" -> phoneEdit = "+8211$phoneEdit"
+                "016" -> phoneEdit = "+8216$phoneEdit"
+                "017" -> phoneEdit = "+8217$phoneEdit"
+                "018" -> phoneEdit = "+8218$phoneEdit"
+                "019" -> phoneEdit = "+8219$phoneEdit"
+                "106" -> phoneEdit = "+82106$phoneEdit"
+            }
+            Log.d("국가코드로 변경된 번호 ",phoneEdit)
+            return phoneEdit
+        }
+        return phoneEdit
     }
 
 //    private val callbacks by lazy {
