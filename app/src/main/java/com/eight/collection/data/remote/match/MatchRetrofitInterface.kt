@@ -27,4 +27,9 @@ interface MatchRetrofitInterface {
                     @Query("type") type : Int,
                     @Body content : Content?
     ): Call<DeleteTagResponse>
+
+    @GET("app/search/suggestion/{PWWC}")
+    fun suggestTag(@Path("PWWC") PWWC : Int,
+                   @Query("keyword1") keyword1 : String) : Call<SuggestTagResponse>
+
 }

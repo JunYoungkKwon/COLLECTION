@@ -7,6 +7,7 @@ import com.eight.collection.data.entities.Write.Content
 import com.eight.collection.ui.main.match.DeleteTagView
 import com.eight.collection.ui.main.match.LastTagView
 import com.eight.collection.ui.main.match.MatchView
+import com.eight.collection.ui.main.match.SuggestTagView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -113,5 +114,29 @@ object MatchService {
                 })
         }
 
+    }
+
+    fun suggestTag(suggestTagView: SuggestTagView, PWWC: Int, keyword1: String){
+        val suggestTagService = retrofit.create(MatchRetrofitInterface::class.java)
+
+        suggestTagView.onSuggestTagLoading()
+
+        suggestTagService.suggestTag(PWWC,keyword1).enqueue(object : Callback<SuggestTagResponse> {
+            override fun onResponse(call: Call<SuggestTagResponse>, response: Response<SuggestTagResponse>) {
+
+                val resp = response.body()!!
+
+                when(resp.code){
+                    1026 -> suggestTagView.onSuggestTagSuccess(resp.result!!.suggestion)
+                    else -> suggestTagView.onSuggestTagFailure(resp.code, resp.message)
+                }
+            }
+
+            override fun onFailure(call: Call<SuggestTagResponse>, t: Throwable) {
+                Log.d("$TAG/API-ERROR", t.message.toString())
+
+                suggestTagView.onSuggestTagFailure(400, "네트워크 오류가 발생했습니다.")
+            }
+        })
     }
 }
