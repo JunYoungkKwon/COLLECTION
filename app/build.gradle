@@ -38,7 +38,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            debuggable = false
+            debuggable = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             resValue("string", "app_name", "Collection")
@@ -131,7 +131,8 @@ dependencies {
     implementation ('com.aminography:primecalendar:1.7.0'){ exclude group :"org.threeten", module: "threetenbp" }
 
     //firebase
-    implementation platform('com.google.firebase:firebase-bom:30.0.0')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation platform('com.google.firebase:firebase-bom:29.3.1')
     implementation 'com.google.firebase:firebase-auth-ktx'
+
+
 }

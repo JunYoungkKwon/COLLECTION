@@ -26,7 +26,6 @@ class IdFindFirstActivity: BaseActivity<ActivityIdFindFirstBinding>(ActivityIdFi
 
     override fun initAfterBinding() {
         binding.idFindFirstBackBtnIv.setOnClickListener(this)
-//        binding.loginSignupBtnIv.setOnClickListener(this)
         binding.idFindFirstPhoneEt.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         binding.idFindFirstEditIb.setOnClickListener(this)
     }
