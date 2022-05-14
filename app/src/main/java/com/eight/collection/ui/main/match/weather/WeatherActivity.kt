@@ -21,9 +21,11 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
     private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
     private  lateinit var lastTagRVAdapter: MatchButtonRVAdapter
+    private  lateinit var searchTagRVAdapter: SearchTagRVAdapter
     private  var defaultTag = ArrayList<LastTag>()
     private  var reallastTag = ArrayList<LastTag>()
     private lateinit var searchEditText : EditText
+    private var searchKeyword = ArrayList<LastTag>()
 
 
     override fun initAfterBinding() {
@@ -57,7 +59,7 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
             latestButtonClick()
         }
 
-        getSearchResult()
+        /*getSearchResult()*/
 
 
         // 최근 및 기본 태그 생성
@@ -80,10 +82,8 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
         binding.matchWeatherDefaultRecyclerview.layoutManager = flexboxLayoutManager
         matchButtonRVAdapter.addButton(defaultTag)
 
-
         // 태그 버튼 Click 시
         matchButtonRVAdapter.setMyItemClickListener(this)
-
 
         // 검색 EditText 이용 시
         searchEditText = findViewById(R.id.match_weather_search_et)
@@ -114,6 +114,11 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
         binding.matchWeatherSearchAfterCl.visibility = View.INVISIBLE
         binding.matchWeatherSearchDefault.visibility = View.INVISIBLE
         binding.matchWeatherSearchResult.visibility = View.INVISIBLE
+
+        searchKeyword.clear()
+        searchTagRVAdapter = SearchTagRVAdapter(searchKeyword)
+        binding.matchWeatherSearchButtonResultRecyclerview.adapter = searchTagRVAdapter
+        searchTagRVAdapter.notifyDataSetChanged()
     }
 
     fun deleteButtonClick(){
@@ -122,6 +127,11 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
         binding.matchWeatherSearchAfterCl.visibility = View.VISIBLE
         binding.matchWeatherSearchDefault.visibility = View.VISIBLE
         binding.matchWeatherSearchResult.visibility = View.INVISIBLE
+
+        searchKeyword.clear()
+        searchTagRVAdapter = SearchTagRVAdapter(searchKeyword)
+        binding.matchWeatherSearchButtonResultRecyclerview.adapter = searchTagRVAdapter
+        searchTagRVAdapter.notifyDataSetChanged()
     }
 
     fun searchButtonClick(){
@@ -243,6 +253,7 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
             binding.matchWeatherLastRecyclerview.adapter = lastTagRVAdapter
             binding.matchWeatherLastRecyclerview.layoutManager = flexboxLayoutManager
             lastTagRVAdapter.addButton(reallastTag)
+            lastTagRVAdapter.setMyItemClickListener(this)
         }
         else {
             historyUnView()
@@ -300,8 +311,13 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
 
 
     override fun onItemClick(lastTag: LastTag, position: Int) {
-        Log.d("text","${lastTag.text}")
+        searchKeyword.apply{
+            add(LastTag(lastTag.text))
+        }
+        searchTagRVAdapter = SearchTagRVAdapter(searchKeyword)
+        binding.matchWeatherSearchButtonResultRecyclerview.adapter = searchTagRVAdapter
+        searchTagRVAdapter.notifyDataSetChanged()
+        searchViewClick()
     }
-
 
 }

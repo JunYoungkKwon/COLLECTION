@@ -1,4 +1,4 @@
-package com.eight.collection.ui.login
+/*package com.eight.collection.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -36,4 +36,4 @@ class PhoneAuthViewModel @Inject constructor() : BaseViewModel() {
 
 }
 
-annotation class HiltViewModel
+annotation class HiltViewModel*/

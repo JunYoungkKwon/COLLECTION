@@ -53,12 +53,6 @@ class MatchButtonRVAdapter() : RecyclerView.Adapter<MatchButtonRVAdapter.ViewHol
 
     inner class ViewHolder(val binding: ItemMatchWeatherLastBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(lastTag: LastTag, position: Int){
-            binding.matchDefaultRl.apply{
-                setOnClickListener{
-                    mItemClickListener?.onItemClick(buttonlist[position], position)
-                }
-            }
-
             binding.matchDefaultTv.apply {
                 if(buttonlist[position].isdefault == true){
                     text = lastTag.text
@@ -76,6 +70,12 @@ class MatchButtonRVAdapter() : RecyclerView.Adapter<MatchButtonRVAdapter.ViewHol
 
                 setOnClickListener{
                     removeItem(position)
+                }
+            }
+
+            binding.matchDefaultRl.apply{
+                setOnClickListener{
+                    mItemClickListener?.onItemClick(buttonlist[position], position)
                 }
             }
         }
