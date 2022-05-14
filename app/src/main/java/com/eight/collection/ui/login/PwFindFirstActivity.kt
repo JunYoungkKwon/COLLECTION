@@ -165,6 +165,7 @@ class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFi
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
+                //핸드폰 번호 입력 받았는데 이상할 경우
                 Log.w(TAG, "onVerificationFailed")
 
                 if (e is FirebaseAuthInvalidCredentialsException) {
@@ -180,7 +181,7 @@ class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFi
                 verificationId: String,
                 token: PhoneAuthProvider.ForceResendingToken
             ) {
-                // The SMS verification code has been sent to the provided phone number
+                //문자 발송시
                 Log.d(TAG, "onCodeSent")
                 storedVerificationId = verificationId
 
