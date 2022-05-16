@@ -382,8 +382,7 @@
                 app:layout_constraintTop_toTopOf="@id/match_place_search_title_tv"
                 app:layout_constraintBottom_toBottomOf="@id/match_place_search_title_tv"
                 app:layout_constraintStart_toEndOf="@id/match_place_search_title_tv"
-                android:layout_marginStart="4dp"
-                />
+                android:layout_marginStart="4dp" />
 
             <TextView
                 android:id="@+id/match_place_search_result_sub_tv"
@@ -396,78 +395,33 @@
                 app:layout_constraintTop_toTopOf="@id/match_place_search_result_tv"
                 app:layout_constraintBottom_toBottomOf="@id/match_place_search_result_tv"
                 app:layout_constraintStart_toEndOf="@id/match_place_search_result_tv"
-                android:layout_marginStart="2dp"
-                />
+                android:layout_marginStart="2dp" />
 
-            <RelativeLayout
-                android:id="@+id/match_place_search_date_find_rl"
+            <ImageButton
+                android:id="@+id/match_place_search_result_day_ib"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:visibility="visible"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
-                android:background="@drawable/match_search_btn_round"
-                app:layout_constraintEnd_toStartOf="@+id/match_place_search_recent_rl"
+                android:clickable="true"
+                android:src="@drawable/button_search_day"
+                android:background="?attr/selectableItemBackground"
+                app:layout_constraintEnd_toStartOf="@+id/match_place_search_result_last_ib"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="22dp"
-                >
+                android:layout_marginTop="22dp"/>
 
-                <TextView
-                    android:id="@+id/match_place_search_date_find_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/suit_regular"
-                    android:gravity="center_horizontal"
-                    android:letterSpacing="-0.05"
-                    android:lineSpacingExtra="5sp"
-                    android:paddingHorizontal="16dp"
-                    android:text="@string/match_search_date_find"
-                    android:textColor="@color/dark_taupe"
-                    android:textSize="12sp"
-                    android:textStyle="normal" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/match_place_search_recent_rl"
+            <ImageButton
+                android:id="@+id/match_place_search_result_last_ib"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:visibility="visible"
+                android:layout_height="wrap_content"
+                android:src="@drawable/button_search_last"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/match_search_btn_round"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="22dp"
-                >
+                android:layout_marginTop="22dp"/>
 
-                <TextView
-                    android:id="@+id/match_place_search_recent_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="12dp"
-                    android:fontFamily="@font/suit_regular"
-                    android:gravity="center_horizontal"
-                    android:letterSpacing="-0.05"
-                    android:lineSpacingExtra="5sp"
-                    android:text="@string/match_search_recent"
-                    android:textColor="@color/terracota"
-                    android:textSize="12sp"
-                    android:textStyle="normal" />
 
-                <TextView
-                    android:id="@+id/match_place_search_recent_arrow_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/match_place_search_recent_tv"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_toEndOf="@+id/match_place_search_recent_tv"
-                    android:gravity="end"
-                    android:text="↑"
-                    android:textColor="@color/terracota"
-                    android:textSize="11sp"
-                    android:textStyle="normal" />
-            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/match_place_search_result_rv"

@@ -6,9 +6,18 @@ import com.eight.collection.databinding.ActivityMatchPlaceBinding
 import com.eight.collection.ui.BaseActivity
 
 import android.util.Log
+import android.util.SparseIntArray
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import android.widget.Toast
+import com.aminography.primecalendar.civil.CivilCalendar
+import com.aminography.primedatepicker.calendarview.PrimeCalendarView
+import com.aminography.primedatepicker.common.BackgroundShapeType
+import com.aminography.primedatepicker.common.LabelFormatter
+import com.aminography.primedatepicker.picker.PrimeDatePicker
+import com.aminography.primedatepicker.picker.callback.RangeDaysPickCallback
+import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.eight.collection.R
 import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.entities.Suggest
@@ -18,6 +27,8 @@ import com.eight.collection.databinding.ActivityMatchWeatherBinding
 import com.eight.collection.ui.main.match.*
 import com.eight.collection.ui.main.week.DiaryRVAdapter
 import com.google.android.flexbox.FlexboxLayoutManager
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceBinding::inflate),
     MatchView, LastTagView, DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, SuggestTagView {
@@ -32,6 +43,9 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private lateinit var searchEditText : EditText
     private var searchKeyword = ArrayList<LastTag>()
     private var suggestResult : Boolean = false
+    private var clicked : Boolean = false
+    private var startDate: String = ""
+    private var endDate : String = ""
 
 
     override fun initAfterBinding() {
@@ -61,8 +75,13 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             getSearchResult()
         }
 
+        // 날짜조회 버튼 눌렀을시 이벤트
+        binding.matchPlaceSearchResultDayIb.setOnClickListener{
+            initCalendar()
+        }
+
         // 최신순 버튼 눌렀을시 이벤트
-        binding.matchPlaceSearchRecentRl.setOnClickListener{
+        binding.matchPlaceSearchResultLastIb.setOnClickListener{
             latestButtonClick()
         }
 
@@ -173,7 +192,14 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     }
 
     fun latestButtonClick(){
-
+        if(clicked == true){
+            binding.matchPlaceSearchResultLastIb.setBackgroundResource(R.drawable.button_search_last)
+            clicked = false
+        }
+        else{
+            binding.matchPlaceSearchResultLastIb.setBackgroundResource(R.drawable.button_search_old)
+            clicked = true
+        }
     }
 
     fun historyView(){
@@ -329,7 +355,11 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 count = count + 1
             }
         }
-        MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
+        if(startDate == "" && startDate == ""){
+            MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
+        }else{
+            MatchService.getMatch(this, 0, keyword1, keyword2, "", "", startDate, endDate)
+        }
     }
 
     override fun onMatchLoading() {
@@ -352,6 +382,8 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
         binding.matchPlaceSearchResultRv.adapter = diaryRVAdapter
 
         diaryRVAdapter.addWeekly(match)
+
+        binding.matchPlaceSearchResultTv.text = match.size.toString()
 
 //        if( match.size != 0){
 //
@@ -386,7 +418,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 Log.d("Match/PWWC/ERROR", "error")
             }
             3038,3113, -> {
-                Log.d("Match/Keword/ERROR", "error")
+                Log.d("Match/KeyWord/ERROR", "error")
             }
             3112, 3061, 3114, 3115, 3118 -> {
                 Log.d("Match/Color/ERROR", "error")
@@ -404,5 +436,117 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 Log.d("Month/DB/ERROR", "error")
             }
         }
+    }
+
+    fun initCalendar() {
+
+        val themeFactory = object : LightThemeFactory() {
+
+            override val typefacePath: String?
+                get() = "roboto.ttf"
+
+            override val calendarViewFlingOrientation: PrimeCalendarView.FlingOrientation
+                get() = PrimeCalendarView.FlingOrientation.HORIZONTAL
+
+            override val dialogBackgroundColor: Int
+                get() = getColor(R.color.white)
+
+            override val calendarViewBackgroundColor: Int
+                get() = getColor(R.color.white)
+
+            override val pickedDayBackgroundShapeType: BackgroundShapeType
+                get() = BackgroundShapeType.CIRCLE
+
+            override val calendarViewPickedDayBackgroundColor: Int
+                get() = getColor(R.color.terracota)
+
+            override val calendarViewPickedDayInRangeBackgroundColor: Int
+                get() = getColor(R.color.bottom_navi)
+
+            override val calendarViewPickedDayInRangeLabelTextColor: Int
+                get() = getColor(R.color.black)
+
+            override val calendarViewTodayLabelTextColor: Int
+                get() = getColor(R.color.terracota)
+
+            override val calendarViewMonthLabelTextColor: Int
+                get() = getColor(R.color.terracota)
+
+            override val calendarViewWeekLabelFormatter: LabelFormatter
+                get() = { primeCalendar ->
+                    when (primeCalendar[Calendar.DAY_OF_WEEK]) {
+                        Calendar.SATURDAY,
+                        Calendar.SUNDAY -> String.format("S")
+                        Calendar.MONDAY -> String.format("M")
+                        Calendar.TUESDAY -> String.format("T")
+                        Calendar.WEDNESDAY -> String.format("W")
+                        Calendar.THURSDAY -> String.format("T")
+                        Calendar.FRIDAY -> String.format("F")
+                        else -> String.format("Error")
+                    }
+                }
+
+            override val calendarViewMonthLabelFormatter: LabelFormatter
+                get() = { primeCalendar ->
+                    String.format("%s", primeCalendar.year)
+                    when (primeCalendar[Calendar.MONTH]) {
+                        Calendar.JANUARY -> String.format("%s.1", primeCalendar.year)
+                        Calendar.FEBRUARY -> String.format("%s.2", primeCalendar.year)
+                        Calendar.MARCH -> String.format("%s.3", primeCalendar.year)
+                        Calendar.APRIL -> String.format("%s.4", primeCalendar.year)
+                        Calendar.MAY -> String.format("%s.5", primeCalendar.year)
+                        Calendar.JUNE -> String.format("%s.6", primeCalendar.year)
+                        Calendar.JULY -> String.format("%s.7", primeCalendar.year)
+                        Calendar.AUGUST -> String.format("%s.8", primeCalendar.year)
+                        Calendar.SEPTEMBER -> String.format("%s.9", primeCalendar.year)
+                        Calendar.OCTOBER -> String.format("%s.10", primeCalendar.year)
+                        Calendar.NOVEMBER -> String.format("%s.11", primeCalendar.year)
+                        Calendar.DECEMBER -> String.format("%s.12", primeCalendar.year)
+                        else -> String.format("Error")
+                    }
+
+                }
+
+            override val calendarViewWeekLabelTextColors: SparseIntArray
+                get() = SparseIntArray(7).apply {
+                    val orange = getColor(R.color.terracota)
+                    put(Calendar.SATURDAY, orange)
+                    put(Calendar.SUNDAY, orange)
+                    put(Calendar.MONDAY, orange)
+                    put(Calendar.TUESDAY, orange)
+                    put(Calendar.WEDNESDAY, orange)
+                    put(Calendar.THURSDAY, orange)
+                    put(Calendar.FRIDAY, orange)
+                }
+
+            override val selectionBarBackgroundColor: Int
+                get() = getColor(R.color.pinkish_grey)
+
+            override val selectionBarRangeDaysItemBackgroundColor: Int
+                get() = getColor(R.color.terracota)
+
+            override val calendarViewDividerColor: Int
+                get() = getColor(R.color.pinkish_grey)
+
+        }
+
+        val today = CivilCalendar()
+
+        val callback = RangeDaysPickCallback { startDay, endDay ->
+            Toast.makeText(this, "From: ${startDay.longDateString}\nTo: ${endDay.longDateString}", Toast.LENGTH_SHORT).show()
+            startDate = startDay.longDateString
+            endDate = endDay.longDateString
+
+        }
+
+        val datePicker = PrimeDatePicker.bottomSheetWith(today)
+            .pickRangeDays(callback)
+            .applyTheme(themeFactory)
+            .build()
+
+        datePicker.show(supportFragmentManager, "SOME_TAG")
+
+
+
     }
 }

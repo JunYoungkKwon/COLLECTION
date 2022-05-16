@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:876215567832:android:30f9ac39ac0a06830d5ead",
         "android_client_info": {
-          "package_name": "com.eight.collection"
+          "package_name": "com.eight.collection.debug"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "876215567832-5ab78nn9l7kghb5ka630ev3knregihlk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.eight.collection",
+            "package_name": "com.eight.collection.debug",
             "certificate_hash": "82517d558a6db7be37ae03edfd2a6d074f16bc46"
           }
         },
