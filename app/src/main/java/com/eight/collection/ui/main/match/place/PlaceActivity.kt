@@ -360,6 +360,8 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
         }else{
             MatchService.getMatch(this, 0, keyword1, keyword2, "", "", startDate, endDate)
         }
+
+
     }
 
     override fun onMatchLoading() {
