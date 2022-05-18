@@ -47,6 +47,16 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private var startDate: String = ""
     private var endDate : String = ""
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("life2","test")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("life3","test")
+    }
+
 
     override fun initAfterBinding() {
         // 검색창 눌렀을시 이벤트
@@ -193,11 +203,11 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
     fun latestButtonClick(){
         if(clicked == true){
-            binding.matchPlaceSearchResultLastIb.setBackgroundResource(R.drawable.button_search_last)
+            binding.matchPlaceSearchResultLastIb.setImageResource(R.drawable.button_search_last)
             clicked = false
         }
         else{
-            binding.matchPlaceSearchResultLastIb.setBackgroundResource(R.drawable.button_search_old)
+            binding.matchPlaceSearchResultLastIb.setImageResource(R.drawable.button_search_old)
             clicked = true
         }
     }
@@ -355,13 +365,17 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 count = count + 1
             }
         }
-        if(startDate == "" && startDate == ""){
-            MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
+        if(startDate == "" && endDate == ""){
+            Log.d("test1","dialog")
+            Log.d("test1",startDate)
+            Log.d("test1",endDate)
+            MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "2022-03-07", "2022-03-08")
         }else{
-            MatchService.getMatch(this, 0, keyword1, keyword2, "", "", startDate, endDate)
+            Log.d("test2","dialog")
+            Log.d("test2",startDate)
+            Log.d("test2",endDate)
+            MatchService.getMatch(this, 0, "카페", "", "", "", startDate,endDate)
         }
-
-
     }
 
     override fun onMatchLoading() {
@@ -374,6 +388,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     }
 
     override fun onMatchSuccess(match: MutableList<Diary>) {
+        Log.d("Match/test", "success")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -407,6 +422,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     }
 
     override fun onMatchFailure(code: Int, message: String) {
+        Log.d("Match/test", "fail")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -434,8 +450,17 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             4018, 4001 -> {
                 Log.d("Match/Response/ERROR", "error")
             }
+            5000 -> {
+                Log.d("Match/DB1/ERROR", "error")
+            }
+            6000 -> {
+                Log.d("Match/DB2/ERROR", "error")
+            }
+            3061 -> {
+                Log.d("Match/DB2/Color", "error")
+            }
             else -> {
-                Log.d("Month/DB/ERROR", "error")
+                Log.d("Match/DB3/ERROR", "error")
             }
         }
     }
@@ -535,9 +560,11 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
         val today = CivilCalendar()
 
         val callback = RangeDaysPickCallback { startDay, endDay ->
-            Toast.makeText(this, "From: ${startDay.longDateString}\nTo: ${endDay.longDateString}", Toast.LENGTH_SHORT).show()
-            startDate = startDay.longDateString
-            endDate = endDay.longDateString
+            startDate = startDay.shortDateString.replace("/","-")
+            endDate = endDay.shortDateString.replace("/","-")
+            Log.d("callback",startDate)
+            Log.d("callback",endDate)
+            getSearchResult()
 
         }
 
@@ -547,8 +574,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             .build()
 
         datePicker.show(supportFragmentManager, "SOME_TAG")
-
-
 
     }
 }
