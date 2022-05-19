@@ -91,14 +91,14 @@
 
 
     <ImageButton
-        android:id="@+id/id_find_second_edit_ib"
+        android:id="@+id/id_find_second_login_ib"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/login_btn_event"
         android:background="@color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="136dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
@@ -114,7 +114,7 @@
         android:letterSpacing="-0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_find_second_edit_ib" />
+        app:layout_constraintTop_toBottomOf="@id/id_find_second_login_ib" />
 
     <LinearLayout
         android:id="@+id/login_dim_background"

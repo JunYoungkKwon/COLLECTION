@@ -12,8 +12,8 @@ class IdFindSecondActivity: BaseActivity<ActivityIdFindSecondBinding>(ActivityId
 
 
     override fun initAfterBinding() {
-//        binding.loginLoginBtnOffIv.setOnClickListener(this)
-//        binding.loginSignupBtnIv.setOnClickListener(this)
+        binding.idFindSecondBackBtnIv.setOnClickListener(this)
+        binding.idFindSecondLoginIb.setOnClickListener(this)
         binding.idFindSecondPwFindTv.setOnClickListener(this)
         binding.idFindFirstNameTv.text = getUserId()
 
@@ -23,14 +23,13 @@ class IdFindSecondActivity: BaseActivity<ActivityIdFindSecondBinding>(ActivityId
         if(v == null) return
 
         when(v) {
-//            binding.loginLoginBtnOffIv -> {
-//                startNextActivity(LoginSecondActivity::class.java)
-//                slideRight()
-//            }
-//            binding.loginSignupBtnIv -> {
-//                startNextActivity(SignupFirstActivity::class.java)
-//                slideRight()
-//            }
+            binding.idFindSecondBackBtnIv -> {
+                finishActivity()
+            }
+            binding.idFindSecondLoginIb -> {
+                startActivityWithClear(LoginSecondActivity::class.java)
+                slideRight()
+            }
 
             binding.idFindSecondPwFindTv -> {
                 startNextActivity(PwFindFirstActivity::class.java)

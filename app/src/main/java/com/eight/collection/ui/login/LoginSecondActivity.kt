@@ -39,7 +39,11 @@ class LoginSecondActivity: BaseActivity<ActivityLoginSecondBinding>(ActivityLogi
 
         when(v) {
             binding.loginLoginBtnOffIv -> login()
-            binding.loginBackBtnIv -> finishActivity()
+            binding.loginBackBtnIv -> {
+                finishActivity()
+                startNextActivity(LoginFirstActivity::class.java)
+                slideRight()
+            }
             binding.loginIdFindTv -> {
                 startNextActivity(IdFindFirstActivity::class.java)
                 slideRight()}

@@ -1,5 +1,9 @@
 package com.eight.collection.ui.main.match.place
 
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.text.Editable
 import android.text.TextWatcher
 import com.eight.collection.databinding.ActivityMatchPlaceBinding
@@ -7,10 +11,13 @@ import com.eight.collection.ui.BaseActivity
 
 import android.util.Log
 import android.util.SparseIntArray
+import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.calendarview.PrimeCalendarView
 import com.aminography.primedatepicker.common.BackgroundShapeType
@@ -23,15 +30,26 @@ import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.entities.Suggest
 import com.eight.collection.data.entities.Write.Content
 import com.eight.collection.data.remote.match.MatchService
+import com.eight.collection.data.remote.setting.SettingService
+import com.eight.collection.data.remote.setting.SettingService.deleteOOTD
 import com.eight.collection.databinding.ActivityMatchWeatherBinding
+import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.match.*
+import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.skydoves.powermenu.OnMenuItemClickListener
+import com.skydoves.powermenu.PowerMenu
+import com.skydoves.powermenu.PowerMenuItem
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
 class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceBinding::inflate),
-    MatchView, LastTagView, DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, SuggestTagView {
+    MatchView, LastTagView, DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, SuggestTagView ,DeleteView {
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
     private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
     private  lateinit var lastTagRVAdapter: MatchButtonRVAdapter
@@ -46,6 +64,13 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private var clicked : Boolean = false
     private var startDate: String = ""
     private var endDate : String = ""
+
+    private var moveToDate: LocalDate? = null
+
+//    private var dateSave: MutableList<Diary>? = null
+//    private var moveToDate: LocalDate? = null
+//    private var firstdate: LocalDate? = null
+//    private var lastdate: LocalDate? = null
 
     override fun onResume() {
         super.onResume()
@@ -369,12 +394,12 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             Log.d("test1","dialog")
             Log.d("test1",startDate)
             Log.d("test1",endDate)
-            MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "2022-03-07", "2022-03-08")
+            MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
         }else{
             Log.d("test2","dialog")
             Log.d("test2",startDate)
             Log.d("test2",endDate)
-            MatchService.getMatch(this, 0, "카페", "", "", "", startDate,endDate)
+            MatchService.getMatch(this, 0, keyword1, keyword2, "", "", startDate,endDate)
         }
     }
 
@@ -395,30 +420,123 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
 
+        binding.matchPlaceSearchResultTv.text = match.size.toString()
+
+//        var indexarraylist = ArrayList<Int>()
+//        for(i in 0 .. match.size-1 step (1)){
+//            val date:Date = match[i].date
+//            val localdate:LocalDate = date.toInstant()
+//                .atZone(ZoneId.systemDefault())
+//                .toLocalDate()
+//            if(localdate >= firstdate){
+//                if(localdate <= lastdate ){
+//                    val index = i
+//                    indexarraylist.add(index)
+//                }
+//            }
+//        }
+//        if( indexarraylist.size != 0){
+//            val filterindex = indexarraylist.filterNotNull()
+//            val first = filterindex.get(0)
+//            val last = filterindex.get(filterindex.size -1) +1
+//            val sub_mulist = match.subList(first, last)
+//            dateSave = sub_mulist
+//
+//            diaryRVAdapter.addWeekly(sub_mulist)
+//
+//            //데이터 있음
+//
+//        }
+//        else{
+//            diaryRVAdapter.removeWeekly()
+//            //데이터 없음
+//        }
+
         diaryRVAdapter = DiaryRVAdapter(this)
         binding.matchPlaceSearchResultRv.adapter = diaryRVAdapter
 
         diaryRVAdapter.addWeekly(match)
 
-        binding.matchPlaceSearchResultTv.text = match.size.toString()
+        diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener {
+            override fun onRemoveDiary(view: View, position: Int) {
 
-//        if( match.size != 0){
-//
-//
-//            binding.matchDefault2Text.visibility= View.GONE
-//            binding.matchDefault1Text.visibility= View.GONE
-//            binding.matchDefaultIv.visibility= View.GONE
-//            binding.itemTopLine1View.visibility= View.GONE
-//            binding.itemTopLine2View.visibility= View.GONE
-//        }
-//        else{
-//            diaryRVAdapter.removeWeekly()
-//            binding.matchDefault2Text.visibility= View.VISIBLE
-//            binding.matchDefault1Text.visibility= View.VISIBLE
-//            binding.matchDefaultIv.visibility= View.VISIBLE
-//            binding.itemTopLine1View.visibility= View.VISIBLE
-//            binding.itemTopLine2View.visibility= View.VISIBLE
-//        }
+                val powerMenu = PowerMenu.Builder(this@PlaceActivity)
+                    .addItem(PowerMenuItem("수정하기", false))
+                    .addItem(PowerMenuItem("삭제하기", false))
+                    .setMenuRadius(15f)
+                    .setDivider(
+                        ColorDrawable(
+                            ContextCompat.getColor(
+                                this@PlaceActivity,
+                                R.color.pinkish_grey
+                            )
+                        )
+                    )
+                    .setDividerHeight(1)
+                    .setShowBackground(false)
+                    .setMenuShadow(20f)
+                    .setTextColor(ContextCompat.getColor(this@PlaceActivity, R.color.dark_taupe))
+                    .setTextGravity(Gravity.CENTER)
+                    .setTextTypeface(Typeface.create("@font/suit_regular", Typeface.NORMAL))
+                    .setMenuColor(Color.WHITE)
+                    .build()
+
+                val onMenuItemClickListener =
+                    OnMenuItemClickListener<PowerMenuItem> { position1, item ->
+                        when (item.title) {
+                            "수정하기" -> {
+                                val date = match?.get(position)?.date
+                                var localdate: LocalDate? = date?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+                                moveToDate = localdate
+                                val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                val deleteDate: String? = localdate?.format(formatters)
+                                match?.removeAt(position)
+                                val intent2 = Intent(this@PlaceActivity, WritefirstActivity::class.java)
+                                intent2.putExtra("date", deleteDate)
+                                startActivity(intent2)
+                            }
+                            "삭제하기" -> {
+                                diaryRVAdapter.removeItem(position)
+                                val date = match?.get(position)?.date
+                                var localdate: LocalDate? = date?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+                                moveToDate = localdate
+                                val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                val deleteDate: String? = localdate?.format(formatters)
+                                match?.removeAt(position)
+                                if (deleteDate != null) {
+                                    deleteOOTD(deleteDate)
+                                }
+                            }
+                        }
+                        powerMenu.selectedPosition = position
+                        powerMenu.dismiss()
+                    }
+                powerMenu.onMenuItemClickListener = onMenuItemClickListener
+                powerMenu.showAsDropDown(view, -30, -30)
+            }
+
+            override fun onStartFinish(position: Int) {
+                val date = match?.get(position)?.date
+                var localdate: LocalDate? = date?.toInstant()
+                    ?.atZone(ZoneId.systemDefault())
+                    ?.toLocalDate()
+                moveToDate = localdate
+                val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                val moveDate: String? = localdate?.format(formatters)
+
+                val intent = Intent(this@PlaceActivity, FinishActivity::class.java)
+                intent.apply {
+                    this.putExtra("date",moveDate)
+                }
+                startActivity(intent)
+            }
+
+        })
+
     }
 
     override fun onMatchFailure(code: Int, message: String) {
@@ -575,5 +693,52 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         datePicker.show(supportFragmentManager, "SOME_TAG")
 
+    }
+
+    private fun deleteOOTD(date : String) {
+        if (date != null) {
+            SettingService.deleteOOTD(this, date)
+        }
+    }
+
+    override fun onDeleteLoading() {
+        binding.loginLoadingInIv.visibility = View.VISIBLE
+        binding.loginLoadingCircleIv.visibility = View.VISIBLE
+        binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+        val animation = AnimationUtils.loadAnimation(this, R.anim.rotate)
+        binding.loginLoadingCircleIv.startAnimation(animation)
+        binding.loginDimBackground.visibility = View.VISIBLE
+    }
+
+    override fun onDeleteSuccess() {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+        getSearchResult()
+    }
+
+    override fun onDeleteFailure(code: Int, message: String) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+
+        when (code) {
+            2000, 2001, 2002 -> {
+                Log.d("Place/Jwt/ERROR", "error")
+            }
+            3022, 3023, 3025, 3026, 3044-> {
+                Log.d("Place/Data/ERROR", "error")
+            }
+            4001, 4008-> {
+                Log.d("Place/Date/ERROR", "error")
+            }
+            else -> {
+                Log.d("Place/SEVER/ERROR", "error")
+            }
+        }
     }
 }

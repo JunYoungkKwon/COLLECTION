@@ -91,8 +91,6 @@ class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFi
         val id = binding.pwFindFirstIdEt.text.toString()
         phoneNum = binding.pwFindFirstPhoneEt.text.toString().replace("[^0-9]".toRegex(), "")
 
-        //if (skip == false) {return}
-
         AuthService.findPw(this, name,phoneNum,id)
     }
 
@@ -100,6 +98,13 @@ class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFi
         binding.loginLoadingInIv.visibility = View.VISIBLE
         binding.loginLoadingCircleIv.visibility = View.VISIBLE
         binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+
+        binding.pwFindFirstPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwFindFirstPhoneErrorTv.visibility = View.GONE
+        binding.pwFindFirstIdUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwFindFirstIdErrorTv.visibility = View.GONE
+        binding.pwFindFirstNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+        binding.pwFindFirstNameErrorTv.visibility = View.GONE
         //로딩이미지 애니메이션
         val animation = AnimationUtils.loadAnimation(this, R.anim.rotate)
         binding.loginLoadingCircleIv.startAnimation(animation)
@@ -113,8 +118,13 @@ class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFi
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
 
-        startNextActivity(PwFindSecondActivity::class.java)
-        slideRight()
+        if (skip == false) {
+            return
+        } else{
+            startNextActivity(PwFindSecondActivity::class.java)
+            slideRight()
+        }
+
     }
 
     override fun onPwFindFailure(code: Int, message: String) {
@@ -235,6 +245,8 @@ class PwFindFirstActivity: BaseActivity<ActivityPwFindFirstBinding>(ActivityPwFi
                     binding.pwFindFirstNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
                     binding.pwFindFirstNameErrorTv.visibility = View.GONE
                     Toast(this).showCustomToast("인증 성공", this)
+
+                    binding.pwFindFirstSecretNumberEt.isFocusable = false
                 } else {
                     binding.pwFindFirstSecretNumberUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
                     binding.pwFindFirstSecretNumberErrorTv.visibility = View.VISIBLE
