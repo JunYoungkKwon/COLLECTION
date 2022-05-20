@@ -91,6 +91,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         // 모두삭제 눌렀을시 이벤트
         binding.matchAllDeleteTv.setOnClickListener{
+            initCalendar()
             removeAllTag()
         }
 
@@ -593,6 +594,19 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             override val calendarViewFlingOrientation: PrimeCalendarView.FlingOrientation
                 get() = PrimeCalendarView.FlingOrientation.HORIZONTAL
 
+            override val calendarViewDayLabelVerticalPadding: Int
+                get() = getDimension(R.dimen.defaultElementPaddingBottom)
+
+
+            override val actionBarTodayTextColor: Int
+                get() = getColor(R.color.dark_taupe)
+
+            override val actionBarNegativeTextColor: Int
+                get() = getColor(R.color.pinkish_grey)
+
+            override val actionBarPositiveTextColor: Int
+                get() = getColor(R.color.terracota)
+
             override val dialogBackgroundColor: Int
                 get() = getColor(R.color.white)
 
@@ -671,7 +685,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 get() = getColor(R.color.terracota)
 
             override val calendarViewDividerColor: Int
-                get() = getColor(R.color.pinkish_grey)
+                get() = getColor(R.color.transparent)
 
         }
 
