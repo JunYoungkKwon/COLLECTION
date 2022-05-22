@@ -50,7 +50,7 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_id_find_first.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_id_find_second.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_mail.xml" value="0.1609375" />
-        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_place.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_place.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_weather.xml" value="0.13210773834972211" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_who.xml" value="0.22" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_pw_find_first.xml" value="0.38625" />
@@ -60,6 +60,7 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/dialog_edit_delete_custom.xml" value="0.22" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/dialog_introduce_second.xml" value="0.1609375" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/fragment_finish_photo.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/item_match_place_last.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/week_datepicker.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_account_delete.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/activity_account_delete_second.xml" value="0.4201474201474201" />
@@ -94,6 +95,7 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/calendar_year_month_header.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/calendar_year_month_header_week.xml" value="0.5" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/date_picker_calendar_year_month_header.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/dialog_keyword_no_find_custom.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/dialog_logout_custom.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/dialog_pw_change_custom.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout/dim_background.xml" value="0.1140625" />

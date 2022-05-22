@@ -25,6 +25,7 @@ object MatchService {
 
                 when(resp.code){
                     1020 -> matchView.onMatchSuccess(resp.result!!.match)
+                    1023 -> matchView.onMatchSuccess(resp.result!!.match)
                     else -> matchView.onMatchFailure(resp.code, resp.message)
                 }
             }

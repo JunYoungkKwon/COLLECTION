@@ -1,5 +1,6 @@
 package com.eight.collection.ui.main.match.place
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -12,9 +13,11 @@ import com.eight.collection.ui.BaseActivity
 import android.util.Log
 import android.util.SparseIntArray
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
@@ -34,7 +37,9 @@ import com.eight.collection.data.remote.setting.SettingService
 import com.eight.collection.data.remote.setting.SettingService.deleteOOTD
 import com.eight.collection.databinding.ActivityMatchWeatherBinding
 import com.eight.collection.ui.finish.FinishActivity
+import com.eight.collection.ui.login.LoginSecondActivity
 import com.eight.collection.ui.main.match.*
+import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
 import com.eight.collection.ui.writing.first.WritefirstActivity
@@ -55,16 +60,19 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private  lateinit var lastTagRVAdapter: MatchButtonRVAdapter
     private  lateinit var suggestTagRVAdapter : MatchButtonRVAdapter
     private  lateinit var searchTagRVAdapter: SearchTagRVAdapter
+
     private  var defaultTag = ArrayList<LastTag>()
     private  var reallastTag = ArrayList<LastTag>()
     private var suggestTag = ArrayList<LastTag>()
     private lateinit var searchEditText : EditText
     private var searchKeyword = ArrayList<LastTag>()
+
     private var suggestResult : Boolean = false
     private var clicked : Boolean = false
     private var startDate: String = ""
     private var endDate : String = ""
-
+    private var keyword1 : String = ""
+    private var keyword2 : String = ""
     private var moveToDate: LocalDate? = null
 
 //    private var dateSave: MutableList<Diary>? = null
@@ -91,7 +99,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         // 모두삭제 눌렀을시 이벤트
         binding.matchAllDeleteTv.setOnClickListener{
-            initCalendar()
             removeAllTag()
         }
 
@@ -107,6 +114,10 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         // 검색 버튼 눌렀을시 이벤트
         binding.matchPlaceSearchBt.setOnClickListener{
+            startDate =""
+            endDate = ""
+            keyword1 =""
+            keyword2 = ""
             searchButtonClick()
             getSearchResult()
         }
@@ -229,10 +240,22 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
     fun latestButtonClick(){
         if(clicked == true){
+            if(startDate == "" && endDate == ""){
+                MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
+            }else{
+
+                MatchService.getMatch(this, 0, keyword1, keyword2, "", "", startDate,endDate)
+            }
             binding.matchPlaceSearchResultLastIb.setImageResource(R.drawable.button_search_last)
             clicked = false
         }
         else{
+            if(startDate == "" && endDate == ""){
+                MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
+            }else{
+
+                MatchService.getMatch(this, 0, keyword1, keyword2, "", "", startDate,endDate)
+            }
             binding.matchPlaceSearchResultLastIb.setImageResource(R.drawable.button_search_old)
             clicked = true
         }
@@ -378,8 +401,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
 
     private fun getSearchResult(){
-        var keyword1 : String = ""
-        var keyword2 : String = ""
+
         var count : Int = 1
         for(i in searchKeyword){
             if(count == 1){
@@ -392,14 +414,9 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             }
         }
         if(startDate == "" && endDate == ""){
-            Log.d("test1","dialog")
-            Log.d("test1",startDate)
-            Log.d("test1",endDate)
             MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
         }else{
-            Log.d("test2","dialog")
-            Log.d("test2",startDate)
-            Log.d("test2",endDate)
+
             MatchService.getMatch(this, 0, keyword1, keyword2, "", "", startDate,endDate)
         }
     }
@@ -414,49 +431,36 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     }
 
     override fun onMatchSuccess(match: MutableList<Diary>) {
-        Log.d("Match/test", "success")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
 
-        binding.matchPlaceSearchResultTv.text = match.size.toString()
 
-//        var indexarraylist = ArrayList<Int>()
-//        for(i in 0 .. match.size-1 step (1)){
-//            val date:Date = match[i].date
-//            val localdate:LocalDate = date.toInstant()
-//                .atZone(ZoneId.systemDefault())
-//                .toLocalDate()
-//            if(localdate >= firstdate){
-//                if(localdate <= lastdate ){
-//                    val index = i
-//                    indexarraylist.add(index)
-//                }
-//            }
-//        }
-//        if( indexarraylist.size != 0){
-//            val filterindex = indexarraylist.filterNotNull()
-//            val first = filterindex.get(0)
-//            val last = filterindex.get(filterindex.size -1) +1
-//            val sub_mulist = match.subList(first, last)
-//            dateSave = sub_mulist
-//
-//            diaryRVAdapter.addWeekly(sub_mulist)
-//
-//            //데이터 있음
-//
-//        }
-//        else{
-//            diaryRVAdapter.removeWeekly()
-//            //데이터 없음
-//        }
+        binding.matchPlaceSearchResultRv.visibility = View.VISIBLE
+        binding.matchPlaceSearchResultTv.text = match.size.toString()
+        binding.matchDefaultIv.visibility = View.INVISIBLE
+        binding.matchDefault1Text.visibility = View.INVISIBLE
+        binding.matchDefault2Text.visibility = View.INVISIBLE
+        binding.itemTopLine1View.visibility = View.INVISIBLE
+        binding.itemTopLine2View.visibility = View.INVISIBLE
+
 
         diaryRVAdapter = DiaryRVAdapter(this)
         binding.matchPlaceSearchResultRv.adapter = diaryRVAdapter
 
-        diaryRVAdapter.addWeekly(match)
+        if( match.size == 0) {diaryRVAdapter.removeWeekly()}
+
+        if(clicked == true){
+            match.reverse()
+            diaryRVAdapter.addWeekly(match)
+        }
+        else{
+            diaryRVAdapter.addWeekly(match)
+        }
+
+
 
         diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener {
             override fun onRemoveDiary(view: View, position: Int) {
@@ -541,7 +545,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     }
 
     override fun onMatchFailure(code: Int, message: String) {
-        Log.d("Match/test", "fail")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -554,8 +557,19 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             3101,3048, 3036 -> {
                 Log.d("Match/PWWC/ERROR", "error")
             }
-            3038,3113, -> {
-                Log.d("Match/KeyWord/ERROR", "error")
+            3038 -> {
+                binding.matchPlaceSearchResultTv.text = "0"
+                binding.matchPlaceSearchResultRv.visibility = View.INVISIBLE
+
+                binding.matchDefaultIv.visibility = View.VISIBLE
+                binding.matchDefault1Text.text = "키워드를 입력해 주세요."
+                binding.matchDefault1Text.visibility = View.VISIBLE
+                binding.itemTopLine1View.visibility = View.VISIBLE
+                binding.itemTopLine2View.visibility = View.VISIBLE
+                Log.d("Match/EmptyKeyWord/ERROR", "error")
+            }
+            3113 -> {
+                Log.d("Match/KeyWord2Color/ERROR", "error")
             }
             3112, 3061, 3114, 3115, 3118 -> {
                 Log.d("Match/Color/ERROR", "error")
@@ -566,17 +580,42 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             3110, 3050 -> {
                 Log.d("Match/Text/ERROR", "error")
             }
-            4018, 4001 -> {
-                Log.d("Match/Response/ERROR", "error")
+            4001 -> {
+                binding.matchPlaceSearchResultTv.text = "0"
+                binding.matchPlaceSearchResultRv.visibility = View.INVISIBLE
+
+                binding.matchDefaultIv.visibility = View.VISIBLE
+                binding.matchDefault1Text.visibility = View.VISIBLE
+                binding.matchDefault2Text.visibility = View.VISIBLE
+                binding.itemTopLine1View.visibility = View.VISIBLE
+                binding.itemTopLine2View.visibility = View.VISIBLE
+                Log.d("Match/DateNoFind/ERROR", "error")
+            }
+            4018 -> {
+                binding.matchPlaceSearchResultTv.text = "0"
+                binding.matchPlaceSearchResultRv.visibility = View.INVISIBLE
+
+                val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_keyword_no_find_custom, null)
+                val mBuilder = AlertDialog.Builder(this)
+                    .setView(mDialogView)
+                    .setCancelable(false)
+                val  mAlertDialog = mBuilder.show()
+                mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                val noButton = mDialogView.findViewById<ImageButton>(R.id.dialog_cancle_ib)
+                noButton.setOnClickListener {
+                    finishActivity()
+                    startActivity(Intent(this, PlaceActivity::class.java))
+                    mAlertDialog.dismiss()
+                }
+
+                Log.d("Match/KeywordNoFind/ERROR", "error")
             }
             5000 -> {
                 Log.d("Match/DB1/ERROR", "error")
             }
             6000 -> {
                 Log.d("Match/DB2/ERROR", "error")
-            }
-            3061 -> {
-                Log.d("Match/DB2/Color", "error")
             }
             else -> {
                 Log.d("Match/DB3/ERROR", "error")
