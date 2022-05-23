@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.eight.collection.config.XAccessTokenInterceptor
+import com.eight.collection.utils.SecretCode
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,6 +22,16 @@ class ApplicationClass : Application() {
 
         lateinit var mSharedPreferences: SharedPreferences
         lateinit var retrofit: Retrofit
+
+        var CODE: String = ""
+
+        fun getCode(): String {
+            return CODE
+        }
+
+        fun saveCode(code: String) {
+            this.CODE = code
+        }
     }
 
     override fun onCreate() {
