@@ -9,6 +9,9 @@ import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.eight.collection.R
 import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.entities.Suggest
@@ -17,6 +20,7 @@ import com.eight.collection.data.remote.match.MatchService
 import com.eight.collection.databinding.ActivityMatchWeatherBinding
 import com.eight.collection.ui.main.match.*
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.eight.collection.utils.savePWWC
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceBinding::inflate),
@@ -35,6 +39,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
 
     override fun initAfterBinding() {
+        savePWWC(0)
         // 검색창 눌렀을시 이벤트
         binding.matchPlaceSearchBeforeView.setOnClickListener{
             searchViewClick()
@@ -59,6 +64,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
         binding.matchPlaceSearchBt.setOnClickListener{
             searchButtonClick()
             getSearchResult()
+            getLastTag()
         }
 
         // 최신순 버튼 눌렀을시 이벤트
@@ -70,7 +76,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         defaultTag.apply {
             add(LastTag("학교", "",1,true))
-            add(LastTag("회사", "",2,true))
+            add(LastTag("직장", "",2,true))
             add(LastTag("헬스장", "",3,true))
             add(LastTag("집", "",4,true))
             add(LastTag("카페", "",5,true))
@@ -199,16 +205,19 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     override fun onLastTagLoading() {}
 
     override fun onLastTagSuccess(lastTag: ArrayList<LastTag>) {
+        reallastTag.clear()
         reallastTag = lastTag
         if (reallastTag.isEmpty() == false){
             historyView()
-            val flexboxLayoutManager = FlexboxLayoutManager(this)
+            val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.HORIZONTAL)
             lastTagRVAdapter = MatchButtonRVAdapter()
             binding.matchPlaceLastRecyclerview.adapter = lastTagRVAdapter
-            binding.matchPlaceLastRecyclerview.layoutManager = flexboxLayoutManager
+            binding.matchPlaceLastRecyclerview.layoutManager = staggeredGridLayoutManager
             lastTagRVAdapter.addButton(reallastTag)
             lastTagRVAdapter.setMyItemClickListener(this)
+            lastTagRVAdapter.notifyDataSetChanged()
         }
+
         else {
             historyUnView()
         }

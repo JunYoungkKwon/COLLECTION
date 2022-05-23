@@ -5,9 +5,9 @@ import java.util.*
 
 
 data class LastTag(
-    @SerializedName("content") val text: String? = "",
-    @SerializedName("color") val color: String? = "",
-    @SerializedName("index") val index: Int? = 0,
-    @SerializedName("isdefault") val isdefault: Boolean? = false
+    @SerializedName("content") var text: String? = "",
+    @SerializedName("color") var color: String? = "",
+    @SerializedName("index") var index: Int? = 0,
+    @SerializedName("isdefault") var isdefault: Boolean? = false
 )
 

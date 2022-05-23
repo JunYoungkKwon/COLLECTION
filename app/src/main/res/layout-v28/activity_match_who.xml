@@ -110,7 +110,7 @@
             />
 
 
-        <com.google.android.flexbox.FlexboxLayout
+        <GridLayout
             android:id="@+id/match_who_last_fl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -128,8 +128,8 @@
                 android:layout_height="match_parent"
                 tools:listitem="@layout/item_match_who_last"
                 android:orientation="horizontal"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
-        </com.google.android.flexbox.FlexboxLayout>
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+        </GridLayout>
 
         <TextView
             android:id="@+id/match_who_default_tv"

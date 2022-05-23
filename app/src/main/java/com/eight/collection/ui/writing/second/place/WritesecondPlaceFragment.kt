@@ -52,7 +52,7 @@ class WritesecondPlaceFragment : Fragment(), CustomDialogInterface,
         placeDatas.apply {
             add(WritesecondPlace("+", 0,0))
             add(WritesecondPlace("학교", 1,1))
-            add(WritesecondPlace("회사", 2,2))
+            add(WritesecondPlace("직장", 2,2))
             add(WritesecondPlace("헬스장", 3,3))
             add(WritesecondPlace("집", 4,4))
             add(WritesecondPlace("카페", 5,5))

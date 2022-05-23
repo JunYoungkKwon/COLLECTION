@@ -7,17 +7,28 @@
     android:layout_marginEnd="8dp"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/match_color_search_button"
+    <RelativeLayout
+        android:id="@+id/match_color_search_rl"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:text="맨투맨"
-        android:gravity="center"
-        android:button="@color/transparent"
-        android:textSize="14sp"
         android:background="@drawable/radio_selector"
-        android:fontFamily="@font/suit_regular"
-        android:textColor="@drawable/selector_radio_text"
         tools:ignore="MissingConstraints"
-        />
+        >
+
+        <TextView
+            android:id="@+id/match_color_search_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:button="@color/transparent"
+            android:textSize="14sp"
+            android:textColor="@drawable/selector_radio_text"
+            android:textStyle="normal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="2dp"
+            android:fontFamily="@font/suit_regular"
+            tools:text="맨투맨맨" />
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
