@@ -17,6 +17,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -42,6 +45,7 @@ import com.eight.collection.ui.main.match.*
 import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.eight.collection.utils.savePWWC
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.skydoves.powermenu.OnMenuItemClickListener
@@ -92,6 +96,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
 
     override fun initAfterBinding() {
+        savePWWC(0)
         // 검색창 눌렀을시 이벤트
         binding.matchPlaceSearchBeforeView.setOnClickListener{
             searchViewClick()
@@ -120,6 +125,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             keyword2 = ""
             searchButtonClick()
             getSearchResult()
+            getLastTag()
         }
 
         // 날짜조회 버튼 눌렀을시 이벤트
@@ -136,7 +142,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         defaultTag.apply {
             add(LastTag("학교", "",1,true))
-            add(LastTag("회사", "",2,true))
+            add(LastTag("직장", "",2,true))
             add(LastTag("헬스장", "",3,true))
             add(LastTag("집", "",4,true))
             add(LastTag("카페", "",5,true))
@@ -284,16 +290,19 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     override fun onLastTagLoading() {}
 
     override fun onLastTagSuccess(lastTag: ArrayList<LastTag>) {
+        reallastTag.clear()
         reallastTag = lastTag
         if (reallastTag.isEmpty() == false){
             historyView()
-            val flexboxLayoutManager = FlexboxLayoutManager(this)
+            val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.HORIZONTAL)
             lastTagRVAdapter = MatchButtonRVAdapter()
             binding.matchPlaceLastRecyclerview.adapter = lastTagRVAdapter
-            binding.matchPlaceLastRecyclerview.layoutManager = flexboxLayoutManager
+            binding.matchPlaceLastRecyclerview.layoutManager = staggeredGridLayoutManager
             lastTagRVAdapter.addButton(reallastTag)
             lastTagRVAdapter.setMyItemClickListener(this)
+            lastTagRVAdapter.notifyDataSetChanged()
         }
+
         else {
             historyUnView()
         }

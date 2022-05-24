@@ -127,6 +127,9 @@
             android:name=".ui.main.match.who.WhoActivity"
             android:exported="true"></activity>
         <activity android:name=".ui.main.match.color.ColorActivity" />
+        <activity android:name=".ui.main.match.color.ColorSearchActivity"
+            android:theme="@style/Transparent" />
+
         <activity android:name=".ui.main.match.weather.WeatherActivity" />
         <activity
             android:name=".ui.finish.PhotoActivity"

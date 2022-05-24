@@ -118,7 +118,7 @@
             />
 
 
-        <com.google.android.flexbox.FlexboxLayout
+        <GridLayout
             android:id="@+id/match_color_last_fl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -135,8 +135,8 @@
                 android:layout_height="match_parent"
                 tools:listitem="@layout/item_match_place_last"
                 android:orientation="horizontal"
-                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
-        </com.google.android.flexbox.FlexboxLayout>
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+        </GridLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -280,7 +280,7 @@
                     android:layout_height="385dp"
                     android:orientation="horizontal"
                     app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
-                    tools:listitem="@layout/item_match_place_last"
+                    tools:listitem="@layout/item_writefirst_top"
                     tools:ignore="MissingConstraints"
                     >
                 </androidx.recyclerview.widget.RecyclerView>

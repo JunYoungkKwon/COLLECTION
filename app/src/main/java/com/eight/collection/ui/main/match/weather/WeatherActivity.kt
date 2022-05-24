@@ -6,6 +6,9 @@ import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.eight.collection.R
 import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.entities.Suggest
@@ -15,6 +18,7 @@ import com.eight.collection.databinding.ActivityMatchWeatherBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.match.*
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.eight.collection.utils.savePWWC
 import com.google.android.flexbox.FlexboxLayoutManager
 
 class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWeatherBinding::inflate),
@@ -33,6 +37,7 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
 
 
     override fun initAfterBinding() {
+        savePWWC(1)
         // 검색창 눌렀을시 이벤트
         binding.matchWeatherSearchBeforeView.setOnClickListener{
             searchViewClick()
@@ -57,6 +62,7 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
         binding.matchWeatherSearchBt.setOnClickListener{
             searchButtonClick()
             getSearchResult()
+            getLastTag()
         }
 
         // 최신순 버튼 눌렀을시 이벤트
@@ -198,15 +204,17 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
     override fun onLastTagLoading() {}
 
     override fun onLastTagSuccess(lastTag: ArrayList<LastTag>) {
+        reallastTag.clear()
         reallastTag = lastTag
         if (reallastTag.isEmpty() == false){
             historyView()
-            val flexboxLayoutManager = FlexboxLayoutManager(this)
+            val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.HORIZONTAL)
             lastTagRVAdapter = MatchButtonRVAdapter()
             binding.matchWeatherLastRecyclerview.adapter = lastTagRVAdapter
-            binding.matchWeatherLastRecyclerview.layoutManager = flexboxLayoutManager
+            binding.matchWeatherLastRecyclerview.layoutManager = staggeredGridLayoutManager
             lastTagRVAdapter.addButton(reallastTag)
             lastTagRVAdapter.setMyItemClickListener(this)
+            lastTagRVAdapter.notifyDataSetChanged()
         }
         else {
             historyUnView()
