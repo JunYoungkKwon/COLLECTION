@@ -590,6 +590,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 binding.itemTopLine1View.visibility = View.VISIBLE
                 binding.itemTopLine2View.visibility = View.VISIBLE
                 Log.d("Match/DateNoFind/ERROR", "error")
+
             }
             4018 -> {
                 binding.matchPlaceSearchResultTv.text = "0"
