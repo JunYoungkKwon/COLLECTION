@@ -440,6 +440,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     }
 
     override fun onMatchSuccess(match: MutableList<Diary>) {
+        Log.d("Match/Success", "error")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -743,8 +744,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
         val callback = RangeDaysPickCallback { startDay, endDay ->
             startDate = startDay.shortDateString.replace("/","-")
             endDate = endDay.shortDateString.replace("/","-")
-            Log.d("callback",startDate)
-            Log.d("callback",endDate)
             getSearchResult()
 
         }

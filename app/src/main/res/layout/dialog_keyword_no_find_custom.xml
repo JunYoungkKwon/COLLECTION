@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:src="@drawable/goto_login_btn_event"
+        android:src="@drawable/goto_first_btn_event"
         android:background="@color/transparent"
         app:layout_constraintStart_toStartOf="@+id/dialog_text_bg_cv"
         app:layout_constraintEnd_toEndOf="@+id/dialog_text_bg_cv"
