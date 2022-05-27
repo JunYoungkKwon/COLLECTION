@@ -17,6 +17,7 @@
     <color name="form_error">#F44336</color>
     <color name="bottom_navi">#f4f2f0</color>
     <color name="background">#f9f8f6</color>
+    <color name="background_bs">#C3B5AC </color>
 
     <color name="terracota">#c77a4a</color>
     <color name="dark_taupe">#7c6350</color>

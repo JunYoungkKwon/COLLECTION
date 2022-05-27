@@ -7,9 +7,6 @@ import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.text.Editable
 import android.text.TextWatcher
-import com.eight.collection.databinding.ActivityMatchPlaceBinding
-import com.eight.collection.ui.BaseActivity
-
 import android.util.Log
 import android.util.SparseIntArray
 import android.view.Gravity
@@ -17,14 +14,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
-import androidx.recyclerview.widget.GridLayoutManager
+import android.widget.ImageButton
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import android.widget.ImageButton
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
 import com.aminography.primecalendar.civil.CivilCalendar
+import com.aminography.primecalendar.persian.PersianCalendar
 import com.aminography.primedatepicker.calendarview.PrimeCalendarView
 import com.aminography.primedatepicker.common.BackgroundShapeType
 import com.aminography.primedatepicker.common.LabelFormatter
@@ -37,25 +32,26 @@ import com.eight.collection.data.entities.Suggest
 import com.eight.collection.data.entities.Write.Content
 import com.eight.collection.data.remote.match.MatchService
 import com.eight.collection.data.remote.setting.SettingService
-import com.eight.collection.data.remote.setting.SettingService.deleteOOTD
-import com.eight.collection.databinding.ActivityMatchWeatherBinding
+import com.eight.collection.databinding.ActivityMatchPlaceBinding
+import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.finish.FinishActivity
-import com.eight.collection.ui.login.LoginSecondActivity
 import com.eight.collection.ui.main.match.*
-import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
-import com.eight.collection.utils.savePWWC
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.eight.collection.utils.savePWWC
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
+import java.util.TimeZone.getDefault
+
 
 class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceBinding::inflate),
     MatchView, LastTagView, DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, SuggestTagView ,DeleteView {
@@ -440,7 +436,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     }
 
     override fun onMatchSuccess(match: MutableList<Diary>) {
-        Log.d("Match/Success", "error")
         binding.loginLoadingCircleIv.visibility = View.GONE
         binding.loginLoadingInIv.visibility = View.GONE
         binding.loginLoadingBackgroundIv.visibility = View.GONE
@@ -737,6 +732,14 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             override val calendarViewDividerColor: Int
                 get() = getColor(R.color.transparent)
 
+            override val gotoViewBackgroundColor: Int
+                get() = getColor(R.color.background_bs)
+
+            override val gotoViewTextColor: Int
+                get() = getColor(R.color.white)
+
+            override val gotoViewDividerColor: Int
+                get() = getColor(R.color.terracota)
         }
 
         val today = CivilCalendar()
