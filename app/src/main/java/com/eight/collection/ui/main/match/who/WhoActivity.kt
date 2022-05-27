@@ -1,16 +1,25 @@
 package com.eight.collection.ui.main.match.who
 
+import android.app.AlertDialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.util.SparseIntArray
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.calendarview.PrimeCalendarView
 import com.aminography.primedatepicker.common.BackgroundShapeType
@@ -23,17 +32,28 @@ import com.eight.collection.data.entities.Diary
 import com.eight.collection.data.entities.Suggest
 import com.eight.collection.data.entities.Write.Content
 import com.eight.collection.data.remote.match.MatchService
+import com.eight.collection.data.remote.setting.SettingService
 import com.eight.collection.databinding.ActivityMatchWhoBinding
 import com.eight.collection.ui.BaseActivity
+import com.eight.collection.ui.finish.FinishActivity
 import com.eight.collection.ui.main.match.*
+import com.eight.collection.ui.main.match.place.PlaceActivity
+import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.utils.savePWWC
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.skydoves.powermenu.OnMenuItemClickListener
+import com.skydoves.powermenu.PowerMenu
+import com.skydoves.powermenu.PowerMenuItem
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
 class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding::inflate), MatchView, LastTagView,
-    DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, SuggestTagView {
+    DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, SuggestTagView, DeleteView {
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
     private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
@@ -45,7 +65,14 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     private var suggestTag = ArrayList<LastTag>()
     private lateinit var searchEditText : EditText
     private var searchKeyword = ArrayList<LastTag>()
+
     private var suggestResult : Boolean = false
+    private var clicked : Boolean = false
+    private var startDate: String = ""
+    private var endDate : String = ""
+    private var keyword1 : String = ""
+    private var keyword2 : String = ""
+    private var moveToDate: LocalDate? = null
 
     override fun initAfterBinding() {
         savePWWC(2)
@@ -71,13 +98,22 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
 
         // 검색 버튼 눌렀을시 이벤트
         binding.matchWhoSearchBt.setOnClickListener{
+            startDate =""
+            endDate = ""
+            keyword1 =""
+            keyword2 = ""
             searchButtonClick()
             getSearchResult()
             getLastTag()
         }
 
+        // 날짜조회 버튼 눌렀을시 이벤트
+        binding.matchWhoSearchResultDayIb.setOnClickListener{
+            initCalendar()
+        }
+
         //최신순 버튼 눌렀을시 이벤트
-        binding.matchWhoSearchRecentRl.setOnClickListener{
+        binding.matchWhoSearchResultLastIb.setOnClickListener{
             latestButtonClick()
         }
 
@@ -188,6 +224,26 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     }
 
     fun latestButtonClick(){
+        if(clicked == true){
+            if(startDate == "" && endDate == ""){
+                MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
+            }else{
+
+                MatchService.getMatch(this, 0, keyword1, keyword2, "", "", startDate,endDate)
+            }
+            binding.matchWhoSearchResultLastIb.setImageResource(R.drawable.button_search_last)
+            clicked = false
+        }
+        else{
+            if(startDate == "" && endDate == ""){
+                MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
+            }else{
+
+                MatchService.getMatch(this, 0, keyword1, keyword2, "", "", startDate,endDate)
+            }
+            binding.matchWhoSearchResultLastIb.setImageResource(R.drawable.button_search_old)
+            clicked = true
+        }
 
     }
 
@@ -237,7 +293,6 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
 
     override fun onLastTagFailure(code: Int, message: String) {
         historyUnView()
-        Log.d("LastTag1", "error")
         when (code) {
             2000,2001, 2002 -> {
                 Log.d("LastTag/JWT/ERROR", "error")
@@ -266,12 +321,9 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         MatchService.deleteTag(this, 1, 2, getContent("야호"))
     }
 
-    override fun onDeleteTagLoading() {
-    }
+    override fun onDeleteTagLoading() {}
 
-    override fun onDeleteTagSuccess() {
-        Log.d("message","Delete Success")
-    }
+    override fun onDeleteTagSuccess() {}
 
     override fun onDeleteTagFailure(code: Int, message: String) {
         when(code) {
@@ -334,8 +386,6 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     }
 
     private fun getSearchResult(){
-        var keyword1 : String = ""
-        var keyword2 : String = ""
         var count : Int = 1
         for(i in searchKeyword){
             if(count == 1){
@@ -347,7 +397,12 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
                 count = count + 1
             }
         }
-        MatchService.getMatch(this, 2, keyword1, keyword2, "", "", "", "")
+        if(startDate == "" && endDate == ""){
+            MatchService.getMatch(this, 2, keyword1, keyword2, "", "", "", "")
+        }else{
+
+            MatchService.getMatch(this, 2, keyword1, keyword2, "", "", startDate,endDate)
+        }
     }
 
     override fun onMatchLoading() {
@@ -366,27 +421,108 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         binding.loginLoadingCircleIv.clearAnimation()
         binding.loginDimBackground.visibility = View.INVISIBLE
 
+        binding.matchWhoSearchResultRv.visibility = View.VISIBLE
+        binding.matchWhoSearchResultTv.text = match.size.toString()
+        binding.matchDefaultIv.visibility = View.INVISIBLE
+        binding.matchDefault1Text.visibility = View.INVISIBLE
+        binding.matchDefault2Text.visibility = View.INVISIBLE
+        binding.itemTopLine1View.visibility = View.INVISIBLE
+        binding.itemTopLine2View.visibility = View.INVISIBLE
+
         diaryRVAdapter = DiaryRVAdapter(this)
         binding.matchWhoSearchResultRv.adapter = diaryRVAdapter
 
-        diaryRVAdapter.addWeekly(match)
-//        if( match.size != 0){
-//
-//
-//            binding.matchDefault2Text.visibility= View.GONE
-//            binding.matchDefault1Text.visibility= View.GONE
-//            binding.matchDefaultIv.visibility= View.GONE
-//            binding.itemTopLine1View.visibility= View.GONE
-//            binding.itemTopLine2View.visibility= View.GONE
-//        }
-//        else{
-//            diaryRVAdapter.removeWeekly()
-//            binding.matchDefault2Text.visibility= View.VISIBLE
-//            binding.matchDefault1Text.visibility= View.VISIBLE
-//            binding.matchDefaultIv.visibility= View.VISIBLE
-//            binding.itemTopLine1View.visibility= View.VISIBLE
-//            binding.itemTopLine2View.visibility= View.VISIBLE
-//        }
+        if( match.size == 0) {diaryRVAdapter.removeWeekly()}
+
+        if(clicked == true){
+            match.reverse()
+            diaryRVAdapter.addWeekly(match)
+        }
+        else{
+            diaryRVAdapter.addWeekly(match)
+        }
+
+
+
+        diaryRVAdapter.setMyitemClickListener(object : DiaryRVAdapter.MyitemClickListener {
+            override fun onRemoveDiary(view: View, position: Int) {
+
+                val powerMenu = PowerMenu.Builder(this@WhoActivity)
+                    .addItem(PowerMenuItem("수정하기", false))
+                    .addItem(PowerMenuItem("삭제하기", false))
+                    .setMenuRadius(15f)
+                    .setDivider(
+                        ColorDrawable(
+                            ContextCompat.getColor(
+                                this@WhoActivity,
+                                R.color.pinkish_grey
+                            )
+                        )
+                    )
+                    .setDividerHeight(1)
+                    .setShowBackground(false)
+                    .setMenuShadow(20f)
+                    .setTextColor(ContextCompat.getColor(this@WhoActivity, R.color.dark_taupe))
+                    .setTextGravity(Gravity.CENTER)
+                    .setTextTypeface(Typeface.create("@font/suit_regular", Typeface.NORMAL))
+                    .setMenuColor(Color.WHITE)
+                    .build()
+
+                val onMenuItemClickListener =
+                    OnMenuItemClickListener<PowerMenuItem> { position1, item ->
+                        when (item.title) {
+                            "수정하기" -> {
+                                val date = match?.get(position)?.date
+                                var localdate: LocalDate? = date?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+                                moveToDate = localdate
+                                val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                val deleteDate: String? = localdate?.format(formatters)
+                                match?.removeAt(position)
+                                val intent2 = Intent(this@WhoActivity, WritefirstActivity::class.java)
+                                intent2.putExtra("date", deleteDate)
+                                startActivity(intent2)
+                            }
+                            "삭제하기" -> {
+                                diaryRVAdapter.removeItem(position)
+                                val date = match?.get(position)?.date
+                                var localdate: LocalDate? = date?.toInstant()
+                                    ?.atZone(ZoneId.systemDefault())
+                                    ?.toLocalDate()
+                                moveToDate = localdate
+                                val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                val deleteDate: String? = localdate?.format(formatters)
+                                match?.removeAt(position)
+                                if (deleteDate != null) {
+                                    deleteOOTD(deleteDate)
+                                }
+                            }
+                        }
+                        powerMenu.selectedPosition = position
+                        powerMenu.dismiss()
+                    }
+                powerMenu.onMenuItemClickListener = onMenuItemClickListener
+                powerMenu.showAsDropDown(view, -30, -30)
+            }
+
+            override fun onStartFinish(position: Int) {
+                val date = match?.get(position)?.date
+                var localdate: LocalDate? = date?.toInstant()
+                    ?.atZone(ZoneId.systemDefault())
+                    ?.toLocalDate()
+                moveToDate = localdate
+                val formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                val moveDate: String? = localdate?.format(formatters)
+
+                val intent = Intent(this@WhoActivity, FinishActivity::class.java)
+                intent.apply {
+                    this.putExtra("date",moveDate)
+                }
+                startActivity(intent)
+            }
+
+        })
     }
 
     override fun onMatchFailure(code: Int, message: String) {
@@ -402,8 +538,20 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
             3101,3048, 3036 -> {
                 Log.d("Match/PWWC/ERROR", "error")
             }
-            3038,3113, -> {
-                Log.d("Match/Keword/ERROR", "error")
+            3038 -> {
+                binding.matchWhoSearchResultTv.text = "0"
+                binding.matchWhoSearchResultRv.visibility = View.INVISIBLE
+
+                binding.matchDefaultIv.visibility = View.VISIBLE
+                binding.matchDefault1Text.text = "키워드를 입력해 주세요."
+                binding.matchDefault2Text.visibility = View.INVISIBLE
+                binding.matchDefault1Text.visibility = View.VISIBLE
+                binding.itemTopLine1View.visibility = View.VISIBLE
+                binding.itemTopLine2View.visibility = View.VISIBLE
+                Log.d("Match/EmptyKeyWord/ERROR", "error")
+            }
+            3113 -> {
+                Log.d("Match/KeyWord2Color/ERROR", "error")
             }
             3112, 3061, 3114, 3115, 3118 -> {
                 Log.d("Match/Color/ERROR", "error")
@@ -414,11 +562,46 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
             3110, 3050 -> {
                 Log.d("Match/Text/ERROR", "error")
             }
-            4018, 4001 -> {
-                Log.d("Match/Response/ERROR", "error")
+            4001 -> {
+                binding.matchWhoSearchResultTv.text = "0"
+                binding.matchWhoSearchResultRv.visibility = View.INVISIBLE
+
+                binding.matchDefaultIv.visibility = View.VISIBLE
+                binding.matchDefault1Text.visibility = View.VISIBLE
+                binding.matchDefault2Text.visibility = View.VISIBLE
+                binding.itemTopLine1View.visibility = View.VISIBLE
+                binding.itemTopLine2View.visibility = View.VISIBLE
+                Log.d("Match/DateNoFind/ERROR", "error")
+
+            }
+            4018 -> {
+                binding.matchWhoSearchResultTv.text = "0"
+                binding.matchWhoSearchResultRv.visibility = View.INVISIBLE
+
+                val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_keyword_no_find_custom, null)
+                val mBuilder = AlertDialog.Builder(this)
+                    .setView(mDialogView)
+                    .setCancelable(false)
+                val  mAlertDialog = mBuilder.show()
+                mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                val noButton = mDialogView.findViewById<ImageButton>(R.id.dialog_cancle_ib)
+                noButton.setOnClickListener {
+                    finishActivity()
+                    startActivity(Intent(this, WhoActivity::class.java))
+                    mAlertDialog.dismiss()
+                }
+
+                Log.d("Match/KeywordNoFind/ERROR", "error")
+            }
+            5000 -> {
+                Log.d("Match/DB1/ERROR", "error")
+            }
+            6000 -> {
+                Log.d("Match/DB2/ERROR", "error")
             }
             else -> {
-                Log.d("Month/DB/ERROR", "error")
+                Log.d("Match/DB3/ERROR", "error")
             }
         }
     }
@@ -431,6 +614,19 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
 
             override val calendarViewFlingOrientation: PrimeCalendarView.FlingOrientation
                 get() = PrimeCalendarView.FlingOrientation.HORIZONTAL
+
+            override val calendarViewDayLabelVerticalPadding: Int
+                get() = getDimension(R.dimen.defaultElementPaddingBottom)
+
+
+            override val actionBarTodayTextColor: Int
+                get() = getColor(R.color.dark_taupe)
+
+            override val actionBarNegativeTextColor: Int
+                get() = getColor(R.color.pinkish_grey)
+
+            override val actionBarPositiveTextColor: Int
+                get() = getColor(R.color.terracota)
 
             override val dialogBackgroundColor: Int
                 get() = getColor(R.color.white)
@@ -510,14 +706,25 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
                 get() = getColor(R.color.terracota)
 
             override val calendarViewDividerColor: Int
-                get() = getColor(R.color.pinkish_grey)
+                get() = getColor(R.color.transparent)
 
+            override val gotoViewBackgroundColor: Int
+                get() = getColor(R.color.background_bs)
+
+            override val gotoViewTextColor: Int
+                get() = getColor(R.color.white)
+
+            override val gotoViewDividerColor: Int
+                get() = getColor(R.color.terracota)
         }
 
         val today = CivilCalendar()
 
         val callback = RangeDaysPickCallback { startDay, endDay ->
-            Toast.makeText(this, "From: ${startDay.longDateString}\nTo: ${endDay.longDateString}", Toast.LENGTH_SHORT).show()
+            startDate = startDay.shortDateString.replace("/","-")
+            endDate = endDay.shortDateString.replace("/","-")
+            getSearchResult()
+
         }
 
         val datePicker = PrimeDatePicker.bottomSheetWith(today)
@@ -527,8 +734,53 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
 
         datePicker.show(supportFragmentManager, "SOME_TAG")
 
+    }
 
+    private fun deleteOOTD(date : String) {
+        if (date != null) {
+            SettingService.deleteOOTD(this, date)
+        }
+    }
 
+    override fun onDeleteLoading() {
+        binding.loginLoadingInIv.visibility = View.VISIBLE
+        binding.loginLoadingCircleIv.visibility = View.VISIBLE
+        binding.loginLoadingBackgroundIv.visibility = View.VISIBLE
+        val animation = AnimationUtils.loadAnimation(this, R.anim.rotate)
+        binding.loginLoadingCircleIv.startAnimation(animation)
+        binding.loginDimBackground.visibility = View.VISIBLE
+    }
+
+    override fun onDeleteSuccess() {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+        getSearchResult()
+    }
+
+    override fun onDeleteFailure(code: Int, message: String) {
+        binding.loginLoadingCircleIv.visibility = View.GONE
+        binding.loginLoadingInIv.visibility = View.GONE
+        binding.loginLoadingBackgroundIv.visibility = View.GONE
+        binding.loginLoadingCircleIv.clearAnimation()
+        binding.loginDimBackground.visibility = View.INVISIBLE
+
+        when (code) {
+            2000, 2001, 2002 -> {
+                Log.d("Place/Jwt/ERROR", "error")
+            }
+            3022, 3023, 3025, 3026, 3044-> {
+                Log.d("Place/Data/ERROR", "error")
+            }
+            4001, 4008-> {
+                Log.d("Place/Date/ERROR", "error")
+            }
+            else -> {
+                Log.d("Place/SEVER/ERROR", "error")
+            }
+        }
     }
 
 }

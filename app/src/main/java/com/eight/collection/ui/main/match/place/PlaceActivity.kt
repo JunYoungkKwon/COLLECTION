@@ -75,22 +75,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private var keyword2 : String = ""
     private var moveToDate: LocalDate? = null
 
-//    private var dateSave: MutableList<Diary>? = null
-//    private var moveToDate: LocalDate? = null
-//    private var firstdate: LocalDate? = null
-//    private var lastdate: LocalDate? = null
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("life2","test")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("life3","test")
-    }
-
-
     override fun initAfterBinding() {
         savePWWC(0)
         // 검색창 눌렀을시 이벤트
@@ -307,7 +291,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
     override fun onLastTagFailure(code: Int, message: String) {
         historyUnView()
-        Log.d("LastTag1", "error")
         when (code) {
             2000,2001, 2002 -> {
                 Log.d("LastTag/JWT/ERROR", "error")
@@ -339,9 +322,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     override fun onDeleteTagLoading() {
     }
 
-    override fun onDeleteTagSuccess() {
-        Log.d("message","Delete Success")
-    }
+    override fun onDeleteTagSuccess() {}
 
     override fun onDeleteTagFailure(code: Int, message: String) {
         when(code) {
@@ -406,7 +387,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
 
     private fun getSearchResult(){
-
         var count : Int = 1
         for(i in searchKeyword){
             if(count == 1){
@@ -569,6 +549,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 binding.matchDefaultIv.visibility = View.VISIBLE
                 binding.matchDefault1Text.text = "키워드를 입력해 주세요."
                 binding.matchDefault1Text.visibility = View.VISIBLE
+                binding.matchDefault2Text.visibility = View.INVISIBLE
                 binding.itemTopLine1View.visibility = View.VISIBLE
                 binding.itemTopLine2View.visibility = View.VISIBLE
                 Log.d("Match/EmptyKeyWord/ERROR", "error")
