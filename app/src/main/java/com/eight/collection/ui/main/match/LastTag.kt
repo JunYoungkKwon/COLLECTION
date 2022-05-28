@@ -8,6 +8,7 @@ data class LastTag(
     @SerializedName("content") var text: String? = "",
     @SerializedName("color") var color: String? = "",
     @SerializedName("index") var index: Int? = 0,
-    @SerializedName("isdefault") var isdefault: Boolean? = false
+    @SerializedName("isdefault") var isdefault: Boolean? = false,
+    @SerializedName("focus") var focus : Boolean = false
 )
 

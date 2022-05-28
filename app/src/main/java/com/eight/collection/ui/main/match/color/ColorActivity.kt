@@ -18,25 +18,32 @@ import com.eight.collection.databinding.*
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.match.*
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.eight.collection.utils.getContent
+import com.eight.collection.utils.saveContent
 import com.eight.collection.utils.savePWWC
 import com.google.android.flexbox.FlexboxLayoutManager
 
-class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorBinding::inflate),
-    MatchView, LastTagView, DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, SuggestTagView {
+class ColorActivity(): BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorBinding::inflate),
+    MatchView, LastTagView, DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, MatchColorButtonRVAdapter.MyitemClickListener, SuggestTagView, BottomSheetInterface {
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
     private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
     private  lateinit var lastTagRVAdapter: MatchButtonRVAdapter
-    private  lateinit var suggestTagRVAdapter : MatchButtonRVAdapter
+    private  lateinit var suggestTagRVAdapter : MatchColorButtonRVAdapter
     private  lateinit var searchTagRVAdapter: SearchColorTagRVAdapter
     private  var reallastTag = ArrayList<LastTag>()
     private var suggestTag = ArrayList<LastTag>()
     private lateinit var searchEditText : EditText
     private var searchKeyword = ArrayList<LastTag>()
     private var suggestResult : Boolean = false
+    private var suggestContent : String? = ""
 
+    lateinit var bottomSheet : BottomSheet
 
     override fun initAfterBinding() {
         savePWWC(3)
+
+        bottomSheet = BottomSheet(this,this)
+
         // 검색창 눌렀을시 이벤트
         binding.matchColorSearchBeforeView.setOnClickListener{
             searchViewClick()
@@ -77,9 +84,6 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
             openColorUI()
         }
 
-
-
-
         getLastTag()
 
         matchButtonRVAdapter = MatchButtonRVAdapter()
@@ -91,7 +95,7 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
         searchEditText = findViewById(R.id.match_color_search_et)
 
         val flexboxLayoutManager2 = FlexboxLayoutManager(this)
-        suggestTagRVAdapter = MatchButtonRVAdapter()
+        suggestTagRVAdapter = MatchColorButtonRVAdapter()
         binding.matchColorSearchButtonRecyclerview.adapter = suggestTagRVAdapter
         binding.matchColorSearchButtonRecyclerview.layoutManager = flexboxLayoutManager2
 
@@ -110,7 +114,7 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
                     binding.matchColorSearchButtonLayout.visibility = View.VISIBLE
                     if(suggestResult == false) {
                         suggestTag.clear()
-                        suggestTagRVAdapter = MatchButtonRVAdapter()
+                        suggestTagRVAdapter = MatchColorButtonRVAdapter()
                         binding.matchColorSearchButtonRecyclerview.adapter = suggestTagRVAdapter
                     }
                 }
@@ -124,6 +128,8 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
                 // 입력 하기 전
             }
         })
+        searchTagRVAdapter = SearchColorTagRVAdapter(searchKeyword)
+        binding.matchColorSearchButtonResultRecyclerview.adapter = searchTagRVAdapter
     }
 
     fun searchViewClick() {
@@ -144,6 +150,8 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
         searchTagRVAdapter = SearchColorTagRVAdapter(searchKeyword)
         binding.matchColorSearchButtonResultRecyclerview.adapter = searchTagRVAdapter
         searchTagRVAdapter.notifyDataSetChanged()
+
+        binding.matchColorSearchEt.visibility = View.VISIBLE
     }
 
     fun deleteButtonClick(){
@@ -157,6 +165,8 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
         searchTagRVAdapter = SearchColorTagRVAdapter(searchKeyword)
         binding.matchColorSearchButtonResultRecyclerview.adapter = searchTagRVAdapter
         searchTagRVAdapter.notifyDataSetChanged()
+
+        binding.matchColorSearchEt.visibility = View.VISIBLE
     }
 
     fun searchButtonClick(){
@@ -164,8 +174,6 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
         binding.matchColorSearchAfterCl.visibility = View.VISIBLE
         binding.matchColorSearchDefault.visibility = View.INVISIBLE
         binding.matchColorSearchResult.visibility = View.VISIBLE
-
-
     }
 
     fun latestButtonClick(){
@@ -262,6 +270,7 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
     }
 
     override fun onItemClick(lastTag: LastTag, position: Int) {
+        var count : Int = 0
         searchKeyword.apply{
             add(LastTag(lastTag.text,lastTag.color))
         }
@@ -270,6 +279,9 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
         searchTagRVAdapter.notifyDataSetChanged()
         searchViewClick()
         binding.matchColorSearchEt.setText("")
+        if(searchKeyword.size > 1){
+            binding.matchColorSearchEt.visibility = View.GONE
+        }
     }
 
     private fun suggestTag(text : String) {
@@ -287,7 +299,7 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
                 }
             }
             val flexboxLayoutManager2 = FlexboxLayoutManager(this)
-            suggestTagRVAdapter = MatchButtonRVAdapter()
+            suggestTagRVAdapter = MatchColorButtonRVAdapter()
             binding.matchColorSearchButtonRecyclerview.adapter = suggestTagRVAdapter
             binding.matchColorSearchButtonRecyclerview.layoutManager = flexboxLayoutManager2
             suggestTagRVAdapter.addButton(suggestTag)
@@ -415,8 +427,10 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
         startActivityForResult(intent,0)
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        var count : Int = 0
         if (resultCode == RESULT_OK) {
             var matchClothes = data?.getParcelableArrayListExtra<MatchClothes>("matchClothes")!!
             for(i in matchClothes){
@@ -424,14 +438,42 @@ class ColorActivity: BaseActivity<ActivityMatchColorBinding>(ActivityMatchColorB
                     add(LastTag(i.name,i.color))
                 }
             }
+            Log.d("searchKeyword","${searchKeyword}")
             searchTagRVAdapter = SearchColorTagRVAdapter(searchKeyword)
             binding.matchColorSearchButtonResultRecyclerview.adapter = searchTagRVAdapter
             searchTagRVAdapter.notifyDataSetChanged()
             searchViewClick()
             binding.matchColorSearchEt.setText("")
+            if(searchKeyword.size > 1){
+                binding.matchColorSearchEt.visibility = View.GONE
+            }
         }
 
 
     }
+
+    override fun openDialog(content : String) {
+        Log.d("content","${content}")
+        saveContent(content)
+        bottomSheet.show()
+    }
+
+
+    override fun onPostColor(color: String) {
+        suggestContent = getContent()
+        searchKeyword.apply{
+            add(LastTag(suggestContent,color))
+        }
+        Log.d("searchKeyword","${searchKeyword}")
+        searchTagRVAdapter = SearchColorTagRVAdapter(searchKeyword)
+        binding.matchColorSearchButtonResultRecyclerview.adapter = searchTagRVAdapter
+        searchTagRVAdapter.notifyDataSetChanged()
+        searchViewClick()
+        binding.matchColorSearchEt.setText("")
+        if(searchKeyword.size > 1){
+            binding.matchColorSearchEt.visibility = View.GONE
+        }
+    }
+
 
 }

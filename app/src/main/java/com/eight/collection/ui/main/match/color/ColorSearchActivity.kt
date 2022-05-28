@@ -1,7 +1,12 @@
 package com.eight.collection.ui.main.match.color
 
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.eight.collection.R
 import com.eight.collection.databinding.*
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.main.match.color.Etc.ColorSearchEtcFragment
@@ -38,6 +43,7 @@ class ColorSearchActivity(): BaseActivity<ActivityMatchColorSearchBinding>(Activ
     private var getshoesdataListener : ColorSearchActivity.GetShoesDataListener? = null
     private var getetcdataListener : ColorSearchActivity.GetEtcDataListener? = null
 
+    var count : Int = 0
 
 
     override fun initAfterBinding() {
@@ -214,7 +220,6 @@ class ColorSearchActivity(): BaseActivity<ActivityMatchColorSearchBinding>(Activ
 
         //검색 버튼 클릭시 Writing Second Activity
         binding.matchColorSearchBt.setOnClickListener {
-
             val matchClothes : ArrayList<MatchClothes> = ArrayList()
             matchClothes.addAll(gettopdataListener!!.getData())
             matchClothes.addAll(getbottomdataListener!!.getData())
@@ -222,11 +227,27 @@ class ColorSearchActivity(): BaseActivity<ActivityMatchColorSearchBinding>(Activ
             matchClothes.addAll(getetcdataListener!!.getData())
 
 
+            count = 0
+
+            for(i in matchClothes){
+                count = count + 1
+            }
             // 데이터 전달
 
-            intent.putExtra("matchClothes",matchClothes)
-            setResult(RESULT_OK,intent)
-            finish()
+            if(count > 2){
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "검색은 최대 두개의 태그까지 가능합니다."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+            else{
+                intent.putExtra("matchClothes",matchClothes)
+                setResult(RESULT_OK,intent)
+                finish()
+            }
         }
     }
 

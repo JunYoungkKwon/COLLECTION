@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_bottom_sheet_round"
+    >
+
+    <ImageView
+        android:id="@+id/match_color_search_bottom_sheet_color_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_indicator_writefirst"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/match_color_search_bottom_sheet_color_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="COLOR."
+        style="@style/VlanLlaRegular4Pt"
+        app:layout_constraintStart_toStartOf="@id/match_color_search_bottom_sheet_color_ic"
+        app:layout_constraintTop_toBottomOf="@id/match_color_search_bottom_sheet_color_ic"
+        android:layout_marginTop="10dp"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/match_color_search_bottom_sheet_part_view"
+        android:layout_width="0dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/match_color_search_bottom_sheet_color_tv">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_color_selector_red2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_pink"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_pink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_pink2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_yellow"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_red"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_red" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_yellow2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_lightyellow"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_pink"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_pink" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_lightyellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_lightyellow2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_green"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_yellow"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_yellow" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_green2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_lightgreen"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_lightyellow"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_lightyellow" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_lightgreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_lightgreen2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_green"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_green" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_color_selector_orange2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_navy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/match_color_search_bottom_sheet_part_selector_red" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_navy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_navy2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_blue"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_orange"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_orange" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_blue2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_lightblue"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_navy"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_orange" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_lightblue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_lightblue2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_purple"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_blue"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_orange" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_purple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_purple2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_lightpurple"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_lightblue"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_orange" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_lightpurple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_lightpurple2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_purple"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_orange" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_color_selector_white2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/match_color_search_bottom_sheet_part_selector_orange" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_grey2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_black"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_white"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_white" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_black2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_lightpeach"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_grey"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_white" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_lightpeach"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_lightpeach2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_pinkishgrey"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_black"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_white" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_pinkishgrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_pinkishgrey2"
+            app:layout_constraintEnd_toStartOf="@id/match_color_search_bottom_sheet_part_selector_brown"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_lightpeach"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_white"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/match_color_search_bottom_sheet_part_selector_brown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_color_selector_brown2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/match_color_search_bottom_sheet_part_selector_pinkishgrey"
+            app:layout_constraintTop_toTopOf="@id/match_color_search_bottom_sheet_part_selector_white" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintTop_toBottomOf="@id/match_color_search_bottom_sheet_part_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

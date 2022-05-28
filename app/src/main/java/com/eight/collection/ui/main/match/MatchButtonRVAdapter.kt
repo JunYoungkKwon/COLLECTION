@@ -74,6 +74,7 @@ class MatchButtonRVAdapter() : RecyclerView.Adapter<MatchButtonRVAdapter.ViewHol
                     //lightgreen
                     "#b7de89" -> {
                         holder.binding.matchDefaultTv.setTextColor(Color.parseColor("#191919"))
+                        holder.binding.matchDeleteButton.setImageResource(R.drawable.delete_butto_ic_black)
                     }
                     //orange
                     "#ea7831" -> {
