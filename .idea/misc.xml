@@ -51,6 +51,7 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_id_find_first.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_id_find_second.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_mail.xml" value="0.1609375" />
+        <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_color.xml" value="0.13210773834972211" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_place.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_weather.xml" value="0.13210773834972211" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/layout-v28/activity_match_who.xml" value="0.22" />
@@ -128,15 +129,12 @@
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/menu/navi_menu.xml" value="0.1" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1135" />
         <entry key="..\:/Users/gypig/Documents/COLLECTION/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1135" />
-        <entry key="app/src/main/res/drawable-xxxhdpi/dialog_bottom_sheet_round.xml" value="0.124" />
-        <entry key="app/src/main/res/drawable/dialog_round.xml" value="0.124" />
         <entry key="app/src/main/res/drawable/match_search_btn_event.xml" value="0.132" />
         <entry key="app/src/main/res/drawable/radio_checked_pww.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/radio_normal_pww.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/radio_select_pww.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/writefirst_next_btn_event.xml" value="0.132" />
         <entry key="app/src/main/res/font/noto_sans_kr.xml" value="0.23055555555555557" />
-        <entry key="app/src/main/res/layout-v28/activity_match_color.xml" value="0.2714218139648438" />
         <entry key="app/src/main/res/layout-v28/activity_match_place.xml" value="0.24322916666666666" />
         <entry key="app/src/main/res/layout-v28/activity_match_weather.xml" value="0.25" />
         <entry key="app/src/main/res/layout-v28/activity_match_who.xml" value="0.125" />
@@ -145,18 +143,15 @@
         <entry key="app/src/main/res/layout-v28/dialog_introduce_fourth.xml" value="0.25" />
         <entry key="app/src/main/res/layout-v28/dialog_introduce_second.xml" value="0.25" />
         <entry key="app/src/main/res/layout-v28/dialog_introduce_third.xml" value="0.25" />
-        <entry key="app/src/main/res/layout-v28/dialog_refresh.xml" value="0.1675925925925926" />
         <entry key="app/src/main/res/layout-v28/fragment_introduce_third.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/activity_account_delete.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/activity_developer_info.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_finish.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_info_edit.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_match_color_search.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/activity_pw_edit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_writefirst.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_writesecond.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/dialog_bottom_sheet_match_color.xml" value="0.18632354736328127" />
         <entry key="app/src/main/res/layout/fragment_introduce_first.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_introduce_fourth.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_introduce_fouth.xml" value="0.23958333333333334" />
@@ -169,7 +164,6 @@
         <entry key="app/src/main/res/layout/fragment_writesecond_place.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_writesecond_weather.xml" value="0.11778115501519756" />
         <entry key="app/src/main/res/layout/fragment_writesecond_who.xml" value="0.11778115501519756" />
-        <entry key="app/src/main/res/layout/item_color_search_box.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/item_finish_photo.xml" value="0.11828774062816616" />
         <entry key="app/src/main/res/layout/item_match_weather.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/item_match_weather_last.xml" value="0.2421875" />
