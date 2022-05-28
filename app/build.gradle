@@ -59,6 +59,7 @@ android {
     viewBinding {
         enabled = true
     }
+    namespace 'com.eight.collection'
 
 }
 

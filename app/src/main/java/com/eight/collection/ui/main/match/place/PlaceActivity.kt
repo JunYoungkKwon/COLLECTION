@@ -7,9 +7,6 @@ import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.text.Editable
 import android.text.TextWatcher
-import com.eight.collection.databinding.ActivityMatchPlaceBinding
-import com.eight.collection.ui.BaseActivity
-
 import android.util.Log
 import android.util.SparseIntArray
 import android.view.Gravity
@@ -17,14 +14,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
-import androidx.recyclerview.widget.GridLayoutManager
+import android.widget.ImageButton
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import android.widget.ImageButton
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
 import com.aminography.primecalendar.civil.CivilCalendar
+import com.aminography.primecalendar.persian.PersianCalendar
 import com.aminography.primedatepicker.calendarview.PrimeCalendarView
 import com.aminography.primedatepicker.common.BackgroundShapeType
 import com.aminography.primedatepicker.common.LabelFormatter
@@ -37,25 +32,26 @@ import com.eight.collection.data.entities.Suggest
 import com.eight.collection.data.entities.Write.Content
 import com.eight.collection.data.remote.match.MatchService
 import com.eight.collection.data.remote.setting.SettingService
-import com.eight.collection.data.remote.setting.SettingService.deleteOOTD
-import com.eight.collection.databinding.ActivityMatchWeatherBinding
+import com.eight.collection.databinding.ActivityMatchPlaceBinding
+import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.finish.FinishActivity
-import com.eight.collection.ui.login.LoginSecondActivity
 import com.eight.collection.ui.main.match.*
-import com.eight.collection.ui.main.setting.SettingActivity
 import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
-import com.eight.collection.utils.savePWWC
 import com.eight.collection.ui.writing.first.WritefirstActivity
+import com.eight.collection.utils.savePWWC
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
+import java.util.TimeZone.getDefault
+
 
 class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceBinding::inflate),
     MatchView, LastTagView, DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, SuggestTagView ,DeleteView {
@@ -78,22 +74,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private var keyword1 : String = ""
     private var keyword2 : String = ""
     private var moveToDate: LocalDate? = null
-
-//    private var dateSave: MutableList<Diary>? = null
-//    private var moveToDate: LocalDate? = null
-//    private var firstdate: LocalDate? = null
-//    private var lastdate: LocalDate? = null
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("life2","test")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("life3","test")
-    }
-
 
     override fun initAfterBinding() {
         savePWWC(0)
@@ -311,7 +291,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
     override fun onLastTagFailure(code: Int, message: String) {
         historyUnView()
-        Log.d("LastTag1", "error")
         when (code) {
             2000,2001, 2002 -> {
                 Log.d("LastTag/JWT/ERROR", "error")
@@ -343,9 +322,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     override fun onDeleteTagLoading() {
     }
 
-    override fun onDeleteTagSuccess() {
-        Log.d("message","Delete Success")
-    }
+    override fun onDeleteTagSuccess() {}
 
     override fun onDeleteTagFailure(code: Int, message: String) {
         when(code) {
@@ -410,7 +387,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
 
     private fun getSearchResult(){
-
         var count : Int = 1
         for(i in searchKeyword){
             if(count == 1){
@@ -573,6 +549,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 binding.matchDefaultIv.visibility = View.VISIBLE
                 binding.matchDefault1Text.text = "키워드를 입력해 주세요."
                 binding.matchDefault1Text.visibility = View.VISIBLE
+                binding.matchDefault2Text.visibility = View.INVISIBLE
                 binding.itemTopLine1View.visibility = View.VISIBLE
                 binding.itemTopLine2View.visibility = View.VISIBLE
                 Log.d("Match/EmptyKeyWord/ERROR", "error")
@@ -599,6 +576,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 binding.itemTopLine1View.visibility = View.VISIBLE
                 binding.itemTopLine2View.visibility = View.VISIBLE
                 Log.d("Match/DateNoFind/ERROR", "error")
+
             }
             4018 -> {
                 binding.matchPlaceSearchResultTv.text = "0"
@@ -735,6 +713,14 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             override val calendarViewDividerColor: Int
                 get() = getColor(R.color.transparent)
 
+            override val gotoViewBackgroundColor: Int
+                get() = getColor(R.color.background_bs)
+
+            override val gotoViewTextColor: Int
+                get() = getColor(R.color.white)
+
+            override val gotoViewDividerColor: Int
+                get() = getColor(R.color.terracota)
         }
 
         val today = CivilCalendar()
@@ -742,8 +728,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
         val callback = RangeDaysPickCallback { startDay, endDay ->
             startDate = startDay.shortDateString.replace("/","-")
             endDate = endDay.shortDateString.replace("/","-")
-            Log.d("callback",startDate)
-            Log.d("callback",endDate)
             getSearchResult()
 
         }
