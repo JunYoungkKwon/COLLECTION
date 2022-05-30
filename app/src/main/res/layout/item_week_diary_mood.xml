@@ -7,6 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
+        android:id="@+id/item_diary_mood_rl"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:background="@drawable/week_diary_mood_round"

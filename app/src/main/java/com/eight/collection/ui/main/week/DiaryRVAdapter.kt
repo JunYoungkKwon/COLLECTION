@@ -106,13 +106,6 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
             }
 
 
-//            if(diary.coverImg == "null"){
-//                Glide.with(context).load(diary.coverImg).into(binding.itemDiaryImgIv)
-//            }
-//            else{
-//                Glide.with(context).load(diary.coverImg).into(binding.itemDiaryImgIv)
-//            }
-
             if(diary.coverImg.isNullOrEmpty()){
                 Glide.with(context).load(R.drawable.week_diary_default).into(binding.itemDiaryImgIv)
             }

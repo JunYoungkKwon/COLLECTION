@@ -40,6 +40,7 @@ import com.eight.collection.ui.main.match.*
 import com.eight.collection.ui.main.match.place.PlaceActivity
 import com.eight.collection.ui.main.week.DeleteView
 import com.eight.collection.ui.main.week.DiaryRVAdapter
+import com.eight.collection.ui.main.week.MoodRVAdapter
 import com.eight.collection.ui.writing.first.WritefirstActivity
 import com.eight.collection.utils.savePWWC
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -56,6 +57,7 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     DeleteTagView, MatchButtonRVAdapter.MyitemClickListener, SuggestTagView, DeleteView {
 
     private  lateinit var diaryRVAdapter: DiaryRVAdapter
+    private  lateinit var moodRVAdapter: MoodRVAdapter
     private  lateinit var matchButtonRVAdapter: MatchButtonRVAdapter
     private  lateinit var lastTagRVAdapter: MatchButtonRVAdapter
     private  lateinit var suggestTagRVAdapter : MatchButtonRVAdapter
@@ -65,6 +67,7 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
     private var suggestTag = ArrayList<LastTag>()
     private lateinit var searchEditText : EditText
     private var searchKeyword = ArrayList<LastTag>()
+    private var keywordList = ArrayList<String>()
 
     private var suggestResult : Boolean = false
     private var clicked : Boolean = false
@@ -397,10 +400,20 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
                 count = count + 1
             }
         }
+        if(keyword1 != "" ){
+            keywordList.add(keyword1)
+            Log.d("test", keyword1)
+        }
+        if(keyword2 != "" ){
+            keywordList.add(keyword2)
+            Log.d("test", keyword2)
+        }
+        if(keywordList.size != 0){
+
+        }
         if(startDate == "" && endDate == ""){
             MatchService.getMatch(this, 2, keyword1, keyword2, "", "", "", "")
         }else{
-
             MatchService.getMatch(this, 2, keyword1, keyword2, "", "", startDate,endDate)
         }
     }
@@ -429,8 +442,14 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         binding.itemTopLine1View.visibility = View.INVISIBLE
         binding.itemTopLine2View.visibility = View.INVISIBLE
 
+        moodRVAdapter = MoodRVAdapter(keywordList)
+        moodRVAdapter.addKeyword(keywordList)
+        Log.d("test", keywordList.toString())
+
         diaryRVAdapter = DiaryRVAdapter(this)
         binding.matchWhoSearchResultRv.adapter = diaryRVAdapter
+
+
 
         if( match.size == 0) {diaryRVAdapter.removeWeekly()}
 
