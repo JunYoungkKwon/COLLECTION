@@ -58,8 +58,6 @@ class ToprRVAdapter(private  val Toplist: MutableList<Cloth>, val keywordList: M
 
         }
     }
-
-
 }
 
 
