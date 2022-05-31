@@ -1,5 +1,7 @@
 package com.eight.collection.ui.signup
 
+import android.content.BroadcastReceiver
+import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
@@ -12,6 +14,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import com.eight.collection.ApplicationClass
 import com.eight.collection.ApplicationClass.Companion.TAG
 import com.eight.collection.R
 import com.eight.collection.data.entities.User
@@ -20,10 +23,27 @@ import com.eight.collection.databinding.ActivitySignupThirdBinding
 import com.eight.collection.ui.BaseActivity
 import com.eight.collection.ui.login.LoginSecondActivity
 import com.eight.collection.ui.main.MainActivity
+import com.eight.collection.utils.SMSReceiver
+import com.google.android.gms.auth.api.phone.SmsRetriever
+import com.google.firebase.FirebaseException
+import com.google.firebase.FirebaseTooManyRequestsException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import java.util.concurrent.TimeUnit
 
 class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySignupThirdBinding::inflate), SignUpView, CheckIdView, View.OnClickListener {
 
     var checkId : Int = 0
+    val br: BroadcastReceiver = SMSReceiver()
+    private var phoneNum = ""
+    private var phoneEdit = ""
+    private val auth = Firebase.auth
+    private var storedVerificationId = ""
+    private var skip = false
 
     override fun initAfterBinding() {
         binding.signUpThirdIcBack.setOnClickListener(this)
@@ -32,6 +52,24 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
         binding.signUpThirdPhoneEt.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         val value = intent.getStringExtra("postnickname")
         binding.signUpThirdNicknameEt.setText(value)
+        binding.signUpThirdPhoneCheckIb.setOnClickListener(this)
+        binding.signUpThirdSecretNumberCheckIb.setOnClickListener(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val client = SmsRetriever.getClient(this)
+        val task = client.startSmsRetriever()
+        task.addOnSuccessListener {
+            val intentFilter = IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION)
+            registerReceiver(br, intentFilter)
+        }
+        task.addOnFailureListener { }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(br)
     }
 
     override fun onClick(v: View?) {
@@ -51,11 +89,28 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
                 }
                 checkId()
                 if(checkId == 1){
-                    signUp()
+                    if(skip == false){
+                        return
+                    }
+                    else {
+                        signUp()
+                    }
                 }
             }
             binding.signUpThirdDoubleCheckIv -> checkId()
             binding.signUpThirdIcBack -> finish()
+            binding.signUpThirdPhoneCheckIb -> {
+                phoneNum = binding.signUpThirdPhoneEt.text.toString().replace("[^0-9]".toRegex(), "")
+                if (phoneNum.length > 3){
+                    phoneNumberChange(phoneNum)
+                    secretNum()
+                }
+            }
+            binding.signUpThirdSecretNumberCheckIb -> {
+                val smsCode = binding.signUpThirdSecretNumberEt.text.toString()
+                val credential = PhoneAuthProvider.getCredential(storedVerificationId, smsCode)
+                signInWithPhoneAuthCredential(credential)
+            }
         }
     }
 
@@ -245,36 +300,135 @@ class SignupThirdActivity: BaseActivity<ActivitySignupThirdBinding>(ActivitySign
         }
     }
 
-    /*override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup_third)
-        Log.d("Log","SignupThirdActivity")
+    private fun secretNum() {
+        val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-        var data:String?
-        data = intent.getStringExtra("key")
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                Log.d(TAG, "onVerificationCompleted")
+                binding.signUpThirdSecretNumberEt.setText(ApplicationClass.getCode())
 
-        Log.d("Log","value:" + data)
-    }*/
+            }
 
-    /*override fun onSignUpLoading() {
-        binding.signUpLoadingPb.visibility = View.VISIBLE
-    }
+            override fun onVerificationFailed(e: FirebaseException) {
+                //핸드폰 번호 입력 받았는데 이상할 경우
+                Log.w(TAG, "onVerificationFailed")
+                binding.signUpThirdPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                binding.signUpThirdPhoneErrorTv.visibility = View.VISIBLE
+                binding.signUpThirdPhoneErrorTv.text= "*핸드폰 번호를 다시 확인해 주세요."
 
-    override fun onSignUpSuccess() {
-        binding.signUpLoadingPb.visibility = View.GONE
+                binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdNameErrorTv.visibility = View.GONE
+                binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdIdErrorTv.visibility = View.GONE
+                binding.signUpThirdPasswordUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdPasswordErrorTv.visibility = View.GONE
+                binding.signUpThirdPasswordCheckUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdPasswordCheckErrorTv.visibility = View.GONE
+                binding.signUpThirdSecretNumberUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdSecretNumberErrorTv.visibility = View.GONE
+                binding.signUpThirdBirthUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdBirthErrorTv.visibility = View.GONE
 
-        finish()
-    }
+                if (e is FirebaseAuthInvalidCredentialsException) { }
+                else if (e is FirebaseTooManyRequestsException) { }
 
-    override fun onSignUpFailure(code: Int, message: String) {
-        binding.signUpLoadingPb.visibility = View.GONE
+            }
 
-        when(code) {
-            2016, 2017 -> {
-                binding.signUpEmailErrorTv.visibility = View.VISIBLE
-                binding.signUpEmailErrorTv.text = message
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+                //문자 발송시
+                binding.signUpThirdPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdPhoneErrorTv.visibility = View.GONE
+                binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdIdErrorTv.visibility = View.GONE
+                binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdNameErrorTv.visibility = View.GONE
+                binding.signUpThirdPasswordUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdPasswordErrorTv.visibility = View.GONE
+                binding.signUpThirdPasswordCheckUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdPasswordCheckErrorTv.visibility = View.GONE
+                binding.signUpThirdBirthUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                binding.signUpThirdBirthErrorTv.visibility = View.GONE
+
+                binding.signUpThirdSecretNumberEt.isFocusable = true
+                storedVerificationId = verificationId
             }
         }
-    }*/
-    /*SignUpView*/
+
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(phoneEdit)
+            .setTimeout(60L, TimeUnit.SECONDS)
+            .setActivity(this)
+            .setCallbacks(callbacks)
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    skip = true
+                    binding.signUpThirdSecretNumberUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdSecretNumberErrorTv.visibility = View.GONE
+                    binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdIdErrorTv.visibility = View.GONE
+                    binding.signUpThirdPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdPhoneErrorTv.visibility = View.GONE
+                    binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdNameErrorTv.visibility = View.GONE
+                    binding.signUpThirdPasswordUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdPasswordErrorTv.visibility = View.GONE
+                    binding.signUpThirdPasswordCheckUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdPasswordCheckErrorTv.visibility = View.GONE
+                    binding.signUpThirdBirthUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdBirthErrorTv.visibility = View.GONE
+                    Toast(this).showCustomToast("인증 성공", this)
+
+                    binding.signUpThirdSecretNumberEt.isFocusable = false
+                } else {
+                    binding.signUpThirdSecretNumberUnderscoreView.setBackgroundColor(Color.parseColor("#c77a4a"))
+                    binding.signUpThirdSecretNumberErrorTv.visibility = View.VISIBLE
+                    binding.signUpThirdSecretNumberErrorTv.text= "*인증번호를 다시 확인해 주세요."
+
+                    binding.signUpThirdIdUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdIdErrorTv.visibility = View.GONE
+                    binding.signUpThirdPhoneUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdPhoneErrorTv.visibility = View.GONE
+                    binding.signUpThirdNameUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdNameErrorTv.visibility = View.GONE
+                    binding.signUpThirdPasswordUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdPasswordErrorTv.visibility = View.GONE
+                    binding.signUpThirdPasswordCheckUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdPasswordCheckErrorTv.visibility = View.GONE
+                    binding.signUpThirdBirthUnderscoreView.setBackgroundColor(Color.parseColor("#c3b5ac"))
+                    binding.signUpThirdBirthErrorTv.visibility = View.GONE
+                    if (task.exception is FirebaseAuthInvalidCredentialsException) { }
+                }
+            }
+    }
+
+
+    private fun phoneNumberChange(msg : String): String {
+
+        if (msg.isNotEmpty()){
+            val firstNumber : String = msg.substring(0,3)
+            phoneEdit = msg.substring(3)
+
+            when(firstNumber){
+                "010" -> phoneEdit = "+8210$phoneEdit"
+                "011" -> phoneEdit = "+8211$phoneEdit"
+                "016" -> phoneEdit = "+8216$phoneEdit"
+                "017" -> phoneEdit = "+8217$phoneEdit"
+                "018" -> phoneEdit = "+8218$phoneEdit"
+                "019" -> phoneEdit = "+8219$phoneEdit"
+                "106" -> phoneEdit = "+82106$phoneEdit"
+            }
+            return phoneEdit
+        }
+        return phoneEdit
+    }
 }
