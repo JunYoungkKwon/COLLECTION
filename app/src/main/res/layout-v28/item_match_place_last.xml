@@ -25,10 +25,11 @@
             android:textSize="14sp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
             android:textColor="@drawable/selector_radio_text"
             android:textStyle="normal"
+            android:fontFamily="@font/noto_sans_kr_medium"
             tools:text="하얀눈길하이하이하이" />
     </RelativeLayout>
 

@@ -43,6 +43,7 @@ import com.eight.collection.utils.getContent
 import com.eight.collection.utils.saveContent
 import com.eight.collection.utils.savePWWC
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
@@ -66,7 +67,7 @@ class ColorActivity(): BaseActivity<ActivityMatchColorBinding>(ActivityMatchColo
     private var suggestResult : Boolean = false
     private var suggestContent : String? = ""
 
-    lateinit var bottomSheet : BottomSheet
+    lateinit var bottomSheet : BottomSheetDialog
     private var clicked : Boolean = false
     private var startDate: String = ""
     private var endDate : String = ""

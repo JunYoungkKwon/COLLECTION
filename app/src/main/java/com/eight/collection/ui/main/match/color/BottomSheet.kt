@@ -10,10 +10,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageButton
 import com.eight.collection.R
-import com.eight.collection.databinding.ActivityMatchColorBinding
-import com.eight.collection.databinding.FragmentWritefirstTopBinding
 import com.eight.collection.ui.main.match.color.top.ColorSearchTopFragment
 import com.eight.collection.ui.writing.RefreshDialogInterface
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 

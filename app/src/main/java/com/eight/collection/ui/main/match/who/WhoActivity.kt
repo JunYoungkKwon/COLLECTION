@@ -192,6 +192,7 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
 
     fun backViewClick(){
         binding.matchWhoSearchEt.setText("")
+        binding.matchWhoSearchEt.visibility = View.VISIBLE
         binding.matchWhoSearchBeforeCl.visibility = View.VISIBLE
         binding.matchWhoSearchAfterCl.visibility = View.INVISIBLE
         binding.matchWhoSearchDefault.visibility = View.INVISIBLE
@@ -205,6 +206,7 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
 
     fun deleteButtonClick(){
         binding.matchWhoSearchEt.setText("")
+        binding.matchWhoSearchEt.visibility = View.VISIBLE
         binding.matchWhoSearchBeforeCl.visibility = View.INVISIBLE
         binding.matchWhoSearchAfterCl.visibility = View.VISIBLE
         binding.matchWhoSearchDefault.visibility = View.VISIBLE
@@ -221,6 +223,7 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         binding.matchWhoSearchAfterCl.visibility = View.VISIBLE
         binding.matchWhoSearchDefault.visibility = View.INVISIBLE
         binding.matchWhoSearchResult.visibility = View.VISIBLE
+        binding.matchWhoSearchEt.visibility = View.INVISIBLE
     }
 
     fun latestButtonClick(){

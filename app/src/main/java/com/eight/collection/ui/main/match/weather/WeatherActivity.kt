@@ -195,6 +195,7 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
 
     fun backViewClick(){
         binding.matchWeatherSearchEt.setText("")
+        binding.matchWeatherSearchEt.visibility = View.VISIBLE
         binding.matchWeatherSearchBeforeCl.visibility = View.VISIBLE
         binding.matchWeatherSearchAfterCl.visibility = View.INVISIBLE
         binding.matchWeatherSearchDefault.visibility = View.INVISIBLE
@@ -208,6 +209,7 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
 
     fun deleteButtonClick(){
         binding.matchWeatherSearchEt.setText("")
+        binding.matchWeatherSearchEt.visibility = View.VISIBLE
         binding.matchWeatherSearchBeforeCl.visibility = View.INVISIBLE
         binding.matchWeatherSearchAfterCl.visibility = View.VISIBLE
         binding.matchWeatherSearchDefault.visibility = View.VISIBLE
@@ -224,6 +226,7 @@ class WeatherActivity: BaseActivity<ActivityMatchWeatherBinding>(ActivityMatchWe
         binding.matchWeatherSearchAfterCl.visibility = View.VISIBLE
         binding.matchWeatherSearchDefault.visibility = View.INVISIBLE
         binding.matchWeatherSearchResult.visibility = View.VISIBLE
+        binding.matchWeatherSearchEt.visibility = View.INVISIBLE
     }
 
     fun latestButtonClick(){

@@ -15,6 +15,8 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -99,13 +101,24 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         // 검색 버튼 눌렀을시 이벤트
         binding.matchPlaceSearchBt.setOnClickListener{
-            startDate =""
-            endDate = ""
-            keyword1 =""
-            keyword2 = ""
-            searchButtonClick()
-            getSearchResult()
-            getLastTag()
+            if(searchKeyword == null){
+                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
+                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
+                text.text = "태그를 만들어주세요."
+                var toast = Toast(this)
+                toast.view = layoutInflater
+                toast.setGravity(Gravity.BOTTOM, 0, 270)
+                toast.show()
+            }
+            else{
+                startDate =""
+                endDate = ""
+                keyword1 =""
+                keyword2 = ""
+                searchButtonClick()
+                getSearchResult()
+                getLastTag()
+            }
         }
 
         // 날짜조회 버튼 눌렀을시 이벤트
@@ -193,6 +206,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
     fun backViewClick(){
         binding.matchPlaceSearchEt.setText("")
+        binding.matchPlaceSearchEt.visibility = View.VISIBLE
         binding.matchPlaceSearchBeforeCl.visibility = View.VISIBLE
         binding.matchPlaceSearchAfterCl.visibility = View.INVISIBLE
         binding.matchPlaceSearchDefault.visibility = View.INVISIBLE
@@ -206,6 +220,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
     fun deleteButtonClick(){
         binding.matchPlaceSearchEt.setText("")
+        binding.matchPlaceSearchEt.visibility = View.VISIBLE
         binding.matchPlaceSearchBeforeCl.visibility = View.INVISIBLE
         binding.matchPlaceSearchAfterCl.visibility = View.VISIBLE
         binding.matchPlaceSearchDefault.visibility = View.VISIBLE
@@ -222,6 +237,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
         binding.matchPlaceSearchAfterCl.visibility = View.VISIBLE
         binding.matchPlaceSearchDefault.visibility = View.INVISIBLE
         binding.matchPlaceSearchResult.visibility = View.VISIBLE
+        binding.matchPlaceSearchEt.visibility = View.INVISIBLE
     }
 
     fun latestButtonClick(){
