@@ -103,6 +103,7 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         binding.matchWhoSearchBt.setOnClickListener{
             startDate =""
             endDate = ""
+            keywordList.clear()
             keyword1 =""
             keyword2 = ""
             searchButtonClick()
@@ -442,14 +443,10 @@ class WhoActivity: BaseActivity<ActivityMatchWhoBinding>(ActivityMatchWhoBinding
         binding.itemTopLine1View.visibility = View.INVISIBLE
         binding.itemTopLine2View.visibility = View.INVISIBLE
 
-        moodRVAdapter = MoodRVAdapter(keywordList)
-        moodRVAdapter.addKeyword(keywordList)
-        Log.d("test", keywordList.toString())
-
         diaryRVAdapter = DiaryRVAdapter(this)
         binding.matchWhoSearchResultRv.adapter = diaryRVAdapter
 
-
+        diaryRVAdapter.addKeyword(keywordList)
 
         if( match.size == 0) {diaryRVAdapter.removeWeekly()}
 

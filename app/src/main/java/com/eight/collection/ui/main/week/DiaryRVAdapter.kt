@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.*
 import android.view.View.OnLongClickListener
@@ -37,6 +38,7 @@ import java.util.*
 
 class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
     private  val diarylist = mutableListOf<Diary>()
+    private  val keywordList = mutableListOf<String>()
 
     interface MyitemClickListener{
         fun onRemoveDiary(view: View, position: Int)
@@ -60,6 +62,14 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
     fun addWeekly(diarylist: MutableList<Diary>) {
         this.diarylist.clear()
         this.diarylist.addAll(diarylist)
+
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addKeyword(keywordlist: MutableList<String>) {
+        this.keywordList.clear()
+        this.keywordList.addAll(keywordlist)
 
         notifyDataSetChanged()
     }
@@ -95,7 +105,6 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
     override fun getItemCount(): Int = diarylist.size
 
     inner class ViewHolder(val binding: ItemWeekDiaryBinding): RecyclerView.ViewHolder(binding.root){
-
 
         fun bind(diary: Diary){
             if(diary.imgCount == 0){
@@ -151,15 +160,13 @@ class DiaryRVAdapter(val context: Context) : RecyclerView.Adapter<DiaryRVAdapter
                 diary.placeList.add("선택 사항 없음")
             }
             val mood1 = diary.placeList + diary.weatherList + diary.whoList
-            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(mood1.toMutableList())
-            binding.weekDiaryTopRecyclerView.adapter = ToprRVAdapter(diary.topList)
-            binding.weekDiaryBottomRecyclerView.adapter = BottomRVAdapter(diary.bottomList)
-            binding.weekDiaryShoesRecyclerView.adapter = ShoesRVAdapter(diary.shoesList)
-            binding.weekDiaryEtcRecyclerView.adapter = EtcRVAdapter(diary.etcList)
+            binding.weekDiaryMoodRecyclerView.adapter = MoodRVAdapter(mood1.toMutableList(), keywordList)
+            binding.weekDiaryTopRecyclerView.adapter = ToprRVAdapter(diary.topList, keywordList)
+            binding.weekDiaryBottomRecyclerView.adapter = BottomRVAdapter(diary.bottomList,keywordList)
+            binding.weekDiaryShoesRecyclerView.adapter = ShoesRVAdapter(diary.shoesList,keywordList)
+            binding.weekDiaryEtcRecyclerView.adapter = EtcRVAdapter(diary.etcList,keywordList)
         }
     }
-
-
 }
 
 

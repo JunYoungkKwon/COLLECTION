@@ -63,6 +63,7 @@ class ColorActivity(): BaseActivity<ActivityMatchColorBinding>(ActivityMatchColo
     private var suggestTag = ArrayList<LastTag>()
     private lateinit var searchEditText : EditText
     private var searchKeyword = ArrayList<LastTag>()
+    private var keywordList = ArrayList<String>()
     private var suggestResult : Boolean = false
     private var suggestContent : String? = ""
 
@@ -109,6 +110,7 @@ class ColorActivity(): BaseActivity<ActivityMatchColorBinding>(ActivityMatchColo
             keyword2 = ""
             color1 = ""
             color2 = ""
+            keywordList.clear()
             searchButtonClick()
             getSearchResult()
             getLastTag()
@@ -406,6 +408,17 @@ class ColorActivity(): BaseActivity<ActivityMatchColorBinding>(ActivityMatchColo
                 count = count + 1
             }
         }
+        if(keyword1 != "" ){
+            keywordList.add(keyword1)
+            Log.d("test", keyword1)
+        }
+        if(keyword2 != "" ){
+            keywordList.add(keyword2)
+            Log.d("test", keyword2)
+        }
+        if(keywordList.size != 0){
+
+        }
         if(startDate == "" && endDate == ""){
             MatchService.getMatch(this, 3, keyword1, keyword2, color1, color2, "", "")
         }else{
@@ -442,6 +455,7 @@ class ColorActivity(): BaseActivity<ActivityMatchColorBinding>(ActivityMatchColo
 
         diaryRVAdapter = DiaryRVAdapter(this)
         binding.matchColorSearchResultRv.adapter = diaryRVAdapter
+        diaryRVAdapter.addKeyword(keywordList)
 
         if( match.size == 0) {diaryRVAdapter.removeWeekly()}
 

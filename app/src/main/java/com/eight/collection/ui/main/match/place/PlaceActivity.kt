@@ -66,6 +66,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private var suggestTag = ArrayList<LastTag>()
     private lateinit var searchEditText : EditText
     private var searchKeyword = ArrayList<LastTag>()
+    private var keywordList = ArrayList<String>()
 
     private var suggestResult : Boolean = false
     private var clicked : Boolean = false
@@ -73,6 +74,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private var endDate : String = ""
     private var keyword1 : String = ""
     private var keyword2 : String = ""
+
     private var moveToDate: LocalDate? = null
 
     override fun initAfterBinding() {
@@ -103,6 +105,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
             endDate = ""
             keyword1 =""
             keyword2 = ""
+            keywordList.clear()
             searchButtonClick()
             getSearchResult()
             getLastTag()
@@ -398,6 +401,17 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 count = count + 1
             }
         }
+        if(keyword1 != "" ){
+            keywordList.add(keyword1)
+            Log.d("test", keyword1)
+        }
+        if(keyword2 != "" ){
+            keywordList.add(keyword2)
+            Log.d("test", keyword2)
+        }
+        if(keywordList.size != 0){
+
+        }
         if(startDate == "" && endDate == ""){
             MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
         }else{
@@ -434,6 +448,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         diaryRVAdapter = DiaryRVAdapter(this)
         binding.matchPlaceSearchResultRv.adapter = diaryRVAdapter
+        diaryRVAdapter.addKeyword(keywordList)
 
         if( match.size == 0) {diaryRVAdapter.removeWeekly()}
 

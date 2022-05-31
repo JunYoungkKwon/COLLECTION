@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eight.collection.data.entities.Cloth
 import com.eight.collection.databinding.ItemWeekDiaryClothColorBinding
 
-class ShoesRVAdapter(private  val Shoeslist: MutableList<Cloth>) : RecyclerView.Adapter<ShoesRVAdapter.ViewHolder>() {
+class ShoesRVAdapter(private  val Shoeslist: MutableList<Cloth>, val keywordList: MutableList<String>) : RecyclerView.Adapter<ShoesRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ShoesRVAdapter.ViewHolder {
         val binding: ItemWeekDiaryClothColorBinding = ItemWeekDiaryClothColorBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -33,6 +33,22 @@ class ShoesRVAdapter(private  val Shoeslist: MutableList<Cloth>) : RecyclerView.
             }else{
                 binding.itemDiaryColorView.setBackgroundColor(Color.parseColor(cloth.color))
                 binding.itemDiaryClothTv.text= cloth.cloth
+                if(keywordList.size == 1){
+                    if(cloth.cloth == keywordList.get(0)){
+                        binding.itemDiaryClothTv.setTextColor(Color.parseColor("#c77a4a"))
+                    }else{
+                        binding.itemDiaryClothTv.setTextColor(Color.parseColor("#FF000000"))
+                    }
+                }
+                if(keywordList.size == 2){
+                    if(cloth.cloth == keywordList.get(0) || cloth.cloth == keywordList.get(1)){
+                        binding.itemDiaryClothTv.setTextColor(Color.parseColor("#c77a4a"))
+
+                    }else{
+                        binding.itemDiaryClothTv.setTextColor(Color.parseColor("#FF000000"))
+                    }
+
+                }
             }
         }
     }
