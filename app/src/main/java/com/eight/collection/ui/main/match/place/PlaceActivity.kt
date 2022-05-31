@@ -15,8 +15,6 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -68,6 +66,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private var suggestTag = ArrayList<LastTag>()
     private lateinit var searchEditText : EditText
     private var searchKeyword = ArrayList<LastTag>()
+    private var keywordList = ArrayList<String>()
 
     private var suggestResult : Boolean = false
     private var clicked : Boolean = false
@@ -75,6 +74,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
     private var endDate : String = ""
     private var keyword1 : String = ""
     private var keyword2 : String = ""
+
     private var moveToDate: LocalDate? = null
 
     override fun initAfterBinding() {
@@ -101,24 +101,14 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         // 검색 버튼 눌렀을시 이벤트
         binding.matchPlaceSearchBt.setOnClickListener{
-            if(searchKeyword == null){
-                var layoutInflater = LayoutInflater.from(this).inflate(R.layout.toast_custom,null)
-                var text : TextView = layoutInflater.findViewById(R.id.toast_text_tv)
-                text.text = "태그를 만들어주세요."
-                var toast = Toast(this)
-                toast.view = layoutInflater
-                toast.setGravity(Gravity.BOTTOM, 0, 270)
-                toast.show()
-            }
-            else{
-                startDate =""
-                endDate = ""
-                keyword1 =""
-                keyword2 = ""
-                searchButtonClick()
-                getSearchResult()
-                getLastTag()
-            }
+            startDate =""
+            endDate = ""
+            keyword1 =""
+            keyword2 = ""
+            keywordList.clear()
+            searchButtonClick()
+            getSearchResult()
+            getLastTag()
         }
 
         // 날짜조회 버튼 눌렀을시 이벤트
@@ -206,7 +196,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
     fun backViewClick(){
         binding.matchPlaceSearchEt.setText("")
-        binding.matchPlaceSearchEt.visibility = View.VISIBLE
         binding.matchPlaceSearchBeforeCl.visibility = View.VISIBLE
         binding.matchPlaceSearchAfterCl.visibility = View.INVISIBLE
         binding.matchPlaceSearchDefault.visibility = View.INVISIBLE
@@ -220,7 +209,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
     fun deleteButtonClick(){
         binding.matchPlaceSearchEt.setText("")
-        binding.matchPlaceSearchEt.visibility = View.VISIBLE
         binding.matchPlaceSearchBeforeCl.visibility = View.INVISIBLE
         binding.matchPlaceSearchAfterCl.visibility = View.VISIBLE
         binding.matchPlaceSearchDefault.visibility = View.VISIBLE
@@ -237,7 +225,6 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
         binding.matchPlaceSearchAfterCl.visibility = View.VISIBLE
         binding.matchPlaceSearchDefault.visibility = View.INVISIBLE
         binding.matchPlaceSearchResult.visibility = View.VISIBLE
-        binding.matchPlaceSearchEt.visibility = View.INVISIBLE
     }
 
     fun latestButtonClick(){
@@ -414,6 +401,17 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
                 count = count + 1
             }
         }
+        if(keyword1 != "" ){
+            keywordList.add(keyword1)
+            Log.d("test", keyword1)
+        }
+        if(keyword2 != "" ){
+            keywordList.add(keyword2)
+            Log.d("test", keyword2)
+        }
+        if(keywordList.size != 0){
+
+        }
         if(startDate == "" && endDate == ""){
             MatchService.getMatch(this, 0, keyword1, keyword2, "", "", "", "")
         }else{
@@ -450,6 +448,7 @@ class PlaceActivity: BaseActivity<ActivityMatchPlaceBinding>(ActivityMatchPlaceB
 
         diaryRVAdapter = DiaryRVAdapter(this)
         binding.matchPlaceSearchResultRv.adapter = diaryRVAdapter
+        diaryRVAdapter.addKeyword(keywordList)
 
         if( match.size == 0) {diaryRVAdapter.removeWeekly()}
 
