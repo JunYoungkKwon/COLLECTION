@@ -106,6 +106,7 @@
     <string name="mail">문의하기</string>
     <string name="logout">로그아웃</string>
     <string name="app_version">v.1.0.5</string>
+
     <string name="nickname_annotation">콜렉션에서 사용할 닉네임을 입력해 주세요.</string>
 
     <!-- myLook page -->
