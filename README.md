@@ -24,19 +24,18 @@
 | <img width="100" height="100" src="https://user-images.githubusercontent.com/90251348/171634817-00d22ee5-1a76-414c-bc8c-8ea0176d16aa.png"> |
 | YurimYang |
 
-
 **Android**
 | 테오 | 라프 | 
 | :---: | :---: |
 | <img width="100" height="100" src="https://user-images.githubusercontent.com/90251348/171635208-6f5afba8-3f25-4586-9b70-f3a6d0065858.png"> | <img width="100" height="100" src="https://user-images.githubusercontent.com/90251348/171635141-63be1f02-ff6d-496c-ab39-10b12712f2f1.png"> |
 | JunYoungkKwon | smo1621 |
 
-
  **Server**
  | 녜 | 써니 |
 | :---: | :---: |
  | <img width="100" height="100" src="https://user-images.githubusercontent.com/90251348/171635119-90e887f9-70e3-40f0-9034-9cd86ca4d3df.png"> | <img width="100" height="100" src="https://user-images.githubusercontent.com/90251348/171635160-93d02502-187a-4b38-bb03-1c5263fa48bc.png"> |
   | Nachtstolz | seoyeonK |
+  
  **Designer**
  | 니제이 |
 |:---:|
