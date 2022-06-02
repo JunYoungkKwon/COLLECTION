@@ -29,7 +29,7 @@
 | 테오 | 라프 | 
 | :---: | :---: |
 | <img width="100" height="100" src="https://user-images.githubusercontent.com/90251348/171635208-6f5afba8-3f25-4586-9b70-f3a6d0065858.png"> | <img width="100" height="100" src="https://user-images.githubusercontent.com/90251348/171635141-63be1f02-ff6d-496c-ab39-10b12712f2f1.png"> |
-| [JunYoungkKwon](https://github.com/JunYoungkKwon) | [smo1621](https://github.com/smo1621) |
+| [JunYoung](https://github.com/JunYoungkKwon) | [smo1621](https://github.com/smo1621) |
 
  **Server**
  | 녜 | 써니 |
