@@ -3,7 +3,8 @@
 </p>
 
 <div align="center">
-  COLLECTION<br>나만의 OOTD 캘린더<br>#OOTD를  기록하고 #태그로 검색하고
+  COLLECTION<br>나만의 OOTD 캘린더<br>#OOTD를  기록하고 #태그로 검색하고<br>
+  Application Tech Blog WIKI Release
 </div>
 
 # INTRODUCE
