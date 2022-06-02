@@ -61,6 +61,6 @@
 
 
 # DOWNLOAD
-<a href="[https://itholic.github.io/](https://play.google.com/store/apps/details?id=com.eight.collection)" target="_blank">
+ <a href="https://play.google.com/store/apps/details?id=com.eight.collection" target="_blank">
   <img width="150" height="150" src="https://user-images.githubusercontent.com/90251348/171583550-d642034a-fa9f-4107-a261-5b97837ffab7.png">
 </a>
