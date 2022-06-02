@@ -303,7 +303,6 @@
         android:layout_height="wrap_content"
         android:text="휴대폰"
         android:fontFamily="@font/suit_regular"
-
         android:textColor="@color/dark_taupe"
         android:textStyle="normal"
         android:textSize="12sp"
@@ -361,6 +360,211 @@
         app:layout_constraintTop_toBottomOf="@id/sign_up_third_phone_underscore_view"
         android:layout_marginTop="3.5dp"
         />
+
+    <ImageButton
+        android:id="@+id/sign_up_third_phone_check_ib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:src="@drawable/secret_post_btn_event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sign_up_third_phone_et"
+        app:layout_constraintBottom_toBottomOf="@id/sign_up_third_phone_et"
+        android:layout_marginEnd="32dp"/>
+
+
+    <TextView
+        android:id="@+id/sign_up_third_secret_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="인증번호"
+        android:fontFamily="@font/suit_regular"
+        android:textColor="@color/dark_taupe"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:letterSpacing="-0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_phone_error_tv"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        />
+
+    <EditText
+        android:id="@+id/sign_up_third_secret_number_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="인증번호를 입력해주세요"
+        android:textColorHint="#C3B5AC"
+        android:inputType="phone"
+        android:textSize="14sp"
+        android:textColor="@color/dark_taupe"
+        android:letterSpacing="-0.01"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/suit_regular"
+        android:maxLength="13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_secret_number_tv"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="120dp"
+        android:autoText="false"
+        tools:ignore="Deprecated" />
+
+    <View
+        android:id="@+id/sign_up_third_secret_number_underscore_view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/pinkish_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_secret_number_et"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="9.5dp"
+        />
+
+    <ImageButton
+        android:id="@+id/sign_up_third_secret_number_check_ib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:src="@drawable/secret_ok_btn_event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sign_up_third_secret_number_et"
+        app:layout_constraintBottom_toBottomOf="@id/sign_up_third_secret_number_et"
+        android:layout_marginEnd="32dp"/>
+
+    <TextView
+        android:id="@+id/sign_up_third_secret_number_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_regular"
+        android:textColor="@color/terracota"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/sign_up_third_secret_number_tv"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_secret_number_underscore_view"
+        android:layout_marginTop="3.5dp" />
+
+    <TextView
+        android:id="@+id/sign_up_third_birth_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="생년월일"
+        android:fontFamily="@font/suit_regular"
+        android:textColor="@color/dark_taupe"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:letterSpacing="-0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_secret_number_error_tv"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        />
+
+    <EditText
+        android:id="@+id/sign_up_third_birth_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="8자리를 입력해주세요"
+        android:textColorHint="#C3B5AC"
+        android:inputType="number"
+        android:textSize="14sp"
+        android:textColor="@color/dark_taupe"
+        android:letterSpacing="-0.01"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/suit_regular"
+        android:maxLength="13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_birth_tv"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="120dp"
+        android:autoText="false"
+        tools:ignore="Deprecated" />
+
+    <View
+        android:id="@+id/sign_up_third_birth_underscore_view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/pinkish_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_birth_et"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="9.5dp"
+        />
+
+
+    <TextView
+        android:id="@+id/sign_up_third_birth_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/suit_regular"
+        android:textColor="@color/terracota"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/sign_up_third_birth_tv"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_birth_underscore_view"
+        android:layout_marginTop="3.5dp" />
+
+    <TextView
+        android:id="@+id/sign_up_third_sex_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="성별"
+        android:fontFamily="@font/suit_regular"
+        android:textColor="@color/dark_taupe"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:letterSpacing="-0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_birth_error_tv"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        />
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_third_sex_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        >
+
+        <RadioButton
+            android:layout_width="168dp"
+            android:layout_height="35dp"
+            android:button="@color/transparent"
+            android:background="@drawable/radio_selector_sex"
+            android:text="여성"
+            android:textSize="14sp"
+            android:fontFamily="@font/suit_regular"
+            android:textColor="@drawable/selector_radio_text_sex"
+            android:gravity="center"
+            />
+
+        <RadioButton
+            android:layout_width="168dp"
+            android:layout_height="35dp"
+            android:button="@color/transparent"
+            android:background="@drawable/radio_selector_sex"
+            android:text="남자"
+            android:textSize="14sp"
+            android:fontFamily="@font/suit_regular"
+            android:textColor="@drawable/selector_radio_text_sex"
+            android:gravity="center"
+            />
+    </RadioGroup>
+
 
     <EditText
         android:id="@+id/sign_up_third_nickname_et"
