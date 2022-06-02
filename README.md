@@ -22,7 +22,7 @@
 | 이프 |
 |:---:|
 | <img width="100" height="100" src="https://user-images.githubusercontent.com/90251348/171634817-00d22ee5-1a76-414c-bc8c-8ea0176d16aa.png"> |
-| YurimYang |
+| YurimYang |<br>
  **Android**
  | 테오 | 라프 | 
  | :---: | :---: |
