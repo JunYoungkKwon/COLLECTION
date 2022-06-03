@@ -16,6 +16,7 @@
 | :---: | :---: | :---:| 
 |  |<img src="https://user-images.githubusercontent.com/90251348/171786320-d73a7081-6420-4a14-9773-6642e59b9c97.gif"> | <img src="https://user-images.githubusercontent.com/90251348/171785700-ae1905ed-ae03-459b-b816-29df8eadef03.gif"> |
 | OOTD 룩북 | 프로필 및 환경설정 | OOTD 검색 | 
+  | :---: | :---: | :---:| 
 | <img src="https://user-images.githubusercontent.com/90251348/171785719-df86e8c0-a1ed-4df4-8fd8-f50ccc0a1069.gif">  | <img src="https://user-images.githubusercontent.com/90251348/171785974-1b4741b3-3b16-4641-b60e-88bdaa5436a2.gif"> | <img src="https://user-images.githubusercontent.com/90251348/171785725-0c8cbecf-b660-4d64-bc75-629638660b61.gif">  | 
   
   
