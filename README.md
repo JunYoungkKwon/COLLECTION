@@ -2,12 +2,12 @@
   <img width="200" height="200" src="https://user-images.githubusercontent.com/90251348/171596431-70e6c462-f51b-4039-bac7-f727dae9103f.png">
 </p>
 
-<div align="center">
+<p align="center">
   COLLECTION<br>나만의 OOTD 캘린더<br>#OOTD를  기록하고 #태그로 검색하고<br>
   <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=Android&logoColor=white">
 <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"> 
 <img src="https://img.shields.io/badge/Google Play-00AEEF?style=for-the-badge&logo=Google Play&logoColor=white"> 
-</div>
+</p>
 
 # INTRODUCE
 <p align="center">
