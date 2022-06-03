@@ -7,12 +7,15 @@
   __COLLECTION__  
   나만의 OOTD 캘린더<br>
   #OOTD를  기록하고 #태그로 검색하고<br>
-  <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=Android&logoColor=white">
-  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
+  <a href="https://developer.android.com/?hl=ko" target="_blank">
+    <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=Android&logoColor=white">
+  </a>
+  <a href="https://firebase.google.com/?hl=ko&gclid=Cj0KCQjw4uaUBhC8ARIsANUuDjVDShGdxwiujAGzypU2IFCUy3uchiRrNU60sIVEI-HTJyW7ltcqyiQaAj-oEALw_wcB&gclsrc=aw.ds" target="_blank">
+    <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
+  </a>
   <a href="https://play.google.com/store/apps/details?id=com.eight.collection" target="_blank">
     <img src="https://img.shields.io/badge/Google Play-00AEEF?style=for-the-badge&logo=Google Play&logoColor=white">
   </a>
-   
 </div>
 
 # INTRODUCE
