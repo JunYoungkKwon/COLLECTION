@@ -4,11 +4,14 @@
 <div align="center">  
   
   
-  __COLLECTION__
+  __COLLECTION__  
+  나만의 OOTD 캘린더
+  #OOTD를  기록하고 #태그로 검색하고  
+  
+  
 </div>
 
 
-__COLLECTION__
 
 
 나만의 OOTD 캘린더<br>
