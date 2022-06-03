@@ -10,10 +10,12 @@ __COLLECTION__
 나만의 OOTD 캘린더<br>
 #OOTD를  기록하고 #태그로 검색하고
 <p align="center">
-  **COLLECTION**  나만의 OOTD 캘린더<br>#OOTD를  기록하고 #태그로 검색하고<br>
+ __COLLECTION__    
+ 나만의 OOTD 캘린더<br>  
+  #OOTD를  기록하고 #태그로 검색하고<br>  
   <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=Android&logoColor=white">
-<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"> 
-<img src="https://img.shields.io/badge/Google Play-00AEEF?style=for-the-badge&logo=Google Play&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Google Play-00AEEF?style=for-the-badge&logo=Google Play&logoColor=white"> 
 </p>
 
 # INTRODUCE
