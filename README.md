@@ -14,9 +14,18 @@
 
 | 소셜 로그인 | 캘린더 작성 | 월간 주간 캘린더 |
 | :---: | :---: | :---:| 
-| ![135817249-985f31ac-cde3-431e-b16d-56cfecb2897e.gif](https://user-images.githubusercontent.com/56240505/135817249-985f31ac-cde3-431e-b16d-56cfecb2897e.gif) |<img src="https://user-images.githubusercontent.com/90251348/171783133-5b47aaae-ab9a-40ba-88c9-41fd93c925be.gif"> | ![135817249-985f31ac-cde3-431e-b16d-56cfecb2897e.gif](https://user-images.githubusercontent.com/56240505/135817249-985f31ac-cde3-431e-b16d-56cfecb2897e.gif) |
+| ![135817249-985f31ac-cde3-431e-b16d-56cfecb2897e.gif](https://user-images.githubusercontent.com/56240505/135817249-985f31ac-cde3-431e-b16d-56cfecb2897e.gif) |<img src="https://user-images.githubusercontent.com/90251348/171783133-5b47aaae-ab9a-40ba-88c9-41fd93c925be.gif"> | <img src="https://user-images.githubusercontent.com/90251348/171785700-ae1905ed-ae03-459b-b816-29df8eadef03.gif"> |
 | OOTD 룩북 | 프로필 및 환경설정 | OOTD 검색 | 
-|  | ☑️ |   | 
+| <img src="https://user-images.githubusercontent.com/90251348/171785719-df86e8c0-a1ed-4df4-8fd8-f50ccc0a1069.gif"  | <img src="https://user-images.githubusercontent.com/90251348/171785974-1b4741b3-3b16-4641-b60e-88bdaa5436a2.gif"> | <img src="https://user-images.githubusercontent.com/90251348/171785725-0c8cbecf-b660-4d64-bc75-629638660b61.gif"  | 
+
+   환경설정
+  <img src="https://user-images.githubusercontent.com/90251348/171785974-1b4741b3-3b16-4641-b60e-88bdaa5436a2.gif">
+  룩북
+  <img src="https://user-images.githubusercontent.com/90251348/171785719-df86e8c0-a1ed-4df4-8fd8-f50ccc0a1069.gif">
+  검색
+  <img src="https://user-images.githubusercontent.com/90251348/171785725-0c8cbecf-b660-4d64-bc75-629638660b61.gif">
+![환경설정](https://user-images.githubusercontent.com/90251348/171785974-1b4741b3-3b16-4641-b60e-88bdaa5436a2.gif)
+
 
 </p>
 
