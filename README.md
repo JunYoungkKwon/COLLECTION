@@ -13,9 +13,7 @@
   <a href="https://firebase.google.com/?hl=ko&gclid=Cj0KCQjw4uaUBhC8ARIsANUuDjVDShGdxwiujAGzypU2IFCUy3uchiRrNU60sIVEI-HTJyW7ltcqyiQaAj-oEALw_wcB&gclsrc=aw.ds" target="_blank">
     <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
   </a>
-  <a href="https://play.google.com/store/apps/details?id=com.eight.collection" target="_blank">
-    <img src="https://img.shields.io/badge/Google Play-00AEEF?style=for-the-badge&logo=Google Play&logoColor=white">
-  </a>
+
 </div>
 
 # INTRODUCE
@@ -75,7 +73,7 @@
 
 
 
-# DOWNLOAD
+# DOWNLOAD(중지)
  <a href="https://play.google.com/store/apps/details?id=com.eight.collection" target="_blank">
   <img width="150" height="150" src="https://user-images.githubusercontent.com/90251348/171583550-d642034a-fa9f-4107-a261-5b97837ffab7.png">
 </a>
