@@ -6,7 +6,8 @@
   <img width="200" height="200" src="https://user-images.githubusercontent.com/90251348/171596431-70e6c462-f51b-4039-bac7-f727dae9103f.png">
 </p>      
 <div align="center">  
-  
+
+
   
   **__COLLECTION__**<br>
   **나만의 OOTD 캘린더**<br>
@@ -20,12 +21,13 @@
 
 
 
+
 ## **Preview**
 <p align="center">
 
-| **회원가입** | **캘린더 작성** | **월간 주간 캘린더** |
+| **로그인** | **캘린더 작성** | **월간 주간 캘린더** |
 | :---: | :---: | :---:| 
-|<img src="https://github.com/user-attachments/assets/b8d07eb0-23c8-43e0-ad71-e4ed3cc42646">  |<img src="https://user-images.githubusercontent.com/90251348/171786320-d73a7081-6420-4a14-9773-6642e59b9c97.gif"> | <img src="https://user-images.githubusercontent.com/90251348/171785700-ae1905ed-ae03-459b-b816-29df8eadef03.gif"> |
+|<img src="https://github.com/user-attachments/assets/10167d34-68f2-4936-9800-2e3da14ab660">  |<img src="https://user-images.githubusercontent.com/90251348/171786320-d73a7081-6420-4a14-9773-6642e59b9c97.gif"> | <img src="https://user-images.githubusercontent.com/90251348/171785700-ae1905ed-ae03-459b-b816-29df8eadef03.gif"> |
 | **OOTD 룩북** | **프로필 및 환경설정** | **OOTD 검색** | 
 | <img src="https://user-images.githubusercontent.com/90251348/171785719-df86e8c0-a1ed-4df4-8fd8-f50ccc0a1069.gif">  | <img src="https://user-images.githubusercontent.com/90251348/171785974-1b4741b3-3b16-4641-b60e-88bdaa5436a2.gif"> | <img src="https://user-images.githubusercontent.com/90251348/171785725-0c8cbecf-b660-4d64-bc75-629638660b61.gif">  | 
   
